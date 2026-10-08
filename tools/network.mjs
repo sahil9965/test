@@ -1,6 +1,6 @@
 // Inject the cross-site "More free tools" list into every page of every site, between
 // <!--NETWORK:START--> and <!--NETWORK:END-->, using sites.json. Usage: node tools/network.mjs
-import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,7 +16,9 @@ let n = 0;
 for (const s of sites) {
   const others = sites.filter(o => o.slug !== s.slug);
   const block = `<!--NETWORK:START--><ul>${others.map(o => `<li><a href="${esc(o.url)}/" title="${esc(o.tagline)}">${esc(o.label)}</a></li>`).join("")}</ul><!--NETWORK:END-->`;
-  for (const f of walk(join(root, "sites", s.slug))) {
+  const dir = join(root, "sites", s.slug);
+  if (!existsSync(dir)) continue;
+  for (const f of walk(dir)) {
     const html = readFileSync(f, "utf8");
     const next = html.replace(/<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/, block);
     if (next !== html) { writeFileSync(f, next); n++; }

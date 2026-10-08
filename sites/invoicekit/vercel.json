@@ -40,6 +40,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "invoicekit-coral.vercel.app"
+        }
+      ],
+      "destination": "https://invoicekit-coral.vercel.app/:path*",
+      "permanent": true
+    },
+    {
       "source": "/app",
       "destination": "/",
       "permanent": true
