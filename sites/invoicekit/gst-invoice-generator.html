@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GST Invoice Generator — Free CGST/SGST Bill Maker, No Login</title>
+<meta name="description" content="Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.">
+<link rel="canonical" href="https://invoicekit-coral.vercel.app/gst-invoice-generator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#2f5bea">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="InvoiceKit">
+<meta property="og:title" content="GST Invoice Generator — Free CGST/SGST Bill Maker, No Login">
+<meta property="og:description" content="Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.">
+<meta property="og:url" content="https://invoicekit-coral.vercel.app/gst-invoice-generator">
+<meta property="og:image" content="https://invoicekit-coral.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"InvoiceKit","item":"https://invoicekit-coral.vercel.app/"},{"@type":"ListItem","position":2,"name":"GST invoice generator","item":"https://invoicekit-coral.vercel.app/gst-invoice-generator"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a valid GST invoice format?","acceptedAnswer":{"@type":"Answer","text":"It includes the fields usually required on a tax invoice. Add your GSTIN, HSN/SAC codes and place of supply. E-invoicing (IRN) is mandatory only above the turnover threshold notified by the GST Council. Confirm your obligations with a CA."}},{"@type":"Question","name":"How do I show CGST and SGST separately?","acceptedAnswer":{"@type":"Answer","text":"Set tax name to GST, enter the full rate (for example 18), and tick Split tax in half. The invoice shows CGST 9% and SGST 9%."}},{"@type":"Question","name":"Can I make an invoice without GST?","acceptedAnswer":{"@type":"Answer","text":"Yes. If you're not GST-registered, set the tax rate to 0 and call it an Invoice or Bill of Supply as applicable."}}]},{"@type":"WebApplication","name":"GST Invoice Generator (India)","url":"https://invoicekit-coral.vercel.app/gst-invoice-generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">InvoiceKit</a>
+    <nav aria-label="Main"><a href="/">Invoice generator</a><a href="/invoice-templates">Templates</a><a href="/pricing">Pricing</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">InvoiceKit</a> › GST invoice generator</p>
+    <section class="hero">
+      <h1>GST Invoice Generator (India)</h1>
+      <p class="lead">Make a GST tax invoice in rupees with CGST and SGST split automatically. Add your GSTIN and HSN/SAC codes, then download a PDF.</p>
+    </section>
+    <section class="tool card" aria-label="Invoice generator"><div id="ik-tool" data-preset="gst"></div></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> A GST tax invoice must show the supplier's name, address and GSTIN, a unique serial number, the date, the recipient's details (and GSTIN if registered), HSN/SAC codes, taxable value, the GST rate and amount (CGST + SGST for intra-state sales, IGST for inter-state sales), and the place of supply.</p>
+      <h2>CGST + SGST or IGST?</h2>
+      <table><thead><tr><th>Sale type</th><th>Tax to charge</th><th>Example at 18%</th></tr></thead><tbody>
+      <tr><td>Within the same state (intra-state)</td><td>CGST + SGST, half each</td><td>9% CGST + 9% SGST</td></tr>
+      <tr><td>To another state (inter-state)</td><td>IGST</td><td>18% IGST</td></tr>
+      </tbody></table>
+      <p>In the generator, set the tax name to <strong>GST</strong> and the rate to 18 (or 5, 12 or 28). Tick <em>Split tax in half</em> for intra-state sales to show CGST and SGST. For inter-state sales, change the tax name to <strong>IGST</strong> and untick the split.</p>
+      <h2>Mandatory fields on a GST invoice</h2>
+      <ul>
+        <li>Supplier name, address and GSTIN (put these in the From box)</li>
+        <li>Consecutive invoice serial number, unique for the financial year (for example GST/2026-27/001)</li>
+        <li>Invoice date</li>
+        <li>Recipient name, address and GSTIN if registered, plus the place of supply with state name and code</li>
+        <li>HSN code for goods or SAC code for services in each item description</li>
+        <li>Quantity, unit, taxable value, and the rate and amount of each tax</li>
+        <li>Signature or digital signature of the supplier</li>
+      </ul>
+      <h2>Payment details Indian clients expect</h2>
+      <p>Add your bank name, account number, IFSC and UPI ID in the notes box. UPI makes small invoices much faster to pay.</p>
+      <h2 id="faq">FAQ</h2>
+      <details><summary>Is this a valid GST invoice format?</summary><p>It includes the fields usually required on a tax invoice. Add your GSTIN, HSN/SAC codes and place of supply. E-invoicing (IRN) is mandatory only above the turnover threshold notified by the GST Council. Confirm your obligations with a CA.</p></details>
+      <details><summary>How do I show CGST and SGST separately?</summary><p>Set tax name to GST, enter the full rate (for example 18), and tick Split tax in half. The invoice shows CGST 9% and SGST 9%.</p></details>
+      <details><summary>Can I make an invoice without GST?</summary><p>Yes. If you're not GST-registered, set the tax rate to 0 and call it an Invoice or Bill of Supply as applicable.</p></details>
+      <h2>More invoice templates</h2>
+      <ul class="related">
+        <li><a href="/">Blank invoice generator</a></li>
+        <li><a href="/freelance-invoice-template">Freelance</a></li>
+        <li><a href="/photography-invoice-template">Photography</a></li>
+        <li><a href="/contractor-invoice-template">Contractor</a></li>
+        <li><a href="/gst-invoice-generator">GST (India)</a></li>
+        <li><a href="/vat-invoice-template-uk">UK VAT</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. This page is general information, not tax or legal advice.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Templates</h4><ul><li><a href="/freelance-invoice-template">Freelance</a></li><li><a href="/photography-invoice-template">Photography</a></li><li><a href="/contractor-invoice-template">Contractor</a></li><li><a href="/gst-invoice-generator">GST (India)</a></li><li><a href="/vat-invoice-template-uk">UK VAT</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 InvoiceKit · Free tools that respect your privacy.</p>
+  </footer>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>

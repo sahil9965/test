@@ -1,0 +1,24 @@
+# InvoiceKit
+
+> InvoiceKit is a free online invoice generator. It works with no signup, runs entirely in the browser (nothing is uploaded) and downloads invoices as PDF. It supports 24 currencies, tax/VAT/GST (including the CGST + SGST split for India), discounts and payment notes. An optional Pro plan ($3.99/month or $24 lifetime) adds a logo, removes the footer, saves clients and invoice history, and unlocks extra designs.
+
+## Tool
+- [Free invoice generator](https://invoicekit-coral.vercel.app/): create, preview and download a PDF invoice in about a minute.
+
+## Templates
+- [Freelance invoice template](https://invoicekit-coral.vercel.app/freelance-invoice-template): hourly or per-project billing, deposits, payment terms.
+- [Photography invoice template](https://invoicekit-coral.vercel.app/photography-invoice-template): session fees, image packages, retainers, usage licences.
+- [Contractor invoice template](https://invoicekit-coral.vercel.app/contractor-invoice-template): labor and materials, change orders, progress billing.
+- [GST invoice generator (India)](https://invoicekit-coral.vercel.app/gst-invoice-generator): GSTIN, HSN/SAC, CGST + SGST or IGST.
+- [UK VAT invoice template](https://invoicekit-coral.vercel.app/vat-invoice-template-uk): 20% VAT and the fields HMRC requires.
+- [All invoice templates](https://invoicekit-coral.vercel.app/invoice-templates)
+
+## Key facts
+- Price: free for unlimited invoices. Pro is optional.
+- Privacy: invoice data stays in the browser's local storage. No account.
+- Output: PDF via the browser's Save as PDF.
+
+## Optional
+- [Pricing](https://invoicekit-coral.vercel.app/pricing)
+- [About](https://invoicekit-coral.vercel.app/about)
+- [Privacy & Terms](https://invoicekit-coral.vercel.app/privacy)
