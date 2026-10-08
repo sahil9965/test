@@ -80,4 +80,4 @@ footer.site ul{list-style:none;padding:0;margin:0}footer.site li{margin:4px 0}
 .pro-small{font-size:13px;color:var(--muted);margin:10px 0 4px}
 .pro-row{display:flex;gap:8px}
 .pro-msg{font-size:14px;min-height:20px;margin:6px 0 0}
-@media print{header.top,footer.site,.no-print,.content,.hero,.pro-dlg{display:none!important}body{background:#fff;color:#000}}
+@media print{header.top,footer.site,.no-print,.content,.hero,.crumbs,.skip,.pro-dlg{display:none!important}body{background:#fff;color:#000}}

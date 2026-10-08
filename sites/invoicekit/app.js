@@ -114,7 +114,7 @@
         <div class="grand"><span>Total due</span><span>${money(total)}</span></div>
       </div>
       ${inv.notes ? `<div class="p-notes"><div class="p-label">Notes</div>${esc(inv.notes)}</div>` : ""}
-      ${pro ? "" : `<div class="p-wm">Made with InvoiceKit — free invoice generator</div>`}`;
+      <div class="p-wm">Made with <a href="https://invoicekit-coral.vercel.app/?utm_source=invoice&amp;utm_medium=watermark&amp;utm_campaign=referral">InvoiceKit</a> — free invoice generator · invoicekit-coral.vercel.app</div>`;
     if (!mount.dataset.preset) store.set("draft", inv);
   }
 

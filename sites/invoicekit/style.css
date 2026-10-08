@@ -27,6 +27,7 @@
 .p-totals .grand{border-top:2px solid #1b1b1f;margin-top:6px;padding-top:10px;font-size:18px;font-weight:750}
 .p-notes{margin-top:34px;white-space:pre-line;color:#444}
 .p-wm{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:11px;color:#9a9aa6}
+.p-wm a{color:#6b6b76;text-decoration:none;font-weight:600}
 .ik-paper.t-modern .p-head{background:#2f5bea;color:#fff;margin:-44px -44px 0;padding:34px 44px}
 .ik-paper.t-modern .p-meta{color:#dfe6ff}
 .ik-paper.t-modern th{border-bottom-color:#2f5bea;color:#2f5bea}

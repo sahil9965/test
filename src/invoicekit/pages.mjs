@@ -142,7 +142,7 @@ const pages = [
     faq: [
       ["When should a photographer send the invoice?", "Send a deposit or retainer invoice at booking, and the balance invoice before delivering the final gallery. For events, many photographers require full payment before the event date."],
       ["Should I include image rights on my invoice?", "For commercial work, yes. List the licence scope (where, how long, exclusive or not) so the client knows what they paid for."],
-      ["Can I add my studio logo?", "Yes, for free. Upload your logo in the Your business section and it appears on every invoice. There's no watermark."],
+      ["Can I add my studio logo?", "Yes, for free. Upload your logo in the Your business section and it appears on every invoice."],
     ],
   },
   {
@@ -249,7 +249,7 @@ const pages = [
     lead: "Small, fast tools that do one job well, free, with no accounts and no tracking of your data.",
     body: `      <p>InvoiceKit is part of <strong>MiniTools</strong>, a set of free single-purpose web tools for freelancers and small businesses. Each tool runs entirely in your browser: what you type stays on your device, and nothing is uploaded to our servers.</p>
       <h2>Why we built it</h2>
-      <p>Most invoice apps want an account, a monthly subscription and your client list before you can send a single invoice. We think a freelancer sending three invoices a month deserves a tool that just works. Every feature of InvoiceKit is free, with no paid tier and no watermark.</p>
+      <p>Most invoice apps want an account, a monthly subscription and your client list before you can send a single invoice. We think a freelancer sending three invoices a month deserves a tool that just works. Every feature of InvoiceKit is free, with no paid tier.</p>
       <h2>Is it really free?</h2>
       <p>Yes. Every feature is free today: logo, saved clients, history and all designs. There are no ads in the tool, and we never sell data, partly because we never have it.</p>`,
     faq: [],
