@@ -55,7 +55,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 <div class="wrap">
   <header class="top">
     <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">InvoiceKit</a>
-    <nav aria-label="Main"><a href="/">Invoice generator</a><a href="/invoice-templates">Templates</a><a href="/pricing">Pricing</a></nav>
+    <nav aria-label="Main"><a href="/">Invoice generator</a><a href="/invoice-templates">Templates</a><a href="/about">About</a></nav>
   </header>
   <main id="main">
     <p class="crumbs"><a href="/">InvoiceKit</a> › ${esc(crumb || h1)}</p>
@@ -80,7 +80,7 @@ ${faq.length ? `      <h2 id="faq">FAQ</h2>\n${faq.map(([q, a]) => `      <detai
   </main>
   <footer class="site">
     <div class="cols">
-      <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
       <div><h4>Templates</h4><ul><li><a href="/freelance-invoice-template">Freelance</a></li><li><a href="/photography-invoice-template">Photography</a></li><li><a href="/contractor-invoice-template">Contractor</a></li><li><a href="/gst-invoice-generator">GST (India)</a></li><li><a href="/vat-invoice-template-uk">UK VAT</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
@@ -142,7 +142,7 @@ const pages = [
     faq: [
       ["When should a photographer send the invoice?", "Send a deposit or retainer invoice at booking, and the balance invoice before delivering the final gallery. For events, many photographers require full payment before the event date."],
       ["Should I include image rights on my invoice?", "For commercial work, yes. List the licence scope (where, how long, exclusive or not) so the client knows what they paid for."],
-      ["Can I add my studio logo?", "Yes. With Pro you can upload your logo and remove the InvoiceKit footer for a fully branded invoice."],
+      ["Can I add my studio logo?", "Yes, for free. Upload your logo in the Your business section and it appears on every invoice. There's no watermark."],
     ],
   },
   {
@@ -242,53 +242,29 @@ const pages = [
     faq: [],
   },
   {
-    slug: "pricing", tool: false, crumb: "Pricing",
-    title: "InvoiceKit Pricing — Free Forever, Pro from $3.99",
-    desc: "InvoiceKit is free for unlimited invoices. Pro adds your logo, removes the footer, saves clients and history, and unlocks premium designs, from $3.99 a month.",
-    h1: "Simple pricing",
-    lead: "Free for unlimited invoices. Upgrade only if you want branding and saved clients.",
-    body: `      <div class="pricing">
-        <div class="card"><h3>Free</h3><div class="price">$0</div>
-          <ul class="check"><li>Unlimited invoices and PDFs</li><li>24 currencies</li><li>Tax, VAT, GST and discounts</li><li>Auto-saved draft</li><li>Small “Made with InvoiceKit” footer</li></ul>
-          <a class="btn ghost" href="/">Create an invoice</a></div>
-        <div class="card pro"><h3>Pro</h3><div class="price">$3.99<span class="small muted"> / month</span></div><p class="muted small">or $24 once, for life</p>
-          <ul class="check"><li>Your logo on every invoice</li><li>No footer</li><li>Saved clients and invoice history</li><li>Modern and Minimal designs</li><li>Duplicate and auto-number</li><li>Pro on every MiniTools site</li></ul>
-          <button class="btn" onclick="Pro.open()">Get Pro</button></div>
-      </div>
-      <h2>Questions about Pro</h2>`,
-    faq: [
-      ["How do I activate Pro?", "After checkout you receive a license key by email. Click Get Pro, paste the key and press Activate."],
-      ["Can I cancel the monthly plan?", "Yes, at any time from your Gumroad receipt or library. Pro stays active until the end of the paid period."],
-      ["Refunds?", "If Pro isn't right for you, email within 14 days of purchase for a full refund."],
-    ],
-  },
-  {
     slug: "about", tool: false, crumb: "About",
     title: "About InvoiceKit — Private, Free Business Tools",
     desc: "InvoiceKit is part of MiniTools: small, fast, private web tools that run in your browser with no signup. Learn who we are and how we handle your data.",
     h1: "About InvoiceKit",
-    lead: "Small, fast tools that do one job well, without accounts or tracking your data.",
+    lead: "Small, fast tools that do one job well, free, with no accounts and no tracking of your data.",
     body: `      <p>InvoiceKit is part of <strong>MiniTools</strong>, a set of free single-purpose web tools for freelancers and small businesses. Each tool runs entirely in your browser: what you type stays on your device, and nothing is uploaded to our servers.</p>
       <h2>Why we built it</h2>
-      <p>Most invoice apps want an account, a monthly subscription and your client list before you can send a single invoice. We think a freelancer sending three invoices a month deserves a tool that just works. The core tool is free forever. An optional Pro pass pays for development and unlocks extras.</p>
-      <h2>How we make money</h2>
-      <p>Through optional Pro upgrades. No ads in the tool, and we never sell data, partly because we never have it.</p>
-      <h2>Contact</h2>
-      <p>Questions, bugs or feature requests: use the contact link on your Pro receipt, or reach us through the Gumroad store page.</p>`,
+      <p>Most invoice apps want an account, a monthly subscription and your client list before you can send a single invoice. We think a freelancer sending three invoices a month deserves a tool that just works. Every feature of InvoiceKit is free, with no paid tier and no watermark.</p>
+      <h2>Is it really free?</h2>
+      <p>Yes. Every feature is free today: logo, saved clients, history and all designs. There are no ads in the tool, and we never sell data, partly because we never have it.</p>`,
     faq: [],
   },
   {
     slug: "privacy", tool: false, crumb: "Privacy & Terms",
     title: "Privacy Policy & Terms of Use | InvoiceKit",
-    desc: "How InvoiceKit handles your data: invoices stay in your browser and are never uploaded. Privacy-friendly analytics, Gumroad payments, and simple terms of use.",
+    desc: "How InvoiceKit handles your data: invoices stay in your browser and are never uploaded. Cookie-free analytics and simple terms of use. Everything is free.",
     h1: "Privacy & Terms",
     lead: "Short version: your invoices never leave your device.",
     body: `      <h2>Privacy</h2>
       <p>InvoiceKit runs in your browser. Invoice content, clients and your logo are stored in your browser's local storage on your device and are never sent to our servers. Clearing your browser data deletes them.</p>
       <p>We use Vercel Web Analytics to count page views. It's cookie-free, doesn't track you across sites and doesn't collect what you type into the tool.</p>
-      <p>When you activate Pro, your license key is sent to our server once a week to check it with our payment provider, Gumroad. Payments are handled by Gumroad, and we never see your card details.</p>
       <h2>Terms</h2>
-      <p>InvoiceKit is provided “as is”, without warranty. You're responsible for the accuracy of your invoices and for following the invoicing and tax rules in your country. Pro is licensed to one person or business. Monthly plans can be cancelled at any time. Refunds are available within 14 days of purchase.</p>`,
+      <p>InvoiceKit is provided “as is”, without warranty. You're responsible for the accuracy of your invoices and for following the invoicing and tax rules in your country. InvoiceKit is free to use for personal and commercial invoicing.</p>`,
     faq: [],
   },
 ];

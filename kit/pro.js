@@ -1,9 +1,17 @@
 // Shared Pro licensing for every MiniTools site.
-// Reads window.SITE (from config.js). Pro state lives in localStorage; the key is checked
-// against Gumroad by /api/verify on activation and re-checked weekly so cancelled
-// subscriptions lapse.
+// Reads window.SITE (from config.js). While SITE.allFree is not false, every feature is
+// unlocked and no upgrade UI is ever shown; Pro.require() simply returns true. Set
+// allFree: false later to turn paid extras back on without changing any tool code.
+// Paid mode: Pro state lives in localStorage; the key is checked against Gumroad by
+// /api/verify on activation and re-checked weekly so cancelled subscriptions lapse.
 (() => {
   const S = window.SITE || {};
+  if (S.allFree !== false) {
+    window.Pro = { active: true, free: true, open() {}, require() { return true; }, onChange() {}, deactivate() {} };
+    const mark = () => document.body && document.body.classList.add("is-pro");
+    document.body ? mark() : document.addEventListener("DOMContentLoaded", mark);
+    return;
+  }
   const LS = "mt_pro";
   const WEEK = 7 * 864e5;
   const listeners = [];

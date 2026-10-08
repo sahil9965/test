@@ -24,22 +24,22 @@
   <div class="ik-bar no-print">
     <button class="btn" data-a="pdf">Download PDF</button>
     <button class="btn ghost" data-a="new">New invoice</button>
-    <button class="btn ghost" data-a="dup">Duplicate <span class="pro-tag">PRO</span></button>
-    <select data-a="history" aria-label="Invoice history"><option value="">History (Pro)</option></select>
+    <button class="btn ghost" data-a="dup">Duplicate</button>
+    <select data-a="history" aria-label="Invoice history"><option value="">Invoice history</option></select>
   </div>
   <div class="ik">
     <form class="ik-form" autocomplete="off" onsubmit="return false">
       <h3>Your business</h3>
-      <label for="ik-logo">Logo <span class="pro-tag">PRO</span></label><input type="file" id="ik-logo" accept="image/*">
+      <label for="ik-logo">Logo (optional)</label><input type="file" id="ik-logo" accept="image/*">
       <label for="ik-from">From</label><textarea id="ik-from" name="from" placeholder="Your name or company&#10;Address&#10;Email · Phone&#10;Tax ID (optional)"></textarea>
       <h3>Bill to</h3>
-      <div class="row"><select id="ik-clients" aria-label="Saved clients"><option value="">Saved clients (Pro)</option></select><button type="button" class="btn ghost sm" data-a="saveClient">Save client <span class="pro-tag">PRO</span></button></div>
+      <div class="row"><select id="ik-clients" aria-label="Saved clients"><option value="">Saved clients</option></select><button type="button" class="btn ghost sm" data-a="saveClient">Save client</button></div>
       <label for="ik-to">Client</label><textarea id="ik-to" name="to" placeholder="Client name&#10;Address&#10;Tax ID (optional)"></textarea>
       <h3>Details</h3>
       <div class="row"><div><label for="ik-number">Invoice #</label><input id="ik-number" name="number"></div><div><label for="ik-currency">Currency</label><select id="ik-currency" name="currency"></select></div></div>
       <div class="row"><div><label for="ik-date">Issue date</label><input type="date" id="ik-date" name="date"></div><div><label for="ik-due">Due date</label><input type="date" id="ik-due" name="due"></div></div>
       <label for="ik-template">Template</label>
-      <select id="ik-template" name="template"><option value="classic">Classic</option><option value="modern">Modern (Pro)</option><option value="minimal">Minimal (Pro)</option></select>
+      <select id="ik-template" name="template"><option value="classic">Classic</option><option value="modern">Modern</option><option value="minimal">Minimal</option></select>
       <h3>Line items</h3>
       <div class="ik-item small muted" aria-hidden="true"><span>Description</span><span>Qty</span><span>Rate</span><span></span></div>
       <div class="ik-items"></div>
@@ -148,7 +148,7 @@
     const a = e.target.closest("[data-a]")?.dataset.a;
     if (a === "add") { inv.items.push({ d: "", q: 1, r: 0 }); renderItems(); render(); }
     else if (a === "new") load(blank());
-    else if (a === "dup") { if (Pro.require("Duplicate any invoice with one click.")) load({ ...structuredClone(inv), number: nextNumber(), date: day(), due: day(14) }); }
+    else if (a === "dup") { if (Pro.require("Duplicate any invoice with one click.")) load({ ...structuredClone(inv), number: "INV-" + String(Math.max(store.get("seq", 0), parseInt(String(inv.number).replace(/\D/g, ""), 10) || 0) + 1).padStart(4, "0"), date: day(), due: day(14) }); }
     else if (a === "saveClient") {
       if (!Pro.require("Save clients and fill them in with one click.") || !inv.to.trim()) return;
       const c = store.get("clients", []); if (!c.includes(inv.to)) c.push(inv.to);

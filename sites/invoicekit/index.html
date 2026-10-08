@@ -28,8 +28,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"WebApplication","name":"InvoiceKit","url":"https://invoicekit-coral.vercel.app/","description":"Free online invoice generator. Create, preview and download PDF invoices with no signup.","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,
-  "offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"3.99","priceCurrency":"USD","name":"Pro monthly"},{"@type":"Offer","price":"24","priceCurrency":"USD","name":"Pro lifetime"}],
-  "featureList":["PDF download","Any currency","Tax, VAT and GST","Discounts","No signup","Works offline after load"],
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "featureList":["PDF download","Any currency","Tax, VAT and GST","Discounts","Your logo","Saved clients","Invoice history","3 invoice designs","No signup","No watermark"],
   "publisher":{"@type":"Organization","name":"MiniTools","url":"https://invoicekit-coral.vercel.app/about"}},
  {"@type":"HowTo","name":"How to create an invoice online for free","totalTime":"PT2M","step":[
   {"@type":"HowToStep","name":"Add your details","text":"Enter your business name, address and contact details in the From box."},
@@ -38,7 +38,7 @@
   {"@type":"HowToStep","name":"List what you charge for","text":"Add each product or service with a quantity and rate. Totals, tax and discounts calculate automatically."},
   {"@type":"HowToStep","name":"Download the PDF","text":"Click Download PDF, choose Save as PDF, and email the file to your client."}]},
  {"@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can create and download unlimited invoices for free with no account. Pro is optional and adds your logo, removes the small footer, and saves clients and invoice history."}},
+  {"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely. Every feature is free: unlimited invoices, your logo, saved clients, invoice history and all three designs. There's no account, no watermark and no paid tier."}},
   {"@type":"Question","name":"Do I need to sign up?","acceptedAnswer":{"@type":"Answer","text":"No. InvoiceKit works without an account. Your drafts are saved in your own browser on this device."}},
   {"@type":"Question","name":"Is my invoice data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Invoices are built and stored entirely in your browser. Nothing you type is sent to a server."}},
   {"@type":"Question","name":"How do I save the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in the print dialog. On phones, use Share or Print and then Save to Files."}},
@@ -53,13 +53,13 @@
 <div class="wrap">
   <header class="top">
     <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">InvoiceKit</a>
-    <nav aria-label="Main"><a href="#how">How it works</a><a href="/invoice-templates">Templates</a><a href="#faq">FAQ</a><a href="/pricing">Pricing</a></nav>
+    <nav aria-label="Main"><a href="#how">How it works</a><a href="/invoice-templates">Templates</a><a href="#faq">FAQ</a></nav>
   </header>
   <main id="main">
     <section class="hero">
       <h1>Free Invoice Generator</h1>
       <p class="lead">Fill in the form, watch your invoice build itself, and download a clean PDF. No signup, no subscription, and nothing leaves your browser.</p>
-      <ul class="badges"><li>Unlimited free invoices</li><li>No signup</li><li>Any currency</li><li>Tax, VAT &amp; GST</li></ul>
+      <ul class="badges"><li>100% free, no watermark</li><li>No signup</li><li>Any currency</li><li>Tax, VAT &amp; GST</li></ul>
     </section>
 
     <section class="tool card" aria-label="Invoice generator"><div id="ik-tool"></div></section>
@@ -119,11 +119,11 @@
         <li><a href="/invoice-templates">All templates</a></li>
       </ul>
 
-      <h2>Free vs Pro</h2>
-      <p>Everything you need to send a professional invoice is free, including unlimited invoices. <a href="/pricing">Pro</a> ($3.99/month or $24 once) adds your logo, removes the small “Made with InvoiceKit” footer, saves clients and invoice history, and unlocks the Modern and Minimal designs. One Pro pass also works on every other MiniTools site.</p>
+      <h2>Everything is free</h2>
+      <p>There's no paid plan and no watermark. Add your logo, save clients for next time, reopen past invoices from your history, duplicate an invoice in one click, and choose between the Classic, Modern and Minimal designs, all free. Everything is stored only in your browser on this device.</p>
 
       <h2 id="faq">Frequently asked questions</h2>
-      <details><summary>Is this invoice generator really free?</summary><p>Yes. You can create and download unlimited invoices for free with no account. Pro is optional and adds your logo, removes the small footer, and saves clients and invoice history.</p></details>
+      <details><summary>Is this invoice generator really free?</summary><p>Yes, completely. Every feature is free: unlimited invoices, your logo, saved clients, invoice history and all three designs. There's no account, no watermark and no paid tier.</p></details>
       <details><summary>Do I need to sign up?</summary><p>No. InvoiceKit works without an account. Your drafts are saved in your own browser on this device.</p></details>
       <details><summary>Is my invoice data uploaded anywhere?</summary><p>No. Invoices are built and stored entirely in your browser. Nothing you type is sent to a server.</p></details>
       <details><summary>How do I save the invoice as a PDF?</summary><p>Click Download PDF, then choose Save as PDF as the destination in the print dialog. On phones, use Share or Print and then Save to Files.</p></details>
@@ -134,7 +134,7 @@
   </main>
   <footer class="site">
     <div class="cols">
-      <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
       <div><h4>Templates</h4><ul><li><a href="/freelance-invoice-template">Freelance</a></li><li><a href="/photography-invoice-template">Photography</a></li><li><a href="/contractor-invoice-template">Contractor</a></li><li><a href="/gst-invoice-generator">GST (India)</a></li><li><a href="/vat-invoice-template-uk">UK VAT</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>

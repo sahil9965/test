@@ -15,10 +15,12 @@ for (const f of ["pro.js", "base.css", "vercel.json", "api/verify.js", "api/inde
 writeFileSync(join(site, "robots.txt"), readFileSync(join(kit, "robots.txt"), "utf8").replaceAll("__SITE_URL__", url));
 if (!existsSync(join(site, "indexnow-key.txt"))) writeFileSync(join(site, "indexnow-key.txt"), randomBytes(16).toString("hex") + "\n");
 writeFileSync(join(site, "site.webmanifest"), JSON.stringify({ name, short_name: name, start_url: "/", display: "standalone", background_color: "#fbfaf7", theme_color: accent, icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }] }, null, 2) + "\n");
-if (!existsSync(join(site, "config.js"))) writeFileSync(join(site, "config.js"), `// Checkout links: replace with your Gumroad product URLs (one network-wide Pro pass works on every site).
+if (!existsSync(join(site, "config.js"))) writeFileSync(join(site, "config.js"), `// allFree: true keeps every feature free with no upgrade UI. To sell Pro later, set it to
+// false and fill in the Gumroad checkout links (one network-wide Pro pass works on every site).
 window.SITE = {
   name: ${JSON.stringify(name)},
   url: ${JSON.stringify(url)},
+  allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",
   monthlyPrice: "$3.99 / month",
