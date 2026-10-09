@@ -3,18 +3,18 @@
 > Roomproof is a free online photo report generator. It works with no signup and runs entirely in the browser (photos are never uploaded). You add photos room by room or item by item, rate each item's condition, add captions, notes and markup (circles, arrows), and download a PDF with the date and time burned into every photo, a summary of issues, a room-by-room checklist, numbered photo pages (1, 2, 4 or 6 per page, or before/after pairs), two signatures and a photo log with SHA-256 file fingerprints. Paper sizes: A4 and US Letter. Reports save as a .roomproof project file that can be reopened on any device, and a move-in report can be turned into a move-out report with the photos side by side. Every feature is free; there is no paid tier. Each PDF page carries a small "Made with Roomproof" footer.
 
 ## Tool
-- [Photo report generator](https://roomproof-app.vercel.app/): dated, captioned photo reports as PDF, with templates, ratings and signatures.
+- [Photo report generator](https://photoreport.roohsites.com/): dated, captioned photo reports as PDF, with templates, ratings and signatures.
 
 ## Templates
-- [Move-out checklist with photos](https://roomproof-app.vercel.app/move-out-checklist-with-photos): tenant move-out record for security deposits, timestamped photos, comparison with move-in.
-- [Move-in inspection checklist with photos](https://roomproof-app.vercel.app/move-in-inspection-checklist-with-photos): condition on day one, room by room, reusable at move-out.
-- [Punch list with photos](https://roomproof-app.vercel.app/punch-list-with-photos): open / in progress / done items by area with marked-up photos.
-- [Before and after photo report](https://roomproof-app.vercel.app/before-and-after-photo-report): matching photo pairs for repairs, renovation, landscaping and other trades.
-- [Cleaning photo report](https://roomproof-app.vercel.app/cleaning-photo-report): before and after photos per cleaning task with a client signature.
-- [Airbnb turnover checklist with photos](https://roomproof-app.vercel.app/airbnb-turnover-checklist-with-photos): short-term rental changeovers, restocking, damage and missing items (not affiliated with Airbnb).
-- [Property inventory with photos (UK)](https://roomproof-app.vercel.app/property-inventory-with-photos): check-in inventory and schedule of condition with meter readings and keys.
-- [Entry condition report photos (Australia)](https://roomproof-app.vercel.app/entry-condition-report-photos): a photo addendum to return with a state entry condition report.
-- [All photo report templates](https://roomproof-app.vercel.app/photo-report-template)
+- [Move-out checklist with photos](https://photoreport.roohsites.com/move-out-checklist-with-photos): tenant move-out record for security deposits, timestamped photos, comparison with move-in.
+- [Move-in inspection checklist with photos](https://photoreport.roohsites.com/move-in-inspection-checklist-with-photos): condition on day one, room by room, reusable at move-out.
+- [Punch list with photos](https://photoreport.roohsites.com/punch-list-with-photos): open / in progress / done items by area with marked-up photos.
+- [Before and after photo report](https://photoreport.roohsites.com/before-and-after-photo-report): matching photo pairs for repairs, renovation, landscaping and other trades.
+- [Cleaning photo report](https://photoreport.roohsites.com/cleaning-photo-report): before and after photos per cleaning task with a client signature.
+- [Airbnb turnover checklist with photos](https://photoreport.roohsites.com/airbnb-turnover-checklist-with-photos): short-term rental changeovers, restocking, damage and missing items (not affiliated with Airbnb).
+- [Property inventory with photos (UK)](https://photoreport.roohsites.com/property-inventory-with-photos): check-in inventory and schedule of condition with meter readings and keys.
+- [Entry condition report photos (Australia)](https://photoreport.roohsites.com/entry-condition-report-photos): a photo addendum to return with a state entry condition report.
+- [All photo report templates](https://photoreport.roohsites.com/photo-report-template)
 
 ## Key facts
 - Price: completely free. No paid tier, no signup.
@@ -24,5 +24,5 @@
 - Roomproof is a documentation tool. It does not make reports legally binding and does not give legal advice.
 
 ## Optional
-- [About](https://roomproof-app.vercel.app/about)
-- [Privacy & Terms](https://roomproof-app.vercel.app/privacy)
+- [About](https://photoreport.roohsites.com/about)
+- [Privacy & Terms](https://photoreport.roohsites.com/privacy)

@@ -514,7 +514,7 @@
         x.fillStyle = "#55555f";
         x.font = "600 22px system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif";
         x.textAlign = "center";
-        x.fillText("Made with TicketRun · ticketrun.vercel.app", 600, 605);
+        x.fillText("Made with TicketRun · raffle.roohsites.com", 600, 605);
         URL.revokeObjectURL(url);
         cv.toBlob(b => { if (b) { saveBlob(b, `${slug(s.title || s.typeLabel || "ticket")}.png`); track("png_export"); } }, "image/png");
       };
@@ -697,7 +697,7 @@
       log.forEach((e, i) => lines.push(`${i + 1}. No. ${show(e.n)}${e.prize ? ` (${e.prize})` : ""}`));
       const at = log[log.length - 1].at;
       lines.push(`Drawn ${at.toLocaleString(undefined, { dateStyle: "long", timeStyle: "medium" })}${tz ? ` (${tz})` : ""} with an unbiased crypto.getRandomValues draw.`);
-      lines.push("Picked with TicketRun · https://ticketrun.vercel.app/raffle-winner-picker");
+      lines.push("Picked with TicketRun · https://raffle.roohsites.com/raffle-winner-picker");
       return lines.join("\n");
     }
     async function copyResult() {
@@ -732,7 +732,7 @@
       x.fillStyle = "#55555f"; x.font = `400 24px ${font}`;
       x.fillText(`Drawn ${at.toLocaleString(undefined, { dateStyle: "long", timeStyle: "short" })} from ${fmtInt(info.total - info.excluded)} eligible tickets`, 600, 520, 1100);
       x.font = `600 22px ${font}`;
-      x.fillText("Picked with TicketRun · ticketrun.vercel.app", 600, 590);
+      x.fillText("Picked with TicketRun · raffle.roohsites.com", 600, 590);
       cv.toBlob(b => { if (b) saveBlob(b, "raffle-winner.png"); }, "image/png");
     }
     prep();

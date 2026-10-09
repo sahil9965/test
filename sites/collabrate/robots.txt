@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://collabrate-app.vercel.app/sitemap.xml
+Sitemap: https://ugcrates.roohsites.com/sitemap.xml

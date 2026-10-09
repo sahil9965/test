@@ -3,15 +3,15 @@
 > InvoiceKit is a free online invoice generator. It works with no signup, runs entirely in the browser (nothing is uploaded) and downloads invoices as PDF. It supports 24 currencies, tax/VAT/GST (including the CGST + SGST split for India), discounts and payment notes. Every feature is free, including a logo, saved clients, invoice history and three designs. There is no paid tier. Each invoice carries a small "Made with InvoiceKit" credit.
 
 ## Tool
-- [Free invoice generator](https://invoicekit-coral.vercel.app/): create, preview and download a PDF invoice in about a minute.
+- [Free invoice generator](https://invoice.roohsites.com/): create, preview and download a PDF invoice in about a minute.
 
 ## Templates
-- [Freelance invoice template](https://invoicekit-coral.vercel.app/freelance-invoice-template): hourly or per-project billing, deposits, payment terms.
-- [Photography invoice template](https://invoicekit-coral.vercel.app/photography-invoice-template): session fees, image packages, retainers, usage licences.
-- [Contractor invoice template](https://invoicekit-coral.vercel.app/contractor-invoice-template): labor and materials, change orders, progress billing.
-- [GST invoice generator (India)](https://invoicekit-coral.vercel.app/gst-invoice-generator): GSTIN, HSN/SAC, CGST + SGST or IGST.
-- [UK VAT invoice template](https://invoicekit-coral.vercel.app/vat-invoice-template-uk): 20% VAT and the fields HMRC requires.
-- [All invoice templates](https://invoicekit-coral.vercel.app/invoice-templates)
+- [Freelance invoice template](https://invoice.roohsites.com/freelance-invoice-template): hourly or per-project billing, deposits, payment terms.
+- [Photography invoice template](https://invoice.roohsites.com/photography-invoice-template): session fees, image packages, retainers, usage licences.
+- [Contractor invoice template](https://invoice.roohsites.com/contractor-invoice-template): labor and materials, change orders, progress billing.
+- [GST invoice generator (India)](https://invoice.roohsites.com/gst-invoice-generator): GSTIN, HSN/SAC, CGST + SGST or IGST.
+- [UK VAT invoice template](https://invoice.roohsites.com/vat-invoice-template-uk): 20% VAT and the fields HMRC requires.
+- [All invoice templates](https://invoice.roohsites.com/invoice-templates)
 
 ## Key facts
 - Price: completely free. No paid tier.
@@ -19,5 +19,5 @@
 - Output: PDF via the browser's Save as PDF.
 
 ## Optional
-- [About](https://invoicekit-coral.vercel.app/about)
-- [Privacy & Terms](https://invoicekit-coral.vercel.app/privacy)
+- [About](https://invoice.roohsites.com/about)
+- [Privacy & Terms](https://invoice.roohsites.com/privacy)

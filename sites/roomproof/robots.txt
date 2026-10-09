@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://roomproof-app.vercel.app/sitemap.xml
+Sitemap: https://photoreport.roohsites.com/sitemap.xml

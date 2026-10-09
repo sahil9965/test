@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "goaltally.vercel.app"
+          "value": "abagraph.roohsites.com"
         }
       ],
-      "destination": "https://goaltally.vercel.app/:path*",
+      "destination": "https://abagraph.roohsites.com/:path*",
       "permanent": true
     }
   ]

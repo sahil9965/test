@@ -2,7 +2,7 @@
 // false and fill in the Gumroad checkout links (one network-wide Pro pass works on every site).
 window.SITE = {
   name: "GradLedger",
-  url: "https://gradledger.vercel.app",
+  url: "https://transcript.roohsites.com",
   allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",

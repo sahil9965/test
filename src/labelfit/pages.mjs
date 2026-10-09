@@ -5,7 +5,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/labelfit");
-const URL = "https://labelfit.vercel.app";
+const URL = "https://labels.roohsites.com";
 const NAME = "LabelFit";
 const ACCENT = "#0f766e";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";
@@ -596,7 +596,7 @@ const PRIVACY = {
         <li><strong>Saved layouts</strong> you create: only box positions and sizes as fractions of the page, never the label content.</li>
         <li><strong>The app itself</strong>, cached by a service worker so LabelFit works offline. This cache holds LabelFit's own pages and scripts, not your files.</li>
       </ul>
-      <p>Clearing your browser's site data for labelfit.vercel.app removes all of it.</p>
+      <p>Clearing your browser's site data for labels.roohsites.com removes all of it.</p>
       <h2>Analytics</h2>
       <p>We use Vercel Web Analytics to count page views and a few anonymous events, such as “PDF downloaded” with the chosen label size and a rough number of labels. It's cookie-free, doesn't track you across sites, and never receives file names or anything from your labels.</p>
       <h2>Terms</h2>

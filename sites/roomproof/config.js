@@ -2,7 +2,7 @@
 // false and fill in the Gumroad checkout links (one network-wide Pro pass works on every site).
 window.SITE = {
   name: "Roomproof",
-  url: "https://roomproof-app.vercel.app",
+  url: "https://photoreport.roohsites.com",
   allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",

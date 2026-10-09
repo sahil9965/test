@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "ticketrun.vercel.app"
+          "value": "raffle.roohsites.com"
         }
       ],
-      "destination": "https://ticketrun.vercel.app/:path*",
+      "destination": "https://raffle.roohsites.com/:path*",
       "permanent": true
     }
   ]

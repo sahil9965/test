@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "gradledger.vercel.app"
+          "value": "transcript.roohsites.com"
         }
       ],
-      "destination": "https://gradledger.vercel.app/:path*",
+      "destination": "https://transcript.roohsites.com/:path*",
       "permanent": true
     }
   ]

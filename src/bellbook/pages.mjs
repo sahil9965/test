@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import * as E from "../../sites/bellbook/engine.js";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/bellbook");
-const URL = "https://bellbook-app.vercel.app";
+const URL = "https://abday.roohsites.com";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');

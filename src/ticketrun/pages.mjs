@@ -8,7 +8,7 @@ import { createRequire } from "node:module";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "../../sites/ticketrun");
 const C = createRequire(import.meta.url)(join(OUT, "core.js"));
-const URL = "https://ticketrun.vercel.app";
+const URL = "https://raffle.roohsites.com";
 const NAME = "TicketRun";
 const ACCENT = "#be123c";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";

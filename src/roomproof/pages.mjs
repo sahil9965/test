@@ -5,7 +5,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/roomproof");
-const URL = "https://roomproof-app.vercel.app";
+const URL = "https://photoreport.roohsites.com";
 const NAME = "Roomproof";
 const ACCENT = "#15803d";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";

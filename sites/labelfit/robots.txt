@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://labelfit.vercel.app/sitemap.xml
+Sitemap: https://labels.roohsites.com/sitemap.xml

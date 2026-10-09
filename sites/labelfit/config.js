@@ -2,7 +2,7 @@
 // false and fill in the Gumroad checkout links (one network-wide Pro pass works on every site).
 window.SITE = {
   name: "LabelFit",
-  url: "https://labelfit.vercel.app",
+  url: "https://labels.roohsites.com",
   allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",

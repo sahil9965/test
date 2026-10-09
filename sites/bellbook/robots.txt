@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://bellbook-app.vercel.app/sitemap.xml
+Sitemap: https://abday.roohsites.com/sitemap.xml

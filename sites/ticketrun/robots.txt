@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://ticketrun.vercel.app/sitemap.xml
+Sitemap: https://raffle.roohsites.com/sitemap.xml

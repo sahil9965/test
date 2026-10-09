@@ -3,19 +3,19 @@
 > PrepLabel is a free FNSKU label generator for Amazon FBA sellers, resellers and small prep centers. It runs entirely in the browser (nothing is uploaded) and needs no signup. It makes Code 128 FNSKU and SKU unit labels as vector PDFs for thermal rolls (2 x 1 in, DYMO 30334 2.25 x 1.25 in, 3 x 1 in, 50 x 25 mm, Brother DK-1209 62 x 29 mm) and laser sheets (US Letter 30-up Avery 5160 size, A4 21/24/27/40/44-up), converts Seller Central FNSKU label PDFs to one-label-per-page thermal PDFs, exports ZPL for Zebra printers, and prints suffocation warnings (sized from the bag dimensions, in English, French, German, Spanish, Italian and Dutch), "sold as set / do not separate" labels, expiration date labels and bin location labels with QR codes. Every feature is free; there is no paid tier. PrepLabel is not affiliated with Amazon.
 
 ## Tool
-- [FNSKU label generator](https://preplabel.vercel.app/): FNSKU labels for thermal rolls and label sheets, with CSV/Excel import, start position for part-used sheets, saved product libraries, print log, prep labels, bin labels, an alignment test page and a camera scan-check.
+- [FNSKU label generator](https://fnsku.roohsites.com/): FNSKU labels for thermal rolls and label sheets, with CSV/Excel import, start position for part-used sheets, saved product libraries, print log, prep labels, bin labels, an alignment test page and a camera scan-check.
 
 ## Guides
-- [FNSKU labels for 2x1 thermal printers](https://preplabel.vercel.app/fnsku-label-2x1-thermal): Rollo, Zebra and Munbyn settings; bars snapped to 203 or 300 dpi.
-- [DYMO 30334 FNSKU labels](https://preplabel.vercel.app/dymo-30334-fnsku-labels): 2-1/4 x 1-1/4 in labels on a LabelWriter.
-- [Convert an FNSKU label PDF to thermal](https://preplabel.vercel.app/fnsku-pdf-to-thermal): turns Seller Central 21- to 44-up sheets into 2 x 1 in or DYMO pages, keeping vector barcodes.
-- [Bulk FNSKU labels from CSV or Excel](https://preplabel.vercel.app/fnsku-labels-from-csv): accepted columns, Seller Central inventory reports, quantities.
-- [FNSKU label ZPL for Zebra printers](https://preplabel.vercel.app/fnsku-zpl-zebra): sample ZPL, ^PQ quantities, how to send ZPL.
-- [Printable suffocation warning labels](https://preplabel.vercel.app/suffocation-warning-label): font size by bag length + width (10/14/18/24 pt) and standard wording.
-- [Sold as set / do not separate labels](https://preplabel.vercel.app/sold-as-set-label): wording options and how to prep a set.
-- [FBA expiration date labels](https://preplabel.vercel.app/expiration-date-label): MM-DD-YYYY / MM-YYYY formats and text size.
-- [Printable bin location labels](https://preplabel.vercel.app/bin-location-labels): QR or Code 128 location labels from number ranges.
-- [FNSKU labeling requirements (2026)](https://preplabel.vercel.app/fnsku-labeling-requirements-2026): the 2026 US changes (end of Amazon's prep and label service and of commingling, as reported) and label rules.
+- [FNSKU labels for 2x1 thermal printers](https://fnsku.roohsites.com/fnsku-label-2x1-thermal): Rollo, Zebra and Munbyn settings; bars snapped to 203 or 300 dpi.
+- [DYMO 30334 FNSKU labels](https://fnsku.roohsites.com/dymo-30334-fnsku-labels): 2-1/4 x 1-1/4 in labels on a LabelWriter.
+- [Convert an FNSKU label PDF to thermal](https://fnsku.roohsites.com/fnsku-pdf-to-thermal): turns Seller Central 21- to 44-up sheets into 2 x 1 in or DYMO pages, keeping vector barcodes.
+- [Bulk FNSKU labels from CSV or Excel](https://fnsku.roohsites.com/fnsku-labels-from-csv): accepted columns, Seller Central inventory reports, quantities.
+- [FNSKU label ZPL for Zebra printers](https://fnsku.roohsites.com/fnsku-zpl-zebra): sample ZPL, ^PQ quantities, how to send ZPL.
+- [Printable suffocation warning labels](https://fnsku.roohsites.com/suffocation-warning-label): font size by bag length + width (10/14/18/24 pt) and standard wording.
+- [Sold as set / do not separate labels](https://fnsku.roohsites.com/sold-as-set-label): wording options and how to prep a set.
+- [FBA expiration date labels](https://fnsku.roohsites.com/expiration-date-label): MM-DD-YYYY / MM-YYYY formats and text size.
+- [Printable bin location labels](https://fnsku.roohsites.com/bin-location-labels): QR or Code 128 location labels from number ranges.
+- [FNSKU labeling requirements (2026)](https://fnsku.roohsites.com/fnsku-labeling-requirements-2026): the 2026 US changes (end of Amazon's prep and label service and of commingling, as reported) and label rules.
 
 ## Key facts
 - Price: completely free. No account, no paid tier.
@@ -24,5 +24,5 @@
 - Barcodes: Code 128 (subset A for FNSKUs), bar widths snapped to the printer's dots.
 
 ## Optional
-- [About](https://preplabel.vercel.app/about)
-- [Privacy & Terms](https://preplabel.vercel.app/privacy)
+- [About](https://fnsku.roohsites.com/about)
+- [Privacy & Terms](https://fnsku.roohsites.com/privacy)

@@ -53,10 +53,10 @@ function wrap(doc, text, x, y, maxW, size, maxLines, lh = size * 1.18, align = "
   lines.forEach((l, i) => doc.text(l, x, y + i * lh, { align }));
   return lines.length;
 }
-// "Made with BellBook · bellbook-app.vercel.app", with BellBook linked (the referral credit).
+// "Made with BellBook · abday.roohsites.com", with BellBook linked (the referral credit).
 function credit(doc, x, y, align = "right", size = 7.5) {
   doc.setFont("helvetica", "normal"); doc.setFontSize(size); doc.setTextColor(MUTED);
-  const a = "Made with ", b = "BellBook", c = " · bellbook-app.vercel.app";
+  const a = "Made with ", b = "BellBook", c = " · abday.roohsites.com";
   doc.setFont("helvetica", "normal"); const wa = doc.getTextWidth(a), wc = doc.getTextWidth(c);
   doc.setFont("helvetica", "bold"); const wb = doc.getTextWidth(b);
   const total = wa + wb + wc;
@@ -290,7 +290,7 @@ export function calendarPdf(jsPDF, res, opts = {}) {
     drawMonth(doc, res, y, m, { x: M, y: M - 6, w: W - 2 * M, h: H - 2 * M + 12 }, o);
   }
   if (!doc) throw new Error("Choose at least one page type.");
-  doc.setProperties({ title: calName(res.cfg), subject: "School rotation calendar", creator: "BellBook (bellbook-app.vercel.app)", author: res.cfg.school || "BellBook" });
+  doc.setProperties({ title: calName(res.cfg), subject: "School rotation calendar", creator: "BellBook (abday.roohsites.com)", author: res.cfg.school || "BellBook" });
   return doc;
 }
 
@@ -369,7 +369,7 @@ export function plannerPdf(jsPDF, res, opts = {}) {
     }
     footer(pageNo);
   });
-  doc.setProperties({ title: `${title} – lesson planner`, subject: "Dated lesson planner", creator: "BellBook (bellbook-app.vercel.app)", author: pl.teacher || "BellBook" });
+  doc.setProperties({ title: `${title} – lesson planner`, subject: "Dated lesson planner", creator: "BellBook (abday.roohsites.com)", author: pl.teacher || "BellBook" });
   return doc;
 }
 
@@ -681,7 +681,7 @@ export function rosterPdf(jsPDF, res, opts = {}) {
     doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(MUTED);
     doc.text(`Page ${i} of ${total}`, box.x + box.w / 2, H - 12, { align: "center" });
   }
-  doc.setProperties({ title: `${cls} – class pages`, subject: "Class roster pages", creator: "BellBook (bellbook-app.vercel.app)", author: pdfSafe(o.teacher) || "BellBook" });
+  doc.setProperties({ title: `${cls} – class pages`, subject: "Class roster pages", creator: "BellBook (abday.roohsites.com)", author: pdfSafe(o.teacher) || "BellBook" });
   return { doc, meetings: meets.length };
 }
 
@@ -746,6 +746,6 @@ export function subPlanPdf(jsPDF, res, d, opts = {}) {
   doc.setDrawColor(RULE); doc.setLineWidth(0.5);
   for (let ly = ny + 16; ly < H - M - footH + 6; ly += 15) doc.line(x0, ly, x0 + w, ly);
   credit(doc, x0 + w, H - 22);
-  doc.setProperties({ title: `Substitute plans – ${when}`, subject: "Substitute plan", creator: "BellBook (bellbook-app.vercel.app)", author: (pl && pl.teacher) || "BellBook" });
+  doc.setProperties({ title: `Substitute plans – ${when}`, subject: "Substitute plan", creator: "BellBook (abday.roohsites.com)", author: (pl && pl.teacher) || "BellBook" });
   return doc;
 }

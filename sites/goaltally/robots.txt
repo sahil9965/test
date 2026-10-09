@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://goaltally.vercel.app/sitemap.xml
+Sitemap: https://abagraph.roohsites.com/sitemap.xml

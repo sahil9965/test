@@ -8,9 +8,9 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  const SITE = "https://goaltally.vercel.app";
+  const SITE = "https://abagraph.roohsites.com";
   const CREDIT_URL = SITE + "/?utm_source=goaltally&utm_medium=watermark&utm_campaign=referral";
-  const CREDIT = "Made with GoalTally · goaltally.vercel.app";
+  const CREDIT = "Made with GoalTally · abagraph.roohsites.com";
 
   /* ---------- Text metrics (Helvetica, as used by jsPDF; Arial/Liberation Sans match it) ---------- */
   const W_N = [280,280,350,550,550,890,660,190,330,330,390,580,280,330,280,280,550,550,550,550,550,550,550,550,550,550,280,280,580,580,580,550,1010,660,660,720,720,660,610,780,720,280,500,660,550,830,720,780,660,780,720,660,610,720,660,940,660,660,610,280,280,280,470,550,330,550,550,500,550,550,280,550,550,220,220,500,220,830,550,550,550,550,330,500,280,550,500,720,500,500,500,330,260,330,580];

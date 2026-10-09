@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://gradledger.vercel.app/sitemap.xml
+Sitemap: https://transcript.roohsites.com/sitemap.xml

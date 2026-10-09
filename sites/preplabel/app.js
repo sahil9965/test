@@ -994,7 +994,7 @@
     const PL = await getPdfLib();
     const stock = stockOf(S.conv.target);
     const out = await PL.PDFDocument.create();
-    out.setTitle("FNSKU labels (thermal)"); out.setCreator("PrepLabel · preplabel.vercel.app"); out.setProducer("PrepLabel (pdf-lib)");
+    out.setTitle("FNSKU labels (thermal)"); out.setCreator("PrepLabel · fnsku.roohsites.com"); out.setProducer("PrepLabel (pdf-lib)");
     const W = stock.w * C.MM, H = stock.h * C.MM, m = Math.max(0, Math.min(8, num(S.conv.margin, 1))) * C.MM;
     const rot = +S.conv.rotate || 0;
     const srcDocs = [], embeds = new Map();

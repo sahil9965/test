@@ -114,9 +114,9 @@
   const PAPER = { letter: { w: 612, h: 792, name: "US Letter" }, a4: { w: 595.28, h: 841.89, name: "A4" } };
   const GRIDS = { 8: { cols: 2, rows: 4 }, 10: { cols: 2, rows: 5 }, 20: { cols: 4, rows: 5 } };
   const MX = 36, MY = 42; // sheet margins: 0.5 in at the sides, 0.58 in top and bottom
-  const SITE = "https://ticketrun.vercel.app";
+  const SITE = "https://raffle.roohsites.com";
   const CREDIT_URL = SITE + "/?utm_source=ticketrun&utm_medium=watermark&utm_campaign=referral";
-  const CREDIT = "Made with TicketRun · ticketrun.vercel.app";
+  const CREDIT = "Made with TicketRun · raffle.roohsites.com";
 
   const DEFAULTS = {
     preset: "raffle", start: 1, end: 500, prefix: "", suffix: "", pad: "auto", numLabel: "No.",
@@ -689,7 +689,7 @@
     const title = `${s.typeLabel || "Tickets"} ${fmtNum(s.start, s)}-${fmtNum(s.end, s)}`;
     doc.setTitle(title);
     doc.setSubject(s.title || title);
-    doc.setCreator("TicketRun (ticketrun.vercel.app)");
+    doc.setCreator("TicketRun (raffle.roohsites.com)");
     doc.setProducer("TicketRun with pdf-lib");
     doc.setKeywords(["tickets", "numbered", "TicketRun"]);
     const fonts = await embedFonts(L, doc, ["H", "HB", "T", "TB"].filter(k => k === "H" || (s.font === "serif" ? k[0] === "T" : k === "HB")));
@@ -747,7 +747,7 @@
     const pw = P.h, ph = P.w; // landscape
     const doc = await L.PDFDocument.create();
     doc.setTitle(`Ticket seller log ${fmtNum(s.start, s)}-${fmtNum(s.end, s)}`);
-    doc.setCreator("TicketRun (ticketrun.vercel.app)");
+    doc.setCreator("TicketRun (raffle.roohsites.com)");
     doc.setProducer("TicketRun with pdf-lib");
     const fonts = await embedFonts(L, doc, ["H", "HB"]);
     const c = a => L.rgb(a[0], a[1], a[2]);

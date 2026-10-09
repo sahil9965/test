@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "invoicekit-coral.vercel.app"
+          "value": "invoice.roohsites.com"
         }
       ],
-      "destination": "https://invoicekit-coral.vercel.app/:path*",
+      "destination": "https://invoice.roohsites.com/:path*",
       "permanent": true
     },
     {

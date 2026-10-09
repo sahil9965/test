@@ -553,7 +553,7 @@
     }
     files.unshift(
       { name: "report.json", data: JSON.stringify({ app: "roomproof", format: 1, savedAt: new Date().toISOString(), report: rep }, null, 1) },
-      { name: "README.txt", data: `Roomproof project file\r\n\r\n"${R.title}"${R.property ? " - " + R.property : ""}\r\nSaved ${new Date().toString()}\r\n\r\nOpen this file at https://roomproof-app.vercel.app (Open project) to keep editing or to create the PDF again.\r\nphotos/ holds each photo (resized), manifest.csv lists them with capture times and SHA-256 fingerprints of the files as added.\r\n\r\nMade with Roomproof - free photo report generator - roomproof-app.vercel.app\r\n` },
+      { name: "README.txt", data: `Roomproof project file\r\n\r\n"${R.title}"${R.property ? " - " + R.property : ""}\r\nSaved ${new Date().toString()}\r\n\r\nOpen this file at https://photoreport.roohsites.com (Open project) to keep editing or to create the PDF again.\r\nphotos/ holds each photo (resized), manifest.csv lists them with capture times and SHA-256 fingerprints of the files as added.\r\n\r\nMade with Roomproof - free photo report generator - photoreport.roohsites.com\r\n` },
       { name: "manifest.csv", data: manifest.join("\r\n") + "\r\n" });
     const z = C.zip(files);
     download(new Blob([z], { type: "application/octet-stream" }), `${C.safeName(R.title)}-${R.date || C.todayIso()}.roomproof`);

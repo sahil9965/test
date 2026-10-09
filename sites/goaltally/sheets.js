@@ -232,7 +232,7 @@
     T_(it, M, y, "Made with ", 7.5, { c: "#8a8a8a" });
     const x2 = M + textWidth("Made with ", 7.5);
     T_(it, x2, y, "GoalTally", 7.5, { bold: true, c: "#6b6b6b", href: CREDIT_URL });
-    T_(it, x2 + textWidth("GoalTally", 7.5, true), y, " · goaltally.vercel.app · free ABA graphs and data sheets", 7.5, { c: "#8a8a8a" });
+    T_(it, x2 + textWidth("GoalTally", 7.5, true), y, " · abagraph.roohsites.com · free ABA graphs and data sheets", 7.5, { c: "#8a8a8a" });
     if (n > 1) T_(it, P.w - M, y, `Page ${i} of ${n}`, 7.5, { anchor: "end", c: "#6b6b6b" });
   }
 

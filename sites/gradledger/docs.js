@@ -5,8 +5,8 @@
   "use strict";
   const E = window.GLEngine;
   const PAPER = { letter: [612, 792], a4: [595.28, 841.89] };
-  const REF = "https://gradledger.vercel.app/?utm_source=gradledger&utm_medium=watermark&utm_campaign=referral";
-  const CREDIT = "Prepared with GradLedger · gradledger.vercel.app";
+  const REF = "https://transcript.roohsites.com/?utm_source=gradledger&utm_medium=watermark&utm_campaign=referral";
+  const CREDIT = "Prepared with GradLedger · transcript.roohsites.com";
   const JSPDF_SRC = "/vendor/jspdf-4.2.1.umd.min.js";
 
   let ready = null, mdoc = null;
@@ -643,7 +643,7 @@
     const pdf = new window.jspdf.jsPDF({ unit: "pt", format: doc.paper, compress: true });
     // Metadata strings must stay ASCII: jsPDF miscounts byte offsets for other characters there.
     const ascii = v => String(v || "").normalize("NFKD").replace(/[^\x20-\x7e]/g, "").replace(/[()\\]/g, "").trim();
-    pdf.setProperties({ title: ascii(meta && meta.title) || "Document", subject: ascii(meta && meta.subject), author: ascii(meta && meta.author), creator: "GradLedger - gradledger.vercel.app" });
+    pdf.setProperties({ title: ascii(meta && meta.title) || "Document", subject: ascii(meta && meta.subject), author: ascii(meta && meta.author), creator: "GradLedger - transcript.roohsites.com" });
     const aliases = new Map();
     doc.pages.forEach((ops, i) => {
       if (i) pdf.addPage(doc.paper, "portrait");

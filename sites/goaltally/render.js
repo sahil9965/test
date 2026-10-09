@@ -99,7 +99,7 @@
     }
   }
   function newDoc(jsPDF, w, h) { return new jsPDF({ unit: "pt", format: [w, h], orientation: w > h ? "landscape" : "portrait", compress: true }); }
-  function meta(doc, title) { doc.setProperties({ title: pdfSafe(title), creator: "GoalTally (goaltally.vercel.app)", subject: "Made with GoalTally" }); }
+  function meta(doc, title) { doc.setProperties({ title: pdfSafe(title), creator: "GoalTally (abagraph.roohsites.com)", subject: "Made with GoalTally" }); }
 
   async function sheetsPdf(list, title) {
     const jsPDF = await loadJsPDF();

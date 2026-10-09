@@ -9,7 +9,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "../../sites/gradledger");
 const require = createRequire(import.meta.url);
 const E = require(join(OUT, "engine.js"));
-const URL = "https://gradledger.vercel.app";
+const URL = "https://transcript.roohsites.com";
 const NAME = "GradLedger";
 const ACCENT = "#4338ca";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";

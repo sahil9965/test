@@ -53,10 +53,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "preplabel.vercel.app"
+          "value": "fnsku.roohsites.com"
         }
       ],
-      "destination": "https://preplabel.vercel.app/:path*",
+      "destination": "https://fnsku.roohsites.com/:path*",
       "permanent": true
     },
     {

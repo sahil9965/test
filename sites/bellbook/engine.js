@@ -2,9 +2,9 @@
 // Dates are ISO strings (YYYY-MM-DD) at the edges and integer "day numbers" (days since
 // 1970-01-01, UTC) inside, so daylight-saving changes can never shift a school day.
 
-export const SITE = "https://bellbook-app.vercel.app";
+export const SITE = "https://abday.roohsites.com";
 export const CREDIT_URL = SITE + "/?utm_source=bellbook&utm_medium=watermark&utm_campaign=referral";
-export const CREDIT_TEXT = "Made with BellBook · bellbook-app.vercel.app";
+export const CREDIT_TEXT = "Made with BellBook · abday.roohsites.com";
 
 // ---------- dates ----------
 export const dn = s => { const [y, m, d] = String(s).split("-").map(Number); return Math.round(Date.UTC(y, m - 1, d) / 864e5); };
@@ -287,7 +287,7 @@ export function buildIcs(res, { includeOff = true, now = new Date() } = {}) {
   const credit = `Made with BellBook · ${CREDIT_URL}`;
   const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//BellBook//Rotation Calendar 1.0//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
     "X-WR-CALNAME:" + icsEsc(name), "X-WR-CALDESC:" + icsEsc(`School rotation days. ${credit}`)];
-  const ev = (uid, a, b, summary, desc) => L.push("BEGIN:VEVENT", `UID:${uid}-${id}@bellbook-app.vercel.app`, "DTSTAMP:" + stamp,
+  const ev = (uid, a, b, summary, desc) => L.push("BEGIN:VEVENT", `UID:${uid}-${id}@abday.roohsites.com`, "DTSTAMP:" + stamp,
     `DTSTART;VALUE=DATE:${ymdc(a)}`, `DTEND;VALUE=DATE:${ymdc(b + 1)}`, "SUMMARY:" + icsEsc(summary),
     "DESCRIPTION:" + icsEsc(desc), "TRANSP:TRANSPARENT", "END:VEVENT");
   const src = name + (cfg.school && cfg.title && !cfg.title.includes(cfg.school) ? ` (${cfg.school})` : "");

@@ -66,10 +66,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "labelfit.vercel.app"
+          "value": "labels.roohsites.com"
         }
       ],
-      "destination": "https://labelfit.vercel.app/:path*",
+      "destination": "https://labels.roohsites.com/:path*",
       "permanent": true
     },
     {

@@ -8,8 +8,8 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
   const REVIEWED = "2026-10-08";
-  const SITE = "https://collabrate-app.vercel.app";
-  const DOMAIN = "collabrate-app.vercel.app";
+  const SITE = "https://ugcrates.roohsites.com";
+  const DOMAIN = "ugcrates.roohsites.com";
   const CREDIT = "Made with CollabRate · " + DOMAIN;
   const REF = SITE + "/?utm_source=collabrate&utm_medium=watermark&utm_campaign=referral";
 

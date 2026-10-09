@@ -5,8 +5,8 @@
 (function () {
   "use strict";
   const C = window.RPCore, PH = window.RPPhoto;
-  const SITE = "roomproof-app.vercel.app";
-  const CREDIT_URL = "https://roomproof-app.vercel.app/?utm_source=roomproof&utm_medium=watermark&utm_campaign=referral";
+  const SITE = "photoreport.roohsites.com";
+  const CREDIT_URL = "https://photoreport.roohsites.com/?utm_source=roomproof&utm_medium=watermark&utm_campaign=referral";
   const INK = [27, 27, 31], MUTED = [100, 100, 112], LINE = [222, 219, 212], SOFT = [244, 242, 237], ACCENT = [21, 128, 61];
   const TONE = { ok: [21, 128, 61], warn: [180, 83, 9], bad: [185, 28, 28], na: [107, 114, 128] };
   const PT = 0.3528; // mm per point
@@ -387,7 +387,7 @@
     }
     doc.setProperties({
       title: T(r.title || t.title), subject: T([t.name, r.property].filter(Boolean).join(" - ")),
-      author: T(r.preparedBy || ""), creator: "Roomproof (roomproof-app.vercel.app)", keywords: "photo report",
+      author: T(r.preparedBy || ""), creator: "Roomproof (photoreport.roohsites.com)", keywords: "photo report",
     });
     const blob = doc.output("blob");
     return { blob, pages: n, name: `${C.safeName(r.title || t.title)}-${r.date || C.todayIso()}.pdf` };

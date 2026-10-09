@@ -1,4 +1,4 @@
-/*! PrepLabel core · https://preplabel.vercel.app
+/*! PrepLabel core · https://fnsku.roohsites.com
  * Code 128 encoder, label stock geometry, label layouts, PDF / SVG / ZPL output,
  * CSV / XLSX import and Seller Central sheet detection. Pure functions with no DOM access,
  * so the same file runs in the browser (window.PLCore) and in Node tests (module.exports). */
@@ -7,7 +7,7 @@
   const PT = 25.4 / 72; // 1 pt in mm
   const MM = 72 / 25.4; // 1 mm in pt
   const LH = 1.15; // line height factor
-  const SITE = "https://preplabel.vercel.app";
+  const SITE = "https://fnsku.roohsites.com";
   const CREDIT_URL = SITE + "/?utm_source=preplabel&utm_medium=watermark&utm_campaign=referral";
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const r2 = v => Math.round(v * 100) / 100;
@@ -528,7 +528,7 @@
         items.push({ t: "rect", x: cx - bar / 2, y: by - 1.2, w: 0.3, h: 1.8, color: "#000000" });
         items.push({ t: "rect", x: cx + bar / 2 - 0.3, y: by - 1.2, w: 0.3, h: 1.8, color: "#000000" });
         items.push({ t: "text", x: cx, y: by + 0.6 + s * 0.8 * PT + 0.3, s: s * 0.8, str: bar === 25.4 ? "this bar = 1 in / 25.4 mm" : `this bar = ${r2(bar)} mm`, b: false, a: "c" });
-        items.push({ t: "text", x: cx, y: y + h - 1.6, s: Math.min(5, s * 0.7), str: "Made with PrepLabel · preplabel.vercel.app", b: false, a: "c", color: "#555555" });
+        items.push({ t: "text", x: cx, y: y + h - 1.6, s: Math.min(5, s * 0.7), str: "Made with PrepLabel · fnsku.roohsites.com", b: false, a: "c", color: "#555555" });
         items.push({ t: "link", x: x + 2, y: y + h - 1.6 - 2.2, w: w - 4, h: 2.6, url: CREDIT_URL });
       } else {
         items.push({ t: "text", x: x + 1.5, y: y + 1.5 + 6 * PT, s: 6, str: String(idx + 1), b: true, a: "l" });
@@ -567,8 +567,8 @@
     ruler(127, 25.4 / 8, 8, "5 in (ticks every 1/8 in)", "in");
     items.push({ t: "text", x: x0, y, s: 9, str: `Stock: ${stock.name}`, b: false, a: "l" });
     y += 12;
-    items.push({ t: "text", x: W / 2, y, s: 8, str: "Made with PrepLabel · preplabel.vercel.app", b: false, a: "c", color: "#555555" });
-    const cw = textW("Made with PrepLabel · preplabel.vercel.app", 8, false);
+    items.push({ t: "text", x: W / 2, y, s: 8, str: "Made with PrepLabel · fnsku.roohsites.com", b: false, a: "c", color: "#555555" });
+    const cw = textW("Made with PrepLabel · fnsku.roohsites.com", 8, false);
     items.push({ t: "link", x: W / 2 - cw / 2, y: y - 3, w: cw, h: 4, url: CREDIT_URL });
     return { w: page[0], h: page[1], rotate: 0, items };
   }
@@ -634,7 +634,7 @@
   function addCredit(page, stock) {
     const spot = creditSpot(stock);
     if (!spot) return;
-    const str = "Made with PrepLabel · preplabel.vercel.app", s = 6.5;
+    const str = "Made with PrepLabel · fnsku.roohsites.com", s = 6.5;
     const w = textW(str, s, false);
     page.items.push({ t: "text", x: page.w / 2, y: spot.y, s, str, b: false, a: "c", color: "#6b6b76", credit: true });
     page.items.push({ t: "link", x: page.w / 2 - w / 2, y: spot.y - s * PT, w, h: s * PT * 1.3, url: CREDIT_URL });
@@ -682,7 +682,7 @@
     const doc = await P.PDFDocument.create();
     doc.setTitle(meta.title || "Labels");
     doc.setAuthor("PrepLabel");
-    doc.setCreator("PrepLabel · preplabel.vercel.app");
+    doc.setCreator("PrepLabel · fnsku.roohsites.com");
     doc.setProducer("PrepLabel (pdf-lib)");
     if (meta.subject) doc.setSubject(meta.subject);
     const F = { r: await doc.embedFont(P.StandardFonts.Helvetica), b: await doc.embedFont(P.StandardFonts.HelveticaBold) };

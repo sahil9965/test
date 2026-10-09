@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "collabrate-app.vercel.app"
+          "value": "ugcrates.roohsites.com"
         }
       ],
-      "destination": "https://collabrate-app.vercel.app/:path*",
+      "destination": "https://ugcrates.roohsites.com/:path*",
       "permanent": true
     },
     {

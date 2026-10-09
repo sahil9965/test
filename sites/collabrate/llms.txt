@@ -3,16 +3,16 @@
 > CollabRate is a free UGC rate calculator for user-generated content creators. It prices a brief as a content fee (a base rate per edited video, plus extra hooks, photos and custom items) and adds transparent percentage uplifts for paid usage rights, whitelisting or Spark Ads, exclusivity, raw footage, extra revisions and rush delivery. It shows a negotiating range, then exports a brand quote PDF, a rate card (PNG or PDF, three templates) and a pitch email. It runs entirely in the browser with no signup; nothing is uploaded. Every feature is free. Exports carry a small "Made with CollabRate" credit.
 
 ## Tool
-- [UGC rate calculator](https://collabrate-app.vercel.app/): calculate a UGC quote with usage rights, whitelisting and extras; includes the full methodology table.
+- [UGC rate calculator](https://ugcrates.roohsites.com/): calculate a UGC quote with usage rights, whitelisting and extras; includes the full methodology table.
 
 ## Guides
-- [UGC usage rights calculator](https://collabrate-app.vercel.app/ugc-usage-rights-calculator): pricing paid usage from 30 days to perpetual, and what a usage clause should say.
-- [UGC whitelisting rates](https://collabrate-app.vercel.app/ugc-whitelisting-rates): monthly whitelisting / Spark Ads fees on top of paid usage.
-- [UGC exclusivity fee](https://collabrate-app.vercel.app/ugc-exclusivity-fee): pricing exclusivity per month by scope (named competitors or a whole category).
-- [How much to charge for UGC videos](https://collabrate-app.vercel.app/how-much-to-charge-for-ugc): starting rates by experience in six currencies, the formula and worked examples.
-- [Beginner UGC rate card](https://collabrate-app.vercel.app/beginner-ugc-rate-card): pricing with no followers or portfolio, and common beginner mistakes.
-- [UGC rate card template](https://collabrate-app.vercel.app/ugc-rate-card-template): free editable rate card in three designs, PNG 1080x1350 or PDF.
-- [UGC quote template for brands](https://collabrate-app.vercel.app/ugc-brand-quote-template): itemised quote PDF with rights, payment terms and usage options, plus a pitch email.
+- [UGC usage rights calculator](https://ugcrates.roohsites.com/ugc-usage-rights-calculator): pricing paid usage from 30 days to perpetual, and what a usage clause should say.
+- [UGC whitelisting rates](https://ugcrates.roohsites.com/ugc-whitelisting-rates): monthly whitelisting / Spark Ads fees on top of paid usage.
+- [UGC exclusivity fee](https://ugcrates.roohsites.com/ugc-exclusivity-fee): pricing exclusivity per month by scope (named competitors or a whole category).
+- [How much to charge for UGC videos](https://ugcrates.roohsites.com/how-much-to-charge-for-ugc): starting rates by experience in six currencies, the formula and worked examples.
+- [Beginner UGC rate card](https://ugcrates.roohsites.com/beginner-ugc-rate-card): pricing with no followers or portfolio, and common beginner mistakes.
+- [UGC rate card template](https://ugcrates.roohsites.com/ugc-rate-card-template): free editable rate card in three designs, PNG 1080x1350 or PDF.
+- [UGC quote template for brands](https://ugcrates.roohsites.com/ugc-brand-quote-template): itemised quote PDF with rights, payment terms and usage options, plus a pitch email.
 
 ## Key facts
 - Formula: content fee = sum of (quantity x unit price) minus any package discount; each add-on = content fee x uplift % (x months or rounds where it is "per"); total = content fee + add-ons.
@@ -23,5 +23,5 @@
 - Privacy: rates, quotes, deals and photos stay in the browser's local storage. PDFs and PNGs are generated on the device.
 
 ## Optional
-- [About](https://collabrate-app.vercel.app/about)
-- [Privacy & Terms](https://collabrate-app.vercel.app/privacy)
+- [About](https://ugcrates.roohsites.com/about)
+- [Privacy & Terms](https://ugcrates.roohsites.com/privacy)

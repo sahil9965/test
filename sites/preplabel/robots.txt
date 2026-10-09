@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://preplabel.vercel.app/sitemap.xml
+Sitemap: https://fnsku.roohsites.com/sitemap.xml

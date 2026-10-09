@@ -21,4 +21,4 @@ User-agent: YandexBot
 Allow: /
 Disallow: /api/
 
-Sitemap: https://invoicekit-coral.vercel.app/sitemap.xml
+Sitemap: https://invoice.roohsites.com/sitemap.xml

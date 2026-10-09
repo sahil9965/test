@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { PAGES } from "./content.mjs";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/goaltally");
-const URL = "https://goaltally.vercel.app";
+const URL = "https://abagraph.roohsites.com";
 const NAME = "GoalTally";
 const ACCENT = "#0369a1";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";

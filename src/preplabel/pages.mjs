@@ -9,7 +9,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "../../sites/preplabel");
 const require = createRequire(import.meta.url);
 const Core = require(join(OUT, "core.js"));
-const URL = "https://preplabel.vercel.app";
+const URL = "https://fnsku.roohsites.com";
 const NAME = "PrepLabel";
 const ACCENT = "#c2410c";
 const DATE = "2026-10-08", DATE_H = "8 October 2026";

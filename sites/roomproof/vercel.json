@@ -66,10 +66,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "roomproof-app.vercel.app"
+          "value": "photoreport.roohsites.com"
         }
       ],
-      "destination": "https://roomproof-app.vercel.app/:path*",
+      "destination": "https://photoreport.roohsites.com/:path*",
       "permanent": true
     },
     {

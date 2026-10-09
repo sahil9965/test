@@ -44,10 +44,10 @@
       "missing": [
         {
           "type": "host",
-          "value": "bellbook-app.vercel.app"
+          "value": "abday.roohsites.com"
         }
       ],
-      "destination": "https://bellbook-app.vercel.app/:path*",
+      "destination": "https://abday.roohsites.com/:path*",
       "permanent": true
     }
   ]

@@ -5,7 +5,7 @@
   const mount = document.getElementById("lf-tool");
   if (!mount || !window.LabelCore) return;
   const C = window.LabelCore, MM = C.MM, mm = C.mm;
-  const REF = "https://labelfit.vercel.app/?utm_source=labelfit&utm_medium=watermark&utm_campaign=referral";
+  const REF = "https://labels.roohsites.com/?utm_source=labelfit&utm_medium=watermark&utm_campaign=referral";
   const DET = 3 / (0.5 * MM); // detection render: 3 px per 0.5 mm grid cell
   const FOOT = 10; // pt reserved under a packing slip for the credit line
   const $ = s => mount.querySelector(s);
@@ -126,7 +126,7 @@
         </select></div>
         <ol class="lf-gsteps"></ol>
         <div class="lf-row"><button type="button" class="btn ghost sm" data-a="copyguide">Copy these steps</button><span class="small muted lf-copied" role="status"></span></div>
-        <p class="lf-credit">Print guide by <a href="${REF}" target="_blank" rel="noopener">LabelFit</a> · labelfit.vercel.app</p>
+        <p class="lf-credit">Print guide by <a href="${REF}" target="_blank" rel="noopener">LabelFit</a> · labels.roohsites.com</p>
       </details>
     </section>
     <section class="lf-src" aria-label="Source pages">
@@ -387,7 +387,7 @@
       ctx.restore();
     }
   }
-  const CREDIT = ["Made with ", "LabelFit", " · labelfit.vercel.app"];
+  const CREDIT = ["Made with ", "LabelFit", " · labels.roohsites.com"];
   function creditCanvas(ctx, it, sheetW, k) {
     ctx.save();
     ctx.fillStyle = "#6b6b76"; ctx.font = `${6 * k}px Helvetica, Arial, sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
@@ -421,7 +421,7 @@
     const L = await loadPdfLib();
     const { PDFDocument, degrees, rgb, StandardFonts, PDFString } = L;
     const out = await PDFDocument.create();
-    out.setTitle("Shipping labels"); out.setCreator("LabelFit (labelfit.vercel.app)"); out.setProducer("LabelFit · https://labelfit.vercel.app");
+    out.setTitle("Shipping labels"); out.setCreator("LabelFit (labels.roohsites.com)"); out.setProducer("LabelFit · https://labels.roohsites.com");
     let font = null, raster = 0;
     // Embed every crop from the same source file in one call, so its fonts and images are
     // copied into the new PDF once rather than once per label.
@@ -498,7 +498,7 @@
     for (let i = 0; i < sheets.length; i++) {
       const cv = await renderSheet(sheets[i], +S.dpi, S.bw);
       let bytes = await blobBytes(cv, type, 0.95);
-      bytes = ext === "png" ? C.pngMeta(bytes, +S.dpi, "LabelFit (labelfit.vercel.app)") : C.jpegDpi(bytes, +S.dpi);
+      bytes = ext === "png" ? C.pngMeta(bytes, +S.dpi, "LabelFit (labels.roohsites.com)") : C.jpegDpi(bytes, +S.dpi);
       files.push({ name: `${baseName()}${sheets.length > 1 ? "-" + String(i + 1).padStart(2, "0") : ""}.${ext}`, data: bytes, type, w: cv.width, h: cv.height });
       cv.width = cv.height = 0;
     }
@@ -785,7 +785,7 @@
       if (S.preset === "my:" + id) { S.preset = "auto"; pages.forEach(applyLayoutOrAuto); save(); refreshOutput(); }
       syncSettingsUI();
     } else if (a === "export") {
-      download(JSON.stringify({ app: "LabelFit", version: 1, site: "https://labelfit.vercel.app", layouts }, null, 2), "labelfit-layouts.json", "application/json");
+      download(JSON.stringify({ app: "LabelFit", version: 1, site: "https://labels.roohsites.com", layouts }, null, 2), "labelfit-layouts.json", "application/json");
     } else if (a === "copyguide") {
       const txt = `How to print ${sizeName()} shipping labels at 100%:\n` + guideSteps().map((s, i) => `${i + 1}. ${s}`).join("\n") + `\n\nPrint guide from LabelFit, the free label converter: ${REF}`;
       let ok = false;
@@ -834,7 +834,7 @@
         catch (e) { if (e && e.name === "AbortError") return; }
       }
       if (files.length === 1) download(files[0].data, files[0].name, files[0].type);
-      else download(C.zip(files, "Made with LabelFit · https://labelfit.vercel.app"), `${baseName()}-images.zip`, "application/zip");
+      else download(C.zip(files, "Made with LabelFit · https://labels.roohsites.com"), `${baseName()}-images.zip`, "application/zip");
       status(`Saved ${files.length} image${files.length > 1 ? "s" : ""} (${files[0].w} × ${files[0].h} px at ${S.dpi} dpi).`);
     });
   }

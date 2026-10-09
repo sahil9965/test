@@ -90,7 +90,7 @@ function init(mount) {
       <div class="bb-sum" aria-live="polite"></div>
       <p class="bb-status small" role="status" aria-live="polite"></p>
       <div class="bb-cal" aria-label="Rotation calendar preview. Use arrow keys to move between days and Enter to edit a day."></div>
-      <p class="bb-credit small muted">Made with <a href="${E.CREDIT_URL}">BellBook</a> · bellbook-app.vercel.app</p>
+      <p class="bb-credit small muted">Made with <a href="${E.CREDIT_URL}">BellBook</a> · abday.roohsites.com</p>
     </div>
   </div>
 
