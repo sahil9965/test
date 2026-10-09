@@ -33,6 +33,9 @@ function init(mount) {
   if (!preset) { const d = store.get("draft", null); if (d) cfg = E.normalize(d); }
   const ui = { size: "letter", color: true, year: true, months: true, weekStart: 0, hideWeekends: false, includeOff: true, key: null, ...store.get("ui", {}) };
   let res = E.compute(cfg), prev = null;
+  // Roster page settings persist; the names themselves only live in memory (privacy).
+  const rs = { sel: "", from: "", to: "", att: true, grade: true, seat: true, contact: true, rows: 5, cols: 6, sort: false, ...store.get("roster", {}) };
+  let names = [];
 
   // ---------- markup ----------
   mount.innerHTML = `
@@ -146,6 +149,37 @@ function init(mount) {
       </div>
     </div>
   </section>
+
+  <section class="card bb-roster" id="roster" aria-labelledby="bb-r">
+    <h3 id="bb-r">Class pages from a roster <span class="muted small">(optional)</span></h3>
+    <p class="small muted">An attendance sheet with one column for each day this class actually meets on your rotation, plus a gradebook, a seating chart and a family contact sheet. Student names stay in this tab: they are never uploaded or saved.</p>
+    <div class="bb-rgrid">
+      <div>
+        <label for="bb-roster">Student names, one per line</label>
+        <textarea id="bb-roster" rows="9" spellcheck="false" placeholder="Rivera, Ana&#10;Chen, Leo&#10;O'Brien, Kate"></textarea>
+        <p class="small muted bb-rcount">Paste a column from a spreadsheet or your gradebook. Leave it empty to print blank rows.</p>
+        <label class="bb-check"><input type="checkbox" id="bb-rsort"> Sort names A–Z</label>
+      </div>
+      <div>
+        <label for="bb-rclass">Class</label><select id="bb-rclass"></select>
+        <p class="small muted bb-rhelp">Classes come from the lesson planner. Teach two sections of one course? Pick the block, or give each section its own name.</p>
+        <div class="row"><div><label for="bb-rfrom">From</label><input type="date" id="bb-rfrom"></div><div><label for="bb-rto">To</label><input type="date" id="bb-rto"></div></div>
+        <div class="bb-btns"><button type="button" class="btn ghost sm" data-rr="s1">Semester 1</button><button type="button" class="btn ghost sm" data-rr="s2">Semester 2</button><button type="button" class="btn ghost sm" data-rr="yr">Whole year</button></div>
+        <p class="small bb-rmeet" aria-live="polite"></p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <label class="bb-check"><input type="checkbox" data-rk="att"> Attendance, dated by class meeting</label>
+        <label class="bb-check"><input type="checkbox" data-rk="grade"> Gradebook</label>
+        <label class="bb-check"><input type="checkbox" data-rk="seat"> Seating chart</label>
+        <div class="row bb-seats"><div><label for="bb-rrows">Rows of desks</label><select id="bb-rrows" data-rn="rows">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<option>${n}</option>`).join("")}</select></div>
+        <div><label for="bb-rcols">Desks per row</label><select id="bb-rcols" data-rn="cols">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<option>${n}</option>`).join("")}</select></div></div>
+        <label class="bb-check"><input type="checkbox" data-rk="contact"> Family contact sheet</label>
+        <label for="bb-rsize">Paper</label><select id="bb-rsize" data-ui="size"><option value="letter">US Letter</option><option value="a4">A4</option></select>
+        <button type="button" class="btn" data-a="roster">Download class pages (PDF)</button>
+      </div>
+    </div>
+  </section>
   <dialog class="bb-dlg" aria-labelledby="bb-dlg-h"></dialog>`;
 
   const f = $(".bb-form");
@@ -234,7 +268,7 @@ function init(mount) {
   function update({ announce = "" } = {}) {
     cfg = E.normalize(cfg);
     prev = res; res = E.compute(cfg);
-    renderSummary(); renderCalendar(); refreshLink(); renderPlanCount();
+    renderSummary(); renderCalendar(); refreshLink(); renderPlanCount(); renderRoster();
     if (announce) status(announce);
     clearTimeout(saveT);
     saveT = setTimeout(() => { if (!preset) store.set("draft", cfg); store.set("ui", ui); }, 250);
@@ -298,6 +332,86 @@ function init(mount) {
       $("#bb-link").value = url;
       $(".bb-open").href = url;
     }, 150);
+  }
+
+  // ---------- class roster pages ----------
+  const semesters = () => {
+    const sem2 = cfg.sem2 || (() => { const y = E.parts(E.dn(cfg.start)).y + 1; const d = res.errors.length ? null : E.nextSchoolDay(res, E.fromYMD(y, 0, 1)); return d ? d.iso : `${y}-01-02`; })();
+    return { s1: [cfg.start, E.iso(E.dn(sem2) - 1)], s2: [sem2, cfg.end], yr: [cfg.start, cfg.end] };
+  };
+  function rosterRange() {
+    const ok = d => E.isIso(d) && d >= cfg.start && d <= cfg.end;
+    if (ok(rs.from) && ok(rs.to) && rs.from <= rs.to) return [rs.from, rs.to];
+    const sm = semesters(), t = E.iso(TODAY);
+    return t >= sm.s2[0] && t <= cfg.end ? sm.s2 : sm.s1[0] <= sm.s1[1] ? sm.s1 : sm.yr;
+  }
+  let choices = [];
+  function rosterSel() { return choices.find(c => c.text === rs.sel) || choices[0] || { cls: "", key: null, p: null, text: "All school days" }; }
+  function renderRoster() {
+    const sel = $("#bb-rclass");
+    choices = [...E.classChoices(cfg), { cls: "", key: null, p: null, text: "All school days (homeroom)" }];
+    const html = choices.map(c => `<option>${esc(c.text)}</option>`).join("");
+    if (sel._html !== html) { sel.innerHTML = html; sel._html = html; }
+    sel.value = rosterSel().text;
+    const [from, to] = rosterRange();
+    $("#bb-rfrom").value = from; $("#bb-rto").value = to;
+    $$("[data-rk]").forEach(c => { c.checked = !!rs[c.dataset.rk]; });
+    $("#bb-rrows").value = String(rs.rows); $("#bb-rcols").value = String(rs.cols); $("#bb-rsort").checked = !!rs.sort;
+    $(".bb-seats").hidden = !rs.seat;
+    const el = $(".bb-rmeet");
+    if (res.errors.length) { el.textContent = ""; return; }
+    const ch = rosterSel(), m = E.meetingDates(res, ch, from, to);
+    const labs = [...new Set(m.map(x => E.longLabel(cfg, x.day)).filter(Boolean))];
+    el.innerHTML = m.length
+      ? `<strong>${esc(ch.cls || "School")}</strong> ${ch.cls ? "meets" : "is in session"} <strong>${m.length}</strong> time${m.length === 1 ? "" : "s"} from ${E.fmtMDY(E.dn(from))} to ${E.fmtMDY(E.dn(to))}${labs.length && labs.length <= 3 ? ` (${esc(labs.join(", "))})` : ""}.`
+      : `<span class="bb-err">${esc(ch.cls || "School")} doesn't meet between these dates.</span>`;
+    const seats = rs.rows * rs.cols;
+    $(".bb-rcount").textContent = names.length
+      ? `${names.length} student${names.length === 1 ? "" : "s"}${rs.seat && names.length > seats ? ` · only ${seats} desks: add rows or desks` : ""}.`
+      : "Paste a column from a spreadsheet or your gradebook. Leave it empty to print blank rows.";
+  }
+  const saveRs = () => store.set("roster", rs);
+  function readNames() {
+    names = E.parseRoster($("#bb-roster").value);
+    if (rs.sort) names = [...names].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+    if (rs.seat && names.length > rs.rows * rs.cols) { rs.rows = Math.min(10, Math.ceil(names.length / rs.cols)); saveRs(); }
+  }
+  let rosterT;
+  $(".bb-roster").addEventListener("input", e => {
+    if (e.target.id !== "bb-roster") return;
+    clearTimeout(rosterT);
+    rosterT = setTimeout(() => { readNames(); renderRoster(); }, 200);
+  });
+  $(".bb-roster").addEventListener("change", e => {
+    const t = e.target;
+    if (t.id === "bb-rsort") { rs.sort = t.checked; readNames(); }
+    else if (t.id === "bb-rclass") rs.sel = t.value;
+    else if (t.id === "bb-rfrom" || t.id === "bb-rto") {
+      if (!E.isIso(t.value)) return;
+      const [f, to] = rosterRange();
+      rs.from = t.id === "bb-rfrom" ? t.value : f; rs.to = t.id === "bb-rto" ? t.value : to;
+      if (rs.from > rs.to) [rs.from, rs.to] = [rs.to, rs.from];
+    }
+    else if (t.dataset.rk) rs[t.dataset.rk] = t.checked;
+    else if (t.dataset.rn) { rs[t.dataset.rn] = Number(t.value); }
+    else return;
+    saveRs(); renderRoster();
+  });
+  async function downloadRoster(btn) {
+    if (res.errors.length) { status(res.errors[0]); return; }
+    clearTimeout(rosterT); readNames();
+    const old = btn.textContent; btn.disabled = true; btn.textContent = "Making PDF…";
+    try {
+      const [jsPDF, P] = await Promise.all([loadJsPDF(), import("./printables.js")]);
+      const [from, to] = rosterRange(), ch = rosterSel();
+      const { doc, meetings } = P.rosterPdf(jsPDF, res, { names, sel: ch, from, to, att: rs.att, grade: rs.grade, seat: rs.seat, contact: rs.contact, rows: rs.rows, cols: rs.cols, size: ui.size, color: ui.color, teacher: cfg.pl.teacher });
+      const base = (ch.cls || "class").toLowerCase().replace(/[^\w]+/g, "-").replace(/^-|-$/g, "") || "class";
+      save(doc.output("blob"), `${base}-class-pages.pdf`);
+      const n = doc.getNumberOfPages();
+      status(`Class pages ready: ${n} page${n === 1 ? "" : "s"}${rs.att ? `, ${meetings} dated attendance column${meetings === 1 ? "" : "s"}` : ""}.`);
+      track("roster_pages", { pages: n });
+    } catch (err) { status(err.message || String(err)); }
+    finally { btn.disabled = false; btn.textContent = old; }
   }
 
   // ---------- events from the form ----------
@@ -384,11 +498,21 @@ function init(mount) {
     cfg[name] = t.value;
     later(typing);
   }
+  let pending = null;
   function later(typing, msg = "", after) {
     clearTimeout(typingT);
-    const run = () => { update({ announce: msg }); after && after(); };
-    if (typing) typingT = setTimeout(run, 200); else run();
+    const run = () => { pending = null; update({ announce: msg }); after && after(); };
+    if (typing) { pending = run; typingT = setTimeout(run, 200); } else { pending = null; run(); }
   }
+  // Never lose the last keystrokes: apply pending edits and save the draft when the tab is hidden or closed.
+  function flush() {
+    if (pending) { clearTimeout(typingT); pending(); }
+    clearTimeout(saveT);
+    if (!preset) store.set("draft", cfg);
+    store.set("ui", ui);
+  }
+  addEventListener("pagehide", flush);
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flush(); });
 
   // ---------- buttons ----------
   mount.addEventListener("click", async e => {
@@ -398,6 +522,7 @@ function init(mount) {
     if (b.dataset.d) { openDay(+b.dataset.d); return; }
     if (b.dataset.key != null) { ui.key = b.dataset.key; renderPlanner(); mount.querySelector(`.bb-key[data-key="${CSS.escape(ui.key)}"]`)?.focus(); return; }
     if (b.dataset.r) { setRange(b.dataset.r); return; }
+    if (b.dataset.rr) { [rs.from, rs.to] = semesters()[b.dataset.rr]; saveRs(); renderRoster(); return; }
     if (!a) return;
     if (a === "rm") { cfg.ev.splice(+b.closest("[data-ev]").dataset.ev, 1); update({ announce: "Removed." }); renderEvents(); }
     else if (a === "addOff") { const d = defaultDate(); cfg.ev.push({ t: "off", s: d, e: d, n: "" }); update(); renderEvents(); focusLast(".bb-off", '[data-k="n"]'); }
@@ -414,6 +539,7 @@ function init(mount) {
     }
     else if (a === "pdf") await download("pdf", b);
     else if (a === "planner") await download("planner", b);
+    else if (a === "roster") await downloadRoster(b);
     else if (a === "ics") exportIcs();
     else if (a === "csv") exportCsv();
     else if (a === "share") await copyLink();
@@ -496,6 +622,7 @@ function init(mount) {
         ${day.kind === "weekend" || day.kind === "off" ? `<div class="bb-inline"><label for="bb-dn">Name</label><input id="bb-dn" placeholder="e.g. Snow make-up day"><button type="button" class="btn ghost sm" data-act="extra">Make-up school day</button></div>
         <p class="small muted">A make-up day gets the next rotation day and the rotation continues after it.</p>` : ""}
         <div class="bb-inline"><label for="bb-nt">Note</label><input id="bb-nt" placeholder="e.g. Early release"><button type="button" class="btn ghost sm" data-act="note">Add note</button></div>
+        ${day.school ? `<button type="button" class="btn ghost sm bb-subbtn" data-act="sub">Substitute plan for this day (PDF)</button>` : ""}
       </div>`;
     dlg.showModal();
     const first = dlg.querySelector("[data-act]"); if (first) first.focus();
@@ -505,6 +632,7 @@ function init(mount) {
     const b = e.target.closest("button"); if (!b) return;
     const d = focusDay, s = E.iso(d);
     let msg = "";
+    if (b.dataset.act === "sub") { subPlan(d, b); return; }
     if (b.dataset.del != null) { cfg.ev.splice(+b.dataset.del, 1); msg = "Removed."; }
     else {
       const act = b.dataset.act, name = (dlg.querySelector("#bb-dn") || {}).value || "";
@@ -570,6 +698,18 @@ function init(mount) {
         track("planner_generated", { pages: doc.getNumberOfPages() });
       }
     } catch (err) { status(err.message || String(err)); }
+    finally { btn.disabled = false; btn.textContent = old; }
+  }
+  async function subPlan(d, btn) {
+    const old = btn.textContent; btn.disabled = true; btn.textContent = "Making PDF…";
+    try {
+      const [jsPDF, P] = await Promise.all([loadJsPDF(), import("./printables.js")]);
+      const doc = P.subPlanPdf(jsPDF, res, d, { size: ui.size, color: ui.color });
+      save(doc.output("blob"), `sub-plan-${E.iso(d)}.pdf`);
+      dlg.close();
+      status(`Substitute plan for ${E.fmtShort(d)} downloaded.`);
+      track("sub_plan");
+    } catch (err) { status(err.message || String(err)); dlg.close(); }
     finally { btn.disabled = false; btn.textContent = old; }
   }
   function exportIcs() {

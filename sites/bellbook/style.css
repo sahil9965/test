@@ -1,5 +1,6 @@
 :root{--accent:#92400e}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:#fbbf24}}
+@media(max-width:520px){header.top{gap:6px}header.top nav{gap:4px 14px}header.top nav a{font-size:14px}}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #bb-tool{display:flex;flex-direction:column}
 .bb-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;order:0}
@@ -124,3 +125,13 @@ span.bb-d{cursor:default}
 .td-check label{margin:0 0 4px}
 .td-check input{width:auto}
 .td-demo{margin:0 0 14px}
+/* roster pages */
+.bb-roster{order:5;margin-top:20px;box-shadow:none}
+.bb-roster>h3{margin:0 0 4px;font-size:19px}
+.bb-roster h4{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.bb-rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:10px}
+@media(max-width:920px){.bb-rgrid{grid-template-columns:minmax(0,1fr);gap:12px}}
+.bb-rgrid textarea{width:100%;min-height:180px;resize:vertical;font:inherit;font-size:14px}
+.bb-rcount,.bb-rhelp{margin:6px 0}
+.bb-rmeet{margin:8px 0 0}
+.bb-roster .btn[data-a="roster"]{margin-top:12px}

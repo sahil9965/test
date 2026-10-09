@@ -47,7 +47,9 @@
   }
   // Standard PDF fonts only cover Windows-1252; map the few other symbols we use and replace the rest.
   const WIN = new Set([0x20ac, 0x201a, 0x192, 0x201e, 0x2026, 0x2020, 0x2021, 0x2c6, 0x2030, 0x160, 0x2039, 0x152, 0x17d, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2013, 0x2014, 0x2dc, 0x2122, 0x161, 0x203a, 0x153, 0x17e, 0x178]);
-  const MAP = { "−": "-", "≥": ">=", "≤": "<=", "✓": "x", "✔": "x", "→": "->", "←": "<-", "≈": "~", " ": " " };
+  const MAP = { "−": "-", "≥": ">=", "≤": "<=", "✓": "x", "✔": "x", "→": "->", "←": "<-", "≈": "~", " ": " ",
+    // Latin letters that do not decompose to an ASCII base letter
+    "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Ħ": "H", "ħ": "h", "ı": "i", "Ŧ": "T", "ŧ": "t", "Ŋ": "N", "ŋ": "n", "ĸ": "k", "Ŀ": "L", "ŀ": "l", "ȷ": "j", "Ə": "E", "ə": "e" };
   function pdfSafe(s) {
     let o = "";
     for (const ch of String(s ?? "").normalize("NFC")) {
@@ -143,13 +145,13 @@
     const [pw, ph] = opt.paper === "a4" ? [841.89, 595.28] : [792, 612];
     const doc = newDoc(jsPDF, pw, ph), M = 36;
     const s = Math.min((pw - 2 * M) / scene.w, (ph - 2 * M) / scene.h);
-    const gx = (pw - scene.w * s) / 2;
-    drawPdf(doc, scene.items, { s, x: gx, y: M });
+    const gx = (pw - scene.w * s) / 2, W = pw - 2 * M;
+    let y0 = M + scene.h * s + 16;
+    // The summary goes under the graph when it fits; otherwise on page 2, with the graph centred on page 1.
+    const own = !opt.summary || y0 + summaryItems(scene.model, opt.note, W, M, 0).y > ph - M;
+    drawPdf(doc, scene.items, { s, x: gx, y: own ? (ph - scene.h * s) / 2 : M });
     if (opt.summary) {
-      const W = pw - 2 * M;
-      let y0 = M + scene.h * s + 16;
-      const test = summaryItems(scene.model, opt.note, W, M, 0);
-      if (y0 + test.y > ph - M) { doc.addPage([pw, ph], "landscape"); y0 = M; }
+      if (own) { doc.addPage([pw, ph], "landscape"); y0 = M; }
       drawPdf(doc, summaryItems(scene.model, opt.note, W, M, y0).items);
       const credit = { t: "text", x: pw - M, y: ph - 18, s: GT.CREDIT, size: 8, anchor: "end", c: "#8a8a96", href: GT.CREDIT_URL };
       if (doc.getNumberOfPages() > 1) drawPdf(doc, [credit]);

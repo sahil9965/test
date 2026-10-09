@@ -19,7 +19,7 @@ const WEBAPP = (name, url, desc) => ({
   publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
 });
 
-const NAV_SUB = `<a href="/">Calendar maker</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a>`;
+const NAV_SUB = `<a href="/">Calendar</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a>`;
 const NAV_HOME = `<a href="#how">How it works</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="#faq">FAQ</a>`;
 const FOOTER = `  <footer class="site">
     <div class="cols">
@@ -128,7 +128,7 @@ const pages = [];
 // HOME
 {
   const faq = [
-    ["Is BellBook really free?", "Yes. Every feature is free: unlimited calendars, PDF downloads, .ics export, the share link and the dated lesson planner. There's no account and no paid tier."],
+    ["Is BellBook really free?", "Yes. Every feature is free: unlimited calendars, PDF downloads, .ics export, the share link, the dated lesson planner and the class roster pages. There's no account and no paid tier."],
     ["What happens to the rotation after a snow day?", "You choose. <strong>Rotation continues</strong> means the next school day takes the letter the snow day would have had, so every later day shifts by one. <strong>Skip the day's letter</strong> means the snow day's letter is lost and every other date keeps its original letter. BellBook re-letters the rest of the year instantly either way."],
     ["Does it skip weekends and holidays automatically?", "Yes. Weekends never get a rotation day. Add US federal holidays with one click, then add your district's breaks (Thanksgiving, winter and spring break) and teacher workdays. The rotation pauses on every day off and picks up on the next school day."],
     ["Can I make a Day 1–6 or A/B/C calendar?", "Yes. Choose A/B, A/B/C, A/B/C/D, Odd/Even, a Day 1–N cycle of 2 to 10 days, or your own labels such as Red/White/Blue. You can also fix a weekday to one label, for example Monday as an all-classes day."],
@@ -197,12 +197,15 @@ ${SNOW_TABLE}
       <h2>A dated lesson planner that follows the rotation</h2>
       <p>Below the calendar you can also print a dated lesson planner: weekly pages with each date, its rotation day and the classes that meet that day already filled in, plus monthly calendars. Choose up to 10 periods or blocks, set different classes for A and B days, and print 4 weeks, a semester or the whole year. Read more about the <a href="/ab-day-lesson-planner">A/B day lesson planner</a> or the <a href="/dated-lesson-plan-book">dated lesson plan book for schools without a rotation</a>.</p>
 
+      <h2>Class pages from your roster</h2>
+      <p>Paste a class list to print an attendance sheet with one column for each day that class actually meets. A class that meets only on A days gets only A-day dates. You also get a gradebook, a seating chart and a family contact sheet. Click any school day in the calendar for a one-page substitute plan with that day's blocks and classes. Student names stay in the open tab and are never saved or uploaded.</p>
+
       <h2>Why not just use a spreadsheet?</h2>
       <p>A spreadsheet works until the first snow day. Then every later cell needs retyping, and a single missed holiday puts the rest of the year out of sync. BellBook stores the rules (the start date, the rotation, the days off and the closures) instead of the letters, so changing one date re-letters the year correctly. You can still download a spreadsheet (.csv) of every school day if your office needs one.</p>`,
     faq,
     graph: [
       { ...WEBAPP("BellBook", `${URL}/`, "Free A/B day and rotating schedule calendar generator. Skips weekends and holidays, re-flows after snow days, and exports PDF, .ics and a share link."),
-        featureList: ["A/B, A/B/C, Day 1–N and custom rotations", "US federal holidays", "Snow-day re-flow (continue or skip)", "Rotation resets and no-rotation days", "Printable year-at-a-glance and monthly PDF", ".ics export for Google, Outlook and Apple Calendar", "“What day is it today?” share link", "Dated lesson planner up to 10 periods", "No signup"] },
+        featureList: ["A/B, A/B/C, Day 1–N and custom rotations", "US federal holidays", "Snow-day re-flow (continue or skip)", "Rotation resets and no-rotation days", "Printable year-at-a-glance and monthly PDF", ".ics export for Google, Outlook and Apple Calendar", "“What day is it today?” share link", "Dated lesson planner up to 10 periods", "Attendance sheets dated by class meeting", "Gradebook, seating chart and family contact sheets", "One-page substitute plan for any school day", "No signup"] },
       { "@type": "HowTo", name: "How to make an A/B day calendar", totalTime: "PT5M", step: steps.map(([name, text]) => ({ "@type": "HowToStep", name, text })) },
       faqLd(faq),
     ],
@@ -365,7 +368,7 @@ ${SNOW_TABLE}
   pages.push({
     slug: "block-schedule-calendar", tool: "gen", preset: "block", crumb: "Block schedule calendar",
     title: "Block Schedule Calendar Template – A/B Days, Free Printable",
-    desc: "Free block schedule calendar template. A/B block days, an all-classes Monday, holidays and snow days handled for you. Print a PDF or add it to Google Calendar.",
+    desc: "Free block schedule calendar template with A/B block days and an optional all-classes Monday. Skips holidays and re-flows after snow days. Print a PDF.",
     h1: "Block Schedule Calendar Template",
     lead: "A printable calendar for A/B block schedules, including modified blocks with an all-classes day. Fill in your dates and it updates itself.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> A block schedule calendar marks each school day as an A day or a B day so students know which set of blocks meets. Many schools also keep one weekday, often Monday, as an all-classes day. The example above does exactly that: Monday is “All classes” and Tuesday to Friday alternate A and B, skipping holidays.</p>
@@ -441,6 +444,9 @@ ${SNOW_TABLE}
 
       <h2>Why a dated, rotation-aware planner helps</h2>
       <p>Undated plan books mean writing the dates, the letter day and each block's class into every square, then crossing it all out when a snow day shifts the rotation. Generated pages get the dates and letters right from the calendar, show holidays before you plan a lesson for them, and can be reprinted from any week after the schedule changes.</p>
+
+      <h2>Attendance sheets that follow the rotation</h2>
+      <p>Under the planner, <em>Class pages from a roster</em> turns a pasted class list into an attendance sheet whose columns are the dates that section actually meets. Choose “Algebra 1 · A Day, Block 1” and you get only A-day dates, already adjusted for holidays and snow days, plus a gradebook, a seating chart and a family contact sheet. Names are never saved or uploaded. For a planned absence, click the day in the calendar and download a one-page substitute plan with that day's blocks and classes.</p>
 
       <h2>Teaching on a block with an all-classes day?</h2>
       <p>If Monday (or another day) is an all-classes day, set it as a fixed weekday in the calendar. The planner then adds an <em>All classes</em> tab so you can list the shorter periods for that day. See the <a href="/block-schedule-calendar">block schedule calendar</a> for an example.</p>`,
@@ -559,7 +565,7 @@ ${hol2728.map(h => `          <tr><td>${h.name}</td><td>${longDate(h.date)}</td>
   pages.push({
     slug: "dated-lesson-plan-book", tool: "gen", preset: "dated", crumb: "Dated lesson plan book",
     title: "Dated Lesson Plan Book – Free Printable, 1–10 Periods",
-    desc: "Free dated lesson plan book printable. Weekly pages with real dates, holidays and 1–10 periods (7-period layout included). Make it for any school year as a PDF.",
+    desc: "Free dated lesson plan book printable: weekly pages with real dates, holidays and 1–10 periods (7-period layout included). Made for your school year as a PDF.",
     h1: "Dated Lesson Plan Book (Printable)",
     lead: "A printable lesson plan book with real dates, your holidays and up to 10 periods, made for your school year in a couple of minutes.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> Enter your first and last day of school and your holidays, list your periods (the example has 7), type the class for each one, and download the PDF. You get weekly pages with Monday to Friday dated, days off greyed out and each period labelled, plus monthly calendars. The example has no rotation; switch to A/B or Day 1–N if your school rotates.</p>
@@ -594,6 +600,7 @@ ${hol2728.map(h => `          <tr><td>${h.name}</td><td>${longDate(h.date)}</td>
         <li>A 3-hole punch and a 1-inch binder hold about one semester; use a 1.5-inch binder for a full year.</li>
         <li>Print one semester at a time so later weeks can be regenerated if the calendar changes.</li>
         <li>Each page has a small “Made with BellBook” footer credit and a page number.</li>
+        <li>Need attendance sheets or a seating chart too? Paste your class list under <em>Class pages from a roster</em>. Each attendance column is a real class date.</li>
       </ul>`,
     faq,
     graph: [crumbLd("dated-lesson-plan-book", "Dated lesson plan book"), WEBAPP("Dated lesson plan book", `${URL}/dated-lesson-plan-book`, "Printable dated lesson plan book with holidays and 1 to 10 periods."), faqLd(faq)],
@@ -607,7 +614,7 @@ pages.push({
   desc: "BellBook is part of MiniTools: small, free, private web tools. It makes A/B day and rotating school calendars and dated lesson planners in your browser.",
   h1: "About BellBook",
   lead: "A small, free tool for the teachers and school staff who keep the A/B calendar running.",
-  body: `      <p>BellBook is part of <strong>MiniTools</strong>, a set of free, single-purpose web tools. It makes A/B day, Day 1–N and block schedule calendars, and dated lesson planners that follow the same rotation. Like every MiniTools site, it runs entirely in your browser: what you type stays on your device.</p>
+  body: `      <p>BellBook is part of <strong>MiniTools</strong>, a set of free, single-purpose web tools. It makes A/B day, Day 1–N and block schedule calendars, dated lesson planners that follow the same rotation, and class pages (attendance dated by class meeting, a gradebook, a seating chart and a substitute plan). Like every MiniTools site, it runs entirely in your browser: what you type stays on your device.</p>
       <h2>Why we built it</h2>
       <p>Schools on rotating schedules often publish the year's A/B calendar from a spreadsheet. When a snow day or a new holiday shifts the rotation, the spreadsheet has to be redone by hand and teachers rewrite their planners. BellBook stores the rules instead: the dates, the rotation, the days off and how closures are handled. So one change re-letters the rest of the year correctly.</p>
       <h2>Is it really free?</h2>
@@ -618,13 +625,14 @@ pages.push({
 });
 pages.push({
   slug: "privacy", crumb: "Privacy & Terms",
-  title: "Privacy Policy & Terms of Use | BellBook",
+  title: "Privacy Policy & Terms of Use – BellBook Calendars",
   desc: "How BellBook handles your data: calendars are built in your browser and never uploaded. Share links keep the calendar after the #. Cookie-free analytics only.",
   h1: "Privacy & Terms",
   lead: "Short version: your school's calendar and your lesson planner never leave your device.",
   body: `      <h2>Privacy</h2>
       <p>BellBook runs in your browser. Your calendar settings, saved calendars and lesson-planner details are kept in your browser's local storage on your device and are never sent to our servers. PDFs, .ics and .csv files are generated on your device. Clearing your browser data deletes everything BellBook stored.</p>
       <p>The “What day is it?” share link contains the calendar (dates, rotation, days off and their names, but not your lesson planner) after the # sign. Browsers don't send that part of a link to servers, so we never receive it. Anyone you give the link to can read the calendar, so don't put private information in day names or notes.</p>
+      <p>Student names you paste for class pages (attendance, gradebook, seating chart) are used only to draw the PDF in your browser. They are not saved, not put in share links and never uploaded.</p>
       <p>We use Vercel Web Analytics to count page visits and a few anonymous events (for example “PDF downloaded”). It doesn't use cookies, doesn't track you across sites and doesn't collect anything you type into the tool.</p>
       <h2>Terms</h2>
       <p>BellBook is provided “as is”, without warranty. Check generated calendars and planners against your school's official calendar before publishing or printing them. You may use BellBook and its outputs freely for personal, classroom and school use.</p>`,

@@ -197,8 +197,8 @@
       readLogo(f).then(l => { settings.logo = l; if (!saveSettings()) { settings.logo = null; toast("That image is too large to store. Try a smaller PNG or JPG."); } sync(); draw(); }).catch(() => toast("Couldn't read that image. Use a PNG or JPG."));
       t.value = "";
     }
-    if (t.matches("[data-fill]")) draw();
   });
+  $("[data-fill]", mount).addEventListener("change", draw);
   function readLogo(file) {
     return new Promise((res, rej) => {
       const r = new FileReader();

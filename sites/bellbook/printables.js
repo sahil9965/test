@@ -2,7 +2,7 @@
 // The jsPDF constructor is passed in, so the same code runs in the browser (vendored UMD) and in Node tests.
 import {
   MONTHS, MON3, WDAYS, WD3, CREDIT_URL, PALETTE, FIXED_COLOR, iso, dn, parts, wday, fromYMD, monthsIn, monthGrid, dayAt,
-  longLabel, colorFor, eventList, fmtMD, fmtMDY, fmtRange, plannerWeeks, plannerKeys, classesFor, calName, mondayOf,
+  longLabel, colorFor, eventList, fmtMD, fmtMDY, fmtRange, plannerWeeks, plannerKeys, classesFor, calName, mondayOf, meetingDates,
 } from "./engine.js";
 
 const SIZES = { letter: [612, 792], a4: [595.28, 841.89] };
@@ -514,4 +514,238 @@ function drawWeek(doc, res, wk, c) {
   doc.rect(box.x, top, box.w, hdrH + rows * rh, "S");
   for (let r = 0; r <= rows; r++) doc.line(box.x, top + hdrH + r * rh, box.x + box.w, top + hdrH + r * rh);
   for (let i = 0; i <= n; i++) doc.line(box.x + colL + i * cw, top, box.x + colL + i * cw, top + hdrH + rows * rh);
+}
+
+// ---------- class roster pages: attendance by meeting date, gradebook, seating chart, family contacts ----------
+// o = { names: [..], sel: {cls, key, p, text}, from, to, att, grade, seat, contact, rows, cols, size, color, teacher }
+export function rosterPdf(jsPDF, res, opts = {}) {
+  const cfg = res.cfg;
+  const o = { names: [], sel: { cls: "", key: null, p: null, text: "" }, att: true, grade: true, seat: true, contact: true, rows: 5, cols: 6, size: "letter", color: true, ...opts };
+  if (res.errors.length) throw new Error(res.errors[0]);
+  if (!o.att && !o.grade && !o.seat && !o.contact) throw new Error("Choose at least one page type.");
+  const color = o.color !== false;
+  const from = Math.max(res.s, dn(o.from || cfg.start)), to = Math.min(res.e, dn(o.to || cfg.end));
+  if (from > to) throw new Error("The dates are outside the school year.");
+  const meets = meetingDates(res, o.sel, iso(from), iso(to));
+  if (o.att && !meets.length) throw new Error("This class doesn't meet between those dates.");
+  const names = o.names.map(n => pdfSafe(n)).filter(Boolean);
+  const { W, H } = pageBox(o.size, "landscape");
+  const M = 30, box = { x: M, y: M - 4, w: W - 2 * M, h: H - 2 * M + 8 };
+  const doc = makeDoc(jsPDF, o.size, "landscape");
+  const cls = pdfSafe(o.sel.text || o.sel.cls || "All school days");
+  const who = [o.teacher, cfg.school].map(pdfSafe).filter(Boolean).join(" · ");
+  const pages = [];
+  let first = true;
+  const newPage = () => { if (!first) doc.addPage(o.size === "a4" ? "a4" : "letter", "landscape"); first = false; pages.push(doc.getNumberOfPages()); };
+  const head = (kind, sub) => {
+    doc.setTextColor(brand(color)); doc.setFont("helvetica", "bold");
+    fitText(doc, cls, box.x, box.y + 18, box.w * 0.6, 18);
+    doc.setFont("helvetica", "bold"); doc.setTextColor(INK);
+    fitText(doc, kind, box.x + box.w, box.y + 10, box.w * 0.38, 11, { align: "right" });
+    doc.setFont("helvetica", "normal"); doc.setTextColor(MUTED);
+    if (sub) fitText(doc, sub, box.x, box.y + 33, box.w * 0.6, 9);
+    if (who) fitText(doc, who, box.x + box.w, box.y + 24, box.w * 0.38, 9, { align: "right" });
+  };
+  const range = `${fmtMDY(from)} – ${fmtMDY(to)}`;
+  // Row height shrinks (down to min) so a whole class fits on one sheet; longer rosters split into even chunks.
+  const layoutRows = (top, maxH, minH) => {
+    const avail = box.y + box.h - 24 - top;
+    const n = names.length || Math.floor(avail / maxH);
+    const rowH = Math.max(minH, Math.min(maxH, avail / n));
+    const fit = Math.max(1, Math.floor(avail / rowH + 1e-6)), sheets = Math.ceil(n / fit);
+    return { rowH, per: Math.ceil(n / sheets), rows: names.length ? names : new Array(n).fill("") };
+  };
+  const chunks = (arr, k) => { const out = []; for (let i = 0; i < Math.max(arr.length, 1); i += k) out.push(arr.slice(i, i + k)); return out; };
+  const stripe = (x, y, w, h, i) => { if (i % 2 === 0) { doc.setFillColor("#f7f5f1"); doc.rect(x, y, w, h, "F"); } };
+  const grid = (x, y, colsX, rowsY) => {
+    doc.setDrawColor(LINE); doc.setLineWidth(0.5);
+    for (const cx of colsX) doc.line(cx, rowsY[0], cx, rowsY[rowsY.length - 1]);
+    for (const ry of rowsY) doc.line(colsX[0], ry, colsX[colsX.length - 1], ry);
+  };
+  const nameCell = (i, name, x, y, rowH, numW, nameW) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(MUTED);
+    doc.text(String(i + 1), x + numW - 4, y + rowH / 2 + 2.6, { align: "right" });
+    if (name) { doc.setTextColor(INK); fitText(doc, name, x + numW + 4, y + rowH / 2 + 3, nameW - 8, Math.min(9.5, rowH * 0.6), { min: 6 }); }
+  };
+
+  // Attendance: one column per class meeting, so the dates on the sheet are the days this class actually meets.
+  if (o.att) {
+    const numW = 18, nameW = 150, sumW = 26, top = box.y + 44, hdrH = 44;
+    const avail = box.w - numW - nameW - 2 * sumW;
+    const per = Math.max(5, Math.floor(avail / 21));
+    const { rowH, per: perRows, rows } = layoutRows(top + hdrH, 17, 13.5);
+    const colChunks = chunks(meets, per);
+    const labels = [...new Set(meets.map(m => longLabel(cfg, m.day)).filter(Boolean))];
+    colChunks.forEach((cols, ci) => chunks(rows, perRows).forEach((rchunk, ri) => {
+      newPage();
+      const startRow = ri * perRows;
+      head("Attendance", `${range} · ${meets.length} ${o.sel.cls ? "class meeting" : "school day"}${meets.length === 1 ? "" : "s"}${labels.length && labels.length <= 3 ? ` (${labels.join(", ")})` : ""}${colChunks.length > 1 ? ` · dates ${ci * per + 1}–${ci * per + cols.length}` : ""}`);
+      const nCols = ci === colChunks.length - 1 ? per : cols.length; // the last sheet gets spare blank columns for make-up dates
+      const cw = avail / per, x0 = box.x, xDates = x0 + numW + nameW;
+      doc.setFillColor(color ? "#f5efe6" : SOFT); doc.rect(x0, top, numW + nameW + nCols * cw + 2 * sumW, hdrH, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(INK);
+      doc.text("Student", x0 + numW + 4, top + hdrH - 7);
+      cols.forEach((m, i) => {
+        const cx = xDates + i * cw + cw / 2, d = m.day.n, p = parts(d);
+        doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(MUTED);
+        doc.text(WD3[wday(d)], cx, top + 9, { align: "center" });
+        doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(INK);
+        doc.text(`${p.m + 1}/${p.d}`, cx, top + 19, { align: "center" });
+        const lab = m.day.label != null && m.day.label !== "" ? abbr(m.day.label) : "";
+        if (lab) { const [fill, ink] = colorFor(m.day); chip(doc, lab, cx, top + 31, 6.5, fill, ink, cw - 3, color); }
+      });
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(INK);
+      const xs = xDates + nCols * cw;
+      doc.text("Abs", xs + sumW / 2, top + hdrH - 7, { align: "center" });
+      doc.text("Tdy", xs + sumW * 1.5, top + hdrH - 7, { align: "center" });
+      const tw = numW + nameW + nCols * cw + 2 * sumW;
+      rchunk.forEach((name, i) => { const y = top + hdrH + i * rowH; stripe(x0, y, tw, rowH, i); nameCell(startRow + i, name, x0, y, rowH, numW, nameW); });
+      const colsX = [x0, x0 + numW, xDates, ...Array.from({ length: nCols }, (_, i) => xDates + (i + 1) * cw), xs + sumW, xs + 2 * sumW];
+      grid(x0, top, colsX, [top, ...Array.from({ length: rchunk.length + 1 }, (_, i) => top + hdrH + i * rowH)]);
+      doc.setLineWidth(1); doc.setDrawColor(INK); doc.line(xs, top, xs, top + hdrH + rchunk.length * rowH);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(MUTED);
+      doc.text("Key:   •  present      X  absent      T  tardy      E  excused", box.x, box.y + box.h - 6);
+    }));
+  }
+
+  // Gradebook: blank assignment columns with date and points rows.
+  if (o.grade) {
+    const numW = 18, nameW = 150, totW = 40, top = box.y + 44, hdrH = 70;
+    const avail = box.w - numW - nameW - totW, per = Math.floor(avail / 24), cw = avail / per;
+    const { rowH, per: perRows, rows } = layoutRows(top + hdrH, 17, 13);
+    chunks(rows, perRows).forEach((rchunk, ri) => {
+      newPage();
+      head("Gradebook", range);
+      const x0 = box.x, xa = x0 + numW + nameW, tw = numW + nameW + per * cw + totW;
+      doc.setFillColor(color ? "#f5efe6" : SOFT); doc.rect(x0, top, tw, hdrH, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(INK);
+      doc.text("Assignment", x0 + numW + 4, top + 12);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(MUTED);
+      doc.text("Date", x0 + numW + 4, top + hdrH - 22);
+      doc.text("Points", x0 + numW + 4, top + hdrH - 7);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(INK);
+      doc.text("Total", xa + per * cw + totW / 2, top + 12, { align: "center" });
+      rchunk.forEach((name, i) => { const y = top + hdrH + i * rowH; stripe(x0, y, tw, rowH, i); nameCell(ri * perRows + i, name, x0, y, rowH, numW, nameW); });
+      const colsX = [x0, x0 + numW, xa, ...Array.from({ length: per }, (_, i) => xa + (i + 1) * cw), xa + per * cw + totW];
+      grid(x0, top, colsX, [top, ...Array.from({ length: rchunk.length + 1 }, (_, i) => top + hdrH + i * rowH)]);
+      doc.setDrawColor(LINE); doc.setLineWidth(0.5);
+      for (const yy of [top + hdrH - 30, top + hdrH - 15]) doc.line(xa, yy, xa + per * cw, yy);
+    });
+  }
+
+  // Seating chart: desks filled row by row from the front of the room.
+  if (o.seat) {
+    const R = Math.max(1, Math.min(10, o.rows | 0)), C = Math.max(1, Math.min(10, o.cols | 0)), seats = R * C;
+    newPage();
+    head("Seating chart", `${R} rows × ${C} seats · ${names.length ? `${Math.min(names.length, seats)} of ${names.length} students seated` : "blank"}`);
+    const top = box.y + 46;
+    doc.setFillColor(color ? brand(color) : INK); doc.roundedRect(box.x + box.w * 0.3, top, box.w * 0.4, 18, 4, 4, "F");
+    doc.setTextColor("#ffffff"); doc.setFont("helvetica", "bold"); doc.setFontSize(8.5);
+    doc.text("FRONT OF ROOM", box.x + box.w / 2, top + 12, { align: "center", charSpace: 1.2 });
+    const overflow = names.slice(seats);
+    const gTop = top + 30, gBottom = box.y + box.h - 22 - (overflow.length ? 22 : 0);
+    const gap = 8, dw = (box.w - gap * (C - 1)) / C, dh = Math.min(70, (gBottom - gTop - gap * (R - 1)) / R);
+    for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) {
+      const x = box.x + c * (dw + gap), y = gTop + r * (dh + gap), i = r * C + c;
+      doc.setDrawColor(LINE); doc.setLineWidth(0.8); doc.setFillColor("#ffffff"); doc.roundedRect(x, y, dw, dh, 5, 5, "FD");
+      doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor("#a8a29e");
+      doc.text(String(i + 1), x + 4, y + 8);
+      if (names[i]) { doc.setFont("helvetica", "bold"); doc.setTextColor(INK); wrap(doc, names[i], x + dw / 2, y + dh / 2 + 1, dw - 8, Math.min(9.5, dw / 9), 2, Math.min(9.5, dw / 9) * 1.15, "center"); }
+    }
+    if (overflow.length) { doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(MUTED); fitText(doc, `Not seated (add rows or seats): ${overflow.join(", ")}`, box.x, box.y + box.h - 22, box.w, 8, { min: 6 }); }
+  }
+
+  // Family contact sheet: one row per student.
+  if (o.contact) {
+    const top = box.y + 44, hdrH = 20, numW = 18;
+    const colW = [140, 120, 92, 140], notesW = box.w - numW - colW.reduce((a, b) => a + b, 0);
+    const { rowH, per: perRows, rows } = layoutRows(top + hdrH, 30, 24);
+    chunks(rows, perRows).forEach((rchunk, ri) => {
+      newPage();
+      head("Family contacts", range);
+      const x0 = box.x;
+      doc.setFillColor(color ? "#f5efe6" : SOFT); doc.rect(x0, top, box.w, hdrH, "F");
+      const heads = ["Student", "Parent / guardian", "Phone", "Email", "Contact log (date, reason, outcome)"];
+      const xs = [x0 + numW]; [...colW].forEach(w => xs.push(xs[xs.length - 1] + w));
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(INK);
+      heads.forEach((h, i) => fitText(doc, h, xs[i] + 4, top + 13, (i < 4 ? colW[i] : notesW) - 8, 8));
+      rchunk.forEach((name, i) => { const y = top + hdrH + i * rowH; stripe(x0, y, box.w, rowH, i); nameCell(ri * perRows + i, name, x0, y, rowH, numW, colW[0]); });
+      grid(x0, top, [x0, ...xs, x0 + box.w], [top, ...Array.from({ length: rchunk.length + 1 }, (_, i) => top + hdrH + i * rowH)]);
+    });
+  }
+
+  const total = doc.getNumberOfPages();
+  for (let i = 1; i <= total; i++) {
+    doc.setPage(i);
+    credit(doc, box.x + box.w, H - 12);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(MUTED);
+    doc.text(`Page ${i} of ${total}`, box.x + box.w / 2, H - 12, { align: "center" });
+  }
+  doc.setProperties({ title: `${cls} – class pages`, subject: "Class roster pages", creator: "BellBook (bellbook-app.vercel.app)", author: pdfSafe(o.teacher) || "BellBook" });
+  return { doc, meetings: meets.length };
+}
+
+// ---------- one-page substitute plan for a single school day ----------
+export function subPlanPdf(jsPDF, res, d, opts = {}) {
+  const cfg = res.cfg, pl = cfg.pl, o = { size: "letter", color: true, ...opts }, color = o.color !== false;
+  const day = dayAt(res, d);
+  if (!day || !day.school) throw new Error("Choose a school day.");
+  const { W, H } = pageBox(o.size, "portrait");
+  const doc = makeDoc(jsPDF, o.size, "portrait");
+  const M = 40, x0 = M, w = W - 2 * M;
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(MUTED);
+  doc.text("SUBSTITUTE PLANS", x0, M + 4, { charSpace: 1.5 });
+  doc.setTextColor(brand(color)); doc.setFont("helvetica", "bold");
+  const when = `${WDAYS[day.w]}, ${MONTHS[parts(d).m]} ${parts(d).d}, ${parts(d).y}`;
+  fitText(doc, when, x0, M + 30, w * 0.62, 22);
+  const lab = longLabel(cfg, day) || (day.kind === "norot" ? day.name : "");
+  if (lab) { const [fill, ink] = colorFor(day); const cw = chipWidth(doc, lab, 12, 160); chip(doc, lab, x0 + cw / 2, M + 50, 12, fill, ink, 160, color); }
+  doc.setFont("helvetica", "bold"); doc.setTextColor(INK);
+  if (pl && pl.teacher) fitText(doc, pl.teacher, x0 + w, M + 12, w * 0.36, 11, { align: "right" });
+  doc.setFont("helvetica", "normal"); doc.setTextColor(MUTED);
+  if (cfg.school) fitText(doc, cfg.school, x0 + w, M + 26, w * 0.36, 9, { align: "right" });
+  fitText(doc, calName(cfg), x0 + w, M + 39, w * 0.36, 9, { align: "right" });
+  let y = M + 68;
+  if (day.notes.length) { doc.setFont("helvetica", "bold"); doc.setTextColor(INK); y += wrap(doc, `Today: ${day.notes.join("; ")}`, x0, y + 4, w, 10, 2) * 12 + 2; }
+  // info lines
+  const info = [...(pl && pl.teacher ? [] : ["Teacher"]), "Room", "Lesson plans and materials", "Seating charts and attendance", "Helpful staff and students", "Emergency procedures"];
+  doc.setFontSize(9);
+  info.forEach((t, i) => {
+    const cx = x0, yy = y + 14 + i * 20;
+    doc.setFont("helvetica", "bold"); doc.setTextColor(INK); doc.text(`${t}:`, cx, yy);
+    const tw = doc.getTextWidth(`${t}:`) + 6;
+    doc.setDrawColor(LINE); doc.setLineWidth(0.6); doc.line(cx + tw, yy + 2, x0 + w, yy + 2);
+  });
+  y += 14 + info.length * 20 + 6;
+  // schedule
+  const periods = pl ? pl.periods : [{ n: "Period 1", t: "" }];
+  const cls = classesFor(cfg, day);
+  const notesH = 96, footH = 24, top = y + 4;
+  const rowH = Math.max(34, (H - M - footH - notesH - top - 18) / periods.length);
+  const c1 = 92, c2 = 120;
+  doc.setFillColor(brand(color)); doc.rect(x0, top, w, 18, "F");
+  doc.setTextColor("#ffffff"); doc.setFont("helvetica", "bold"); doc.setFontSize(9);
+  doc.text("Period", x0 + 6, top + 12); doc.text("Class", x0 + c1 + 6, top + 12); doc.text("Plan", x0 + c1 + c2 + 6, top + 12);
+  periods.forEach((p, r) => {
+    const yy = top + 18 + r * rowH;
+    if (r % 2 === 0) { doc.setFillColor("#faf9f7"); doc.rect(x0, yy, w, rowH, "F"); }
+    doc.setFont("helvetica", "bold"); doc.setTextColor(INK); fitText(doc, p.n || `Period ${r + 1}`, x0 + 6, yy + 13, c1 - 10, 9.5);
+    if (p.t) { doc.setFont("helvetica", "normal"); doc.setTextColor(MUTED); fitText(doc, p.t, x0 + 6, yy + 25, c1 - 10, 8); }
+    if (cls[r]) { doc.setFont("helvetica", "bold"); doc.setTextColor(color ? "#92400e" : INK); wrap(doc, cls[r], x0 + c1 + 6, yy + 13, c2 - 12, 9.5, 2, 11); }
+    doc.setDrawColor(RULE); doc.setLineWidth(0.4);
+    for (let ly = yy + 16; ly < yy + rowH - 4; ly += 14) doc.line(x0 + c1 + c2 + 6, ly, x0 + w - 6, ly);
+  });
+  const tbH = 18 + periods.length * rowH;
+  doc.setDrawColor(LINE); doc.setLineWidth(0.6); doc.rect(x0, top, w, tbH, "S");
+  for (let r = 1; r < periods.length; r++) doc.line(x0, top + 18 + r * rowH, x0 + w, top + 18 + r * rowH);
+  doc.line(x0 + c1, top, x0 + c1, top + tbH); doc.line(x0 + c1 + c2, top, x0 + c1 + c2, top + tbH);
+  // notes back to the teacher
+  const ny = top + tbH + 16;
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9.5); doc.setTextColor(INK);
+  doc.text("Notes for the teacher (how the day went, absent students, issues)", x0, ny);
+  doc.setDrawColor(RULE); doc.setLineWidth(0.5);
+  for (let ly = ny + 16; ly < H - M - footH + 6; ly += 15) doc.line(x0, ly, x0 + w, ly);
+  credit(doc, x0 + w, H - 22);
+  doc.setProperties({ title: `Substitute plans – ${when}`, subject: "Substitute plan", creator: "BellBook (bellbook-app.vercel.app)", author: (pl && pl.teacher) || "BellBook" });
+  return doc;
 }

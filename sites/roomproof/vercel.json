@@ -62,6 +62,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "roomproof-app.vercel.app"
+        }
+      ],
+      "destination": "https://roomproof-app.vercel.app/:path*",
+      "permanent": true
+    },
+    {
       "source": "/app",
       "destination": "/",
       "permanent": true

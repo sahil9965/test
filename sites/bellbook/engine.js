@@ -165,12 +165,15 @@ export function compute(input) {
   if (e - s > 800) { res.errors.push("The date range is longer than two years. Use one school year at a time."); return res; }
   const n = cfg.labels.length;
   const offAt = new Map(), closedAt = new Map(), norotAt = new Map(), resetAt = new Map(), notesAt = new Map(), extraAt = new Map();
+  // When two ranges overlap (Thanksgiving Day inside Thanksgiving break), the shorter, more specific one names the day.
+  const span = ev => dn(ev.e || ev.s) - dn(ev.s);
+  const keep = (map, d, ev) => { const o = map.get(d); if (!o || span(ev) < span(o)) map.set(d, ev); };
   for (const ev of cfg.ev) {
     const a = Math.max(s, dn(ev.s)), b = Math.min(e, dn(ev.e || ev.s));
     for (let d = a; d <= b; d++) {
-      if (ev.t === "off") { if (!offAt.has(d)) offAt.set(d, ev); }
-      else if (ev.t === "closed") { if (!closedAt.has(d)) closedAt.set(d, ev); }
-      else if (ev.t === "norot") { if (!norotAt.has(d)) norotAt.set(d, ev); }
+      if (ev.t === "off") keep(offAt, d, ev);
+      else if (ev.t === "closed") keep(closedAt, d, ev);
+      else if (ev.t === "norot") keep(norotAt, d, ev);
       else if (ev.t === "reset") resetAt.set(d, ev);
       else if (ev.t === "extra") { if (!extraAt.has(d)) extraAt.set(d, ev); }
       else if (ev.t === "note") { if (!notesAt.has(d)) notesAt.set(d, []); notesAt.get(d).push(ev.n); }
@@ -189,7 +192,7 @@ export function compute(input) {
     else if (closedAt.has(d)) {
       const c = closedAt.get(d);
       day.kind = "closed"; day.name = c.n || "School closed"; day.mode = c.m; res.closures++;
-      if (c.m === "skip" && rule === "rot" && n) { day.skipped = cfg.labels[((k % n) + n) % n]; k++; }
+      if (c.m === "skip" && rule === "rot" && !norotAt.has(d) && n) { day.skipped = cfg.labels[((k % n) + n) % n]; k++; }
     } else if (norotAt.has(d)) { day.kind = "norot"; day.school = true; day.name = norotAt.get(d).n || "No rotation"; res.norot++; }
     else if (rule.startsWith("fix:")) {
       // A fixed label that matches a rotation label (Monday = A) counts and colours as that label.
@@ -372,6 +375,71 @@ export function classesFor(cfg, day) {
   if (!pl || !day || !day.school) return [];
   const list = pl.same ? pl.cls["*"] : pl.cls[day.label == null ? "" : day.label];
   return pl.periods.map((p, i) => (list && list[i]) || "");
+}
+
+// ---------- class roster pages ----------
+const dayKey = (cfg, day) => (cfg.pl && cfg.pl.same ? "*" : day.label == null ? "" : day.label);
+// Every class typed in the planner, as choices for roster pages. A class that sits in more than one slot
+// (e.g. Algebra 1 in Block 1 on A days and Block 3 on B days) gets one "all meetings" choice plus one per slot,
+// because each slot is usually a different section with its own roster.
+export function classChoices(cfg) {
+  const pl = cfg.pl, byName = new Map();
+  if (!pl) return [];
+  const keys = pl.same ? ["*"] : plannerKeys(cfg);
+  for (const k of keys) (pl.cls[k] || []).forEach((c, p) => {
+    const n = str(c, 40);
+    if (!n || p >= pl.periods.length) return;
+    const id = n.toLowerCase();
+    if (!byName.has(id)) byName.set(id, { name: n, slots: [] });
+    byName.get(id).slots.push({ key: k, p });
+  });
+  const out = [];
+  const keyText = k => (k === "*" ? "" : k === "" ? "school days" : cfg.labels.includes(k) ? cfg.fmt.replace("{L}", k) : k);
+  for (const { name, slots } of byName.values()) {
+    const per = s => pl.periods[s.p].n || `Period ${s.p + 1}`;
+    if (slots.length === 1) { out.push({ cls: name, key: null, p: null, text: [name, [keyText(slots[0].key), per(slots[0])].filter(Boolean).join(", ")].join(" · ") }); continue; }
+    out.push({ cls: name, key: null, p: null, text: `${name} · every meeting` });
+    for (const sl of slots) out.push({ cls: name, key: sl.key, p: sl.p, text: `${name} · ${[keyText(sl.key), per(sl)].filter(Boolean).join(", ")}` });
+  }
+  return out;
+}
+// School days between two dates on which a class meets. sel = {cls, key, p}: key/p null means any slot;
+// cls "" means every school day (homeroom, or a schedule without classes). Returns [{day, periods: [index...]}].
+export function meetingDates(res, sel, fromIso, toIso) {
+  const cfg = res.cfg, a = Math.max(res.s, dn(fromIso)), b = Math.min(res.e, dn(toIso)), out = [];
+  const want = str(sel && sel.cls, 40).toLowerCase();
+  for (let d = a; d <= b; d++) {
+    const day = dayAt(res, d);
+    if (!day || !day.school) continue;
+    if (!want) { out.push({ day, periods: [] }); continue; }
+    if (sel.key != null && dayKey(cfg, day) !== sel.key) continue;
+    const periods = classesFor(cfg, day).map((c, i) => (str(c, 40).toLowerCase() === want && (sel.p == null || sel.p === i) ? i : -1)).filter(i => i >= 0);
+    if (periods.length) out.push({ day, periods });
+  }
+  return out;
+}
+// Student names pasted from a list or a spreadsheet column: one per line. Tabs (spreadsheet cells) become spaces,
+// unless a header row names "last" and "first" columns, which become "Last, First". Numbers-only cells (IDs) are dropped.
+export function parseRoster(text, max = 80) {
+  const lines = String(text ?? "").split(/\r?\n/).map(l => l.replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, " ").trim()).filter(Boolean);
+  if (!lines.length) return [];
+  let iLast = -1, iFirst = -1, start = 0;
+  const head = lines[0].split("\t").map(c => c.trim().toLowerCase());
+  if (head.length > 1 && head.some(c => /name/.test(c)) || head.length === 1 && /^(student\s*)?names?$/.test(head[0])) {
+    start = 1;
+    iLast = head.findIndex(c => /last/.test(c)); iFirst = head.findIndex(c => /first/.test(c));
+  }
+  const out = [];
+  for (const line of lines.slice(start)) {
+    const cells = line.split("\t").map(c => c.trim());
+    let name;
+    if (iLast >= 0 && iFirst >= 0 && cells[iLast] && cells[iFirst]) name = `${cells[iLast]}, ${cells[iFirst]}`;
+    else name = cells.filter(c => c && !/^[\d\s#.-]+$/.test(c)).join(" ");
+    name = name.replace(/^\d{1,3}[.)]\s+/, "").replace(/\s+/g, " ").trim().slice(0, 40);
+    if (name) out.push(name);
+    if (out.length >= max) break;
+  }
+  return out;
 }
 
 // ---------- roll a configuration forward to the next school year ----------

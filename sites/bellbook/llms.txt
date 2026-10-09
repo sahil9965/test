@@ -1,0 +1,28 @@
+# BellBook
+
+> BellBook is a free A/B day calendar generator for schools on rotating schedules. Teachers and school staff enter the first and last day of school, pick a rotation (A/B, A/B/C, A/B/C/D, Odd/Even, a Day 1-N cycle of 2 to 10 days, or custom labels) and add holidays and breaks. BellBook labels every school day, skipping weekends and days off. Snow days re-flow the rotation with either rule: "rotation continues" (the next school day takes the closed day's letter) or "skip the day's letter" (every other date keeps its letter). Outputs: a printable PDF (year at a glance plus monthly pages, US Letter or A4), an .ics file for Google, Outlook or Apple Calendar, a .csv spreadsheet, and a "What day is it today?" link for students and parents. It also prints a dated lesson planner that follows the rotation (up to 10 periods), class pages from a pasted roster (attendance dated by class meeting, gradebook, seating chart, family contact sheet) and a one-page substitute plan for any school day. Everything runs in the browser, nothing is uploaded, and every feature is free with no signup. Printed pages carry a small "Made with BellBook" credit.
+
+## Tool
+- [A/B day calendar generator](https://bellbook-app.vercel.app/): build, print and share a rotation calendar for a school year.
+- [Is today an A day or B day?](https://bellbook-app.vercel.app/today): the page a shared link opens, showing today's rotation day in the viewer's local time zone.
+
+## Calendars
+- [Rotating schedule calendar maker](https://bellbook-app.vercel.app/rotating-schedule-calendar-maker): Day 1-N cycles, drop rotations and named days.
+- [6-day rotation calendar](https://bellbook-app.vercel.app/6-day-cycle-calendar): Day 1-6 cycles, how they drift across the week, counts per day.
+- [Block schedule calendar template](https://bellbook-app.vercel.app/block-schedule-calendar): A/B block, modified block with an all-classes day, 4x4 and odd/even blocks.
+
+## Lesson planners
+- [A/B day lesson planner](https://bellbook-app.vercel.app/ab-day-lesson-planner): dated weekly pages with A-day and B-day classes in the right blocks.
+- [Second semester lesson planner](https://bellbook-app.vercel.app/second-semester-lesson-planner): January to June 2027 pages and spring 2027 federal holidays.
+- [Teacher planner 2027-2028](https://bellbook-app.vercel.app/teacher-planner-2027-2028): 2027-28 federal holidays and a dated planner for the next school year.
+- [Dated lesson plan book](https://bellbook-app.vercel.app/dated-lesson-plan-book): dated weekly pages for 1 to 10 periods, with or without a rotation.
+
+## Key facts
+- Price: completely free. No paid tier, no account.
+- Privacy: calendars and planner settings stay in the browser's local storage. Pasted student names are never saved or uploaded. The share link keeps the calendar after the # sign, which browsers do not send to servers.
+- Holidays: US federal holidays are calculated with the federal observance rules (Saturday holidays observed Friday, Sunday holidays observed Monday). District breaks are added by the user.
+- Calendar file: RFC 5545 .ics with one all-day event per school day.
+
+## Optional
+- [About](https://bellbook-app.vercel.app/about)
+- [Privacy & Terms](https://bellbook-app.vercel.app/privacy)

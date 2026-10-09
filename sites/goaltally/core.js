@@ -386,15 +386,16 @@
   function phaseStats(ph, pts, g, cal) {
     const dir = g.crit && g.crit.dir === "down" ? "down" : "up";
     return ph.map((p, j) => {
-      const ys = pts.filter(q => q.ph === p.k).map(q => q.y);
-      const f = ols(pts.filter(q => q.ph === p.k));
+      const mine = pts.filter(q => q.ph === p.k), ys = mine.map(q => q.y), xs = mine.map(q => q.x);
+      const f = ols(mine);
+      const xSpan = xs.length > 1 ? Math.max(...xs) - Math.min(...xs) : 0;
       let pnd = null;
       const prev = j > 0 ? pts.filter(q => q.ph === p.k - 1).map(q => q.y) : [];
       if (prev.length && ys.length) {
         const lim = dir === "up" ? Math.max(...prev) : Math.min(...prev);
         pnd = ys.filter(y => dir === "up" ? y > lim : y < lim).length / ys.length * 100;
       }
-      return { k: p.k, name: p.name, sessions: p.idx.length, n: ys.length, mean: mean(ys), median: median(ys), min: ys.length ? Math.min(...ys) : NaN, max: ys.length ? Math.max(...ys) : NaN, slope: f ? f.slope * (cal ? 7 : 1) : null, slopeUnit: cal ? "week" : "session", pnd };
+      return { k: p.k, name: p.name, sessions: p.idx.length, n: ys.length, mean: mean(ys), median: median(ys), min: ys.length ? Math.min(...ys) : NaN, max: ys.length ? Math.max(...ys) : NaN, slope: f ? f.slope * (cal ? 7 : 1) : null, slopeUnit: cal ? "week" : "session", xSpan, pnd };
     });
   }
   // Mastery: value meets the criterion (>= when increasing, <= when decreasing) on N consecutive
@@ -653,7 +654,7 @@
     if (!m.pts[0].length) return "";
     const unit = m.pct ? "%" : "";
     const v = x => fmtNum(x, 1) + unit;
-    const who = g.student || "The student";
+    const who = g.student || "the student";
     const what = g.title ? ` on ${g.title.replace(/[.\s]+$/, "")}` : "";
     const range = st => st.min === st.max ? v(st.min) : `${v(st.min)} to ${v(st.max)}`;
     const span = st => { const p = m.phases[st.k]; const a = p.start + 1, b = p.end + 1; const da = m.rows[p.start] && m.rows[p.start].d, db = m.rows[p.end] && m.rows[p.end].d; return da && db ? `${fmtDate(da, g.dateFmt)} to ${fmtDate(db, g.dateFmt)}` : a === b ? `session ${a}` : `sessions ${a} to ${b}`; };
@@ -664,7 +665,8 @@
       const name = st.name ? (j === 0 ? `During ${st.name.toLowerCase().startsWith("baseline") ? "baseline" : st.name}` : `During ${st.name}`) : `During phase ${st.k + 1}`;
       let s = `${name} (${span(st)}, ${st.n} data point${st.n > 1 ? "s" : ""}), ${j === 0 ? who + "'s performance" : "performance"} averaged ${v(st.mean)} (range ${range(st)}).`;
       if (st.n >= 3 && st.slope !== null) {
-        const yr = Math.max(m.yMax - m.yMin, 1e-9), rel = Math.abs(st.slope) * Math.max(st.n - 1, 1) / (m.cal ? 7 : 1) / yr;
+        // "Flat" when the fitted line changes by less than 5% of the y-axis range across the phase.
+        const yr = Math.max(m.yMax - m.yMin, 1e-9), rel = Math.abs(st.slope) / (m.cal ? 7 : 1) * Math.max(st.xSpan, 1) / yr;
         const dirw = rel < 0.05 ? "a relatively flat trend" : st.slope > 0 ? "an increasing trend" : "a decreasing trend";
         s += ` The data showed ${dirw} (${st.slope >= 0 ? "+" : ""}${fmtNum(st.slope, 2)}${m.pct ? " percentage points" : ""} per ${st.slopeUnit}, least-squares fit).`;
       }

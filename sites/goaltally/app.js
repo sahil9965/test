@@ -158,7 +158,7 @@
       const g = { id: uid(), created: Date.now(), student: "", title: "", type: null, sheet: null, graph: null, sessions: [] };
       o.merge(g, st);
       if (!Lib.put(g)) return null;
-      lib.id = g.id; LS.del(draftKey); lib.refresh();
+      lib.id = g.id; LS.set(draftKey, { id: g.id }); lib.refresh();
       if (!silent) toast(`Saved “${Lib.label(g)}” on this device.`);
       track("goal_saved", { tool: o.kind });
       return g;
@@ -217,16 +217,18 @@
     q("pick").addEventListener("change", e => {
       lib.flush();
       const g = Lib.get(e.target.value);
-      if (g) { lib.id = g.id; o.open(clone(g)); }
-      else { lib.id = null; }
+      if (g) { lib.id = g.id; o.open(clone(g)); LS.set(draftKey, { id: g.id }); }
+      else { lib.id = null; lib.flush(); }
       lib.refresh();
     });
+    // Never lose the last keystrokes when the page is closed or the user navigates away.
+    window.addEventListener("pagehide", () => lib.flush());
     // Initial state: ?goal=<id>, then the last draft or open goal on this page, then the page preset.
     lib.init = () => {
       const want = new URLSearchParams(location.search).get("goal");
       const d = LS.get(draftKey, null);
       const g = (want && Lib.get(want)) || (d && d.id && Lib.get(d.id));
-      if (g) { lib.id = g.id; o.open(clone(g)); }
+      if (g) { lib.id = g.id; o.open(clone(g)); LS.set(draftKey, { id: g.id }); }
       else if (d && d.state) o.load(d.state);
       else o.blank(true);
       lib.refresh();

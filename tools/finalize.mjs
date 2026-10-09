@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8"));
+const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(s => s.live !== false);
 let failed = 0;
 for (const s of sites) {
   const dir = join(root, "sites", s.slug);

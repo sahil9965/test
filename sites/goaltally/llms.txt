@@ -1,0 +1,34 @@
+# GoalTally
+
+> GoalTally is a free ABA graph maker and printable data sheet generator for special-education teachers, BCBAs, RBTs, paraprofessionals and BCBA students. It runs entirely in the browser (nothing is uploaded), needs no signup and works offline once loaded. The graph maker turns typed or pasted session data into a single-case line graph with dashed phase-change lines that break the data path, condition labels, an optional aim line, an optional trend line per phase (least squares or split-middle, named in the legend) and a mastery-criterion check, exported as PNG or vector PDF. The data sheet builder makes printable PDFs for 11 measurement types and lets you score sessions on a tablet, which then appear on the goal's graph. Every feature is free, including saved goals, encrypted backups, bulk printing and the progress-note builder. There is no paid tier. Each graph and sheet carries a small "Made with GoalTally" credit.
+
+## Tools
+- [Free ABA graph maker](https://goaltally.vercel.app/): phase-change line graphs with aim line, trend line, mastery check, phase summary and a template-based progress note.
+- [IEP data sheet generator](https://goaltally.vercel.app/iep-data-sheet-generator): pick the measurement type that matches the goal and print a configured sheet.
+- [IEP progress monitoring graph maker](https://goaltally.vercel.app/iep-progress-monitoring-graph): calendar-date axis, baseline-to-goal aim line, progress note for report cards.
+- [Phase change line graph](https://goaltally.vercel.app/phase-change-line-graph): AB, ABAB and multiple-phase graphs drawn to ABA conventions.
+- [ABA graph template for Excel](https://goaltally.vercel.app/aba-graph-template-excel): CSV template, step-by-step Excel graphing, or paste columns for an instant graph.
+
+## Data sheets
+- [Trial-by-trial data sheet](https://goaltally.vercel.app/trial-by-trial-data-sheet): discrete trial teaching, +/- per trial, automatic % correct row.
+- [Prompt level data sheet](https://goaltally.vercel.app/prompt-level-data-sheet): editable prompt hierarchy (FP, PP, M, G, V, I by default), % independent.
+- [Cold probe data sheet](https://goaltally.vercel.app/cold-probe-data-sheet): one row per target, Y/N first-trial probes, dates introduced and mastered.
+- [Task analysis data sheet template](https://goaltally.vercel.app/task-analysis-data-sheet): steps of a routine scored by prompt level or +/-, forward, backward or total-task chaining.
+- [Frequency data sheet](https://goaltally.vercel.app/frequency-data-sheet): tally counts for up to 3 behaviors, converted to rate per hour or minute.
+- [Duration and latency recording data sheet](https://goaltally.vercel.app/duration-recording-data-sheet): episode start/stop times, total duration or % of time; latency in seconds.
+- [Partial interval recording data sheet](https://goaltally.vercel.app/partial-interval-recording-data-sheet): any-occurrence intervals with clock times, % of intervals.
+- [Whole interval recording data sheet](https://goaltally.vercel.app/whole-interval-recording-data-sheet): behavior must last the whole interval, % of intervals.
+- [Momentary time sampling data sheet](https://goaltally.vercel.app/momentary-time-sampling-data-sheet): mark only what is happening at the end of each interval.
+- [ABC data sheet](https://goaltally.vercel.app/abc-data-sheet): antecedent-behavior-consequence log, checklist or narrative, optional possible-function column.
+
+## Key facts
+- Price: completely free. No paid tier, no account.
+- Privacy: student data, saved goals and recorded sessions stay in the browser's local storage on the device; nothing is uploaded. Users are asked to enter initials, not names. Backups are encrypted on the device (AES-256-GCM, key from the passphrase with PBKDF2-SHA256). Cookie-free Vercel Web Analytics counts page views. GoalTally makes no FERPA, HIPAA or other compliance claims.
+- Graph output: PNG at 2000 x 1240 px, or a vector PDF (US Letter or A4, landscape) with an optional phase summary table (mean, median, range, trend, PND) and progress note. Up to 3 data series. Session-number or calendar-date x-axis. Data can be pasted from Excel or Google Sheets and exported as CSV.
+- Data sheet output: vector PDF on US Letter or A4, portrait or landscape (chosen automatically to fit), up to 31 session columns and 40 trials on skill sheets, interval sheets from 5-second to 30-minute intervals with clock times, an optional school or clinic logo, and a print button that prints the same pages.
+- Built-in PDF fonts cover Western European characters only.
+- GoalTally gives general information about data collection and graphing, not clinical advice; goals, criteria and treatment decisions belong to the student's team. It is not affiliated with any school district, clinic, certification board or software vendor.
+
+## Optional
+- [About](https://goaltally.vercel.app/about)
+- [Privacy & Terms](https://goaltally.vercel.app/privacy)

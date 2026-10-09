@@ -62,6 +62,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "labelfit.vercel.app"
+        }
+      ],
+      "destination": "https://labelfit.vercel.app/:path*",
+      "permanent": true
+    },
+    {
       "source": "/app",
       "destination": "/",
       "permanent": true
