@@ -23,8 +23,8 @@ window.SITE = {
   allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",
-  monthlyPrice: "$3.99 / month",
-  lifetimePrice: "$24 lifetime",
+  monthlyPrice: "",
+  lifetimePrice: "",
   proFeatures: [],
 };
 `);

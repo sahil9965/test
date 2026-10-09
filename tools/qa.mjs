@@ -9,7 +9,7 @@ import { chromium } from "playwright";
 const dir = process.argv[2];
 const shots = process.argv[3];
 if (shots) mkdirSync(shots, { recursive: true });
-const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json", ".txt": "text/plain", ".xml": "application/xml", ".webmanifest": "application/manifest+json" };
+const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".mjs": "text/javascript", ".wasm": "application/wasm", ".ttf": "font/ttf", ".otf": "font/otf", ".woff2": "font/woff2", ".woff": "font/woff", ".jpg": "image/jpeg", ".webp": "image/webp", ".ics": "text/calendar", ".csv": "text/csv", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json", ".txt": "text/plain", ".xml": "application/xml", ".webmanifest": "application/manifest+json" };
 const resolve = url => {
   const p = decodeURIComponent(url.split(/[?#]/)[0]);
   const cands = p === "/" ? ["index.html"] : [p.slice(1), p.slice(1) + ".html", join(p.slice(1), "index.html")];

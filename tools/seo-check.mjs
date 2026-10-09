@@ -49,7 +49,7 @@ for (const file of walk(dir)) {
   }
   if (noindex) continue;
   const title = (html.match(/<title>([^<]*)<\/title>/i) || [])[1]?.trim();
-  const desc = (html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i) || [])[1]?.trim();
+  const desc = (html.match(/<meta[^>]+name=["']description["'][^>]+content=(["'])(.*?)\1/i) || [])[2]?.trim();
   const can = (html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i) || [])[1];
   if (!title) err(rel, "missing <title>"); else {
     if (title.length < 30 || title.length > 65) warn(rel, `title length ${title.length} (aim 30-65): ${title}`);
