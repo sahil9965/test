@@ -94,7 +94,7 @@ ${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"
       <ul class="related">
 ${[["/", "General photo report"], ...LANDING].filter(([h]) => h !== path).map(([h, t]) => `        <li><a href="${h}">${t}</a></li>`).join("\n")}
 ${path === "/photo-report-template" ? "" : `        <li><a href="/photo-report-template">All templates</a></li>\n`}      </ul>
-`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. ${p.disclaimer || "Roomproof is a documentation tool. This page is general information, not legal advice."}</p>
+`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. ${p.disclaimer || "Roomproof is a documentation tool. This page is general information, not legal advice."}</p>
     </article>
   </main>
   <footer class="site">
@@ -139,7 +139,7 @@ const home = {
     app(NAME, `${URL}/`, {
       description: "Free online photo report generator. Add photos room by room with date stamps, captions, condition ratings and signatures, then download a PDF. Runs in the browser; nothing is uploaded.",
       featureList: ["Date and time stamp on every photo", "Condition ratings and notes per item", "Captions and photo markup", "Before and after photo pairs", "Move-in to move-out comparison", "Two on-screen signatures", "Summary of issues", "1, 2, 4 or 6 photos per page", "A4 and US Letter", "Logo and company details", "Project file to reopen and edit", "Works offline", "No signup"],
-      publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
+      publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
     }),
     { "@type": "HowTo", name: "How to make a photo report", totalTime: "PT15M", step: [
       { "@type": "HowToStep", name: "Pick a template", text: "Choose move-in, move-out, punch list, before and after, cleaning, rental turnover, UK inventory, Australian entry condition, or a general photo report." },
@@ -601,10 +601,10 @@ ${tbl(["Layout", "Best for"], [
   {
     slug: "about", tool: false, crumb: "About", related: false,
     title: "About Roomproof — Free, Private Photo Report Generator",
-    desc: "Roomproof is part of MiniTools: small, fast web tools that run in your browser with no signup. Learn why we built it and how it keeps your photos private.",
+    desc: "Roomproof is part of Rooh Sites’ free tools: small, fast web tools that run in your browser with no signup. Learn why we built it and how it keeps your photos private.",
     h1: "About Roomproof",
     lead: "A free photo report generator that keeps your photos on your device.",
-    body: `      <p>Roomproof is part of <strong>MiniTools</strong>, a set of free, single-purpose web tools. It turns phone photos into dated, captioned PDF reports for move-ins and move-outs, punch lists, before-and-after jobs, cleaning, rental turnovers and property inventories.</p>
+    body: `      <p>Roomproof is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It turns phone photos into dated, captioned PDF reports for move-ins and move-outs, punch lists, before-and-after jobs, cleaning, rental turnovers and property inventories.</p>
       <h2>Why we built it</h2>
       <p>People documenting a rental or a job usually face a choice between a printable checklist with no photos and an app that wants an account, a subscription or a fee per report. Roomproof does the job in the browser: add photos, rate each item, sign, and download a PDF. Every feature is free.</p>
       <h2>How it works</h2>

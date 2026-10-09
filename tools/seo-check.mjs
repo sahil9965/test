@@ -72,8 +72,10 @@ for (const file of walk(dir)) {
   const min = rel === "index.html" ? 700 : /privacy|about|pricing/.test(rel) ? 120 : 450;
   if (words < min) warn(rel, `thin content: ${words} words (aim ${min}+)`);
 }
-for (const f of ["robots.txt", "sitemap.xml", "llms.txt", "indexnow-key.txt", "og.png", "favicon.svg", "config.js", "pro.js", "base.css", "vercel.json", "api/verify.js", "api/indexnow.js"])
-  if (!existsSync(join(dir, f))) err(f, "missing");
+const required = ["robots.txt", "sitemap.xml", "llms.txt", "indexnow-key.txt", "og.png", "favicon.svg", "config.js", "base.css", "vercel.json", "api/indexnow.js"];
+// Tool sites also ship the shared Pro module and license check; a hub page without a tool doesn't.
+if (existsSync(join(dir, "app.js"))) required.push("pro.js", "api/verify.js");
+for (const f of required) if (!existsSync(join(dir, f))) err(f, "missing");
 if (existsSync(join(dir, "sitemap.xml"))) {
   const sm = readFileSync(join(dir, "sitemap.xml"), "utf8");
   for (const c of canon) if (!sm.includes(`<loc>${c}</loc>`)) err("sitemap.xml", `missing ${c}`);

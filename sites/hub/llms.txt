@@ -1,0 +1,18 @@
+# Rooh Sites Tools
+
+> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 9 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
+
+## Tools
+- [InvoiceKit: Free invoice generator](https://invoice.roohsites.com/): Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF. For freelancers and small businesses.
+- [LabelFit: A4 to 6x4 label converter](https://labels.roohsites.com/): Turn A4 or letter-size shipping label PDFs into crisp 6x4 / 100x150 mm thermal labels, with packing slips split off. For Vinted, eBay, Etsy and USPS shippers.
+- [PrepLabel: FNSKU label generator](https://fnsku.roohsites.com/): Print Code 128 FNSKU labels for thermal rolls or Avery-size sheets, plus suffocation warning, sold-as-set and bin labels. For Amazon FBA sellers and prep centers.
+- [TicketRun: Numbered raffle ticket generator](https://raffle.roohsites.com/): Print sequentially numbered raffle, 50/50, drink and coat check tickets with matching stubs, and draw winners fairly. For PTOs, schools, clubs and nonprofits.
+- [GradLedger: Homeschool transcript generator](https://transcript.roohsites.com/): Build a homeschool transcript with exact weighted and unweighted GPA, credits by subject, course descriptions and report cards. For homeschool parents of high schoolers.
+- [Roomproof: Photo report generator](https://photoreport.roohsites.com/): Make a dated, captioned photo report PDF for move-in/move-out inspections, punch lists and before/after jobs. For tenants, landlords, contractors and cleaners.
+- [CollabRate: UGC rate calculator](https://ugcrates.roohsites.com/): Price UGC videos with transparent uplifts for usage rights, whitelisting and exclusivity, then export a rate card and quote. For UGC creators and micro-influencers.
+- [GoalTally: ABA graph maker](https://abagraph.roohsites.com/): Make ABA single-case graphs with phase-change lines, aim and trend lines, plus printable data sheets for 11 measurement types. For BCBAs, RBTs and special education teachers.
+- [BellBook: A/B day calendar generator](https://abday.roohsites.com/): Generate an A/B or Day 1–N rotation calendar that skips holidays and re-flows after snow days; export PDF, .ics or CSV. For teachers and school staff on rotating schedules.
+
+## About
+- [Rooh Sites](https://roohsites.com/): web design studio building websites for local businesses.
+- [Privacy & Terms](https://tools.roohsites.com/privacy)

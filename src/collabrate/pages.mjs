@@ -77,7 +77,7 @@ function page(p) {
   const url = home ? `${URL}/` : `${URL}/${slug}`;
   const faqLd = faq.length ? [{ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) }] : [];
   const app = { "@type": "WebApplication", name: home ? "CollabRate" : `CollabRate ${crumb}`, url, description: home ? "Free UGC rate calculator for usage rights, whitelisting and exclusivity, with brand quote PDFs and rate cards." : strip(desc), applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } };
-  if (home) Object.assign(app, { featureList: ["UGC rate calculator", "Paid usage rights pricing", "Whitelisting and Spark Ads fees", "Exclusivity fees", "Raw footage, revisions and rush fees", "Brand quote PDF", "Rate card PNG and PDF in 3 templates", "Pitch email builder", "Saved deals with CSV export and calendar reminders", "USD, EUR, GBP, INR, AUD and CAD", "No signup"], publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` } });
+  if (home) Object.assign(app, { featureList: ["UGC rate calculator", "Paid usage rights pricing", "Whitelisting and Spark Ads fees", "Exclusivity fees", "Raw footage, revisions and rush fees", "Brand quote PDF", "Rate card PNG and PDF in 3 templates", "Pitch email builder", "Saved deals with CSV export and calendar reminders", "USD, EUR, GBP, INR, AUD and CAD", "No signup"], publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" } });
   const graph = home
     ? [app, ...(howto ? [howto] : []), ...faqLd]
     : [{ "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "CollabRate", item: `${URL}/` }, { "@type": "ListItem", position: 2, name: crumb, item: url }] }, ...faqLd, ...(tool ? [app] : [])];
@@ -133,7 +133,7 @@ ${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"
       <ul class="related">
         ${[["/", "UGC rate calculator"], ...GUIDES].filter(([h]) => h !== (home ? "/" : `/${slug}`)).map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("\n        ")}
       </ul>
-      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. Rates here are negotiating starting points, not financial, legal or tax advice. CollabRate isn't affiliated with any platform or brand named on this site.</p>
+      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. Rates here are negotiating starting points, not financial, legal or tax advice. CollabRate isn't affiliated with any platform or brand named on this site.</p>
     </article>
   </main>
   <footer class="site">
@@ -559,10 +559,10 @@ ${esc(emailEx.body)}</pre>
   {
     slug: "about", tool: false, crumb: "About",
     title: "About CollabRate: Free, Private UGC Pricing Tools",
-    desc: "CollabRate is a free UGC rate calculator from MiniTools. It runs in your browser with no signup. Learn who builds it and how the default rates are set.",
+    desc: "CollabRate is a free UGC rate calculator from Rooh Sites. It runs in your browser with no signup. Learn who builds it and how the default rates are set.",
     h1: "About CollabRate",
     lead: "A free, transparent way for UGC creators to price their work and send it to brands.",
-    body: `      <p>CollabRate is part of <strong>MiniTools</strong>, a set of small, free web tools that each do one job well. It helps UGC creators work out what to charge for videos, usage rights, whitelisting, exclusivity and extras, and turns the result into a quote PDF, a rate card or a pitch email.</p>
+    body: `      <p>CollabRate is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free web tools that each do one job well. It helps UGC creators work out what to charge for videos, usage rights, whitelisting, exclusivity and extras, and turns the result into a quote PDF, a rate card or a pitch email.</p>
       <h2>Why it exists</h2>
       <p>The usual options for pricing UGC are static rate card templates that do no maths, calculators behind an email sign-up, and published advice that often disagrees. CollabRate shows its formula and every default percentage, lets you change all of them, and gives you a range instead of pretending there's one correct price.</p>
       <h2>How the defaults are set</h2>

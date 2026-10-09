@@ -75,7 +75,7 @@ ${faq.length ? `      <h2 id="faq">FAQ</h2>\n${faq.map(([q, a]) => `      <detai
         <li><a href="/gst-invoice-generator">GST (India)</a></li>
         <li><a href="/vat-invoice-template-uk">UK VAT</a></li>
       </ul>
-      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. This page is general information, not tax or legal advice.</p>
+      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. This page is general information, not tax or legal advice.</p>
     </article>
   </main>
   <footer class="site">
@@ -244,10 +244,10 @@ const pages = [
   {
     slug: "about", tool: false, crumb: "About",
     title: "About InvoiceKit — Private, Free Business Tools",
-    desc: "InvoiceKit is part of MiniTools: small, fast, private web tools that run in your browser with no signup. Learn who we are and how we handle your data.",
+    desc: "InvoiceKit is part of Rooh Sites’ free tools: small, fast, private web tools that run in your browser with no signup. Learn who we are and how we handle your data.",
     h1: "About InvoiceKit",
     lead: "Small, fast tools that do one job well, free, with no accounts and no tracking of your data.",
-    body: `      <p>InvoiceKit is part of <strong>MiniTools</strong>, a set of free single-purpose web tools for freelancers and small businesses. Each tool runs entirely in your browser: what you type stays on your device, and nothing is uploaded to our servers.</p>
+    body: `      <p>InvoiceKit is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools for freelancers and small businesses. Each tool runs entirely in your browser: what you type stays on your device, and nothing is uploaded to our servers.</p>
       <h2>Why we built it</h2>
       <p>Most invoice apps want an account, a monthly subscription and your client list before you can send a single invoice. We think a freelancer sending three invoices a month deserves a tool that just works. Every feature of InvoiceKit is free, with no paid tier.</p>
       <h2>Is it really free?</h2>

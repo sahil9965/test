@@ -16,7 +16,7 @@ const longDate = iso => E.fmtLong(E.dn(iso));
 const WEBAPP = (name, url, desc) => ({
   "@type": "WebApplication", name, url, description: desc, applicationCategory: "EducationalApplication", operatingSystem: "Any (web browser)",
   browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
+  publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 
 const NAV_SUB = `<a href="/">Calendar</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a>`;
@@ -86,7 +86,7 @@ ${home ? "" : `    <p class="crumbs"><a href="/">BellBook</a> › ${esc(crumb ||
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
 ${toolHtml}    <article class="content narrow">
 ${body}
-${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${home || tool ? `      <h2>More rotation calendars and planners</h2>\n${RELATED(home ? "/" : "/" + slug)}\n` : ""}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
+${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${home || tool ? `      <h2>More rotation calendars and planners</h2>\n${RELATED(home ? "/" : "/" + slug)}\n` : ""}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
     </article>
   </main>
 ${FOOTER}
@@ -611,10 +611,10 @@ ${hol2728.map(h => `          <tr><td>${h.name}</td><td>${longDate(h.date)}</td>
 pages.push({
   slug: "about", crumb: "About",
   title: "About BellBook – Free School Rotation Calendar Tools",
-  desc: "BellBook is part of MiniTools: small, free, private web tools. It makes A/B day and rotating school calendars and dated lesson planners in your browser.",
+  desc: "BellBook is part of Rooh Sites’ free tools: small, free, private web tools. It makes A/B day and rotating school calendars and dated lesson planners in your browser.",
   h1: "About BellBook",
   lead: "A small, free tool for the teachers and school staff who keep the A/B calendar running.",
-  body: `      <p>BellBook is part of <strong>MiniTools</strong>, a set of free, single-purpose web tools. It makes A/B day, Day 1–N and block schedule calendars, dated lesson planners that follow the same rotation, and class pages (attendance dated by class meeting, a gradebook, a seating chart and a substitute plan). Like every MiniTools site, it runs entirely in your browser: what you type stays on your device.</p>
+  body: `      <p>BellBook is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It makes A/B day, Day 1–N and block schedule calendars, dated lesson planners that follow the same rotation, and class pages (attendance dated by class meeting, a gradebook, a seating chart and a substitute plan). Like every Rooh Sites tool, it runs entirely in your browser: what you type stays on your device.</p>
       <h2>Why we built it</h2>
       <p>Schools on rotating schedules often publish the year's A/B calendar from a spreadsheet. When a snow day or a new holiday shifts the rotation, the spreadsheet has to be redone by hand and teachers rewrite their planners. BellBook stores the rules instead: the dates, the rotation, the days off and how closures are handled. So one change re-letters the rest of the year correctly.</p>
       <h2>Is it really free?</h2>

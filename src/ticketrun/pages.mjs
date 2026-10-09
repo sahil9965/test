@@ -93,10 +93,10 @@ const appLd = (name, path, desc, features) => ({
   operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   ...(features ? { featureList: features } : {}),
-  publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
+  publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 const faqHtml = (faq, h = "Frequently asked questions") => `      <h2 id="faq">${h}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team.${extra ? " " + extra : ""}</p>`;
+const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
 function toolSection(o) {
   if (o.picker) return `    <section class="tool card" aria-label="Raffle winner picker"><div id="tr-picker"></div></section>\n`;
@@ -786,10 +786,10 @@ P.push({
 P.push({
   path: "/about", crumb: "About", noRelated: false,
   title: "About TicketRun — Free Numbered Ticket Generator",
-  desc: "TicketRun is part of MiniTools: small, private web tools that run in your browser. Who makes it, why it's free and how it handles your data.",
+  desc: "TicketRun is part of Rooh Sites’ free tools: small, private web tools that run in your browser. Who makes it, why it's free and how it handles your data.",
   h1: "About TicketRun",
   lead: "A small, free tool that does one job well: printable tickets with numbers that always match.",
-  body: `      <p>TicketRun is part of <strong>MiniTools</strong>, a set of free single-purpose web tools. It was built for the volunteers who end up running the raffle: PTA parents, church committees, sports club treasurers and event planners who need a few hundred numbered tickets by Friday.</p>
+  body: `      <p>TicketRun is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools. It was built for the volunteers who end up running the raffle: PTA parents, church committees, sports club treasurers and event planners who need a few hundred numbered tickets by Friday.</p>
       <h2>Why we built it</h2>
       <p>Getting sequential numbers onto printed tickets is surprisingly awkward. Word templates show one page with typed numbers, mail merge takes setup, and many free generators stop at a few dozen tickets. Mismatched stub numbers cause arguments on draw night. TicketRun numbers every ticket and stub for you, up to 20,000 at a time.</p>
       <h2>Is it really free?</h2>

@@ -27,7 +27,7 @@ const APP = (name, url, desc) => ({
   "@type": "WebApplication", name, url, description: desc,
   applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript",
   isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
+  publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 
 function layout({ path, title, desc, ogTitle, ogDesc, graph, main, tool }) {
@@ -99,7 +99,7 @@ const related = (except) => `      <h2>More label guides</h2>
         <li><a href="/">A4 to 6x4 label converter</a></li>
 ${GUIDES.filter(([h]) => h !== except).map(([h, t]) => `        <li><a href="${h}">${esc(t)}</a></li>`).join("\n")}
       </ul>`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team.${extra ? " " + extra : ""}</p>`;
+const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
 // ---------------------------------------------------------------- Home
 const HOME_FAQ = [
@@ -570,9 +570,9 @@ ${updated("")}
 }
 const ABOUT = {
   path: "/about", crumb: "About", title: "About LabelFit – Free, Private Shipping Label Converter",
-  desc: "LabelFit is a tool from MiniTools that converts A4 and letter shipping labels to 6x4 in your browser. Who makes it, how it works and how it stays private.",
+  desc: "LabelFit is a tool from Rooh Sites that converts A4 and letter shipping labels to 6x4 in your browser. Who makes it, how it works and how it stays private.",
   h1: "About LabelFit", lead: "A small, free tool that does one job: getting shipping labels onto 6 × 4 thermal labels, without uploading them anywhere.",
-  body: `      <p>LabelFit is part of <strong>MiniTools</strong>, a set of free single-purpose web tools. It's built for people who sell on marketplaces and ship from home: thermal printer owners who are tired of cropping every A4 or letter-size label by hand.</p>
+  body: `      <p>LabelFit is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools. It's built for people who sell on marketplaces and ship from home: thermal printer owners who are tired of cropping every A4 or letter-size label by hand.</p>
       <h2>Why we built it</h2>
       <p>Plenty of label sources still produce A4 or 8.5 × 11 in PDFs, while most sellers now use 6 × 4 thermal printers. Printing the whole page with Fit to page shrinks the barcode to about half size. Cropping by hand in a PDF editor works but is slow, and many online converters want you to upload a file full of your buyers' addresses. LabelFit does the crop automatically, on your device.</p>
       <h2>How it works</h2>

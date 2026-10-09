@@ -27,7 +27,7 @@ function page(p) {
   const url = p.slug === "" ? `${URL}/` : `${URL}/${p.slug}`;
   const isHome = p.slug === "";
   const graph = [];
-  const app = { "@type": "WebApplication", name: isHome ? NAME : `${p.h1} (${NAME})`, url, description: p.desc, applicationCategory: "EducationalApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` } };
+  const app = { "@type": "WebApplication", name: isHome ? NAME : `${p.h1} (${NAME})`, url, description: p.desc, applicationCategory: "EducationalApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" } };
   if (isHome) app.featureList = ["Phase-change lines that break the data path", "Condition labels", "Aim line", "Least-squares or split-middle trend lines", "Mastery criterion check", "Up to 3 data series", "Paste from Excel or Google Sheets", "PNG and PDF export", "Printable data sheets for 11 measurement types", "Works offline", "No signup; data stays in the browser"];
   if (p.tool) graph.push(app);
   if (!isHome) graph.push({ "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: NAME, item: `${URL}/` }, { "@type": "ListItem", position: 2, name: p.crumb || p.h1, item: url }] });
@@ -94,7 +94,7 @@ ${p.faq && p.faq.length ? `      <h2 id="faq">Frequently asked questions</h2>\n$
       <ul class="related">
 ${related.map(([h, t]) => `        <li><a href="${h}">${esc(t)}</a></li>`).join("\n")}
       </ul>
-`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team.${p.footnote ? " " + p.footnote : ""}</p>
+`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${p.footnote ? " " + p.footnote : ""}</p>
     </article>
   </main>
   <footer class="site">

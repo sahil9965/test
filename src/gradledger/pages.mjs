@@ -30,7 +30,7 @@ const DISCLAIM = "GradLedger is general information and a record-keeping tool, n
 const APP_LD = (url, name, desc) => ({
   "@type": "WebApplication", name, url, description: desc, applicationCategory: "EducationalApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` },
+  publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 
 function layout({ path, title, desc, ogTitle, ogDesc, h1, lead, badges, tool, body, faq = [], graph = [], crumb, scripts = true }) {
@@ -87,7 +87,7 @@ ${body}
 ${faq.length ? `      <h2 id="faq">Frequently asked questions</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${related.length && path !== "/about" && path !== "/privacy" ? `      <h2>More homeschool record tools</h2>
       <ul class="related">
 ${path === "/" ? "" : `        <li><a href="/">Free homeschool transcript generator</a></li>\n`}${related.map(([p, n]) => `        <li><a href="${p}">${esc(n)}</a></li>`).join("\n")}
-      </ul>\n` : ""}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. ${esc(DISCLAIM)}</p>
+      </ul>\n` : ""}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. ${esc(DISCLAIM)}</p>
     </article>
   </main>
   <footer class="site">
@@ -623,7 +623,7 @@ pages.push({
   desc: "GradLedger is a free homeschool transcript, GPA and course description tool. It runs in your browser with no signup and never uploads your records.",
   h1: "About GradLedger",
   lead: "Free, private record-keeping for homeschool high school: transcripts, GPA, credits, course descriptions and hours.",
-  body: `      <p>GradLedger is part of <strong>MiniTools</strong>, a small set of free, single-purpose web tools. It helps homeschool parents act as the school registrar: keep a record of high school courses, calculate GPA and credits correctly, write course descriptions and produce a clean transcript.</p>
+  body: `      <p>GradLedger is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It helps homeschool parents act as the school registrar: keep a record of high school courses, calculate GPA and credits correctly, write course descriptions and produce a clean transcript.</p>
       <h2>Why it exists</h2>
       <p>Many transcript tools charge per transcript, add a watermark, email the PDF to collect your address, or keep your records behind an account. Grade records are sensitive, and a family should be able to make a transcript without handing them over. GradLedger is free and works entirely in your browser.</p>
       <h2>How the numbers are calculated</h2>

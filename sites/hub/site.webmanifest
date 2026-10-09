@@ -1,0 +1,15 @@
+{
+  "name": "Rooh Sites Tools",
+  "short_name": "Rooh Sites Tools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#c2364b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -80,7 +80,7 @@ ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")
 ${tool ? `    <section class="tool card" aria-label="FNSKU and prep label generator"><div id="pl-tool"${preset ? ` data-preset="${preset}"` : ""}><noscript><p class="notice">PrepLabel needs JavaScript to build labels in your browser.</p></noscript></div></section>\n` : ""}    <article class="content narrow">
 ${body}
 ${faq.length ? `      <h2 id="faq">${path === "/" ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${path === "/about" || path === "/privacy" ? "" : `      <h2>More PrepLabel guides</h2>
-      <ul class="related">${path === "/" ? "" : `<li><a href="/">FNSKU label generator</a></li>`}${guideLinks}</ul>\n`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the MiniTools team. ${path === "/about" || path === "/privacy" ? "" : "General information, not legal advice. Amazon changes its rules, so confirm current requirements in Seller Central."}</p>
+      <ul class="related">${path === "/" ? "" : `<li><a href="/">FNSKU label generator</a></li>`}${guideLinks}</ul>\n`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. ${path === "/about" || path === "/privacy" ? "" : "General information, not legal advice. Amazon changes its rules, so confirm current requirements in Seller Central."}</p>
     </article>
   </main>
   <footer class="site">
@@ -100,7 +100,7 @@ ${tool ? `<script src="/core.js" defer></script>\n<script src="/app.js" defer></
 
 const faqLd = faq => ({ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) });
 const crumbLd = (path, name) => ({ "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: NAME, item: `${URL}/` }, { "@type": "ListItem", position: 2, name, item: URL + path }] });
-const appLd = (path, name, description, features) => ({ "@type": "WebApplication", name, url: URL + (path === "/" ? "/" : path), description, applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, ...(features ? { featureList: features } : {}), publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` } });
+const appLd = (path, name, description, features) => ({ "@type": "WebApplication", name, url: URL + (path === "/" ? "/" : path), description, applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, ...(features ? { featureList: features } : {}), publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" } });
 
 /* ---------------------------------------------------------------- sample ZPL for the Zebra guide */
 const SAMPLE_ZPL = Core.toZpl([{ code: "X001ABC123", title: "Stainless Steel Water Bottle, 750 ml, Blue", condition: "New", qty: 24 }], Core.STOCK["r-2x1"], { dpi: 203, showTitle: true, showCondition: true, titleLines: "auto" }).zpl.trim();
@@ -621,10 +621,10 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
 const about = {
   path: "/about", tool: false, crumb: "About",
   title: "About PrepLabel — Free FNSKU and Prep Label Tools",
-  desc: "PrepLabel is a free, private label tool for Amazon resellers and prep centers, part of MiniTools. It runs in your browser with no signup and no uploads.",
+  desc: "PrepLabel is a free, private label tool for Amazon resellers and prep centers, part of Rooh Sites’ free tools. It runs in your browser with no signup and no uploads.",
   h1: "About PrepLabel",
   lead: "A free label tool for resellers and small prep centers that does one job well and keeps your data on your device.",
-  body: `      <p>PrepLabel is part of <strong>MiniTools</strong>, a set of free single-purpose web tools. It makes FNSKU unit labels, converts Seller Central label PDFs to thermal sizes, and prints the prep labels that FBA shipments need: suffocation warnings, sold-as-set stickers, expiration dates and bin locations.</p>
+  body: `      <p>PrepLabel is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools. It makes FNSKU unit labels, converts Seller Central label PDFs to thermal sizes, and prints the prep labels that FBA shipments need: suffocation warnings, sold-as-set stickers, expiration dates and bin locations.</p>
       <h2>Why we built it</h2>
       <p>With Amazon's US label service and commingling gone in 2026, most resellers now label every unit themselves. The free option, Seller Central's own label PDFs, is laid out for sheets and doesn't fit thermal rolls well, while dedicated label apps usually need an account and a subscription. PrepLabel fills that gap with a tool that works on first use, prints sharp barcodes and costs nothing.</p>
       <h2>How it works</h2>
@@ -652,7 +652,7 @@ for (const p of all) {
     const graph = [crumbLd(p.path, p.crumb)];
     if (p.faq && p.faq.length) graph.push(faqLd(p.faq));
     if (p.tool) graph.push(appLd(p.path, p.h1, p.desc));
-    if (p.article) graph.push({ "@type": "Article", headline: p.h1, description: p.desc, datePublished: DATE, dateModified: DATE, url: URL + p.path, image: `${URL}/og.png`, author: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` }, publisher: { "@type": "Organization", name: "MiniTools", url: `${URL}/about` } });
+    if (p.article) graph.push({ "@type": "Article", headline: p.h1, description: p.desc, datePublished: DATE, dateModified: DATE, url: URL + p.path, image: `${URL}/og.png`, author: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" }, publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" } });
     p.graph = graph;
   }
   const file = p.path === "/" ? "index.html" : p.path.slice(1) + ".html";

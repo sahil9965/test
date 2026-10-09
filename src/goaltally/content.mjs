@@ -686,11 +686,11 @@ export const PAGES = [
   {
     slug: "about", crumb: "About", noRelated: false,
     title: "About GoalTally: Free, Private ABA Graphs and Data Sheets",
-    desc: "GoalTally is a free ABA graph maker and data sheet generator from MiniTools. It runs in your browser with no signup, no uploads and no paid tier. Here's why.",
+    desc: "GoalTally is a free ABA graph maker and data sheet generator from Rooh Sites. It runs in your browser with no signup, no uploads and no paid tier. Here's why.",
     h1: "About GoalTally",
     lead: "Free graphing and data collection tools for special-education teachers, BCBAs, RBTs, paraprofessionals and students, with no account and nothing uploaded.",
     body: [
-      p("GoalTally is part of <strong>MiniTools</strong>, a set of free, single-purpose web tools. It does two connected jobs: it makes printable data sheets matched to how a goal is measured, and it turns session data into a correctly formatted ABA graph with phase-change lines, an aim line, a trend line and a mastery check."),
+      p("GoalTally is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It does two connected jobs: it makes printable data sheets matched to how a goal is measured, and it turns session data into a correctly formatted ABA graph with phase-change lines, an aim line, a trend line and a mastery check."),
       h2("Why we built it"),
       p("Data sheets tend to be either fixed PDFs that don't match the goal, or part of a full practice-management platform. Many teachers and BCBA students still build graphs in Excel by hand, redrawing phase lines every time data is added, and AI generators often ask for student details. GoalTally takes a narrower approach: configurable sheets, graphs that follow ABA conventions, and no student information leaving your device."),
       h2("How it works"),

@@ -14,6 +14,6 @@ window.SITE = {
     "Saved clients and invoice history",
     "Modern and Minimal templates",
     "Duplicate invoices and auto-numbering",
-    "Pro on every MiniTools site",
+    "Pro on every Rooh Sites site",
   ],
 };
