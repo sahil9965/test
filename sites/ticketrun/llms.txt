@@ -1,0 +1,37 @@
+# TicketRun
+
+> TicketRun is a free online generator for printable numbered tickets with matching stubs: raffle, 50/50, door prize, drink, coat check, admission and meal tickets. It runs entirely in the browser (nothing is uploaded), needs no signup and downloads a vector PDF with up to 20,000 sequentially numbered tickets, 8, 10 or 20 per US Letter or A4 page, with crop marks and a dashed tear line. Every feature is free, including prefixes and zero padding, cut-and-stack ordering, logos and colours, guest names from a CSV, seller books with a reconciliation sheet, and a fair raffle winner picker. There is no paid tier. Each printed sheet carries a small "Made with TicketRun" credit in the margin, outside the tickets.
+
+## Tools
+- [Printable raffle tickets with numbers](https://ticketrun.vercel.app/): the main generator for numbered tickets with matching stubs.
+- [Numbered raffle ticket generator](https://ticketrun.vercel.app/numbered-raffle-ticket-generator): number formats, prefixes, cut-and-stack order, seller books and the tracking sheet.
+- [Random raffle number picker](https://ticketrun.vercel.app/raffle-winner-picker): unbiased winner draw (crypto.getRandomValues with rejection sampling), exclusions, several winners without repeats.
+
+## Ticket types
+- [50/50 raffle tickets](https://ticketrun.vercel.app/50-50-raffle-tickets): how a 50/50 works, payout examples, bundle pricing.
+- [Coat check tickets](https://ticketrun.vercel.app/coat-check-tickets): two-part tickets with the same big number on both halves.
+- [Drink tickets](https://ticketrun.vercel.app/drink-tickets): small numbered tickets, 20 per page.
+- [Door prize tickets](https://ticketrun.vercel.app/door-prize-tickets): free entry tickets with stubs for a prize draw.
+- [Meal tickets](https://ticketrun.vercel.app/meal-tickets): numbered or named tickets with table and meal choice from a CSV.
+- [Raffle ticket template, 8 per page](https://ticketrun.vercel.app/raffle-ticket-template-8-per-page): 2 x 4 layout, sizes and comparison with 10 per page.
+
+## Number ranges
+- [Raffle tickets 1-100](https://ticketrun.vercel.app/raffle-tickets-1-100): 10 sheets at 10 per page.
+- [Raffle tickets 1-250](https://ticketrun.vercel.app/raffle-tickets-1-250): 25 sheets, ten books of 25.
+- [Raffle tickets 1-500](https://ticketrun.vercel.app/raffle-tickets-1-500): 50 sheets, cut-and-stack piles of 50.
+- [Raffle tickets 1-1000](https://ticketrun.vercel.app/raffle-tickets-1-1000): 100 sheets, numbers 0001-1000.
+- [Raffle tickets 1-2000](https://ticketrun.vercel.app/raffle-tickets-1-2000): 200 sheets, printing in batches.
+
+## Guides
+- [How to number raffle tickets in Word](https://ticketrun.vercel.app/how-to-number-raffle-tickets-in-word): SEQ fields (\c repeats the number on the stub), mail merge, common problems.
+
+## Key facts
+- Price: completely free. No paid tier, no account.
+- Privacy: ticket text, guest lists and logos are processed on the device; nothing is uploaded. Cookie-free Vercel Web Analytics counts page views.
+- Output: vector PDF built with pdf-lib in the browser. Ticket sizes: 3.75 x 1.97 in (10 per Letter page), 3.75 x 2.46 in (8 per Letter page), 92 x 53 mm (10 per A4 page).
+- Limits: up to 20,000 tickets per PDF; numbers up to 99,999,999. Built-in PDF fonts (Helvetica, Times) cover Western European characters only.
+- Raffle legality varies by place; TicketRun's guides are general information, not legal advice.
+
+## Optional
+- [About](https://ticketrun.vercel.app/about)
+- [Privacy & Terms](https://ticketrun.vercel.app/privacy)

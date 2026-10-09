@@ -1,0 +1,26 @@
+# LabelFit
+
+> LabelFit is a free A4 to 6x4 shipping label converter that runs entirely in the browser (nothing is uploaded). It takes A4, US letter (8.5 x 11 in) and half-sheet label PDFs, or PNG/JPG screenshots, finds the label on each page, crops and rotates it, and outputs a 6x4 label: a vector PDF at 100 x 150 mm, 4 x 6 in, A6, 4 x 4 in, a 62 mm roll, a custom size or 2 per Letter/A4 sheet, or a 203/300 dpi PNG or JPG for phone label-printer apps. It splits packing slips and CN22/CN23 customs forms onto their own pages, handles sheets with 2 or 4 labels, converts many files at once, saves reusable crop layouts and works offline after first use. Every feature is free, with no account. Nothing is ever added to a shipping label; kept packing slips carry a small "Made with LabelFit" line.
+
+## Tool
+- [A4 to 6x4 label converter](https://labelfit.vercel.app/): convert a shipping label PDF to 6x4 (100 x 150 mm or 4 x 6 in) for a thermal printer in a few seconds.
+
+## Guides
+- [Vinted label on a thermal printer](https://labelfit.vercel.app/vinted-label-thermal-printer): crop A4 Vinted labels (Evri, InPost, Royal Mail, DPD) to 100 x 150 mm, plus troubleshooting.
+- [Evri label 6x4](https://labelfit.vercel.app/evri-label-6x4): Evri's own 4x6 option versus converting A4 marketplace labels.
+- [Royal Mail label 6x4](https://labelfit.vercel.app/royal-mail-label-6x4): Click & Drop label formats, A4 sheets with 1, 2 or 4 labels, CN22.
+- [USPS.com label to 4x6](https://labelfit.vercel.app/usps-label-to-4x6): Click-N-Ship letter-size labels to 4 x 6 in.
+- [eBay half-sheet label to 4x6](https://labelfit.vercel.app/ebay-half-sheet-label-to-4x6): half-sheet to 4x6, two labels per half-sheet page, eBay UK A4.
+- [Split a shipping label and packing slip](https://labelfit.vercel.app/split-shipping-label-and-packing-slip): separate pages for label, packing slip and customs form.
+- [Print shipping labels from your phone](https://labelfit.vercel.app/print-shipping-label-from-phone): 203/300 dpi images for Bluetooth label printer apps.
+
+## Key facts
+- Price: completely free. No paid tier, no account, no label limit.
+- Privacy: PDFs are read with pdf.js and written with pdf-lib inside the browser; files are never uploaded.
+- Print settings: paper size 4 x 6 in or 100 x 150 mm, scale 100% / Actual size. Printing a whole A4 page on a 6x4 label with Fit to page shrinks it to about 48%.
+- Image sizes: 4 x 6 in = 812 x 1218 px at 203 dpi, 1200 x 1800 px at 300 dpi; 100 x 150 mm = 799 x 1199 px at 203 dpi, 1181 x 1772 px at 300 dpi.
+- Independent: not affiliated with Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay or Mercari.
+
+## Optional
+- [About](https://labelfit.vercel.app/about)
+- [Privacy & Terms](https://labelfit.vercel.app/privacy)

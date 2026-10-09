@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rotating Schedule Calendar Maker – Free, Skips Holidays</title>
+<meta name="description" content="Free rotating schedule calendar maker for schools. Day 1–N cycles, A/B/C days and custom labels that skip holidays and re-flow after snow days. Print as PDF.">
+<link rel="canonical" href="https://bellbook-app.vercel.app/rotating-schedule-calendar-maker">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#92400e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BellBook">
+<meta property="og:title" content="Rotating Schedule Calendar Maker – Free, Skips Holidays">
+<meta property="og:description" content="Free rotating schedule calendar maker for schools. Day 1–N cycles, A/B/C days and custom labels that skip holidays and re-flow after snow days. Print as PDF.">
+<meta property="og:url" content="https://bellbook-app.vercel.app/rotating-schedule-calendar-maker">
+<meta property="og:image" content="https://bellbook-app.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BellBook","item":"https://bellbook-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"Rotating schedule calendar maker","item":"https://bellbook-app.vercel.app/rotating-schedule-calendar-maker"}]},{"@type":"WebApplication","name":"Rotating schedule calendar maker","url":"https://bellbook-app.vercel.app/rotating-schedule-calendar-maker","description":"Make a school calendar for any rotating day cycle that skips holidays and re-flows after closures.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://bellbook-app.vercel.app/about"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a rotating schedule in school?","acceptedAnswer":{"@type":"Answer","text":"A rotating schedule changes which classes meet, or in what order, from one school day to the next, following a repeating cycle such as A/B or Day 1–6. The cycle counts school days, not weekdays, so holidays and closures push it back."}},{"@type":"Question","name":"How do I make a rotating schedule calendar for free?","acceptedAnswer":{"@type":"Answer","text":"Enter the first and last day of school, choose the cycle (for example Day 1–4), add holidays and breaks, and download the PDF. BellBook is free with no signup."}},{"@type":"Question","name":"Can the rotation restart on a specific date?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add a rotation reset (or click the date and choose “Make this day”) and that date gets the label you pick, with the cycle continuing from there. Schools often re-sync at the start of a semester."}},{"@type":"Question","name":"Can I have a different label on some weekdays?","acceptedAnswer":{"@type":"Answer","text":"Yes. In the weekday pattern, set a weekday to a fixed label, such as Wednesday = “Late start”. Fixed days don't use up a rotation day."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">BellBook</a>
+    <nav aria-label="Main"><a href="/">Calendar maker</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">BellBook</a> › Rotating schedule calendar maker</p>
+    <section class="hero">
+      <h1>Rotating Schedule Calendar Maker</h1>
+      <p class="lead">Build a school calendar for any rotating cycle, from Day 1–4 to Day 1–10 or your own labels. Holidays pause the cycle and snow days re-flow it automatically.</p>
+    </section>
+    <section class="tool card" aria-label="A/B day calendar generator"><div id="bb-tool" data-preset="rotating"></div><noscript><p>The calendar generator needs JavaScript. Everything runs in your browser; nothing is uploaded.</p></noscript></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> A rotating schedule calendar labels each school day with its place in the cycle, such as Day 1, Day 2, Day 3, Day 4, then Day 1 again, skipping weekends and days off. Enter your first and last day, pick the cycle length, add your holidays, and BellBook labels the whole year. The example above uses a 4-day cycle.</p>
+
+      <h2>Common rotating schedules</h2>
+      <table>
+        <thead><tr><th>Schedule</th><th>How it rotates</th><th>Set it up in BellBook</th></tr></thead>
+        <tbody>
+          <tr><td>A/B (alternating day)</td><td>Two days alternate; each class meets every other day</td><td>Rotation type: A/B days</td></tr>
+          <tr><td>Day 1–N cycle</td><td>A numbered cycle of N school days (4, 5, 6, 7 or 8 are common)</td><td>Rotation type: Day 1–N cycle, then the number of days</td></tr>
+          <tr><td>Drop rotation</td><td>Each day one or more periods “drop” and the order shifts; the day number tells you which</td><td>Day 1–N cycle, with each day's classes in the lesson planner</td></tr>
+          <tr><td>Fixed day + rotation</td><td>One weekday is always the same (all classes, late start), the others rotate</td><td>Weekday pattern: set that weekday to a fixed label</td></tr>
+          <tr><td>Named days</td><td>Colours, houses or letters, e.g. Red/White/Blue</td><td>Rotation type: Custom labels</td></tr>
+        </tbody>
+      </table>
+
+      <h2>How to make a rotating schedule calendar</h2>
+      <ol class="steps">
+        <li><strong>Set the school year.</strong> Enter the first and last day of school.</li>
+        <li><strong>Choose the cycle.</strong> Pick Day 1–N and the number of days, or type your own labels in order.</li>
+        <li><strong>Choose the starting day.</strong> Most schools start on Day 1. If your year starts mid-cycle, pick the right label for the first school day.</li>
+        <li><strong>Add days off.</strong> Add US federal holidays and your district's breaks. The cycle pauses on each one.</li>
+        <li><strong>Handle surprises.</strong> Click a date to mark a snow day, an exam day without a rotation, or a reset that forces a date to a given day.</li>
+        <li><strong>Publish it.</strong> Print the PDF, import the .ics into a shared Google Calendar, or share the “What day is it?” link.</li>
+      </ol>
+
+      <h2>Why a generator beats a hand-made calendar</h2>
+      <p>A rotating schedule is easy to count forward and easy to get wrong. One forgotten teacher workday or snow day shifts every later label, and fixing it by hand means retyping the rest of the year. BellBook keeps the rules instead of the labels, so you change one date and every later day is re-labelled. Before you confirm, it tells you how many days changed. It also shows the total number of times each day occurs (for example how many Day 3s there are), which helps you check that each class meets about the same number of times.</p>
+
+      <h2>Snow days on a rotating schedule</h2>
+      <p>Each closure can either let the rotation continue (the next school day takes the closed day's label) or skip the closed day's label (every other date keeps its label). This is the same choice on an A/B schedule:</p>
+      <table><thead><tr><th>School day</th><th>Original</th><th>Rotation continues</th><th>Skip the day's letter</th></tr></thead><tbody><tr><td>Monday</td><td>A</td><td>A</td><td>A</td></tr><tr><td>Tuesday</td><td>B</td><td>B</td><td>B</td></tr><tr><td>Wednesday</td><td>A</td><td><em>Snow day</em></td><td><em>Snow day (A skipped)</em></td></tr><tr><td>Thursday</td><td>B</td><td>A</td><td>B</td></tr><tr><td>Friday</td><td>A</td><td>B</td><td>A</td></tr><tr><td>Next Monday</td><td>B</td><td>A</td><td>B</td></tr></tbody></table>
+      <p>On longer cycles the difference matters more: skipping a day in a 6-day cycle means one class misses a meeting until the cycle comes round again.</p>
+      <h2 id="faq">FAQ</h2>
+      <details><summary>What is a rotating schedule in school?</summary><p>A rotating schedule changes which classes meet, or in what order, from one school day to the next, following a repeating cycle such as A/B or Day 1–6. The cycle counts school days, not weekdays, so holidays and closures push it back.</p></details>
+      <details><summary>How do I make a rotating schedule calendar for free?</summary><p>Enter the first and last day of school, choose the cycle (for example Day 1–4), add holidays and breaks, and download the PDF. BellBook is free with no signup.</p></details>
+      <details><summary>Can the rotation restart on a specific date?</summary><p>Yes. Add a rotation reset (or click the date and choose “Make this day”) and that date gets the label you pick, with the cycle continuing from there. Schools often re-sync at the start of a semester.</p></details>
+      <details><summary>Can I have a different label on some weekdays?</summary><p>Yes. In the weekday pattern, set a weekday to a fixed label, such as Wednesday = “Late start”. Fixed days don't use up a rotation day.</p></details>
+      <h2>More rotation calendars and planners</h2>
+      <ul class="related">
+        <li><a href="/">A/B day calendar generator</a></li>
+        <li><a href="/today">What day is it today?</a></li>
+        <li><a href="/6-day-cycle-calendar">6-day rotation calendar</a></li>
+        <li><a href="/block-schedule-calendar">Block schedule calendar</a></li>
+        <li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li>
+        <li><a href="/second-semester-lesson-planner">Second semester lesson planner</a></li>
+        <li><a href="/teacher-planner-2027-2028">Teacher planner 2027–2028</a></li>
+        <li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>BellBook</h4><ul><li><a href="/">A/B day calendar generator</a></li><li><a href="/today">What day is it today?</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Calendars</h4><ul><li><a href="/rotating-schedule-calendar-maker">Rotating schedule maker</a></li><li><a href="/6-day-cycle-calendar">6-day cycle calendar</a></li><li><a href="/block-schedule-calendar">Block schedule calendar</a></li><li><a href="/teacher-planner-2027-2028">2027–28 calendar &amp; planner</a></li></ul></div>
+      <div><h4>Lesson planners</h4><ul><li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li><li><a href="/second-semester-lesson-planner">Second semester planner</a></li><li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft or Apple.</p>
+  </footer>
+</div>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

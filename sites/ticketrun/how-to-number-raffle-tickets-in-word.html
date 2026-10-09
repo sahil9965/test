@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Number Raffle Tickets in Word: 3 Methods That Work</title>
+<meta name="description" content="Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep the stub and ticket matching, and why most Word templates only hold 8 tickets.">
+<link rel="canonical" href="https://ticketrun.vercel.app/how-to-number-raffle-tickets-in-word">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#be123c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TicketRun">
+<meta property="og:title" content="How to Number Raffle Tickets in Word: 3 Methods That Work">
+<meta property="og:description" content="Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep the stub and ticket matching, and why most Word templates only hold 8 tickets.">
+<meta property="og:url" content="https://ticketrun.vercel.app/how-to-number-raffle-tickets-in-word">
+<meta property="og:image" content="https://ticketrun.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TicketRun","item":"https://ticketrun.vercel.app/"},{"@type":"ListItem","position":2,"name":"Number raffle tickets in Word","item":"https://ticketrun.vercel.app/how-to-number-raffle-tickets-in-word"}]},{"@type":"HowTo","name":"Number raffle tickets in Word with SEQ fields","totalTime":"PT20M","step":[{"@type":"HowToStep","name":"Insert the ticket number field","text":"Click where the ticket number goes, press Ctrl+F9 to insert field braces and type SEQ ticket \\# \"000\" between them."},{"@type":"HowToStep","name":"Repeat the number on the stub","text":"In the stub, insert another field with SEQ ticket \\c \\# \"000\" so it repeats the ticket's number instead of counting on."},{"@type":"HowToStep","name":"Copy the ticket","text":"Copy the finished ticket and stub into every ticket position on the page, then copy the page as many times as you need."},{"@type":"HowToStep","name":"Update the fields","text":"Press Ctrl+A then F9 to update every field. Check the first and last pages and print a test page."}]},{"@type":"WebApplication","name":"How to Number Raffle Tickets in Word","url":"https://ticketrun.vercel.app/how-to-number-raffle-tickets-in-word","description":"Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep the stub and ticket matching, and why most Word templates only hold 8 tickets.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://ticketrun.vercel.app/about"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I make Word count up on each ticket?","acceptedAnswer":{"@type":"Answer","text":"Use a SEQ field such as { SEQ ticket } where the number goes. Each SEQ field with the same name counts up by one through the document. Update with Ctrl+A then F9."}},{"@type":"Question","name":"How do I get the same number on the stub?","acceptedAnswer":{"@type":"Answer","text":"Use { SEQ ticket \\c } on whichever part comes second in the document. The \\c switch repeats the previous number instead of counting on."}},{"@type":"Question","name":"How do I add leading zeros in Word?","acceptedAnswer":{"@type":"Answer","text":"Add a numeric picture switch to the field: { SEQ ticket \\# \"000\" } prints 001, 002 and so on. For mail merge use { MERGEFIELD Number \\# \"000\" }."}},{"@type":"Question","name":"Can I number raffle tickets in Google Docs?","acceptedAnswer":{"@type":"Answer","text":"Google Docs has no sequence fields. Use a mail merge add-on, or generate a numbered PDF with TicketRun and print it."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">TicketRun</a>
+    <nav aria-label="Main"><a href="/">Ticket generator</a><a href="/raffle-winner-picker">Winner picker</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">TicketRun</a> › Number raffle tickets in Word</p>
+    <section class="hero">
+      <h1>How to Number Raffle Tickets in Word</h1>
+      <p class="lead">Two reliable ways to get sequential numbers on tickets and stubs in Word, the mistakes that cause mismatched stubs, and a faster option if you just need the PDF.</p>
+    </section>
+    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool" data-preset="raffle" data-end="200" data-per-page="8"></div></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> In Word, put a <code>{ SEQ ticket \# "000" }</code> field where each ticket number goes and <code>{ SEQ ticket \c \# "000" }</code> on the stub to repeat the same number, copy the ticket across the page and the page as often as needed, then press Ctrl+A and F9 to update. Mail merge from an Excel list of numbers also works. To skip both, set your range in the generator above and download a numbered PDF.</p>
+
+      <h2>Why most Word raffle templates show only 8 tickets</h2>
+      <p>A Word template is a single page with a fixed grid, usually 8 or 10 tickets, and the numbers on it are typed text. Word doesn't number copies of a page by itself. If you copy the page, you copy the same numbers, so you either retype every number, add fields, or merge from a data source. That's where mismatched stubs come from: a number changed on the ticket but not on the stub, or a page pasted twice.</p>
+
+      <h2>Method 1: SEQ fields (no data file needed)</h2>
+      <ol class="steps">
+        <li><strong>Set up one ticket.</strong> Lay out the stub and ticket in a table cell or text box, as in your template.</li>
+        <li><strong>Add the ticket number.</strong> Click where the number goes, press <kbd>Ctrl</kbd>+<kbd>F9</kbd> to insert field braces (don't type the braces), and type <code>SEQ ticket \# "000"</code> inside. The <code>\# "000"</code> part pads numbers to three digits.</li>
+        <li><strong>Add the stub number.</strong> In the stub, insert another field: <code>SEQ ticket \c \# "000"</code>. The <code>\c</code> switch repeats the most recent number instead of adding one, so the stub always matches the ticket next to it. Order matters: the ticket's counting field must come before its stub's repeating field in the document. If your stub sits to the left of the ticket, put the counting field in the stub and the repeating <code>\c</code> field in the ticket instead.</li>
+        <li><strong>Start at another number (optional).</strong> For the very first ticket, use <code>SEQ ticket \r 501 \# "000"</code> to start at 501.</li>
+        <li><strong>Copy and update.</strong> Copy the ticket into each position, then copy the whole page as many times as needed (500 tickets at 8 per page is 63 pages). Press <kbd>Ctrl</kbd>+<kbd>A</kbd>, then <kbd>F9</kbd> to update all fields. Press <kbd>Alt</kbd>+<kbd>F9</kbd> if you see the field code instead of a number.</li>
+      </ol>
+
+      <h2>Method 2: Mail merge from a list of numbers</h2>
+      <ol class="steps">
+        <li>In Excel or Google Sheets, type <em>Number</em> in A1, then 1 and 2 below it and drag the fill handle down to your last number. Save the file.</li>
+        <li>In Word, go to <em>Mailings › Start Mail Merge › Labels</em> and choose a label size that matches your ticket, or set a custom size.</li>
+        <li><em>Select Recipients › Use an Existing List</em> and pick your spreadsheet.</li>
+        <li>In the first label, design the ticket and stub, and use <em>Insert Merge Field › Number</em> in <strong>both</strong> places. For zero padding, press <kbd>Alt</kbd>+<kbd>F9</kbd> and change the field to <code>{ MERGEFIELD Number \# "000" }</code>.</li>
+        <li>Click <em>Update Labels</em> to copy the design to every label, then <em>Finish &amp; Merge › Edit Individual Documents</em>.</li>
+      </ol>
+      <p>The stub and ticket must sit in the <strong>same</strong> label. Word adds a “Next Record” rule before each label, so if the stub and ticket are in separate labels they get different numbers.</p>
+
+      <h2>Common problems and fixes</h2>
+      <table>
+        <thead><tr><th>Problem</th><th>Cause</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Every ticket shows 1</td><td>Fields haven't updated</td><td>Select all and press F9</td></tr>
+          <tr><td>Stub is one number ahead of the ticket</td><td>The stub uses a plain SEQ field, or comes first in the document</td><td>Use <code>\c</code> on whichever part comes second</td></tr>
+          <tr><td>Numbers jump by two</td><td>Two counting fields per ticket</td><td>Only one field per ticket should count; the other uses <code>\c</code></td></tr>
+          <tr><td>Merge skips numbers</td><td>Stub and ticket in separate labels</td><td>Put both halves in one label</td></tr>
+          <tr><td>Tickets don't line up with perforations</td><td>Print scaling or a template meant for different stock</td><td>Print at 100% and test on plain paper first</td></tr>
+        </tbody>
+      </table>
+
+      <h2>The faster way: generate the numbered PDF</h2>
+      <p>If you don't need to edit the design in Word, the generator above does the numbering for you: set the first and last number, type the event details and download the PDF. It's set to 8 per page like most Word templates, and every stub matches its ticket. See the <a href="/raffle-ticket-template-8-per-page">8 per page template</a> for sizes, or the <a href="/numbered-raffle-ticket-generator">numbered ticket generator</a> for prefixes and cut-and-stack order.</p>
+      <h2 id="faq">Frequently asked questions</h2>
+      <details><summary>How do I make Word count up on each ticket?</summary><p>Use a SEQ field such as { SEQ ticket } where the number goes. Each SEQ field with the same name counts up by one through the document. Update with Ctrl+A then F9.</p></details>
+      <details><summary>How do I get the same number on the stub?</summary><p>Use { SEQ ticket \c } on whichever part comes second in the document. The \c switch repeats the previous number instead of counting on.</p></details>
+      <details><summary>How do I add leading zeros in Word?</summary><p>Add a numeric picture switch to the field: { SEQ ticket \# "000" } prints 001, 002 and so on. For mail merge use { MERGEFIELD Number \# "000" }.</p></details>
+      <details><summary>Can I number raffle tickets in Google Docs?</summary><p>Google Docs has no sequence fields. Use a mail merge add-on, or generate a numbered PDF with TicketRun and print it.</p></details>
+      <h2>More ticket types and guides</h2>
+      <ul class="related">
+        <li><a href="/">Raffle tickets with numbers</a></li>
+        <li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li>
+        <li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li>
+        <li><a href="/coat-check-tickets">Coat check tickets</a></li>
+        <li><a href="/drink-tickets">Drink tickets</a></li>
+        <li><a href="/door-prize-tickets">Door prize tickets</a></li>
+        <li><a href="/meal-tickets">Meal tickets</a></li>
+        <li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li>
+        <li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li>
+        <li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li>
+        <li><a href="/how-to-number-raffle-tickets-in-word">Number tickets in Word</a></li>
+        <li><a href="/raffle-winner-picker">Raffle winner picker</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. General information, not legal advice.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>TicketRun</h4><ul><li><a href="/">Raffle ticket generator</a></li><li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li><li><a href="/raffle-winner-picker">Raffle winner picker</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
+      <div><h4>Number ranges</h4><ul><li><a href="/raffle-tickets-1-100">Raffle tickets 1-100</a></li><li><a href="/raffle-tickets-1-250">Raffle tickets 1-250</a></li><li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li><li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li><li><a href="/raffle-tickets-1-2000">Raffle tickets 1-2000</a></li><li><a href="/how-to-number-raffle-tickets-in-word">Numbering tickets in Word</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 TicketRun · Free tools that respect your privacy. TicketRun is an independent tool, not affiliated with Microsoft or any ticket or paper supplier.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

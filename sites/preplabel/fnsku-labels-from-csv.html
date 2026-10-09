@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bulk FNSKU Labels from CSV or Excel — Free Label Generator</title>
+<meta name="description" content="Print FNSKU labels in bulk from a CSV or Excel file with a quantity per SKU. Works with Seller Central inventory reports. Thermal or sheet PDF, free.">
+<link rel="canonical" href="https://preplabel.vercel.app/fnsku-labels-from-csv">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrepLabel">
+<meta property="og:title" content="Bulk FNSKU Labels from CSV or Excel — Free Label Generator">
+<meta property="og:description" content="Print FNSKU labels in bulk from a CSV or Excel file with a quantity per SKU. Works with Seller Central inventory reports. Thermal or sheet PDF, free.">
+<meta property="og:url" content="https://preplabel.vercel.app/fnsku-labels-from-csv">
+<meta property="og:image" content="https://preplabel.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PrepLabel","item":"https://preplabel.vercel.app/"},{"@type":"ListItem","position":2,"name":"Bulk FNSKU labels from CSV","item":"https://preplabel.vercel.app/fnsku-labels-from-csv"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many labels can I print from one CSV?","acceptedAnswer":{"@type":"Answer","text":"Up to 5,000 labels per PDF. For bigger runs, split the file by shipment or SKU group and print in batches."}},{"@type":"Question","name":"Can I import an .xlsx file directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. PrepLabel reads the first worksheet of an .xlsx file. Older .xls files need to be saved as .xlsx or CSV first."}},{"@type":"Question","name":"What if my file has no quantity column?","acceptedAnswer":{"@type":"Answer","text":"Each product gets one label. You can then change the number of labels for each product in the list before downloading."}},{"@type":"Question","name":"Can I add expiration dates from the CSV?","acceptedAnswer":{"@type":"Answer","text":"Expiration dates go on separate labels, not on the FNSKU unit label. Use the Prep labels tab to print expiration date labels."}}]},{"@type":"WebApplication","name":"Bulk FNSKU Labels from a CSV or Excel File","url":"https://preplabel.vercel.app/fnsku-labels-from-csv","description":"Print FNSKU labels in bulk from a CSV or Excel file with a quantity per SKU. Works with Seller Central inventory reports. Thermal or sheet PDF, free.","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://preplabel.vercel.app/about"}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">PrepLabel</a>
+    <nav aria-label="Main"><a href="/">FNSKU labels</a><a href="/fnsku-pdf-to-thermal">PDF to thermal</a><a href="/suffocation-warning-label">Prep labels</a><a href="/fnsku-labeling-requirements-2026">Requirements</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">PrepLabel</a> › Bulk FNSKU labels from CSV</p>
+    <section class="hero">
+      <h1>Bulk FNSKU Labels from a CSV or Excel File</h1>
+      <p class="lead">Import a spreadsheet with an FNSKU and quantity per row and get every unit label for the shipment in one PDF, on thermal rolls or sheets.</p>
+    </section>
+    <section class="tool card" aria-label="FNSKU and prep label generator"><div id="pl-tool" data-preset="csv"><noscript><p class="notice">PrepLabel needs JavaScript to build labels in your browser.</p></noscript></div></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> To print FNSKU labels in bulk, make a CSV or Excel file with the columns <code>fnsku</code>, <code>title</code>, <code>condition</code> and <code>quantity</code>, click <em>Import CSV / Excel</em> above, check the summary and click <em>Replace my list</em>. The PDF then has one label per unit, grouped by SKU, up to 5,000 labels per file.</p>
+      <h2>CSV format</h2>
+      <p>One row per product. Column order doesn't matter when the first row has headers; these names are recognised (upper or lower case, spaces or dashes):</p>
+      <table>
+        <thead><tr><th>Field</th><th>Header names recognised</th><th>Required?</th></tr></thead>
+        <tbody>
+          <tr><td>FNSKU or SKU</td><td>fnsku, fulfillment-network-sku, barcode, sku, seller-sku, asin</td><td>Yes</td></tr>
+          <tr><td>Title</td><td>title, product-name, item-name, name, description</td><td>No</td></tr>
+          <tr><td>Condition</td><td>condition, condition-type</td><td>No (defaults to New)</td></tr>
+          <tr><td>Quantity</td><td>quantity, qty, units, labels, copies, units-to-send</td><td>No (defaults to 1)</td></tr>
+        </tbody>
+      </table>
+      <p>When both <code>fnsku</code> and <code>sku</code> columns exist, the FNSKU column is used for the barcode. Files without headers work too: the first column is read as the code and a mostly-numeric column as the quantity. Commas, semicolons and tabs are all detected.</p>
+      <pre><code>fnsku,title,condition,quantity
+X001ABC123,"Water bottle, 750 ml, blue",New,24
+X002DEF456,Ceramic mug set of 4,New,12
+X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
+      <h2>Using a Seller Central inventory report</h2>
+      <p>The inventory report you can download from Seller Central is a tab-separated file that already has <code>fnsku</code>, <code>product-name</code> and <code>condition</code> columns. Add a <code>quantity</code> column with the units you're sending, save it, and import it as it is. Rows with a quantity of 0 are skipped and listed in the import summary with their line numbers, so you can see what was left out.</p>
+      <h2>Pasting from Google Sheets or Excel</h2>
+      <p>No file needed: select the rows in your spreadsheet, copy, and paste them into the box under <em>Bulk import</em>. Copied cells arrive tab-separated, which the importer reads the same way as a file.</p>
+      <h2>Reprints, client libraries and the print log</h2>
+      <ul>
+        <li><strong>Saved products:</strong> save the current list to a library and add products back with one click next time. Prep centers can keep a separate library per client.</li>
+        <li><strong>Print log:</strong> every PDF or ZPL download is logged with the shipment name, SKUs and quantities. Export it as CSV to reconcile against your shipment.</li>
+        <li><strong>Everything stays local:</strong> the file is read in your browser, and libraries and the log live in this browser's storage.</li>
+      </ul>
+      <h2 id="faq">FAQ</h2>
+      <details><summary>How many labels can I print from one CSV?</summary><p>Up to 5,000 labels per PDF. For bigger runs, split the file by shipment or SKU group and print in batches.</p></details>
+      <details><summary>Can I import an .xlsx file directly?</summary><p>Yes. PrepLabel reads the first worksheet of an .xlsx file. Older .xls files need to be saved as .xlsx or CSV first.</p></details>
+      <details><summary>What if my file has no quantity column?</summary><p>Each product gets one label. You can then change the number of labels for each product in the list before downloading.</p></details>
+      <details><summary>Can I add expiration dates from the CSV?</summary><p>Expiration dates go on separate labels, not on the FNSKU unit label. Use the Prep labels tab to print expiration date labels.</p></details>
+      <h2>More PrepLabel guides</h2>
+      <ul class="related"><li><a href="/">FNSKU label generator</a></li><li><a href="/fnsku-label-2x1-thermal">2x1 thermal FNSKU labels</a></li><li><a href="/dymo-30334-fnsku-labels">DYMO 30334 FNSKU labels</a></li><li><a href="/fnsku-pdf-to-thermal">Seller Central PDF to thermal</a></li><li><a href="/fnsku-zpl-zebra">FNSKU ZPL for Zebra</a></li><li><a href="/suffocation-warning-label">Suffocation warning labels</a></li><li><a href="/sold-as-set-label">Sold as set labels</a></li><li><a href="/expiration-date-label">Expiration date labels</a></li><li><a href="/bin-location-labels">Bin location labels</a></li><li><a href="/fnsku-labeling-requirements-2026">FNSKU labeling requirements 2026</a></li></ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. General information, not legal advice. Amazon changes its rules, so confirm current requirements in Seller Central.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>PrepLabel</h4><ul><li><a href="/">FNSKU label generator</a></li><li><a href="/fnsku-pdf-to-thermal">PDF to thermal converter</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Guides</h4><ul><li><a href="/fnsku-label-2x1-thermal">2x1 thermal FNSKU labels</a></li><li><a href="/dymo-30334-fnsku-labels">DYMO 30334 FNSKU labels</a></li><li><a href="/fnsku-pdf-to-thermal">Seller Central PDF to thermal</a></li><li><a href="/fnsku-labels-from-csv">Bulk FNSKU labels from CSV</a></li><li><a href="/fnsku-zpl-zebra">FNSKU ZPL for Zebra</a></li><li><a href="/suffocation-warning-label">Suffocation warning labels</a></li><li><a href="/sold-as-set-label">Sold as set labels</a></li><li><a href="/expiration-date-label">Expiration date labels</a></li><li><a href="/bin-location-labels">Bin location labels</a></li><li><a href="/fnsku-labeling-requirements-2026">FNSKU labeling requirements 2026</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p class="legal">PrepLabel is an independent tool. It is not affiliated with, endorsed by or sponsored by Amazon. Amazon, FBA and Seller Central are trademarks of Amazon.com, Inc. or its affiliates. Avery, Brother, DYMO, Zebra, Rollo and Munbyn are trademarks of their owners and are named only to describe compatible label sizes and printers.</p>
+    <p>© 2026 PrepLabel · Free tools that respect your privacy.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

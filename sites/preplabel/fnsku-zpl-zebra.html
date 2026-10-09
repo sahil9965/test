@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FNSKU Label ZPL for Zebra Printers — Free ZPL Export</title>
+<meta name="description" content="Export FNSKU labels as ZPL for Zebra thermal printers: Code 128 barcode, title and condition, ^PQ quantities, 203 or 300 dpi. Free, nothing to install.">
+<link rel="canonical" href="https://preplabel.vercel.app/fnsku-zpl-zebra">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrepLabel">
+<meta property="og:title" content="FNSKU Label ZPL for Zebra Printers — Free ZPL Export">
+<meta property="og:description" content="Export FNSKU labels as ZPL for Zebra thermal printers: Code 128 barcode, title and condition, ^PQ quantities, 203 or 300 dpi. Free, nothing to install.">
+<meta property="og:url" content="https://preplabel.vercel.app/fnsku-zpl-zebra">
+<meta property="og:image" content="https://preplabel.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PrepLabel","item":"https://preplabel.vercel.app/"},{"@type":"ListItem","position":2,"name":"FNSKU ZPL for Zebra","item":"https://preplabel.vercel.app/fnsku-zpl-zebra"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Zebra printers accept this ZPL?","acceptedAnswer":{"@type":"Answer","text":"Zebra desktop and industrial printers that use ZPL II, such as the GK, GX, ZD and ZT series. Printers from other brands may emulate ZPL; check your manual, or use the PDF instead."}},{"@type":"Question","name":"How do I print several copies of each label?","acceptedAnswer":{"@type":"Answer","text":"Set the number of labels per product in the list. Each SKU becomes one ^XA…^XZ format ending in ^PQ with that quantity, so the printer repeats it."}},{"@type":"Question","name":"Why is my label printing too small or too large?","acceptedAnswer":{"@type":"Answer","text":"The ZPL was made for a different resolution. Choose 203 or 300 dpi under Printer and alignment to match the printer, then export again."}},{"@type":"Question","name":"Does the ZPL include anything besides the label content?","acceptedAnswer":{"@type":"Answer","text":"No. It contains only the barcode, FNSKU, title and condition. No credit or branding is added to unit labels."}}]},{"@type":"WebApplication","name":"FNSKU Label ZPL for Zebra Printers","url":"https://preplabel.vercel.app/fnsku-zpl-zebra","description":"Export FNSKU labels as ZPL for Zebra thermal printers: Code 128 barcode, title and condition, ^PQ quantities, 203 or 300 dpi. Free, nothing to install.","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://preplabel.vercel.app/about"}}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">PrepLabel</a>
+    <nav aria-label="Main"><a href="/">FNSKU labels</a><a href="/fnsku-pdf-to-thermal">PDF to thermal</a><a href="/suffocation-warning-label">Prep labels</a><a href="/fnsku-labeling-requirements-2026">Requirements</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">PrepLabel</a> › FNSKU ZPL for Zebra</p>
+    <section class="hero">
+      <h1>FNSKU Label ZPL for Zebra Printers</h1>
+      <p class="lead">Download ready-to-send ZPL for your FNSKU labels: one format per SKU with the quantity built in, sized for 203 or 300 dpi Zebra printers.</p>
+    </section>
+    <section class="tool card" aria-label="FNSKU and prep label generator"><div id="pl-tool" data-preset="zpl"><noscript><p class="notice">PrepLabel needs JavaScript to build labels in your browser.</p></noscript></div></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> To print FNSKU labels from ZPL, add your FNSKUs above, choose a thermal roll size, set your printer's resolution under <em>Printer and alignment</em> and click <em>Download ZPL (Zebra)</em>. Send the .zpl file to the printer with Zebra Setup Utilities, a shared-printer copy command or port 9100. Quantities are printed by the printer itself with <code>^PQ</code>.</p>
+      <h2>What the ZPL looks like</h2>
+      <p>This is the exact output for one 2 × 1 in label at 203 dpi with a quantity of 24:</p>
+      <pre><code>^XA
+^CI28
+^PW406
+^LL203
+^LH0,0
+^FO58,12^BY2^BCN,105,N,N,N^FDX001ABC123^FS
+^FO12,124^FB382,1,0,C^A0N,22,22^FH\^FDX001ABC123^FS
+^FO12,149^FB382,1,0,C^A0N,19,19^FH\^FDStainless Steel Water Bottle, 750 ml, Blue^FS
+^FO12,170^FB382,1,0,C^A0N,19,19^FH\^FDNew^FS
+^PQ24
+^XZ</code></pre>
+      <table>
+        <thead><tr><th>Command</th><th>What it does here</th></tr></thead>
+        <tbody>
+          <tr><td><code>^PW406 ^LL203</code></td><td>Label width and length in dots: 2 × 1 in at 203 dpi</td></tr>
+          <tr><td><code>^BY2 ^BCN</code></td><td>Code 128 barcode with 2-dot modules, no interpretation line (the FNSKU is printed separately)</td></tr>
+          <tr><td><code>^FB … ,C ^A0N</code></td><td>Centred text block in Zebra's scalable font for the FNSKU, title and condition</td></tr>
+          <tr><td><code>^FH\</code></td><td>Lets special characters such as ^ and ~ be sent as hex codes</td></tr>
+          <tr><td><code>^PQ24</code></td><td>Print 24 copies of this label</td></tr>
+        </tbody>
+      </table>
+      <h2>How to send ZPL to a Zebra printer</h2>
+      <ul>
+        <li><strong>Zebra Setup Utilities (Windows):</strong> select the printer, open the communication window and send the .zpl file.</li>
+        <li><strong>Shared printer on Windows:</strong> share the Zebra printer, then run <code>copy /b fnsku-labels.zpl \\localhost\ZebraShareName</code> in Command Prompt.</li>
+        <li><strong>Network printer:</strong> send the file to port 9100, for example <code>nc 192.168.1.50 9100 &lt; fnsku-labels.zpl</code> on macOS or Linux.</li>
+        <li><strong>macOS or Linux with CUPS:</strong> add the printer as a raw queue and print the file with <code>lp -o raw</code>.</li>
+      </ul>
+      <h2>ZPL or PDF?</h2>
+      <p>ZPL skips the printer driver, so there's no paper-size or scaling dialog to get wrong, and a run of 200 labels is a few kilobytes. PDF works with every printer, including Rollo, DYMO and printers that don't understand ZPL, and shows exactly what you'll get. Both use the same layout. Set the resolution to match the printer: a 203 dpi file on a 300 dpi printer prints about two thirds of the intended size.</p>
+      <p>Before sending a big batch, print a single copy (change the quantity to 1) and scan it. If the barcode sits off-centre, check the label width setting on the printer matches the roll.</p>
+      <h2 id="faq">FAQ</h2>
+      <details><summary>Which Zebra printers accept this ZPL?</summary><p>Zebra desktop and industrial printers that use ZPL II, such as the GK, GX, ZD and ZT series. Printers from other brands may emulate ZPL; check your manual, or use the PDF instead.</p></details>
+      <details><summary>How do I print several copies of each label?</summary><p>Set the number of labels per product in the list. Each SKU becomes one ^XA…^XZ format ending in ^PQ with that quantity, so the printer repeats it.</p></details>
+      <details><summary>Why is my label printing too small or too large?</summary><p>The ZPL was made for a different resolution. Choose 203 or 300 dpi under Printer and alignment to match the printer, then export again.</p></details>
+      <details><summary>Does the ZPL include anything besides the label content?</summary><p>No. It contains only the barcode, FNSKU, title and condition. No credit or branding is added to unit labels.</p></details>
+      <h2>More PrepLabel guides</h2>
+      <ul class="related"><li><a href="/">FNSKU label generator</a></li><li><a href="/fnsku-label-2x1-thermal">2x1 thermal FNSKU labels</a></li><li><a href="/dymo-30334-fnsku-labels">DYMO 30334 FNSKU labels</a></li><li><a href="/fnsku-pdf-to-thermal">Seller Central PDF to thermal</a></li><li><a href="/fnsku-labels-from-csv">Bulk FNSKU labels from CSV</a></li><li><a href="/suffocation-warning-label">Suffocation warning labels</a></li><li><a href="/sold-as-set-label">Sold as set labels</a></li><li><a href="/expiration-date-label">Expiration date labels</a></li><li><a href="/bin-location-labels">Bin location labels</a></li><li><a href="/fnsku-labeling-requirements-2026">FNSKU labeling requirements 2026</a></li></ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. General information, not legal advice. Amazon changes its rules, so confirm current requirements in Seller Central.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>PrepLabel</h4><ul><li><a href="/">FNSKU label generator</a></li><li><a href="/fnsku-pdf-to-thermal">PDF to thermal converter</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Guides</h4><ul><li><a href="/fnsku-label-2x1-thermal">2x1 thermal FNSKU labels</a></li><li><a href="/dymo-30334-fnsku-labels">DYMO 30334 FNSKU labels</a></li><li><a href="/fnsku-pdf-to-thermal">Seller Central PDF to thermal</a></li><li><a href="/fnsku-labels-from-csv">Bulk FNSKU labels from CSV</a></li><li><a href="/fnsku-zpl-zebra">FNSKU ZPL for Zebra</a></li><li><a href="/suffocation-warning-label">Suffocation warning labels</a></li><li><a href="/sold-as-set-label">Sold as set labels</a></li><li><a href="/expiration-date-label">Expiration date labels</a></li><li><a href="/bin-location-labels">Bin location labels</a></li><li><a href="/fnsku-labeling-requirements-2026">FNSKU labeling requirements 2026</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p class="legal">PrepLabel is an independent tool. It is not affiliated with, endorsed by or sponsored by Amazon. Amazon, FBA and Seller Central are trademarks of Amazon.com, Inc. or its affiliates. Avery, Brother, DYMO, Zebra, Rollo and Munbyn are trademarks of their owners and are named only to describe compatible label sizes and printers.</p>
+    <p>© 2026 PrepLabel · Free tools that respect your privacy.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

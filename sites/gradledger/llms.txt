@@ -1,0 +1,25 @@
+# GradLedger
+
+> GradLedger is a free homeschool transcript generator for high school (grades 9 to 12, plus high school credit earned in grade 8). It works with no signup and runs entirely in the browser (student records are never uploaded). It calculates exact unweighted and weighted GPA (configurable Honors, AP and dual-enrollment weights, plus/minus grades, 10-point or 7-point percentage scales), credits per year and by subject, and downloads a one-page transcript PDF in three designs. It also writes course descriptions from templates (no AI), keeps an hours log that converts hours to credits, and prints report cards. Every feature is free with no paid tier; each PDF carries a small "Prepared with GradLedger" footer line.
+
+## Tool
+- [Free homeschool transcript generator](https://gradledger.vercel.app/): courses by grade, exact GPA, credits by subject, transcript, report card, course descriptions and hours log PDFs.
+
+## Calculators and guides
+- [Homeschool GPA calculator](https://gradledger.vercel.app/homeschool-gpa-calculator): GPA = sum of (grade points × credits) ÷ graded credits; weighted GPA adds +0.5 Honors and +1.0 AP/dual enrollment by default. Shows every step.
+- [How many hours is a homeschool credit?](https://gradledger.vercel.app/homeschool-credit-hours-calculator): usually 120 to 180 hours per credit (120 is the traditional Carnegie unit; many families use 150 to 180 for lab sciences). Hours-to-credits and weekly planning calculator.
+- [Homeschool course description generator](https://gradledger.vercel.app/homeschool-course-description-generator): template-based descriptions with typical topics for 44 common courses; copy, PDF or save to the transcript.
+- [Homeschool hours tracker](https://gradledger.vercel.app/homeschool-hours-tracker): log time by course and date, totals, credits, CSV and PDF export.
+- [Dual enrollment on a homeschool transcript](https://gradledger.vercel.app/dual-enrollment-homeschool-transcript): listing college courses, credit conversion (a common rule of thumb is 1 high school credit per one-semester college course of 3+ semester hours), weighting and notes.
+- [Homeschool transcript template](https://gradledger.vercel.app/homeschool-transcript-template): what the transcript contains, three designs, by-year vs by-subject layouts.
+- [Homeschool report card template](https://gradledger.vercel.app/homeschool-report-card-template): one-year report card with grades, credits, GPA, attendance and comments.
+
+## Key facts
+- Price: completely free. No paid tier, no per-transcript fee.
+- Privacy: records stay in the browser's local storage on the user's device; JSON backup and restore. No account. Analytics are cookie-free page counts only.
+- Output: PDF generated on the device (US Letter or A4). Transcripts are labelled "Parent-issued homeschool transcript".
+- Scope: record-keeping tool, not legal advice; homeschool laws and college requirements vary by state and college. Not affiliated with any school, college, testing organization or government agency.
+
+## Optional
+- [About](https://gradledger.vercel.app/about)
+- [Privacy & Terms](https://gradledger.vercel.app/privacy)

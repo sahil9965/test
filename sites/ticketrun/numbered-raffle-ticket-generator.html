@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Numbered Raffle Ticket Generator — Free PDF, No Signup</title>
+<meta name="description" content="Free numbered raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.">
+<link rel="canonical" href="https://ticketrun.vercel.app/numbered-raffle-ticket-generator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#be123c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TicketRun">
+<meta property="og:title" content="Numbered Raffle Ticket Generator — Free PDF, No Signup">
+<meta property="og:description" content="Free numbered raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.">
+<meta property="og:url" content="https://ticketrun.vercel.app/numbered-raffle-ticket-generator">
+<meta property="og:image" content="https://ticketrun.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TicketRun","item":"https://ticketrun.vercel.app/"},{"@type":"ListItem","position":2,"name":"Numbered raffle ticket generator","item":"https://ticketrun.vercel.app/numbered-raffle-ticket-generator"}]},{"@type":"WebApplication","name":"Numbered Raffle Ticket Generator","url":"https://ticketrun.vercel.app/numbered-raffle-ticket-generator","description":"Free numbered raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://ticketrun.vercel.app/about"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the largest range I can number?","acceptedAnswer":{"@type":"Answer","text":"Up to 20,000 tickets per PDF and numbers up to 99,999,999. For a bigger run, make several PDFs with consecutive ranges, for example 1–20000 and 20001–40000."}},{"@type":"Question","name":"Can I skip numbers or reprint a few tickets?","acceptedAnswer":{"@type":"Answer","text":"Yes. To reprint, set the first and last number to just the tickets you need, for example 137 to 137. Keep the same prefix and digits so the reprint matches."}},{"@type":"Question","name":"Does the number print on the stub and the ticket?","acceptedAnswer":{"@type":"Answer","text":"Yes, by default. You can switch the stub to big-number style for coat check or admission tickets, or turn the stub off for drink tickets."}},{"@type":"Question","name":"How do I number tickets for two different raffles?","acceptedAnswer":{"@type":"Answer","text":"Use a prefix (for example A- and B-) or a different colour for each raffle, so stubs from the two drums can't be mixed up."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">TicketRun</a>
+    <nav aria-label="Main"><a href="/">Ticket generator</a><a href="/raffle-winner-picker">Winner picker</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">TicketRun</a> › Numbered raffle ticket generator</p>
+    <section class="hero">
+      <h1>Numbered Raffle Ticket Generator</h1>
+      <p class="lead">Sequential numbers on every ticket and matching stub, from 1 to 20,000, with prefixes, zero padding and cut-and-stack ordering. Free PDF, no signup.</p>
+    </section>
+    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool" data-preset="raffle" data-end="500"></div></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> A numbered raffle ticket generator prints a unique, sequential number on each ticket and the same number on its stub, so you don't have to type numbers into a template or run a mail merge. Set the first and last number above, choose how the numbers look, and download a PDF ready to print and cut.</p>
+
+      <h2>Number formats you can make</h2>
+      <table>
+        <thead><tr><th>Setting</th><th>Example</th><th>When to use it</th></tr></thead>
+        <tbody>
+          <tr><td>Digits: Auto</td><td>001 … 500</td><td>The default. Every number has the same width, which sorts and reads more easily.</td></tr>
+          <tr><td>Digits: No zeros</td><td>1 … 500</td><td>Small events where zeros look odd.</td></tr>
+          <tr><td>Fixed digits</td><td>00001 … 00500</td><td>When later batches will go past the current number of digits.</td></tr>
+          <tr><td>Prefix</td><td>A-001, B-001</td><td>Several raffles or ticket colours at one event, or a year code such as 27-001.</td></tr>
+          <tr><td>Suffix</td><td>001-PTA</td><td>Marking which group sold the ticket.</td></tr>
+          <tr><td>Label</td><td>No. 001, # 001, Ticket 001</td><td>Change or clear the word printed before the number.</td></tr>
+          <tr><td>Start anywhere</td><td>501 … 1000</td><td>Printing a second batch that carries on from the first.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Why matching stub numbers matter</h2>
+      <p>The stub is your record of who bought each ticket. If a stub and ticket ever disagree, a winner can't prove their win, or two people can claim the same number. Hand-typed templates and copied pages are where that usually goes wrong. TicketRun draws both halves from the same number in a single pass, so they can't drift apart, and a sheet with a jam can be reprinted on its own because every page shows its sheet number and range.</p>
+
+      <h2>Cut-and-stack numbering</h2>
+      <p>If you cut the whole print run at once on a stack cutter, ordinary page order leaves you with piles like 1, 11, 21, 31… that have to be sorted by hand. Choose <em>Cut-and-stack</em> and TicketRun lays the numbers out so each pile comes out in sequence. With 1,000 tickets at 10 per page you print 100 sheets; after cutting, the first pile holds 0001–0100, the second 0101–0200, and so on.</p>
+      <ol class="steps">
+        <li>Choose <em>Number order: Cut-and-stack</em> before downloading.</li>
+        <li>Print all sheets and keep them together in the order they came out of the printer.</li>
+        <li>Cut the stack along the crop marks. Each pile is a complete run you can band into books.</li>
+      </ol>
+
+      <h2 id="books">Seller books and the tracking sheet</h2>
+      <p>For raffles sold by volunteers, open <em>Seller books and tracking sheet</em> in the generator. Enter the tickets per book (25 is common) and tick <em>Print the book number on each stub</em>. Then download the seller log: one row per book with its number range, the seller's name and phone, and columns for tickets sold, unsold tickets returned, cash due and cash received. At the end, sold + returned + missing should add up to the tickets printed.</p>
+
+      <h2>Generator, Word template or numbering machine?</h2>
+      <table>
+        <thead><tr><th>Method</th><th>Numbering</th><th>Effort for 500 tickets</th></tr></thead>
+        <tbody>
+          <tr><td>TicketRun</td><td>Automatic on ticket and stub, any range</td><td>One PDF; print and cut</td></tr>
+          <tr><td>Word template</td><td>Typed by hand, or SEQ fields or mail merge</td><td>Set up fields or a data source, then check every page (<a href="/how-to-number-raffle-tickets-in-word">see how</a>)</td></tr>
+          <tr><td>Numbering stamp</td><td>Stamped by hand, two impressions per ticket</td><td>1,000 stamps</td></tr>
+          <tr><td>Pre-printed double roll</td><td>Factory numbered, no event details</td><td>Buy and tear; no custom text</td></tr>
+        </tbody>
+      </table>
+      <h2 id="faq">Frequently asked questions</h2>
+      <details><summary>What's the largest range I can number?</summary><p>Up to 20,000 tickets per PDF and numbers up to 99,999,999. For a bigger run, make several PDFs with consecutive ranges, for example 1–20000 and 20001–40000.</p></details>
+      <details><summary>Can I skip numbers or reprint a few tickets?</summary><p>Yes. To reprint, set the first and last number to just the tickets you need, for example 137 to 137. Keep the same prefix and digits so the reprint matches.</p></details>
+      <details><summary>Does the number print on the stub and the ticket?</summary><p>Yes, by default. You can switch the stub to big-number style for coat check or admission tickets, or turn the stub off for drink tickets.</p></details>
+      <details><summary>How do I number tickets for two different raffles?</summary><p>Use a prefix (for example A- and B-) or a different colour for each raffle, so stubs from the two drums can't be mixed up.</p></details>
+      <h2>More ticket types and guides</h2>
+      <ul class="related">
+        <li><a href="/">Raffle tickets with numbers</a></li>
+        <li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li>
+        <li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li>
+        <li><a href="/coat-check-tickets">Coat check tickets</a></li>
+        <li><a href="/drink-tickets">Drink tickets</a></li>
+        <li><a href="/door-prize-tickets">Door prize tickets</a></li>
+        <li><a href="/meal-tickets">Meal tickets</a></li>
+        <li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li>
+        <li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li>
+        <li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li>
+        <li><a href="/how-to-number-raffle-tickets-in-word">Number tickets in Word</a></li>
+        <li><a href="/raffle-winner-picker">Raffle winner picker</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. General information, not legal advice.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>TicketRun</h4><ul><li><a href="/">Raffle ticket generator</a></li><li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li><li><a href="/raffle-winner-picker">Raffle winner picker</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
+      <div><h4>Number ranges</h4><ul><li><a href="/raffle-tickets-1-100">Raffle tickets 1-100</a></li><li><a href="/raffle-tickets-1-250">Raffle tickets 1-250</a></li><li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li><li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li><li><a href="/raffle-tickets-1-2000">Raffle tickets 1-2000</a></li><li><a href="/how-to-number-raffle-tickets-in-word">Numbering tickets in Word</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 TicketRun · Free tools that respect your privacy. TicketRun is an independent tool, not affiliated with Microsoft or any ticket or paper supplier.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

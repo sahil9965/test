@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Is Today an A Day or B Day? Rotation Day Checker | BellBook</title>
+<meta name="description" content="See whether today is an A day or a B day (or Day 1–6) from your school's BellBook link, plus tomorrow and the next two weeks. Free, private, no app.">
+<link rel="canonical" href="https://bellbook-app.vercel.app/today">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#92400e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BellBook">
+<meta property="og:title" content="Is Today an A Day or B Day? Rotation Day Checker">
+<meta property="og:description" content="See whether today is an A day or a B day (or Day 1–6) from your school's BellBook link, plus tomorrow and the next two weeks. Free, private, no app.">
+<meta property="og:url" content="https://bellbook-app.vercel.app/today">
+<meta property="og:image" content="https://bellbook-app.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BellBook","item":"https://bellbook-app.vercel.app/"},{"@type":"ListItem","position":2,"name":"What day is it today?","item":"https://bellbook-app.vercel.app/today"}]},{"@type":"WebApplication","name":"What day is it today? (BellBook)","url":"https://bellbook-app.vercel.app/today","description":"Shows today's A/B or rotation day from a school's shared BellBook link.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"MiniTools","url":"https://bellbook-app.vercel.app/about"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the page know which day it is?","acceptedAnswer":{"@type":"Answer","text":"It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into the link."}},{"@type":"Question","name":"Where do I get the link for my school?","acceptedAnswer":{"@type":"Answer","text":"Ask the teacher or office that publishes your rotation calendar. Teachers and admins can make one for free with the A/B day calendar generator by clicking “Copy ‘What day is it?’ link”."}},{"@type":"Question","name":"Does the link still work after a snow day?","acceptedAnswer":{"@type":"Answer","text":"Only if the calendar was updated. Whoever made the link should mark the snow day in BellBook and share the new link, because each link holds a fixed copy of the calendar."}},{"@type":"Question","name":"Is any information sent to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The calendar sits after the # in the link, and browsers never send that part to the server. The page reads it on your device."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">BellBook</a>
+    <nav aria-label="Main"><a href="/">Calendar maker</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">BellBook</a> › What day is it today?</p>
+    <section class="hero">
+      <h1>Is today an A day or B day?</h1>
+      <p class="lead">Open your school's BellBook link to see today's rotation day, tomorrow's and the next two weeks. No app and no account.</p>
+    </section>
+    <section class="tool card" aria-label="Rotation day for today"><div id="bb-today" class="td"></div><noscript><p>This page needs JavaScript to read the calendar in the link.</p></noscript></section>
+    <article class="content narrow">
+      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Open the BellBook link your school or teacher shared and it shows today's rotation day straight away. Without a link, the page above shows an example calendar.</p>
+
+      <h2>Why you can't tell from the date</h2>
+      <p>On an A/B schedule the days alternate A, B, A, B, but only on school days. A three-day weekend, a teacher workday or a snow day stops the count, so a Monday can be an A day one week and a B day the next. That's why a printed list or a calendar that knows the days off is more reliable than guessing from the weekday.</p>
+
+      <h2>How teachers and schools make a link</h2>
+      <ol class="steps">
+        <li><strong>Build the calendar.</strong> Enter the school year, the rotation and the days off in the <a href="/">A/B day calendar generator</a>.</li>
+        <li><strong>Copy the link.</strong> Click “Copy ‘What day is it?’ link”. The whole calendar is packed into the link.</li>
+        <li><strong>Share it.</strong> Post it on the school website, pin it in Google Classroom, add it to a newsletter or save it to a phone's home screen.</li>
+        <li><strong>Update after closures.</strong> After a snow day, mark it in BellBook and share the new link. Old links keep showing the old calendar.</li>
+      </ol>
+
+      <h2>What the page shows</h2>
+      <table>
+        <thead><tr><th>Situation</th><th>What you see</th></tr></thead>
+        <tbody>
+          <tr><td>A school day</td><td>Today's label in large type (for example “B Day” or “Day 4”) and tomorrow's label</td></tr>
+          <tr><td>A weekend, holiday or snow day</td><td>“No school”, the reason, and the next school day with its label</td></tr>
+          <tr><td>Before the first day of school</td><td>The first day of school and the label it starts with</td></tr>
+          <tr><td>After the last day</td><td>The last day of the school year</td></tr>
+        </tbody>
+      </table>
+      <p>Below that is a list of the next 10 school days with their labels. You can check any other date with the date box, or add the whole rotation to your own calendar with the .ics button. Both work on phones.</p>
+
+      <h2>Private by design</h2>
+      <p>The calendar travels inside the link after the # sign. Browsers don't send that part to servers, so BellBook never receives your school's calendar or anything else about you. The page counts visits with cookie-free analytics only.</p>
+      <h2 id="faq">FAQ</h2>
+      <details><summary>How does the page know which day it is?</summary><p>It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into the link.</p></details>
+      <details><summary>Where do I get the link for my school?</summary><p>Ask the teacher or office that publishes your rotation calendar. Teachers and admins can make one for free with the <a href="/">A/B day calendar generator</a> by clicking “Copy ‘What day is it?’ link”.</p></details>
+      <details><summary>Does the link still work after a snow day?</summary><p>Only if the calendar was updated. Whoever made the link should mark the snow day in BellBook and share the new link, because each link holds a fixed copy of the calendar.</p></details>
+      <details><summary>Is any information sent to a server?</summary><p>No. The calendar sits after the # in the link, and browsers never send that part to the server. The page reads it on your device.</p></details>
+      <h2>More rotation calendars and planners</h2>
+      <ul class="related">
+        <li><a href="/">A/B day calendar generator</a></li>
+        <li><a href="/rotating-schedule-calendar-maker">Rotating schedule calendar maker</a></li>
+        <li><a href="/6-day-cycle-calendar">6-day rotation calendar</a></li>
+        <li><a href="/block-schedule-calendar">Block schedule calendar</a></li>
+        <li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li>
+        <li><a href="/second-semester-lesson-planner">Second semester lesson planner</a></li>
+        <li><a href="/teacher-planner-2027-2028">Teacher planner 2027–2028</a></li>
+        <li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the MiniTools team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>BellBook</h4><ul><li><a href="/">A/B day calendar generator</a></li><li><a href="/today">What day is it today?</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Calendars</h4><ul><li><a href="/rotating-schedule-calendar-maker">Rotating schedule maker</a></li><li><a href="/6-day-cycle-calendar">6-day cycle calendar</a></li><li><a href="/block-schedule-calendar">Block schedule calendar</a></li><li><a href="/teacher-planner-2027-2028">2027–28 calendar &amp; planner</a></li></ul></div>
+      <div><h4>Lesson planners</h4><ul><li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li><li><a href="/second-semester-lesson-planner">Second semester planner</a></li><li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft or Apple.</p>
+  </footer>
+</div>
+<script type="module" src="/today.js"></script>
+</body>
+</html>
