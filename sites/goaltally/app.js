@@ -54,7 +54,7 @@
   function graphFromSheet(cfg) {
     const su = GTS.graphSetup(cfg);
     return { ...GT.defaultGraph(), student: cfg.student || "", title: titleOf(cfg), yLabel: su.yLabel, series: su.series, rows: [], phases: [{ name: "Baseline", start: 0 }],
-      dateFmt: settings.dateFmt, crit: { ...GT.defaultGraph().crit, dir: su.dir, value: GTS.TYPES[cfg.type].group === "skill" ? 80 : 0 } };
+      dateFmt: settings.dateFmt, crit: { ...GT.defaultGraph().crit, dir: su.dir, value: su.dir === "up" ? 80 : 0 } };
   }
 
   /* ---------- Encrypted backup (AES-GCM, key from passphrase with PBKDF2-SHA256) ---------- */
@@ -241,13 +241,13 @@
      ===================================================================== */
   const GRAPH_PRESETS = {
     ab: () => ({ ...GT.defaultGraph(), title: "Manding for preferred items", student: "J.D.", yLabel: "Percent correct", trend: "ols",
-      rows: [20, 30, 20, 25, 30, 40, 50, 45, 60, 65, 70, 75, 85, 80, 90].map((v, i) => ({ d: GT.addDays("2026-09-01", i + Math.floor(i / 5) * 2), v: [v] })),
+      rows: [20, 30, 20, 25, 30, 40, 50, 45, 60, 65, 70, 75, 85, 80, 90].map((v, i) => ({ d: GT.addDays("2026-09-14", i + Math.floor(i / 5) * 2), v: [v] })), // school days, Mon-Fri
       phases: [{ name: "Baseline", start: 0 }, { name: "Intervention", start: 5 }],
       crit: { on: true, value: 80, n: 3, dir: "up", scope: "last", line: true, mark: true } }),
     iep: () => ({ ...GT.defaultGraph(), title: "Oral reading fluency (grade 2 passages)", student: "M.R.", yLabel: "Words correct per minute", xMode: "calendar", trend: "ols", style: "color",
-      rows: [["2026-09-08", 41], ["2026-09-10", 44], ["2026-09-12", 42], ["2026-09-19", 46], ["2026-09-26", 45], ["2026-10-03", 50], ["2026-10-10", 49], ["2026-10-17", 53], ["2026-10-24", 55]].map(([d, v]) => ({ d, v: [v] })),
+      rows: [["2026-08-25", 41], ["2026-08-27", 44], ["2026-08-28", 42], ["2026-09-04", 46], ["2026-09-11", 45], ["2026-09-18", 50], ["2026-09-25", 49], ["2026-10-02", 53]].map(([d, v]) => ({ d, v: [v] })), // weekly Friday probes
       phases: [{ name: "Baseline", start: 0 }, { name: "Repeated reading", start: 3 }],
-      aim: { on: true, x1: "2026-09-12", y1: 42, x2: "2027-01-29", y2: 72 },
+      aim: { on: true, x1: "2026-08-28", y1: 42, x2: "2027-01-29", y2: 72 },
       crit: { on: false, value: 72, n: 3, dir: "up", scope: "last", line: false, mark: true } }),
     reversal: () => ({ ...GT.defaultGraph(), title: "Aggression during work tasks", student: "K.L.", yLabel: "Instances per session", trend: "none",
       rows: [9, 11, 8, 10, 3, 2, 2, 1, 7, 9, 8, 2, 1, 1, 0, 1].map((v, i) => ({ d: "", v: [v] })),
@@ -489,6 +489,8 @@
       if (t.closest(".gt-phase") && t.dataset.p === "start") { renderPhases(); renderRows(); changed(); }
       if (t.id === "g-ns") {
         const n = +t.value;
+        const lost = g.rows.filter(r => (r.v || []).slice(n).some(v => v !== null && v !== undefined && v !== "")).length;
+        if (lost && !confirm(`Remove the values in series ${n + 1}${g.series.length > n + 1 ? "–" + g.series.length : ""} from ${lost} session${lost > 1 ? "s" : ""}?`)) { t.value = String(g.series.length); return; }
         while (g.series.length < n) g.series.push({ name: "" });
         g.series.length = n;
         g.rows.forEach(r => { r.v = (r.v || []).slice(0, n); });

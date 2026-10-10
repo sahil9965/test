@@ -75,9 +75,15 @@
   }
   function intervalInfo(cfg) {
     const sec = clamp(Math.round(+cfg.interval || 10), 5, 1800), min = clamp(+cfg.minutes || 10, 1, 240);
-    const n = Math.floor(min * 60 / sec);
-    return { sec, min, n: Math.min(n, 720), capped: n > 720 };
+    // At least one interval, even when the interval is longer than the observation.
+    const n = Math.max(1, Math.floor(min * 60 / sec + 1e-9));
+    return { sec, min, n: Math.min(n, 720), capped: n > 720, short: sec > min * 60 };
   }
+
+  // Marked intervals for behavior k out of n observed. A missed interval is left blank and "intervals
+  // observed" is lowered, so every mark counts wherever it is (capped at n).
+  const markedCount = (s, k, n) => Math.min(n, ((s.marks || [])[k] || []).filter(Boolean).length);
+  const lastMarked = s => Math.max(-1, ...(s.marks || []).map(m => (m || []).reduce((a, v, i) => v ? i : a, -1)));
 
   /* ---------- Session values for graphs ---------- */
   function sessionValues(cfg, s) {
@@ -104,7 +110,7 @@
     if (t === "latency") { const l = (s.lat || []).filter(isNum); return [l.length ? GT.round(GT.mean(l), 1) : null]; }
     if (["partial", "whole", "mts"].includes(t)) {
       const n = +s.n || intervalInfo(cfg).n;
-      return behaviorsOf(cfg).map((_, i) => { const mk = (s.marks || [])[i] || []; return n ? GT.round(mk.slice(0, n).filter(Boolean).length / n * 100, 1) : null; });
+      return behaviorsOf(cfg).map((_, i) => n ? GT.round(markedCount(s, i, n) / n * 100, 1) : null);
     }
     return [null];
   }
@@ -115,7 +121,9 @@
     if (t === "duration" && cfg.graphAs === "percent") y = "Percent of observation";
     const multi = t === "frequency" || T.group === "interval";
     const series = multi ? behaviorsOf(cfg).map(b => ({ name: behaviorsOf(cfg).length > 1 ? b : "" })) : [{ name: "" }];
-    return { yLabel: y, series, dir: T.group === "skill" || t === "latency" ? (t === "latency" ? "down" : "up") : "down" };
+    // Skills, whole interval and momentary time sampling usually track behaviors to increase (on-task,
+    // engagement); counts, durations, latency and partial interval usually track behaviors to reduce.
+    return { yLabel: y, series, dir: T.group === "skill" || t === "whole" || t === "mts" ? "up" : "down" };
   }
 
   /* ---------- Page building ---------- */
@@ -524,7 +532,7 @@
                 if (marked.some(Boolean)) rowCount++;
                 if (L.nb === 1) { if (marked[0]) ctext(it, x, y + 3, L.colW, h - 3, "X", { size: 11, bold: true, align: "center" }); }
                 else ctext(it, x, y + 4, L.colW, h - 4, beh.map((_, k) => marked[k] ? String.fromCharCode(65 + k) : "·").join(" "), { size: 8, bold: true, align: "center", pad: 1 });
-                if (i >= (+s.n || L.n)) L_(it, x + 2, y + h - 2, x + L.colW - 2, y + 2, 0.5, "#999");
+                if (i >= (+s.n || L.n) && i > lastMarked(s)) L_(it, x + 2, y + h - 2, x + L.colW - 2, y + 2, 0.5, "#999"); // not observed (stopped early)
               } else if (L.nb > 1) ctext(it, x, y + 4, L.colW, h - 4, beh.map((_, k) => String.fromCharCode(65 + k)).join(" "), { size: 8, align: "center", c: "#555555", pad: 1 });
             }
             for (let i = i1; i < i0 + L.C; i++) { const x = M + L.labW + (i - i0) * L.colW; R_(it, x, y, L.colW, h, { fill: "#f7f7f7", stroke: "#bdbdbd" }); }
@@ -545,9 +553,9 @@
             T_(it, M, yy, fit(label, 200, 8.5, true) + ":", 8.5, { bold: true });
             const x = M + Math.min(210, textWidth(fit(label, 200, 8.5, true) + ":", 8.5, true) + 8);
             if (s) {
-              const n = +s.n || L.n, c = ((s.marks || [])[k] || []).slice(0, n).filter(Boolean).length;
+              const n = +s.n || L.n, c = markedCount(s, k, n);
               T_(it, x, yy, `${c} of ${n} intervals = ${fmtNum(c / n * 100, 1)}%`, 9, { bold: true });
-            } else T_(it, x, yy, `______ of ${L.n} intervals  =  ______ %`, 9);
+            } else T_(it, x, yy, `______ of ${L.n} interval${L.n === 1 ? "" : "s"}  =  ______ %`, 9);
           });
         },
       });
@@ -595,10 +603,10 @@
     const info = { warnings: [], key: "", P };
     const sessions = Array.isArray(opts.sessions) ? opts.sessions : [];
     if (T.group === "skill") info.key = codesFor(cfg).key + (cfg.type === "task" ? ` Chaining: ${cfg.chaining === "forward" ? "forward" : cfg.chaining === "backward" ? "backward" : "total task"}.` : "");
-    else if (T.group === "interval") { const L = intervalLayout(P, cfg); info.key = `${RULES[cfg.type]} Interval: ${L.sec >= 60 && L.sec % 60 === 0 ? L.sec / 60 + " min" : L.sec + " s"} · Observation: ${fmtNum(intervalInfo(cfg).min, 2)} min · ${L.n} intervals per observation.`; if (intervalInfo(cfg).capped) info.warnings.push("Observations are limited to 720 intervals."); }
+    else if (T.group === "interval") { const L = intervalLayout(P, cfg); info.key = `${RULES[cfg.type]} Interval: ${L.sec >= 60 && L.sec % 60 === 0 ? L.sec / 60 + " min" : L.sec + " s"} · Observation: ${fmtNum(intervalInfo(cfg).min, 2)} min · ${L.n} interval${L.n === 1 ? "" : "s"} per observation.`; const ii = intervalInfo(cfg); if (ii.capped) info.warnings.push("Observations are limited to 720 intervals."); else if (ii.short) info.warnings.push("The interval is longer than the observation, so the sheet has a single interval. Shorten the interval or lengthen the observation."); else if (ii.n * ii.sec < ii.min * 60 - 1e-6) info.warnings.push(`${fmtNum(ii.min, 2)} min isn't a whole number of ${ii.sec}-second intervals, so the last ${fmtNum(ii.min * 60 - ii.n * ii.sec, 1)} s aren't covered.`); }
     else if (cfg.type === "frequency") info.key = "Make one tally mark each time the behavior starts. Rate = total ÷ minutes observed" + (cfg.rate === "hour" ? " × 60 (per hour)." : cfg.rate === "min" ? " (per minute)." : ".");
     else if (cfg.type === "duration") info.key = "Write the start and stop time of each episode (or its length in minutes:seconds). Total duration = sum of all episodes." + (cfg.graphAs === "percent" ? " % of time = total duration ÷ time observed × 100." : "");
-    else if (cfg.type === "latency") info.key = "Latency = seconds from the end of the instruction (or opportunity) to the start of the response. Start timing when the instruction ends; stop when the response begins.";
+    else if (cfg.type === "latency") info.key = "Latency = seconds from the instruction (or other cue) to the start of the response. On this sheet, start timing when the instruction ends and stop when the response begins, the same way every time.";
     else if (cfg.type === "abc") info.key = "Write what happened right before (A), what the student did (B) and what happened right after (C), as soon as possible after each incident. Describe what you saw, not why.";
     const header = (it, pageNo) => pageHeader(it, P, cfg, info, opts, pageNo);
     let pages;

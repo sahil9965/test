@@ -1,6 +1,6 @@
 // Generates every GoalTally page (home, landing pages, about, privacy) plus sw.js from one layout.
 // Usage: node src/goaltally/pages.mjs   (writes into sites/goaltally/)
-import { writeFileSync, readFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
@@ -113,8 +113,13 @@ ${scripts}</body>
 
 const report = [];
 for (const p of PAGES) {
-  const html = page(p);
-  writeFileSync(join(OUT, (p.slug || "index") + ".html"), html);
+  let html = page(p);
+  // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+  const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+  const file = join(OUT, (p.slug || "index") + ".html");
+  const prev = existsSync(file) ? (readFileSync(file, "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(file, html);
   const words = strip((html.match(/<main[\s\S]*<\/main>/) || [""])[0]).split(" ").length;
   report.push(`${(p.slug || "/").padEnd(40)} title ${String(p.title.length).padStart(2)}  desc ${String(p.desc.length).padStart(3)}  words ${words}`);
   if (p.title.length < 45 && !/about|privacy/.test(p.slug)) report.push("   ! title short");

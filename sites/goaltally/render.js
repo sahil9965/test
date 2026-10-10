@@ -112,33 +112,34 @@
     return doc.output("blob");
   }
 
-  // Phase summary table + mastery + progress note, laid out in PDF points.
-  function summaryItems(model, note, W, x0, y0) {
-    const it = [], m = model, unit = m.pct ? "%" : "";
-    const T = (x, y, s, size, o = {}) => it.push({ t: "text", x, y, s, size, bold: !!o.bold, anchor: o.anchor || "start", c: o.c || "#111111" });
-    let y = y0;
-    T(x0, y + 12, "Summary by phase", 12, { bold: true }); y += 22;
+  // Phase summary table + progress note as blocks of fixed height, so long notes flow onto more pages.
+  function summaryBlocks(model, note, W, x0) {
+    const m = model, unit = m.pct ? "%" : "", blocks = [];
+    const T = (it, x, y, s, size, o = {}) => it.push({ t: "text", x, y, s, size, bold: !!o.bold, anchor: o.anchor || "start", c: o.c || "#111111" });
     const cols = [["Phase", 0.26], ["Data points", 0.12], ["Mean", 0.12], ["Median", 0.12], ["Range", 0.16], [`Trend per ${m.cal ? "week" : "session"}`, 0.12], ["PND", 0.1]];
     let x = x0;
     const xs = cols.map(c => { const r = x; x += c[1] * W; return r; });
-    it.push({ t: "rect", x: x0, y, w: W, h: 18, fill: "#efefef" });
-    cols.forEach((c, i) => T(xs[i] + 4, y + 12.5, c[0], 8.5, { bold: true }));
-    y += 18;
+    blocks.push({ h: 40, keep: true, draw(it, y) {
+      T(it, x0, y + 12, "Summary by phase", 12, { bold: true });
+      it.push({ t: "rect", x: x0, y: y + 22, w: W, h: 18, fill: "#efefef" });
+      cols.forEach((c, i) => T(it, xs[i] + 4, y + 34.5, c[0], 8.5, { bold: true }));
+    } });
     const f = v => GT.isNum(v) ? GT.fmtNum(v, 1) + unit : "–";
     for (const s of m.stats) {
       if (!s.sessions) continue;
       const row = [GT.fit(s.name || `Phase ${s.k + 1}`, cols[0][1] * W - 8, 9), String(s.n), f(s.mean), f(s.median), s.n ? `${GT.fmtNum(s.min, 1)}–${GT.fmtNum(s.max, 1)}${unit}` : "–", s.slope === null ? "–" : (s.slope >= 0 ? "+" : "") + GT.fmtNum(s.slope, 2), s.pnd === null ? "–" : GT.fmtNum(s.pnd, 0) + "%"];
-      row.forEach((v, i) => T(xs[i] + 4, y + 12.5, v, 9));
-      it.push({ t: "line", x1: x0, y1: y + 18, x2: x0 + W, y2: y + 18, w: 0.5, c: "#cccccc" });
-      y += 18;
+      blocks.push({ h: 18, draw(it, y) {
+        row.forEach((v, i) => T(it, xs[i] + 4, y + 12.5, v, 9));
+        it.push({ t: "line", x1: x0, y1: y + 18, x2: x0 + W, y2: y + 18, w: 0.5, c: "#cccccc" });
+      } });
     }
-    T(x0, y + 12, "Trend per session uses a least-squares fit. PND = percentage of points that don't overlap the previous phase (" + (m.g.crit && m.g.crit.dir === "down" ? "below its lowest point" : "above its highest point") + ").", 7.5, { c: "#55555f" });
-    y += 22;
+    const foot = `Trend per ${m.cal ? "week" : "session"} uses a least-squares fit. PND = percentage of points that don't overlap the previous phase (` + (m.g.crit && m.g.crit.dir === "down" ? "below its lowest point" : "above its highest point") + ").";
+    blocks.push({ h: 22, draw(it, y) { T(it, x0, y + 12, foot, 7.5, { c: "#55555f" }); } });
     if (note) {
-      T(x0, y + 12, "Progress note", 12, { bold: true }); y += 20;
-      for (const l of GT.wrap(note, W, 10)) { T(x0, y + 10, l, 10); y += 14; }
+      blocks.push({ h: 20, keep: true, draw(it, y) { T(it, x0, y + 12, "Progress note", 12, { bold: true }); } });
+      for (const l of GT.wrap(note, W, 10)) blocks.push({ h: 14, draw(it, y) { T(it, x0, y + 10, l, 10); } });
     }
-    return { items: it, y };
+    return blocks;
   }
   async function graphPdf(scene, opt = {}) {
     const jsPDF = await loadJsPDF();
@@ -146,15 +147,23 @@
     const doc = newDoc(jsPDF, pw, ph), M = 36;
     const s = Math.min((pw - 2 * M) / scene.w, (ph - 2 * M) / scene.h);
     const gx = (pw - scene.w * s) / 2, W = pw - 2 * M;
-    let y0 = M + scene.h * s + 16;
-    // The summary goes under the graph when it fits; otherwise on page 2, with the graph centred on page 1.
-    const own = !opt.summary || y0 + summaryItems(scene.model, opt.note, W, M, 0).y > ph - M;
+    const bottom = ph - M - 10; // keep the credit line clear
+    const blocks = opt.summary ? summaryBlocks(scene.model, opt.note, W, M) : [];
+    const y0 = M + scene.h * s + 16;
+    // The summary goes under the graph when all of it fits; otherwise it starts on page 2, with the graph centred on page 1.
+    const own = !opt.summary || y0 + blocks.reduce((a, b) => a + b.h, 0) > bottom;
     drawPdf(doc, scene.items, { s, x: gx, y: own ? (ph - scene.h * s) / 2 : M });
     if (opt.summary) {
-      if (own) { doc.addPage([pw, ph], "landscape"); y0 = M; }
-      drawPdf(doc, summaryItems(scene.model, opt.note, W, M, y0).items);
+      let y = y0;
+      if (own) { doc.addPage([pw, ph], "landscape"); y = M; }
+      blocks.forEach((b, i) => {
+        const need = b.h + (b.keep && blocks[i + 1] ? blocks[i + 1].h : 0);
+        if (y + need > bottom && y > M) { doc.addPage([pw, ph], "landscape"); y = M; }
+        const it = []; b.draw(it, y); drawPdf(doc, it); y += b.h;
+      });
+      // Page 1 carries the graph's own credit line; every later page gets one too.
       const credit = { t: "text", x: pw - M, y: ph - 18, s: GT.CREDIT, size: 8, anchor: "end", c: "#8a8a96", href: GT.CREDIT_URL };
-      if (doc.getNumberOfPages() > 1) drawPdf(doc, [credit]);
+      for (let p = 2; p <= doc.getNumberOfPages(); p++) { doc.setPage(p); drawPdf(doc, [credit]); }
     }
     meta(doc, opt.title || "ABA graph");
     return doc.output("blob");

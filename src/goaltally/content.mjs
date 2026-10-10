@@ -369,7 +369,7 @@ export const PAGES = [
       h2("Duration, latency and inter-response time"),
       tbl(["Measure", "Time from…", "Example"], [
         ["Duration", "the start of the behavior to its end", "A tantrum lasted 2 minutes."],
-        ["Latency", "the end of an instruction or cue to the start of the response", "Started work 40 seconds after the instruction."],
+        ["Latency", "an instruction or cue (the stimulus) to the start of the response", "Started work 40 seconds after the instruction."],
         ["Inter-response time (IRT)", "the end of one response to the start of the next", "5 minutes between requests for a break."],
       ]),
       h2("How to record duration"),
@@ -387,7 +387,7 @@ export const PAGES = [
       ["Should I graph total duration or duration per episode?", "Graph total duration (or % of time) when the goal is less time in the behavior overall. If the goal is shorter episodes, divide the total by the number of episodes, which the sheet also records."],
       ["How do I record episodes that run into each other?", "Set an end rule in the definition, such as 10 seconds without the behavior. Anything before that counts as the same episode."],
       ["What observation length should I use?", "Keep it the same each time if you can. If it varies, graph % of time instead of total minutes."],
-      ["Is latency the same as response time?", "In behavior analysis, latency is the time from the end of the instruction or cue to the start of the response, not how long the response takes."],
+      ["Is latency the same as response time?", "Latency is the time from a stimulus, such as an instruction or cue, to the start of the response, not how long the response takes. Decide whether you start timing when the instruction begins or when it ends (this sheet uses the end) and do it the same way every time."],
     ],
   },
 
@@ -422,7 +422,7 @@ export const PAGES = [
     faq: [
       ["Why does partial interval recording overestimate?", "An interval is scored even if the behavior lasted one second of it, so a short behavior can make a whole interval count. That's why it suits behaviors you want to reduce: it won't make progress look better than it is."],
       ["Can I record more than one behavior?", "Yes, up to three. Each box shows letters (A, B, C) to circle, and the summary line gives a percentage for each behavior."],
-      ["What if I miss an interval?", "Mark it as not observed and leave it out of the total. When scoring on screen, lower <em>Intervals observed</em> to match."],
+      ["What if I miss an interval?", "Cross it out as not observed and leave it out of the total, so 1 missed interval out of 60 means dividing by 59. When scoring on screen, leave the box blank and lower <em>Intervals observed</em> by one for each missed interval."],
       ["Is partial interval the same as interval recording?", "It's one of three interval-based methods, alongside whole interval recording and momentary time sampling."],
     ],
   },
@@ -503,7 +503,7 @@ export const PAGES = [
       ["Is momentary time sampling a type of interval recording?", "It's usually grouped with interval methods, but you score only the moment each interval ends, not the whole interval."],
       ["Does momentary time sampling over- or underestimate?", "It can do either, depending on how the behavior is spread across the session and how long the intervals are. Shorter intervals reduce the error."],
       ["Can I observe more than one student?", "Yes. Rotate between students at each moment, or make one sheet per student. Up to three behaviors can be scored in each box."],
-      ["What if I'm not looking at the moment of the signal?", "Score within a second or two of the signal. If you missed it, mark the moment as not observed and lower the total."],
+      ["What if I'm not looking at the moment of the signal?", "Score within a second or two of the signal. If you missed it, cross the moment out as not observed and leave it out of the total. On screen, leave the box blank and lower <em>Intervals observed</em> by one."],
     ],
   },
 
@@ -690,7 +690,7 @@ export const PAGES = [
     h1: "About GoalTally",
     lead: "Free graphing and data collection tools for special-education teachers, BCBAs, RBTs, paraprofessionals and students, with no account and nothing uploaded.",
     body: [
-      p("GoalTally is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It does two connected jobs: it makes printable data sheets matched to how a goal is measured, and it turns session data into a correctly formatted ABA graph with phase-change lines, an aim line, a trend line and a mastery check."),
+      p("GoalTally is part of <a href=\"https://roohsites.com/\">Rooh Sites</a>’ collection of free, single-purpose web tools. It does two connected jobs: it makes printable data sheets matched to how a goal is measured, and it turns session data into a correctly formatted ABA graph with phase-change lines, an aim line, a trend line and a mastery check."),
       h2("Why we built it"),
       p("Data sheets tend to be either fixed PDFs that don't match the goal, or part of a full practice-management platform. Many teachers and BCBA students still build graphs in Excel by hand, redrawing phase lines every time data is added, and AI generators often ask for student details. GoalTally takes a narrower approach: configurable sheets, graphs that follow ABA conventions, and no student information leaving your device."),
       h2("How it works"),

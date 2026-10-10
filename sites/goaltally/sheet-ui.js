@@ -15,7 +15,7 @@
     task: "List the steps of a routine and score each step every session, then track % of steps done independently.",
     frequency: "Count each time the behavior happens. Add the minutes observed to turn counts into a rate.",
     duration: "Record how long each episode lasts. Total duration (or % of the session) is the measure.",
-    latency: "Time from the end of an instruction to the start of the response, one row per opportunity.",
+    latency: "Time from an instruction or cue to the start of the response, one row per opportunity.",
     partial: "Mark an interval if the behavior happens at any point in it. Best for brief or fast behaviors you want to reduce.",
     whole: "Mark an interval only if the behavior lasts the whole interval. Best for behaviors you want to increase, like on-task.",
     mts: "Look up only at the end of each interval and mark what you see at that moment. Lets one adult watch several students.",
@@ -142,7 +142,7 @@
       case "partial": case "whole": case "mts": {
         const ii = GTS.intervalInfo(c);
         h = row(`<div><label for="so-interval">Interval length (seconds)</label><input id="so-interval" type="number" min="5" max="1800" step="1" list="so-ivals" data-k="interval" value="${esc(c.interval)}"><datalist id="so-ivals">${[5, 10, 15, 20, 30, 60, 120, 300].map(v => `<option value="${v}">`).join("")}</datalist></div>`, num("minutes", "Observation length (minutes)", 1, 240)) +
-          row(num("perPage", "Observations per page", 1, 4), `<div><p class="hint gt-ivinfo">${ii.n} intervals of ${ii.sec >= 60 && ii.sec % 60 === 0 ? ii.sec / 60 + " min" : ii.sec + " s"} per observation.</p></div>`);
+          row(num("perPage", "Observations per page", 1, 4), `<div><p class="hint gt-ivinfo">${ii.n} interval${ii.n === 1 ? "" : "s"} of ${ii.sec >= 60 && ii.sec % 60 === 0 ? ii.sec / 60 + " min" : ii.sec + " s"} per observation.</p></div>`);
         break;
       }
       case "abc": h = row(sel("layout", "Layout", [["checklist", "Checklist (tick boxes)"], ["narrative", "Narrative (write-in)"]]), num("rows", "Rows (0 = fill the page)", 0, 60)) + (c.layout === "checklist" ? ta("antecedents", "Antecedent options, one per line", 5) + ta("consequences", "Consequence options, one per line", 5) : "") + chk("functionCol", "Add a “Possible function” column"); break;
@@ -163,7 +163,7 @@
     $(".gt-reccount", mount).textContent = mine.length;
     $(".gt-reclist ol", mount).innerHTML = mine.map(s => { const v = GTS.sessionValues(cfg, s); return `<li>${esc(GT.fmtDate(s.date, settings.dateFmt))}: ${v.map(x => GT.isNum(x) ? GT.fmtNum(x, 1) : "–").join(" / ")}${unitOf()} <button type="button" class="gt-x" data-del="${esc(s.id)}" aria-label="Delete the session from ${esc(GT.fmtDate(s.date, settings.dateFmt))}">×</button></li>`; }).join("");
     const ii = $(".gt-ivinfo", form);
-    if (ii) { const x = GTS.intervalInfo(cfg); ii.textContent = `${x.n} intervals of ${x.sec >= 60 && x.sec % 60 === 0 ? x.sec / 60 + " min" : x.sec + " s"} per observation.`; }
+    if (ii) { const x = GTS.intervalInfo(cfg); ii.textContent = `${x.n} interval${x.n === 1 ? "" : "s"} of ${x.sec >= 60 && x.sec % 60 === 0 ? x.sec / 60 + " min" : x.sec + " s"} per observation.`; }
   }
   const unitOf = () => /percent/i.test(GTS.graphSetup(cfg).yLabel) ? "%" : "";
 
@@ -350,7 +350,7 @@
     else if (t === "frequency") txt = GTS.behaviorsOf(cfg).map((b, i) => `${b || "Count"}: ${s.counts[i]}${cfg.rate !== "none" ? (GT.isNum(v[i]) ? ` = ${GT.fmtNum(v[i], 2)} per ${cfg.rate === "min" ? "minute" : "hour"}` : " (enter minutes observed for a rate)") : ""}`).join(" · ");
     else if (t === "duration") { const tot = s.episodes.reduce((a, b) => a + b, 0); txt = `${s.episodes.length} episode${s.episodes.length === 1 ? "" : "s"} · total ${GT.fmtClock(tot)}${cfg.graphAs === "percent" ? (GT.isNum(v[0]) ? ` · ${GT.fmtNum(v[0], 1)}% of time` : " (enter minutes observed for %)") : ""}`; }
     else if (t === "latency") txt = `${s.lat.length} trial${s.lat.length === 1 ? "" : "s"} · mean latency ${GT.isNum(v[0]) ? GT.fmtNum(v[0], 1) + " s" : "–"}`;
-    else txt = GTS.behaviorsOf(cfg).map((b, i) => `${GTS.behaviorsOf(cfg).length > 1 ? String.fromCharCode(65 + i) + ": " : ""}${s.marks[i].slice(0, s.n).filter(Boolean).length} of ${s.n} intervals = ${GT.fmtNum(v[i], 1)}%`).join(" · ");
+    else txt = GTS.behaviorsOf(cfg).map((b, i) => `${GTS.behaviorsOf(cfg).length > 1 ? String.fromCharCode(65 + i) + ": " : ""}${Math.min(s.n, s.marks[i].filter(Boolean).length)} of ${s.n} intervals = ${GT.fmtNum(v[i], 1)}%`).join(" · ");
     $(".sc-sum", dlg).textContent = txt;
   }
   const parseClock = s => { const m = String(s).trim().match(/^(?:(\d+):)?(\d{1,2})(?:\.(\d))?$/); if (!m) return null; return (+(m[1] || 0)) * 60 + (+m[2]) + (m[3] ? +m[3] / 10 : 0); };

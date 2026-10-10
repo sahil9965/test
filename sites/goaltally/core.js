@@ -132,10 +132,23 @@
   function fmtClock(sec) { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60; return h ? `${h}:${pad2(m)}:${pad2(s)}` : `${m}:${pad2(s)}`; }
 
   /* ---------- Paste parser (Excel / Google Sheets / CSV / plain lists) ---------- */
+  // Split on a delimiter, honouring CSV quotes ("Baseline, cold" stays one cell; "" is a literal quote).
+  function splitQuoted(line, d) {
+    const out = []; let cur = "", q = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (q) { if (ch === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+      else if (ch === '"' && !cur.trim()) { q = true; cur = ""; }
+      else if (ch === d) { out.push(cur.trim()); cur = ""; }
+      else cur += ch;
+    }
+    out.push(cur.trim());
+    return out;
+  }
   function splitLine(line, sep) {
-    if (sep === "tab") return line.split("\t").map(s => s.trim());
-    if (sep === ";") return line.split(";").map(s => s.trim());
-    if (sep === ",") return line.split(",").map(s => s.trim());
+    if (sep === "tab") return splitQuoted(line, "\t");
+    if (sep === ";") return splitQuoted(line, ";");
+    if (sep === ",") return splitQuoted(line, ",");
     // Whitespace: split on runs of 2+ spaces first; fall back to single spaces and glue word runs back together.
     let t = line.trim().split(/\s{2,}|\s*\|\s*/);
     if (t.length > 1) return t;
@@ -161,7 +174,9 @@
     if (toNum(tok) !== null) return "num";
     return "text";
   }
-  const HEAD = { session: /^(session|sess\.?|#|no\.?|day|trial|probe|week|obs(ervation)?|x)$/i, date: /date|^when$/i, phase: /phase|condition|cond\.?|treatment|label/i };
+  const HEAD = { session: /^(sessions?|sess\.?|(session|sess\.?|day|trial|probe|week|obs(ervation)?)\s*(#|no\.?|num\.?|number)|#|no\.?|days?|trials?|probes?|weeks?|obs(ervations?)?|x)$/i, date: /date|^when$/i, phase: /phase|condition|cond\.?|treatment|label/i };
+  // A column of consecutive whole numbers starting at 0 or 1 is a session counter, not data.
+  const isCounter = v => v.length >= 2 && v.every((x, j) => x !== null && Number.isInteger(x) && (j === 0 ? x >= 0 && x <= 1 : x === v[j - 1] + 1));
   function parsePaste(text, opts = {}) {
     const pref = opts.pref || "mdy", defYear = opts.defYear || new Date().getUTCFullYear();
     const warnings = [];
@@ -183,6 +198,12 @@
         else if (col.phase < 0 && HEAD.phase.test(h)) col.phase = i;
         else { col.values.push(i); names.push(h.trim()); }
       });
+      // Unrecognised header for a session counter ("Lesson", "Sitzung", "Session ID"): detect it from the numbers.
+      if (col.session < 0 && col.values.length >= 2) {
+        const c0 = col.values[0];
+        const v = toks.slice(start).filter(t => t.some(x => x)).map(t => toNum(t[c0]));
+        if (isCounter(v)) { col.session = c0; col.values.shift(); names.shift(); }
+      }
     } else {
       const phaseLine = k => k.filter(x => x !== "empty").length === 1 && k.includes("text");
       const dataRows = kinds.slice(start).filter(k => !phaseLine(k));
@@ -197,8 +218,7 @@
       if (col.values.length >= 2) {
         const c0 = col.values[0];
         const v = toks.slice(start).filter((t, j) => !phaseLine(kinds[start + j])).map(t => toNum(t[c0]));
-        const seq = v.length >= 2 && v.every((x, j) => x !== null && Number.isInteger(x) && (j === 0 ? x >= 0 && x <= 1 : x === v[j - 1] + 1));
-        if (seq) { col.session = c0; col.values.shift(); }
+        if (isCounter(v)) { col.session = c0; col.values.shift(); }
       }
     }
     // Excel ABA templates often put each phase in its own column (blank cells break the line).
@@ -532,6 +552,24 @@
       const a = phaseLabs[i], nx = phaseLabs[i + 1];
       if (nx.cx + nx.w / 2 > R) nx.cx = R - nx.w / 2;
       a.cx = Math.min(a.cx, nx.cx - nx.w / 2 - 10 - a.w / 2);
+    }
+    // Too many or too long labels to spill sideways: keep every label inside its own phase region
+    // (smaller text, two lines, then shortened with an ellipsis) so none is pushed off the graph.
+    const crowded = phaseLabs.length && (phaseLabs[0].cx - phaseLabs[0].w / 2 < L - 0.5 || phaseLabs.some(a => a.cx + a.w / 2 > R + 0.5));
+    if (crowded) {
+      labLines = 0;
+      const avail = a => Math.max(18, a.r.right - a.r.left - 6);
+      const widest = (ls, sz) => Math.max(...ls.map(l => textWidth(l, sz, true)));
+      // One text size for every label: the largest (13 down to 9) at which each fits its region in 2 lines.
+      let size = 13;
+      while (size > 9 && phaseLabs.some(a => { const ls = wordWrap(a.r.p.name, avail(a), size); return ls.length > 2 || widest(ls, size) > avail(a); })) size--;
+      for (const a of phaseLabs) {
+        let lines = wordWrap(a.r.p.name, avail(a), size);
+        if (lines.length > 2) lines = [lines[0], lines.slice(1).join(" ")];
+        a.lines = lines.map(l => fit(l, avail(a), size, true));
+        a.size = size; a.w = Math.min(avail(a), widest(a.lines, size)); a.cx = (a.r.left + a.r.right) / 2;
+        labLines = Math.max(labLines, a.lines.length);
+      }
     }
     const T = y + 14 + (labLines ? labLines * 18 + 8 : 6);
     const zeroOff = m.yMin === 0 ? 8 : 0;
