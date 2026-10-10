@@ -42,7 +42,10 @@
     a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 60000);
   };
-  const today = () => new Date().toISOString().slice(0, 10);
+  // Local calendar date (YYYY-MM-DD) and local "YYYY-MM-DD HH:MM", not UTC.
+  const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const today = () => ymd(new Date());
+  const localStamp = iso => { const d = new Date(iso); return isNaN(d) ? String(iso).slice(0, 16) : `${ymd(d)} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`; };
   const slug = s => String(s).toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^-|-$/g, "");
   const num = (v, d = 0) => (Number.isFinite(parseFloat(v)) ? parseFloat(v) : d);
   const plural = (n, one, many = one + "s") => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
@@ -72,6 +75,14 @@
   if (!Array.isArray(S.items) || !S.items.length) S.items = structuredClone(defaults.items);
   S.custom.roll = { ...defaults.custom.roll, ...(S.custom.roll || {}) };
   S.custom.sheet = { ...defaults.custom.sheet, ...(S.custom.sheet || {}) };
+  // A saved stock id that no longer exists (or isn't offered on that tab) falls back to the default,
+  // so the select and the preview always agree.
+  const validStock = (id, ok) => (id === "custom-roll" || id === "custom-sheet" || (C.STOCK[id] && ok(C.STOCK[id])));
+  if (!validStock(S.fnsku.stock, s => !s.big)) S.fnsku.stock = defaults.fnsku.stock;
+  if (!validStock(S.prep.stock, () => true)) S.prep.stock = defaults.prep.stock;
+  if (!validStock(S.bin.stock, () => true)) S.bin.stock = defaults.bin.stock;
+  if (!validStock(S.test.stock, () => true)) S.test.stock = defaults.test.stock;
+  if (!validStock(S.conv.target, s => s.kind === "roll") || S.conv.target === "custom-sheet") S.conv.target = defaults.conv.target;
   const PRESETS = {
     "thermal-2x1": () => { S.tab = "fnsku"; S.fnsku.stock = "r-2x1"; },
     dymo: () => { S.tab = "fnsku"; S.fnsku.stock = "r-2.25x1.25"; },
@@ -84,7 +95,7 @@
     bin: () => { S.tab = "bin"; },
   };
   if (PRESETS[preset]) PRESETS[preset]();
-  if (!S.prep.date) { const d = new Date(Date.now() + 365 * 864e5); S.prep.date = d.toISOString().slice(0, 10); }
+  if (!S.prep.date) { const d = new Date(); d.setFullYear(d.getFullYear() + 1); S.prep.date = ymd(d); }
   let saveT = 0;
   const persist = () => { clearTimeout(saveT); saveT = setTimeout(() => store.set("state", S), 250); };
 
@@ -234,11 +245,21 @@
     });
     root.addEventListener("change", e => {
       const t = e.target;
-      if (t.matches("[data-stock]")) { st.stock = t.value; page = 0; if (cfg.onStock) cfg.onStock(); persist(); schedule(); }
+      if (t.matches("[data-stock]")) {
+        st.stock = t.value; page = 0;
+        const s = stockOf(st.stock);
+        if (s.kind === "sheet" && +st.start > s.cols * s.rows) st.start = 1; // a start position from another sheet layout
+        if (cfg.onStock) cfg.onStock(); persist(); schedule();
+      } else if (t.matches("[data-start]")) t.value = st.start; // show the clamped value once editing ends
     });
     root.addEventListener("input", e => {
       const t = e.target;
-      if (t.matches("[data-start]")) { st.start = Math.max(1, parseInt(t.value, 10) || 1); persist(); schedule(); }
+      if (t.matches("[data-start]")) {
+        // typing past the end of the sheet means "the last label", not "start over at 1"
+        const stock = stockOf(st.stock), per = stock.kind === "sheet" ? stock.cols * stock.rows : 1;
+        st.start = Math.min(per, Math.max(1, parseInt(t.value, 10) || 1));
+        persist(); schedule();
+      }
       else if (t.matches("[data-cal]")) { S.cal[t.dataset.cal] = num(t.value); $$(`[data-cal="${t.dataset.cal}"]`).forEach(o => { if (o !== t) o.value = t.value; }); persist(); schedule(); }
       else if (t.matches("[data-custom]")) {
         const [grp, key] = t.dataset.custom.split(".");
@@ -420,6 +441,7 @@
     const map = Object.entries(rep.mapping).map(([k, v]) => `${{ code: "FNSKU", title: "Title", condition: "Condition", qty: "Quantity" }[k]} ← ${esc(v)}`).join(" · ");
     box.innerHTML = rep.items.length ? `<p><strong>${plural(rep.items.length, "product")}, ${plural(labels, "label")}</strong> found in ${esc(source)}.</p>
       <p class="pl-hint">${map}</p>
+      ${rep.mapping.qty === undefined ? `<p class="pl-hint">No quantity column found, so each product gets 1 label. You can change the numbers in the list.</p>` : ""}
       ${rep.skipped.length ? `<p class="pl-hint">Skipped ${plural(rep.skipped.length, "row")}: ${rep.skipped.slice(0, 8).map(s => `line ${s.line} (${esc(s.reason)})`).join(", ")}${rep.skipped.length > 8 ? "…" : ""}</p>` : ""}
       <div class="pl-row-btns"><button type="button" class="btn sm" data-a="useReplace">Replace my list</button><button type="button" class="btn ghost sm" data-a="useAppend">Add to my list</button></div>`
       : `<p class="pl-msg err">No rows with an FNSKU or SKU found in ${esc(source)}.</p>`;
@@ -467,7 +489,7 @@
   }
   function renderLog() {
     const l = log();
-    $("[data-log]", F).innerHTML = l.length ? `<table class="pl-logt"><thead><tr><th>Date</th><th>Shipment</th><th>Labels</th></tr></thead><tbody>${l.slice(0, 20).map(e => `<tr><td>${esc(e.at.slice(0, 16).replace("T", " "))}</td><td>${esc(e.shipment || "–")}<br><span class="pl-hint">${plural(e.items.length, "SKU")} · ${esc(e.stock)} · ${e.kind.toUpperCase()}</span></td><td>${e.total}</td></tr>`).join("")}</tbody></table>
+    $("[data-log]", F).innerHTML = l.length ? `<table class="pl-logt"><thead><tr><th>Date</th><th>Shipment</th><th>Labels</th></tr></thead><tbody>${l.slice(0, 20).map(e => `<tr><td>${esc(localStamp(e.at))}</td><td>${esc(e.shipment || "–")}<br><span class="pl-hint">${plural(e.items.length, "SKU")} · ${esc(e.stock)} · ${e.kind.toUpperCase()}</span></td><td>${e.total}</td></tr>`).join("")}</tbody></table>
       <div class="pl-row-btns"><button type="button" class="btn ghost sm" data-a="logCsv">Export log as CSV</button><button type="button" class="btn ghost sm" data-a="logClear">Clear log</button></div>` : `<p class="pl-hint">Each PDF or ZPL you download is listed here with its SKUs and quantities (stored in this browser only).</p>`;
   }
   const csvCell = v => { const s = String(v ?? ""); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
@@ -638,7 +660,7 @@
         const okSize = size + 0.05 >= min;
         sizeHtml = `Warning text on this label: <strong>${fmtPt(size)} pt</strong>. ` + (okSize ? `<span class="ok">Meets the ${min} pt minimum.</span>` : `<span class="err">Below the ${min} pt minimum for this bag. Choose a bigger label or fewer languages.</span>`);
       } else if (p.type === "expiry") {
-        sizeHtml = `Date text size: <strong>${fmtPt(size)} pt</strong>. ` + (size >= 36 ? `<span class="ok">36 pt or larger.</span>` : `<span class="hint">Seller guides cite 36 pt or larger for expiration dates on cartons; use a bigger label for boxes.</span>`);
+        sizeHtml = `Date text size: <strong>${fmtPt(size)} pt</strong>. ` + (size >= 36 ? `<span class="ok">36 pt or larger.</span>` : `<span class="hint">Below 36 pt. Seller guides cite 36 pt or larger for expiration dates on cartons, and some for units too; choose a bigger label to reach it.</span>`);
       }
       const name = { suffocation: "Suffocation warning", set: "Set label", expiry: "Expiration date label", custom: "Custom label" }[p.type];
       const per = stock.kind === "sheet" ? stock.cols * stock.rows : 1;
@@ -667,7 +689,8 @@
     if (!b) return;
     if (b.dataset.a === "fill") {
       const st = stockOf(S.prep.stock);
-      S.prep.start = Math.max(1, parseInt($("#pl-p-start", PR).value, 10) || 1);
+      S.prep.start = Math.min(st.cols * st.rows, Math.max(1, parseInt($("#pl-p-start", PR).value, 10) || 1));
+      $("#pl-p-start", PR).value = S.prep.start;
       S.prep.qty = st.cols * st.rows - (Math.max(1, +S.prep.start) - 1);
       $("#pl-pqty", PR).value = S.prep.qty; persist(); pView.render();
     } else if (b.dataset.a === "pdf") {
@@ -723,6 +746,8 @@
         if (info.fit && !info.fit.ok) warns.push(`<strong>${esc(code)}</strong> is too long for a Code 128 barcode on this label. Use QR codes or a wider label.`);
         for (let k = 0; k < copies && draws.length < MAX_LABELS; k++) draws.push(d);
       }
+      if (list.length > 2000) warns.unshift(`Only the first 2,000 location codes are used (you have ${list.length.toLocaleString("en-US")}). Split the list into batches.`);
+      else if (list.length * copies > MAX_LABELS) warns.unshift(`Only the first ${MAX_LABELS.toLocaleString("en-US")} labels fit in one PDF. Lower the copies or split the list into batches.`);
       const per = stock.kind === "sheet" ? stock.cols * stock.rows : 1;
       const pages = stock.kind === "sheet" ? Math.ceil((draws.length + (Math.max(1, +st.start) - 1)) / per) : draws.length;
       return { stock, draws, warns, empty: "Add at least one location code.", summary: draws.length ? `<strong>${plural(draws.length, "label")}</strong> on ${stock.kind === "sheet" ? plural(pages, "sheet") + " of " : ""}${esc(stock.short)}` : "No locations yet." };
@@ -983,7 +1008,10 @@
       perFile.push(`${esc(file.name)}: ${plural(rec.count, "label")}`);
     }
     const n = conv.labels.length;
-    sum.innerHTML = n ? `Found <strong>${plural(n, "label")}</strong> (${perFile.join("; ")}). Check them below, then download.` : `<span class="err">No labels found</span> (${perFile.join("; ")}). Is this a Seller Central FNSKU label PDF?`;
+    const noBar = conv.labels.filter(l => !l.barcode).length;
+    sum.innerHTML = n ? `Found <strong>${plural(n, "label")}</strong> (${perFile.join("; ")}). Check them below, then download.` +
+      (noBar ? ` <span class="err">No barcode was recognised for ${plural(noBar, "label")}, so ${noBar === 1 ? "it was" : "they were"} split on white space. Make sure this is an FNSKU label PDF and check the thumbnails.</span>` : "")
+      : `<span class="err">No labels found</span> (${perFile.join("; ")}). Is this a Seller Central FNSKU label PDF?`;
     conv.labels.slice(0, 48).forEach((l, i) => { const fig = document.createElement("figure"); fig.appendChild(l.thumb); const cap = document.createElement("figcaption"); cap.textContent = String(i + 1); fig.appendChild(cap); thumbs.appendChild(fig); });
     if (n > 48) thumbs.insertAdjacentHTML("beforeend", `<p class="pl-hint">…and ${n - 48} more.</p>`);
     btn.disabled = !n;

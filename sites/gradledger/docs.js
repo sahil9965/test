@@ -202,17 +202,23 @@
     };
   }
 
-  /** Paragraph block (label + wrapped text). */
-  function paraBlock(th, label, text, w, size, color) {
-    const f = F(th, "body", size || 7.5, "normal", color || th.ink);
-    const lines = wrap(text, w, f);
-    const lh = (size || 7.5) * 1.32;
+  /** Paragraph block (label + wrapped text). Can be split across pages (see flow). */
+  function paraBlock(th, label, text, w, size, color, preLines) {
+    const sz = size || 7.5;
+    const f = F(th, "body", sz, "normal", color || th.ink);
+    const lines = preLines || wrap(text, w, f);
+    const lh = sz * 1.32, labH = label ? 10.5 : 0;
     return {
-      h: (label ? 10.5 : 0) + lines.length * lh + 2,
+      h: labH + lines.length * lh + 2,
       draw(doc, x, y) {
         let yy = y;
-        if (label) { doc.text(label, x, yy + 8, F(th, "head", 8, "bold")); yy += 10.5; }
-        lines.forEach((l, i) => doc.text(l, x, yy + size * 1.05 + i * lh, f));
+        if (label) { doc.text(label, x, yy + 8, F(th, "head", 8, "bold")); yy += labH; }
+        lines.forEach((l, i) => doc.text(l, x, yy + sz * 1.05 + i * lh, f));
+      },
+      split(room) {
+        const n = Math.floor((room - labH - 2) / lh);
+        if (n < 1 || n >= lines.length) return null;
+        return [paraBlock(th, label, "", w, sz, color, lines.slice(0, n)), paraBlock(th, label ? label + " (continued)" : "", "", w, sz, color, lines.slice(n))];
       },
     };
   }
@@ -233,10 +239,11 @@
   }
 
   const BOTTOM = 34; // space kept free for the footer line
+  const CONT_TOP = 58; // where content starts on a continuation page (see contHeader)
   function contHeader(doc, th, text) {
     doc.text(fit(text, doc.W - 72, F(th, "head", 9, "bold")), 36, 40, F(th, "head", 9, "bold"));
     doc.line(36, 46, doc.W - 36, 46, th.rule, 0.6);
-    return 58;
+    return CONT_TOP;
   }
 
   function gradeText(c, s, showPct) {
@@ -257,23 +264,27 @@
   }
 
   // ---- Transcript -------------------------------------------------------------------------------
-  function yearBlock(th, s, student, year, courses, w, showPct) {
+  /** One grade's block. part.courses shows only some of the year's courses (a year too long for one
+   *  page is split); part.cont marks a continuation; the credits/GPA line is printed on the last part. */
+  function yearBlock(th, s, student, year, courses, w, showPct, part) {
+    part = part || {};
+    const summary = part.summary !== false;
     const r = E.computeGPA(courses, s);
     const gW = showPct ? 50 : 34, cW = 34, tW = 24, pad = 5;
     const titleW = w - 2 * pad - gW - cW - tW;
     const f = F(th, "body", 8);
-    const rows = courses.map(c => {
+    const rows = (part.courses || courses).map(c => {
       let lines = wrap(c.title || "Untitled course", titleW - 4, f);
       if (lines.length > 2) lines = [lines[0], fit(lines.slice(1).join(" "), titleW - 4, f)];
       return { c, lines, h: lines.length * 9.3 + (lines.length > 1 ? 3.4 : 2.4) };
     });
-    const h = 15 + 12 + 1 + rows.reduce((a, b) => a + b.h, 0) + 16;
+    const h = 15 + 12 + 1 + rows.reduce((a, b) => a + b.h, 0) + (summary ? 16 : 4);
     return {
-      h,
+      h, rowHeights: rows.map(x => x.h),
       draw(doc, x, y) {
         const label = yearLabelOf(student, year);
         doc.rect(x, y, w, 15, { fill: th.fill });
-        doc.text(fit(E.gradeName(year) + (label ? "  ·  " + label : ""), w - 2 * pad, F(th, "head", 8.8, "bold")), x + pad, y + 10.6, F(th, "head", 8.8, "bold"));
+        doc.text(fit(E.gradeName(year) + (label ? "  ·  " + label : "") + (part.cont ? " (continued)" : ""), w - 2 * pad, F(th, "head", 8.8, "bold")), x + pad, y + 10.6, F(th, "head", 8.8, "bold"));
         let yy = y + 15;
         const hf = F(th, "body", 6.6, "bold", th.muted);
         const xT = x + pad + titleW, xG = xT + tW, xC = x + w - pad;
@@ -292,11 +303,13 @@
           doc.text(E.fmtCredits(E.parseCredits(row.c.credits)), xC, yy + 8.4, f, { align: "right" });
           yy += row.h;
         }
-        doc.line(x, yy + 1, x + w, yy + 1, th.rule, 0.5);
-        const sf = F(th, "body", 7.4, "bold");
-        doc.text(!r.earned && r.inProgress ? `In progress: ${E.fmtCredits(r.inProgress)} credits` : `Credits: ${E.fmtCredits(r.earned)}${r.inProgress ? ` (+${E.fmtCredits(r.inProgress)} IP)` : ""}`, x + pad, yy + 11, sf);
-        const gpa = r.unweighted == null ? "GPA: —" : r.anyWeighted ? `GPA ${r.unweighted}  ·  Weighted ${r.weighted}` : `GPA ${r.unweighted}`;
-        doc.text(gpa, xC, yy + 11, sf, { align: "right" });
+        if (summary) {
+          doc.line(x, yy + 1, x + w, yy + 1, th.rule, 0.5);
+          const sf = F(th, "body", 7.4, "bold");
+          doc.text(!r.earned && r.inProgress ? `In progress: ${E.fmtCredits(r.inProgress)} credits` : `Credits: ${E.fmtCredits(r.earned)}${r.inProgress ? ` (+${E.fmtCredits(r.inProgress)} IP)` : ""}`, x + pad, yy + 11, sf);
+          const gpa = r.unweighted == null ? "GPA: —" : r.anyWeighted ? `GPA ${r.unweighted}  ·  Weighted ${r.weighted}` : `GPA ${r.unweighted}`;
+          doc.text(gpa, xC, yy + 11, sf, { align: "right" });
+        }
         doc.rect(x, y, w, h, { stroke: th.light, lw: 0.6 });
       },
     };
@@ -375,13 +388,23 @@
     return (student.tests || []).filter(t => (t.name || "").trim()).map(t => `${t.name.trim()}${t.date ? ` (${E.fmtMonth(t.date) || t.date})` : ""}${t.score ? `: ${t.score}` : ""}`).join("   ·   ");
   }
 
-  /** Lay out blocks top to bottom, starting a continuation page when one doesn't fit. */
+  /** Lay out blocks top to bottom, starting a continuation page when one doesn't fit. A block taller
+   *  than a whole page (very long notes or comments) is split across pages when it can be. */
   function flow(doc, th, blocks, y, contText, x, w, imgs) {
-    for (const b of blocks) {
-      if (!b) continue;
-      if (y + b.h > doc.H - BOTTOM) { doc.add(); y = contHeader(doc, th, contText); }
+    const limit = doc.H - BOTTOM;
+    const queue = blocks.filter(Boolean);
+    let fresh = false; // true right after a page break
+    while (queue.length) {
+      const b = queue.shift();
+      if (y + b.h > limit) {
+        const parts = b.h > limit - CONT_TOP && b.split ? b.split(limit - y) : null;
+        if (parts) { parts[0].draw(doc, x, y, w, imgs); queue.unshift(parts[1]); doc.add(); y = contHeader(doc, th, contText); fresh = true; continue; }
+        if (!fresh) { queue.unshift(b); doc.add(); y = contHeader(doc, th, contText); fresh = true; continue; }
+        // Taller than a fresh page and can't be split: draw it as is.
+      }
       b.draw(doc, x, y, w, imgs);
       y += b.h + (b.gap == null ? 8 : b.gap);
+      fresh = false;
     }
     return y;
   }
@@ -401,21 +424,32 @@
     const by = E.byYear(student.courses);
     const years = E.YEARS.filter(yr => by[yr].length);
     const gap = 12, colW = (CW - gap) / 2;
-    const yb = years.map(yr => yearBlock(th, s, student, yr, by[yr], colW, s.showPercent));
-    if (!yb.length) { doc.text("No courses entered yet.", M, y + 12, F(th, "body", 9, "italic", th.muted)); y += 24; }
-    // Two-column flow: each grade block goes into the shorter column, in grade order.
+    if (!years.length) { doc.text("No courses entered yet.", M, y + 12, F(th, "body", 9, "italic", th.muted)); y += 24; }
+    // Two-column flow: each grade block goes into the shorter column, in grade order. A grade that fits
+    // on a fresh page moves there whole; a grade too long for any page is split ("Grade 9 (continued)").
+    const limit = doc.H - BOTTOM, cap = limit - CONT_TOP;
     let cols = [y, y];
-    for (const b of yb) {
-      let c = cols[0] <= cols[1] ? 0 : 1;
-      if (cols[c] + b.h > doc.H - BOTTOM) {
-        const other = 1 - c;
-        if (cols[other] + b.h <= doc.H - BOTTOM) c = other;
-        else { doc.add(); const top = contHeader(doc, th, contText); cols = [top, top]; c = 0; }
+    const newPage = () => { doc.add(); const top = contHeader(doc, th, contText); cols = [top, top]; };
+    for (const yr of years) {
+      const list = by[yr];
+      const rh = yearBlock(th, s, student, yr, list, colW, s.showPercent).rowHeights;
+      const rowsFitting = (from, room) => { let n = 0, hh = 15 + 12 + 1 + 4; while (from + n < list.length && hh + rh[from + n] <= room) hh += rh[from + n++]; return n; };
+      for (let start = 0; start < list.length;) {
+        const b = yearBlock(th, s, student, yr, list, colW, s.showPercent, { courses: list.slice(start), cont: start > 0 });
+        let c = cols[0] <= cols[1] ? 0 : 1;
+        if (cols[c] + b.h > limit && cols[1 - c] + b.h <= limit) c = 1 - c;
+        if (cols[c] + b.h > limit && b.h <= cap) { newPage(); c = 0; }
+        if (cols[c] + b.h <= limit) { b.draw(doc, M + c * (colW + gap), cols[c]); cols[c] += b.h + 8; break; }
+        // Too long for any page: fill the roomier column, then continue with the rest.
+        c = cols[0] <= cols[1] ? 0 : 1;
+        let n = rowsFitting(start, limit - cols[c]);
+        if (n < 2) { newPage(); c = 0; n = Math.max(1, rowsFitting(start, limit - cols[0])); }
+        const part = yearBlock(th, s, student, yr, list, colW, s.showPercent, { courses: list.slice(start, start + n), cont: start > 0, summary: false });
+        part.draw(doc, M + c * (colW + gap), cols[c]); cols[c] += part.h + 8;
+        start += n;
       }
-      b.draw(doc, M + c * (colW + gap), cols[c]);
-      cols[c] += b.h + 8;
     }
-    if (yb.length) y = Math.max(cols[0], cols[1]) + 2;
+    if (years.length) y = Math.max(cols[0], cols[1]) + 2;
     const tail = [summaryBlock(th, s, student, CW)];
     const tt = testsText(student);
     if (tt) tail.push(paraBlock(th, "Test scores", tt, CW, 7.8));

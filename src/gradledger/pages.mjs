@@ -1,6 +1,6 @@
 // Generates every GradLedger page (home, guides, about, privacy) from one layout.
 // Usage: node src/gradledger/pages.mjs   (writes into sites/gradledger/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -154,7 +154,8 @@ pages.push({
     APP_LD(`${URL}/`, NAME, "Free homeschool transcript generator. Builds a high school transcript PDF with weighted and unweighted GPA, credits by subject, course descriptions, report cards and an hours log, entirely in the browser."),
     { "@type": "HowTo", name: "How to make a homeschool transcript", totalTime: "PT30M", step: [
       { "@type": "HowToStep", name: "Enter school and student details", text: "Add your homeschool's name and address, the student's legal name, date of birth and graduation date, and the parent administrator's name." },
-      { "@type": "HowToStep", name: "List courses by grade", text: "Add each high school course under the grade it was taken in (9 to 12, plus high school courses taken in 8th grade) with its subject area and level." },
+      { "@type": "HowToStep", name: "List courses by grade", text: "Add each high school course under the grade it was taken in: grades 9 to 12, plus high school level courses taken in 8th grade." },
+      { "@type": "HowToStep", name: "Pick a subject area and level", text: "Give each course a subject area (English, mathematics, science and so on) for the credits-by-subject summary. Mark it Honors, AP or Dual enrollment only when it really was more demanding or taken for college credit." },
       { "@type": "HowToStep", name: "Enter grades and credits", text: "Type the final grade (a letter, a percentage, P for pass or IP for in progress) and the credits: usually 1.0 for a full-year course and 0.5 for a semester." },
       { "@type": "HowToStep", name: "Check GPA and credits", text: "GradLedger calculates GPA as the sum of grade points times credits divided by total graded credits, both unweighted and weighted, per year and cumulative." },
       { "@type": "HowToStep", name: "Download, sign and date", text: "Choose a design, download the transcript PDF, then sign and date it as the parent or school administrator." }] },
@@ -190,7 +191,7 @@ pages.push({
       <h2>How GPA is calculated on a homeschool transcript</h2>
       <p>GPA is a credit-weighted average. Each letter grade has a point value (A = 4.0, B = 3.0 and so on). Multiply the points by the course's credits to get <em>quality points</em>, add them up, and divide by the total credits of graded courses:</p>
       <p class="formula">GPA = Σ (grade points × credits) ÷ Σ graded credits</p>
-      <p>A weighted GPA adds a bonus to passing grades in harder courses, commonly +0.5 for Honors and +1.0 for AP or dual enrollment. Pass/fail and in-progress courses earn or show credit but are left out of the GPA. Here is a real 9th-grade year, calculated exactly as GradLedger does it:</p>
+      <p>A weighted GPA adds a bonus to passing grades in harder courses, commonly +0.5 for Honors and +1.0 for AP or dual enrollment. Pass/fail and in-progress courses earn or show credit but are left out of the GPA. Here is an example 9th-grade year, calculated exactly as GradLedger does it:</p>
       ${exTable}
       <p class="formula">${exMath}</p>
       <p>The student earned ${E.fmtCredits(R.earned)} credits (the pass/fail PE course counts toward credits, not GPA). Try your own numbers in the <a href="/homeschool-gpa-calculator">homeschool GPA calculator</a>, which shows every step.</p>
@@ -248,9 +249,9 @@ pages.push({
       <p>This is the example loaded in the calculator above, so you can check each number in the "Show the math" table.</p>
 
       <h2>Grade points on the 4.0 scale</h2>
-      <p>This is the plus/minus scale most US high schools use. If you don't give plus or minus grades, use only A = 4, B = 3, C = 2, D = 1 and F = 0 (untick plus/minus in the calculator).</p>
+      <p>This is a common plus/minus scale; schools differ slightly at the edges (some start D at 65, for example). If you don't give plus or minus grades, use only A = 4, B = 3, C = 2, D = 1 and F = 0 (untick plus/minus in the calculator).</p>
       ${scaleTable}
-      <p>Some families use a stricter 7-point percentage scale instead: ${esc(scale7)}. Some schools count A+ as 4.3; most cap it at 4.0. Whichever you use, print the scale on the transcript. GradLedger adds it automatically.</p>
+      <p>Some families use a stricter 7-point percentage scale instead: ${esc(scale7)}. Some schools count A+ as 4.3; many cap it at 4.0. Whichever you use, print the scale on the transcript. GradLedger adds it automatically.</p>
 
       <h2>Weighted vs unweighted GPA</h2>
       <table>
@@ -485,7 +486,7 @@ pages.push({
   faq: [
     ["Does dual enrollment go on a homeschool transcript?", "Yes. List each course in the year it was taken, with the grade from the college and the high school credit you award, marked as dual enrollment. Applicants usually also send the college's own transcript."],
     ["How many high school credits is a 3-credit college course?", "A widely used rule of thumb is 1 high school credit for a one-semester college course of 3 or more semester hours. Some families and states use 0.5. Pick one rule and apply it consistently."],
-    ["Which grade year does a summer dual-enrollment course go in?", "Most families list it in the school year that follows the summer, or the year the course mostly belongs to. Keep it consistent and match the dates on the college transcript."],
+    ["Which grade year does a summer dual-enrollment course go in?", "Either is defensible: many families list it in the school year that follows the summer, others in the year just finished. Pick one, use it every time, and match the term dates on the college transcript."],
     ["Should I use the college's grade?", "Yes. Use the final grade on the college transcript. Colleges may compare the two."],
     ["Are AP and dual enrollment weighted the same?", "Often, yes: many schools add 1.0 for both. In GradLedger you can set the Honors, AP and dual-enrollment weights separately in Settings."],
   ],
@@ -651,8 +652,11 @@ pages.push({
 // ---- write ------------------------------------------------------------------------------------
 let warnings = 0;
 for (const p of pages) {
-  const html = layout(p);
   const file = p.file || p.path.slice(1) + ".html";
+  let html = layout(p);
+  // The footer's network links are filled in by the orchestrator (tools/network.mjs); keep them.
+  const prev = existsSync(join(OUT, file)) ? readFileSync(join(OUT, file), "utf8").match(/<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/) : null;
+  if (prev) html = html.replace("<!--NETWORK:START--><!--NETWORK:END-->", () => prev[0]);
   if (p.title.length < 45 || p.title.length > 62) { warnings++; console.warn(`title ${p.title.length}: ${p.path}`); }
   if (p.desc.length < 120 || p.desc.length > 158) { warnings++; console.warn(`desc ${p.desc.length}: ${p.path}`); }
   writeFileSync(join(OUT, file), html);

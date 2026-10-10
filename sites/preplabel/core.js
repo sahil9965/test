@@ -16,7 +16,7 @@
   const C128 = ("212222 222122 222221 121223 121322 131222 122213 122312 132212 221213 221312 231212 112232 122132 122231 113222 123122 123221 223211 221132 221231 213212 223112 312131 311222 321122 321221 312212 322112 322211 212123 212321 232121 111323 131123 131321 112313 132113 132311 211313 231113 231311 112133 112331 132131 113123 113321 133121 313121 211331 231131 213113 213311 213131 311123 311321 331121 312113 312311 332111 314111 221411 431111 111224 111422 121124 121421 141122 141221 112214 112412 122114 122411 142112 142211 241211 221114 413111 241112 134111 111242 121142 121241 114212 124112 124211 411212 421112 421211 212141 214121 412121 111143 111341 131141 114113 114311 411113 411311 113141 114131 311141 411131 211412 211214 211232 2331112").split(" ");
 
   // Encodes printable ASCII (32-126). Uses subset A when there are no lowercase letters
-  // (Amazon's item-label spec names Code 128A), subset B otherwise, and switches to
+  // (some FNSKU labeling guides name Code 128A), subset B otherwise, and switches to
   // subset C only for long digit runs where it makes the symbol shorter.
   function code128(input) {
     const s = String(input);
@@ -470,7 +470,7 @@
         const n = qr.getModuleCount();
         const side = Math.min(h - 2 * pad, w * 0.48);
         const mod = side / (n + 2); // 1-module margin inside the area (plus label padding)
-        const qx = x + pad, qy = y + (h - mod * n) / 2;
+        const qx = x + pad + mod, qy = y + (h - mod * n) / 2;
         const rects = [];
         for (let r = 0; r < n; r++) {
           for (let k = 0; k < n;) {
@@ -741,6 +741,7 @@
     for (const it of items) {
       const code = normCode(it.code);
       if (!code) continue;
+      // ">" starts Zebra's Code 128 invocation codes, so it can't be sent as plain data.
       if (/[^\x20-\x7e]/.test(code) || code.includes(">")) { warnings.push(`${code}: has characters ZPL barcodes can't take; skipped.`); continue; }
       const qty = clamp(parseInt(it.qty, 10) || 0, 0, 99999);
       if (!qty) continue;
@@ -758,7 +759,9 @@
       const bw = nMod * mDots;
       const lines = ["^XA", "^CI28", `^PW${PW}`, `^LL${LL}`, "^LH0,0"];
       const by = Math.round((bars ? bars.y : stock.h * 0.08) * dpmm), bh = Math.round((bars ? bars.h : stock.h * 0.5) * dpmm);
-      lines.push(`^FO${Math.max(0, Math.round((PW - bw) / 2))},${by}^BY${mDots}^BCN,${bh},N,N,N^FD${code}^FS`);
+      // ^ ~ and \ in a SKU would be read as ZPL commands, so the barcode data goes through ^FH too.
+      const bcData = /[\^~\\]/.test(code) ? `^FH\\^FD${zplField(code)}` : `^FD${code}`;
+      lines.push(`^FO${Math.max(0, Math.round((PW - bw) / 2))},${by}^BY${mDots}^BCN,${bh},N,N,N${bcData}^FS`);
       for (const t of texts) {
         const hDots = Math.max(10, Math.round(t.s * PT * dpmm * 1.05));
         const top = Math.round((t.y - t.s * PT * 0.9) * dpmm);
@@ -771,10 +774,18 @@
   }
 
   /* ---------------------------------------------------------------- Import: CSV / TSV / XLSX */
+  // Counts a delimiter in a line, ignoring anything inside double quotes.
+  function countDelim(line, d) {
+    let n = 0, q = false;
+    for (const ch of line) { if (ch === '"') q = !q; else if (ch === d && !q) n++; }
+    return n;
+  }
   function parseDelimited(text) {
     text = String(text || "").replace(/^\uFEFF/, "");
     const firstLine = text.split(/\r?\n/).find(l => l.trim()) || "";
-    const delim = ["\t", ",", ";", "|"].map(d => [d, firstLine.split(d).length]).sort((a, b) => b[1] - a[1])[0][0];
+    // Rows copied from a spreadsheet are tab-separated, and product titles often contain commas,
+    // so a tab anywhere in the first line wins. Otherwise pick the most frequent of , ; | outside quotes.
+    const delim = firstLine.includes("\t") ? "\t" : [",", ";", "|"].map(d => [d, countDelim(firstLine, d)]).sort((a, b) => b[1] - a[1])[0][0];
     const rows = [];
     let row = [], f = "", q = false;
     for (let i = 0; i < text.length; i++) {
@@ -795,11 +806,14 @@
   }
   const HEADS = {
     code: ["fnsku", "fulfillment-network-sku", "fulfilment-network-sku", "x00", "amazon-barcode", "barcode", "label-barcode", "fba-barcode", "code", "merchant-sku", "seller-sku", "sku", "asin", "location", "bin"],
-    title: ["title", "product-title", "product-name", "item-name", "item-title", "name", "product", "description", "item-description"],
-    condition: ["condition", "condition-type", "item-condition", "product-condition"],
-    qty: ["qty", "quantity", "units", "labels", "copies", "count", "label-qty", "label-quantity", "labels-to-print", "number-of-labels", "units-to-label", "quantity-to-label", "units-to-send", "quantity-to-send", "quantity-shipped", "shipped"],
+    title: ["title", "product-title", "product-name", "item-name", "item-title", "name", "product", "description", "item-description",
+      "titel", "produktname", "artikelname", "bezeichnung", "titre", "nom-du-produit", "titulo", "nombre-del-producto", "titolo", "nome-prodotto", "naam", "productnaam"],
+    condition: ["condition", "condition-type", "item-condition", "product-condition", "zustand", "etat", "estado", "condizione", "conditie", "staat"],
+    qty: ["qty", "quantity", "units", "labels", "copies", "count", "label-qty", "label-quantity", "labels-to-print", "number-of-labels", "units-to-label", "quantity-to-label", "units-to-send", "quantity-to-send", "quantity-shipped", "shipped",
+      "menge", "anzahl", "stuckzahl", "quantite", "cantidad", "unidades", "quantita", "aantal"],
   };
-  const normHead = h => String(h || "").trim().toLowerCase().replace(/[\s_]+/g, "-").replace(/[^a-z0-9-]/g, "");
+  // Header names are compared without case, accents, spaces or underscores ("Quantité" = "quantite").
+  const normHead = h => String(h || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase().replace(/[\s_]+/g, "-").replace(/[^a-z0-9-]/g, "");
   function mapRows(rows) {
     const report = { items: [], skipped: [], mapping: {}, header: false };
     if (!rows.length) return report;

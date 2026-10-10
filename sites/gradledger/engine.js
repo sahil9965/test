@@ -411,6 +411,9 @@
     return { v: 1, school: { name: "", address: "", phone: "", email: "", admin: "", logo: "", signature: "" }, settings: clone(DEFAULT_SETTINGS), students: [st], current: st.id, savedAt: "", backupAt: "" };
   }
 
+  // Maximum lengths kept when records are loaded. The UI sets the same limits as maxlength on every
+  // field, so nothing a parent types is ever cut off silently on the next visit.
+  const LIMITS = { schoolName: 200, address: 500, phone: 60, email: 120, admin: 200, name: 200, studentId: 60, notes: 4000, yearLabel: 40, attendance: 200, comments: 3000, title: 200, grade: 20, provider: 200, college: 60, desc: 6000, materials: 1000, topics: 2000, other: 500, logNote: 300, testName: 80, testDate: 20, testScore: 80 };
   const str = (v, max) => String(v == null ? "" : v).slice(0, max || 2000);
   const isImg = v => typeof v === "string" && /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(v) && v.length < 2e6;
   /** Validate and normalise data loaded from storage or from a backup file. Throws on garbage. */
@@ -418,7 +421,7 @@
     if (!raw || typeof raw !== "object" || !Array.isArray(raw.students)) throw new Error("This file isn't a GradLedger backup.");
     const d = emptyData();
     const sc = raw.school || {};
-    d.school = { name: str(sc.name, 200), address: str(sc.address, 500), phone: str(sc.phone, 60), email: str(sc.email, 120), admin: str(sc.admin, 200), logo: isImg(sc.logo) ? sc.logo : "", signature: isImg(sc.signature) ? sc.signature : "" };
+    d.school = { name: str(sc.name, LIMITS.schoolName), address: str(sc.address, LIMITS.address), phone: str(sc.phone, LIMITS.phone), email: str(sc.email, LIMITS.email), admin: str(sc.admin, LIMITS.admin), logo: isImg(sc.logo) ? sc.logo : "", signature: isImg(sc.signature) ? sc.signature : "" };
     d.settings = settingsWithDefaults(raw.settings);
     if (!/^#[0-9a-f]{6}$/i.test(d.settings.color)) d.settings.color = DEFAULT_SETTINGS.color;
     if (!["classic", "modern", "minimal"].includes(d.settings.template)) d.settings.template = "classic";
@@ -427,28 +430,28 @@
     for (const k of Object.keys(d.settings.goals)) { const n = Number(d.settings.goals[k]); d.settings.goals[k] = Number.isFinite(n) && n >= 0 && n <= 99 ? n : DEFAULT_SETTINGS.goals[k] || 0; }
     d.students = raw.students.slice(0, 50).map(s => {
       const st = newStudent({ id: str(s.id, 40) || uid() });
-      st.name = str(s.name, 200); st.dob = /^\d{4}-\d{2}-\d{2}$/.test(s.dob) ? s.dob : ""; st.address = str(s.address, 500);
-      st.studentId = str(s.studentId, 60); st.gradDate = /^\d{4}-\d{2}$/.test(s.gradDate) ? s.gradDate : ""; st.notes = str(s.notes, 4000);
+      st.name = str(s.name, LIMITS.name); st.dob = /^\d{4}-\d{2}-\d{2}$/.test(s.dob) ? s.dob : ""; st.address = str(s.address, LIMITS.address);
+      st.studentId = str(s.studentId, LIMITS.studentId); st.gradDate = /^\d{4}-\d{2}$/.test(s.gradDate) ? s.gradDate : ""; st.notes = str(s.notes, LIMITS.notes);
       st.years = {};
-      for (const y of YEARS) if (s.years && s.years[y]) st.years[y] = { label: str(s.years[y].label, 40) };
+      for (const y of YEARS) if (s.years && s.years[y]) st.years[y] = { label: str(s.years[y].label, LIMITS.yearLabel) };
       st.attendance = {}; st.comments = {};
       for (const y of YEARS) {
-        if (s.attendance && s.attendance[y] != null) st.attendance[y] = str(s.attendance[y], 40);
-        if (s.comments && s.comments[y] != null) st.comments[y] = str(s.comments[y], 3000);
+        if (s.attendance && s.attendance[y] != null) st.attendance[y] = str(s.attendance[y], LIMITS.attendance);
+        if (s.comments && s.comments[y] != null) st.comments[y] = str(s.comments[y], LIMITS.comments);
       }
       st.courses = (Array.isArray(s.courses) ? s.courses : []).slice(0, 400).map(c => {
         const g = c.gen || {};
         return newCourse(YEARS.includes(Number(c.year)) ? Number(c.year) : 9, {
-          id: str(c.id, 40) || uid(), title: str(c.title, 200), subject: SUBJECT_NAME[c.subject] ? c.subject : "elec",
-          level: LEVEL_NAME[c.level] ? c.level : "R", grade: str(c.grade, 20), credits: c.credits === "" ? "" : parseCredits(c.credits),
-          dur: c.dur === "year" || c.dur === "sem" ? c.dur : "", provider: str(c.provider, 200), transfer: !!c.transfer, college: str(c.college, 60),
-          hours: c.hours === "" || c.hours == null ? "" : Math.max(0, Math.min(5000, Number(c.hours) || 0)), desc: str(c.desc, 6000),
-          gen: { materials: str(g.materials, 1000), topics: str(g.topics, 2000), acts: (Array.isArray(g.acts) ? g.acts : []).filter(k => ACT[k]), evals: (Array.isArray(g.evals) ? g.evals : []).filter(k => EVAL[k]), actsOther: str(g.actsOther, 500), evalsOther: str(g.evalsOther, 500), style: ["standard", "concise", "detailed"].includes(g.style) ? g.style : "standard" },
+          id: str(c.id, 40) || uid(), title: str(c.title, LIMITS.title), subject: SUBJECT_NAME[c.subject] ? c.subject : "elec",
+          level: LEVEL_NAME[c.level] ? c.level : "R", grade: str(c.grade, LIMITS.grade), credits: c.credits === "" ? "" : parseCredits(c.credits),
+          dur: c.dur === "year" || c.dur === "sem" ? c.dur : "", provider: str(c.provider, LIMITS.provider), transfer: !!c.transfer, college: str(c.college, LIMITS.college),
+          hours: c.hours === "" || c.hours == null ? "" : Math.max(0, Math.min(5000, Number(c.hours) || 0)), desc: str(c.desc, LIMITS.desc),
+          gen: { materials: str(g.materials, LIMITS.materials), topics: str(g.topics, LIMITS.topics), acts: (Array.isArray(g.acts) ? g.acts : []).filter(k => ACT[k]), evals: (Array.isArray(g.evals) ? g.evals : []).filter(k => EVAL[k]), actsOther: str(g.actsOther, LIMITS.other), evalsOther: str(g.evalsOther, LIMITS.other), style: ["standard", "concise", "detailed"].includes(g.style) ? g.style : "standard" },
         });
       });
       const ids = new Set(st.courses.map(c => c.id));
-      st.log = (Array.isArray(s.log) ? s.log : []).slice(0, 20000).filter(e => e && ids.has(e.courseId) && /^\d{4}-\d{2}-\d{2}$/.test(e.date)).map(e => ({ id: str(e.id, 40) || uid(), date: e.date, courseId: e.courseId, min: Math.max(0, Math.min(24 * 60, Math.round(Number(e.min) || 0))), note: str(e.note, 300) }));
-      st.tests = (Array.isArray(s.tests) ? s.tests : []).slice(0, 30).map(t => ({ name: str(t.name, 80), date: str(t.date, 20), score: str(t.score, 80) }));
+      st.log = (Array.isArray(s.log) ? s.log : []).slice(0, 20000).filter(e => e && ids.has(e.courseId) && /^\d{4}-\d{2}-\d{2}$/.test(e.date)).map(e => ({ id: str(e.id, 40) || uid(), date: e.date, courseId: e.courseId, min: Math.max(0, Math.min(24 * 60, Math.round(Number(e.min) || 0))), note: str(e.note, LIMITS.logNote) }));
+      st.tests = (Array.isArray(s.tests) ? s.tests : []).slice(0, 30).map(t => ({ name: str(t.name, LIMITS.testName), date: str(t.date, LIMITS.testDate), score: str(t.score, LIMITS.testScore) }));
       return st;
     });
     if (!d.students.length) d.students = [newStudent()];
@@ -504,6 +507,6 @@
     settingsWithDefaults, parseGrade, parseCredits, computeGPA, byYear, subjectTotals, ratio, fmtCredits, fmtPoints,
     creditsFromMinutes, planHours, fmtHours, round1, fmtDateLong, fmtDateShort, fmtMonth, yearLabel, gradeName,
     joinList, splitList, generateDescription, findLibrary, scaleRows, legendText, durationOf,
-    uid, newCourse, newStudent, emptyData, normalize, loggedMinutes, courseHours, logToCSV, exampleStudent, clone,
+    uid, newCourse, newStudent, emptyData, normalize, loggedMinutes, courseHours, logToCSV, exampleStudent, clone, LIMITS,
   };
 });

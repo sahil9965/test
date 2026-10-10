@@ -15,6 +15,7 @@
   const opt = (v, label, sel) => `<option value="${esc(v)}"${String(v) === String(sel) ? " selected" : ""}>${esc(label)}</option>`;
   const subjOpts = sel => E.SUBJECTS.map(([k, n]) => opt(k, n, sel)).join("");
   const levelOpts = sel => E.LEVELS.map(([k, n]) => opt(k, n, sel)).join("");
+  const ml = k => ` maxlength="${E.LIMITS[k]}"`; // same limits normalize() keeps on reload
   const fileSafe = s => (String(s || "").normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-") || "student").slice(0, 60);
 
   // ---- Storage ------------------------------------------------------------------------------
@@ -200,28 +201,28 @@
       panel("student").innerHTML = `
         <div class="grid2">
           <fieldset class="gl-box"><legend>Student</legend>
-            <label for="gl-s-name">Full legal name</label><input id="gl-s-name" data-f="st.name" value="${esc(st.name)}" autocomplete="off" placeholder="First Middle Last">
+            <label for="gl-s-name">Full legal name</label><input id="gl-s-name" data-f="st.name"${ml("name")} value="${esc(st.name)}" autocomplete="off" placeholder="First Middle Last">
             <div class="row">
               <div><label for="gl-s-dob">Date of birth</label><input id="gl-s-dob" type="date" data-f="st.dob" value="${esc(st.dob)}"></div>
-              <div><label for="gl-s-sid">Student ID (optional)</label><input id="gl-s-sid" data-f="st.studentId" value="${esc(st.studentId)}" autocomplete="off"></div>
+              <div><label for="gl-s-sid">Student ID (optional)</label><input id="gl-s-sid" data-f="st.studentId"${ml("studentId")} value="${esc(st.studentId)}" autocomplete="off"></div>
             </div>
             <div class="row">
               <div><label for="gl-s-gm">Graduation month</label><select id="gl-s-gm" data-grad="m"><option value="">Month</option>${["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].map((m, i) => opt(m, ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][i], gm)).join("")}</select></div>
               <div><label for="gl-s-gy">Graduation year</label><select id="gl-s-gy" data-grad="y"><option value="">Year</option>${years.map(y => opt(y, y, gy)).join("")}</select></div>
             </div>
             <p class="gl-hint">The graduation year fills in each grade's school year (class of 2027: grade 9 is 2023–2024).</p>
-            <label for="gl-s-addr">Student address</label><textarea id="gl-s-addr" data-f="st.address" rows="2" placeholder="Street&#10;City, State ZIP">${esc(st.address)}</textarea>
+            <label for="gl-s-addr">Student address</label><textarea id="gl-s-addr" data-f="st.address"${ml("address")} rows="2" placeholder="Street&#10;City, State ZIP">${esc(st.address)}</textarea>
             <div class="gl-btns"><button type="button" class="btn ghost sm" data-a="copyAddr">Use school address</button><span class="gl-flex"></span>${D.students.length > 1 || st.courses.length || st.name ? `<button type="button" class="btn ghost sm danger" data-a="delStudent">Delete this student</button>` : ""}</div>
           </fieldset>
           <fieldset class="gl-box"><legend>Your homeschool</legend>
-            <label for="gl-sc-name">Homeschool name</label><input id="gl-sc-name" data-f="school.name" value="${esc(sc.name)}" placeholder="For example: Maple Grove Homeschool" autocomplete="organization">
+            <label for="gl-sc-name">Homeschool name</label><input id="gl-sc-name" data-f="school.name"${ml("schoolName")} value="${esc(sc.name)}" placeholder="For example: Maple Grove Homeschool" autocomplete="organization">
             <p class="gl-hint">Use your own homeschool's name, not the name of a school or umbrella program you don't run.</p>
-            <label for="gl-sc-addr">Address</label><textarea id="gl-sc-addr" data-f="school.address" rows="2" placeholder="Street&#10;City, State ZIP">${esc(sc.address)}</textarea>
+            <label for="gl-sc-addr">Address</label><textarea id="gl-sc-addr" data-f="school.address"${ml("address")} rows="2" placeholder="Street&#10;City, State ZIP">${esc(sc.address)}</textarea>
             <div class="row">
-              <div><label for="gl-sc-phone">Phone</label><input id="gl-sc-phone" type="tel" data-f="school.phone" value="${esc(sc.phone)}" autocomplete="tel"></div>
-              <div><label for="gl-sc-email">Email</label><input id="gl-sc-email" type="email" data-f="school.email" value="${esc(sc.email)}" autocomplete="email"></div>
+              <div><label for="gl-sc-phone">Phone</label><input id="gl-sc-phone" type="tel" data-f="school.phone"${ml("phone")} value="${esc(sc.phone)}" autocomplete="tel"></div>
+              <div><label for="gl-sc-email">Email</label><input id="gl-sc-email" type="email" data-f="school.email"${ml("email")} value="${esc(sc.email)}" autocomplete="email"></div>
             </div>
-            <label for="gl-sc-admin">Parent / school administrator</label><input id="gl-sc-admin" data-f="school.admin" value="${esc(sc.admin)}" autocomplete="name" placeholder="Name printed under the signature line">
+            <label for="gl-sc-admin">Parent / school administrator</label><input id="gl-sc-admin" data-f="school.admin"${ml("admin")} value="${esc(sc.admin)}" autocomplete="name" placeholder="Name printed under the signature line">
             <div class="gl-imgs">
               <div><span class="gl-lab" id="gl-logo-lab">Logo or seal (optional)</span>
                 ${sc.logo ? `<img class="gl-thumb" src="${sc.logo}" alt="Your logo">` : ""}
@@ -235,15 +236,15 @@
         </div>
         <fieldset class="gl-box"><legend>Test scores (optional)</legend>
           <div class="gl-tests">${st.tests.map((t, i) => `<div class="gl-test" data-t="${i}">
-            <input data-tk="name" value="${esc(t.name)}" placeholder="SAT, ACT, CLEP, AP exam…" aria-label="Test name">
-            <input data-tk="date" value="${esc(t.date)}" placeholder="Month and year" aria-label="Test date">
-            <input data-tk="score" value="${esc(t.score)}" placeholder="Score" aria-label="Score">
+            <input data-tk="name"${ml("testName")} value="${esc(t.name)}" placeholder="SAT, ACT, CLEP, AP exam…" aria-label="Test name">
+            <input data-tk="date"${ml("testDate")} value="${esc(t.date)}" placeholder="Month and year" aria-label="Test date">
+            <input data-tk="score"${ml("testScore")} value="${esc(t.score)}" placeholder="Score" aria-label="Score">
             <button type="button" class="gl-x" data-a="rmTest" aria-label="Remove test ${esc(t.name)}">×</button></div>`).join("")}</div>
           <button type="button" class="btn ghost sm" data-a="addTest">+ Add test score</button>
         </fieldset>
         <fieldset class="gl-box"><legend>Activities and notes (optional)</legend>
           <label for="gl-s-notes">Printed near the bottom of the transcript. Keep it short: activities, awards, volunteer work.</label>
-          <textarea id="gl-s-notes" data-f="st.notes" rows="3">${esc(st.notes)}</textarea>
+          <textarea id="gl-s-notes" data-f="st.notes"${ml("notes")} rows="3">${esc(st.notes)}</textarea>
         </fieldset>
         <div class="gl-next"><button type="button" class="btn" data-go="courses">Next: courses &amp; grades →</button></div>`;
     }
@@ -254,16 +255,16 @@
       const hint = gradeHint(g);
       const t = esc(c.title || "untitled course");
       return `<div class="gl-course" data-c="${c.id}">
-        <input class="gl-title" data-k="title" value="${esc(c.title)}" placeholder="Course title" aria-label="Course title" list="gl-lib" autocomplete="off">
+        <input class="gl-title" data-k="title"${ml("title")} value="${esc(c.title)}" placeholder="Course title" aria-label="Course title" list="gl-lib" autocomplete="off">
         <select data-k="subject" aria-label="Subject area for ${t}">${subjOpts(c.subject)}</select>
         <select data-k="level" aria-label="Level for ${t}">${levelOpts(c.level)}</select>
-        <div class="gl-g"><input data-k="grade" value="${esc(c.grade)}" placeholder="A, 93, P" aria-label="Grade for ${t}" list="gl-grades" autocomplete="off"${g.kind === "invalid" ? ' aria-invalid="true"' : ""} aria-describedby="gp-${c.id}"><span class="gl-gp${g.kind === "invalid" ? " bad" : ""}" id="gp-${c.id}">${esc(hint)}</span></div>
+        <div class="gl-g"><input data-k="grade"${ml("grade")} value="${esc(c.grade)}" placeholder="A, 93, P" aria-label="Grade for ${t}" list="gl-grades" autocomplete="off"${g.kind === "invalid" ? ' aria-invalid="true"' : ""} aria-describedby="gp-${c.id}"><span class="gl-gp${g.kind === "invalid" ? " bad" : ""}" id="gp-${c.id}">${esc(hint)}</span></div>
         <input data-k="credits" type="number" step="0.25" min="0" max="20" inputmode="decimal" value="${esc(c.credits)}" aria-label="Credits for ${t}">
         <button type="button" class="gl-ib" data-a="more" aria-expanded="false" aria-controls="gx-${c.id}" aria-label="More options for ${t}" title="More options">⋯</button>
         <button type="button" class="gl-ib gl-x" data-a="rmCourse" aria-label="Remove ${t}" title="Remove">×</button>
         <div class="gl-extra" id="gx-${c.id}" hidden>
-          <div><label for="gp1-${c.id}">Taken at (college, co-op or provider)</label><input id="gp1-${c.id}" data-k="provider" value="${esc(c.provider)}" placeholder="Leave blank if taught at home"></div>
-          <div><label for="gp2-${c.id}">College credit (dual enrollment)</label><input id="gp2-${c.id}" data-k="college" value="${esc(c.college)}" placeholder="e.g. 3 semester hours"></div>
+          <div><label for="gp1-${c.id}">Taken at (college, co-op or provider)</label><input id="gp1-${c.id}" data-k="provider"${ml("provider")} value="${esc(c.provider)}" placeholder="Leave blank if taught at home"></div>
+          <div><label for="gp2-${c.id}">College credit (dual enrollment)</label><input id="gp2-${c.id}" data-k="college"${ml("college")} value="${esc(c.college)}" placeholder="e.g. 3 semester hours"></div>
           <div><label for="gp3-${c.id}">Length</label><select id="gp3-${c.id}" data-k="dur">${opt("", "Automatic (from credits)", c.dur)}${opt("year", "Full year", c.dur)}${opt("sem", "One semester", c.dur)}</select></div>
           <div><label for="gp4-${c.id}">Hours (if not logged)</label><input id="gp4-${c.id}" data-k="hours" type="number" min="0" step="1" inputmode="numeric" value="${esc(c.hours)}"></div>
           <div><label for="gp5-${c.id}">Move to</label><select id="gp5-${c.id}" data-k="year">${E.YEARS.map(y => opt(y, E.gradeName(y), c.year)).join("")}</select></div>
@@ -287,12 +288,12 @@
         ${years.map(y => `<section class="gl-year" data-year="${y}" aria-labelledby="gl-yh-${y}">
           <div class="gl-yhead">
             <h3 id="gl-yh-${y}">${esc(E.gradeName(y))}</h3>
-            <label class="gl-ylab">School year <input data-ylabel="${y}" value="${esc((st.years[y] && st.years[y].label) || "")}" placeholder="${esc(E.yearLabel(gy, y) || "YYYY–YYYY")}" aria-label="${esc(E.gradeName(y))} school year"></label>
+            <label class="gl-ylab">School year <input data-ylabel="${y}"${ml("yearLabel")} value="${esc((st.years[y] && st.years[y].label) || "")}" placeholder="${esc(E.yearLabel(gy, y) || "YYYY–YYYY")}" aria-label="${esc(E.gradeName(y))} school year"></label>
             <p class="gl-ystat" data-ystat="${y}">${esc(yearStat(st, y))}</p>
           </div>
           ${by[y].length ? `<div class="gl-chead" aria-hidden="true"><span>Course</span><span>Subject</span><span>Level</span><span>Grade</span><span>Credits</span></div>` : ""}
           <div class="gl-rows">${by[y].map(courseRow).join("")}</div>
-          <form class="gl-add" data-addyear="${y}"><input list="gl-lib" placeholder="Add a ${y === 8 ? "grade 8 high school" : `grade ${y}`} course…" aria-label="New ${esc(E.gradeName(y))} course title" autocomplete="off"><button type="submit" class="btn ghost sm">Add</button></form>
+          <form class="gl-add" data-addyear="${y}"><input list="gl-lib"${ml("title")} placeholder="Add a ${y === 8 ? "grade 8 high school" : `grade ${y}`} course…" aria-label="New ${esc(E.gradeName(y))} course title" autocomplete="off"><button type="submit" class="btn ghost sm">Add</button></form>
         </section>`).join("")}
         ${years.includes(8) ? "" : `<button type="button" class="btn ghost sm" data-a="show8">+ Add high school credit earned in 8th grade</button>`}
         <div class="gl-box gl-goals" data-goals></div>
@@ -341,14 +342,14 @@
             ${st.courses.length ? `
             <div class="row"><div><label for="gl-l-date">Date</label><input id="gl-l-date" type="date" name="date" value="${today()}" required></div>
             <div><label for="gl-l-course">Course</label><select id="gl-l-course" name="course" required>${opts}</select></div></div>
-            <div class="row gl-keep"><div><label for="gl-l-h">Hours</label><input id="gl-l-h" type="number" name="h" min="0" max="24" step="1" inputmode="numeric" placeholder="0"></div>
-            <div><label for="gl-l-m">Minutes</label><input id="gl-l-m" type="number" name="m" min="0" max="59" step="5" inputmode="numeric" placeholder="45"></div></div>
-            <label for="gl-l-note">Note (optional)</label><input id="gl-l-note" name="note" maxlength="300" placeholder="Chapter 4 reading, lab 2, essay draft…" autocomplete="off">
+            <div class="row gl-keep"><div><label for="gl-l-h">Hours</label><input id="gl-l-h" type="number" name="h" min="0" max="24" step="any" inputmode="decimal" placeholder="0"></div>
+            <div><label for="gl-l-m">Minutes</label><input id="gl-l-m" type="number" name="m" min="0" max="999" step="1" inputmode="numeric" placeholder="45"></div></div>
+            <label for="gl-l-note">Note (optional)</label><input id="gl-l-note" name="note"${ml("logNote")} placeholder="Chapter 4 reading, lab 2, essay draft…" autocomplete="off">
             <div class="gl-btns"><button type="submit" class="btn">Add entry</button></div>` : `<p>Add a course first. You can also do it right here:</p>`}
           </form>
           <form class="gl-box" data-form="newcourse">
             <h3>${st.courses.length ? "Add another course" : "Add a course"}</h3>
-            <label for="gl-nc-title">Course title</label><input id="gl-nc-title" name="title" list="gl-lib" required autocomplete="off" placeholder="e.g. Biology">
+            <label for="gl-nc-title">Course title</label><input id="gl-nc-title" name="title" list="gl-lib"${ml("title")} required autocomplete="off" placeholder="e.g. Biology">
             <div class="row"><div><label for="gl-nc-year">Grade</label><select id="gl-nc-year" name="year">${E.YEARS.map(y => opt(y, E.gradeName(y), store.get("lastYear", 9))).join("")}</select></div>
             <div><label for="gl-nc-subj">Subject</label><select id="gl-nc-subj" name="subject">${subjOpts("eng")}</select></div></div>
             <div class="gl-btns"><button type="submit" class="btn ghost">Add course</button></div>
@@ -380,16 +381,16 @@
         <summary><span class="gl-dt">${esc(c.title || "Untitled course")}</span><span class="gl-ds ${c.desc.trim() ? "ok" : ""}">${esc(E.gradeName(c.year))} · ${c.desc.trim() ? "Written" : "Needs a description"}</span></summary>
         <div class="gl-dgen">
           <div class="grid2">
-            <div><label for="gt-${c.id}">Topics covered</label><textarea id="gt-${c.id}" data-gen="topics" rows="3" placeholder="Separate topics with commas or new lines">${esc(g.topics)}</textarea>
+            <div><label for="gt-${c.id}">Topics covered</label><textarea id="gt-${c.id}" data-gen="topics"${ml("topics")} rows="3" placeholder="Separate topics with commas or new lines">${esc(g.topics)}</textarea>
               ${lib ? `<button type="button" class="btn ghost sm" data-a="suggest" data-c="${c.id}">Use typical ${esc(lib.title)} topics</button>` : ""}</div>
-            <div><label for="gm-${c.id}">Materials (textbooks, curriculum, online classes)</label><textarea id="gm-${c.id}" data-gen="materials" rows="3" placeholder="Separate items with semicolons or new lines">${esc(g.materials)}</textarea></div>
+            <div><label for="gm-${c.id}">Materials (textbooks, curriculum, online classes)</label><textarea id="gm-${c.id}" data-gen="materials"${ml("materials")} rows="3" placeholder="Separate items with semicolons or new lines">${esc(g.materials)}</textarea></div>
           </div>
-          <fieldset class="gl-chips"><legend>Coursework</legend>${chips(E.ACTIVITIES, g.acts, "acts")}<input data-gen="actsOther" value="${esc(g.actsOther || "")}" placeholder="Other coursework" aria-label="Other coursework"></fieldset>
-          <fieldset class="gl-chips"><legend>How work was evaluated</legend>${chips(E.EVALUATIONS, g.evals, "evals")}<input data-gen="evalsOther" value="${esc(g.evalsOther || "")}" placeholder="Other evaluation" aria-label="Other evaluation methods"></fieldset>
+          <fieldset class="gl-chips"><legend>Coursework</legend>${chips(E.ACTIVITIES, g.acts, "acts")}<input data-gen="actsOther"${ml("other")} value="${esc(g.actsOther || "")}" placeholder="Other coursework" aria-label="Other coursework"></fieldset>
+          <fieldset class="gl-chips"><legend>How work was evaluated</legend>${chips(E.EVALUATIONS, g.evals, "evals")}<input data-gen="evalsOther"${ml("other")} value="${esc(g.evalsOther || "")}" placeholder="Other evaluation" aria-label="Other evaluation methods"></fieldset>
           <div class="gl-btns"><label class="gl-inline" for="gs-${c.id}">Style</label><select id="gs-${c.id}" data-gen="style">${opt("standard", "Standard paragraph", g.style)}${opt("concise", "Concise (one or two sentences)", g.style)}${opt("detailed", "Detailed (labelled lines)", g.style)}</select>
             <button type="button" class="btn sm" data-a="gen" data-c="${c.id}">Write description from these details</button></div>
           <label for="gd-${c.id}">Description (printed in the course descriptions PDF)</label>
-          <textarea id="gd-${c.id}" class="gl-desc" data-k="desc" rows="6" placeholder="Write your own, or fill in the details above and press the button.">${esc(c.desc)}</textarea>
+          <textarea id="gd-${c.id}" class="gl-desc" data-k="desc"${ml("desc")} rows="6" placeholder="Write your own, or fill in the details above and press the button.">${esc(c.desc)}</textarea>
           <p class="gl-hint" data-wc>${wordCount(c.desc)}</p>
         </div>
       </details>`;
@@ -428,8 +429,8 @@
             </div>
             ${doc === "transcript" ? `<label class="gl-check"><input type="checkbox" data-f="set.showPercent"${s.showPercent ? " checked" : ""}> Show percentages next to letter grades</label>` : ""}
             ${doc === "report" ? `<label for="gl-o-rcy">Grade</label><select id="gl-o-rcy" data-rcyear>${(yearsWith.length ? yearsWith : [9]).map(y => opt(y, E.gradeName(y), rcYear)).join("")}</select>
-              <label for="gl-o-att">Attendance (optional)</label><input id="gl-o-att" data-yearf="attendance" value="${esc(st.attendance[rcYear] || "")}" placeholder="e.g. 176 of 180 days">
-              <label for="gl-o-com">Comments (optional)</label><textarea id="gl-o-com" data-yearf="comments" rows="4">${esc(st.comments[rcYear] || "")}</textarea>` : ""}
+              <label for="gl-o-att">Attendance (optional)</label><input id="gl-o-att" data-yearf="attendance"${ml("attendance")} value="${esc(st.attendance[rcYear] || "")}" placeholder="e.g. 176 of 180 days">
+              <label for="gl-o-com">Comments (optional)</label><textarea id="gl-o-com" data-yearf="comments"${ml("comments")} rows="4">${esc(st.comments[rcYear] || "")}</textarea>` : ""}
             ${doc === "descriptions" ? `<label for="gl-o-ord">Order</label><select id="gl-o-ord" data-descorder>${opt("year", "By grade", descOrder)}${opt("subject", "By subject", descOrder)}</select>
               <label class="gl-check"><input type="checkbox" data-descempty${descEmpty ? " checked" : ""}> Include courses without a description</label>
               <button type="button" class="btn ghost sm" data-go="descriptions">Write descriptions</button>` : ""}
@@ -574,13 +575,14 @@
       if (lib) { c.subject = lib.subject; c.credits = lib.credits; }
       else {
         const t = title.toLowerCase();
-        const guess = [["math", /algebra|geometry|calculus|math|statistic|trigonometry/], ["sci", /biology|chemistry|physics|science|anatomy|astronomy|botany|zoology|geology/], ["soc", /history|government|civics|economics|geography|psychology|sociology/], ["lang", /spanish|french|latin|german|chinese|mandarin|japanese|greek|italian|asl|sign language|russian/], ["arts", /art|music|piano|guitar|band|choir|drama|theat|photograph|drawing|painting|dance/], ["pe", /physical education|\bpe\b|health|fitness|sport/], ["bible", /bible|theology|religion|scripture/], ["tech", /computer|coding|programming|robotics|technology|web design/], ["eng", /english|literature|composition|writing|grammar|reading/]].find(([, re]) => re.test(t));
+        // Order matters: "Computer Science" is technology and "Political Science" social studies, not science.
+        const guess = [["arts", /\bart history|\bart appreciation|\bmusic (history|appreciation)/], ["math", /algebra|geometry|calculus|math|statistic|trigonometry/], ["tech", /computer|coding|programming|robotics|technology|web design/], ["soc", /history|government|civics|economics|geography|psychology|sociology|political science|social science/], ["sci", /biology|chemistry|physics|science|anatomy|astronomy|botany|zoology|geology/], ["lang", /spanish|french|latin|german|chinese|mandarin|japanese|greek|italian|asl|sign language|russian/], ["arts", /\bart|music|piano|guitar|band|choir|drama|theat|photograph|drawing|painting|dance/], ["pe", /physical education|\bpe\b|health|fitness|sport/], ["bible", /bible|theology|religion|scripture/], ["eng", /english|literature|composition|writing|grammar|reading/]].find(([, re]) => re.test(t));
         c.subject = guess ? guess[0] : "elec";
       }
       // Level from the title, whether or not it matched a common course
       if (/^(honors|hon\.)\s|\(honors\)|\bhonors$/i.test(title.trim())) c.level = "H";
       if (/^ap\s|\bAP\b|advanced placement/i.test(title)) c.level = "AP";
-      if (/dual enrollment|\bDE\b/.test(title)) c.level = "DE";
+      if (/dual[\s-]*enroll?ment/i.test(title) || /\bDE\b/.test(title)) c.level = "DE";
       st.courses.push(c);
       store.set("lastYear", year);
       return c;
@@ -847,8 +849,8 @@
       rowsEl.innerHTML = st.rows.map((r, i) => {
         const g = E.parseGrade(r.grade, st.settings);
         return `<div class="glc-row" data-i="${i}">
-        <input data-k="title" value="${esc(r.title)}" placeholder="Course ${i + 1}" aria-label="Course ${i + 1} name" autocomplete="off">
-        <input data-k="grade" value="${esc(r.grade)}" placeholder="A, 93, P" aria-label="Course ${i + 1} grade" list="glc-grades" autocomplete="off"${g.kind === "invalid" ? ' aria-invalid="true"' : ""}>
+        <input data-k="title"${ml("title")} value="${esc(r.title)}" placeholder="Course ${i + 1}" aria-label="Course ${i + 1} name" autocomplete="off">
+        <input data-k="grade"${ml("grade")} value="${esc(r.grade)}" placeholder="A, 93, P" aria-label="Course ${i + 1} grade" list="glc-grades" autocomplete="off"${g.kind === "invalid" ? ' aria-invalid="true"' : ""}>
         <input data-k="credits" type="number" step="0.25" min="0" max="20" inputmode="decimal" value="${esc(r.credits)}" aria-label="Course ${i + 1} credits">
         <select data-k="level" aria-label="Course ${i + 1} level">${levelOpts(r.level)}</select>
         <button type="button" class="gl-ib gl-x" data-a="rm" aria-label="Remove course ${i + 1}">×</button></div>`;
@@ -902,12 +904,19 @@
         if (!rows.length) { root.querySelector(".glc-sent").textContent = "Add some courses first."; return; }
         const D = store.load() || E.emptyData();
         const s = D.students.find(x => x.id === D.current) || D.students[0];
+        let updated = 0;
         for (const r of rows) {
+          const title = r.title.trim() || "Untitled course";
+          const fields = { grade: r.grade, credits: E.parseCredits(r.credits), level: r.level };
+          // Copying twice updates the same courses instead of adding duplicates.
+          const same = s.courses.find(c => c.year === year && c.title.trim().toLowerCase() === title.toLowerCase());
+          if (same) { Object.assign(same, fields); updated++; continue; }
           const lib = E.findLibrary(r.title);
-          s.courses.push(E.newCourse(year, { title: r.title.trim() || "Untitled course", grade: r.grade, credits: E.parseCredits(r.credits), level: r.level, subject: lib ? lib.subject : "elec" }));
+          s.courses.push(E.newCourse(year, Object.assign({ title, subject: lib ? lib.subject : "elec" }, fields)));
         }
         store.save(D);
-        root.querySelector(".glc-sent").innerHTML = `Copied ${rows.length} course${rows.length > 1 ? "s" : ""}. <a href="/#courses">Open the transcript builder</a>`;
+        const added = rows.length - updated;
+        root.querySelector(".glc-sent").innerHTML = `${[added ? `Copied ${added} course${added > 1 ? "s" : ""}` : "", updated ? `updated ${updated} already there` : ""].filter(Boolean).join(", ").replace(/^u/, "U")}. <a href="/#courses">Open the transcript builder</a>`;
         track("gpa_sent_to_transcript");
         return;
       } else return;
@@ -980,24 +989,24 @@
     root.innerHTML = `
       <div class="gld">
         <form class="gld-form" onsubmit="return false" autocomplete="off">
-          <label for="gld-title">Course title</label><input id="gld-title" data-k="title" list="gld-lib" value="${esc(c.title)}" placeholder="e.g. Algebra 1, American Literature">
+          <label for="gld-title">Course title</label><input id="gld-title" data-k="title"${ml("title")} list="gld-lib" value="${esc(c.title)}" placeholder="e.g. Algebra 1, American Literature">
           <datalist id="gld-lib">${E.LIBRARY.map(l => `<option value="${esc(l.title)}"></option>`).join("")}</datalist>
           <div class="row"><div><label for="gld-subj">Subject</label><select id="gld-subj" data-k="subject">${subjOpts(c.subject)}</select></div>
           <div><label for="gld-level">Level</label><select id="gld-level" data-k="level">${levelOpts(c.level)}</select></div></div>
           <div class="row3"><div><label for="gld-year">Grade</label><select id="gld-year" data-k="year">${E.YEARS.map(y => opt(y, y === 8 ? "8 (HS credit)" : y, c.year)).join("")}</select></div>
           <div><label for="gld-cr">Credits</label><input id="gld-cr" data-k="credits" type="number" min="0" max="20" step="0.25" inputmode="decimal" value="${esc(c.credits)}"></div>
           <div><label for="gld-hrs">Hours</label><input id="gld-hrs" data-k="hours" type="number" min="0" max="5000" step="1" inputmode="numeric" value="${esc(c.hours)}" placeholder="optional"></div></div>
-          <div class="gld-de"${c.level === "DE" ? "" : " hidden"}><div class="row"><div><label for="gld-prov">College</label><input id="gld-prov" data-k="provider" value="${esc(c.provider)}"></div><div><label for="gld-col">College credit</label><input id="gld-col" data-k="college" value="${esc(c.college)}" placeholder="e.g. 3 semester hours"></div></div></div>
-          <label for="gld-topics">Topics covered</label><textarea id="gld-topics" data-g="topics" rows="4" placeholder="One per line, or separated by commas">${esc(c.gen.topics)}</textarea>
+          <div class="gld-de"${c.level === "DE" ? "" : " hidden"}><div class="row"><div><label for="gld-prov">College</label><input id="gld-prov" data-k="provider"${ml("provider")} value="${esc(c.provider)}"></div><div><label for="gld-col">College credit</label><input id="gld-col" data-k="college"${ml("college")} value="${esc(c.college)}" placeholder="e.g. 3 semester hours"></div></div></div>
+          <label for="gld-topics">Topics covered</label><textarea id="gld-topics" data-g="topics"${ml("topics")} rows="4" placeholder="One per line, or separated by commas">${esc(c.gen.topics)}</textarea>
           <button type="button" class="btn ghost sm" data-a="suggest" hidden>Use typical topics</button>
-          <label for="gld-mat">Materials</label><textarea id="gld-mat" data-g="materials" rows="2" placeholder="Textbooks, curriculum, online classes (separate with semicolons)">${esc(c.gen.materials)}</textarea>
+          <label for="gld-mat">Materials</label><textarea id="gld-mat" data-g="materials"${ml("materials")} rows="2" placeholder="Textbooks, curriculum, online classes (separate with semicolons)">${esc(c.gen.materials)}</textarea>
           <fieldset class="gl-chips"><legend>Coursework</legend>${chips(E.ACTIVITIES, c.gen.acts, "acts")}</fieldset>
           <fieldset class="gl-chips"><legend>How work was evaluated</legend>${chips(E.EVALUATIONS, c.gen.evals, "evals")}</fieldset>
         </form>
         <div class="gld-out">
           <div class="gl-btns"><label class="gl-inline" for="gld-style">Style</label><select id="gld-style" data-g="style">${opt("standard", "Standard paragraph", c.gen.style)}${opt("concise", "Concise", c.gen.style)}${opt("detailed", "Detailed (labelled lines)", c.gen.style)}</select></div>
           <label for="gld-text">Course description</label>
-          <textarea id="gld-text" rows="12"></textarea>
+          <textarea id="gld-text"${ml("desc")} rows="12"></textarea>
           <p class="gl-hint gld-wc"></p>
           <div class="gl-btns"><button type="button" class="btn" data-a="copy">Copy text</button><button type="button" class="btn ghost" data-a="pdf">Download PDF</button><button type="button" class="btn ghost" data-a="save">Save to my transcript</button><button type="button" class="btn ghost sm" data-a="regen" hidden>Rebuild from details</button></div>
           <p class="small gld-msg" role="status" aria-live="polite"></p>

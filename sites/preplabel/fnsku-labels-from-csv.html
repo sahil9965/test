@@ -56,7 +56,7 @@
           <tr><td>Quantity</td><td>quantity, qty, units, labels, copies, units-to-send</td><td>No (defaults to 1)</td></tr>
         </tbody>
       </table>
-      <p>When both <code>fnsku</code> and <code>sku</code> columns exist, the FNSKU column is used for the barcode. Files without headers work too: the first column is read as the code and a mostly-numeric column as the quantity. Commas, semicolons and tabs are all detected.</p>
+      <p>When both <code>fnsku</code> and <code>sku</code> columns exist, the FNSKU column is used for the barcode. Common German, French, Spanish, Italian and Dutch headers such as <code>Menge</code>, <code>Quantité</code> or <code>Aantal</code> are recognised too. Files without headers work as well: the first column is read as the code and a mostly-numeric column as the quantity. Commas, semicolons and tabs are all detected.</p>
       <pre><code>fnsku,title,condition,quantity
 X001ABC123,"Water bottle, 750 ml, blue",New,24
 X002DEF456,Ceramic mug set of 4,New,12

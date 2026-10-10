@@ -1,6 +1,6 @@
 // Generates every PrepLabel page (home, guides, about, privacy) from one layout.
 // Usage: node src/preplabel/pages.mjs   (writes into sites/preplabel/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -110,7 +110,7 @@ const homeFaq = [
   ["Is PrepLabel really free?", "Yes. Every feature is free: unlimited FNSKU labels, CSV and Excel import, the Seller Central PDF converter, ZPL export, prep labels, bin labels, saved products and the print log. There is no account and no paid tier."],
   ["Do I need to sign in to Seller Central or give PrepLabel my account?", "No. PrepLabel never connects to Amazon. Copy the FNSKU codes from your inventory page or inventory report in Seller Central and paste or import them here."],
   ["Is PrepLabel affiliated with Amazon?", "No. PrepLabel is an independent tool and is not affiliated with, endorsed by or sponsored by Amazon. Always check current labeling rules in Seller Central."],
-  ["What barcode type does an FNSKU label use?", "Code 128. PrepLabel encodes FNSKUs in Code 128 subset A, the variant Amazon's item-label specification names, draws every bar as vector artwork and snaps bar widths to your printer's dots."],
+  ["What barcode type does an FNSKU label use?", "Code 128. PrepLabel encodes FNSKUs in Code 128 subset A, which some labeling guides specify (scanners read the same code from any Code 128 subset), draws every bar as vector artwork and snaps bar widths to your printer's dots."],
   ["Can I print on a partly used sheet of Avery 5160 labels?", "Yes. Choose the 30-per-sheet Letter stock and set Start at label to the first unused position. Labels are counted left to right, top to bottom."],
   ["Does PrepLabel add its name or a watermark to my labels?", "Never on a unit label or a warning label. Those carry only their own content. The only credit is a small line in the outer margin of full-sheet printouts and on the alignment test page."],
 ];
@@ -141,7 +141,7 @@ ${homeSteps.map(([n, t]) => `        <li><strong>${n}.</strong> ${t}</li>`).join
       </ol>
 
       <h2>What goes on an FNSKU label</h2>
-      <p>An FNSKU (Fulfillment Network Stock Keeping Unit) label tells the fulfillment center which seller owns a unit. Amazon's item-label specification lists four things, and PrepLabel prints exactly those four and nothing else:</p>
+      <p>An FNSKU (Fulfillment Network Stock Keeping Unit) label tells the fulfillment center which seller owns a unit. Amazon's labeling guidance lists four things, and PrepLabel prints exactly those four and nothing else:</p>
       <ul>
         <li><strong>A Code 128 barcode</strong> of the FNSKU, with clear space on both sides so scanners can read it.</li>
         <li><strong>The FNSKU in plain text</strong> under the bars, for example X001ABC123.</li>
@@ -340,7 +340,7 @@ const pages = [
           <tr><td>Quantity</td><td>quantity, qty, units, labels, copies, units-to-send</td><td>No (defaults to 1)</td></tr>
         </tbody>
       </table>
-      <p>When both <code>fnsku</code> and <code>sku</code> columns exist, the FNSKU column is used for the barcode. Files without headers work too: the first column is read as the code and a mostly-numeric column as the quantity. Commas, semicolons and tabs are all detected.</p>
+      <p>When both <code>fnsku</code> and <code>sku</code> columns exist, the FNSKU column is used for the barcode. Common German, French, Spanish, Italian and Dutch headers such as <code>Menge</code>, <code>Quantité</code> or <code>Aantal</code> are recognised too. Files without headers work as well: the first column is read as the code and a mostly-numeric column as the quantity. Commas, semicolons and tabs are all detected.</p>
       <pre><code>fnsku,title,condition,quantity
 X001ABC123,"Water bottle, 750 ml, blue",New,24
 X002DEF456,Ceramic mug set of 4,New,12
@@ -424,15 +424,15 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
       <h2>Choosing a label size</h2>
       <p>The required font size is a physical size, so the label has to be big enough to hold the whole warning at that size. These are the text sizes PrepLabel reaches with the standard English warning:</p>
       <table>
-        <thead><tr><th>Minimum for your bag</th><th>Smallest label stock that reaches it (English)</th></tr></thead>
+        <thead><tr><th>Minimum for your bag</th><th>Label stocks that reach it (English only)</th></tr></thead>
         <tbody>
-          <tr><td>10 pt</td><td>2-5/8 × 1 in, 30-up Letter (10.4 pt) or 2 × 2 in roll (12.2 pt)</td></tr>
-          <tr><td>14 pt</td><td>3 × 2 in roll (15.3 pt) or 4 × 2 in (17.9 pt)</td></tr>
-          <tr><td>18 pt</td><td>4 × 3 in roll (21.5 pt) or A4 8-up, 99.1 × 67.7 mm (20.5 pt)</td></tr>
+          <tr><td>10 pt</td><td>2-5/8 × 1 in on 30-up Letter (10.4 pt), 2.25 × 1.25 in DYMO 30334 size (10.8 pt) or 3 × 1 in roll (10.7 pt). A 2 × 1 in label only reaches 8.9 pt.</td></tr>
+          <tr><td>14 pt</td><td>3 × 2 in roll (15.3 pt) or A4 14-up, 99.1 × 38.1 mm (15.5 pt)</td></tr>
+          <tr><td>18 pt</td><td>4 × 3 in roll (21.5 pt) or A4 8-up, 99.1 × 67.7 mm (20.5 pt). A 4 × 2 in label reaches 17.9 pt, just short.</td></tr>
           <tr><td>24 pt</td><td>4 × 6 in roll (31.9 pt) or a full sheet cut to size</td></tr>
         </tbody>
       </table>
-      <p>More languages need more room: English and French together reach 10 pt on a 4 × 2 in label (11.4 pt) and 14 pt only on 4 × 6 in (20.1 pt), and all six languages reach 10 pt only on a 4 × 6 in label (11.3 pt). The tool shows the size it achieved and turns red if it's below the minimum for your bag.</p>
+      <p>More languages need more room: English and French together reach 10 pt on a 4 × 2 in label (11.4 pt) and 14 pt only on 4 × 6 in (20.1 pt) or a full sheet, and all six languages reach 10 pt only on a 4 × 6 in label (11.3 pt) or a full sheet. The tool shows the size it achieved and turns red if it's below the minimum for your bag.</p>
       <ul>
         <li><strong>Thermal:</strong> 4 × 2, 4 × 3 and 4 × 6 in rolls work on most 4-inch thermal printers.</li>
         <li><strong>Laser sheets:</strong> 10-up Letter (4 × 2 in), 14-up or 8-up A4, or full sheets with <em>Outline each label</em> ticked as a cutting guide.</li>
@@ -491,7 +491,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
     desc: "Print FBA expiration date labels in MM-DD-YYYY or MM-YYYY with optional lot numbers. Large text sized to your label, thermal or sheet PDF. Free, no signup.",
     h1: "FBA Expiration Date Labels",
     lead: "Large, clear expiration date stickers in the formats Amazon asks for, with an optional lot number, for units and cartons.",
-    body: `      <p class="tldr"><strong>Quick answer:</strong> For expiration-dated products, Amazon's guidance asks for the date in MM-DD-YYYY or MM-YYYY format on each unit and on the shipping carton, and seller guides cite 36 pt or larger text on cartons. Pick the date and format above, add a lot number if you want one, choose a label size and download the PDF. The tool shows the text size it reached.</p>
+    body: `      <p class="tldr"><strong>Quick answer:</strong> For expiration-dated products, Amazon's guidance asks for the date in MM-DD-YYYY or MM-YYYY format on each unit and on the shipping carton, and seller guides cite 36 pt or larger text, at least on the carton. Pick the date and format above, add a lot number if you want one, choose a label size and download the PDF. The tool shows the text size it reached.</p>
       <h2>Date formats</h2>
       <table>
         <thead><tr><th>Format</th><th>Example</th><th>When to use it</th></tr></thead>
@@ -505,7 +505,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
       </table>
       <p>If the original packaging shows the date in another format, or only shows a manufacturing date, cover it with a label in the accepted format. A lot number on its own isn't treated as an expiration date.</p>
       <h2>Text size: units vs cartons</h2>
-      <p>The 36 pt figure seller guides quote is for the outside of the shipping box, where staff need to read the date at a glance. 36 pt is a type size of half an inch (12.7 mm), so “EXP 03-31-2027” at that size needs a label of about 3 × 2 in or larger (PrepLabel reaches 38 pt on 3 × 2 in and 52 pt on 4 × 2 in). Unit labels can be smaller, as long as the date is easy to read. The tool reports the size reached on the label you choose and tells you when it hits 36 pt.</p>
+      <p>Seller guides agree that the 36 pt minimum applies to the outside of the shipping box, where staff need to read the date at a glance. Some also apply it to each unit, so use 36 pt on units too whenever the packaging has room, and never print a date that's hard to read. 36 pt is a type size of half an inch (12.7 mm), so “EXP 03-31-2027” at that size needs a label of about 3 × 2 in or larger (PrepLabel reaches 38 pt on 3 × 2 in and 52 pt on 4 × 2 in). The tool reports the size reached on the label you choose and tells you when it hits 36 pt.</p>
       <h2>Shelf life rules to plan for</h2>
       <ul>
         <li>Seller guides quoting Amazon's policy say units need more than 90 days of shelf life left when they arrive, and units within 50 days of expiry are removed from sale.</li>
@@ -517,7 +517,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
       <p>Rules differ by category and marketplace, so confirm the current expiration-dated product requirements in Seller Central Help before you ship.</p>`,
     faq: [
       ["What date format does Amazon FBA require?", "Amazon's guidance for US expiration-dated products asks for MM-DD-YYYY or MM-YYYY. Medical devices use YYYY-MM-DD. Check Seller Central for other marketplaces."],
-      ["How big should the expiration date be?", "Seller guides cite 36 pt or larger on cartons. On units, the date needs to be clearly readable. PrepLabel shows the text size it reached on your label."],
+      ["How big should the expiration date be?", "Seller guides cite 36 pt or larger on cartons, and some apply the same minimum to units. Use 36 pt wherever the packaging has room. PrepLabel shows the text size it reached on your label."],
       ["Can I add a lot number?", "Yes. Type it in the lot field and it prints in smaller text under the date. A lot number alone doesn't replace the expiration date."],
       ["Can the expiration date go on the FNSKU label?", "PrepLabel keeps the FNSKU unit label to the barcode, FNSKU, title and condition, and prints expiration dates as separate labels."],
     ],
@@ -582,7 +582,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
           <tr><td>Manufacturer barcode eligibility updated</td><td>From 31 March 2026</td><td>According to seller guides, only sellers with the Brand Representative role can keep using UPC/EAN barcodes for tracking.</td></tr>
         </tbody>
       </table>
-      <p>We couldn't open Amazon's own announcement pages to check the exact wording, which need a Seller Central login. The dates above match several independent seller guides, such as <a href="https://www.gs1uk.org/insights/news/Amazon-new-FNSKU-labelling-requirement-what-you-need-to-know" rel="noopener">GS1 UK's summary</a>, and Seller Forums posts quoting the announcements. Read the announcement in your own Seller Central account before changing your process.</p>
+      <p>Amazon's own announcements sit inside Seller Central, behind a login, so we can't link to them here. The dates above match several independent seller guides, such as <a href="https://www.gs1uk.org/insights/news/Amazon-new-FNSKU-labelling-requirement-what-you-need-to-know" rel="noopener">GS1 UK's summary</a>, and Seller Forums posts quoting the announcements. Read the announcement in your own Seller Central account before changing your process.</p>
       <h2>FNSKU label rules that haven't changed</h2>
       <table>
         <thead><tr><th>Rule</th><th>What to do</th><th>How PrepLabel helps</th></tr></thead>
@@ -621,7 +621,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
 const about = {
   path: "/about", tool: false, crumb: "About",
   title: "About PrepLabel — Free FNSKU and Prep Label Tools",
-  desc: "PrepLabel is a free, private label tool for Amazon resellers and prep centers, part of Rooh Sites’ free tools. It runs in your browser with no signup and no uploads.",
+  desc: "PrepLabel is a free, private FNSKU and prep label tool for resellers and small prep centers. It runs in your browser, with no signup and no uploads.",
   h1: "About PrepLabel",
   lead: "A free label tool for resellers and small prep centers that does one job well and keeps your data on your device.",
   body: `      <p>PrepLabel is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools. It makes FNSKU unit labels, converts Seller Central label PDFs to thermal sizes, and prints the prep labels that FBA shipments need: suffocation warnings, sold-as-set stickers, expiration dates and bin locations.</p>
@@ -656,6 +656,11 @@ for (const p of all) {
     p.graph = graph;
   }
   const file = p.path === "/" ? "index.html" : p.path.slice(1) + ".html";
-  writeFileSync(join(OUT, file), layout(p));
+  let html = layout(p);
+  // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+  const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+  const prev = existsSync(join(OUT, file)) ? (readFileSync(join(OUT, file), "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(join(OUT, file), html);
 }
 console.log(`wrote ${all.length} pages`);

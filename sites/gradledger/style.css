@@ -191,3 +191,5 @@ fieldset.gl-box legend{font-weight:700;padding:0 6px;font-size:15px}
 .content figure img{border:1px solid var(--line);border-radius:6px;display:block;height:auto}
 .content figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 @media(max-width:560px){.gl-chip{font-size:12.5px;padding:3px 9px;margin:0 4px 5px 0;gap:4px}.gl-chip input{width:14px;height:14px}}
+/* Article tables: tighter on phones so 4-5 column tables fit without sideways scrolling */
+@media(max-width:480px){.content table{font-size:13.5px}.content th,.content td{padding:6px 7px}}
