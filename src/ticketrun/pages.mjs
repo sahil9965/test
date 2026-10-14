@@ -396,7 +396,7 @@ ${R.unique}
       <ol class="steps">
         <li>Print the <em>Test sheet</em> on plain paper at 100% / Actual size and check that the crop marks line up.</li>
         <li>Print the full PDF${N >= 500 ? " (in batches if your printer prefers)" : ""} on light cardstock.</li>
-        <li>Cut along the crop marks: ${N >= 500 ? "with cut-and-stack order, cut the whole stack at once. " : ""}Trim the four margins, then make one cut down the middle and four across at 10 per page.</li>
+        <li>Cut along the crop marks${N >= 500 ? " (with cut-and-stack order, cut the whole stack at once)" : ""}: trim the four margins, then make one cut down the middle and four across at 10 per page.</li>
         <li>Fold along the dashed line so the stub tears off cleanly when you sell each ticket.</li>
       </ol>
       ${LEGAL}`,

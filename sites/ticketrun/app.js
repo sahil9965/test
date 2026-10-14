@@ -94,8 +94,8 @@
       <section class="tr-sec" aria-labelledby="tr-h-num">
         <h3 id="tr-h-num">Numbers</h3>
         <div class="tr-g3">
-          ${field("start", "First number", 'type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9"')}
-          ${field("end", "Last number", 'type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9"')}
+          ${field("start", "First number", 'type="text" inputmode="numeric" pattern="[0-9]*" maxlength="11"')}
+          ${field("end", "Last number", 'type="text" inputmode="numeric" pattern="[0-9]*" maxlength="11"')}
           <div><label for="tr-pad">Digits</label><select id="tr-pad" name="pad">${opt("auto", "Auto (001)")}${opt("none", "No zeros (1)")}${["2", "3", "4", "5", "6"].map(n => opt(n, `${n} digits (${"1".padStart(+n, "0")})`)).join("")}</select></div>
         </div>
         <div class="tr-g3">
@@ -594,8 +594,8 @@
   <div class="tp">
     <form class="tp-form" autocomplete="off" novalidate>
       <div class="tr-g3">
-        <div><label for="tp-first">First ticket number</label><input id="tp-first" type="text" inputmode="numeric" maxlength="9"></div>
-        <div><label for="tp-last">Last ticket number</label><input id="tp-last" type="text" inputmode="numeric" maxlength="9"></div>
+        <div><label for="tp-first">First ticket number</label><input id="tp-first" type="text" inputmode="numeric" maxlength="11"></div>
+        <div><label for="tp-last">Last ticket number</label><input id="tp-last" type="text" inputmode="numeric" maxlength="11"></div>
         <div><label for="tp-count">Winners to draw</label><input id="tp-count" type="number" min="1" max="100" step="1"></div>
       </div>
       <label for="tp-exclude">Leave out (unsold, void or already drawn)</label>
