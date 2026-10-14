@@ -226,12 +226,14 @@
     const base = newReport(key);
     const sc = TEMPLATES[key].scale;
     const seen = new Set();
-    const idOf = (v, prefix) => { const id = typeof v === "string" && SAFE_ID.test(v) && !seen.has(v) ? v : uid(prefix); seen.add(id); return id; };
+    // Ids are also used as object keys, so names like "__proto__" or "constructor" are replaced too.
+    const idOf = (v, prefix) => { const id = typeof v === "string" && SAFE_ID.test(v) && !(v in Object.prototype) && !seen.has(v) ? v : uid(prefix); seen.add(id); return id; };
     const photoMap = {}, photos = {};
     for (const [k, m] of Object.entries(isObj(s.photos) ? s.photos : {})) {
       if (!isObj(m)) continue;
       const id = idOf(k, "p");
-      photoMap[k] = id; photos[id] = cleanPhoto(m);
+      Object.defineProperty(photoMap, k, { value: id, enumerable: true, writable: true, configurable: true }); // own key even for "__proto__"
+      photos[id] = cleanPhoto(m);
     }
     const used = new Set();
     const rating = v => (typeof v === "string" && level(sc, v) ? v : "");

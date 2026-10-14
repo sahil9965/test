@@ -866,21 +866,23 @@
     if (draft && draft.v === 1 && Array.isArray(draft.rooms)) { try { norm = C.normalize(draft); } catch (e) { console.error(e); } }
     if (norm && (hasWork(norm.r) || !preset || norm.r.template === preset)) {
       R = norm.r;
-      let lost = 0;
+      let lost = 0, rekeyed = false;
       for (const [key, id] of Object.entries(norm.photoMap)) {
         if (!R.photos[id]) continue;
         let rec = null;
         try { rec = await DB.getPhoto(key); } catch {}
         if (rec && rec.blob) {
           blobs.set(id, rec.blob); thumbs.set(id, URL.createObjectURL(rec.thumb || rec.blob));
-          if (key !== id) await safe(() => DB.putPhoto(id, rec));
+          if (key !== id) { await safe(() => DB.putPhoto(id, rec)); rekeyed = true; }
         } else { delete R.photos[id]; lost++; }
       }
       for (const room of R.rooms) for (const it of room.items) it.photos = it.photos.filter(id => R.photos[id]);
+      // Save the draft with the new photo ids before the old keys are removed below, or the next visit loses them.
+      if (rekeyed) await safe(() => DB.set("draft", R));
       restored = hasWork(R);
       if (lost) status(`${plural(lost, "photo")} from your last session couldn't be restored from this browser's storage.`, "warn");
       // Drop stored photos that no longer belong to the draft.
-      safe(async () => { for (const k of await DB.keys()) if (!R.photos[k]) await DB.delPhoto(k); });
+      safe(async () => { for (const k of await DB.keys()) if (!C.has(R.photos, k)) await DB.delPhoto(k); });
     }
     if (!R) {
       R = C.newReport(preset || "general", { paper: defaultPaper() });
