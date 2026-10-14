@@ -1,6 +1,6 @@
 // Generates every Roomproof page (home, landing pages, about, privacy) from one layout.
 // Usage: node src/roomproof/pages.mjs   (writes into sites/roomproof/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -601,7 +601,7 @@ ${tbl(["Layout", "Best for"], [
   {
     slug: "about", tool: false, crumb: "About", related: false,
     title: "About Roomproof — Free, Private Photo Report Generator",
-    desc: "Roomproof is part of Rooh Sites’ free tools: small, fast web tools that run in your browser with no signup. Learn why we built it and how it keeps your photos private.",
+    desc: "Roomproof is a free photo report generator from Rooh Sites. It runs in your browser, with no signup. Learn why we built it and how it keeps photos private.",
     h1: "About Roomproof",
     lead: "A free photo report generator that keeps your photos on your device.",
     body: `      <p>Roomproof is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free, single-purpose web tools. It turns phone photos into dated, captioned PDF reports for move-ins and move-outs, punch lists, before-and-after jobs, cleaning, rental turnovers and property inventories.</p>
@@ -631,6 +631,12 @@ ${tbl(["Layout", "Best for"], [
 const all = [{ ...home, slug: "index" }, ...pages];
 for (const p of all) {
   const schemaExtra = p.home ? p.schemaExtra : p.tool === false ? [] : [app(p.h1, `${URL}/${p.slug}`)];
-  writeFileSync(join(OUT, `${p.slug}.html`), page({ ...p, schemaExtra }));
+  let html = page({ ...p, schemaExtra });
+  // Keep the live footer network block exactly as it is in the published page (it is filled by tools/).
+  const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+  const file = join(OUT, `${p.slug}.html`);
+  const prev = existsSync(file) ? (readFileSync(file, "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(file, html);
 }
 console.log(`wrote ${all.length} pages`);
