@@ -8,16 +8,24 @@ import {
 const SIZES = { letter: [612, 792], a4: [595.28, 841.89] };
 const INK = "#1c1917", MUTED = "#6b6560", LINE = "#d6d3d1", SOFT = "#f5f3ef", RULE = "#e7e5e4";
 const CP1252 = "€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ";
-const MAP = { "→": "->", "←": "<-", "≥": ">=", "≤": "<=", "✓": "v", "×": "x", "−": "-", " ": " " };
-// Standard PDF fonts only cover Windows-1252: keep those characters, map a few common ones, drop the rest.
+const MAP = { "→": "->", "←": "<-", "≥": ">=", "≤": "<=", "✓": "v", "×": "x", "−": "-", "\u00a0": " ",
+  // Latin letters without a Unicode decomposition, so they can't be reduced to a base letter automatically
+  "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Ħ": "H", "ħ": "h", "ı": "i", "Ŧ": "T", "ŧ": "t", "ʻ": "'", "ʼ": "'" };
+const inFont = ch => { const c = ch.codePointAt(0); return (c >= 32 && c < 127) || (c >= 160 && c <= 255) || CP1252.includes(ch); };
+// Standard PDF fonts only cover Windows-1252: keep those characters, map a few common ones, and reduce other
+// accented Latin letters to their base letter (Nguyễn -> Nguyen, Żółć -> Zólc) so student names stay readable.
+// Scripts the font can't show at all (Chinese, Arabic...) become "?"; emoji are dropped.
 export function pdfSafe(s) {
   let out = "";
-  for (const ch of String(s ?? "")) {
+  for (const ch of String(s ?? "").normalize("NFC")) {
     const c = ch.codePointAt(0);
-    if ((c >= 32 && c < 127) || (c >= 160 && c <= 255) || CP1252.includes(ch)) out += ch;
+    if (inFont(ch)) out += ch;
     else if (MAP[ch]) out += MAP[ch];
-    else if (c > 0xffff || (c >= 0x2600 && c <= 0x27bf) || c === 0xfe0f || c === 0x200d) continue; // emoji
-    else if (c >= 32) out += "?";
+    else if (c > 0xffff || (c >= 0x2600 && c <= 0x27bf) || c === 0xfe0f || c === 0x200d || (c >= 0x300 && c <= 0x36f)) continue;
+    else if (c >= 32) {
+      const base = ch.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      out += base && [...base].every(inFont) ? base : "?";
+    }
   }
   return out.replace(/\s+/g, " ").trim();
 }

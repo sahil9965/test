@@ -1,14 +1,14 @@
 // Generates every BellBook page (home, /today, landing pages, about, privacy) from one layout.
 // Facts that depend on dates (holidays, page counts) are computed with the same engine the tool uses.
 // Usage: node src/bellbook/pages.mjs   (writes into sites/bellbook/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as E from "../../sites/bellbook/engine.js";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/bellbook");
 const URL = "https://abday.roohsites.com";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-10", DATE_H = "10 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
 const longDate = iso => E.fmtLong(E.dn(iso));
@@ -28,7 +28,7 @@ const FOOTER = `  <footer class="site">
       <div><h4>Lesson planners</h4><ul><li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li><li><a href="/second-semester-lesson-planner">Second semester planner</a></li><li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
-    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft or Apple.</p>
+    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft, Apple, Goodnotes or Notability.</p>
   </footer>`;
 const RELATED = (self) => {
   const all = [["/", "A/B day calendar generator"], ["/today", "What day is it today?"], ["/rotating-schedule-calendar-maker", "Rotating schedule calendar maker"], ["/6-day-cycle-calendar", "6-day rotation calendar"], ["/block-schedule-calendar", "Block schedule calendar"], ["/ab-day-lesson-planner", "A/B day lesson planner"], ["/second-semester-lesson-planner", "Second semester lesson planner"], ["/teacher-planner-2027-2028", "Teacher planner 2027–2028"], ["/dated-lesson-plan-book", "Dated lesson plan book"]];
@@ -66,7 +66,7 @@ function page({ slug, title, desc, h1, lead, badges, tool, preset = "", body, fa
 <link rel="stylesheet" href="/style.css">
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.va("beforeSend",function(e){if(e&&e.url)e.url=String(e.url).split("#")[0];return e});</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify(ld)}
@@ -156,7 +156,7 @@ const pages = [];
       <ol class="steps">
 ${steps.map(([n, t]) => `        <li><strong>${n}.</strong> ${t}</li>`).join("\n")}
       </ol>
-      <p>The example above is a ${E.fmtMDY(sampleAB.first)} to ${E.fmtMDY(sampleAB.last)} school year with US federal holidays and typical Thanksgiving, winter and spring breaks. It has ${sampleAB.schoolDays} school days: ${sampleAB.counts.map(c => `${c.count} ${c.long}s`).join(" and ")}. Replace the dates with your district's calendar before you print.</p>
+      <p>The example above is the school year from ${E.fmtMDY(sampleAB.first)} to ${E.fmtMDY(sampleAB.last)}, with US federal holidays and typical Thanksgiving, winter and spring breaks. It has ${sampleAB.schoolDays} school days: ${sampleAB.counts.map(c => `${c.count} ${c.long}s`).join(" and ")}. Replace the dates with your district's calendar before you print.</p>
 
       <h2>How rotation days are counted</h2>
       <p>BellBook walks through the school year one date at a time and applies the same rules a scheduler would:</p>
@@ -323,7 +323,7 @@ ${SNOW_TABLE}
     desc: "Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.",
     h1: "6-Day Rotation Calendar (Day 1–6 Cycle)",
     lead: "Number every school day from Day 1 to Day 6, skipping weekends, holidays and closures. Print it, put it in Google Calendar or share a link.",
-    body: `      <p class="tldr"><strong>Quick answer:</strong> In a 6-day cycle, school days are numbered Day 1 to Day 6 in order and then repeat, ignoring weekends and days off. The first two weeks of school go Day 1–5, then Day 6 on the second Monday, then Day 1 again. Enter your school year above and BellBook numbers every day for you, including after holidays and snow days.</p>
+    body: `      <p class="tldr"><strong>Quick answer:</strong> In a 6-day cycle, school days are numbered Day 1 to Day 6 in order and then repeat, ignoring weekends and days off. If school starts on a Monday, the first week is Day 1 to Day 5, the second Monday is Day 6 and Tuesday starts again at Day 1. Enter your school year above and BellBook numbers every day for you, including after holidays and snow days.</p>
 
       <h2>How a Day 1–6 cycle lines up with the week</h2>
       <p>Because there are six days in the cycle but five days in a school week, the Day numbers drift across the weekdays. Here are the first ten school days of the example year:</p>
@@ -340,7 +340,7 @@ ${SNOW_TABLE}
       <h2>Counting Day 1–6 across the school year</h2>
       <p>BellBook shows how many times each Day number occurs, which is useful for planning a specials curriculum. In the example year above (${E.fmtMDY(six.first)} to ${E.fmtMDY(six.last)}, ${six.schoolDays} school days) the counts are:</p>
       <table><thead><tr>${six.counts.map(c => `<th>${c.long}</th>`).join("")}</tr></thead><tbody><tr>${six.counts.map(c => `<td>${c.count}</td>`).join("")}</tr></tbody></table>
-      <p>If the counts matter for your program, compare the two snow-day rules. “Rotation continues” keeps the counts even, while “skip the day” means one Day number loses a meeting for each closure.</p>
+      <p>If the counts matter for your program, compare the two snow-day rules. “Rotation continues” keeps the counts within one of each other. “Skip the day” takes the meeting away from whichever Day number the closure fell on, so several closures can leave one Day number short.</p>
 
       <h2>Make your 6-day rotation calendar</h2>
       <ol class="steps">
@@ -360,7 +360,7 @@ ${SNOW_TABLE}
   const blk = E.compute(E.sample("block"));
   const wk = blk.days.filter(d => d.iso >= "2026-08-24" && d.iso <= "2026-09-04" && d.kind !== "weekend").map(d => `<td>${E.WD3[d.w]} ${E.fmtMD(d.n)}<br><strong>${E.longLabel(blk.cfg, d)}</strong></td>`);
   const faq = [
-    ["What is an A/B block schedule?", "Students take about eight classes but only four meet each day, in longer blocks of roughly 80 to 95 minutes. Classes alternate between A days and B days, so each one meets every other school day."],
+    ["What is an A/B block schedule?", "Students take about eight classes but only four meet each day, in longer blocks, often around 90 minutes. Classes alternate between A days and B days, so each one meets every other school day."],
     ["How do I make Monday an all-classes day?", "Open “Weekday pattern” and set Monday to a fixed label such as “All classes”. Tuesday to Friday keep rotating A/B, and Monday doesn't use up an A or B day."],
     ["Does a 4×4 block schedule need a rotation calendar?", "Usually not, because the same four classes meet every day for a semester. Choose “No rotation (dates only)” to print a dated school calendar with your holidays, or use the dated lesson planner."],
     ["Can I print a block schedule calendar on A4?", "Yes. Choose A4 or US Letter under Printable calendar. Both the year-at-a-glance page and the monthly pages resize to fit."],
@@ -410,7 +410,7 @@ ${SNOW_TABLE}
   const faq = [
     ["What is an A/B day lesson planner?", "It's a plan book whose pages are dated and marked with each day's rotation letter, with the right classes printed in the right blocks. You don't have to work out which classes meet on which date."],
     ["How many periods can the planner have?", "Up to 10 periods or blocks, each with an optional time. Different classes can meet on A and B days, and fixed days such as an all-classes Monday get their own list."],
-    ["Can I use it in GoodNotes or Notability?", "Yes. Tick “Clickable month tabs” to add month tabs down the side. Month pages link to their weeks and week pages link back. The links work in PDF apps that support them, including GoodNotes and Notability."],
+    ["Can I use it in Goodnotes or Notability?", "Yes. Tick “Clickable month tabs” to add month tabs down the side. Month pages link to their weeks and week pages link back. The links work in PDF apps that support them, including Goodnotes and Notability. Tap them in view or read mode, not with the pen selected."],
     ["What if a snow day changes the rotation?", "Mark the snow day in the calendar and download the planner again. Every page after the closure gets the new letters and classes. If you've already written in a printed copy, print only the weeks you need with the From and To dates."],
   ];
   pages.push({
@@ -458,7 +458,7 @@ ${SNOW_TABLE}
 // SECOND SEMESTER
 {
   const faq = [
-    ["When does the second semester start?", "It depends on the district. Many US high schools start the spring semester in mid to late January, after winter break and final exams. Type your own date into “Second semester starts” and click Semester 2."],
+    ["When does the second semester start?", "It depends on the district. Many US middle and high schools start the second semester in January, either right after winter break or after January final exams. Type your own date into “Second semester starts” and click Semester 2."],
     ["Can I print just January to May?", "Yes. Set the From and To dates, or click Semester 2, and the planner contains only those weeks and months."],
     ["Does it include spring break?", "It includes whatever breaks you add to the calendar. Spring break dates vary by district, so add yours under Holidays and breaks and those weeks appear greyed out."],
     ["Is the second semester planner free?", "Yes, like everything on BellBook. No signup and no watermark beyond a small footer credit."],
@@ -597,7 +597,7 @@ ${hol2728.map(h => `          <tr><td>${h.name}</td><td>${longDate(h.date)}</td>
       <h2>Printing and binding tips</h2>
       <ul>
         <li>Print the cover and schedule pages single-sided, then the weekly pages double-sided (flip on the long edge).</li>
-        <li>A 3-hole punch and a 1-inch binder hold about one semester; use a 1.5-inch binder for a full year.</li>
+        <li>A full year like the example is about ${yearWeeks + 12} pages, or ${Math.ceil((yearWeeks + 12) / 2)} sheets printed double-sided, so a 1-inch binder holds it with room for handouts.</li>
         <li>Print one semester at a time so later weeks can be regenerated if the calendar changes.</li>
         <li>Each page has a small “Made with BellBook” footer credit and a page number.</li>
         <li>Need attendance sheets or a seating chart too? Paste your class list under <em>Class pages from a roster</em>. Each attendance column is a real class date.</li>
@@ -633,11 +633,19 @@ pages.push({
       <p>BellBook runs in your browser. Your calendar settings, saved calendars and lesson-planner details are kept in your browser's local storage on your device and are never sent to our servers. PDFs, .ics and .csv files are generated on your device. Clearing your browser data deletes everything BellBook stored.</p>
       <p>The “What day is it?” share link contains the calendar (dates, rotation, days off and their names, but not your lesson planner) after the # sign. Browsers don't send that part of a link to servers, so we never receive it. Anyone you give the link to can read the calendar, so don't put private information in day names or notes.</p>
       <p>Student names you paste for class pages (attendance, gradebook, seating chart) are used only to draw the PDF in your browser. They are not saved, not put in share links and never uploaded.</p>
-      <p>We use Vercel Web Analytics to count page visits and a few anonymous events (for example “PDF downloaded”). It doesn't use cookies, doesn't track you across sites and doesn't collect anything you type into the tool.</p>
+      <p>We use Vercel Web Analytics to count page visits and a few anonymous events (for example “PDF downloaded”). It doesn't use cookies, doesn't track you across sites and doesn't collect anything you type into the tool. The part of a share link after the # is removed before a visit is counted.</p>
       <h2>Terms</h2>
       <p>BellBook is provided “as is”, without warranty. Check generated calendars and planners against your school's official calendar before publishing or printing them. You may use BellBook and its outputs freely for personal, classroom and school use.</p>`,
   graph: [crumbLd("privacy", "Privacy & Terms")],
 });
 
-for (const p of pages) writeFileSync(join(OUT, `${p.slug}.html`), page(p));
+// Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+for (const p of pages) {
+  const file = join(OUT, `${p.slug}.html`);
+  let html = page(p);
+  const prev = existsSync(file) ? (readFileSync(file, "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(file, html);
+}
 console.log(`wrote ${pages.length} pages`);

@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/style.css">
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.va("beforeSend",function(e){if(e&&e.url)e.url=String(e.url).split("#")[0];return e});</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BellBook","item":"https://abday.roohsites.com/"},{"@type":"ListItem","position":2,"name":"6-day rotation calendar","item":"https://abday.roohsites.com/6-day-cycle-calendar"}]},{"@type":"WebApplication","name":"6-day rotation calendar maker","url":"https://abday.roohsites.com/6-day-cycle-calendar","description":"Make a Day 1–6 cycle school calendar that skips holidays and re-flows after snow days.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Rooh Sites","url":"https://roohsites.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a 6-day rotation?","acceptedAnswer":{"@type":"Answer","text":"It's a schedule where school days are numbered Day 1 to Day 6 and then start again at Day 1. Because a school week has five days, each Day number falls on a different weekday from one week to the next."}},{"@type":"Question","name":"How many times does each day come up in a school year?","acceptedAnswer":{"@type":"Answer","text":"It depends on the number of school days. In the example 2026–27 year with 184 school days, each Day number comes up 30 or 31 times. BellBook shows the exact count for your calendar above the preview."}},{"@type":"Question","name":"What happens to Day 1–6 on a holiday?","acceptedAnswer":{"@type":"Answer","text":"Nothing is used up: the cycle pauses and the next school day gets the next Day number. If the day before the holiday was Day 4, the day after is Day 5."}},{"@type":"Question","name":"Can I make a 4-, 5-, 7- or 8-day cycle instead?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Day 1–N cycle and any length from 2 to 10 days."}}]}]}
@@ -44,7 +44,7 @@
     </section>
     <section class="tool card" aria-label="A/B day calendar generator"><div id="bb-tool" data-preset="six"></div><noscript><p>The calendar generator needs JavaScript. Everything runs in your browser; nothing is uploaded.</p></noscript></section>
     <article class="content narrow">
-      <p class="tldr"><strong>Quick answer:</strong> In a 6-day cycle, school days are numbered Day 1 to Day 6 in order and then repeat, ignoring weekends and days off. The first two weeks of school go Day 1–5, then Day 6 on the second Monday, then Day 1 again. Enter your school year above and BellBook numbers every day for you, including after holidays and snow days.</p>
+      <p class="tldr"><strong>Quick answer:</strong> In a 6-day cycle, school days are numbered Day 1 to Day 6 in order and then repeat, ignoring weekends and days off. If school starts on a Monday, the first week is Day 1 to Day 5, the second Monday is Day 6 and Tuesday starts again at Day 1. Enter your school year above and BellBook numbers every day for you, including after holidays and snow days.</p>
 
       <h2>How a Day 1–6 cycle lines up with the week</h2>
       <p>Because there are six days in the cycle but five days in a school week, the Day numbers drift across the weekdays. Here are the first ten school days of the example year:</p>
@@ -61,7 +61,7 @@
       <h2>Counting Day 1–6 across the school year</h2>
       <p>BellBook shows how many times each Day number occurs, which is useful for planning a specials curriculum. In the example year above (Aug 17, 2026 to May 28, 2027, 184 school days) the counts are:</p>
       <table><thead><tr><th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th><th>Day 5</th><th>Day 6</th></tr></thead><tbody><tr><td>31</td><td>31</td><td>31</td><td>31</td><td>30</td><td>30</td></tr></tbody></table>
-      <p>If the counts matter for your program, compare the two snow-day rules. “Rotation continues” keeps the counts even, while “skip the day” means one Day number loses a meeting for each closure.</p>
+      <p>If the counts matter for your program, compare the two snow-day rules. “Rotation continues” keeps the counts within one of each other. “Skip the day” takes the meeting away from whichever Day number the closure fell on, so several closures can leave one Day number short.</p>
 
       <h2>Make your 6-day rotation calendar</h2>
       <ol class="steps">
@@ -87,7 +87,7 @@
         <li><a href="/teacher-planner-2027-2028">Teacher planner 2027–2028</a></li>
         <li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li>
       </ul>
-      <p class="small muted">Last updated <time datetime="2026-10-08">8 October 2026</time> · Written by the Rooh Sites team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
+      <p class="small muted">Last updated <time datetime="2026-10-10">10 October 2026</time> · Written by the Rooh Sites team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
     </article>
   </main>
   <footer class="site">
@@ -97,7 +97,7 @@
       <div><h4>Lesson planners</h4><ul><li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li><li><a href="/second-semester-lesson-planner">Second semester planner</a></li><li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><ul><li><a href="https://invoice.roohsites.com/" title="Create and download PDF invoices free">Free invoice generator</a></li><li><a href="https://labels.roohsites.com/" title="Turn A4 shipping labels into 6x4 thermal labels">A4 to 6x4 label converter</a></li><li><a href="https://fnsku.roohsites.com/" title="FNSKU, suffocation and set labels for FBA prep">FNSKU label generator</a></li><li><a href="https://raffle.roohsites.com/" title="Printable numbered raffle tickets with stubs">Numbered raffle ticket generator</a></li><li><a href="https://transcript.roohsites.com/" title="Homeschool transcripts and GPA, free">Homeschool transcript generator</a></li><li><a href="https://photoreport.roohsites.com/" title="Captioned, timestamped photo reports as PDF">Photo report generator</a></li><li><a href="https://ugcrates.roohsites.com/" title="Price UGC with usage rights and whitelisting">UGC rate calculator</a></li><li><a href="https://abagraph.roohsites.com/" title="ABA graphs and data sheets for IEP goals">ABA graph maker</a></li><li><a href="https://tools.roohsites.com/">All free tools →</a></li></ul><p class="small">Made by <a href="https://roohsites.com/?utm_source=bellbook&amp;utm_medium=footer&amp;utm_campaign=tools">Rooh Sites</a></p><!--NETWORK:END--></div>
     </div>
-    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft or Apple.</p>
+    <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft, Apple, Goodnotes or Notability.</p>
   </footer>
 </div>
 <script type="module" src="/app.js"></script>

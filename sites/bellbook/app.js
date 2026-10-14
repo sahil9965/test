@@ -142,7 +142,7 @@ function init(mount) {
         <label class="bb-check"><input type="checkbox" name="pl.cover"> Cover and contents page</label>
         <label class="bb-check"><input type="checkbox" name="pl.monthly"> Monthly calendar pages</label>
         <label class="bb-check"><input type="checkbox" name="pl.weekly"> Weekly lesson plan pages</label>
-        <label class="bb-check"><input type="checkbox" name="pl.tabs"> Clickable month tabs (GoodNotes, Notability)</label>
+        <label class="bb-check"><input type="checkbox" name="pl.tabs"> Clickable month tabs (Goodnotes, Notability)</label>
         <label for="bb-psize">Paper</label><select id="bb-psize" data-ui="size"><option value="letter">US Letter</option><option value="a4">A4</option></select>
         <p class="small muted bb-pcount"></p>
         <button type="button" class="btn" data-a="planner">Download lesson planner (PDF)</button>
@@ -215,7 +215,7 @@ function init(mount) {
       const r = cfg.wk[w], mode = r.startsWith("fix:") ? "fix" : r;
       return `<div class="bb-wkrow"><label for="bb-wk${w}">${E.WDAYS[w]}</label>
         <select id="bb-wk${w}" data-wk="${w}"><option value="off"${mode === "off" ? " selected" : ""}>No school</option><option value="rot"${mode === "rot" ? " selected" : ""}>${cfg.labels.length ? "Rotates" : "School day"}</option><option value="fix"${mode === "fix" ? " selected" : ""}>Fixed label</option></select>
-        <input aria-label="${E.WDAYS[w]} fixed label" data-wkfix="${w}" value="${esc(mode === "fix" ? r.slice(4) : "")}" placeholder="e.g. All classes"${mode === "fix" ? "" : " hidden"}></div>`;
+        <input aria-label="${E.WDAYS[w]} fixed label" maxlength="24" data-wkfix="${w}" value="${esc(mode === "fix" ? r.slice(4) : "")}" placeholder="e.g. All classes"${mode === "fix" ? "" : " hidden"}></div>`;
     }).join("");
     renderEvents();
     renderPlanner();
@@ -227,7 +227,7 @@ function init(mount) {
     cfg.ev.forEach((ev, i) => (ev.t === "off" ? offs : chs).push([ev, i]));
     const out = d => (d < cfg.start || d > cfg.end ? ' class="bb-out" title="Outside the school year"' : "");
     $(".bb-offs").innerHTML = offs.length ? offs.map(([ev, i]) => `<div class="bb-ev bb-off" data-ev="${i}">
-      <input data-k="n" value="${esc(ev.n)}" aria-label="Name of day off" placeholder="Winter break">
+      <input data-k="n" maxlength="60" value="${esc(ev.n)}" aria-label="Name of day off" placeholder="Winter break">
       <input type="date" data-k="s" value="${ev.s}" aria-label="${esc(ev.n || "Day off")} first day"${out(ev.s)}>
       <input type="date" data-k="e" value="${ev.e}" aria-label="${esc(ev.n || "Day off")} last day"${out(ev.e)}>
       <button type="button" class="bb-x" data-a="rm" aria-label="Remove ${esc(ev.n || "day off")}">×</button></div>`).join("") : `<p class="small muted">No holidays or breaks yet.</p>`;
@@ -238,7 +238,7 @@ function init(mount) {
         <button type="button" class="bb-x" data-a="rm" aria-label="Remove this change">×</button>
         <input type="date" data-k="s" value="${ev.s}" aria-label="${ev.t === "reset" ? "Date" : "First day"}"${out(ev.s)}>
         ${ev.t === "reset" ? labelSel : `<input type="date" data-k="e" value="${ev.e}" aria-label="Last day (same as first for one day)"${out(ev.e)}>`}
-        ${ev.t === "reset" ? `<span class="small muted bb-evhelp">This day gets the chosen label; the rotation continues from it.</span>` : `<input data-k="n" value="${esc(ev.n)}" aria-label="Description" placeholder="${{ closed: "Snow day", norot: "Final exams", extra: "Snow make-up day", note: "Early release" }[ev.t]}">`}
+        ${ev.t === "reset" ? `<span class="small muted bb-evhelp">This day gets the chosen label; the rotation continues from it.</span>` : `<input data-k="n" maxlength="60" value="${esc(ev.n)}" aria-label="Description" placeholder="${{ closed: "Snow day", norot: "Final exams", extra: "Snow make-up day", note: "Early release" }[ev.t]}">`}
         ${ev.t === "closed" ? `<select data-k="m" aria-label="What happens to the rotation"><option value="continue"${ev.m !== "skip" ? " selected" : ""}>Rotation continues next school day</option><option value="skip"${ev.m === "skip" ? " selected" : ""}>Skip this day's letter</option></select>` : ""}
       </div>`;
     }).join("") : `<p class="small muted">No snow days or changes yet.</p>`;
@@ -248,8 +248,8 @@ function init(mount) {
   function renderPlanner() {
     const pl = cfg.pl;
     $(".bb-pers").innerHTML = pl.periods.map((p, i) => `<div class="bb-per" data-p="${i}">
-      <input data-pk="n" value="${esc(p.n)}" aria-label="Period ${i + 1} name" placeholder="Period ${i + 1}">
-      <input data-pk="t" value="${esc(p.t)}" aria-label="Period ${i + 1} time" placeholder="8:00–8:50">
+      <input data-pk="n" maxlength="24" value="${esc(p.n)}" aria-label="Period ${i + 1} name" placeholder="Period ${i + 1}">
+      <input data-pk="t" maxlength="24" value="${esc(p.t)}" aria-label="Period ${i + 1} time" placeholder="8:00–8:50">
       <button type="button" class="bb-x" data-a="rmPer" aria-label="Remove period ${i + 1}"${pl.periods.length < 2 ? " disabled" : ""}>×</button></div>`).join("");
     mount.querySelector('[data-a="addPer"]').disabled = pl.periods.length >= 10;
     const keys = plKeys();
@@ -260,7 +260,7 @@ function init(mount) {
   function renderClasses() {
     const pl = cfg.pl, list = pl.cls[ui.key] || [];
     $(".bb-cls").innerHTML = `<p class="small muted">${pl.same ? "Classes that meet every day:" : `Classes that meet on <strong>${esc(keyName(ui.key))}</strong>:`}</p>` + pl.periods.map((p, i) => `<div class="bb-clsrow">
-      <label for="bb-cls${i}">${esc(p.n || `Period ${i + 1}`)}</label><input id="bb-cls${i}" data-ci="${i}" value="${esc(list[i] || "")}" placeholder="Class or prep (blank = free)"></div>`).join("");
+      <label for="bb-cls${i}">${esc(p.n || `Period ${i + 1}`)}</label><input id="bb-cls${i}" maxlength="40" data-ci="${i}" value="${esc(list[i] || "")}" placeholder="Class or prep (blank = free)"></div>`).join("");
   }
 
   // ---------- compute + preview ----------
@@ -488,8 +488,8 @@ function init(mount) {
     }
     if (name === "n") { cfg.labels = E.dayNLabels(+t.value); cfg.first = 0; cfg = E.normalize(cfg); update(); renderStructure(); return; }
     if (name === "labels") {
-      const ls = t.value.split(",").map(s => s.trim()).filter(Boolean);
-      if (ls.length < 2) { status("Enter at least two labels, separated by commas."); return; }
+      const ls = [...new Set(t.value.split(",").map(s => s.trim()).filter(Boolean))];
+      if (ls.length < 2) { status("Enter at least two different labels, separated by commas."); return; }
       cfg.labels = ls; cfg.first = Math.min(cfg.first, ls.length - 1);
       return later(typing, "", () => renderStructure(true));
     }
@@ -618,10 +618,10 @@ function init(mount) {
         ${snowInfo ? `<button type="button" class="btn ghost" data-act="snowS">Snow day: skip ${esc(lab)}<small>${esc(snowInfo.skip)}</small></button>` : ""}
         ${cfg.labels.length ? `<div class="bb-inline"><label for="bb-dl">Make this day</label><select id="bb-dl">${cfg.labels.map((l, i) => `<option value="${i}"${l === day.label ? " selected" : ""}>${esc(cfg.fmt.replace("{L}", l))}</option>`).join("")}</select><button type="button" class="btn ghost sm" data-act="reset">Set</button></div>
         <p class="small muted">The rotation continues from the day you set.</p>` : ""}
-        <div class="bb-inline"><label for="bb-dn">Name</label><input id="bb-dn" placeholder="e.g. Teacher workday, Final exams"><button type="button" class="btn ghost sm" data-act="off">Day off</button><button type="button" class="btn ghost sm" data-act="norot">No-rotation day</button></div>` : ""}
-        ${day.kind === "weekend" || day.kind === "off" ? `<div class="bb-inline"><label for="bb-dn">Name</label><input id="bb-dn" placeholder="e.g. Snow make-up day"><button type="button" class="btn ghost sm" data-act="extra">Make-up school day</button></div>
+        <div class="bb-inline"><label for="bb-dn">Name</label><input id="bb-dn" maxlength="60" placeholder="e.g. Teacher workday, Final exams"><button type="button" class="btn ghost sm" data-act="off">Day off</button><button type="button" class="btn ghost sm" data-act="norot">No-rotation day</button></div>` : ""}
+        ${day.kind === "weekend" || day.kind === "off" ? `<div class="bb-inline"><label for="bb-dn">Name</label><input id="bb-dn" maxlength="60" placeholder="e.g. Snow make-up day"><button type="button" class="btn ghost sm" data-act="extra">Make-up school day</button></div>
         <p class="small muted">A make-up day gets the next rotation day and the rotation continues after it.</p>` : ""}
-        <div class="bb-inline"><label for="bb-nt">Note</label><input id="bb-nt" placeholder="e.g. Early release"><button type="button" class="btn ghost sm" data-act="note">Add note</button></div>
+        <div class="bb-inline"><label for="bb-nt">Note</label><input id="bb-nt" maxlength="60" placeholder="e.g. Early release"><button type="button" class="btn ghost sm" data-act="note">Add note</button></div>
         ${day.school ? `<button type="button" class="btn ghost sm bb-subbtn" data-act="sub">Substitute plan for this day (PDF)</button>` : ""}
       </div>`;
     dlg.showModal();
@@ -736,27 +736,33 @@ function init(mount) {
   }
 
   // ---------- saved calendars ----------
+  // Stored data can be edited or damaged outside BellBook, so keep only well-formed entries.
+  const savedList = () => { const l = store.get("saved", []); return Array.isArray(l) ? l.filter(s => s && typeof s === "object" && s.cfg && typeof s.cfg === "object").map(s => ({ ...s, name: String(s.name ?? "Saved calendar").slice(0, 60) })) : []; };
   function refreshSaved() {
     const sel = $("#bb-saved"); sel.length = 1;
-    store.get("saved", []).forEach((s, i) => sel.add(new Option(s.name, i)));
+    savedList().forEach((s, i) => sel.add(new Option(s.name, i)));
+  }
+  function keepCal(name, c) {
+    const list = savedList().filter(s => s.name !== name);
+    list.unshift({ name, cfg: c, at: Date.now() });
+    store.set("saved", list.slice(0, 30));
   }
   function saveCal() {
     const name = ($("#bb-savename").value || cfg.title || "My calendar").trim().slice(0, 60);
-    const list = store.get("saved", []).filter(s => s.name !== name);
-    list.unshift({ name, cfg, at: Date.now() });
-    store.set("saved", list.slice(0, 30)); refreshSaved();
+    keepCal(name, cfg); refreshSaved();
     $("#bb-saved").value = "0";
     status(`Saved “${name}” in this browser.`);
   }
   function loadCal() {
-    const s = store.get("saved", [])[+$("#bb-saved").value];
+    const s = savedList()[+$("#bb-saved").value];
     if (!s) { status("Choose a saved calendar first."); return; }
     cfg = E.normalize(s.cfg); if (!cfg.pl) cfg.pl = E.sample(presetKind).pl;
     update({ announce: `Opened “${s.name}”.` }); fillForm();
   }
   function delCal() {
     const i = $("#bb-saved").value; if (i === "") return;
-    const list = store.get("saved", []); const [s] = list.splice(+i, 1);
+    const list = savedList(); const [s] = list.splice(+i, 1);
+    if (!s) return;
     store.set("saved", list); refreshSaved(); status(`Deleted “${s.name}”.`);
   }
 
@@ -765,7 +771,16 @@ function init(mount) {
     const m = location.hash.match(/[#&]c=([\w-]+)/);
     if (m) {
       const c = await E.decodeShare(m[1]);
-      if (c) { cfg = { ...c, pl: cfg.pl }; status("Opened the calendar from the link. Edit it, then copy the new link."); }
+      if (c) {
+        // The link replaces the working draft, so keep the teacher's own draft in Saved calendars first.
+        let kept = "";
+        if (!preset && store.get("draft", null)) {
+          const mine = E.normalize(cfg);
+          if (JSON.stringify(E.shareable(mine)) !== JSON.stringify(c)) { kept = `Before link: ${mine.title || "my calendar"}`.slice(0, 60); keepCal(kept, mine); }
+        }
+        cfg = { ...c, pl: cfg.pl };
+        status(`Opened the calendar from the link. Edit it, then copy the new link.${kept ? ` Your previous calendar is under Saved calendars as “${kept}”.` : ""}`);
+      }
       history.replaceState(null, "", location.pathname + location.search);
     }
     cfg = E.normalize(cfg);

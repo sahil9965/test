@@ -302,7 +302,16 @@ export function buildIcs(res, { includeOff = true, now = new Date() } = {}) {
       ev(ymdc(d.n), d.n, d.n, `No school: ${d.name}`, `${d.mode === "skip" ? `The ${d.skipped ? cfg.fmt.replace("{L}", d.skipped) : "rotation day"} is skipped.` : "The rotation continues on the next school day."}\n${src}\n${credit}`);
     }
   }
-  if (includeOff) for (const x of eventList(res)) if (x.t === "off") ev(`off-${ymdc(x.s)}-${hashStr(x.n)}`, x.s, x.e, `No school: ${x.n}`, `${src}\n${credit}`);
+  if (includeOff) {
+    // Identical entries are written once; the end date in the UID keeps two breaks with one start date apart.
+    const seen = new Set();
+    for (const x of eventList(res)) {
+      const uid = `off-${ymdc(x.s)}-${ymdc(x.e)}-${hashStr(x.n)}`;
+      if (x.t !== "off" || seen.has(uid)) continue;
+      seen.add(uid);
+      ev(uid, x.s, x.e, `No school: ${x.n}`, `${src}\n${credit}`);
+    }
+  }
   L.push("END:VCALENDAR");
   return L.map(foldLine).join("\r\n") + "\r\n";
 }
@@ -345,7 +354,8 @@ export async function decodeShare(code) {
     if (code[0] === "1") bytes = await pipe(bytes, new DecompressionStream("deflate-raw"));
     else if (code[0] !== "0") return null;
     const raw = JSON.parse(new TextDecoder().decode(bytes));
-    if (!raw || typeof raw !== "object") return null;
+    // A real link always carries its own school year; anything else would silently show the example year.
+    if (!raw || typeof raw !== "object" || Array.isArray(raw) || !isIso(raw.start) || !isIso(raw.end)) return null;
     return normalize(raw);
   } catch { return null; }
 }
