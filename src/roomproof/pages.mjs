@@ -8,7 +8,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/roomproof
 const URL = "https://photoreport.roohsites.com";
 const NAME = "Roomproof";
 const ACCENT = "#15803d";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-10", DATE_H = "10 October 2026";
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 const tbl = (head, rows) => `      <table><thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>
@@ -113,7 +113,8 @@ ${tool ? `<script src="/core.js" defer></script>\n<script src="/photo.js" defer>
 
 const app = (name, url, extra = {}) => ({
   "@type": "WebApplication", name, url, applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)",
-  browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, ...extra,
+  browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" }, ...extra,
 });
 
 // ---------------------------------------------------------------- home
@@ -224,7 +225,7 @@ const pages = [
     body: `      <p class="tldr"><strong>Quick answer:</strong> A move-out checklist with photos is a room-by-room record of the condition you returned a rental in, with a dated photo of every wall, floor, fixture and appliance. Fill in the checklist above, add photos as you go, and download the PDF. Send it to your landlord or property manager on the day you hand back the keys, and keep a copy until your deposit is settled.</p>
       <h2>Why photos matter for your security deposit</h2>
       <p>When a landlord keeps part of a deposit, the dispute usually comes down to two questions: was the damage there when you moved in, and was it there when you left? Dated move-out photos answer the second one. In most US states a landlord can't charge for normal wear and tear, only for damage beyond it, and many states require an itemized list of deductions within a deadline, for example 21 days in California, 14 days in New York and 30 days in Texas. Check the current rules for your state and your lease.</p>
-      <p>Some states now require landlords to take photos as well. California's AB 2801, for example, requires landlords to photograph a unit after the tenant moves out and again after any repairs or cleaning. Your own photos are still your best record, because you decide what gets photographed.</p>
+      <p>Some states now require landlords to take photos as well. California's AB 2801, for example, requires landlords to photograph a unit after the tenant moves out (before any repairs or cleaning) and again after them, and at move-in for tenancies that began on or after July 1, 2025. Your own photos are still your best record, because you decide what gets photographed.</p>
       <h3>Normal wear and tear or damage?</h3>
 ${tbl(["Usually normal wear and tear", "Usually damage"], [
   ["Light scuffs and slightly faded paint", "Large marks, holes, or walls painted without permission"],
@@ -294,7 +295,7 @@ ${steps([
       <p>When you leave, choose <em>Start a follow-up from a saved project</em> and open your move-in file. Roomproof creates a move-out report with the same rooms and items. Your move-in photos and ratings sit on the left of each pair, the move-out photos you add sit on the right, and the PDF shows both ratings so changes stand out. The <a href="/move-out-checklist-with-photos">move-out checklist guide</a> covers what to photograph on the way out.</p>
       <p>Keep the project file somewhere safe for the whole tenancy, such as cloud storage or an email to yourself. Browser storage alone isn't reliable for a year or more.</p>`,
     faq: [
-      ["When should I do a move-in inspection?", "On move-in day, before you unpack, or as soon as you get the keys. Your lease or local law may set a deadline for returning the landlord's checklist, often within a few days to two weeks."],
+      ["When should I do a move-in inspection?", "On move-in day, before you unpack, or as soon as you get the keys. Your lease or local law may set a deadline for returning the landlord's checklist, often between a few days and about two weeks."],
       ["What if my landlord already gave me a checklist?", "Fill it in and return it on time, and attach your Roomproof PDF as a photo appendix. Keep copies of both."],
       ["Do the photos need a date on them?", "Dated photos are far more useful. Roomproof prints the time from your camera on each photo and lists it in the photo log. Emailing the PDF to your landlord straight away also gives you an independent dated record."],
       ["Should I report problems I find?", "Yes. Note them in the report and ask your landlord in writing to fix anything that affects safety, security or basic use of the home."],
@@ -305,7 +306,7 @@ ${steps([
     slug: "punch-list-with-photos", preset: "punch", crumb: "Punch list with photos",
     title: "Punch List Template with Photos — Free PDF Generator",
     desc: "Free punch list template with photos. List items by area, mark them open, in progress or done, circle the problem on each photo and download a signed PDF.",
-    h1: "Punch List with Photos",
+    h1: "Punch List Template with Photos",
     lead: "List every item still to finish, by area, with a marked-up photo of each one. Track it as Open, In progress or Done and send a clean PDF to the client or crew.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> A punch list is the list of work that still needs fixing or finishing before a job is complete. A photo of each item removes the guesswork: circle the problem, add a note such as “touch up paint left of switch”, set the status, and download a PDF with every open item on the first page.</p>
       <h2>What goes on a punch list</h2>
@@ -347,7 +348,7 @@ ${tbl(["Status", "Meaning", "In the summary of open items?"], [
     slug: "before-and-after-photo-report", preset: "beforeafter", crumb: "Before and after photo report",
     title: "Before and After Photo Report Template — Free PDF",
     desc: "Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.",
-    h1: "Before and After Photo Report",
+    h1: "Before and After Photo Report Template",
     lead: "Show the work you did: before and after photos side by side, each with the date and time it was taken, plus notes and a client signature.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> A before and after photo report pairs a photo of each area before the work with a photo of the same area afterwards, from the same angle, each with its date. Add <em>Before</em> photos when you arrive and <em>After</em> photos when you finish; Roomproof lines them up in pairs in the PDF with captions and the time each was taken.</p>
       <h2>Who uses before and after reports</h2>
@@ -472,11 +473,11 @@ ${steps([
     slug: "property-inventory-with-photos", preset: "ukinventory", crumb: "Property inventory with photos (UK)", lang: "en-GB",
     title: "Property Inventory Template with Photos (UK) — Free PDF",
     desc: "Free UK property inventory template with photos: a room-by-room schedule of condition, meter readings, keys and signatures. Download a check-in PDF.",
-    h1: "Property Inventory with Photos",
+    h1: "Property Inventory Template with Photos",
     lead: "A room-by-room schedule of condition with dated photos for check-in and check-out. For landlords, letting agents and tenants in the UK.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> A property inventory lists what is in a let property and the condition of each room and item, backed by dated photos. Make one at check-in, ask the tenant to sign it, and repeat the same rooms at check-out. Roomproof produces the photo schedule as a PDF, including meter readings and keys, and can lay check-in and check-out photos side by side.</p>
       <h2>Why inventories matter for deposits</h2>
-      <p>In England and Wales, deposits for most assured shorthold tenancies must be protected in a government-approved scheme: the Deposit Protection Service, mydeposits or the Tenancy Deposit Scheme. If the landlord and tenant can't agree on deductions, the scheme's free dispute resolution service decides on the evidence, and a signed check-in inventory with photos plus a check-out report are the heart of that evidence. Scotland and Northern Ireland have their own approved schemes. Roomproof isn't affiliated with any of them.</p>
+      <p>In England and Wales, deposits for most private tenancies must be protected in a government-approved scheme: the Deposit Protection Service, mydeposits or the Tenancy Deposit Scheme. If the landlord and tenant can't agree on deductions, the scheme's free dispute resolution service decides on the evidence, and a signed check-in inventory with photos plus a check-out report are the heart of that evidence. Scotland and Northern Ireland have their own approved schemes. Roomproof isn't affiliated with any of them.</p>
       <p>Since the Tenant Fees Act 2019, landlords and agents in England can't charge tenants for an inventory, so many smaller landlords now make their own, and many tenants make one too.</p>
       <h2>What a check-in inventory includes</h2>
 ${tbl(["Section", "What to record"], [
@@ -515,7 +516,7 @@ ${steps([
     lead: "Back up your rental's entry condition report with dated photos. Roomproof makes a room-by-room photo addendum PDF to return with the official form.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> Your state's entry condition report is the official record of a rental's condition at the start of the lease, and photos are the best way to back it up. Fill in the official form from your agent, then use Roomproof to photograph each room, note anything that differs from the form, and download a dated photo addendum PDF. Return both before your state's deadline and keep copies.</p>
       <h2>How condition reports work in Australia</h2>
-      <p>Each state and territory has its own form and rules, but the process is similar. The agent or landlord fills in the report and gives it to you at the start of the tenancy. You check every room, add your comments where you disagree, sign and return it within a short window, for example 7 days in NSW and 3 days in Queensland. At the end of the lease the same report is used to decide bond claims, and unresolved disputes go to the state tribunal.</p>
+      <p>Each state and territory has its own form and rules, but the process is similar. The agent or landlord fills in the report and gives it to you at the start of the tenancy. You check every room, add your comments where you disagree, sign and return it within a short window, for example 7 days in both NSW and Queensland. At the end of the lease the same report is used to decide bond claims, and unresolved disputes go to the state tribunal.</p>
 ${tbl(["State", "Form (common name)", "Bond disputes heard by"], [
   ["NSW", "Condition report", "NCAT"],
   ["Victoria", "Condition report", "VCAT"],
@@ -545,7 +546,7 @@ ${steps([
     faq: [
       ["Can I add photos to my condition report?", "Yes. Most agents accept attachments. Label the PDF clearly as a photo addendum, note on the form that it's attached, and keep proof that you sent it."],
       ["What if I disagree with the agent's report?", "Write your comments on the form and back them up with photos in your addendum. Return it on time and keep copies of everything."],
-      ["What's the deadline to return the report?", "It depends on your state, for example 7 days in NSW and 3 days in Queensland. Check your state's tenancy authority for the current rule."],
+      ["What's the deadline to return the report?", "It depends on your state and can change, for example 7 days in both NSW and Queensland. Check your state's tenancy authority for the current rule."],
       ["Do I need to sign the photo addendum?", "Signing and dating it helps show when it was made. Ask the agent to confirm by email that they received it."],
       ["Can agents and landlords use it?", "Yes. Agents can use the same template to photograph a property before a tenancy starts and attach the PDF to their report."],
     ],
