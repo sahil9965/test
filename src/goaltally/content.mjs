@@ -49,7 +49,7 @@ export const PAGES = [
       p("Behavior analysts follow shared visual conventions so that anyone can read a graph quickly and judge whether behavior changed when the condition changed. GoalTally applies them by default:"),
       tbl(["Element", "Convention", "In GoalTally"], [
         ["Axes", "Sessions or dates along the x-axis; the measure (percent, count, rate, duration) up the y-axis.", "Session numbers or a true calendar axis, with any y-axis label."],
-        ["Data points and path", "One marker per session, joined by straight lines within a phase.", "Filled circles, with open squares and triangles for a second and third series."],
+        ["Data points and path", "One marker per session, joined by straight lines within a phase.", "Filled circles, with open squares and filled triangles for a second and third series."],
         ["Phase-change lines", "A vertical dashed line between the last session of one condition and the first session of the next.", "Drawn halfway between the two sessions."],
         ["Broken data path", "Points are never connected across a phase-change line.", "Automatic. Missed sessions also break the line unless you choose to connect them."],
         ["Condition labels", "A short name centered above each phase.", "Taken from your phase names; long names wrap onto two lines."],

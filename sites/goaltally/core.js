@@ -221,6 +221,21 @@
         if (isCounter(v)) { col.session = c0; col.values.shift(); }
       }
     }
+    // A column under an unrecognised header ("Datum", "Fecha", "Notes") is not a data series when it
+    // holds dates (it becomes the date column) or has no numbers at all (it is skipped).
+    {
+      const isPhaseLine = k => k.filter(x => x !== "empty").length === 1 && k.includes("text");
+      const body = kinds.slice(start).filter(k => !isPhaseLine(k));
+      const cellsOf = i => body.map(k => k[i]).filter(k => k && k !== "empty");
+      const keep = [], keepNames = [];
+      col.values.forEach((i, j) => {
+        const c = cellsOf(i), dates = c.filter(k => k === "date").length, nums = c.filter(k => k === "num").length;
+        if (c.length && dates / c.length >= 0.6 && col.date < 0) { col.date = i; return; }
+        if (c.length && !nums) { if (header) warnings.push(`Skipped the “${String(header[i]).trim()}” column (no numbers).`); return; }
+        keep.push(i); if (header) keepNames.push(names[j]);
+      });
+      if (keep.length) { col.values = keep; if (header) names.splice(0, names.length, ...keepNames); }
+    }
     // Excel ABA templates often put each phase in its own column (blank cells break the line).
     // If every row has at most one value across 2+ named value columns, read those columns as phases.
     if (header && col.phase < 0 && col.values.length >= 2) {
@@ -266,7 +281,7 @@
   /* ---------- Phases ---------- */
   // phases: [{name, start}] where start is the 0-based index of the first session in that phase.
   function normPhases(phases, n) {
-    let p = (phases || []).map(x => ({ name: String(x.name ?? ""), start: Math.round(+x.start || 0) }));
+    let p = (Array.isArray(phases) ? phases : []).filter(x => x && typeof x === "object").map(x => ({ name: String(x.name ?? ""), start: Math.round(+x.start || 0) }));
     p = p.map(x => ({ ...x, start: clamp(x.start, 0, n) })).sort((a, b) => a.start - b.start);
     if (!p.length) p = [{ name: "", start: 0 }];
     p[0].start = 0;
@@ -323,9 +338,12 @@
     const g = { ...defaultGraph(), ...g0 };
     g.aim = { ...defaultGraph().aim, ...(g0.aim || {}) };
     g.crit = { ...defaultGraph().crit, ...(g0.crit || {}) };
+    for (const k of ["title", "student", "yLabel", "xLabel"]) g[k] = g[k] == null ? "" : String(g[k]);
     const warnings = [];
-    const rows = (g.rows || []).map(r => ({ d: r.d || "", v: (r.v || []).map(toNum) }));
-    const ns = clamp((g.series || []).length || 1, 1, 3);
+    // Tolerate damaged saved data: a missing row keeps its place (so phases still line up) but has no value.
+    const rows = (Array.isArray(g.rows) ? g.rows : []).map(r => ({ d: r && typeof r.d === "string" ? r.d : "", v: (r && Array.isArray(r.v) ? r.v : []).map(toNum) }));
+    if (!Array.isArray(g.series)) g.series = [{ name: "" }];
+    const ns = clamp(g.series.length || 1, 1, 3);
     const n = rows.length;
     const cal = g.xMode === "calendar";
     const xs = rows.map((r, i) => cal ? dayNum(r.d) : i + 1);
@@ -706,7 +724,9 @@
         // "Flat" when the fitted line changes by less than 5% of the y-axis range across the phase.
         const yr = Math.max(m.yMax - m.yMin, 1e-9), rel = Math.abs(st.slope) / (m.cal ? 7 : 1) * Math.max(st.xSpan, 1) / yr;
         const dirw = rel < 0.05 ? "a relatively flat trend" : st.slope > 0 ? "an increasing trend" : "a decreasing trend";
-        s += ` The data showed ${dirw} (${st.slope >= 0 ? "+" : ""}${fmtNum(st.slope, 2)}${m.pct ? " percentage points" : ""} per ${st.slopeUnit}, least-squares fit).`;
+        // A weekly rate extrapolated from a phase shorter than a week would overstate the trend.
+        if (m.cal && st.xSpan < 7) s += ` The data showed ${dirw} across ${st.xSpan} day${st.xSpan === 1 ? "" : "s"} (too short a span to estimate a trend per week).`;
+        else s += ` The data showed ${dirw} (${st.slope >= 0 ? "+" : ""}${fmtNum(st.slope, 2)}${m.pct ? " percentage points" : ""} per ${st.slopeUnit}, least-squares fit).`;
       }
       parts.push(s);
     });

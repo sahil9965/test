@@ -10,7 +10,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/goaltally
 const URL = "https://abagraph.roohsites.com";
 const NAME = "GoalTally";
 const ACCENT = "#0369a1";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-10", DATE_H = "10 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 

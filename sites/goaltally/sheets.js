@@ -189,11 +189,17 @@
     }
     return y + 20;
   }
-  function textBlock(it, x, y, W, label, value, maxLines = 3) {
+  // Long text is never cut silently: the last line ends with "…" and the preview shows a warning.
+  function textBlock(it, x, y, W, label, value, maxLines = 3, info) {
     const lw = textWidth(label + ":", 8.5, true) + 4;
     T_(it, x, y + 11, label + ":", 8.5, { bold: true, c: "#333" });
     if (!value) { L_(it, x + lw, y + 13.5, x + W - 10, y + 13.5, 0.5, "#777"); return y + 19; }
-    const ls = wrap(value, W - lw - 10, 9.5).slice(0, maxLines);
+    const all = wrap(value, W - lw - 10, 9.5).filter(Boolean), ls = all.slice(0, maxLines);
+    if (all.length > maxLines) {
+      ls[maxLines - 1] = fit(ls[maxLines - 1] + " …", W - lw - 10, 9.5);
+      const w = `The ${label.toLowerCase()} is too long to print in full (${maxLines} lines fit), so it's shortened with “…”. Shorten it to show all of it.`;
+      if (info && !info.warnings.includes(w)) info.warnings.push(w);
+    }
     ls.forEach((l, i) => T_(it, x + lw, y + 11 + i * 12, l, 9.5));
     return y + 7 + ls.length * 12;
   }
@@ -216,17 +222,17 @@
     if (grp === "skill") {
       y = fieldRow(it, M, y, W - logoW, [["Student", cfg.student, 1], ["Target / skill", cfg.title, 2.2]]);
       y = fieldRow(it, M, y, W, [["Staff", "", 1], ["Setting", "", 1], ["Dates", "", 1]]);
-      y = textBlock(it, M, y, W, "Goal", cfg.goal, 3);
-      y = textBlock(it, M, y, W, "Mastery criterion", cfg.criterion, 2);
+      y = textBlock(it, M, y, W, "Goal", cfg.goal, 5, info);
+      y = textBlock(it, M, y, W, "Mastery criterion", cfg.criterion, 2, info);
     } else if (grp === "abc") {
       y = fieldRow(it, M, y, W - logoW, [["Student", cfg.student, 1], ["Staff", "", 1], ["Setting", "", 1]]);
-      y = textBlock(it, M, y, W, "Behavior(s) of concern", behLabel || cfg.title, 2);
-      y = textBlock(it, M, y, W, "Definition", cfg.definition, 3);
+      y = textBlock(it, M, y, W, "Behavior(s) of concern", behLabel || cfg.title, 2, info);
+      y = textBlock(it, M, y, W, "Definition", cfg.definition, 4, info);
     } else {
       y = fieldRow(it, M, y, W - logoW, [["Student", cfg.student, 1], ["Behavior", behLabel || cfg.title, 2.2]]);
       y = fieldRow(it, M, y, W, [["Staff", "", 1], ["Setting", "", 1], [grp === "interval" ? "Week of" : "Week of", "", 1]]);
-      y = textBlock(it, M, y, W, "Definition", cfg.definition, 3);
-      if (cfg.goal) y = textBlock(it, M, y, W, "Goal", cfg.goal, 2);
+      y = textBlock(it, M, y, W, "Definition", cfg.definition, 4, info);
+      if (cfg.goal) y = textBlock(it, M, y, W, "Goal", cfg.goal, 3, info);
     }
     if (info.key) {
       const ls = wrap(info.key, W, 8).slice(0, 4);
@@ -598,6 +604,7 @@
   /* ---------- Entry point ---------- */
   function sheetPages(cfg0, opts = {}) {
     const cfg = { ...defaultSheet(cfg0.type), ...cfg0 };
+    if (!TYPES[cfg.type]) cfg.type = "trial"; // unknown type in old or damaged saved data
     const T = TYPES[cfg.type];
     const P = pageSize(cfg);
     const info = { warnings: [], key: "", P };

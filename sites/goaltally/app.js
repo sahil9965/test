@@ -16,7 +16,8 @@
     set(k, v) { try { localStorage.setItem("gt_" + k, JSON.stringify(v)); return true; } catch { return false; } },
     del(k) { try { localStorage.removeItem("gt_" + k); } catch {} },
   };
-  const track = (name, props = {}) => { try { window.va && window.va("event", { name, ...props }); } catch {} };
+  // Event names and small enums/counts only (never anything typed by the user). Vercel expects them under "data".
+  const track = (name, props) => { try { window.va && window.va("event", props ? { name, data: props } : { name }); } catch {} };
   const fileSlug = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
   function download(blob, name) {
     const a = document.createElement("a");
@@ -35,8 +36,19 @@
   }
 
   /* ---------- Saved goals (this browser only) ---------- */
+  const isObj = o => !!o && typeof o === "object" && !Array.isArray(o);
+  // Saved goals come from this browser's storage, which can be edited or damaged: keep only usable
+  // entries and repair unknown measurement types so one bad record never breaks the tools.
+  function cleanGoal(g) {
+    if (g.type && !GTS.TYPES[g.type]) g.type = null;
+    if (g.sheet && (!isObj(g.sheet) || !GTS.TYPES[g.sheet.type])) g.sheet = isObj(g.sheet) ? { ...g.sheet, type: g.type || "trial" } : null;
+    if (g.graph && !isObj(g.graph)) g.graph = null;
+    g.sessions = Array.isArray(g.sessions) ? g.sessions.filter(isObj) : [];
+    for (const k of ["student", "title"]) if (g[k] != null && typeof g[k] !== "string") g[k] = String(g[k]);
+    return g;
+  }
   const Lib = {
-    all() { const a = LS.get("goals", []); return Array.isArray(a) ? a : []; },
+    all() { const a = LS.get("goals", []); return Array.isArray(a) ? a.filter(g => isObj(g) && g.id && typeof g.id === "string").map(cleanGoal) : []; },
     get(id) { return this.all().find(g => g.id === id) || null; },
     put(goal) {
       goal.updated = Date.now();
@@ -150,7 +162,12 @@
     lib.flush = () => {
       clearTimeout(saveT);
       const st = o.collect();
-      if (lib.id) { const g = Lib.get(lib.id); if (g) { o.merge(g, st); Lib.put(g); LS.set(draftKey, { id: lib.id }); return; } lib.id = null; }
+      if (lib.id) {
+        const g = Lib.get(lib.id);
+        // Save (and bump "updated", which backups compare) only when something actually changed.
+        if (g) { const before = JSON.stringify(g); o.merge(g, st); if (JSON.stringify(g) !== before) Lib.put(g); LS.set(draftKey, { id: lib.id }); return; }
+        lib.id = null;
+      }
       LS.set(draftKey, { state: st.state });
     };
     lib.saveNew = (silent) => {
@@ -186,6 +203,7 @@
         if (!f) { msg("Choose a backup file first."); return; }
         try {
           const data = await decryptBackup(await f.text(), q("rpass").value);
+          lib.flush(); // compare against the latest edits on this page
           const cur = Lib.all(), byId = new Map(cur.map(g => [g.id, g]));
           let added = 0, updated = 0;
           for (const g of data.goals || []) {
@@ -196,8 +214,10 @@
           if (!LS.set("goals", [...byId.values()])) throw new Error("This browser's storage is full.");
           if (data.settings && data.settings.logo && !settings.logo) { settings.logo = data.settings.logo; saveSettings(); }
           q("rpass").value = ""; q("file").value = "";
+          // Show the restored version of the open goal, so a later autosave can't write the old one back.
+          const open = lib.id && Lib.get(lib.id);
+          if (open) o.open(clone(open));
           lib.refresh(); msg(`Restored: ${added} new goal${added === 1 ? "" : "s"}, ${updated} updated.`); track("backup_restored");
-          o.restored && o.restored();
         } catch (err) { msg(err.message); }
       } else if (a === "csvAll") {
         download(new Blob([allCSV()], { type: "text/csv" }), `goaltally-data-${today()}.csv`); track("csv_exported", { scope: "all" });
@@ -321,7 +341,7 @@
             <div><label for="g-cn">Sessions in a row</label><input id="g-cn" type="number" min="1" max="30" data-k="crit.n"></div>
           </div>
           <div class="row">
-            <div><label for="g-cd">Goal direction</label><select id="g-cd" data-k="crit.dir"><option value="up">Increase: at or above</option><option value="down">Decrease: at or below</option></select></div>
+            <div><label for="g-cd">Goal direction</label><select id="g-cd" data-k="crit.dir"><option value="up">Increase (≥ value)</option><option value="down">Decrease (≤ value)</option></select></div>
             <div><label for="g-cs">Count sessions in</label><select id="g-cs" data-k="crit.scope"><option value="last">The last phase</option><option value="all">All phases</option></select></div>
           </div>
           <label class="gt-check"><input type="checkbox" data-k="crit.line"> Draw a criterion line</label>
@@ -363,16 +383,21 @@
       open(goal) { load(goal.graph || (goal.sheet ? graphFromSheet(goal.sheet) : { ...GRAPH_PRESETS.blank(), student: goal.student, title: goal.title })); },
       load: s => load(s),
       blank: first => load(first ? (GRAPH_PRESETS[preset] || GRAPH_PRESETS.ab)() : { ...GRAPH_PRESETS.blank(), style: g.style, dateFmt: g.dateFmt }),
-      restored: () => {},
     });
     const getK = (o, k) => k.split(".").reduce((a, p) => a && a[p], o);
     const setK = (o, k, v) => { const ps = k.split("."); let a = o; for (const p of ps.slice(0, -1)) a = a[p] = a[p] || {}; a[ps[ps.length - 1]] = v; };
     function load(state) {
+      if (!isObj(state)) state = GRAPH_PRESETS.blank();
       g = { ...GT.defaultGraph(), ...clone(state) };
-      g.aim = { ...GT.defaultGraph().aim, ...(state.aim || {}) };
-      g.crit = { ...GT.defaultGraph().crit, ...(state.crit || {}) };
-      if (!Array.isArray(g.rows)) g.rows = [];
-      if (!Array.isArray(g.series) || !g.series.length) g.series = [{ name: "" }];
+      g.aim = { ...GT.defaultGraph().aim, ...(isObj(state.aim) ? state.aim : {}) };
+      g.crit = { ...GT.defaultGraph().crit, ...(isObj(state.crit) ? state.crit : {}) };
+      // Repair damaged saved data: rows keep their place, phases and series must be objects.
+      g.rows = Array.isArray(g.rows) ? g.rows.map(r => isObj(r) ? { ...r, d: typeof r.d === "string" ? r.d : "", v: Array.isArray(r.v) ? r.v : r.v == null ? [] : [r.v] } : { d: "", v: [] }) : [];
+      g.phases = Array.isArray(g.phases) ? g.phases.filter(isObj).map(p => ({ ...p, name: p.name == null ? "" : String(p.name) })) : [];
+      if (!g.phases.length) g.phases = [{ name: "Baseline", start: 0 }];
+      g.series = Array.isArray(g.series) ? g.series.slice(0, 3).map(s => ({ name: isObj(s) && s.name != null ? String(s.name) : "" })) : [];
+      if (!g.series.length) g.series = [{ name: "" }];
+      for (const k of ["title", "student", "yLabel", "xLabel", "note"]) if (g[k] != null && typeof g[k] !== "string") g[k] = String(g[k]);
       noteEdited = !!g.note;
       $("#g-note", mount).value = g.note || "";
       syncForm(); renderPhases(); renderRows(); renderAim(); draw();
@@ -538,7 +563,14 @@
         if (g.rows.length && !confirm("Clear all session data from this graph?")) return;
         g.rows = []; g.phases = [{ name: g.phases[0] ? g.phases[0].name : "Baseline", start: 0 }];
         renderPhases(); renderRows(); changed();
-      } else if (a === "example") { load({ ...(GRAPH_PRESETS[preset] || GRAPH_PRESETS.ab)() }); lib.touch(); }
+      } else if (a === "example") {
+        // Never overwrite a saved goal with example data: the example opens as an unsaved draft.
+        const detached = !!lib.id;
+        if (detached) { lib.flush(); lib.id = null; }
+        else if (g.rows.some(r => (r.v || []).some(v => v !== null && v !== "")) && !confirm("Replace the data on this graph with the example?")) return;
+        load({ ...(GRAPH_PRESETS[preset] || GRAPH_PRESETS.ab)() }); lib.refresh(); lib.touch();
+        if (detached) toast("The example opened as an unsaved draft. Your saved goal hasn't changed; pick it under Saved goals to go back.");
+      }
       else if (a === "import" || a === "append") {
         const txt = $("#g-paste", form).value, out = $(".gt-pastemsg", form);
         const r = GT.parsePaste(txt, { pref: g.dateFmt, defYear: new Date().getFullYear() });
@@ -592,5 +624,5 @@
   const gm = document.getElementById("gt-graph");
   if (gm) GraphTool(gm);
 
-  window.GTApp = { GraphTool, Lib, LS, settings, saveSettings, makeLibrary, toast, download, track, esc, today, clock, clone, graphFromSheet, titleOf, fileSlug, $, $$ };
+  window.GTApp = { GraphTool, Lib, LS, settings, saveSettings, makeLibrary, toast, download, track, esc, today, clock, clone, graphFromSheet, titleOf, fileSlug, isObj, $, $$ };
 })();

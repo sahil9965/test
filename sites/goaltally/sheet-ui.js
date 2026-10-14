@@ -5,7 +5,7 @@
   const A = window.GTApp, GT = window.GT, GTS = window.GTS, GTR = window.GTR;
   const mount = document.getElementById("gt-sheet");
   if (!A || !mount) return;
-  const { Lib, settings, saveSettings, makeLibrary, toast, download, track, esc, today, clock, clone, graphFromSheet, titleOf, fileSlug, $, $$ } = A;
+  const { Lib, settings, saveSettings, makeLibrary, toast, download, track, esc, today, clock, clone, graphFromSheet, titleOf, fileSlug, isObj, $, $$ } = A;
   const show = GTS.show;
 
   const HELP = {
@@ -101,11 +101,12 @@
     },
     load: s => { sessions = []; load(s); },
     blank: first => { sessions = []; load(first ? presetCfg(type0) : { ...GTS.defaultSheet(cfg.type), paper: cfg.paper }); },
-    restored: () => {},
   });
 
   function load(state) {
+    if (!isObj(state)) state = presetCfg(type0);
     cfg = { ...GTS.defaultSheet(state.type), ...clone(state) };
+    if (!GTS.TYPES[cfg.type]) cfg.type = GTS.defaultSheet(cfg.type).type; // unknown type in damaged saved data
     sync(); renderOpts(); draw();
   }
   function sync() {
@@ -282,7 +283,7 @@
     const g = lib.id && Lib.get(lib.id);
     const graph = g && g.graph;
     const lastPhase = graph && graph.phases && graph.phases.length ? GT.normPhases(graph.phases, graph.rows.length).pop().name : "";
-    S = { type: cfg.type, date: today(), staff: "", phaseMode: "continue", newPhase: graph ? "Intervention" : "Baseline", cells: [], counts: GTS.behaviorsOf(cfg).map(() => 0), episodes: [], lat: [], marks: GTS.behaviorsOf(cfg).map(() => []), cur: 0, run: null, t0: 0, elapsed: 0, minutes: "", start: "", end: "", epStart: null, sdAt: null, n: GTS.intervalInfo(cfg).n };
+    S = { type: cfg.type, date: today(), staff: "", phaseMode: "continue", newPhase: graph ? "Intervention" : "Baseline", cells: [], counts: GTS.behaviorsOf(cfg).map(() => 0), episodes: [], lat: [], marks: GTS.behaviorsOf(cfg).map(() => []), cur: 0, run: null, t0: 0, elapsed: 0, minutes: "", start: "", end: "", epStart: null, sdAt: null, n: GTS.intervalInfo(cfg).n, autoN: GTS.intervalInfo(cfg).n, missed: 0 };
     const grp = GTS.TYPES[cfg.type].group;
     const T = GTS.TYPES[cfg.type];
     const rows = grp === "skill" ? scoreRows() : [];
@@ -384,15 +385,18 @@
     $(".sc-ivclock", dlg).textContent = `${GT.fmtClock(el)} · interval ${S.cur + 1} of ${L.n}`;
     if (el >= L.n * L.sec) { if ($("[data-sound]", dlg).checked) beep(); toggleIv(true); $(".sc-ivclock", dlg).textContent = `Done · ${L.n} intervals`; }
   }
+  function setObserved(reached) { S.autoN = reached; S.n = Math.max(1, reached - S.missed); const el = $("[data-n]", dlg); if (el) el.value = S.n; }
   function toggleIv(forceStop) {
     const L = GTS.intervalInfo(cfg), btn = $("[data-iv=go]", dlg);
     if (S.run || forceStop) {
       if (S.run) S.elapsed += (performance.now() - S.t0) / 1000;
       S.run = null; stopTimers(); btn.textContent = "Resume timer";
+      // Intervals observed = intervals the timer reached, minus any the observer marked as missed.
       const done = Math.min(L.n, Math.ceil(S.elapsed / L.sec - 1e-9));
-      if (done > 0 && done < L.n) { S.n = done; $("[data-n]", dlg).value = done; }
+      if (done > 0) setObserved(done);
       updateSum(); return;
     }
+    if (S.elapsed > 0) setObserved(L.n); // resuming: the session runs to the end unless stopped again
     S.run = true; S.t0 = performance.now(); if (!S.start) S.start = clock();
     btn.textContent = "Pause timer";
     timers.push(setInterval(ivTick, 200)); ivTick();
@@ -436,7 +440,7 @@
     if (t.dataset.addlat !== undefined) { const v = GT.toNum($(".sc-man", dlg).value); if (v === null || v < 0) { toast("Type the latency in seconds, e.g. 4.5."); return; } S.lat.push(v); $(".sc-man", dlg).value = ""; renderEps(); updateSum(); return; }
     if (t.dataset.rmep !== undefined) { (cfg.type === "duration" ? S.episodes : S.lat).splice(+t.dataset.rmep, 1); renderEps(); updateSum(); return; }
     if (t.dataset.iv === "go") { toggleIv(); return; }
-    if (t.dataset.iv === "reset") { stopTimers(); S.run = null; S.elapsed = 0; S.cur = 0; S.start = ""; $("[data-iv=go]", dlg).textContent = "Start timer"; $$(".sc-iv", dlg).forEach(b => b.classList.remove("now")); $(".sc-ivclock", dlg).textContent = `0:00 · interval 1 of ${GTS.intervalInfo(cfg).n}`; return; }
+    if (t.dataset.iv === "reset") { stopTimers(); S.run = null; S.elapsed = 0; S.cur = 0; S.start = ""; S.missed = 0; setObserved(GTS.intervalInfo(cfg).n); updateSum(); $("[data-iv=go]", dlg).textContent = "Start timer"; $$(".sc-iv", dlg).forEach(b => b.classList.remove("now")); $(".sc-ivclock", dlg).textContent = `0:00 · interval 1 of ${GTS.intervalInfo(cfg).n}`; return; }
     if (t.classList.contains("sc-iv")) {
       const i = +t.dataset.i, sel = $("input[name=sc-beh]:checked", dlg), b = sel ? +sel.value : 0;
       S.marks[b][i] = S.marks[b][i] ? 0 : 1;
@@ -450,7 +454,7 @@
   dlg.addEventListener("input", e => {
     const m = e.target.dataset.m;
     if (m) { S[m] = e.target.value; if (m === "phaseMode") $(".sc-newph", dlg).hidden = e.target.value !== "new"; updateSum(); }
-    if (e.target.dataset.n !== undefined) { S.n = +e.target.value; updateSum(); }
+    if (e.target.dataset.n !== undefined) { S.n = +e.target.value; if (S.n > 0) S.missed = Math.max(0, S.autoN - S.n); updateSum(); }
   });
   dlg.addEventListener("change", e => { if (e.target.dataset.m === "phaseMode") $(".sc-newph", dlg).hidden = e.target.value !== "new"; });
   dlg.addEventListener("close", stopTimers);
