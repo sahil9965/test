@@ -857,7 +857,8 @@
       }).join("");
     }
     function compute() {
-      const r = E.computeGPA(st.rows, st.settings);
+      // Empty placeholder rows (no title, no grade) are ignored, not counted as "in progress".
+      const r = E.computeGPA(st.rows.filter(x => String(x.title || "").trim() || String(x.grade || "").trim()), st.settings);
       const d = st.settings.decimals;
       const q = n => E.fmtCredits(n);
       root.querySelector(".glc-out").innerHTML = `
@@ -905,12 +906,15 @@
         const D = store.load() || E.emptyData();
         const s = D.students.find(x => x.id === D.current) || D.students[0];
         let updated = 0;
+        // Copying twice updates the same courses instead of adding duplicates. Only courses that were
+        // already in that grade are matched, each at most once, so rows sharing a title (or with no
+        // title) in one copy all become separate courses.
+        const existing = s.courses.filter(c => c.year === year);
         for (const r of rows) {
           const title = r.title.trim() || "Untitled course";
           const fields = { grade: r.grade, credits: E.parseCredits(r.credits), level: r.level };
-          // Copying twice updates the same courses instead of adding duplicates.
-          const same = s.courses.find(c => c.year === year && c.title.trim().toLowerCase() === title.toLowerCase());
-          if (same) { Object.assign(same, fields); updated++; continue; }
+          const i = existing.findIndex(c => c.title.trim().toLowerCase() === title.toLowerCase());
+          if (i >= 0) { Object.assign(existing[i], fields); existing.splice(i, 1); updated++; continue; }
           const lib = E.findLibrary(r.title);
           s.courses.push(E.newCourse(year, Object.assign({ title, subject: lib ? lib.subject : "elec" }, fields)));
         }

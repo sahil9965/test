@@ -444,6 +444,8 @@
         c = cols[0] <= cols[1] ? 0 : 1;
         let n = rowsFitting(start, limit - cols[c]);
         if (n < 2) { newPage(); c = 0; n = Math.max(1, rowsFitting(start, limit - cols[0])); }
+        // Keep at least one row for the last part, which carries the credits/GPA line.
+        n = Math.max(1, Math.min(n, list.length - start - 1));
         const part = yearBlock(th, s, student, yr, list, colW, s.showPercent, { courses: list.slice(start, start + n), cont: start > 0, summary: false });
         part.draw(doc, M + c * (colW + gap), cols[c]); cols[c] += part.h + 8;
         start += n;
