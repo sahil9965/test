@@ -38,17 +38,42 @@
   const lang = (navigator.language || "en-US");
   const usLike = /-(US|CA|MX|PH)$/i.test(lang) || lang === "en";
 
-  const saved = store.get("settings", {});
-  const S = Object.assign({ preset: "auto", size: usLike ? "4x6" : "100x150", cw: 100, ch: 150, mode: "fit", margin: 2, slips: "drop", customs: "page", out: "pdf", fmt: "png", dpi: 203, bw: true, guide: "acrobat" }, saved);
+  const has = (o, k) => typeof k === "string" && Object.prototype.hasOwnProperty.call(o, k);
+  const isSize = k => has(C.SIZES, k) || k === "custom";
+  const DEF = { preset: "auto", size: usLike ? "4x6" : "100x150", cw: 100, ch: 150, mode: "fit", margin: 2, slips: "drop", customs: "page", out: "pdf", fmt: "png", dpi: 203, bw: true, guide: "acrobat" };
+  // Saved settings come from an older visit (or a damaged store): keep only values this version knows.
+  let saved = store.get("settings", {});
+  saved = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  if (!isSize(saved.size)) delete saved.size;
+  const S = Object.assign({}, DEF, saved);
+  const oneOf = (k, list) => { if (!list.includes(S[k])) S[k] = DEF[k]; };
+  oneOf("mode", ["fit", "actual"]); oneOf("slips", ["drop", "page"]); oneOf("customs", ["page", "drop"]);
+  oneOf("out", ["pdf", "img"]); oneOf("fmt", ["png", "jpg"]); oneOf("guide", ["acrobat", "chrome", "preview", "phone"]);
+  S.dpi = [203, 300].includes(+S.dpi) ? +S.dpi : DEF.dpi;
+  S.margin = [0, 2, 4].includes(+S.margin) ? +S.margin : DEF.margin;
+  S.cw = +S.cw > 0 ? Math.min(600, Math.max(20, +S.cw)) : DEF.cw;
+  S.ch = Number.isFinite(+S.ch) && +S.ch > 0 ? Math.min(2000, Math.max(20, +S.ch)) : 0;
+  if (typeof S.bw !== "boolean") S.bw = DEF.bw;
+  if (typeof S.preset !== "string") S.preset = "auto";
   const d = mount.dataset;
   // Guide pages pick their preset; its paper size applies unless this visitor already chose one.
-  if (d.preset && PRESETS[d.preset]) { S.preset = d.preset; if (PRESETS[d.preset].size && !saved.size) S.size = PRESETS[d.preset].size; }
+  if (has(PRESETS, d.preset)) { S.preset = d.preset; if (PRESETS[d.preset].size && !saved.size) S.size = PRESETS[d.preset].size; }
   if (d.out) S.out = d.out;
   if (d.slips) S.slips = d.slips;
-  if (!PRESETS[S.preset] && !String(S.preset).startsWith("my:")) S.preset = "auto";
+  if (!has(PRESETS, S.preset) && !S.preset.startsWith("my:")) S.preset = "auto";
   const save = () => store.set("settings", S);
 
+  // A saved or imported layout, checked field by field. Returns null if nothing usable is left.
+  function normLayout(l, n) {
+    if (!l || typeof l !== "object" || typeof l.name !== "string" || !Array.isArray(l.boxes)) return null;
+    const boxes = l.boxes.filter(b => b && [b.x, b.y, b.w, b.h].every(v => Number.isFinite(+v) && +v >= 0 && +v <= 1.0001) && +b.w > 0 && +b.h > 0)
+      .map(b => ({ x: +b.x, y: +b.y, w: +b.w, h: +b.h, role: has(ROLE, b.role) ? b.role : "label", rot: [0, 90, 180, 270].includes(b.rot) ? b.rot : "auto" }));
+    if (!boxes.length) return null;
+    const id = String(l.id || Date.now().toString(36) + n).replace(/[^\w-]/g, "").slice(0, 24) || "i" + n;
+    return { id, name: l.name.slice(0, 40), pageW: +l.pageW || 0, pageH: +l.pageH || 0, boxes, size: isSize(l.size) ? l.size : "4x6", mode: l.mode === "actual" ? "actual" : "fit", margin: [0, 2, 4].includes(+l.margin) ? +l.margin : 2, cw: +l.cw > 0 ? Math.min(600, Math.max(20, +l.cw)) : 100, ch: Number.isFinite(+l.ch) && +l.ch > 0 ? Math.min(2000, Math.max(20, +l.ch)) : 0 };
+  }
   let layouts = store.get("layouts", []);
+  layouts = Array.isArray(layouts) ? layouts.map(normLayout).filter(Boolean) : [];
   const docs = [];
   let pages = [], cur = 0, sel = null, outIdx = 0, uid = 0, busy = false;
 
@@ -208,9 +233,16 @@
   // ---------- Reading files ----------
   function status(msg, err) { const s = $(".lf-status"); s.textContent = msg || ""; s.classList.toggle("err", !!err); }
 
-  async function addFiles(list) {
-    const files = [...list];
-    if (!files.length || busy) return;
+  // Files that arrive while others are still being read (or a PDF is being built) wait their turn
+  // instead of being dropped.
+  let addQ = Promise.resolve();
+  function addFiles(list) {
+    const files = [...(list || [])];
+    if (files.length) addQ = addQ.then(() => addFilesNow(files)).catch(e => { console.error(e); busy = false; mount.classList.remove("busy"); });
+    return addQ;
+  }
+  async function addFilesNow(files) {
+    while (busy) await new Promise(r => setTimeout(r, 150));
     busy = true; mount.classList.add("busy");
     const errs = [];
     let added = 0;
@@ -276,7 +308,7 @@
     rawBlocks(res.blocks);
     let blocks = C.classify(res.blocks, { cellMm: pg.cellMm, ptPerCell: pg.cellPt, single });
     if (!blocks.some(b => b.kind === "label") && single) {
-      const r = PRESETS[S.preset]?.region || { x: 0, y: 0, w: 1, h: 1 };
+      const r = (has(PRESETS, S.preset) && PRESETS[S.preset].region) || { x: 0, y: 0, w: 1, h: 1 };
       blocks.push({ x: r.x * pg.w, y: r.y * pg.h, w: r.w * pg.w, h: r.h * pg.h, kind: "label", guess: true });
     }
     pg.auto = blocks.map(b => ({ x: b.x, y: b.y, w: b.w, h: b.h, kind: b.kind, guess: !!b.guess }));
@@ -487,7 +519,8 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 60000);
   }
   const baseName = () => {
-    const n = (docs[0]?.name || "label").replace(/\.[a-z0-9]+$/i, "").replace(/[^\w.-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "label";
+    // Keep letters and digits from any script (Étiquette, 日本語), replace everything else.
+    const n = [...(docs[0]?.name || "label").normalize("NFC").replace(/\.[a-z0-9]+$/i, "").replace(/[^\p{L}\p{M}\p{N}._-]+/gu, "-").replace(/^[-.]+|[-.]+$/g, "")].slice(0, 40).join("").replace(/[-.]+$/, "") || "label";
     return `${n}-${S.size === "custom" ? "custom" : S.size}`;
   };
 
@@ -718,7 +751,7 @@
     const t = e.target, id = t.id;
     if (id === "lf-preset") {
       S.preset = t.value;
-      const P = PRESETS[S.preset], L = activeLayout();
+      const P = has(PRESETS, S.preset) ? PRESETS[S.preset] : null, L = activeLayout();
       if (P?.size) S.size = P.size;
       if (L) { S.size = L.size || S.size; S.mode = L.mode || S.mode; if (L.margin != null) S.margin = L.margin; if (L.cw) { S.cw = L.cw; S.ch = L.ch; } }
       pages.forEach(applyLayoutOrAuto);
@@ -852,7 +885,8 @@
     S.preset = "my:" + id; save(); nameIn.value = "";
     pages.forEach(p => { if (p !== pg) applyLayoutOrAuto(p); else p.fromLayout = true; });
     syncSettingsUI(); renderStrip(); refreshOutput();
-    status(`Saved layout “${name}”. Pick it under “Label from” next time and LabelFit will use these boxes instead of auto-detecting.`);
+    const others = pages.length - 1;
+    status(`Saved layout “${name}”${others ? ` and applied it to the other ${others} loaded page${others > 1 ? "s" : ""}` : ""}. Pick it under “Label from” next time and LabelFit will use these boxes instead of auto-detecting.`);
   }
   async function importLayouts(file) {
     if (!file) return;
@@ -862,12 +896,10 @@
       if (!Array.isArray(list)) throw new Error("no layouts");
       let n = 0;
       for (const l of list) {
-        if (!l || typeof l.name !== "string" || !Array.isArray(l.boxes) || !l.boxes.length) continue;
-        const boxes = l.boxes.filter(b => [b.x, b.y, b.w, b.h].every(v => Number.isFinite(+v) && +v >= 0 && +v <= 1.0001)).map(b => ({ x: +b.x, y: +b.y, w: +b.w, h: +b.h, role: ROLE[b.role] ? b.role : "label", rot: [0, 90, 180, 270].includes(b.rot) ? b.rot : "auto" }));
-        if (!boxes.length) continue;
-        const id = String(l.id || Date.now().toString(36) + n).replace(/[^\w-]/g, "").slice(0, 24) || "i" + n;
-        layouts = layouts.filter(x => x.id !== id);
-        layouts.push({ id, name: l.name.slice(0, 40), pageW: +l.pageW || 0, pageH: +l.pageH || 0, boxes, size: C.SIZES[l.size] || l.size === "custom" ? l.size : "4x6", mode: l.mode === "actual" ? "actual" : "fit", margin: [0, 2, 4].includes(+l.margin) ? +l.margin : 2, cw: +l.cw || 100, ch: +l.ch || 0 });
+        const L = normLayout(l, n);
+        if (!L) continue;
+        layouts = layouts.filter(x => x.id !== L.id);
+        layouts.push(L);
         n++;
       }
       store.set("layouts", layouts); syncSettingsUI();

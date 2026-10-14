@@ -62,7 +62,7 @@
 .is-img .lf-actions [data-a="pdf"],.is-img .lf-actions [data-a="open"]{display:none}
 .is-img .lf-actions [data-a="img"]{display:inline-flex}
 .is-img .lf-actions [data-a="share"]:not([hidden]){display:inline-flex}
-.is-img .lf-actions [data-a="img"]:only-of-type{grid-column:1/-1}
+.is-img .lf-actions:has([data-a="share"][hidden]) [data-a="img"]{grid-column:1/-1}
 .lf-guide{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--card)}
 .lf-guide>summary{font-weight:650;font-size:15px}
 .lf-guide .lf-field{margin-top:10px}

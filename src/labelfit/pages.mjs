@@ -1,6 +1,6 @@
 // Generates every LabelFit page (home, guides, about, privacy) from one layout.
 // Usage: node src/labelfit/pages.mjs   (writes into sites/labelfit/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -8,7 +8,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/labelfit"
 const URL = "https://labels.roohsites.com";
 const NAME = "LabelFit";
 const ACCENT = "#0f766e";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-10", DATE_H = "10 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 
@@ -21,7 +21,7 @@ const GUIDES = [
   ["/split-shipping-label-and-packing-slip", "Split a label and packing slip", "Label + packing slip"],
   ["/print-shipping-label-from-phone", "Print labels from your phone", "From your phone"],
 ];
-const DISCLAIM = `LabelFit is an independent tool. It isn't affiliated with or endorsed by Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari or any printer maker. Their names are used only to describe which labels and printers it works with.`;
+const DISCLAIM = `LabelFit is an independent tool. It isn't affiliated with or endorsed by Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari, any printer maker or any other company named on this site. Their names are used only to describe which labels, printers and apps it works with.`;
 
 const APP = (name, url, desc) => ({
   "@type": "WebApplication", name, url, description: desc,
@@ -141,7 +141,7 @@ ${HOME_STEPS.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${esc(t)}<
 
       <h2>Why “Fit to page” ruins A4 labels on a thermal printer</h2>
       <p>An A4 page is 210 × 297 mm and a 6x4 label is about 100 × 150 mm. If you send the whole A4 page to a 6x4 printer with Fit to page, it shrinks everything, label and blank paper alike, to about 48% (100 ÷ 210). A label that was already 6x4 on the sheet comes out roughly half size, with bars so thin that many scanners struggle. A US letter page shrinks to about 47%.</p>
-      <p>LabelFit crops the label first and then fits only the label to your roll, so a 6x4 label on an A4 sheet prints at around 95–100% instead of 48%. The preview shows the exact percentage before you print.</p>
+      <p>LabelFit crops the label first and then fits only the label to your roll, so a 6x4 label on an A4 sheet prints at roughly 90–100% of its size instead of 48%. The preview shows the exact percentage before you print.</p>
 
       <h2>Label and paper sizes</h2>
       <table>
@@ -165,8 +165,8 @@ ${HOME_STEPS.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${esc(t)}<
           <tr><td>Vinted (Evri, InPost, Royal Mail, DPD)</td><td>An A4 PDF with the label on part of the page</td><td><a href="/vinted-label-thermal-printer">Vinted guide</a></td></tr>
           <tr><td>Evri</td><td>A4 from marketplaces; Evri's own site also offers a 4 × 6 label</td><td><a href="/evri-label-6x4">Evri guide</a></td></tr>
           <tr><td>Royal Mail Click &amp; Drop</td><td>A4 with 1, 2 or 4 labels, or a native 6x4 label</td><td><a href="/royal-mail-label-6x4">Royal Mail guide</a></td></tr>
-          <tr><td>USPS.com Click-N-Ship</td><td>An 8.5 × 11 in page with the label in the top half</td><td><a href="/usps-label-to-4x6">USPS guide</a></td></tr>
-          <tr><td>eBay (US half-sheet, UK A4)</td><td>Label across the top half of a letter page, or in a corner of an A4 page</td><td><a href="/ebay-half-sheet-label-to-4x6">eBay guide</a></td></tr>
+          <tr><td>USPS.com Click-N-Ship</td><td>Often an 8.5 × 11 in page with the label in the top half</td><td><a href="/usps-label-to-4x6">USPS guide</a></td></tr>
+          <tr><td>eBay (US half-sheet, UK A4)</td><td>Label across the top half of a letter page, or one or more labels on an A4 page</td><td><a href="/ebay-half-sheet-label-to-4x6">eBay guide</a></td></tr>
           <tr><td>Mercari</td><td>An 8.5 × 11 in page, unless you pick 4 × 6 in Mercari's label settings</td><td>Use the Mercari preset</td></tr>
           <tr><td>Anything else</td><td>Any PDF, PNG or JPG with a label on it</td><td>Auto-detect</td></tr>
         </tbody>
@@ -279,7 +279,7 @@ const PAGES = [
 
       <h2>Which thermal printer size do I need for Vinted?</h2>
       <p>Any printer that takes 4 × 6 in or 100 × 150 mm labels works. In the UK these are often sold as “6x4” and the rolls are usually 100 × 150 mm. Set the printer and the converter to the same size. If your rolls say 4 × 6 in, choose that under <em>Print on</em> instead; the difference is less than 2.5 mm.</p>
-      <p>Smaller printers that use 57 mm or 62 mm rolls can't print a full-size shipping label. LabelFit can make a 62 mm wide version, but the label is then shrunk to around 60%, which LabelFit flags as risky for scanning.</p>
+      <p>Smaller printers that use 57 mm or 62 mm rolls can't print a full-size shipping label. LabelFit can make a 62 mm wide version, but the label is then shrunk to a little over half its size, which LabelFit flags as risky for scanning.</p>
 
       <h2>No printer at home?</h2>
       <p>When you get the label, Vinted also offers a digital label: a QR code you show at the drop-off point so they print the label for you. That's handy for occasional sales. If you sell often, a 6x4 thermal printer and this converter save a trip and a lot of paper.</p>
@@ -323,7 +323,7 @@ const PAGES = [
       <p>Couriers scan the barcode at collection, in the depot and at delivery, so a sharp barcode matters more than anything else on the label. Three things help:</p>
       <ul>
         <li><strong>Print the PDF, not a photo.</strong> LabelFit copies the label as vector graphics, so the bars are exactly as sharp as the original file.</li>
-        <li><strong>Keep the scale near 100%.</strong> The preview shows the percentage. Most A4 Evri labels convert at roughly 95–100%. Below 80% LabelFit shows a warning.</li>
+        <li><strong>Keep the scale near 100%.</strong> The preview shows the percentage. A label that is already about 6 × 4 on the A4 page usually converts at 90–100%. Below 80% LabelFit shows a warning.</li>
         <li><strong>Stick it flat.</strong> Put the label on the largest flat side, not over a seam, edge or tape fold.</li>
       </ul>
 
@@ -385,9 +385,9 @@ const PAGES = [
     title: "USPS.com Label to 4x6 – Free Converter, No Upload",
     desc: "Convert a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. Crops, rotates and keeps the barcode sharp. Free and private.",
     h1: "Convert a USPS.com Label to 4x6",
-    lead: "USPS.com gives you the label on a full 8.5 × 11 in page. Turn it into a 4 × 6 in label for your thermal printer in seconds.",
+    lead: "USPS.com Click-N-Ship labels often come on a full 8.5 × 11 in page. Turn yours into a 4 × 6 in label for your thermal printer in seconds.",
     appName: "USPS.com label to 4x6 converter", appDesc: "Crops USPS.com Click-N-Ship letter-size labels into 4 x 6 inch PDFs for thermal printers, in the browser.",
-    answer: "USPS.com Click-N-Ship gives you the label on a letter-size (8.5 × 11 in) page, with the label in the upper part and receipt details and instructions below. Open that PDF here: LabelFit crops the label, turns it upright and makes a 4 × 6 in PDF. Print it on your thermal printer at Actual size or 100%.",
+    answer: "If USPS.com Click-N-Ship gives you the label on a letter-size (8.5 × 11 in) page, with the label in the upper part and receipt details and instructions below, open that PDF here: LabelFit crops the label, turns it upright and makes a 4 × 6 in PDF. Print it on your thermal printer at Actual size or 100%. If your print options include a 4 × 6 label, you can pick that and skip converting.",
     howto: "How to print a USPS.com label on 4x6 thermal labels",
     steps: [
       ["Save the label PDF", "After buying postage on USPS.com, save the 8.5 × 11 in label PDF instead of printing it."],
@@ -415,7 +415,7 @@ const PAGES = [
       <h2>Other shipping sites</h2>
       <p>Some shipping platforms can produce 4 × 6 labels directly; check their label settings first. For any service that only gives you a letter-size PDF, this converter works the same way. For eBay's half-sheet labels see the <a href="/ebay-half-sheet-label-to-4x6">eBay half-sheet guide</a>.</p>`,
     faq: [
-      ["Can USPS.com print 4x6 labels directly?", "Not usually. Printer makers such as Arkscan note that USPS.com Click-N-Ship produces labels for 8.5 × 11 in paper, which is why a cropping step is needed for 4 × 6 thermal printers."],
+      ["Can USPS.com print 4x6 labels directly?", "It depends on the print options USPS.com shows you, and they have changed over time. Printer makers such as Arkscan describe Click-N-Ship labels as 8.5 × 11 in pages, which is why many sellers crop them for 4 × 6 thermal printers. If you see a 4 × 6 label option when printing, use it; otherwise convert the letter-size PDF here."],
       ["Is it OK to ship with a USPS label printed on a thermal printer?", "Yes, 4 × 6 thermal labels are widely used for USPS shipping. What matters is a clear, unsmudged barcode that isn't folded over an edge or covered by shiny tape."],
       ["Will the label be rotated correctly?", "LabelFit turns a landscape label 90° so it fills the portrait 4 × 6 page. You can rotate it the other way or 180° with the Rotate buttons."],
       ["Does it work with Mercari or other letter-size labels?", "Yes. Use the Mercari letter preset, or Auto-detect for any other 8.5 × 11 in label PDF."],
@@ -451,7 +451,7 @@ const PAGES = [
       <p>Printing on half-sheet sticker paper with an ordinary printer? Choose <em>Letter, 2 per sheet</em> under <em>Print on</em>. LabelFit then places two labels on each letter page, one per half-sheet sticker, so a sheet isn't wasted on one label.</p>
 
       <h2>eBay UK A4 labels</h2>
-      <p>On eBay UK, labels often come as an A4 page with the 6 × 4 label in the top-left corner. Pick the <em>eBay UK A4</em> preset to crop it to 100 × 150 mm, or 4 × 6 in if that's what your roll says.</p>
+      <p>On eBay UK, postage labels often come on an A4 page: sellers on the eBay UK community describe both a single label in a corner and several labels on one sheet. Pick the <em>eBay UK A4</em> preset and each label gets its own 100 × 150 mm page, or 4 × 6 in if that's what your roll says.</p>
 
       <h2>Placement instructions on the page</h2>
       <p>If your eBay label includes placement instructions, LabelFit leaves them out and keeps only the label. You can also turn the instructions off on eBay's print screen to save paper when printing half-sheets.</p>`,
@@ -502,7 +502,7 @@ const PAGES = [
       ["What if the label and slip are on separate pages?", "That works too. Each page is checked on its own, and pages with only a slip are treated the same way."],
       ["Is anything added to my shipping label?", "No. Only packing slips you choose to keep get a small credit line. Labels and customs forms stay exactly as issued, just cropped and scaled."],
       ["Are my order details uploaded?", "No. Everything happens in your browser, so order numbers, names and addresses stay on your device."],
-      ["Is the slip's text removed from the label page?", "It's hidden, not deleted. To keep labels razor-sharp, the PDF reuses the original page and only shows the cropped part, like other PDF crop tools. Nothing outside the crop prints, but it is still inside the file. If you need a file that contains only the label, use the Image output."],
+      ["Is the slip's text removed from the label page?", "It's hidden, not deleted. To keep labels sharp, the PDF reuses the original page and only shows the cropped part, like other PDF crop tools. Nothing outside the crop prints, but it is still inside the file. If you need a file that contains only the label, use the Image output."],
     ],
   },
   {
@@ -603,7 +603,14 @@ const PRIVACY = {
       <p>LabelFit is provided “as is”, without warranty. Always check the preview and print a test label: you're responsible for making sure each label prints completely and scans, and for following your carrier's labelling rules. LabelFit is free for personal and commercial use.</p>`,
 };
 
-writeFileSync(join(OUT, "index.html"), home());
-for (const p of PAGES) writeFileSync(join(OUT, p.path.slice(1) + ".html"), landing(p));
-for (const p of [ABOUT, PRIVACY]) writeFileSync(join(OUT, p.path.slice(1) + ".html"), simple(p));
+// Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+function write(file, html) {
+  const prev = existsSync(join(OUT, file)) ? (readFileSync(join(OUT, file), "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(join(OUT, file), html);
+}
+write("index.html", home());
+for (const p of PAGES) write(p.path.slice(1) + ".html", landing(p));
+for (const p of [ABOUT, PRIVACY]) write(p.path.slice(1) + ".html", simple(p));
 console.log(`wrote ${PAGES.length + 3} pages`);

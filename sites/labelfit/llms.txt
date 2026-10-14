@@ -1,6 +1,6 @@
 # LabelFit
 
-> LabelFit is a free A4 to 6x4 shipping label converter that runs entirely in the browser (nothing is uploaded). It takes A4, US letter (8.5 x 11 in) and half-sheet label PDFs, or PNG/JPG screenshots, finds the label on each page, crops and rotates it, and outputs a 6x4 label: a vector PDF at 100 x 150 mm, 4 x 6 in, A6, 4 x 4 in, a 62 mm roll, a custom size or 2 per Letter/A4 sheet, or a 203/300 dpi PNG or JPG for phone label-printer apps. It splits packing slips and CN22/CN23 customs forms onto their own pages, handles sheets with 2 or 4 labels, converts many files at once, saves reusable crop layouts and works offline after first use. Every feature is free, with no account. Nothing is ever added to a shipping label; kept packing slips carry a small "Made with LabelFit" line.
+> LabelFit is a free A4 to 6x4 shipping label converter that runs entirely in the browser (nothing is uploaded). It takes A4, US letter (8.5 x 11 in) and half-sheet label PDFs, or PNG/JPG screenshots, finds the label on each page, crops and rotates it, and outputs a 6x4 label: a vector PDF at 100 x 150 mm, 4 x 6 in, A6, 4 x 4 in, a 57 or 62 mm roll, a custom size or 2 per Letter/A4 sheet, or a 203/300 dpi PNG or JPG for phone label-printer apps. It splits packing slips and CN22/CN23 customs forms onto their own pages, handles sheets with 2 or 4 labels, converts many files at once, saves reusable crop layouts and works offline after first use. Every feature is free, with no account. Nothing is ever added to a shipping label; kept packing slips carry a small "Made with LabelFit" line.
 
 ## Tool
 - [A4 to 6x4 label converter](https://labels.roohsites.com/): convert a shipping label PDF to 6x4 (100 x 150 mm or 4 x 6 in) for a thermal printer in a few seconds.
@@ -19,7 +19,9 @@
 - Privacy: PDFs are read with pdf.js and written with pdf-lib inside the browser; files are never uploaded.
 - Print settings: paper size 4 x 6 in or 100 x 150 mm, scale 100% / Actual size. Printing a whole A4 page on a 6x4 label with Fit to page shrinks it to about 48%.
 - Image sizes: 4 x 6 in = 812 x 1218 px at 203 dpi, 1200 x 1800 px at 300 dpi; 100 x 150 mm = 799 x 1199 px at 203 dpi, 1181 x 1772 px at 300 dpi.
-- Independent: not affiliated with Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay or Mercari.
+- Scale: the label is cropped before it is fitted, so a label already about 6x4 on the page prints at roughly 90-100% of its size; the tool shows the exact scale and warns below 80%.
+- Made by Rooh Sites (https://roohsites.com/), which publishes a collection of free single-purpose web tools.
+- Independent: not affiliated with Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari or any printer maker.
 
 ## Optional
 - [About](https://labels.roohsites.com/about)
