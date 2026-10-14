@@ -775,8 +775,18 @@ function init(mount) {
         // The link replaces the working draft, so keep the teacher's own draft in Saved calendars first.
         let kept = "";
         if (!preset && store.get("draft", null)) {
-          const mine = E.normalize(cfg);
-          if (JSON.stringify(E.shareable(mine)) !== JSON.stringify(c)) { kept = `Before link: ${mine.title || "my calendar"}`.slice(0, 60); keepCal(kept, mine); }
+          const mine = E.normalize(cfg), json = JSON.stringify(mine), list = savedList();
+          if (JSON.stringify(E.shareable(mine)) !== JSON.stringify(c)) {
+            const same = list.find(s => { try { return JSON.stringify(E.normalize(s.cfg)) === json; } catch { return false; } });
+            if (same) kept = same.name; // already saved unchanged, nothing to copy
+            else {
+              // A name no saved calendar uses yet, so opening a later link never replaces a draft kept earlier.
+              const base = `Before link: ${mine.title || "my calendar"}`.slice(0, 54);
+              kept = base;
+              for (let n = 2; list.some(s => s.name === kept); n++) kept = `${base} (${n})`;
+              keepCal(kept, mine);
+            }
+          }
         }
         cfg = { ...c, pl: cfg.pl };
         status(`Opened the calendar from the link. Edit it, then copy the new link.${kept ? ` Your previous calendar is under Saved calendars as “${kept}”.` : ""}`);
