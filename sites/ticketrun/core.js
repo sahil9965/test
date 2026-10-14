@@ -26,6 +26,9 @@
     " ": " ", " ": " ", " ": " ", " ": " ", " ": " ", " ": " ", " ": " ",
     "′": "'", "″": "\"", "≤": "<=", "≥": ">=", "≠": "!=", "→": "->", "←": "<-",
     "№": "No.", "₩": "W", "₱": "PHP ", "₦": "NGN ", "₺": "TL", "₽": "RUB ", "₪": "ILS ",
+    // Latin letters with a stroke or bar don't decompose to a base letter, so map them by hand
+    // (otherwise "Łukasz" would print as "ukasz").
+    "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Ħ": "H", "ħ": "h", "Ŧ": "T", "ŧ": "t", "ı": "i", "Ŀ": "L", "ŀ": "l", "Ɨ": "I", "ɨ": "i",
   };
   const IGNORE = /[​-‍⁠︀-️﻿]/;
   function clean(str, keepSpaces) {
@@ -142,26 +145,38 @@
     price: DEFAULTS.price, fine: DEFAULTS.fine, stub: "lines", stubPct: 36, stubName: true, stubPhone: true, stubEmail: false,
     stubTitle: "", perPage: 10, bigNumber: false,
   });
+  const isPreset = name => typeof name === "string" && Object.prototype.hasOwnProperty.call(PRESETS, name);
   function presetState(name, base) {
-    const p = PRESETS[name] || PRESETS.raffle;
+    const p = isPreset(name) ? PRESETS[name] : PRESETS.raffle;
     const out = Object.assign({}, DEFAULTS, base || {});
     for (const k of Object.keys(p)) if (k !== "label") out[k] = p[k];
-    out.preset = PRESETS[name] ? name : "raffle";
+    out.preset = isPreset(name) ? name : "raffle";
     return out;
   }
 
-  const toInt = (v, d) => { const n = Number(String(v == null ? "" : v).replace(/[,\s]/g, "")); return Number.isFinite(n) ? Math.trunc(n) : d; };
+  // Whole numbers only: thousands separators and spaces are allowed ("1,000", "1 000"), but
+  // "1.5", "1e3" or "0x10" are rejected rather than silently turned into another number.
+  const toInt = (v, d) => {
+    const t = String(v == null ? "" : v).replace(/[,\s_]/g, "");
+    return /^-?\d{1,15}$/.test(t) ? parseInt(t, 10) : d;
+  };
+  // Longest text the form accepts for each field (matches the inputs' maxlength), so saved or
+  // hand-edited settings can't push a field past what the layout was designed for.
+  const MAXLEN = { typeLabel: 40, title: 120, subtitle: 160, date: 120, venue: 120, price: 40, fine: 240, stubTitle: 60, stubNote: 90, stubExtra: 24, numLabel: 12 };
   // Validates and cleans a settings object. Returns { s, errors, lost } where lost lists unprintable characters.
   function normalize(input, opts = {}) {
-    const s = Object.assign({}, DEFAULTS, input || {});
+    const s = Object.assign({}, DEFAULTS, input && typeof input === "object" ? input : {});
     const errors = [];
     const lost = new Set();
-    for (const k of ["typeLabel", "title", "subtitle", "date", "venue", "price", "fine", "stubTitle", "stubNote", "stubExtra", "numLabel"]) {
-      const c = clean(String(s[k] == null ? "" : s[k]).slice(0, 240));
+    for (const k of Object.keys(MAXLEN)) {
+      const v = s[k];
+      const c = clean(typeof v === "string" || typeof v === "number" ? [...String(v)].slice(0, MAXLEN[k]).join("") : "");
       s[k] = c.text; c.lost.forEach(x => lost.add(x));
     }
+    if (!isPreset(s.preset)) s.preset = "raffle";
     for (const k of ["prefix", "suffix"]) {
-      const c = clean(String(s[k] == null ? "" : s[k]).slice(0, 16), true);
+      const v = s[k];
+      const c = clean(typeof v === "string" || typeof v === "number" ? [...String(v)].slice(0, 16).join("") : "", true);
       s[k] = c.text; c.lost.forEach(x => lost.add(x));
     }
     s.start = toInt(s.start, NaN);
@@ -255,7 +270,11 @@
 
     if (hasStub) layoutStub();
     layoutBody();
-    return { prims, slots, cut: [...cuts], stubW: sw };
+    // Smallest size any ticket number prints at, so the UI can warn when a long prefix,
+    // suffix or label has shrunk the number below comfortable reading size.
+    const numSlots = slots.filter(sl => sl.key === "num" || sl.key === "big");
+    const numSize = numSlots.length ? Math.min(...numSlots.map(sl => fitSlot(sl, sl.key === "big" ? sampleBig : sampleNum).size)) : 0;
+    return { prims, slots, cut: [...cuts], stubW: sw, numSize };
 
     function layoutStub() {
       const onFill = s.design === "bold";
@@ -770,7 +789,10 @@
       i += take;
     }
     const pages = chunks.length;
-    const priceNum = (() => { const m = /^\D{0,3}(\d+(?:[.,]\d{1,2})?)\D{0,6}$/.exec(s.price || ""); return m && !/for|\//i.test(s.price) ? parseFloat(m[1].replace(",", ".")) : null; })();
+    const priceM = /^\D{0,3}(\d+(?:([.,])\d{1,2})?)\D{0,6}$/.exec(s.price || "");
+    const priceNum = priceM && !/for|\//i.test(s.price) ? parseFloat(priceM[1].replace(",", ".")) : null;
+    const decComma = !!(priceM && priceM[2] === ","); // keep "€2,50" style decimals in the book total
+    const money = v => { const t = v.toFixed(Number.isInteger(v) ? 0 : 2); return decComma ? t.replace(".", ",") : t; };
     const T = (str, x, y, size, font, color, align) => {
       const st = clean(str).text, w = textW(st, font, size);
       const xx = align === "center" ? x - w / 2 : align === "right" ? x - w : x;
@@ -780,7 +802,7 @@
       const page = doc.addPage([pw, ph]);
       const put = t => page.drawText(t.st, { x: t.x, y: t.y, size: t.size, font: fonts[t.font], color: c(t.color) });
       put(T("Ticket seller log" + (s.title ? " — " + s.title : ""), mx, top - 4, 15, "HB", INK));
-      const per$ = priceNum != null ? ` · ${s.price} each, a full book is ${s.price.replace(/[\d.,]+/, (priceNum * per).toFixed(Number.isInteger(priceNum * per) ? 0 : 2))}` : (s.price ? ` · Price: ${s.price}` : "");
+      const per$ = priceNum != null ? ` · ${s.price} each, a full book is ${s.price.replace(/\d+(?:[.,]\d{1,2})?/, money(Math.round(priceNum * per * 100) / 100))}` : (s.price ? ` · Price: ${s.price}` : "");
       put(T(`${s.count.toLocaleString("en-US")} tickets (${fmtNum(s.start, s)}–${fmtNum(s.end, s)}) in ${bk.length} books of ${per}${per$}`, mx, top - 22, 9, "H", GRAY));
       put(T(`Page ${pg + 1} of ${pages}`, pw - mx, top - 4, 9, "H", GRAY, "right"));
       // header row
@@ -869,7 +891,7 @@
     for (const [a, b] of (exclude || [])) for (let n = Math.max(a, first); n <= Math.min(b, last); n++) ex.add(n);
     const pool = [];
     for (let n = first; n <= last; n++) if (!ex.has(n)) pool.push(n);
-    return { pool, excluded: ex.size, total: last - first + 1 };
+    return { pool, excluded: ex.size, total: last - first + 1, first, last };
   }
   // Draws k distinct winners; removes them from pool (so repeated calls never repeat a winner).
   function drawFrom(pool, k, fill = defaultFill) {
@@ -889,6 +911,6 @@
     padWidth, fmtNum, numText, sheetCount, indexAt, sheetGeometry, books, bookOf,
     layoutTicket, sheetPrims, slotText, fitSlot, parseCSV, guestRows, svgTicket, svgSheet,
     buildTicketPdf, buildSellerPdf, uniformInt, parseRanges, buildPool, drawFrom, MAX_POOL,
-    CREDIT, CREDIT_URL, SITE,
+    CREDIT, CREDIT_URL, SITE, toInt, isPreset,
   };
 });

@@ -1,6 +1,6 @@
 // Generates every TicketRun page (home, landing pages, about, privacy) from one layout.
 // Usage: node src/ticketrun/pages.mjs   (writes into sites/ticketrun/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -11,7 +11,7 @@ const C = createRequire(import.meta.url)(join(OUT, "core.js"));
 const URL = "https://raffle.roohsites.com";
 const NAME = "TicketRun";
 const ACCENT = "#be123c";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-10", DATE_H = "10 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
 const n = v => Number(v).toLocaleString("en-US");
@@ -146,7 +146,7 @@ const homeFaq = [
   ["Will the stub and the ticket always have the same number?", "Yes. Both halves of each ticket are drawn from the same number in one pass, so a stub can never get out of step with its ticket the way it can when you copy and paste numbers by hand."],
   ["How many tickets can I print at once?", "Up to 20,000 tickets in one PDF, which is 2,000 sheets at 10 per page. For more, make a second batch that starts where the first one ended, for example 20001."],
   ["What paper should I print raffle tickets on?", "Plain paper works for a test. For the real run, light cardstock such as 65 lb cover (about 176 gsm) feels like a proper ticket and tears cleanly along a fold. Check your printer's manual for the heaviest stock it accepts."],
-  ["Why don't my tickets line up with the cut marks?", "The print dialog probably scaled the page. Choose Actual size or 100% instead of Fit to page or Shrink oversized pages, and print a test sheet first."],
+  ["Why are my tickets smaller than expected or off the perforations?", "The print dialog probably scaled the page. Choose Actual size or 100% instead of Fit to page or Shrink oversized pages, and print a test sheet first."],
   ["Can I print tickets starting at a number other than 1?", "Yes. Set any first and last number, for example 501 to 1000 for a second batch. Add a prefix such as A- or a suffix if you run several raffles at once."],
   ["Is my information uploaded?", "No. TicketRun runs in your browser. The PDF is built on your device and never sent to a server, so guest names and phone numbers stay private."],
 ];
@@ -218,7 +218,7 @@ const home = {
 
       <h2>Printing and cutting tips</h2>
       <ul>
-        <li>Print at <strong>100% / Actual size</strong>. “Fit to page” shrinks the sheet a little, so cuts drift away from the ticket edges.</li>
+        <li>Print at <strong>100% / Actual size</strong>. “Fit to page” shrinks everything slightly, so tickets come out smaller than the sizes above and won't match perforated paper.</li>
         <li>Use light cardstock for the real run; plain paper is fine for the test sheet and for drink tickets.</li>
         <li>A rotary trimmer or guillotine gives straighter cuts than scissors. Line the blade up with the crop marks in the margin.</li>
         <li>To make the stub tear cleanly, fold back and forth along the dashed line a couple of times, or run a perforating blade or a dry ballpoint pen along it with a ruler.</li>
@@ -317,8 +317,8 @@ const RANGE = {
   500: {
     title: "Raffle Tickets 1-500 Printable — Free PDF with Stubs",
     desc: "Print raffle tickets numbered 1-500 with matching stubs: 50 sheets at 10 per page, Letter or A4, crop marks and cut-and-stack order. Free PDF, no signup.",
-    lead: "Five hundred numbered tickets with matching stubs on 50 sheets. The usual size for a school, church or club fundraiser raffle.",
-    intro: "500 tickets is the most common size for a school, church or club fundraiser. It prints on 50 sheets at 10 per page, which is a tenth of a standard 500-sheet ream, and fits in one envelope box when cut.",
+    lead: "Five hundred numbered tickets with matching stubs on 50 sheets, a good size for a school, church or club fundraiser raffle.",
+    intro: "500 tickets suits a school, church or club fundraiser where volunteers sell to families and friends over a few weeks. It prints on 50 sheets at 10 per page, a tenth of a 500-sheet ream, and cuts into 10 neat piles of 50.",
     unique: `      <h2>Cutting 500 tickets quickly</h2>
       <p>At this size, cutting sheet by sheet gets slow. Choose <em>Number order: Cut-and-stack</em>, print all 50 sheets, keep them in order and cut the whole stack along the crop marks (or in a few smaller stacks, keeping them in order, if your cutter can't take 50 sheets of cardstock). You end up with 10 piles of 50 tickets: 001–050, 051–100 and so on, each already in sequence.</p>
       <h2>Selling 500 tickets with volunteers</h2>
@@ -353,7 +353,7 @@ const RANGE = {
         <li><strong>Use a copy shop.</strong> The PDF is a standard vector file at exact size, so a print shop can print and cut it. Ask them to print at 100% with no scaling and to cut on the crop marks.</li>
       </ul>
       <h2>Is a printed run better than double-roll tickets?</h2>
-      <p>Pre-printed double-roll tickets are cheap and come numbered, but they carry no event name, prize, date or price, and the stub has no space for a name and phone number. A printed run from TicketRun carries all of that, matches your branding and can include the book number on each stub. For a quick door prize, roll tickets are fine; for a raffle where you need to contact winners, printed stubs with write-in lines are more practical.</p>`,
+      <p>Pre-printed double-roll tickets are cheap and come numbered, but they carry no event name, prize, date or price, and the stub has little room for a name and phone number. A printed run from TicketRun carries all of that, matches your branding and can include the book number on each stub. For a quick door prize, roll tickets are fine; for a raffle where you need to contact winners, printed stubs with write-in lines are more practical.</p>`,
     faq: [["How many sheets is 2000 raffle tickets?", "200 sheets at 10 per page or 250 at 8 per page."], ["Can I put all 2,000 in one PDF?", "Yes. One PDF holds up to 20,000 tickets, and 2,000 tickets builds in a few seconds in most browsers."], ["How should I split 2,000 tickets between sellers?", "Books of 25 give 80 books, and books of 50 give 40 books. Set the size in Seller books and download the seller log to record who took each one."]],
   },
 };
@@ -378,7 +378,7 @@ for (const [N0, R] of Object.entries(RANGE)) {
           <tr><th>Cut-and-stack piles</th><td>10 piles of ${n(piles)} at 10 per page</td></tr>
           <tr><th>Books of 25</th><td>${n(Math.ceil(N / 25))}</td></tr>
           <tr><th>Books of 10</th><td>${n(Math.ceil(N / 10))}</td></tr>
-          <tr><th>Chance per ticket if all are sold</th><td>1 in ${n(N)}</td></tr>
+          <tr><th>Chance per ticket (one prize, all sold)</th><td>1 in ${n(N)}</td></tr>
         </tbody>
       </table>
 
@@ -396,7 +396,7 @@ ${R.unique}
       <ol class="steps">
         <li>Print the <em>Test sheet</em> on plain paper at 100% / Actual size and check that the crop marks line up.</li>
         <li>Print the full PDF${N >= 500 ? " (in batches if your printer prefers)" : ""} on light cardstock.</li>
-        <li>Cut along the crop marks: ${N >= 500 ? "with cut-and-stack order, cut the whole stack at once; " : ""}one cut down the middle and four across at 10 per page.</li>
+        <li>Cut along the crop marks: ${N >= 500 ? "with cut-and-stack order, cut the whole stack at once. " : ""}Trim the four margins, then make one cut down the middle and four across at 10 per page.</li>
         <li>Fold along the dashed line so the stub tears off cleanly when you sell each ticket.</li>
       </ol>
       ${LEGAL}`,
@@ -406,8 +406,8 @@ ${R.unique}
 
 P.push({
   path: "/how-to-number-raffle-tickets-in-word", crumb: "Number raffle tickets in Word", tool: { preset: "raffle", end: 200, perPage: 8 },
-  title: "How to Number Raffle Tickets in Word: 3 Methods That Work",
-  desc: "Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep the stub and ticket matching, and why most Word templates only hold 8 tickets.",
+  title: "How to Number Raffle Tickets in Word: SEQ Fields or Mail Merge",
+  desc: "Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep each stub matching its ticket, and see why a Word template numbers only one page.",
   h1: "How to Number Raffle Tickets in Word",
   lead: "Two reliable ways to get sequential numbers on tickets and stubs in Word, the mistakes that cause mismatched stubs, and a faster option if you just need the PDF.",
   schema: [{
@@ -421,12 +421,12 @@ P.push({
   }],
   body: `      <p class="tldr"><strong>Quick answer:</strong> In Word, put a <code>{ SEQ ticket \\# "000" }</code> field where each ticket number goes and <code>{ SEQ ticket \\c \\# "000" }</code> on the stub to repeat the same number, copy the ticket across the page and the page as often as needed, then press Ctrl+A and F9 to update. Mail merge from an Excel list of numbers also works. To skip both, set your range in the generator above and download a numbered PDF.</p>
 
-      <h2>Why most Word raffle templates show only 8 tickets</h2>
+      <h2>Why a Word raffle template only gives you one page of tickets</h2>
       <p>A Word template is a single page with a fixed grid, usually 8 or 10 tickets, and the numbers on it are typed text. Word doesn't number copies of a page by itself. If you copy the page, you copy the same numbers, so you either retype every number, add fields, or merge from a data source. That's where mismatched stubs come from: a number changed on the ticket but not on the stub, or a page pasted twice.</p>
 
       <h2>Method 1: SEQ fields (no data file needed)</h2>
       <ol class="steps">
-        <li><strong>Set up one ticket.</strong> Lay out the stub and ticket in a table cell or text box, as in your template.</li>
+        <li><strong>Set up one ticket in a table.</strong> Put the stub and the ticket in table cells. Avoid text boxes: <kbd>Ctrl</kbd>+<kbd>A</kbd> then <kbd>F9</kbd> only updates fields in the main text, not fields inside text boxes, headers or footers.</li>
         <li><strong>Add the ticket number.</strong> Click where the number goes, press <kbd>Ctrl</kbd>+<kbd>F9</kbd> to insert field braces (don't type the braces), and type <code>SEQ ticket \\# "000"</code> inside. The <code>\\# "000"</code> part pads numbers to three digits.</li>
         <li><strong>Add the stub number.</strong> In the stub, insert another field: <code>SEQ ticket \\c \\# "000"</code>. The <code>\\c</code> switch repeats the most recent number instead of adding one, so the stub always matches the ticket next to it. Order matters: the ticket's counting field must come before its stub's repeating field in the document. If your stub sits to the left of the ticket, put the counting field in the stub and the repeating <code>\\c</code> field in the ticket instead.</li>
         <li><strong>Start at another number (optional).</strong> For the very first ticket, use <code>SEQ ticket \\r 501 \\# "000"</code> to start at 501.</li>
@@ -451,6 +451,7 @@ P.push({
           <tr><td>Stub is one number ahead of the ticket</td><td>The stub uses a plain SEQ field, or comes first in the document</td><td>Use <code>\\c</code> on whichever part comes second</td></tr>
           <tr><td>Numbers jump by two</td><td>Two counting fields per ticket</td><td>Only one field per ticket should count; the other uses <code>\\c</code></td></tr>
           <tr><td>Merge skips numbers</td><td>Stub and ticket in separate labels</td><td>Put both halves in one label</td></tr>
+          <tr><td>Numbers in text boxes don't change</td><td><kbd>Ctrl</kbd>+<kbd>A</kbd>, <kbd>F9</kbd> skips text boxes</td><td>Move the tickets into a table, or click in each text box, select its text and press F9</td></tr>
           <tr><td>Tickets don't line up with perforations</td><td>Print scaling or a template meant for different stock</td><td>Print at 100% and test on plain paper first</td></tr>
         </tbody>
       </table>
@@ -493,7 +494,7 @@ P.push({
       <p>Some 50/50s split differently, for example 60/40, or pay several winners from the winner's half. Print the split you use in the small print so buyers know before they pay.</p>
 
       <h2>Pricing deals that print well</h2>
-      <p>Bundles such as <em>$2 each · 3 for $5</em> or <em>$5 for an arm's length</em> sell more tickets than a single price. Put the deal in the <em>Price</em> field and it prints in the bottom corner of every ticket. When someone buys a bundle, tear off several consecutive tickets so their numbers are easy to check later.</p>
+      <p>Many 50/50s offer bundles such as <em>$2 each · 3 for $5</em> or <em>$5 for an arm's length</em> to encourage buyers to take more than one ticket. Put the deal in the <em>Price</em> field and it prints in the bottom corner of every ticket. When someone buys a bundle, tear off several consecutive tickets so their numbers are easy to check later.</p>
 
       <h2>Tips for game days and galas</h2>
       <ul>
@@ -540,7 +541,7 @@ P.push({
       </table>
 
       <h2>How many coat check tickets do you need?</h2>
-      <p>Print at least one ticket per expected guest, plus spares for bags and umbrellas checked separately. Most events also keep a few blank-numbered sheets back in case some get wet or lost. Because tickets are numbered, you'll know exactly which numbers are still out at the end of the night.</p>
+      <p>Print at least one ticket per expected guest, plus spares for bags and umbrellas checked separately, and keep a spare sheet or two in case tickets get wet or lost. Because tickets are numbered, you'll know exactly which numbers are still out at the end of the night.</p>
 
       <h2>Coat check tickets vs roll tickets</h2>
       <p>Pre-printed double-roll tickets work for a coat check too, but the numbers are small and the tickets don't carry your venue name or pickup instructions. Printed two-part tickets on cardstock hold up better on a hanger, show the number in large type and can include your logo.</p>`,
@@ -569,7 +570,7 @@ P.push({
       </ul>
 
       <h2>Why number drink tickets?</h2>
-      <p>Numbers make tickets harder to copy and let you reconcile at the end: if you handed out 001–400 and the bar collected 312, you know 88 are still out. Change the prefix or colour for each event night so tickets from a previous event can't be used again.</p>
+      <p>Numbers make photocopied tickets easier to spot (two tickets with the same number) and let you reconcile at the end: if you handed out 001–400 and the bar collected 312, you know 88 are still out. Change the prefix or colour for each event night so tickets from a previous event can't be used again.</p>
 
       <h2>Sizes and layout</h2>
       <table>
@@ -712,7 +713,7 @@ P.push({
           <tr><td>Ticket size (A4)</td><td>${S.a8.mm}</td><td>${S.a10.mm}</td></tr>
           <tr><td>Sheets for 500 tickets</td><td>63</td><td>50</td></tr>
           <tr><td>Room for text</td><td>More: long prize lists, a logo, bigger write-in lines</td><td>Enough for most raffles</td></tr>
-          <tr><td>Cuts per sheet</td><td>1 down the middle, 3 across</td><td>1 down the middle, 4 across</td></tr>
+          <tr><td>Cuts per sheet</td><td>4 margin trims, 1 down the middle, 3 across</td><td>4 margin trims, 1 down the middle, 4 across</td></tr>
         </tbody>
       </table>
       <p>Choose 8 per page when the ticket carries a lot of text or a logo, or when buyers will write a full name, phone and email on the stub. Choose 10 per page to save paper on large runs.</p>
@@ -791,7 +792,7 @@ P.push({
   lead: "A small, free tool that does one job well: printable tickets with numbers that always match.",
   body: `      <p>TicketRun is part of <a href="https://roohsites.com/">Rooh Sites</a>’ collection of free single-purpose web tools. It was built for the volunteers who end up running the raffle: PTA parents, church committees, sports club treasurers and event planners who need a few hundred numbered tickets by Friday.</p>
       <h2>Why we built it</h2>
-      <p>Getting sequential numbers onto printed tickets is surprisingly awkward. Word templates show one page with typed numbers, mail merge takes setup, and many free generators stop at a few dozen tickets. Mismatched stub numbers cause arguments on draw night. TicketRun numbers every ticket and stub for you, up to 20,000 at a time.</p>
+      <p>Getting sequential numbers onto printed tickets is surprisingly awkward. Word templates show one page with typed numbers, mail merge takes setup, and some free generators stop at a few dozen tickets. Mismatched stub numbers cause arguments on draw night. TicketRun numbers every ticket and stub for you, up to 20,000 at a time.</p>
       <h2>Is it really free?</h2>
       <p>Yes. Every feature is free, with no account and no paid tier. Each printed sheet carries a small “Made with TicketRun” line in the margin, outside the tickets, which is how other organizers find the tool.</p>
       <h2>How it works</h2>
@@ -819,7 +820,12 @@ for (const p of [home, ...P]) {
   const file = p.path === "/" ? "index.html" : p.path.slice(1) + ".html";
   const schema = [...(p.schema || [])];
   if (p.tool && !p.tool.picker && p.path !== "/") schema.push(appLd(p.h1, p.path, p.desc));
-  writeFileSync(join(OUT, file), page({ ...p, schema }));
+  let html = page({ ...p, schema });
+  // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+  const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+  const prev = existsSync(join(OUT, file)) ? (readFileSync(join(OUT, file), "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(join(OUT, file), html);
   count++;
 }
 console.log(`wrote ${count} pages`);

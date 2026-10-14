@@ -227,11 +227,34 @@
     const KEYS = ["start", "end", "prefix", "suffix", "pad", "numLabel", "typeLabel", "title", "subtitle", "date", "venue", "price", "fine", "bigNumber", "stub", "stubPct", "stubTitle", "stubNote", "stubName", "stubPhone", "stubEmail", "stubExtra", "paper", "perPage", "order", "crop", "borders", "design", "color", "font"];
 
     // ---- initial state
+    // Anything read back from localStorage is checked before use: a corrupted or hand-edited
+    // entry must never stop the generator from loading.
+    const isObj = v => !!v && typeof v === "object" && !Array.isArray(v);
+    const okLogo = l => (isObj(l) && typeof l.dataUrl === "string" && /^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(l.dataUrl) && Number.isFinite(+l.aspect) && +l.aspect > 0.01 && +l.aspect < 100) ? { dataUrl: l.dataUrl, aspect: +l.aspect } : null;
+    const okExtra = e => {
+      const out = { books: 25, bps: 1, showBook: false, sellers: "" };
+      if (!isObj(e)) return out;
+      const b = C.toInt(e.books, NaN), p = C.toInt(e.bps, NaN);
+      if (b >= 0 && b <= 9999) out.books = b;
+      if (p >= 1 && p <= 9999) out.bps = p;
+      out.showBook = e.showBook === true;
+      if (typeof e.sellers === "string") out.sellers = e.sellers.slice(0, 20000);
+      return out;
+    };
+    const okState = v => {
+      if (!isObj(v)) return null;
+      const out = C.presetState(C.isPreset(v.preset) ? v.preset : "raffle");
+      for (const k of KEYS) if (k in v && ["string", "number", "boolean"].includes(typeof v[k])) out[k] = v[k];
+      if (C.isPreset(v.preset)) out.preset = v.preset;
+      if (!/^#[0-9a-f]{6}$/i.test(String(out.color))) out.color = C.DEFAULTS.color;
+      return out;
+    };
+    const designs = () => { const l = store.get("designs", []); return Array.isArray(l) ? l.filter(d => isObj(d) && typeof d.name === "string" && isObj(d.st)) : []; };
     const saved = !presetName ? store.get("last", null) : null;
-    let st, extra = { books: 25, bps: 1, showBook: false, sellers: "" };
-    if (saved && saved.st) {
-      st = Object.assign(C.presetState(saved.st.preset || "raffle"), saved.st);
-      extra = Object.assign(extra, saved.extra || {});
+    let st, extra = okExtra(null);
+    if (isObj(saved) && okState(saved.st)) {
+      st = okState(saved.st);
+      extra = okExtra(saved.extra);
     } else {
       st = C.presetState(presetName || "raffle", { paper: defaultPaper() });
       if (ds.start) st.start = +ds.start;
@@ -239,7 +262,7 @@
       if (ds.perPage) st.perPage = +ds.perPage;
       if (ds.pad) st.pad = ds.pad;
     }
-    let logo = !presetName ? store.get("logo", null) : null; // { dataUrl, aspect }
+    let logo = !presetName ? okLogo(store.get("logo", null)) : null; // { dataUrl, aspect }
     let logoBytes = null;
     let guests = null; // { rows, head, nameCol, extra:[], list:[{v0,v1}] }
 
@@ -313,6 +336,7 @@
       ];
       $(".tr-facts").innerHTML = facts.map(f => `<li>${esc(f)}</li>`).join("");
       if (lay.cut.length) msgs.push(`Shortened to fit: ${lay.cut.join(", ")}. Try shorter text, a wider stub setting or 8 per page.`);
+      if (lay.numSize && lay.numSize < 6) msgs.push(`The ticket number prints very small (${lay.numSize.toFixed(1)} pt). A shorter prefix, suffix or label, fewer digits, a wider stub or 8 per page makes it bigger.`);
       if (lost.length) msgs.push(`These characters can't be printed with the built-in PDF fonts and were left out: ${lost.join(" ")}`);
       $(".tr-msg").innerHTML = msgs.map(m => `<p class="tr-warn">${esc(m)}</p>`).join("");
       const nb = extra.books > 0 ? Math.ceil(s.count / extra.books) : 0;
@@ -408,12 +432,13 @@
       let rows = C.parseCSV(text);
       if (rows.length === 1 || (rows[0] && rows[0].length === 1 && !/name|guest/i.test(rows[0][0]))) rows = [["Name"], ...rows]; // plain list of names
       if (rows.length < 2) { guests = null; showGuests("Add at least one row under the column names."); schedule(); return; }
-      if (rows.length - 1 > C.MAX_TICKETS) rows = rows.slice(0, C.MAX_TICKETS + 1);
+      const dropped = Math.max(0, rows.length - 1 - C.MAX_TICKETS);
+      if (dropped) rows = rows.slice(0, C.MAX_TICKETS + 1);
       const head = rows[0].map((h, i) => h || `Column ${i + 1}`);
       let nameCol = head.findIndex(h => /name|guest|attendee/i.test(h));
       if (nameCol < 0) nameCol = 0;
       const extraCols = head.map((_, i) => i).filter(i => i !== nameCol).slice(0, 3);
-      guests = { rows, head, nameCol, extra: extraCols, list: [] };
+      guests = { rows, head, nameCol, extra: extraCols, list: [], dropped };
       buildGuestCols();
       onGuestCols();
       track("guest_list_used");
@@ -435,11 +460,13 @@
     }
     function showGuests(msg) {
       const m = $(".tr-csvmsg");
-      if (!guests) { m.textContent = msg || ""; $(".tr-extracols").innerHTML = ""; $("#tr-namecol").innerHTML = ""; return; }
+      if (!guests) { m.textContent = msg || ""; m.classList.remove("tr-warn"); $(".tr-extracols").innerHTML = ""; $("#tr-namecol").innerHTML = ""; return; }
       const n = guests.list.length;
       const { s } = C.normalize(st, { rows: n });
       const onStub = st.stub === "lines" && st.stubName && +st.perPage !== 20;
-      m.textContent = `${fmtInt(n)} named ${n === 1 ? "ticket" : "tickets"}, numbered ${C.fmtNum(s.start, s)} to ${C.fmtNum(s.end, s)}. ${guests.nameCol < 0 ? "No name column is selected." : onStub ? "The name goes on the ticket and on the stub's Name line." : "The name goes on each ticket."}`;
+      m.textContent = `${fmtInt(n)} named ${n === 1 ? "ticket" : "tickets"}, numbered ${C.fmtNum(s.start, s)} to ${C.fmtNum(s.end, s)}. ${guests.nameCol < 0 ? "No name column is selected." : onStub ? "The name goes on the ticket and on the stub's Name line." : "The name goes on each ticket."}` +
+        (guests.dropped ? ` The list has ${fmtInt(n + guests.dropped)} rows, but one PDF holds up to ${fmtInt(C.MAX_TICKETS)} tickets, so only the first ${fmtInt(C.MAX_TICKETS)} are used. Make a second PDF from the remaining ${fmtInt(guests.dropped)} rows.` : "");
+      m.classList.toggle("tr-warn", !!guests.dropped);
     }
 
     // ---- downloads
@@ -524,13 +551,13 @@
 
     // ---- saved designs
     function listDesigns() {
-      const list = store.get("designs", []);
+      const list = designs();
       $(".tr-saved").innerHTML = list.length ? list.map((d, i) => `<li><span>${esc(d.name)}</span><span class="tr-savedbtns"><button type="button" class="btn ghost sm" data-load="${i}">Load</button><button type="button" class="btn ghost sm" data-del="${i}" aria-label="Delete ${esc(d.name)}">Delete</button></span></li>`).join("") : `<li class="muted small">No saved designs yet.</li>`;
     }
     function saveDesign() {
       const nameEl = $("#tr-savename");
       const name = nameEl.value.trim() || `${st.title || "Tickets"} (${new Date().toLocaleDateString()})`;
-      const list = store.get("designs", []).filter(d => d.name !== name);
+      const list = designs().filter(d => d.name !== name);
       list.unshift({ name, st: Object.assign({}, st), extra: Object.assign({}, extra), logo });
       let ok = store.set("designs", list.slice(0, 20));
       if (!ok && logo) { list[0].logo = null; ok = store.set("designs", list.slice(0, 20)); if (ok) flash("Saved without the logo: it was too large for browser storage.", true); }
@@ -539,16 +566,16 @@
       listDesigns();
     }
     function loadDesign(i) {
-      const d = store.get("designs", [])[i];
+      const d = designs()[i];
       if (!d) return;
-      st = Object.assign(C.presetState(d.st.preset || "raffle"), d.st);
-      extra = Object.assign(extra, d.extra || {});
-      logo = d.logo || null; logoBytes = null;
+      st = okState(d.st);
+      extra = okExtra(d.extra);
+      logo = okLogo(d.logo); logoBytes = null;
       writeForm(); schedule();
       flash(`Loaded “${esc(d.name)}”.`);
     }
     function delDesign(i) {
-      const list = store.get("designs", []);
+      const list = designs();
       list.splice(i, 1);
       store.set("designs", list);
       listDesigns();
@@ -620,18 +647,19 @@
     if (f.prefix.value || f.suffix.value || q.get("name")) $(".tp-more").open = true;
 
     let pool = null, info = null, log = [], drawing = false;
-    const fmtState = () => ({ prefix: C.clean(f.prefix.value, true).text, suffix: C.clean(f.suffix.value, true).text, pad: f.pad.value, end: parseInt(f.last.value, 10) || 0, numLabel: "No." });
+    // Same whole-number parsing as the pool, so "1,000" means one thousand everywhere.
+    const fmtState = () => ({ prefix: C.clean(f.prefix.value, true).text, suffix: C.clean(f.suffix.value, true).text, pad: f.pad.value, end: (info && info.last) || C.toInt(f.last.value, 0) || 0, numLabel: "No." });
     const show = n => C.fmtNum(n, fmtState());
     function prep() {
       const ex = C.parseRanges(f.exclude.value);
       try {
         const r = C.buildPool(f.first.value, f.last.value, ex.ranges);
-        pool = r.pool; info = { total: r.total, excluded: r.excluded, bad: ex.bad, first: parseInt(f.first.value, 10), last: parseInt(f.last.value, 10) };
+        pool = r.pool; info = { total: r.total, excluded: r.excluded, bad: ex.bad, first: r.first, last: r.last };
         const odds = pool.length ? `each has a 1 in ${fmtInt(pool.length)} chance` : "nothing left to draw";
         $(".tp-pool").innerHTML = `${fmtInt(pool.length)} eligible ${pool.length === 1 ? "ticket" : "tickets"} (${esc(show(info.first))}–${esc(show(info.last))}${info.excluded ? `, ${fmtInt(info.excluded)} left out` : ""}): ${odds}.` + (ex.bad.length ? ` <span class="tr-err">Couldn't read: ${esc(ex.bad.join(", "))}</span>` : "");
         return true;
       } catch (err) {
-        pool = null;
+        pool = null; info = null;
         $(".tp-pool").innerHTML = `<span class="tr-err">${esc(err.message)}</span>`;
         return false;
       }
@@ -697,7 +725,7 @@
       log.forEach((e, i) => lines.push(`${i + 1}. No. ${show(e.n)}${e.prize ? ` (${e.prize})` : ""}`));
       const at = log[log.length - 1].at;
       lines.push(`Drawn ${at.toLocaleString(undefined, { dateStyle: "long", timeStyle: "medium" })}${tz ? ` (${tz})` : ""} with an unbiased crypto.getRandomValues draw.`);
-      lines.push("Picked with TicketRun · https://raffle.roohsites.com/raffle-winner-picker");
+      lines.push("Made with TicketRun · https://raffle.roohsites.com/raffle-winner-picker");
       return lines.join("\n");
     }
     async function copyResult() {
@@ -730,9 +758,10 @@
       x.fillText(shown, 600, 250 + size * 0.75);
       const at = log[log.length - 1].at;
       x.fillStyle = "#55555f"; x.font = `400 24px ${font}`;
-      x.fillText(`Drawn ${at.toLocaleString(undefined, { dateStyle: "long", timeStyle: "short" })} from ${fmtInt(info.total - info.excluded)} eligible tickets`, 600, 520, 1100);
+      const when = (() => { try { return at.toLocaleString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); } catch { return at.toLocaleString(); } })();
+      x.fillText(`Drawn ${when} from ${fmtInt(info.total - info.excluded)} eligible tickets`, 600, 520, 1100);
       x.font = `600 22px ${font}`;
-      x.fillText("Picked with TicketRun · raffle.roohsites.com", 600, 590);
+      x.fillText("Made with TicketRun · raffle.roohsites.com", 600, 590);
       cv.toBlob(b => { if (b) saveBlob(b, "raffle-winner.png"); }, "image/png");
     }
     prep();
