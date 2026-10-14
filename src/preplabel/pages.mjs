@@ -513,7 +513,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
         <li>Expiration labels are separate from the FNSKU label. PrepLabel keeps unit FNSKU labels to barcode, FNSKU, title and condition.</li>
       </ul>
       <h2>Multipacks, bundles and case packs</h2>
-      <p>Seller guides describe the date going on the outer box or bundle <em>and</em> on every item inside it. If the items in a bundle you build have different dates, put the earliest one on the bundle label so nothing is sold past its date. Print the outer-box label at 36 pt or larger (4 × 2 in or bigger) and the unit labels on 2 × 1 in or 30-up sheets: choose the stock, set <em>Number of labels</em> or click <em>Fill the sheet</em>, and download each set.</p>
+      <p>Seller guides describe the date going on the outer box or bundle <em>and</em> on every item inside it. If the items in a bundle you build have different dates, put the earliest one on the bundle label so nothing is sold past its date. Print the outer-box label at 36 pt or larger (4 × 2 in or bigger) and each unit label as large as the item has room for: 3 × 2 in reaches 38 pt, while 2 × 1 in labels and 30-up sheets reach about 26 to 27 pt for small items. Choose the stock, set <em>Number of labels</em> or click <em>Fill the sheet</em>, and download each set.</p>
       <p>Rules differ by category and marketplace, so confirm the current expiration-dated product requirements in Seller Central Help before you ship.</p>`,
     faq: [
       ["What date format does Amazon FBA require?", "Amazon's guidance for US expiration-dated products asks for MM-DD-YYYY or MM-YYYY. Medical devices use YYYY-MM-DD. Check Seller Central for other marketplaces."],

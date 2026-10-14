@@ -746,8 +746,9 @@
         if (info.fit && !info.fit.ok) warns.push(`<strong>${esc(code)}</strong> is too long for a Code 128 barcode on this label. Use QR codes or a wider label.`);
         for (let k = 0; k < copies && draws.length < MAX_LABELS; k++) draws.push(d);
       }
+      // Both caps can apply at once (2,000+ codes with 3 copies is over 5,000 labels), so check them separately.
+      if (Math.min(list.length, 2000) * copies > MAX_LABELS) warns.unshift(`Only the first ${MAX_LABELS.toLocaleString("en-US")} labels fit in one PDF. Lower the copies or split the list into batches.`);
       if (list.length > 2000) warns.unshift(`Only the first 2,000 location codes are used (you have ${list.length.toLocaleString("en-US")}). Split the list into batches.`);
-      else if (list.length * copies > MAX_LABELS) warns.unshift(`Only the first ${MAX_LABELS.toLocaleString("en-US")} labels fit in one PDF. Lower the copies or split the list into batches.`);
       const per = stock.kind === "sheet" ? stock.cols * stock.rows : 1;
       const pages = stock.kind === "sheet" ? Math.ceil((draws.length + (Math.max(1, +st.start) - 1)) / per) : draws.length;
       return { stock, draws, warns, empty: "Add at least one location code.", summary: draws.length ? `<strong>${plural(draws.length, "label")}</strong> on ${stock.kind === "sheet" ? plural(pages, "sheet") + " of " : ""}${esc(stock.short)}` : "No locations yet." };
