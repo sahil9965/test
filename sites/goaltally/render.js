@@ -125,15 +125,17 @@
       cols.forEach((c, i) => T(it, xs[i] + 4, y + 34.5, c[0], 8.5, { bold: true }));
     } });
     const f = v => GT.isNum(v) ? GT.fmtNum(v, 1) + unit : "–";
+    // No weekly rate from a calendar phase shorter than a week (matches the on-screen table and the note).
+    const short = s => m.cal && s.slope !== null && s.xSpan < 7;
     for (const s of m.stats) {
       if (!s.sessions) continue;
-      const row = [GT.fit(s.name || `Phase ${s.k + 1}`, cols[0][1] * W - 8, 9), String(s.n), f(s.mean), f(s.median), s.n ? `${GT.fmtNum(s.min, 1)}–${GT.fmtNum(s.max, 1)}${unit}` : "–", s.slope === null ? "–" : (s.slope >= 0 ? "+" : "") + GT.fmtNum(s.slope, 2), s.pnd === null ? "–" : GT.fmtNum(s.pnd, 0) + "%"];
+      const row = [GT.fit(s.name || `Phase ${s.k + 1}`, cols[0][1] * W - 8, 9), String(s.n), f(s.mean), f(s.median), s.n ? `${GT.fmtNum(s.min, 1)}–${GT.fmtNum(s.max, 1)}${unit}` : "–", s.slope === null || short(s) ? "–" : (s.slope >= 0 ? "+" : "") + GT.fmtNum(s.slope, 2), s.pnd === null ? "–" : GT.fmtNum(s.pnd, 0) + "%"];
       blocks.push({ h: 18, draw(it, y) {
         row.forEach((v, i) => T(it, xs[i] + 4, y + 12.5, v, 9));
         it.push({ t: "line", x1: x0, y1: y + 18, x2: x0 + W, y2: y + 18, w: 0.5, c: "#cccccc" });
       } });
     }
-    const foot = `Trend per ${m.cal ? "week" : "session"} uses a least-squares fit. PND = percentage of points that don't overlap the previous phase (` + (m.g.crit && m.g.crit.dir === "down" ? "below its lowest point" : "above its highest point") + ").";
+    const foot = `Trend per ${m.cal ? "week" : "session"} uses a least-squares fit${m.stats.some(s => s.sessions && short(s)) ? " (none for a phase spanning less than a week)" : ""}. PND = percentage of points that don't overlap the previous phase (` + (m.g.crit && m.g.crit.dir === "down" ? "below its lowest point" : "above its highest point") + ").";
     blocks.push({ h: 22, draw(it, y) { T(it, x0, y + 12, foot, 7.5, { c: "#55555f" }); } });
     if (note) {
       blocks.push({ h: 20, keep: true, draw(it, y) { T(it, x0, y + 12, "Progress note", 12, { bold: true }); } });
