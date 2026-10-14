@@ -357,7 +357,8 @@
       const order = Object.keys(num).sort((a, b) => num[a] - num[b]);
       const where = {};
       for (const room of r.rooms) for (const it of room.items) for (const id of it.photos) where[id] = `${room.name} › ${it.name}`;
-      table([{ h: "#", w: 9 }, { h: "Room / item", w: 46 }, { h: "Taken", w: 42 }, { h: "File" }, { h: "SHA-256 fingerprint", w: 46 }],
+      // 32 Courier characters at 6.6 pt are 44.7 mm wide, so the fingerprint column is 49 mm (with padding).
+      table([{ h: "#", w: 9 }, { h: "Room / item", w: 44 }, { h: "Taken", w: 42 }, { h: "File" }, { h: "SHA-256 fingerprint", w: 49 }],
         order.map(id => {
           const ph = r.photos[id];
           const hash = ph.sha256 ? [ph.sha256.slice(0, 32), ph.sha256.slice(32)] : ["not available"];

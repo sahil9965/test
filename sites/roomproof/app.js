@@ -96,7 +96,7 @@
         </section>
         <section class="rp-sec" aria-labelledby="rp-h-rooms">
           <h2 class="rp-h" id="rp-h-rooms"><span class="rp-n">2</span><span class="rp-rooms-title">Rooms, items and photos</span></h2>
-          <p class="rp-hint">Open a room, rate each item, add photos and notes. Items you leave blank are left out of the PDF.</p>
+          <p class="rp-hint rp-rooms-hint">Open a room, rate each item, add photos and notes. Items you leave blank are left out of the PDF.</p>
           <div class="rp-rooms"></div>
           <div class="rp-addroom"><button type="button" class="btn ghost sm" data-a="addRoom">+ Add room</button></div>
         </section>
@@ -279,6 +279,7 @@
   function renderRooms() {
     const word = T().roomWord || "room";
     $(".rp-rooms-title").textContent = `${word[0].toUpperCase() + word.slice(1)}s, items and photos`;
+    $(".rp-rooms-hint").textContent = `Open ${/^[aeiou]/.test(word) ? "an" : "a"} ${word}, rate each item, add photos and notes. Items you leave blank are left out of the PDF.`;
     $('[data-a="addRoom"]').textContent = `+ Add ${word}`;
     $(".rp-rooms").innerHTML = R.rooms.map(roomHtml).join("") || `<p class="rp-hint">No ${word}s yet. Add one to start.</p>`;
     autosizeAll();

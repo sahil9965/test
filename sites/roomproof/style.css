@@ -110,9 +110,10 @@
 .rp-make{width:100%;margin-top:16px;padding:13px 18px;font-size:16px}
 .rp-progress{font-size:14px;min-height:21px;margin:8px 0 0;color:var(--muted)}
 .rp-progress.warn{color:var(--warn-c)}.rp-progress.ok{color:var(--ok-c);font-weight:600}
-.rp-result{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:6px}
+.rp-result{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.rp-result .rp-dl{flex:1 1 auto}
 .rp-result[hidden]{display:none}
-.rp-resinfo{grid-column:1/-1;font-size:13px;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.rp-resinfo{flex:1 1 100%;font-size:13px;color:var(--muted);margin:0;overflow-wrap:anywhere}
 .rp-more{border-top:1px solid var(--line);margin-top:16px;padding-top:10px}
 .rp-more .btn{margin-top:4px}
 .rp-file{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px}
