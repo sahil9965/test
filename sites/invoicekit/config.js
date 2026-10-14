@@ -6,14 +6,7 @@ window.SITE = {
   allFree: true,
   monthlyUrl: "https://gumroad.com/",
   lifetimeUrl: "https://gumroad.com/",
-  monthlyPrice: "$3.99 / month",
-  lifetimePrice: "$24 lifetime",
-  proFeatures: [
-    "Your logo on every invoice",
-    "No “Made with InvoiceKit” footer",
-    "Saved clients and invoice history",
-    "Modern and Minimal templates",
-    "Duplicate invoices and auto-numbering",
-    "Pro on every Rooh Sites site",
-  ],
+  monthlyPrice: "",
+  lifetimePrice: "",
+  proFeatures: [],
 };
