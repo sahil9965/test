@@ -182,6 +182,8 @@
         if (line) out.push(line);
         while (w.length > 1 && p.measure(w, size, bold) > maxW) {
           let i = w.length - 1; while (i > 1 && p.measure(w.slice(0, i), size, bold) > maxW) i--;
+          if (/[\uDC00-\uDFFF]/.test(w[i])) i += i > 1 ? -1 : 1; // never split an emoji's surrogate pair
+          if (i >= w.length) break;
           out.push(w.slice(0, i)); w = w.slice(i);
         }
         line = w;
@@ -193,7 +195,7 @@
   function clip(p, text, maxW, size, bold) {
     let t = String(text || "");
     if (p.measure(t, size, bold) <= maxW) return t;
-    while (t.length > 1 && p.measure(t + "…", size, bold) > maxW) t = t.slice(0, -1);
+    while (t.length > 1 && p.measure(t + "…", size, bold) > maxW) t = t.slice(0, -1).replace(/[\uD800-\uDBFF]$/, "");
     return t.trimEnd() + "…";
   }
   // "Made with CollabRate · domain", centred on cx, with a link over the whole credit in PDFs.

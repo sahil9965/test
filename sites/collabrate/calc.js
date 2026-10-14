@@ -260,7 +260,7 @@
   function pitchEmail(c, profile = {}, q = {}) {
     const cur = c.currency, brand = str(q.brand, 80).trim() || "your brand";
     const first = (str(q.contact, 80).trim().split(/\s+/)[0] || "").replace(/[,;]$/, "");
-    const project = str(q.project, 120).trim();
+    const project = str(q.project, 160).trim();
     const lines = [];
     lines.push(`Hi ${first || "there"},`, "");
     lines.push(project ? `Thanks for sending over the brief for ${project}. Here's my quote:` : `Thanks for reaching out about a UGC collaboration with ${brand}. Here's my quote:`, "");

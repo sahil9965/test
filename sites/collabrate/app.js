@@ -540,11 +540,16 @@
     try { await fn(); } catch (err) { status(err.message || "Something went wrong. Please try again."); } finally { btn.disabled = false; btn.textContent = label; }
   }
   function bumpSeq(no) { const n = parseInt(String(no || "").replace(/\D/g, ""), 10); if (n > seqNow() && n < 1e7) LS.set("seq", n); }
+  // A saved deal's quote, using the rights start date from the deals list when one was added there.
+  // A damaged deal without a stored quote falls back to the deal's own number, brand and date.
+  function dealQuote(d) {
+    const q = d.quote && typeof d.quote === "object" ? d.quote : { no: d.no, brand: d.brand, project: d.project, date: d.date };
+    return normQuote({ ...q, rightsStart: d.rightsStart || q.rightsStart });
+  }
   function exportQuote(btn, deal) {
     return busy(btn, async () => {
       const D = await docs();
-      // A saved deal's PDF uses the rights start date from the deals list when one was added there.
-      const data = deal ? { ...docData(), calc: deal.calc, quote: normQuote({ ...deal.quote, rightsStart: deal.rightsStart || (deal.quote && deal.quote.rightsStart) }) } : docData();
+      const data = deal ? { ...docData(), calc: deal.calc, quote: dealQuote(deal) } : docData();
       if (!deal && K.compute(data.calc).total <= 0) throw new Error("Add at least one deliverable with a price before downloading the quote.");
       const blob = await D.quotePDF(data);
       const q = data.quote;
@@ -687,7 +692,7 @@
   }
   function openDeal(id) {
     const d = deals.find(x => x.id === id); if (!d) return;
-    state.calc = K.normalize(d.calc); state.quote = normQuote({ ...d.quote, rightsStart: d.rightsStart || d.quote.rightsStart });
+    state.calc = K.normalize(d.calc); state.quote = dealQuote(d);
     syncCalcForm(); syncOther(); emailDirty = false; update();
     selectTab("quote", true);
     mount.scrollIntoView({ behavior: "smooth", block: "start" });
