@@ -29,10 +29,11 @@
     if (/^(de|fr|es|it|nl|pt-pt|fi|el|sk|sl|et|lv|lt|ga|mt)\b/.test(l) || /^en-(ie|mt)/.test(l)) return "EUR";
     return "USD";
   }
-  const nextNo = () => "Q-" + pad(LS.get("seq", 0) + 1, 4);
+  const seqNow = () => { const n = Math.floor(+LS.get("seq", 0)); return Number.isFinite(n) && n > 0 && n < 1e7 ? n : 0; };
+  const nextNo = () => "Q-" + pad(seqNow() + 1, 4);
   const defaultQuote = () => ({ brand: "", contact: "", project: "", no: nextNo(), date: today(), validDays: 14, payment: "50-50", paymentCustom: "", deliveryDays: 7, rightsStart: "", notes: "", showOptions: false, paper: "auto" });
   const defaultProfile = () => ({ name: "", handle: "", niche: "", email: "", website: "" });
-  const str = (v, n) => String(v == null ? "" : v).slice(0, n);
+  const str = (v, n) => String(v == null ? "" : v).slice(0, n).replace(/[\uD800-\uDBFF]$/, "");
   function normQuote(q) {
     const d = defaultQuote(), i = q && typeof q === "object" ? q : {};
     return {
@@ -73,11 +74,15 @@
     if (preset.quote) state.quote = normQuote({ ...state.quote, ...preset.quote });
     state.tab = preset.tab;
   }
+  // A landing page's scenario is a demo: it isn't saved over the visitor's own work (from the
+  // home page or another guide) until they change something on this page.
+  let pristine = !!preset;
+  const touch = () => { pristine = false; };
   let deals = (LS.get("deals", []) || []).filter(d => d && typeof d === "object" && d.id).slice(0, 500);
   let headshot = LS.get("headshot", "") || "";
 
   let saveT;
-  const save = () => { clearTimeout(saveT); saveT = setTimeout(() => LS.set("state", state), 250); };
+  const save = () => { if (pristine) return; clearTimeout(saveT); saveT = setTimeout(() => LS.set("state", state), 250); };
 
   // ---------- markup ----------
   const opt = (v, label, sel) => `<option value="${esc(v)}"${v === sel ? " selected" : ""}>${esc(label)}</option>`;
@@ -89,10 +94,10 @@
   const SHOW_OPTS = Object.keys(K.CARD_ADDONS).map(k => `<label class="cr-check"><input type="checkbox" data-show="${k}"> ${esc(K.CARD_ADDONS[k])}</label>`).join("");
   const pctField = (id, label, unit) => `<div class="cr-pct"><label for="cr-${id}" class="vh">${esc(label)}</label><input id="cr-${id}" data-c="${id}" type="number" inputmode="decimal" min="0" max="1000" step="1"><span aria-hidden="true">%${unit ? " / " + unit : ""}</span></div>`;
   const profileFields = p => `
-        <div class="row"><div><label for="cr-${p}-name">Your name</label><input id="cr-${p}-name" data-p="name" autocomplete="name" placeholder="Mia Lopez"></div>
-        <div><label for="cr-${p}-handle">Handle</label><input id="cr-${p}-handle" data-p="handle" placeholder="@mia.makes"></div></div>
-        <div class="row"><div><label for="cr-${p}-email">Email</label><input id="cr-${p}-email" data-p="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-        <div><label for="cr-${p}-website">Website or portfolio</label><input id="cr-${p}-website" data-p="website" placeholder="mia.studio/ugc"></div></div>`;
+        <div class="row"><div><label for="cr-${p}-name">Your name</label><input id="cr-${p}-name" data-p="name" maxlength="80" autocomplete="name" placeholder="Mia Lopez"></div>
+        <div><label for="cr-${p}-handle">Handle</label><input id="cr-${p}-handle" data-p="handle" maxlength="60" placeholder="@mia.makes"></div></div>
+        <div class="row"><div><label for="cr-${p}-email">Email</label><input id="cr-${p}-email" data-p="email" maxlength="120" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div><label for="cr-${p}-website">Website or portfolio</label><input id="cr-${p}-website" data-p="website" maxlength="120" placeholder="mia.studio/ugc"></div></div>`;
 
   mount.innerHTML = `
   <div class="cr-top">
@@ -171,20 +176,20 @@
       <form class="cr-oform" autocomplete="off" onsubmit="return false">
         <h3>You</h3>${profileFields("q")}
         <h3>Brand</h3>
-        <div class="row"><div><label for="cr-brand">Brand name</label><input id="cr-brand" data-q="brand" placeholder="Glow Co"></div>
-        <div><label for="cr-contact">Contact name</label><input id="cr-contact" data-q="contact" placeholder="Sam Patel"></div></div>
-        <label for="cr-project">Project or brief</label><input id="cr-project" data-q="project" placeholder="Summer SPF launch: 3 videos for paid social">
+        <div class="row"><div><label for="cr-brand">Brand name</label><input id="cr-brand" data-q="brand" maxlength="80" placeholder="Glow Co"></div>
+        <div><label for="cr-contact">Contact name</label><input id="cr-contact" data-q="contact" maxlength="80" placeholder="Sam Patel"></div></div>
+        <label for="cr-project">Project or brief</label><input id="cr-project" data-q="project" maxlength="160" placeholder="Summer SPF launch: 3 videos for paid social">
         <h3>Quote details</h3>
-        <div class="row"><div><label for="cr-no">Quote number</label><input id="cr-no" data-q="no"></div>
+        <div class="row"><div><label for="cr-no">Quote number</label><input id="cr-no" data-q="no" maxlength="24"></div>
         <div><label for="cr-date">Quote date</label><input id="cr-date" data-q="date" type="date"></div></div>
         <div class="row"><div><label for="cr-valid">Valid for (days)</label><input id="cr-valid" data-q="validDays" type="number" min="0" max="365" inputmode="numeric"></div>
         <div><label for="cr-delivery">Delivery (days after product arrives)</label><input id="cr-delivery" data-q="deliveryDays" type="number" min="0" max="365" inputmode="numeric"></div></div>
         <label for="cr-payment">Payment terms</label><select id="cr-payment" data-q="payment">${PAY_OPTS}</select>
-        <div class="cr-paycustom"><label for="cr-paycustom">Your payment terms</label><input id="cr-paycustom" data-q="paymentCustom" placeholder="e.g. 30% upfront, 70% within 7 days of delivery"></div>
+        <div class="cr-paycustom"><label for="cr-paycustom">Your payment terms</label><input id="cr-paycustom" data-q="paymentCustom" maxlength="160" placeholder="e.g. 30% upfront, 70% within 7 days of delivery"></div>
         <div class="row"><div><label for="cr-rstart">Rights start date <span class="muted">(optional)</span></label><input id="cr-rstart" data-q="rightsStart" type="date"></div>
         <div><label for="cr-paper">Paper size</label><select id="cr-paper" data-q="paper">${opt("auto", "Auto (by currency)")}${opt("a4", "A4")}${opt("letter", "US Letter")}</select></div></div>
         <label class="cr-check"><input type="checkbox" id="cr-options" data-q="showOptions"> Add a usage options table (organic, 30 days, 90 days, perpetual)</label>
-        <label for="cr-notes">Notes for the brand <span class="muted">(optional)</span></label><textarea id="cr-notes" data-q="notes" rows="3" placeholder="e.g. Product to be shipped to my address before filming. Captions included."></textarea>
+        <label for="cr-notes">Notes for the brand <span class="muted">(optional)</span></label><textarea id="cr-notes" data-q="notes" maxlength="1200" rows="3" placeholder="e.g. Product to be shipped to my address before filming. Captions included."></textarea>
         <div class="cr-btns">
           <button type="button" class="btn" data-a="quotePdf">Download quote PDF</button>
           <button type="button" class="btn ghost" data-a="saveDeal">Save to deals</button>
@@ -212,7 +217,7 @@
         <div class="row"><div><label for="cr-accent">Brand colour <span class="muted">(card and quote)</span></label><input id="cr-accent" data-card="accent" type="color"></div>
         <div><label for="cr-title">Card title</label><input id="cr-title" data-card="title" maxlength="40"></div></div>
         <h3>You</h3>${profileFields("c")}
-        <label for="cr-niche">Niche or content style</label><input id="cr-niche" data-p="niche" placeholder="Skincare · Wellness · Talking-head UGC">
+        <label for="cr-niche">Niche or content style</label><input id="cr-niche" data-p="niche" maxlength="60" placeholder="Skincare · Wellness · Talking-head UGC">
         <label for="cr-photo">Headshot <span class="muted">(optional, stays on this device)</span></label>
         <div class="cr-photo"><input id="cr-photo" type="file" accept="image/*"><button type="button" class="btn ghost sm" data-a="rmPhoto">Remove photo</button></div>
         <h3>Packages</h3>
@@ -220,7 +225,7 @@
         <div class="cr-packages"></div>
         <h3>Add-ons on the card</h3>
         <div class="cr-showgrid">${SHOW_OPTS}</div>
-        <label for="cr-included">Every video includes <span class="muted">(one per line)</span></label><textarea id="cr-included" data-card="included" rows="4"></textarea>
+        <label for="cr-included">Every video includes <span class="muted">(one per line)</span></label><textarea id="cr-included" data-card="included" maxlength="600" rows="4"></textarea>
         <label for="cr-note">Footer note</label><input id="cr-note" data-card="note" maxlength="160">
         <div class="cr-btns">
           <button type="button" class="btn" data-a="cardPng">Download PNG</button>
@@ -253,6 +258,9 @@
     <p class="small muted">Saved quotes live in this browser only. Add a rights start date to get reminders for when paid usage, whitelisting and exclusivity end.</p>
     <div class="cr-deals"></div>
   </div>`;
+
+  ["input", "change"].forEach(t => mount.addEventListener(t, touch, true));
+  mount.addEventListener("click", e => { if (e.target.closest("[data-a]")) touch(); }, true);
 
   // ---------- form sync ----------
   const calcInputs = $$("[data-c]");
@@ -319,7 +327,8 @@
     $("#cr-wlPct").disabled = !s.wlMonths; $("#cr-exPct").disabled = !s.exMonths; $("#cr-exScope").disabled = !s.exMonths;
     $("#cr-rawPct").disabled = !s.raw; $("#cr-revPct").disabled = !s.revisions; $("#cr-rushPct").disabled = !s.rush;
 
-    $("#cr-total").textContent = money(c.total);
+    const tt = money(c.total), tEl = $("#cr-total");
+    tEl.textContent = tt; tEl.classList.toggle("long", tt.length > 10); tEl.classList.toggle("xlong", tt.length > 14);
     $("#cr-mtotal").textContent = money(c.total);
     $("#cr-range").innerHTML = c.addons.length
       ? `Typical range with these add-ons: <strong>${esc(money(c.low))}–${esc(money(c.high))}</strong>. Quote near the top if the brand wants more, and keep the low end as your floor.`
@@ -446,7 +455,7 @@
     else if (a === "copyEmail") { copy($("#cr-body").value, "Email copied. Paste it into your email app."); track("email_copied"); }
     else if (a === "copySubject") copy($("#cr-subject").value, "Subject copied.");
     else if (a === "regenEmail") { emailDirty = false; fillEmail(); status("Email rebuilt from the current quote."); }
-    else if (a === "csv") { if (!deals.length) return status("Save a quote to deals first."); download(new Blob(["﻿" + K.dealsCSV(deals)], { type: "text/csv;charset=utf-8" }), "brand-deals.csv"); track("deals_csv"); }
+    else if (a === "csv") { if (!deals.length) return status("Save a quote to deals first."); download(new Blob(["\uFEFF" + K.dealsCSV(deals)], { type: "text/csv;charset=utf-8" }), "brand-deals.csv"); track("deals_csv"); }
     else if (a === "ics") exportICS();
     else if (a === "openDeal") openDeal(btn.closest(".cr-deal").dataset.id);
     else if (a === "dealPdf") exportQuote(btn, deals.find(d => d.id === btn.closest(".cr-deal").dataset.id));
@@ -530,11 +539,12 @@
     const label = btn.textContent; btn.disabled = true; btn.textContent = "Preparing…";
     try { await fn(); } catch (err) { status(err.message || "Something went wrong. Please try again."); } finally { btn.disabled = false; btn.textContent = label; }
   }
-  function bumpSeq(no) { const n = parseInt(String(no || "").replace(/\D/g, ""), 10); if (n > LS.get("seq", 0) && n < 1e7) LS.set("seq", n); }
+  function bumpSeq(no) { const n = parseInt(String(no || "").replace(/\D/g, ""), 10); if (n > seqNow() && n < 1e7) LS.set("seq", n); }
   function exportQuote(btn, deal) {
     return busy(btn, async () => {
       const D = await docs();
-      const data = deal ? { ...docData(), calc: deal.calc, quote: deal.quote } : docData();
+      // A saved deal's PDF uses the rights start date from the deals list when one was added there.
+      const data = deal ? { ...docData(), calc: deal.calc, quote: normQuote({ ...deal.quote, rightsStart: deal.rightsStart || (deal.quote && deal.quote.rightsStart) }) } : docData();
       if (!deal && K.compute(data.calc).total <= 0) throw new Error("Add at least one deliverable with a price before downloading the quote.");
       const blob = await D.quotePDF(data);
       const q = data.quote;
@@ -583,7 +593,7 @@
     if (c.addons.length) { L.push(`Content fee: ${money(c.content)}`); c.addons.forEach(a => L.push(`${a.label} (${a.detail}): ${money(a.amount)}`)); }
     L.push(`Total: ${money(c.total)}`);
     if (c.addons.length) L.push(`Typical range with these add-ons: ${money(c.low)}–${money(c.high)}`);
-    L.push("", `Calculated with CollabRate · ${K.DOMAIN}`);
+    L.push("", K.CREDIT);
     return L.join("\n");
   }
   let emailDirty = false;
@@ -633,7 +643,7 @@
     const q = state.quote, c = K.compute(state.calc);
     const existing = q.no ? deals.find(d => d.no === q.no) : null;
     const base = { no: q.no, brand: q.brand, project: q.project, date: q.date, total: c.total, currency: c.currency, calc: structuredClone(state.calc), quote: structuredClone(q), savedAt: Date.now() };
-    if (existing) Object.assign(existing, base, { rightsStart: existing.rightsStart || q.rightsStart });
+    if (existing) Object.assign(existing, base, { rightsStart: q.rightsStart || existing.rightsStart });
     else deals.unshift({ id: uid(), status: "Quoted", rightsStart: q.rightsStart, deliveryDue: "", paymentDue: "", ...base });
     if (!LS.set("deals", deals)) status("Browser storage is full, so this deal couldn't be saved.");
     bumpSeq(q.no);
@@ -706,6 +716,6 @@
     syncCalcForm(); syncOther(); renderDealCount();
     selectTab(state.tab, false);
     update();
-    if (shared) save();
+    if (shared) { touch(); save(); }
   })();
 })();

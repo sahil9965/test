@@ -2,7 +2,7 @@
 // Numbers in tables and worked examples come from the same engine the tool runs (calc.js),
 // so the copy can never drift from the calculator.
 // Usage: node src/collabrate/pages.mjs   (writes into sites/collabrate/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
@@ -31,7 +31,7 @@ const GUIDES = [
 const USAGE_WHY = {
   "30d": "A short ad test. The brand finds out which videos work.",
   "60d": "A short campaign or a seasonal push.",
-  "90d": "A full campaign. The most common window to quote.",
+  "90d": "A full campaign, and a common window to quote.",
   "6m": "Long-running ads on the content that performed best.",
   "12m": "A year of ads, often an evergreen product page or always-on ad.",
   perpetual: "No end date. The brand never has to come back to you.",
@@ -77,7 +77,8 @@ function page(p) {
   const url = home ? `${URL}/` : `${URL}/${slug}`;
   const faqLd = faq.length ? [{ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) }] : [];
   const app = { "@type": "WebApplication", name: home ? "CollabRate" : `CollabRate ${crumb}`, url, description: home ? "Free UGC rate calculator for usage rights, whitelisting and exclusivity, with brand quote PDFs and rate cards." : strip(desc), applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } };
-  if (home) Object.assign(app, { featureList: ["UGC rate calculator", "Paid usage rights pricing", "Whitelisting and Spark Ads fees", "Exclusivity fees", "Raw footage, revisions and rush fees", "Brand quote PDF", "Rate card PNG and PDF in 3 templates", "Pitch email builder", "Saved deals with CSV export and calendar reminders", "USD, EUR, GBP, INR, AUD and CAD", "No signup"], publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" } });
+  app.publisher = { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" };
+  if (home) Object.assign(app, { featureList: ["UGC rate calculator", "Paid usage rights pricing", "Whitelisting and Spark Ads fees", "Exclusivity fees", "Raw footage, revisions and rush fees", "Brand quote PDF", "Rate card PNG and PDF in 3 templates", "Pitch email builder", "Saved deals with CSV export and calendar reminders", "USD, EUR, GBP, INR, AUD and CAD", "No signup"] });
   const graph = home
     ? [app, ...(howto ? [howto] : []), ...faqLd]
     : [{ "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "CollabRate", item: `${URL}/` }, { "@type": "ListItem", position: 2, name: crumb, item: url }] }, ...faqLd, ...(tool ? [app] : [])];
@@ -218,7 +219,7 @@ const pages = [
 
       <h2>Organic use, paid usage and whitelisting: what's the difference?</h2>
       <table><thead><tr><th></th><th>Organic use</th><th>Paid usage</th><th>Whitelisting / Spark Ads</th></tr></thead><tbody>
-      <tr><td>Who posts it</td><td>The brand, on its own pages</td><td>The brand, as ads from its own ad account</td><td>The brand, as ads shown under your name and handle</td></tr>
+      <tr><td>Who posts it</td><td>The brand, on its own pages</td><td>The brand, as ads from its own ad account</td><td>The brand, as ads shown under your handle (on Meta partnership ads, next to the brand's)</td></tr>
       <tr><td>Ad spend behind it</td><td>No</td><td>Yes</td><td>Yes</td></tr>
       <tr><td>How it's priced here</td><td>Included in your base rate</td><td>One uplift for the whole window</td><td>An uplift for each month of access</td></tr>
       <tr><td>What to agree</td><td>Which channels</td><td>Duration, start date, channels</td><td>Duration, how access is granted and removed, creative approval</td></tr>
@@ -293,7 +294,7 @@ const pages = [
     body: `      <p class="tldr"><strong>Quick answer:</strong> Charge whitelisting (Spark Ads on TikTok, partnership ads on Instagram and Facebook) as a monthly fee on top of paid usage. CollabRate's default is ${pct(K.ADDONS.whitelist.pct)} of the content fee for each month of access, with a suggested range of ${K.ADDONS.whitelist.range[0]}–${pct(K.ADDONS.whitelist.range[1])}. On a ${$(450)} content fee that's ${$(wlFee(1))} for one month or ${$(wlFee(3))} for three.</p>
 
       <h2>What whitelisting is</h2>
-      <p>With normal paid usage the brand runs your video as an ad from <em>its own</em> account. With whitelisting the ad appears under <em>your</em> name and handle, using your account's identity. Viewers see a post from a creator rather than from a brand, which is why brands ask for it. You grant access through the platform's own tools, such as a Spark Ads authorisation code on TikTok or partnership ad permissions on Instagram and Facebook. Never share your password.</p>
+      <p>With normal paid usage the brand runs your video as an ad from <em>its own</em> account. With whitelisting the ad appears under <em>your</em> name and handle, using your account's identity (Meta's partnership ads show your handle and the brand's together). Viewers see a post from a creator rather than a plain brand ad, which is why brands ask for it. You grant access through the platform's own tools, such as a Spark Ads authorisation code on TikTok or partnership ad permissions on Instagram and Facebook. Never share your password.</p>
 
       <h2>Whitelisting fee by number of months</h2>
       <p>For 3 videos at ${$(150)} each (content fee ${$(450)}) at the default ${pct(K.ADDONS.whitelist.pct)} per month:</p>
@@ -303,7 +304,7 @@ const pages = [
 
       <h2>Whitelisting, paid usage and Spark Ads compared</h2>
       <table><thead><tr><th></th><th>Paid usage</th><th>Whitelisting / Spark Ads</th></tr></thead><tbody>
-      <tr><td>Whose name is on the ad</td><td>The brand's</td><td>Yours</td></tr>
+      <tr><td>Whose name is on the ad</td><td>The brand's</td><td>Yours (with the brand's on partnership ads)</td></tr>
       <tr><td>Access to your account</td><td>None</td><td>Ad permissions only, through the platform's tools</td></tr>
       <tr><td>How it's priced</td><td>One uplift for the window</td><td>A fee for each month, usually on top of paid usage</td></tr>
       <tr><td>What to watch</td><td>End date</td><td>End date, comments on the ads, removing access</td></tr>
@@ -538,7 +539,7 @@ const pages = [
       <ul>
         <li><strong>50% upfront, 50% on delivery:</strong> a common default that protects both sides.</li>
         <li><strong>100% upfront:</strong> reasonable for small jobs and new clients.</li>
-        <li><strong>Net 15 or Net 30:</strong> payment within 15 or 30 days of delivery, often required by larger brands and agencies.</li>
+        <li><strong>Net 15 or Net 30:</strong> payment within 15 or 30 days of the invoice date, often required by larger brands and agencies. Send the invoice on delivery so the clock starts then.</li>
       </ul>
 
       <h2>Sample pitch email</h2>
@@ -585,5 +586,13 @@ ${esc(emailEx.body)}</pre>
   },
 ];
 
-for (const p of pages) writeFileSync(join(OUT, p.home ? "index.html" : `${p.slug}.html`), page(p));
+const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+for (const p of pages) {
+  const file = join(OUT, p.home ? "index.html" : `${p.slug}.html`);
+  let html = page(p);
+  // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
+  const prev = existsSync(file) ? (readFileSync(file, "utf8").match(NET) || [])[0] : null;
+  if (prev) html = html.replace(NET, () => prev);
+  writeFileSync(file, html);
+}
 console.log(`wrote ${pages.length} pages`);

@@ -63,8 +63,8 @@
   const PAYMENT_TERMS = {
     "50-50": "50% upfront, 50% on delivery",
     "100-up": "100% upfront, before filming",
-    net15: "Net 15: payment within 15 days of delivery",
-    net30: "Net 30: payment within 30 days of delivery",
+    net15: "Net 15: payment within 15 days of the invoice date",
+    net30: "Net 30: payment within 30 days of the invoice date",
     custom: "",
   };
 
@@ -74,7 +74,7 @@
   const num = (v, d = 0) => { const n = typeof v === "string" ? parseFloat(v.replace(",", ".")) : +v; return Number.isFinite(n) ? n : d; };
   const clamp = (v, lo, hi, d = lo) => Math.min(hi, Math.max(lo, num(v, d)));
   const int = (v, lo, hi, d = lo) => Math.round(clamp(v, lo, hi, d));
-  const str = (v, max = 200) => String(v == null ? "" : v).slice(0, max);
+  const str = (v, max = 200) => String(v == null ? "" : v).slice(0, max).replace(/[\uD800-\uDBFF]$/, ""); // never cut an emoji in half
   const sum = (a, f) => a.reduce((s, x) => s + f(x), 0);
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many || one + "s"}`;
   const fmtPct = p => (Math.round(p * 100) / 100).toString() + "%";

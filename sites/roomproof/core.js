@@ -24,7 +24,9 @@
       { k: "na", label: "N/A", tone: "na" },
     ] },
   };
-  const level = (scaleKey, k) => (SCALES[scaleKey] || SCALES.condition).levels.find(l => l.k === k) || null;
+  // Own keys only, so names like "constructor" or "__proto__" from a file never match.
+  const has = (o, k) => typeof k === "string" && Object.prototype.hasOwnProperty.call(o, k);
+  const level = (scaleKey, k) => (has(SCALES, scaleKey) ? SCALES[scaleKey] : SCALES.condition).levels.find(l => l.k === k) || null;
 
   // ---------- Templates ----------
   const HOME = [
@@ -142,9 +144,9 @@
   }
 
   function newReport(key, opts = {}) {
-    const t = TEMPLATES[key] || TEMPLATES.general;
+    const t = has(TEMPLATES, key) ? TEMPLATES[key] : TEMPLATES.general;
     return {
-      v: 1, template: TEMPLATES[key] ? key : "general",
+      v: 1, template: has(TEMPLATES, key) ? key : "general",
       title: t.title, property: "", date: opts.date || todayIso(), ref: "",
       preparedBy: "", otherParty: "", company: "", logo: "", notes: "",
       pair: !!t.pair, labels: t.labels ? [...t.labels] : ["Before", "After"], compare: null,
@@ -154,7 +156,7 @@
       settings: { paper: opts.paper || "a4", perPage: 2, stamp: true, checklist: true, photoLog: true, signPage: true },
     };
   }
-  const tpl = r => TEMPLATES[r.template] || TEMPLATES.general;
+  const tpl = r => (has(TEMPLATES, r.template) ? TEMPLATES[r.template] : TEMPLATES.general);
   const scaleOf = r => tpl(r).scale;
 
   // Start a follow-up (move-out from move-in, check-out from check-in): rooms and items are kept,
@@ -179,6 +181,98 @@
       }),
     }));
     return r;
+  }
+
+  // ---------- Loading saved reports ----------
+  // A .roomproof file can come from anyone, and a browser draft can be damaged, so a loaded report
+  // is rebuilt field by field: wrong types are dropped, text is length-capped, ids are limited to
+  // safe characters (they end up in HTML attributes), images must be inline data URLs (no remote
+  // loads), and every photo belongs to exactly one item. Returns { r, photoMap } where photoMap maps
+  // each original photo key to its (possibly new) id, so the caller can find the photo's file.
+  const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
+  const PNG_URL = /^data:image\/png;base64,[A-Za-z0-9+/]+=*$/;
+  const IMG_URL = /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/]+=*$/;
+  const isObj = v => !!v && typeof v === "object" && !Array.isArray(v);
+  const str = (v, max) => (typeof v === "string" ? v : typeof v === "number" && isFinite(v) ? String(v) : "").slice(0, max);
+  const isoDate = v => (typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v) && parseLocal(v) ? v : "");
+  const unit = v => (typeof v === "number" && isFinite(v) ? Math.min(1, Math.max(0, v)) : null);
+  function cleanShape(s) {
+    if (!isObj(s)) return null;
+    if (s.t === "pen") {
+      const pts = (Array.isArray(s.pts) ? s.pts : []).slice(0, 5000).map(p => (Array.isArray(p) ? [unit(p[0]), unit(p[1])] : [null, null])).filter(p => p[0] != null && p[1] != null);
+      return pts.length ? { t: "pen", pts } : null;
+    }
+    if (s.t !== "circle" && s.t !== "arrow") return null;
+    const v = [unit(s.x1), unit(s.y1), unit(s.x2), unit(s.y2)];
+    return v.every(x => x != null) ? { t: s.t, x1: v[0], y1: v[1], x2: v[2], y2: v[3] } : null;
+  }
+  function cleanPhoto(m) {
+    const p = parseLocal(m.takenAt);
+    const num = v => (typeof v === "number" && isFinite(v) && v > 0 ? Math.round(v) : 0);
+    return {
+      w: num(m.w), h: num(m.h), origName: str(m.origName, 200), origSize: num(m.origSize),
+      sha256: typeof m.sha256 === "string" && /^[0-9a-f]{64}$/.test(m.sha256) ? m.sha256 : "",
+      caption: str(m.caption, 300), phase: m.phase === "before" || m.phase === "after" ? m.phase : "",
+      markup: (Array.isArray(m.markup) ? m.markup : []).slice(0, 200).map(cleanShape).filter(Boolean),
+      added: str(m.added, 40),
+      takenAt: p && p.hasTime ? `${p.y}-${pad(p.mo)}-${pad(p.d)}T${pad(p.h)}:${pad(p.mi)}:${pad(p.s)}` : "",
+      offset: typeof m.offset === "string" && /^[+-]\d{2}:\d{2}$/.test(m.offset) ? m.offset : "",
+      source: has(SOURCE, m.source) ? m.source : "file",
+    };
+  }
+  function normalize(src) {
+    const s = isObj(src) ? src : {};
+    const key = has(TEMPLATES, s.template) ? s.template : "general";
+    const base = newReport(key);
+    const sc = TEMPLATES[key].scale;
+    const seen = new Set();
+    const idOf = (v, prefix) => { const id = typeof v === "string" && SAFE_ID.test(v) && !seen.has(v) ? v : uid(prefix); seen.add(id); return id; };
+    const photoMap = {}, photos = {};
+    for (const [k, m] of Object.entries(isObj(s.photos) ? s.photos : {})) {
+      if (!isObj(m)) continue;
+      const id = idOf(k, "p");
+      photoMap[k] = id; photos[id] = cleanPhoto(m);
+    }
+    const used = new Set();
+    const rating = v => (typeof v === "string" && level(sc, v) ? v : "");
+    const rooms = (Array.isArray(s.rooms) ? s.rooms : []).filter(isObj).slice(0, 500).map(room => ({
+      id: idOf(room.id, "r"), name: str(room.name, 60),
+      items: (Array.isArray(room.items) ? room.items : []).filter(isObj).slice(0, 500).map(it => {
+        const out = { id: idOf(it.id, "i"), name: str(it.name, 80), rating: rating(it.rating), notes: str(it.notes, 2000), photos: [] };
+        for (const k of Array.isArray(it.photos) ? it.photos : []) {
+          const id = typeof k === "string" && Object.prototype.hasOwnProperty.call(photoMap, k) ? photoMap[k] : null;
+          if (id && !used.has(id)) { used.add(id); out.photos.push(id); }
+        }
+        if (it.prevRating != null) out.prevRating = rating(it.prevRating);
+        if (it.prevNotes != null) out.prevNotes = str(it.prevNotes, 2000);
+        return out;
+      }),
+    }));
+    for (const id of Object.keys(photos)) if (!used.has(id)) delete photos[id];
+    let signatures = (Array.isArray(s.signatures) ? s.signatures : []).filter(isObj).slice(0, 4).map(x => ({
+      role: str(x.role, 60), name: str(x.name, 80), img: typeof x.img === "string" && PNG_URL.test(x.img) ? x.img : "", date: isoDate(x.date),
+    }));
+    if (!signatures.length) signatures = base.signatures;
+    const st = isObj(s.settings) ? s.settings : {};
+    const bool = (v, d) => (typeof v === "boolean" ? v : d);
+    const labels = Array.isArray(s.labels) && s.labels.length === 2 && s.labels.every(l => typeof l === "string" && l.trim()) ? s.labels.map(l => l.slice(0, 30)) : base.labels;
+    const r = {
+      v: 1, template: key,
+      title: typeof s.title === "string" || typeof s.title === "number" ? str(s.title, 120) : base.title,
+      property: str(s.property, 300), date: isoDate(s.date), ref: str(s.ref, 80),
+      preparedBy: str(s.preparedBy, 120), otherParty: str(s.otherParty, 120), company: str(s.company, 400),
+      logo: typeof s.logo === "string" && IMG_URL.test(s.logo) ? s.logo : "", notes: str(s.notes, 3000),
+      pair: bool(s.pair, base.pair), labels,
+      compare: isObj(s.compare) ? { title: str(s.compare.title, 120), date: isoDate(s.compare.date) } : null,
+      rooms, photos, signatures,
+      settings: {
+        paper: st.paper === "letter" || st.paper === "a4" ? st.paper : base.settings.paper,
+        perPage: [1, 2, 4, 6].includes(st.perPage) ? st.perPage : 2,
+        stamp: bool(st.stamp, true), checklist: bool(st.checklist, true), photoLog: bool(st.photoLog, true), signPage: bool(st.signPage, true),
+      },
+    };
+    if (Number.isInteger(s.customTpl) && s.customTpl >= 0) r.customTpl = s.customTpl;
+    return { r, photoMap };
   }
 
   // ---------- Dates ----------
@@ -441,7 +535,7 @@
   const safeName = s => (pdfText(s).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "report").toLowerCase();
 
   const api = {
-    SCALES, TEMPLATES, ISSUE_TITLE, SOURCE, MONTHS, level, uid, todayIso, newReport, followUp, tpl, scaleOf, roomsFrom,
+    SCALES, TEMPLATES, ISSUE_TITLE, SOURCE, MONTHS, has, level, uid, todayIso, newReport, followUp, normalize, tpl, scaleOf, roomsFrom,
     parseLocal, formatDate, formatStamp, formatTaken, localFromMs, readExif, exifDate,
     crc32, zip, unzip, hasContent, pairRows, numberPhotos, photoRefs, summarize,
     fitRect, grid, pageSize, targetPx, rotateShapes, pdfText, safeName,

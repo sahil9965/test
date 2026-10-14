@@ -34,6 +34,9 @@
     const s = Math.min(1, max / Math.max(sw, sh));
     const c = canvas(sw * s, sh * s);
     const ctx = c.getContext("2d");
+    // Photos are saved as JPEG, which has no transparency: paint white first so transparent
+    // areas of PNG/WebP images don't turn black.
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
     ctx.drawImage(src, 0, 0, c.width, c.height);
     return c;

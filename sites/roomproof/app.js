@@ -5,7 +5,7 @@
   const mount = document.getElementById("rp-tool");
   if (!mount || !window.RPCore || !window.RPPhoto) return;
   const C = window.RPCore, PH = window.RPPhoto;
-  const preset = C.TEMPLATES[mount.dataset.preset] ? mount.dataset.preset : "";
+  const preset = C.has(C.TEMPLATES, mount.dataset.preset) ? mount.dataset.preset : "";
   const $ = (s, el = mount) => el.querySelector(s);
   const $$ = (s, el = mount) => [...el.querySelectorAll(s)];
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -61,7 +61,18 @@
   const photoCount = () => Object.keys(R.photos).length;
   const hasWork = r => !!r && (Object.keys(r.photos || {}).length > 0 || (r.rooms || []).some(room => room.items.some(it => it.rating || (it.notes || "").trim())) || !!(r.property || "").trim());
 
-  function customTemplates() { try { return JSON.parse(localStorage.getItem("rp_tpls") || "[]"); } catch { return []; } }
+  // Saved in this browser by "Save rooms as my template"; anything malformed is skipped.
+  function customTemplates() {
+    let list;
+    try { list = JSON.parse(localStorage.getItem("rp_tpls") || "[]"); } catch { return []; }
+    return (Array.isArray(list) ? list : [])
+      .filter(c => c && typeof c.name === "string" && c.name.trim() && Array.isArray(c.rooms))
+      .map(c => ({
+        name: c.name.slice(0, 60), base: C.has(C.TEMPLATES, c.base) ? c.base : "general", title: typeof c.title === "string" ? c.title.slice(0, 120) : "",
+        rooms: c.rooms.filter(x => Array.isArray(x) && typeof x[0] === "string")
+          .map(([n, items]) => [n.slice(0, 60), (Array.isArray(items) ? items : []).filter(i => typeof i === "string").map(i => i.slice(0, 80))]),
+      }));
+  }
 
   // ---------- skeleton ----------
   const ICON_CAM = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9 4h6l1.5 2H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5L9 4zm3 4.5A4.5 4.5 0 1 0 12 17.5 4.5 4.5 0 0 0 12 8.5zm0 2A2.5 2.5 0 1 1 12 15.5 2.5 2.5 0 0 1 12 10.5z"/></svg>';
@@ -205,7 +216,7 @@
     const ph = R.photos[id];
     const url = thumbs.get(id) || "";
     const when = C.formatTaken(ph.takenAt, ph.offset);
-    return `<button type="button" class="rp-th" data-a="photo" data-id="${id}" title="${esc(ph.caption || "Edit photo")}">
+    return `<button type="button" class="rp-th" data-a="photo" data-id="${esc(id)}" title="${esc(ph.caption || "Edit photo")}">
       <img src="${esc(url)}" alt="Photo of ${esc(item.name || "item")}${when ? ", taken " + esc(when) : ""}${ph.caption ? ": " + esc(ph.caption) : ""}" loading="lazy">
       ${R.settings.stamp ? `<span class="rp-th-ts" aria-hidden="true">${esc(C.formatStamp(ph.takenAt).replace(/ \d{4} /, " "))}</span>` : ""}
       ${ph.markup && ph.markup.length ? '<span class="rp-th-mk" aria-hidden="true">✎</span>' : ""}
@@ -226,11 +237,11 @@
     const sc = scale();
     const prevL = C.level(C.scaleOf(R), it.prevRating);
     const nm = it.name || "this item";
-    return `<div class="rp-item" data-room="${room.id}" data-item="${it.id}">
+    return `<div class="rp-item" data-room="${esc(room.id)}" data-item="${esc(it.id)}">
       <div class="rp-item-top">
         <input class="rp-iname" data-f="itemName" value="${esc(it.name)}" placeholder="Item name" aria-label="Item name" maxlength="80">
         <div class="rp-rates" role="radiogroup" aria-label="${esc(sc.label)} of ${esc(nm)}">
-          ${sc.levels.map(l => `<label class="rp-chip tone-${l.tone}"><input type="radio" name="rate-${it.id}" value="${l.k}"${it.rating === l.k ? " checked" : ""}><span>${esc(l.label)}</span></label>`).join("")}
+          ${sc.levels.map(l => `<label class="rp-chip tone-${l.tone}"><input type="radio" name="rate-${esc(it.id)}" value="${l.k}"${it.rating === l.k ? " checked" : ""}><span>${esc(l.label)}</span></label>`).join("")}
         </div>
         <button type="button" class="rp-x" data-a="delItem" aria-label="Remove ${esc(nm)}" title="Remove item">×</button>
       </div>
@@ -250,12 +261,12 @@
   }
   function roomHtml(room, i) {
     const word = T().roomWord || "room";
-    return `<details class="rp-room" data-room="${room.id}"${openRooms.has(room.id) ? " open" : ""}>
+    return `<details class="rp-room" data-room="${esc(room.id)}"${openRooms.has(room.id) ? " open" : ""}>
       <summary><span class="rp-rname">${esc(room.name || "Untitled " + word)}</span><span class="rp-rmeta">${roomMeta(room)}</span></summary>
       <div class="rp-room-body">
         <div class="rp-room-tools">
-          <label class="rp-sr" for="rn-${room.id}">Name of ${word}</label>
-          <input id="rn-${room.id}" class="rp-rinput" data-f="roomName" value="${esc(room.name)}" maxlength="60" placeholder="Name of ${word}">
+          <label class="rp-sr" for="rn-${esc(room.id)}">Name of ${word}</label>
+          <input id="rn-${esc(room.id)}" class="rp-rinput" data-f="roomName" value="${esc(room.name)}" maxlength="60" placeholder="Name of ${word}">
           <button type="button" class="rp-x" data-a="roomUp" aria-label="Move ${esc(room.name || word)} up"${i === 0 ? " disabled" : ""}>↑</button>
           <button type="button" class="rp-x" data-a="roomDown" aria-label="Move ${esc(room.name || word)} down"${i === R.rooms.length - 1 ? " disabled" : ""}>↓</button>
           <button type="button" class="btn ghost sm rp-danger" data-a="delRoom">Delete ${word}</button>
@@ -355,7 +366,7 @@
   function renderStats() {
     const s = C.summarize(R);
     const issueWord = { condition: "flagged", punch: "open", clean: "to fix" }[s.scale];
-    $(".rp-stats").innerHTML = `<li><b>${s.items}</b> items</li><li><b>${s.photos}</b> photos</li><li class="${s.issues.length ? "bad" : ""}"><b>${s.issues.length}</b> ${issueWord}</li>`;
+    $(".rp-stats").innerHTML = `<li><b>${s.items}</b> ${s.items === 1 ? "item" : "items"}</li><li><b>${s.photos}</b> ${s.photos === 1 ? "photo" : "photos"}</li><li class="${s.issues.length ? "bad" : ""}"><b>${s.issues.length}</b> ${issueWord}</li>`;
   }
 
   function renderAll() {
@@ -575,16 +586,18 @@
     let j;
     try { j = JSON.parse(new TextDecoder().decode(raw)); } catch { throw new Error("The project file is damaged (report.json can't be read)."); }
     const rep = j && j.app === "roomproof" && j.report;
-    if (!rep || !Array.isArray(rep.rooms) || typeof rep.photos !== "object") throw new Error("That file isn't a Roomproof project.");
-    const fresh = C.newReport(rep.template);
-    const r = { ...fresh, ...rep, settings: { ...fresh.settings, ...(rep.settings || {}) }, signatures: Array.isArray(rep.signatures) ? rep.signatures : fresh.signatures };
+    if (!rep || typeof rep !== "object" || !Array.isArray(rep.rooms)) throw new Error("That file isn't a Roomproof project.");
+    // Files can come from anyone: rebuild the report from known fields only (see RPCore.normalize).
+    const { r, photoMap } = C.normalize(rep);
+    delete r.customTpl; // template numbers belong to the browser that saved the file
     const pics = new Map();
     let missing = 0;
-    for (const id of Object.keys(r.photos)) {
-      const d = entries.get(`photos/${id}.jpg`);
+    for (const [key, id] of Object.entries(photoMap)) {
+      if (!r.photos[id]) continue;
+      const d = entries.get(`photos/${key}.jpg`);
       if (d) pics.set(id, new Blob([d], { type: "image/jpeg" })); else { delete r.photos[id]; missing++; }
     }
-    for (const room of r.rooms) for (const it of room.items) it.photos = (it.photos || []).filter(id => r.photos[id]);
+    for (const room of r.rooms) for (const it of room.items) it.photos = it.photos.filter(id => r.photos[id]);
     return { r, pics, missing };
   }
   async function adopt(r, pics) {
@@ -592,21 +605,28 @@
     thumbs.clear(); blobs.clear();
     await safe(() => DB.clearPhotos());
     R = r;
-    let i = 0;
+    let i = 0, bad = 0;
     for (const [id, blob] of pics) {
-      if (!R.photos[id]) continue;
+      const ph = R.photos[id];
+      if (!ph) continue;
       if (++i % 5 === 0) status(`Loading photos… ${i} of ${pics.size}`);
-      const thumb = await PH.thumbFor(blob, R.photos[id].markup);
+      let thumb;
+      try {
+        if (!ph.w || !ph.h) { const im = await PH.loadImage(blob); ph.w = im.naturalWidth; ph.h = im.naturalHeight; im.src = ""; }
+        thumb = await PH.thumbFor(blob, ph.markup);
+      } catch { delete R.photos[id]; bad++; continue; } // not a readable image
       blobs.set(id, blob);
       thumbs.set(id, URL.createObjectURL(thumb));
       await safe(() => DB.putPhoto(id, { blob, thumb }));
     }
+    if (bad) for (const room of R.rooms) for (const it of room.items) it.photos = it.photos.filter(x => R.photos[x]);
     openRooms.clear();
     const first = R.rooms.find(room => room.items.some(it => it.photos.length)) || R.rooms[0];
     if (first) openRooms.add(first.id);
     renderAll();
     await safe(() => DB.set("draft", R));
     $(".rp-result").hidden = true; progress("");
+    return bad;
   }
 
   // ---------- reset / templates ----------
@@ -697,14 +717,15 @@
       try {
         status("Opening project…");
         const { r, pics, missing } = await readProject(f);
+        const lostMsg = n => (n ? ` ${plural(n, "photo was", "photos were")} missing or unreadable in the file.` : "");
         if (mode === "followup") {
           const fr = C.followUp(r, { date: C.todayIso() });
-          await adopt(fr, pics);
-          status(`Started “${esc(fr.title)}” from “${esc(r.title)}”. Earlier photos are on the <strong>${esc(fr.labels[0])}</strong> side; add new ones on the <strong>${esc(fr.labels[1])}</strong> side.`);
+          const bad = await adopt(fr, pics);
+          status(`Started “${esc(fr.title)}” from “${esc(r.title)}”. Earlier photos are on the <strong>${esc(fr.labels[0])}</strong> side; add new ones on the <strong>${esc(fr.labels[1])}</strong> side.${lostMsg(missing + bad)}`);
           track("followup_started");
         } else {
-          await adopt(r, pics);
-          status(`Opened “${esc(r.title)}” with ${plural(Object.keys(r.photos).length, "photo")}.${missing ? ` ${plural(missing, "photo was", "photos were")} missing from the file.` : ""}`);
+          const bad = await adopt(r, pics);
+          status(`Opened “${esc(r.title)}” with ${plural(Object.keys(R.photos).length, "photo")}.${lostMsg(missing + bad)}`);
           track("project_opened");
         }
       } catch (err) { status(esc(err.message || String(err)), "warn"); }
@@ -840,17 +861,19 @@
   async function init() {
     let draft = null;
     if (idbOk) { try { draft = await DB.get("draft"); } catch { idbOk = false; } }
-    let restored = false;
-    if (draft && draft.v === 1 && Array.isArray(draft.rooms) && (hasWork(draft) || !preset || draft.template === preset)) {
-      R = draft;
-      const fresh = C.newReport(R.template);
-      R.settings = { ...fresh.settings, ...(R.settings || {}) };
+    let restored = false, norm = null;
+    if (draft && draft.v === 1 && Array.isArray(draft.rooms)) { try { norm = C.normalize(draft); } catch (e) { console.error(e); } }
+    if (norm && (hasWork(norm.r) || !preset || norm.r.template === preset)) {
+      R = norm.r;
       let lost = 0;
-      for (const id of Object.keys(R.photos)) {
+      for (const [key, id] of Object.entries(norm.photoMap)) {
+        if (!R.photos[id]) continue;
         let rec = null;
-        try { rec = await DB.getPhoto(id); } catch {}
-        if (rec && rec.blob) { blobs.set(id, rec.blob); thumbs.set(id, URL.createObjectURL(rec.thumb || rec.blob)); }
-        else { delete R.photos[id]; lost++; }
+        try { rec = await DB.getPhoto(key); } catch {}
+        if (rec && rec.blob) {
+          blobs.set(id, rec.blob); thumbs.set(id, URL.createObjectURL(rec.thumb || rec.blob));
+          if (key !== id) await safe(() => DB.putPhoto(id, rec));
+        } else { delete R.photos[id]; lost++; }
       }
       for (const room of R.rooms) for (const it of room.items) it.photos = it.photos.filter(id => R.photos[id]);
       restored = hasWork(R);
@@ -872,7 +895,11 @@
     }
     if (!idbOk) progress("This browser isn't saving drafts (private mode?). Use Save project to keep your work.", "warn");
   }
-  init().catch(e => { console.error(e); if (!R) { R = C.newReport(preset || "general", { paper: defaultPaper() }); renderAll(); } });
+  init().catch(e => {
+    console.error(e);
+    // A damaged draft must never leave the tool blank: fall back to a fresh report.
+    if (!R || !$(".rp-room")) { R = C.newReport(preset || "general", { paper: defaultPaper() }); if (R.rooms[0]) openRooms.add(R.rooms[0].id); renderAll(); }
+  });
 
   // Offline support (installable app). Never caches photos; they stay in this browser's storage.
   if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {

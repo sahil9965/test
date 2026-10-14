@@ -43,7 +43,8 @@
     const lh = size => size * PT * 1.25;
     const wrap = (s, width) => doc.splitTextToSize(T(s), width);
     const fitLine = (s, width) => {
-      let str = T(s);
+      // One line only: typed line breaks (addresses, notes) become ", " instead of a second line.
+      let str = T(s).trim().replace(/([.,;:!?])?[ \t]*\n\s*/g, (m, p) => (p ? p + " " : ", "));
       if (doc.getTextWidth(str) <= width) return str;
       while (str.length > 1 && doc.getTextWidth(str + "…") > width) str = str.slice(0, -1);
       return str.trimEnd() + "…";
@@ -235,8 +236,9 @@
       const ph = r.photos[id], blob = blobs.get(id);
       onProgress(++done, totalPhotos);
       if (!blob) return false;
-      const f = C.fitRect(ph.w || 4, ph.h || 3, box.x, box.y, box.w, box.h);
-      const j = await PH.renderJpeg(blob, C.targetPx(f.w, f.h), { markup: ph.markup, stamp: S.stamp ? C.formatStamp(ph.takenAt) : "" });
+      const f0 = C.fitRect(ph.w || 4, ph.h || 3, box.x, box.y, box.w, box.h);
+      const j = await PH.renderJpeg(blob, C.targetPx(f0.w, f0.h), { markup: ph.markup, stamp: S.stamp ? C.formatStamp(ph.takenAt) : "" });
+      const f = C.fitRect(j.w, j.h, box.x, box.y, box.w, box.h); // the rendered image's own shape, never stretched
       doc.setFillColor(...SOFT); doc.rect(box.x, box.y, box.w, box.h, "F");
       doc.addImage(j.bytes, "JPEG", f.x, f.y, f.w, f.h, "ph" + num[id], "NONE");
       // photo number badge
@@ -247,7 +249,7 @@
       doc.text(label, f.x + 1.5 + 1.7, f.y + 5);
       return true;
     };
-    const takenLine = ph => `Taken ${C.formatTaken(ph.takenAt, ph.offset)} · ${C.SOURCE[ph.source] || "file date"}`;
+    const takenLine = ph => { const w = C.formatTaken(ph.takenAt, ph.offset); return w ? `Taken ${w} · ${C.SOURCE[ph.source] || "file date"}` : "Time taken not recorded"; };
     if (cards.length) {
       const g = C.grid(S.perPage, r.pair), gap = 6, per = g.cols * g.rows;
       const cw = (CW - gap * (g.cols - 1)) / g.cols, ch = (BOTTOM - TOP - gap * (g.rows - 1)) / g.rows;
@@ -296,7 +298,7 @@
             else {
               doc.setDrawColor(...LINE); doc.setLineDashPattern([1.5, 1.2], 0); doc.setLineWidth(0.3);
               doc.rect(bx, by, bw, bh); doc.setLineDashPattern([], 0);
-              font(8.5, "normal", MUTED); doc.text(`No ${r.labels[k].toLowerCase()} photo`, bx + bw / 2, by + bh / 2, { align: "center" });
+              font(8.5, "normal", MUTED); doc.text(fitLine(`No ${r.labels[k].toLowerCase()} photo`, bw - 4), bx + bw / 2, by + bh / 2, { align: "center" });
             }
             // side label pill
             const lab = T(r.labels[k]);

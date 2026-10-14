@@ -12,13 +12,42 @@
   const INK = "#1b1b1f", MUTED = "#62626e", LINE = "#e4e1da", SOFT = "#f4f2ee", WHITE = "#ffffff";
 
   // ---------- loading (fonts for canvas + PDF, jsPDF only when a PDF is requested) ----------
-  let fontsP = null, pdfP = null, fontB64 = null;
+  let fontsP = null, pdfP = null, fontB64 = null, COVER = null;
   const toB64 = buf => { const u = new Uint8Array(buf); let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+  // Code points the embedded Inter subset can draw, read from its cmap table (formats 4 and 12).
+  // The PDF painter uses it to spot text (emoji, Devanagari, CJK…) the font has no glyphs for.
+  function coverage(buf) {
+    try {
+      const v = new DataView(buf), set = new Set();
+      let off = 0;
+      for (let i = 0, n = v.getUint16(4); i < n; i++) { const r = 12 + i * 16; if (v.getUint32(r) === 0x636d6170) off = v.getUint32(r + 8); }
+      if (!off) return null;
+      for (let i = 0, n = v.getUint16(off + 2); i < n; i++) {
+        const st = off + v.getUint32(off + 8 + i * 8), fmt = v.getUint16(st);
+        if (fmt === 4) {
+          const seg = v.getUint16(st + 6) / 2, ends = st + 14, starts = ends + seg * 2 + 2, deltas = starts + seg * 2, ros = deltas + seg * 2;
+          for (let s = 0; s < seg; s++) {
+            const a = v.getUint16(starts + s * 2), e = v.getUint16(ends + s * 2), d = v.getInt16(deltas + s * 2), ro = v.getUint16(ros + s * 2);
+            for (let c = a; c <= e && c !== 0xffff; c++) {
+              let g = ro ? v.getUint16(ros + s * 2 + ro + (c - a) * 2) : c;
+              if (g || !ro) g = (g + d) & 0xffff;
+              if (g) set.add(c);
+            }
+          }
+        } else if (fmt === 12) {
+          for (let g = 0, n = v.getUint32(st + 12); g < n; g++) { const p = st + 16 + g * 12; for (let c = v.getUint32(p), e = v.getUint32(p + 4); c <= e; c++) set.add(c); }
+        }
+      }
+      return set.size ? set : null;
+    } catch (e) { return null; }
+  }
+  const drawable = t => { if (!COVER) return true; for (const ch of t) if (!COVER.has(ch.codePointAt(0))) return false; return true; };
   function loadFonts() {
     if (fontsP) return fontsP;
     fontsP = Promise.all(FONT_URLS.map(u => fetch(u).then(r => { if (!r.ok) throw new Error("font " + r.status); return r.arrayBuffer(); })))
       .then(async bufs => {
         fontB64 = bufs.map(toB64);
+        COVER = coverage(bufs[0]);
         const faces = [new FontFace(FAMILY, bufs[0].slice(0), { weight: "400" }), new FontFace(FAMILY, bufs[1].slice(0), { weight: "700" })];
         await Promise.all(faces.map(f => f.load()));
         faces.forEach(f => document.fonts.add(f));
@@ -60,10 +89,11 @@
     ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
     ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
   }
+  const cssFont = (size, bold) => `${bold ? 700 : 400} ${size}px ${FAMILY}, Inter, Helvetica, Arial, sans-serif`;
   // Canvas painter over one or more pages. `scale` = device pixels per layout unit.
   function canvasPainter(w, h, scale, makeCanvas) {
     const pages = []; let ctx;
-    const font = (size, bold) => `${bold ? 700 : 400} ${size}px ${FAMILY}, Inter, Helvetica, Arial, sans-serif`;
+    const font = cssFont;
     const p = {
       w, h, pages,
       newPage() { const c = makeCanvas(); c.width = Math.round(w * scale); c.height = Math.round(h * scale); ctx = c.getContext("2d"); ctx.setTransform(scale, 0, 0, scale, 0, 0); ctx.fillStyle = WHITE; ctx.fillRect(0, 0, w, h); pages.push(c); },
@@ -84,13 +114,52 @@
     const setF = (size, bold) => { doc.setFont("Inter", bold ? "bold" : "normal"); doc.setFontSize(size * k); };
     const style = o => (o.fill && o.stroke ? "FD" : o.fill ? "F" : "S");
     const paint = o => { if (o.fill) doc.setFillColor(o.fill); if (o.stroke) { doc.setDrawColor(o.stroke); doc.setLineWidth((o.lw || 1) * k); } };
+    // Text the embedded font has no glyphs for (emoji, Devanagari, CJK…) would silently vanish from
+    // the PDF. The browser draws such a line into a ~300 dpi image instead, measured the same way,
+    // so the PDF matches the preview. Everything else stays real, selectable text.
+    const mc = document.createElement("canvas").getContext("2d");
+    const cMeasure = (t, size, bold) => { mc.font = cssFont(size, bold); return mc.measureText(t).width; };
+    // Splits text into drawable / undrawable runs. Spaces and combining marks stay with the run
+    // before them, so a Hindi phrase or an emoji sequence becomes one image, not one per word.
+    const runs = t => {
+      const out = [];
+      for (const ch of t) {
+        const last = out[out.length - 1], ok = last && /[\s\p{M}\u200c\u200d\ufe0f]/u.test(ch) ? last.ok : drawable(ch);
+        if (last && last.ok === ok) last.s += ch; else out.push({ ok, s: ch });
+      }
+      return out;
+    };
+    const runW = (r, size, bold) => { if (!r.ok) return cMeasure(r.s, size, bold); setF(size, bold); return doc.getTextWidth(r.s) / k; };
+    function rasterText(t, x, y, o) {
+      const f = cssFont(o.size, o.bold); mc.font = f;
+      const m = mc.measureText(t), wd = m.width;
+      const asc = Math.max(m.actualBoundingBoxAscent || 0, o.size), desc = Math.max(m.actualBoundingBoxDescent || 0, o.size * 0.35);
+      const left = Math.max(0, m.actualBoundingBoxLeft || 0), right = Math.max(wd, m.actualBoundingBoxRight || 0);
+      const px = Math.max(2, 4.2 * k);
+      const c = document.createElement("canvas");
+      c.width = Math.ceil((left + right) * px) + 2; c.height = Math.ceil((asc + desc) * px) + 2;
+      const g = c.getContext("2d"); g.scale(px, px); g.font = f; g.fillStyle = o.color || INK; g.textBaseline = "alphabetic"; g.fillText(t, left, asc);
+      const x0 = (o.align === "right" ? x - wd : o.align === "center" ? x - wd / 2 : x) - left;
+      doc.addImage(c.toDataURL("image/png"), "PNG", x0 * k, (y - asc) * k, (c.width / px) * k, (c.height / px) * k, undefined, "FAST");
+    }
     return {
       w, h,
       newPage() { doc.addPage([w * k, h * k], w > h ? "landscape" : "portrait"); },
       setPage(i) { doc.setPage(i + 1); },
       get pageCount() { return doc.getNumberOfPages(); },
-      measure(t, size, bold) { setF(size, bold); return doc.getTextWidth(String(t)) / k; },
-      text(t, x, y, o = {}) { setF(o.size, o.bold); doc.setTextColor(o.color || INK); doc.text(String(t), x * k, y * k, { align: o.align || "left", baseline: "alphabetic" }); },
+      measure(t, size, bold) { t = String(t); if (drawable(t)) { setF(size, bold); return doc.getTextWidth(t) / k; } return runs(t).reduce((s, r) => s + runW(r, size, bold), 0); },
+      text(t, x, y, o = {}) {
+        t = String(t); if (!t.trim()) return;
+        if (drawable(t)) { setF(o.size, o.bold); doc.setTextColor(o.color || INK); doc.text(t, x * k, y * k, { align: o.align || "left", baseline: "alphabetic" }); return; }
+        // Mixed line: real text where the font has glyphs, images only for the runs it doesn't.
+        const rs = runs(t), ws = rs.map(r => runW(r, o.size, o.bold)), tw = ws.reduce((a, b) => a + b, 0);
+        let cx = o.align === "right" ? x - tw : o.align === "center" ? x - tw / 2 : x;
+        rs.forEach((r, i) => {
+          if (r.ok) { setF(o.size, o.bold); doc.setTextColor(o.color || INK); doc.text(r.s, cx * k, y * k, { baseline: "alphabetic" }); }
+          else rasterText(r.s, cx, y, { ...o, align: "left" });
+          cx += ws[i];
+        });
+      },
       rect(x, y, rw, rh, o = {}) { paint(o); if (o.r) doc.roundedRect(x * k, y * k, rw * k, rh * k, o.r * k, o.r * k, style(o)); else doc.rect(x * k, y * k, rw * k, rh * k, style(o)); },
       line(x1, y1, x2, y2, color, lw) { doc.setDrawColor(color); doc.setLineWidth((lw || 1) * k); doc.line(x1 * k, y1 * k, x2 * k, y2 * k); },
       circle(cx, cy, r, o = {}) { paint(o); doc.circle(cx * k, cy * k, r * k, style(o)); },
@@ -356,8 +425,12 @@
       for (const l of wrap(p, q.project, half, 10).slice(0, 4)) { p.text(l, M + half, py, { size: 10 }); py += 13.5; }
     }
     y = Math.max(by, py) + (q.brand || q.contact || q.project ? 12 : 0);
-    // Items table
-    const xQty = W - M - 205, xUnit = W - M - 105, xAmt = W - M - 8, itemW = xQty - 40 - (M + 8);
+    // Items table. Columns widen when amounts are long (big totals, lakh/crore grouping) so the
+    // unit price and amount never run into each other; the item column gives up the space.
+    const wide = (vals, size, bold) => Math.max(0, ...vals.map(v => p.measure(v, size, bold)));
+    const wAmt = wide([...c.lines.map(l => m(l.amount)), ...c.addons.map(a => m(a.amount)), m(c.gross), m(c.content), "−" + m(c.discountAmt), ...Q.opts.map(o => m(o.total))], 10, true);
+    const wUnit = wide(c.lines.map(l => m(l.unit)), 10, false);
+    const xAmt = W - M - 8, xUnit = xAmt - Math.max(97, wAmt + 22), xQty = xUnit - Math.max(100, wUnit + 26), itemW = Math.max(120, xQty - 40 - (M + 8));
     const head = () => {
       p.rect(M, y, W - 2 * M, 22, { fill: SOFT, r: 3 });
       p.text("ITEM", M + 8, y + 14.5, { size: 7.5, bold: true, color: MUTED });
@@ -390,7 +463,7 @@
     if (c.addons.length) {
       need(60); y += 14;
       p.text("Usage rights & add-ons", M + 8, y + 4, { size: 11, bold: true }); y += 12;
-      const room = xAmt - 70 - (M + 8);
+      const room = xAmt - Math.max(70, wAmt + 20) - (M + 8);
       for (const a of c.addons) {
         // Detail sits beside the label when it fits, otherwise on its own line below.
         const lw = p.measure(a.label, 10), inline = lw + 14 + p.measure(a.detail, 8.5) <= room;
