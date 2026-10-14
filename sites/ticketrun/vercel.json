@@ -20,11 +20,20 @@
       ]
     },
     {
-      "source": "/(.*)\\.(css|js|svg|png|webp|woff2)",
+      "source": "/(.*)\\.(svg|png|webp|woff2)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js|mjs)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     },
@@ -34,6 +43,15 @@
         {
           "key": "X-Robots-Tag",
           "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/vendor/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=2592000"
         }
       ]
     }
