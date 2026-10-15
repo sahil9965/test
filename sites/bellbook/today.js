@@ -49,7 +49,7 @@ async function run(mount) {
   }
 
   const title = E.calName(cfg);
-  mount.innerHTML = `${demo ? `<p class="notice td-demo">This is an example calendar. Open the link your school or teacher shared to see your own school's days. <strong>Teachers:</strong> <a href="/">set up your school's calendar in a minute</a>, then share the link or print a classroom poster with a QR code students can scan.</p>` : ""}
+  mount.innerHTML = `${demo ? `<p class="notice td-demo">This is an example calendar. Open the link your school or teacher shared to see your school's days. <strong>Teachers:</strong> <a href="/">set up your school's calendar in a minute</a>, then share the link or print a classroom poster with a QR code students can scan.</p>` : ""}
     <p class="td-school">${esc(title)}</p>${cfg.school && !title.includes(cfg.school) ? `<p class="small muted" style="margin:0">${esc(cfg.school)}</p>` : ""}
     <div class="td-view" aria-live="polite">${view(TODAY)}</div>
     <div class="td-check"><div><label for="td-date">Check another date</label><input type="date" id="td-date" min="${cfg.start}" max="${cfg.end}" value="${E.iso(Math.min(Math.max(TODAY, res.s), res.e))}"></div><button type="button" class="btn ghost sm" data-a="today">Back to today</button></div>

@@ -116,7 +116,7 @@ function init(mount) {
       <label for="bb-link">Share link</label>
       <div class="bb-linkrow"><input id="bb-link" readonly value="Making link…"><button type="button" class="btn sm" data-a="share">Copy</button></div>
       <p class="small"><a class="bb-open" href="/today" target="_blank" rel="noopener">Open the link</a> · Update and re-share it after a snow day.</p>
-      <p class="small muted">Print a one-page poster with a QR code that opens this link, for your classroom door or board.</p>
+      <p class="small muted">Or print a classroom poster with a QR code that opens this link.</p>
       <button type="button" class="btn ghost" data-a="poster">Classroom poster (PDF)</button>
     </section>
   </div>
