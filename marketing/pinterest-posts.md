@@ -98,7 +98,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Board:** Raffle & Event Tickets
 - **Image:** https://tools.roohsites.com/pins/drink-tickets.png
 - **Link:** https://raffle.roohsites.com/drink-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
-- **Description:** Print numbered drink tickets for weddings, parties, galas and fundraisers. Choose how many per page and download a free PDF in seconds.
+- **Description:** Print numbered drink tickets for weddings, parties, galas and fundraisers: 20 per page with your event name and date. Free PDF, no signup.
 - **Alt text:** Printable Drink Tickets: Numbered drink tickets for weddings and events. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
 - **Keywords:** drink tickets, printable drink tickets, wedding drink tickets, event tickets, party tickets
 
@@ -134,6 +134,6 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Board:** ABA Data Sheets & Graphs
 - **Image:** https://tools.roohsites.com/pins/abc-data-sheet.png
 - **Link:** https://abagraph.roohsites.com/abc-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
-- **Description:** Free printable ABC data sheet for recording antecedents, behaviors and consequences. Choose checkbox or narrative columns and print or save as PDF.
+- **Description:** Free printable ABC data sheet for recording antecedents, behaviors and consequences. Choose a checklist or narrative layout and print or save as PDF.
 - **Alt text:** ABC Data Sheet: Antecedent, behavior, consequence. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
 - **Keywords:** abc data sheet, abc data collection, behavior data sheet, aba, special education teacher
