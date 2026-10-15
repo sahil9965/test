@@ -1,0 +1,56 @@
+# Cowork: daily Pinterest posting
+
+Hand the prompt below to Claude Cowork as a **scheduled task that runs once a day**. Most of your search traffic is from the US, so run it in the US evening (for example 9:00 PM US Eastern, which is 6:30 AM IST).
+
+**Before the first run (one-time, 5 minutes)**
+1. Log in to Pinterest in the browser Cowork uses, and stay logged in.
+2. Optional but recommended: switch to a free Pinterest **Business** account (Settings → Account management → Convert to business). It adds pin analytics and costs nothing.
+3. Optional: claim your websites in Pinterest (Settings → Claimed accounts → Websites). Pinterest gives you a meta tag or file; send it to me and I'll add it to the sites.
+
+The schedule (14 posts, one per day) is published at https://tools.roohsites.com/pins/schedule.json. A readable copy is in `marketing/pinterest-posts.md`. When I add more pins, the task picks them up automatically.
+
+---
+
+## Prompt to paste into Cowork
+
+```
+You post one Pinterest pin per day for my free web tools (Rooh Sites). Work in my browser, where I'm already logged in to Pinterest.
+
+1. Get the schedule
+   Open https://tools.roohsites.com/pins/schedule.json and read it. It has "boards" (board name → board description) and "posts", a list ordered by "day". Each post has: title, description, board, image (a PNG URL), link, alt, keywords.
+
+2. Find today's post
+   Go to my Pinterest profile and look at the pins already saved on each board named in the schedule. The next post is the lowest "day" whose exact title does not already appear as a pin on its board.
+   If every post in the schedule is already published, don't post anything. Tell me "All scheduled pins are published. Ask Claude Code for more pins." and stop.
+
+3. Get the image
+   Open the post's image URL and download the PNG to this computer. If the image does not load, don't post. Tell me which image failed and stop.
+
+4. Check the link
+   Open the post's link in a new tab and confirm the page loads (a tool page from roohsites.com, not an error page). If it fails, don't post. Tell me which link failed and stop.
+
+5. Create the pin
+   On Pinterest, go to Create → Pin and upload the downloaded PNG. Then fill in:
+   - Title: the post's title, exactly.
+   - Description: the post's description, exactly.
+   - Link (destination URL): the post's link, exactly, including everything after the "?".
+   - Board: the post's board. If the board does not exist yet, create it with that exact name and use the description from "boards" in the schedule. Make the board public.
+   - Alt text (under "More options" if it is hidden): the post's alt.
+   - Tagged topics, if Pinterest offers them: pick up to 3 that match the post's keywords.
+   Publish it now. Don't schedule it for later and don't boost or promote it.
+
+6. Verify
+   Open the new pin. Check that the title is right, the image shows, and clicking the destination opens the post's link. Copy the pin's URL.
+
+7. Report back in two lines:
+   "Posted day N: <title> on <board> — <pin URL>"
+   "Next up: day N+1: <next title>" (or "That was the last scheduled pin.")
+
+Rules
+- Post at most one pin per run, even if earlier days were missed.
+- Use the text from the schedule as it is. Only shorten it if Pinterest rejects the length, and say so in the report.
+- Don't follow, like, comment on, message or save other people's pins. Don't change my profile, settings or existing pins. Don't run ads or promotions.
+- Never type a password or a verification code. If Pinterest asks me to log in, shows a captcha, or asks for a code, stop and tell me.
+- If Pinterest shows a warning about the pin or my account (spam, policy, blocked link), stop and tell me exactly what it says. Don't retry.
+- If anything is unclear or the Pinterest layout looks different from these steps, stop and describe what you see rather than guessing.
+```

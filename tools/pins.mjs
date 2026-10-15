@@ -173,4 +173,35 @@ for (const p of PINS) {
 await b.close();
 const csv = rows.map(r => r.map(v => /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v).join(",")).join("\n") + "\n";
 writeFileSync(join(ROOT, "marketing/pinterest-pins.csv"), csv);
-console.log(`wrote ${PINS.length} pins to sites/hub/pins and marketing/pinterest-pins.csv`);
+
+// Daily posting schedule: alternate niches so no audience sees the same tool two days running.
+const BOARDS = {
+  "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
+  "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
+  "ABA Data Sheets & Graphs": "Free printable ABA data sheets and a graph maker for BCBAs, RBTs and special education teachers.",
+  "Homeschool Records": "Free homeschool transcript, GPA and record-keeping tools for high school homeschoolers.",
+  "Landlord & Tenant Checklists": "Free move-in, move-out and inspection checklists with dated photos for renters and landlords.",
+  "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
+  "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
+};
+const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
+  "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
+  "ab-day-lesson-planner", "drink-tickets", "task-analysis-data-sheet", "free-invoice-generator", "raffle-tickets-1-500", "abc-data-sheet"];
+const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching stubs", calendar: "a month calendar with school days labelled A and B",
+  graph: "a line graph with a dashed phase change line between baseline and intervention", grid: "a printable data sheet grid with plus and minus scores",
+  photos: "four dated room photos with condition ratings", label: "an A4 label page converted into a 6 by 4 inch thermal label", document: "a one-page document preview" };
+const byFile = Object.fromEntries(PINS.map(p => [p.file, p]));
+const schedule = ORDER.map((f, i) => {
+  const p = byFile[f], s = sites[p.slug];
+  return { day: i + 1, title: p.headline, description: p.desc, board: p.board, image: `${PIN_BASE}/${p.file}.png`,
+    link: `${s.url}${p.path}?${UTM}`, alt: `${p.headline}: ${p.sub}. The image shows ${VISUAL_ALT[p.visual]}, from ${new URL(s.url).host}.`,
+    keywords: p.keywords };
+});
+writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: "2026-10-15", boards: BOARDS, posts: schedule }, null, 2) + "\n");
+const md = [`# Pinterest posts: daily schedule`, ``,
+  `One pin a day, in this order. Cowork reads the same list from ${PIN_BASE}/schedule.json (see marketing/cowork-pinterest-prompt.md). Regenerate both with \`node tools/pins.mjs\`.`, ``,
+  `## Boards to create first`, ``, ...Object.entries(BOARDS).map(([n, d]) => `- **${n}**: ${d}`), ``,
+  ...schedule.flatMap(x => [`## Day ${x.day}: ${x.title}`, ``, `- **Board:** ${x.board}`, `- **Image:** ${x.image}`, `- **Link:** ${x.link}`,
+    `- **Description:** ${x.description}`, `- **Alt text:** ${x.alt}`, `- **Keywords:** ${x.keywords}`, ``])].join("\n");
+writeFileSync(join(ROOT, "marketing/pinterest-posts.md"), md);
+console.log(`wrote ${PINS.length} pins, sites/hub/pins/schedule.json, marketing/pinterest-pins.csv and marketing/pinterest-posts.md`);
