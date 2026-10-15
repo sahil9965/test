@@ -131,7 +131,7 @@ const homeFaq = [
 const home = {
   home: true, preset: "",
   title: "Photo Report Generator — Free, Timestamped PDF | Roomproof",
-  desc: "Make a photo report PDF in minutes: date-stamped photos, captions, condition ratings and signatures, room by room. Free, no signup, nothing is uploaded.",
+  desc: "Free photo report generator and template: date-stamped photos, captions, condition ratings and signatures, room by room, as a PDF. No signup, no uploads.",
   ogTitle: "Photo Report Generator — Free, Timestamped PDF",
   h1: "Photo Report Generator",
   lead: "Turn phone photos into a dated, captioned PDF report, room by room. Free, no signup, and your photos never leave your device.",

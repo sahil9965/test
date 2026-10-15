@@ -57,6 +57,7 @@ function head({ title, desc, path, jsonld }) {
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/base.css">
 <link rel="stylesheet" href="/style.css">
+<script>(function(){try{var q=new URLSearchParams(location.search).get("notrack");if(q==="1")localStorage.setItem("rooh-notrack","1");if(q==="0")localStorage.removeItem("rooh-notrack");if(localStorage.getItem("rooh-notrack")){window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.va("beforeSend",function(){return null})}}catch(e){}})();</script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">

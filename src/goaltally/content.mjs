@@ -25,7 +25,7 @@ export const PAGES = [
   /* ------------------------------------------------------------------ HOME */
   {
     slug: "", tool: { kind: "graph", preset: "ab" },
-    title: "ABA Graph Maker: Free Phase Change Line Graphs | GoalTally",
+    title: "Free ABA Graph Maker & Graphing Software | GoalTally",
     desc: "Free ABA graph maker with phase change lines, broken data paths, condition labels, aim and trend lines and a mastery check. PNG or PDF, no signup, no uploads.",
     h1: "Free ABA Graph Maker",
     lead: "Type or paste session data and get a clean single-case line graph with phase-change lines, condition labels, an aim line, a trend line and a mastery check. Download it as PNG or PDF.",
@@ -150,7 +150,7 @@ export const PAGES = [
   /* ------------------------------------------------------------------ TRIAL */
   {
     slug: "trial-by-trial-data-sheet", tool: { kind: "sheet", preset: "trial" }, crumb: "Trial-by-trial data sheet",
-    title: "Trial by Trial Data Sheet: Free Printable DTT Template",
+    title: "Discrete Trial Data Sheet (Trial by Trial): Free DTT PDF",
     desc: "Free trial by trial data sheet for discrete trial teaching: 1–40 trials, up to 31 date columns, + / – codes and a % correct row. Print it or download a PDF.",
     h1: "Trial-by-Trial Data Sheet",
     lead: "A discrete trial teaching (DTT) sheet with one row per trial and one column per session. Choose the number of trials and dates, print it, or score on a tablet and get % correct automatically.",
@@ -394,7 +394,7 @@ export const PAGES = [
   /* ------------------------------------------------------------------ PARTIAL */
   {
     slug: "partial-interval-recording-data-sheet", tool: { kind: "sheet", preset: "partial" }, crumb: "Partial interval recording data sheet",
-    title: "Partial Interval Recording Data Sheet: Free Printable PDF",
+    title: "Partial Interval Recording Sheet: Free Printable Data Sheet",
     desc: "Free partial interval recording data sheet: set interval length and observation time, mark intervals where the behavior occurred and get % of intervals. PDF.",
     h1: "Partial Interval Recording Data Sheet",
     lead: "Divide the observation into equal intervals and mark each one in which the behavior happened at all. Choose the interval length and the sheet lays out the grid with times.",
@@ -473,7 +473,7 @@ export const PAGES = [
   {
     slug: "momentary-time-sampling-data-sheet", tool: { kind: "sheet", preset: "mts" }, crumb: "Momentary time sampling data sheet",
     title: "Momentary Time Sampling Data Sheet: Free Printable PDF",
-    desc: "Free momentary time sampling data sheet: look up at the end of each interval and mark what you see. Set the interval and length, print or use the beep timer.",
+    desc: "Momentary time sampling (MTS) records whether a behavior is happening at the moment each interval ends. Free printable data sheet with a beep timer.",
     h1: "Momentary Time Sampling Data Sheet",
     lead: "Look at the student only at the end of each interval and mark whether the behavior is happening at that moment. Set the interval, print the grid, or use the beeping timer.",
     body: [

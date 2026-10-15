@@ -27,5 +27,19 @@ window.SITE = {
   lifetimePrice: "",
   proFeatures: [],
 };
+
+// Owner opt-out: open any page once with ?notrack=1 to stop counting your own visits in this
+// browser (?notrack=0 turns counting back on). Analytics events are dropped before sending.
+(function () {
+  try {
+    var q = new URLSearchParams(location.search).get("notrack");
+    if (q === "1") localStorage.setItem("rooh-notrack", "1");
+    if (q === "0") localStorage.removeItem("rooh-notrack");
+    if (localStorage.getItem("rooh-notrack")) {
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.va("beforeSend", function () { return null; });
+    }
+  } catch (e) {}
+})();
 `);
 console.log(`scaffolded sites/${slug}`);

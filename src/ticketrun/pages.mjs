@@ -164,7 +164,7 @@ const rangeRows = [100, 250, 500, 1000, 2000].map(N => `<tr><td><a href="/raffle
 const home = {
   path: "/",
   title: "Printable Raffle Tickets with Numbers — Free PDF | TicketRun",
-  desc: "Print numbered raffle tickets with matching stubs. Any range up to 20,000, 8 or 10 per Letter or A4 page, cut marks, free PDF. No signup, nothing uploaded.",
+  desc: "Print numbered raffle tickets with stubs that have name and phone lines. Any range up to 20,000, 8 or 10 per page, cut marks, free PDF. No signup.",
   h1: "Printable Raffle Tickets with Numbers",
   lead: "Type your event details, pick a number range and download a print-ready PDF where every stub matches its ticket. Free, with no signup, and nothing leaves your browser.",
   badges: ["100% free", "Up to 20,000 tickets", "Matching stubs", "Letter &amp; A4"],
@@ -238,9 +238,9 @@ const P = [];
 
 P.push({
   path: "/numbered-raffle-ticket-generator", crumb: "Numbered raffle ticket generator", tool: { preset: "raffle", end: 500 },
-  title: "Numbered Raffle Ticket Generator — Free PDF, No Signup",
-  desc: "Free numbered raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.",
-  h1: "Numbered Raffle Ticket Generator",
+  title: "Raffle Ticket Generator Online — Numbered Tickets & Stubs",
+  desc: "Free online raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.",
+  h1: "Online Raffle Ticket Generator",
   lead: "Sequential numbers on every ticket and matching stub, from 1 to 20,000, with prefixes, zero padding and cut-and-stack ordering. Free PDF, no signup.",
   body: `      <p class="tldr"><strong>Quick answer:</strong> A numbered raffle ticket generator prints a unique, sequential number on each ticket and the same number on its stub, so you don't have to type numbers into a template or run a mail merge. Set the first and last number above, choose how the numbers look, and download a PDF ready to print and cut.</p>
 
@@ -652,7 +652,7 @@ P.push({
 
 P.push({
   path: "/meal-tickets", crumb: "Meal tickets", tool: { preset: "meal", end: 300 },
-  title: "Meal Tickets Printable — Numbered or Named, Free PDF",
+  title: "Printable Meal Tickets — Free Download, Numbered or Named",
   desc: "Printable numbered meal tickets for pancake breakfasts, spaghetti dinners, conferences and galas. Print names, tables and meal choices from a CSV. Free PDF.",
   h1: "Printable Meal Tickets",
   lead: "Numbered meal tickets for fundraiser dinners and events, or named tickets with table and meal choice from your guest list.",
