@@ -757,3 +757,125 @@ export function subPlanPdf(jsPDF, res, d, opts = {}) {
   doc.setProperties({ title: `Substitute plans – ${when}`, subject: "Substitute plan", creator: "BellBook (abday.roohsites.com)", author: (pl && pl.teacher) || "BellBook" });
   return doc;
 }
+
+// ---------- classroom poster: a big question, the calendar's name and a QR code that opens the share link ----------
+// qrcode is the qrcode-generator function (vendor/qrcode-generator-1.4.4.js), passed in like jsPDF so Node tests can run it.
+// Black on white only, so it prints cleanly on any printer.
+const article = w => (/^[AEFHILMNORSX]$/.test(w) ? "an" : /^[A-Z]$/.test(w) ? "a" : /^[aeiou]/i.test(w) ? "an" : "a");
+// "Is today an A day or B day?", "Is today an A, B or C day?", "Is today an Odd day or Even day?"; cycles shown as
+// "Day 1", "Day 2"… (and anything long or unusual) get "Which day is it today?".
+export function posterHeadline(cfg) {
+  const labels = cfg.labels || [];
+  if (!labels.length) return "Is there school today?";
+  if (labels.length > 4 || !["{L}", "{L} Day"].includes(cfg.fmt)) return "Which day is it today?";
+  const names = labels.map(l => cfg.fmt.replace("{L}", l).replace(/\s+day$/i, "").trim());
+  if (names.some(n => !/\p{L}/u.test(n) || n.length > 14)) return "Which day is it today?";
+  const list = names.length === 2 ? `${names[0]} day or ${names[1]} day` : `${names.slice(0, -1).join(", ")} or ${names[names.length - 1]} day`;
+  return `Is today ${article(names[0])} ${list}?`;
+}
+// Wraps text into at most maxLines lines of even width, shrinking the font (down to min) before it truncates.
+function evenLines(doc, text, maxW, size, min, maxLines) {
+  text = pdfSafe(text);
+  for (let s = size; ; s -= 1) {
+    doc.setFontSize(s);
+    let lines = doc.splitTextToSize(text, maxW);
+    if (lines.length > maxLines && s > min) continue;
+    if (lines.length > maxLines) {
+      lines = lines.slice(0, maxLines);
+      let last = lines[maxLines - 1];
+      while (last.length > 1 && doc.getTextWidth(last + "…") > maxW) last = last.slice(0, -1);
+      lines[maxLines - 1] = last.trimEnd() + "…";
+    } else if (lines.length > 1) {
+      let w = maxW;
+      while (w > 60 && doc.splitTextToSize(text, w - 4).length === lines.length) w -= 4;
+      lines = doc.splitTextToSize(text, w);
+    }
+    return { lines, size: s };
+  }
+}
+export function posterPdf(jsPDF, qrcode, res, url, opts = {}) {
+  const cfg = res.cfg, o = { size: "letter", ...opts };
+  if (res.errors.length) throw new Error(res.errors[0]);
+  url = String(url || "");
+  if (!/^https?:\/\/[\x21-\x7e]+$/.test(url)) throw new Error("The share link isn't ready yet. Try again in a moment.");
+  let qr;
+  try { qr = qrcode(0, "M"); qr.addData(url, "Byte"); qr.make(); }
+  catch { throw new Error("This calendar is too big for a QR code. Shorten long day names and notes, then try again."); }
+  const n = qr.getModuleCount();
+  const { W, H } = pageBox(o.size, "portrait");
+  const doc = makeDoc(jsPDF, o.size, "portrait");
+  const inset = 28, M = 52, w = W - 2 * M, cx = W / 2;
+  doc.setDrawColor(INK); doc.setLineWidth(2); doc.roundedRect(inset, inset, W - 2 * inset, H - 2 * inset, 16, 16, "S");
+  const lines = (ls, size, y, lh) => ls.forEach((l, i) => doc.text(l, cx, y + i * size * lh, { align: "center" }));
+
+  // Headline: one line when it stays big, otherwise two (split before "or" when there is one).
+  doc.setFont("helvetica", "bold"); doc.setTextColor(INK);
+  const head = posterHeadline(cfg);
+  const fit = (ls, max) => { doc.setFontSize(10); return Math.min(max, ...ls.map(l => (w * 10) / doc.getTextWidth(l))); };
+  let hl = [head], hs = fit(hl, 46);
+  if (hs < 34) {
+    const k = head.lastIndexOf(" or ");
+    hl = k > 0 ? [head.slice(0, k), head.slice(k + 1)] : null;
+    if (hl) hs = fit(hl, 46);
+    if (!hl || hs < 26) ({ lines: hl, size: hs } = evenLines(doc, head, w, 46, 22, 2));
+  }
+  hs = Math.floor(hs * 2) / 2;
+  doc.setFontSize(hs);
+  let y = inset + 30 + hs * 0.74;
+  lines(hl, hs, y, 1.1);
+  y += (hl.length - 1) * hs * 1.1 + hs * 0.26;
+
+  // The calendar's name as the teacher typed it, then the school when the name doesn't already include it.
+  const title = calName(cfg);
+  doc.setFont("helvetica", "normal"); doc.setTextColor(INK);
+  const t = evenLines(doc, title, w, 22, 14, 2);
+  y += 14 + t.size * 0.74;
+  lines(t.lines, t.size, y, 1.2);
+  y += (t.lines.length - 1) * t.size * 1.2 + t.size * 0.26;
+  if (cfg.school && !title.includes(cfg.school)) {
+    doc.setTextColor(MUTED);
+    const s = evenLines(doc, cfg.school, w, 13, 10, 2);
+    y += 6 + s.size * 0.74;
+    lines(s.lines, s.size, y, 1.2);
+    y += (s.lines.length - 1) * s.size * 1.2 + s.size * 0.26;
+  }
+  const qTop = y + 22;
+
+  // Bottom up: credit, the link in full (only wrapped, never shortened), then the one-line instruction.
+  const creditY = H - inset - 16;
+  credit(doc, cx, creditY, "center", 8);
+  const per = s => Math.floor(w / (s * 0.6)); // Courier advances 0.6 em per character
+  const ls = [9, 8, 7, 6.5].find(s => Math.ceil(url.length / per(s)) <= (s > 8 ? 4 : s > 7 ? 6 : 9)) || 6;
+  const nl = Math.ceil(url.length / per(ls)), chunk = Math.ceil(url.length / nl);
+  const urlLines = Array.from({ length: nl }, (_, i) => url.slice(i * chunk, (i + 1) * chunk)).filter(Boolean);
+  const ulh = ls * 1.3, urlTop = creditY - 20 - (urlLines.length - 1) * ulh;
+  doc.setFont("courier", "normal"); doc.setFontSize(ls); doc.setTextColor(INK);
+  lines(urlLines, ls, urlTop, 1.3);
+  const urlW = Math.max(...urlLines.map(l => l.length)) * ls * 0.6;
+  doc.link(cx - urlW / 2, urlTop - ls, urlW, (urlLines.length - 1) * ulh + ls * 1.3, { url });
+  doc.setFont("helvetica", "normal"); doc.setTextColor(INK);
+  const sc = evenLines(doc, "Scan with your phone camera to see today’s day, tomorrow and the next two weeks.", w, 14, 11, 2);
+  const scTop = urlTop - ls - 14 - (sc.lines.length - 1) * sc.size * 1.25;
+  doc.setFontSize(sc.size);
+  lines(sc.lines, sc.size, scTop, 1.25);
+  const qBottom = scTop - sc.size * 0.74 - 22;
+
+  // QR code with a 4-module quiet zone inside a thin frame. All dark modules go into one path with one fill,
+  // so viewers and printers don't show hairline seams between neighbouring squares.
+  const side = Math.min(qBottom - qTop - 12, w - 40, 440), mod = side / (n + 8);
+  const qx = cx - side / 2, qy = qTop + 6 + (qBottom - qTop - 12 - side) / 2, x0 = qx + 4 * mod, y0 = qy + 4 * mod;
+  doc.setDrawColor(INK); doc.setLineWidth(1.25);
+  doc.roundedRect(qx - 6, qy - 6, side + 12, side + 12, 10, 10, "S"); // outside the quiet zone, corners included
+  doc.setFillColor("#000000");
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+    if (!qr.isDark(r, c)) continue;
+    let e = c;
+    while (e + 1 < n && qr.isDark(r, e + 1)) e++;
+    doc.rect(x0 + c * mod, y0 + r * mod, (e - c + 1) * mod, mod, null);
+    c = e;
+  }
+  doc.fill();
+  doc.link(x0, y0, n * mod, n * mod, { url });
+  doc.setProperties({ title: `${title} – classroom poster`, subject: "Classroom poster with a QR code for today's rotation day", creator: "BellBook (abday.roohsites.com)", author: cfg.school || "BellBook" });
+  return doc;
+}

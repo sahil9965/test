@@ -43,6 +43,7 @@ function init(mount) {
     <button type="button" class="btn" data-a="pdf">Download PDF calendar</button>
     <button type="button" class="btn ghost" data-a="ics">Add to Google / Outlook (.ics)</button>
     <button type="button" class="btn ghost" data-a="share">Copy “What day is it?” link</button>
+    <button type="button" class="btn ghost" data-a="poster">Classroom poster (PDF)</button>
   </div>
   <div class="bb">
     <form class="bb-form" autocomplete="off" onsubmit="return false" aria-label="Calendar settings">
@@ -115,6 +116,8 @@ function init(mount) {
       <label for="bb-link">Share link</label>
       <div class="bb-linkrow"><input id="bb-link" readonly value="Making link…"><button type="button" class="btn sm" data-a="share">Copy</button></div>
       <p class="small"><a class="bb-open" href="/today" target="_blank" rel="noopener">Open the link</a> · Update and re-share it after a snow day.</p>
+      <p class="small muted">Print a one-page poster with a QR code that opens this link, for your classroom door or board.</p>
+      <button type="button" class="btn ghost" data-a="poster">Classroom poster (PDF)</button>
     </section>
   </div>
 
@@ -543,6 +546,7 @@ function init(mount) {
     else if (a === "ics") exportIcs();
     else if (a === "csv") exportCsv();
     else if (a === "share") await copyLink();
+    else if (a === "poster") await downloadPoster(b);
     else if (a === "save") saveCal();
     else if (a === "load") loadCal();
     else if (a === "del") delCal();
@@ -733,6 +737,24 @@ function init(mount) {
     try { await navigator.clipboard.writeText(url); ok = true; } catch { try { input.select(); ok = document.execCommand("copy"); } catch {} }
     status(ok ? "Link copied. Paste it into your website, Google Classroom or an email." : "Select the link below and copy it.");
     track("share_link_created");
+  }
+  // One-page classroom poster whose QR code opens exactly the share link shown above.
+  async function downloadPoster(btn) {
+    if (pending) { clearTimeout(typingT); pending(); } // include edits typed a moment ago
+    if (res.errors.length) { status(res.errors[0]); return; }
+    const old = btn.textContent; btn.disabled = true; btn.textContent = "Making PDF…";
+    try {
+      clearTimeout(linkT);
+      linkCode = await E.encodeShare(cfg);
+      const url = `${location.origin}/today#c=${linkCode}`;
+      $("#bb-link").value = url; $(".bb-open").href = url;
+      const { makePoster } = await import("./poster.js");
+      const doc = await makePoster(res, url, { size: ui.size });
+      save(doc.output("blob"), slug() + "-poster.pdf");
+      status("Classroom poster ready. The QR code holds this version of the calendar: after a snow day or other change, print a new poster.");
+      track("poster_pdf", { type: cfg.type });
+    } catch (err) { status(err.message || String(err)); }
+    finally { btn.disabled = false; btn.textContent = old; }
   }
 
   // ---------- saved calendars ----------

@@ -223,7 +223,7 @@ ${SNOW_TABLE}
   pages.push({
     slug: "today", tool: "today", crumb: "What day is it today?",
     title: "Is Today an A Day or B Day? Rotation Day Checker | BellBook",
-    desc: "See whether today is an A day or a B day (or Day 1–6) from your school's BellBook link, plus tomorrow and the next two weeks. Free, private, no app.",
+    desc: "Check if today is an A day or B day, plus tomorrow and the next two weeks. Teachers: set up your calendar in a minute and share a link or classroom poster.",
     h1: "Is today an A day or B day?",
     lead: "Open your school's BellBook link to see today's rotation day, tomorrow's and the next two weeks. No app and no account.",
     body: `      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Open the BellBook link your school or teacher shared and it shows today's rotation day straight away. Without a link, the page above shows an example calendar.</p>
@@ -236,7 +236,8 @@ ${SNOW_TABLE}
         <li><strong>Build the calendar.</strong> Enter the school year, the rotation and the days off in the <a href="/">A/B day calendar generator</a>.</li>
         <li><strong>Copy the link.</strong> Click “Copy ‘What day is it?’ link”. The whole calendar is packed into the link.</li>
         <li><strong>Share it.</strong> Post it on the school website, pin it in Google Classroom, add it to a newsletter or save it to a phone's home screen.</li>
-        <li><strong>Update after closures.</strong> After a snow day, mark it in BellBook and share the new link. Old links keep showing the old calendar.</li>
+        <li><strong>Print a classroom poster.</strong> Click “Classroom poster (PDF)” for a one-page sign with a QR code that opens the link. Students scan it with their phone camera.</li>
+        <li><strong>Update after closures.</strong> After a snow day, mark it in BellBook and share the new link. Old links and posters keep showing the old calendar.</li>
       </ol>
 
       <h2>What the page shows</h2>
