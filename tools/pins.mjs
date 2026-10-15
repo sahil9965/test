@@ -1,0 +1,176 @@
+// Render Pinterest pins (1000x1500 PNG) for the tool sites, plus a CSV for Pinterest's bulk upload.
+// Usage: node tools/pins.mjs   (writes sites/hub/pins/*.png and marketing/pinterest-pins.csv)
+import { chromium } from "playwright";
+import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const OUT = join(ROOT, "sites/hub/pins");
+const PIN_BASE = "https://tools.roohsites.com/pins";
+const sites = Object.fromEntries(JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).map(s => [s.slug, s]));
+const UTM = "utm_source=pinterest&utm_medium=social&utm_campaign=pins";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Pin list: slug, file, page path, board, headline, subline, three points, visual, description, keywords.
+const PINS = [
+  { slug: "ticketrun", file: "printable-raffle-tickets-with-numbers", path: "/", board: "Raffle & Event Tickets",
+    headline: "Printable Raffle Tickets with Numbers", sub: "Matching stubs, any range, free PDF",
+    points: ["Numbers 1 to 20,000", "Name and phone lines on stubs", "8 or 10 per page, cut marks"], visual: "tickets",
+    desc: "Make printable raffle tickets with numbers on both the ticket and the stub. Pick any range, 8 or 10 per Letter or A4 page, with cut marks. Free PDF, no signup.",
+    keywords: "printable raffle tickets, raffle tickets with numbers, numbered raffle tickets, raffle ticket template, fundraiser" },
+  { slug: "ticketrun", file: "50-50-raffle-tickets", path: "/50-50-raffle-tickets", board: "Raffle & Event Tickets",
+    headline: "Free 50/50 Raffle Tickets", sub: "Numbered tickets and stubs for games and galas",
+    points: ["Print your price deals", "Numbered stubs", "Fair winner picker"], visual: "tickets",
+    desc: "Printable 50/50 raffle tickets with numbered stubs for school games, galas and fundraisers. Add your price deals, print on Letter or A4 and draw a winner fairly.",
+    keywords: "50/50 raffle tickets, 50 50 raffle, printable raffle tickets, fundraiser ideas, PTO fundraiser" },
+  { slug: "ticketrun", file: "drink-tickets", path: "/drink-tickets", board: "Raffle & Event Tickets",
+    headline: "Printable Drink Tickets", sub: "Numbered drink tickets for weddings and events",
+    points: ["Numbered or plain", "Many per page", "Free PDF, no signup"], visual: "tickets",
+    desc: "Print numbered drink tickets for weddings, parties, galas and fundraisers. Choose how many per page and download a free PDF in seconds.",
+    keywords: "drink tickets, printable drink tickets, wedding drink tickets, event tickets, party tickets" },
+  { slug: "ticketrun", file: "raffle-tickets-1-500", path: "/raffle-tickets-1-500", board: "Raffle & Event Tickets",
+    headline: "Raffle Tickets 1–500 with Stubs", sub: "Ready-to-print numbered sheets",
+    points: ["Numbers on ticket and stub", "Cut-and-stack order", "Letter or A4"], visual: "tickets",
+    desc: "Printable raffle tickets numbered 1 to 500 with matching stubs and cut marks. Cut-and-stack order keeps numbers in sequence after cutting. Free PDF.",
+    keywords: "raffle tickets 1-500, numbered raffle tickets, printable raffle tickets pdf, raffle ticket sheet" },
+  { slug: "bellbook", file: "ab-day-calendar-generator", path: "/", board: "Teacher Planning & A/B Day Calendars",
+    headline: "A/B Day Calendar Generator", sub: "Skips holidays, handles snow days",
+    points: ["A/B, A/B/C or Day 1–6", "Printable year at a glance", "Google / Outlook calendar file"], visual: "calendar",
+    desc: "Make an A/B day calendar for your school year in minutes. It skips holidays, re-flows after snow days and exports a printable PDF and a calendar file.",
+    keywords: "a/b day calendar, ab day schedule, block schedule calendar, teacher planner, rotating schedule" },
+  { slug: "bellbook", file: "ab-day-lesson-planner", path: "/ab-day-lesson-planner", board: "Teacher Planning & A/B Day Calendars",
+    headline: "Dated A/B Day Lesson Planner", sub: "Every page already follows your rotation",
+    points: ["Dated pages", "Matches your A/B days", "Free printable PDF"], visual: "calendar",
+    desc: "A free dated lesson planner that follows your school's A/B rotation, so each page is already labelled with the right day. Print it or save as PDF.",
+    keywords: "lesson planner, a/b day lesson planner, teacher planner printable, dated planner, block schedule" },
+  { slug: "goaltally", file: "aba-graph-maker", path: "/", board: "ABA Data Sheets & Graphs",
+    headline: "Free ABA Graph Maker", sub: "Phase change lines without Excel",
+    points: ["Broken data paths", "Aim and trend lines", "PNG or PDF"], visual: "graph",
+    desc: "Make ABA single-case graphs with proper phase change lines, condition labels, aim lines and trend lines. Free, runs in your browser, no Excel needed.",
+    keywords: "aba graph, aba graphing, phase change line graph, bcba, behavior analysis, iep progress monitoring" },
+  { slug: "goaltally", file: "trial-by-trial-data-sheet", path: "/trial-by-trial-data-sheet", board: "ABA Data Sheets & Graphs",
+    headline: "Trial-by-Trial Data Sheet", sub: "Discrete trial (DTT) template, free PDF",
+    points: ["1–40 trials", "Up to 31 sessions", "% correct row"], visual: "grid",
+    desc: "Free printable trial-by-trial (discrete trial) data sheet with + / – codes, up to 40 trials and a % correct row. Print it or score on a tablet.",
+    keywords: "trial by trial data sheet, discrete trial data sheet, dtt data sheet, aba data sheet, rbt" },
+  { slug: "goaltally", file: "task-analysis-data-sheet", path: "/task-analysis-data-sheet", board: "ABA Data Sheets & Graphs",
+    headline: "Task Analysis Data Sheet Template", sub: "Score each step by prompt level",
+    points: ["List every step", "Prompt-level codes", "% independent"], visual: "grid",
+    desc: "Free task analysis data sheet template: list each step, score prompt levels each session and track the percent of steps done independently.",
+    keywords: "task analysis template, task analysis data sheet, chaining, aba data sheet, special education" },
+  { slug: "goaltally", file: "abc-data-sheet", path: "/abc-data-sheet", board: "ABA Data Sheets & Graphs",
+    headline: "ABC Data Sheet", sub: "Antecedent, behavior, consequence",
+    points: ["Free printable PDF", "Checkbox or narrative", "For BCBAs and teachers"], visual: "grid",
+    desc: "Free printable ABC data sheet for recording antecedents, behaviors and consequences. Choose checkbox or narrative columns and print or save as PDF.",
+    keywords: "abc data sheet, abc data collection, behavior data sheet, aba, special education teacher" },
+  { slug: "gradledger", file: "homeschool-transcript-template", path: "/homeschool-transcript-template", board: "Homeschool Records",
+    headline: "Homeschool Transcript Template", sub: "With weighted and unweighted GPA",
+    points: ["Courses by grade", "Exact GPA, formula shown", "One-page PDF"], visual: "document",
+    desc: "Make a free homeschool high school transcript with exact weighted and unweighted GPA, credits by subject and a one-page PDF. No signup.",
+    keywords: "homeschool transcript, homeschool transcript template, homeschool gpa, high school homeschool, college applications" },
+  { slug: "roomproof", file: "move-in-checklist-with-photos", path: "/move-in-inspection-checklist-with-photos", board: "Landlord & Tenant Checklists",
+    headline: "Move-In Checklist with Photos", sub: "Dated photo report as a PDF",
+    points: ["Room by room", "Date on every photo", "Signatures included"], visual: "photos",
+    desc: "Make a move-in inspection checklist with dated photos, captions and condition ratings, room by room, then download a PDF. Photos stay on your phone.",
+    keywords: "move in checklist, move in inspection, rental inspection checklist, tenant tips, security deposit" },
+  { slug: "invoicekit", file: "free-invoice-generator", path: "/", board: "Small Business Invoices",
+    headline: "Free Invoice Generator", sub: "PDF invoices with no signup",
+    points: ["Tax, VAT or GST", "Your logo, saved clients", "24 currencies"], visual: "document",
+    desc: "Create a professional invoice with tax, VAT or GST, your logo and saved clients, then download a PDF. Free, no signup, nothing uploaded.",
+    keywords: "invoice template, free invoice generator, freelance invoice, small business, gst invoice" },
+  { slug: "labelfit", file: "vinted-label-thermal-printer", path: "/vinted-label-thermal-printer", board: "Online Seller Shipping",
+    headline: "Vinted Labels on a Thermal Printer", sub: "Turn A4 labels into 6x4 in seconds",
+    points: ["Crops and rotates for you", "Splits packing slips", "Nothing uploaded"], visual: "label",
+    desc: "Convert A4 Vinted, Evri and Royal Mail labels into crisp 6x4 thermal labels. It finds the label, crops and rotates it, all in your browser.",
+    keywords: "vinted label, thermal printer, 6x4 label, shipping label converter, reseller tips" },
+];
+
+function visual(kind, accent) {
+  const pale = `${accent}22`;
+  if (kind === "tickets") return `<div class="tickets">${[1, 2, 3, 4].map(n => `
+    <div class="tk"><div class="tk-main"><b>SPRING RAFFLE</b><span>Saturday · School gym</span><i>No. ${String(n).padStart(4, "0")}</i></div>
+    <div class="tk-stub"><i>No. ${String(n).padStart(4, "0")}</i><span>Name ________</span><span>Phone ________</span></div></div>`).join("")}</div>`;
+  if (kind === "calendar") {
+    const days = []; let d = 0;
+    for (let i = 0; i < 35; i++) { const wk = i % 7; if (wk === 0 || wk === 6 || i < 2 || i > 32) days.push(`<span class="off"></span>`); else if (i === 17) days.push(`<span class="hol">–</span>`); else days.push(`<span class="${d++ % 2 ? "b" : "a"}">${d % 2 ? "A" : "B"}</span>`); }
+    return `<div class="cal"><div class="cal-h">OCTOBER</div><div class="cal-g">${["S","M","T","W","T","F","S"].map(x => `<em>${x}</em>`).join("")}${days.join("")}</div></div>`;
+  }
+  if (kind === "grid") return `<div class="grid">${Array.from({ length: 7 }, (_, r) => `<div class="row"><span class="lbl">${r === 0 ? "Target" : "Step " + r}</span>${Array.from({ length: 6 }, (_, c) => `<span class="cell">${r === 0 ? "S" + (c + 1) : ((r * 7 + c * 3) % 4 ? "+" : "–")}</span>`).join("")}</div>`).join("")}</div>`;
+  if (kind === "graph") {
+    const ys = [20, 25, 15, 22, 18, null, 40, 52, 58, 70, 75, 82, 88];
+    const x = i => 60 + i * 52, y = v => 340 - v * 3.2;
+    const seg = (a, b) => ys.slice(a, b).map((v, i) => `${x(a + i)},${y(v)}`).join(" ");
+    return `<svg class="graph" viewBox="0 0 760 380"><line x1="50" y1="20" x2="50" y2="340" stroke="#1b1b1f" stroke-width="3"/><line x1="50" y1="340" x2="740" y2="340" stroke="#1b1b1f" stroke-width="3"/>
+      <line x1="${x(5)}" y1="30" x2="${x(5)}" y2="340" stroke="#1b1b1f" stroke-width="3" stroke-dasharray="10 8"/>
+      <text x="${x(2)}" y="50" text-anchor="middle" font-size="26" fill="#1b1b1f">Baseline</text><text x="${x(9)}" y="50" text-anchor="middle" font-size="26" fill="#1b1b1f">Intervention</text>
+      <polyline points="${seg(0, 5)}" fill="none" stroke="${accent}" stroke-width="4"/><polyline points="${seg(6, 13)}" fill="none" stroke="${accent}" stroke-width="4"/>
+      ${ys.map((v, i) => v == null ? "" : `<circle cx="${x(i)}" cy="${y(v)}" r="9" fill="${accent}"/>`).join("")}</svg>`;
+  }
+  if (kind === "photos") return `<div class="photos">${["Living room · walls", "Kitchen · oven", "Bedroom · carpet", "Bathroom · tiles"].map((c, i) => `<figure><div class="ph" style="background:linear-gradient(135deg,${pale},${accent}55)"><small>12 Oct 2026 · 09:4${i}</small></div><figcaption>${c}<b>${["Good", "Fair", "Good", "Worn"][i]}</b></figcaption></figure>`).join("")}</div>`;
+  if (kind === "label") return `<div class="lbl-row"><div class="a4"><div class="lab"></div><div class="slip"></div></div><div class="arrow">→</div><div class="l64"><div class="bars"></div><span>6 × 4 in</span></div></div>`;
+  // document (invoice / transcript)
+  return `<div class="doc"><div class="doc-h"><b></b><i></i></div>${Array.from({ length: 6 }, (_, i) => `<div class="doc-r"><span style="width:${50 + (i * 13) % 30}%"></span><em></em></div>`).join("")}<div class="doc-t"><span>Total</span><b></b></div></div>`;
+}
+
+function pinHtml(p) {
+  const s = sites[p.slug]; const accent = s.accent;
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;width:1000px;height:1500px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"DejaVu Sans",sans-serif;background:#fbfaf7;color:#1b1b1f;display:flex;flex-direction:column}
+.top{background:${accent};color:#fff;padding:70px 70px 60px}
+.kicker{font-size:30px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+h1{font-size:84px;line-height:1.04;margin:18px 0 18px;letter-spacing:-.02em}
+.sub{font-size:36px;line-height:1.25;opacity:.95}
+.vis{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 60px}
+.pts{display:flex;flex-direction:column;gap:14px;padding:0 70px 30px}
+.pts span{font-size:34px;display:flex;gap:16px;align-items:center}.pts span:before{content:"";width:18px;height:18px;border-radius:50%;background:${accent};flex:none}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:30px 70px 60px;font-size:32px}
+.foot b{color:${accent}}.badge{background:#1b1b1f;color:#fff;border-radius:999px;padding:12px 26px;font-size:28px;font-weight:700}
+.tickets{display:flex;flex-direction:column;gap:18px;width:100%}
+.tk{display:flex;border:3px solid #1b1b1f;border-radius:10px;background:#fff;height:120px}
+.tk-main{flex:1;padding:14px 24px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.tk-main b{font-size:32px;color:${accent}}.tk-main span{font-size:22px;color:#555}.tk-main i,.tk-stub i{font-style:normal;font-weight:800;font-size:26px}
+.tk-main i{position:absolute;right:24px;top:14px}
+.tk-stub{width:250px;border-left:3px dashed #1b1b1f;padding:12px 18px;display:flex;flex-direction:column;justify-content:center;gap:4px}.tk-stub span{font-size:20px;color:#444}
+.cal{background:#fff;border:3px solid #1b1b1f;border-radius:14px;padding:26px;width:100%}
+.cal-h{font-size:36px;font-weight:800;margin-bottom:16px;color:${accent}}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.cal-g em{font-style:normal;text-align:center;font-size:26px;color:#666;font-weight:700}
+.cal-g span{height:78px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800}
+.cal-g .a{background:${accent};color:#fff}.cal-g .b{background:${accent}33;color:#1b1b1f}.cal-g .off{background:#f0eee9}.cal-g .hol{background:#fde7a8}
+.grid{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.row{display:flex}.row span{border-right:2px solid #ccc;border-bottom:2px solid #ccc;height:76px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700}
+.row .lbl{width:200px;justify-content:flex-start;padding-left:18px;font-size:26px;color:#444}.row .cell{flex:1}.row:first-child span{background:${accent}22;font-size:24px}
+.graph{width:100%;background:#fff;border:3px solid #1b1b1f;border-radius:12px;padding:10px}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%}
+figure{margin:0;background:#fff;border:3px solid #1b1b1f;border-radius:12px;overflow:hidden}.ph{height:200px;position:relative}.ph small{position:absolute;right:10px;bottom:8px;background:#000a;color:#fff;font-size:18px;padding:3px 8px;border-radius:6px}
+figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-between}figcaption b{color:${accent}}
+.lbl-row{display:flex;align-items:center;gap:30px}.a4{width:300px;height:424px;background:#fff;border:3px solid #1b1b1f;padding:20px;display:flex;flex-direction:column;gap:16px}
+.lab{flex:1;border:3px solid ${accent};border-radius:6px}.slip{height:110px;background:#eee;border-radius:6px}
+.arrow{font-size:90px;color:${accent};font-weight:800}.l64{width:260px;height:390px;background:#fff;border:3px solid #1b1b1f;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;font-size:28px;font-weight:700}
+.bars{width:190px;height:140px;background:repeating-linear-gradient(90deg,#1b1b1f 0 6px,#fff 6px 10px,#1b1b1f 10px 12px,#fff 12px 18px)}
+.doc{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:82%;padding:36px;display:flex;flex-direction:column;gap:22px}
+.doc-h{display:flex;justify-content:space-between;margin-bottom:10px}.doc-h b{width:200px;height:44px;background:${accent};border-radius:6px}.doc-h i{width:140px;height:44px;background:#ddd;border-radius:6px}
+.doc-r{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eee;padding-bottom:16px}.doc-r span{height:20px;background:#ccc;border-radius:4px}.doc-r em{width:90px;height:20px;background:#bbb;border-radius:4px}
+.doc-t{display:flex;justify-content:space-between;align-items:center;font-size:32px;font-weight:800}.doc-t b{width:150px;height:34px;background:${accent};border-radius:6px}
+</style></head><body>
+<div class="top"><div class="kicker">${esc(s.name)} · Free tool</div><h1>${esc(p.headline)}</h1><div class="sub">${esc(p.sub)}</div></div>
+<div class="vis">${visual(p.visual, accent)}</div>
+<div class="pts">${p.points.map(x => `<span>${esc(x)}</span>`).join("")}</div>
+<div class="foot"><span><b>${esc(new URL(s.url).host)}</b></span><span class="badge">Free · No signup</span></div>
+</body></html>`;
+}
+
+mkdirSync(OUT, { recursive: true });
+const b = await chromium.launch();
+const page = await b.newPage({ viewport: { width: 1000, height: 1500 } });
+const rows = [["Title", "Media URL", "Pinterest board", "Thumbnail", "Description", "Link", "Publish date", "Keywords"]];
+for (const p of PINS) {
+  await page.setContent(pinHtml(p));
+  await page.screenshot({ path: join(OUT, `${p.file}.png`) });
+  const link = `${sites[p.slug].url}${p.path}${p.path.includes("?") ? "&" : "?"}${UTM}`;
+  rows.push([p.headline, `${PIN_BASE}/${p.file}.png`, p.board, "", p.desc, link, "", p.keywords]);
+}
+await b.close();
+const csv = rows.map(r => r.map(v => /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v).join(",")).join("\n") + "\n";
+writeFileSync(join(ROOT, "marketing/pinterest-pins.csv"), csv);
+console.log(`wrote ${PINS.length} pins to sites/hub/pins and marketing/pinterest-pins.csv`);
