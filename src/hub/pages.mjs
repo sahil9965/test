@@ -39,6 +39,7 @@ function head({ title, desc, path, jsonld }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="p:domain_verify" content="81a47930d04058b126e7b3d5f2f82942">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${URL}${path}">
