@@ -138,7 +138,7 @@
   // ---------- state ----------
   const THEMES = ["neon", "pastel", "clean", "retro", "minimal"];
   const SIZES = {
-    landscape: { w: 1920, h: 1080, label: "1920 × 1080", hint: "Landscape · X, Discord, YouTube community posts" },
+    landscape: { w: 1920, h: 1080, label: "1920 × 1080", hint: "Landscape · X posts, Discord, channel posts" },
     x: { w: 1200, h: 675, label: "1200 × 675", hint: "Small landscape · X and Discord" },
     story: { w: 1080, h: 1920, label: "1080 × 1920", hint: "Stories · Instagram, TikTok, Shorts" },
     portrait: { w: 1080, h: 1350, label: "1080 × 1350", hint: "4:5 portrait · Instagram feed" },

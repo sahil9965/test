@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stream Schedule with Time Zones — Auto Convert | StreamWeek</title>
+<meta name="description" content="Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.">
+<link rel="canonical" href="https://streamschedule.roohsites.com/stream-schedule-time-zones">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#7c3aed">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="StreamWeek">
+<meta property="og:title" content="Stream Schedule with Time Zones — Auto Convert | StreamWeek">
+<meta property="og:description" content="Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.">
+<meta property="og:url" content="https://streamschedule.roohsites.com/stream-schedule-time-zones">
+<meta property="og:image" content="https://streamschedule.roohsites.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"StreamWeek","item":"https://streamschedule.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Schedules with time zones","item":"https://streamschedule.roohsites.com/stream-schedule-time-zones"}]},{"@type":"WebApplication","name":"Stream Schedule with Time Zones","url":"https://streamschedule.roohsites.com/stream-schedule-time-zones","description":"Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.","applicationCategory":"DesignApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Weekly schedule with real dates","Automatic time-zone conversion with daylight saving","Up to 3 viewer time zones","English, Japanese or bilingual day labels","12-hour or 24-hour clock","PNG images at 1920×1080, 1200×675, 1080×1920, 1080×1350 and a 320-px panel","5 themes and an accent colour","Copy for Discord with timestamps","Copy for X",".ics calendar download","Autosave in the browser"],"publisher":{"@type":"Organization","name":"Rooh Sites","url":"https://roohsites.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why not just use fixed offsets like ET = UK − 5?","acceptedAnswer":{"@type":"Answer","text":"Because the offset changes. The UK and US switch daylight saving on different Sundays, so for about a week in March and a week in late October or early November the gap is 4 hours, not 5. Fixed offsets are wrong in those weeks; real dates are not."}},{"@type":"Question","name":"Which time zones should I show?","acceptedAnswer":{"@type":"Answer","text":"Your home zone plus the 2 or 3 places most of your viewers live, from your channel analytics. Common picks are JST, PT, ET, UK, CET, AEST and IST, which all have quick buttons."}},{"@type":"Question","name":"Why does a label say EDT one week and EST the next?","acceptedAnswer":{"@type":"Answer","text":"The label follows the date. New York uses EDT in summer and EST in winter, London uses BST and GMT, Sydney uses AEDT and AEST. The image shows whichever applies to that stream."}},{"@type":"Question","name":"What if my home zone has no daylight saving?","acceptedAnswer":{"@type":"Answer","text":"Then your times never shift, but your viewers' times still can. If you live in Tokyo, the LA and New York conversions change by an hour when the US changes clocks, and the tool handles that."}},{"@type":"Question","name":"Does it handle half-hour zones like India?","acceptedAnswer":{"@type":"Answer","text":"Yes. India (IST, UTC+5:30), Adelaide and other zones with 30- or 45-minute offsets are converted with the same database, so a 20:00 IST stream shows the right minutes elsewhere."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">StreamWeek</a>
+    <nav aria-label="Main"><a href="/">Schedule maker</a><a href="/vtuber-schedule-template">VTuber template</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">StreamWeek</a> › Schedules with time zones</p>
+    <section class="hero">
+      <h1>Stream Schedule with Time Zones</h1>
+      <p class="lead">Type your times once. StreamWeek shows them in up to 3 more time zones, with daylight saving handled for the exact week.</p>
+    </section>
+    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> Set your home zone (the one you type times in) and up to 3 viewer zones, then fill in your week. Each stream is converted from its real date, so daylight-saving changes are correct even in weeks when the UK and US clocks differ. Times that fall on another day for a viewer show +1 or −1, and short labels such as EDT or JST appear next to each time.</p></div>
+    <section class="tool card" aria-label="Stream schedule maker"><div id="sw-tool" data-preset="timezones"></div></section>
+    <article class="content narrow">
+      <h2>How the conversion works</h2>
+      <p>Your browser ships with the IANA time-zone database, the same rules your phone's clock uses. StreamWeek asks it two questions for every stream: “what exact moment is 8:00 PM on Monday 26 October in London?” and “what does that moment look like in New York, Los Angeles and Tokyo?”. Because the question includes the date, the answer accounts for whichever daylight-saving rules apply that day.</p>
+      <p>For the week of 26 October 2026, an 8:00 PM London stream converts to 4:00 PM EDT, 1:00 PM PDT, 5:00 AM JST +1. A week earlier New York is 3:00 PM EDT, and a week later 3:00 PM EST. A schedule with fixed offsets would have one of those weeks wrong.</p>
+
+      <h2>The weeks that catch people out</h2>
+      <ul>
+        <li><strong>March:</strong> the US moves clocks forward on the second Sunday, Europe on the last Sunday. For two to three weeks, New York is 4 hours behind London instead of 5.</li>
+        <li><strong>Late October to early November:</strong> Europe moves back on the last Sunday of October, the US a week later. Again the gap is an hour smaller for one week.</li>
+        <li><strong>Southern hemisphere:</strong> Sydney moves forward in early October and back in early April, the opposite direction to Europe and the US. The gap between Sydney and London can change by two hours over a year.</li>
+        <li><strong>Japan, India and most of Asia</strong> don't use daylight saving, so the change always comes from the other side.</li>
+      </ul>
+
+      <h2>Spring-forward gaps</h2>
+      <p>On the night clocks go forward, one hour doesn't exist; in London, 1:00 AM jumps straight to 2:00 AM. If you schedule a stream inside that gap, StreamWeek moves it forward by an hour (1:30 becomes 2:30) and warns you under the preview. When clocks go back and an hour happens twice, it uses the first one.</p>
+
+      <h2>Reading +1 and −1</h2>
+      <p>Every converted time stays under your day, with a mark when it's a different day for that viewer. “5:00 AM JST +1” under Monday means Tuesday morning in Japan. “6:00 PM PDT −1” under a Tokyo Tuesday means Monday evening in Los Angeles. One rule everywhere keeps the week readable as a single row of seven days.</p>
+
+      <h2>Let Discord do the conversion too</h2>
+      <p>No image can show every viewer's zone. For everyone else, <em>Copy for Discord</em> writes timestamps that Discord displays in each reader's own time, and the .ics file lets people add streams to their calendar, which also shows local time. Between the image, the Discord post and the calendar file, nobody has to do maths.</p>
+      <h2 id="faq">Frequently asked questions</h2>
+      <details><summary>Why not just use fixed offsets like ET = UK − 5?</summary><p>Because the offset changes. The UK and US switch daylight saving on different Sundays, so for about a week in March and a week in late October or early November the gap is 4 hours, not 5. Fixed offsets are wrong in those weeks; real dates are not.</p></details>
+      <details><summary>Which time zones should I show?</summary><p>Your home zone plus the 2 or 3 places most of your viewers live, from your channel analytics. Common picks are JST, PT, ET, UK, CET, AEST and IST, which all have quick buttons.</p></details>
+      <details><summary>Why does a label say EDT one week and EST the next?</summary><p>The label follows the date. New York uses EDT in summer and EST in winter, London uses BST and GMT, Sydney uses AEDT and AEST. The image shows whichever applies to that stream.</p></details>
+      <details><summary>What if my home zone has no daylight saving?</summary><p>Then your times never shift, but your viewers' times still can. If you live in Tokyo, the LA and New York conversions change by an hour when the US changes clocks, and the tool handles that.</p></details>
+      <details><summary>Does it handle half-hour zones like India?</summary><p>Yes. India (IST, UTC+5:30), Adelaide and other zones with 30- or 45-minute offsets are converted with the same database, so a 20:00 IST stream shows the right minutes elsewhere.</p></details>
+      <h2>More templates and guides</h2>
+      <ul class="related">
+        <li><a href="/">Stream schedule maker</a></li>
+        <li><a href="/vtuber-schedule-template">VTuber schedule template</a></li>
+        <li><a href="/stream-schedule-time-zones">Time zones</a></li>
+        <li><a href="/stream-schedule-for-discord">Discord timestamps</a></li>
+        <li><a href="/twitch-schedule-template">Twitch</a></li>
+        <li><a href="/youtube-live-schedule-template">YouTube Live</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-16">16 October 2026</time> · Written by the Rooh Sites team.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>StreamWeek</h4><ul><li><a href="/">Stream schedule maker</a></li><li><a href="/stream-schedule-time-zones">Schedules with time zones</a></li><li><a href="/stream-schedule-for-discord">Discord timestamps</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Templates</h4><ul><li><a href="/vtuber-schedule-template">VTuber schedule template</a></li><li><a href="/twitch-schedule-template">Twitch schedule template</a></li><li><a href="/youtube-live-schedule-template">YouTube Live schedule template</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 StreamWeek · Free tools that respect your privacy. StreamWeek is an independent tool, not affiliated with Twitch, YouTube, Kick, Discord, X, Instagram or TikTok.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/render.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# StreamWeek
+
+> StreamWeek is a free online stream schedule maker for streamers and VTubers. You type your week once, in your own time zone, and it converts every stream for up to 3 viewer time zones using real dates, so daylight-saving changes are correct for that exact week. It exports PNG images at 1920×1080, 1200×675, 1080×1920 (Stories), 1080×1350 (4:5) and a 320-px-wide panel, copies the schedule as Discord timestamps (<t:UNIX:F> and <t:UNIX:R>, shown in each reader's own time zone) or as plain text for X, and downloads an .ics calendar file with times in UTC. It runs entirely in the browser with no signup; the schedule autosaves in local storage and uploaded pictures are never sent anywhere. Every feature is free. There is no paid tier. Each exported image carries a small "Made with StreamWeek · streamschedule.roohsites.com" credit in a bottom corner.
+
+## Tool
+- [Stream schedule maker with time zones](https://streamschedule.roohsites.com/): weekly schedule image, Discord timestamps, X text and .ics from one form.
+
+## Templates
+- [VTuber schedule template](https://streamschedule.roohsites.com/vtuber-schedule-template): bilingual EN/JP day labels, JST as a viewer zone, pastel theme, model-art slot.
+- [Twitch schedule template](https://streamschedule.roohsites.com/twitch-schedule-template): social image plus a 320-px panel whose height fits the week.
+- [YouTube Live schedule template](https://streamschedule.roohsites.com/youtube-live-schedule-template): clean theme, common image sizes, calendar file for viewers.
+
+## Guides
+- [Stream schedule with time zones](https://streamschedule.roohsites.com/stream-schedule-time-zones): how conversion works, DST weeks that differ between Europe and the US, spring-forward gaps, +1/−1 marks.
+- [Stream schedule for Discord](https://streamschedule.roohsites.com/stream-schedule-for-discord): Discord timestamp codes and styles, with a copy button.
+
+## Key facts
+- Price: completely free. No paid tier.
+- Privacy: schedule, settings and pictures stay in the browser. No account.
+- Time zones: browser Intl time-zone database, no library. Quick presets JST, PT, ET, UK, CET, AEST, IST.
+- Day crossings: converted times on another day are marked +1 or −1.
+- Themes: Midnight neon, Pastel idol, Clean light, Retro arcade, Minimal dark, plus an accent colour.
+- Labels: English, Japanese or bilingual day names; 12-hour or 24-hour clock.
+- StreamWeek is an independent tool, not affiliated with Twitch, YouTube, Kick, Discord, X, Instagram or TikTok.
+
+## Optional
+- [About](https://streamschedule.roohsites.com/about)
+- [Privacy & Terms](https://streamschedule.roohsites.com/privacy)

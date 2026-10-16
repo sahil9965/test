@@ -58,7 +58,7 @@
         g.fillStyle = linear(g, 0, 0, W, H, [[0, "#ffe1ef"], [0.55, "#f3e3ff"], [1, "#dfe3ff"]]); g.fillRect(0, 0, W, H);
         g.fillStyle = "rgba(255,255,255,0.5)";
         for (const [fx, fy, fr] of [[0.06, 0.1, 0.09], [0.94, 0.05, 0.12], [0.88, 0.92, 0.1], [0.04, 0.95, 0.07], [0.5, 1.02, 0.08]]) { g.beginPath(); g.arc(fx * W, fy * H, fr * Math.max(W, H), 0, Math.PI * 2); g.fill(); }
-        for (const [fx, fy, fr, c] of [[0.965, 0.18, 22, A], [0.93, 0.25, 12, "#ffffff"], [0.03, 0.3, 14, "#ffffff"], [0.975, 0.62, 16, mix(A, "#ffffff", 0.35)], [0.025, 0.72, 20, A], [0.52, 0.035, 12, mix(A, "#ffffff", 0.4)]]) sparkle(g, fx * W, fy * H, fr * u * 1.4, rgba(c, 0.8));
+        for (const [fx, fy, fr, c] of [[0.7, 0.07, 22, A], [0.74, 0.13, 12, "#ffffff"], [0.03, 0.3, 14, "#ffffff"], [0.975, 0.62, 16, mix(A, "#ffffff", 0.35)], [0.025, 0.72, 20, A], [0.52, 0.035, 12, mix(A, "#ffffff", 0.4)]]) sparkle(g, fx * W, fy * H, fr * u * 1.4, rgba(c, 0.8));
       },
       card: A => ({ fill: "rgba(255,255,255,0.9)", stroke: rgba(A, 0.18), lw: 2, r: 28, shadow: "rgba(150,90,170,0.18)", blur: 26, sy: 8 }),
       time: A => mix(A, "#4a2d5e", 0.3),
@@ -75,7 +75,7 @@
       ring: () => "#ffffff",
     },
     retro: {
-      label: "Retro arcade", accent: "#ff4f8b", dark: true, upper: true, square: true,
+      label: "Retro arcade", accent: "#ff4f8b", dark: true, upper: true, square: true, edge: 32,
       ink: "#ffffff", muted: "#c9c3ff", title: "#ffd23f", off: "#8c86cf",
       bg(g, W, H, A, u) {
         g.fillStyle = "#231c5c"; g.fillRect(0, 0, W, H);
@@ -315,7 +315,7 @@
   const LIST = {
     story: { W: 1080, H: 1920, M: 64, top: 150, head: "center", av: 180, h1: 84, sub: 38, range: 30, bottom: 250, foot: 28, credit: 22,
       pad: 26, dayW: 170, gx: 22, day: 44, date: 26, time: 40, label: 26, title: 32, tl: 2, chip: 24, conv: 25, gap: 16, kMax: 1.18 },
-    portrait: { W: 1080, H: 1350, M: 56, top: 52, head: "left", av: 128, h1: 66, sub: 32, range: 28, bottom: 92, foot: 24, credit: 20,
+    portrait: { W: 1080, H: 1350, M: 56, top: 52, head: "left", av: 128, h1: 66, sub: 32, range: 28, bottom: 110, foot: 24, credit: 20,
       pad: 20, dayW: 150, gx: 18, day: 38, date: 23, time: 34, label: 22, title: 27, tl: 1, chip: 20, conv: 22, gap: 12, kMax: 1.12 },
     panel: { W: 320, H: 0, M: 12, top: 14, head: "compact", av: 46, h1: 21, sub: 12, range: 12, bottom: 0, foot: 11, credit: 9,
       pad: 9, dayW: 44, gx: 8, day: 14, date: 10.5, time: 14, label: 10, title: 12, tl: 2, chip: 10, conv: 10.5, gap: 6, kMax: 1 },
@@ -401,7 +401,8 @@
       }
     }
     measure();
-    if (!H) H = Math.ceil(rowsTop + total + 12 + footH + M * 0.5);
+    const edge = T.edge ? Math.max(12, T.edge * u) : 0;
+    if (!H) H = Math.ceil(rowsTop + total + 12 + footH + M * 0.5 + edge);
     let ry = rowsTop + (avail ? Math.max(0, (avail - total) / 2) : 0);
     rows.forEach(r => {
       ops.push({ k: "card", x: M, y: ry, w: cw, h: r.h });
@@ -409,10 +410,10 @@
       ry += r.h + m.gap * k;
     });
     // footer: note (centred on Stories), then the credit in the bottom-right corner
-    let fy = m.H ? H - m.bottom + m.foot * 1.6 : ry + 6 + m.foot * 1.1;
+    let fy = m.H ? H - m.bottom + m.foot * 1.5 : ry + 6 + m.foot * 1.1;
     const center = key === "story";
     for (const ln of noteLines) { ops.push({ k: "t", t: ln, x: center ? W / 2 : M, y: fy, px: m.foot, b: false, c: T.muted, a: center ? "center" : "left" }); fy += m.foot * 1.35; }
-    ops.push({ k: "t", t: CREDIT, x: W - M, y: H - Math.max(8, m.credit * 1.6), px: fitPx(CREDIT, m.credit, 7, false, cw), b: false, c: T.muted, a: "right", alpha: 0.8 });
+    ops.push({ k: "t", t: CREDIT, x: W - M, y: H - edge - m.credit * (m.H ? 1.1 : 0.9), px: fitPx(CREDIT, m.credit, 7, false, cw), b: false, c: T.muted, a: "right", alpha: 0.8 });
     return { W, H, ops, u: key === "panel" ? 0.3 : u };
   }
 

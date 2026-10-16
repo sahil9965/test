@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stream Schedule for Discord with Timestamps | StreamWeek</title>
+<meta name="description" content="Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the &lt;t:…&gt; codes for your week and add the image too.">
+<link rel="canonical" href="https://streamschedule.roohsites.com/stream-schedule-for-discord">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#7c3aed">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="StreamWeek">
+<meta property="og:title" content="Stream Schedule for Discord with Timestamps | StreamWeek">
+<meta property="og:description" content="Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the &lt;t:…&gt; codes for your week and add the image too.">
+<meta property="og:url" content="https://streamschedule.roohsites.com/stream-schedule-for-discord">
+<meta property="og:image" content="https://streamschedule.roohsites.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/base.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/config.js"></script>
+<script defer src="/pro.js"></script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"StreamWeek","item":"https://streamschedule.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Discord timestamps","item":"https://streamschedule.roohsites.com/stream-schedule-for-discord"}]},{"@type":"WebApplication","name":"Stream Schedule for Discord with Timestamps","url":"https://streamschedule.roohsites.com/stream-schedule-for-discord","description":"Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the  codes for your week and add the image too.","applicationCategory":"DesignApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Weekly schedule with real dates","Automatic time-zone conversion with daylight saving","Up to 3 viewer time zones","English, Japanese or bilingual day labels","12-hour or 24-hour clock","PNG images at 1920×1080, 1200×675, 1080×1920, 1080×1350 and a 320-px panel","5 themes and an accent colour","Copy for Discord with timestamps","Copy for X",".ics calendar download","Autosave in the browser"],"publisher":{"@type":"Organization","name":"Rooh Sites","url":"https://roohsites.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Discord timestamp?","acceptedAnswer":{"@type":"Answer","text":"A code in the form <t:UNIX:STYLE>, where UNIX is the number of seconds since 1 January 1970 UTC and STYLE is a letter such as F or R. Discord replaces it with a date or time formatted for the reader's own time zone and language."}},{"@type":"Question","name":"Why do the times look different for my members?","acceptedAnswer":{"@type":"Answer","text":"That's the point: each member sees the same moment in their own local time. Someone in London and someone in Tokyo read different clock times for the same stream, and both are correct."}},{"@type":"Question","name":"Can I edit the copied text?","acceptedAnswer":{"@type":"Answer","text":"Yes. It's plain text, so you can add pings, emoji or channel links before posting. Keep each <t:…> code intact, including both angle brackets, or Discord shows the raw code."}},{"@type":"Question","name":"Do timestamps work in channel topics and embeds?","acceptedAnswer":{"@type":"Answer","text":"They work in messages, and bots commonly use them in embeds. Support elsewhere, such as some profile fields, can vary, so post the schedule as a message."}},{"@type":"Question","name":"Should I still post the image?","acceptedAnswer":{"@type":"Answer","text":"Many servers do both: the image catches the eye and shows titles, while the timestamp text answers “what time is that for me?”. Attach the PNG to the same message."}}]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">StreamWeek</a>
+    <nav aria-label="Main"><a href="/">Schedule maker</a><a href="/vtuber-schedule-template">VTuber template</a><a href="/about">About</a></nav>
+  </header>
+  <main id="main">
+    <p class="crumbs"><a href="/">StreamWeek</a> › Discord timestamps</p>
+    <section class="hero">
+      <h1>Stream Schedule for Discord with Timestamps</h1>
+      <p class="lead">Copy your week as Discord timestamps, so every member sees stream times in their own time zone, plus a countdown.</p>
+    </section>
+    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> Fill in your week below and click <em>Copy for Discord</em>. Each stream becomes a code like &lt;t:${ex.unix}:F&gt;, which Discord shows as a full date and time in each reader's own time zone, followed by &lt;t:${ex.unix}:R&gt;, a live countdown such as “in 3 days”. Paste it into your announcements channel, and attach the PNG if you want the image too.</p></div>
+    <section class="tool card" aria-label="Stream schedule maker"><div id="sw-tool" data-preset="discord"></div></section>
+    <article class="content narrow">
+      <h2>What the copied text looks like</h2>
+      <p>Here is one stream from the week of 26 October 2026, typed as 8:00 PM in London. This is exactly what lands on your clipboard:</p>
+      <pre class="ex">**Stream Schedule** · @yourchannel
+Oct 26 – Nov 1, 2026 (times show in your own time zone)
+
+• &lt;t:1793044800:F&gt; (&lt;t:1793044800:R&gt;) — **Chess night** · Chess
+Days off: Tue 27, Thu 29</pre>
+      <p>In Discord, a member in New York sees “Monday, October 26, 2026 4:00 PM” followed by a countdown, and a member in Tokyo sees Tuesday at 5:00 AM. The bold title and category use normal Discord markdown, and any * or _ in your titles is escaped so it doesn't break the formatting.</p>
+
+      <h2>Timestamp styles</h2>
+      <p>Discord supports several styles. StreamWeek uses <strong>F</strong> for the start because it includes the weekday, <strong>t</strong> for the end time, and <strong>R</strong> for the countdown.</p>
+      <table>
+        <thead><tr><th>Code</th><th>Shows</th><th>Good for</th></tr></thead>
+        <tbody>
+          <tr><td><code>&lt;t:1793044800:t&gt;</code></td><td>Short time</td><td>End times</td></tr>
+          <tr><td><code>&lt;t:1793044800:T&gt;</code></td><td>Time with seconds</td><td>Rarely needed</td></tr>
+          <tr><td><code>&lt;t:1793044800:d&gt;</code></td><td>Short date</td><td>Compact lists</td></tr>
+          <tr><td><code>&lt;t:1793044800:D&gt;</code></td><td>Long date</td><td>Week headers</td></tr>
+          <tr><td><code>&lt;t:1793044800:f&gt;</code></td><td>Date and time</td><td>The default style</td></tr>
+          <tr><td><code>&lt;t:1793044800:F&gt;</code></td><td>Weekday, date and time</td><td>Schedule lines</td></tr>
+          <tr><td><code>&lt;t:1793044800:R&gt;</code></td><td>Relative, like “in 2 days”</td><td>Countdowns</td></tr>
+        </tbody>
+      </table>
+      <p>The exact wording depends on each member's language setting, so a Japanese client shows Japanese dates.</p>
+
+      <h2>Why you can't just type the time</h2>
+      <p>A message that says “8 PM GMT” leaves every member to do their own conversion, and daylight saving makes that error-prone. The timestamp number is a single moment in UTC, so there's nothing to convert by hand. StreamWeek works out that number from your real date and home zone, which is where most hand-made timestamps go wrong: a generator that assumes the wrong offset produces a code that's an hour off.</p>
+
+      <h2>Posting tips</h2>
+      <ul>
+        <li>Post the schedule in an announcements channel and pin it, then replace it each week.</li>
+        <li>Countdowns (<code>R</code>) update live, so a pinned message stays useful all week.</li>
+        <li>Days off are listed in plain text at the end, because there is no moment to convert.</li>
+        <li>If you change a time mid-week, edit the stream in StreamWeek, copy again and edit your message.</li>
+        <li>The <a href="/stream-schedule-time-zones">time-zone guide</a> explains how the conversion behaves around clock changes.</li>
+      </ul>
+      <p class="note">StreamWeek is an independent tool, not affiliated with Twitch, YouTube, Kick, Discord, X, Instagram or TikTok. Discord timestamp behaviour can change; this page describes it as of 16 October 2026.</p>
+      <h2 id="faq">Frequently asked questions</h2>
+      <details><summary>What is a Discord timestamp?</summary><p>A code in the form &lt;t:UNIX:STYLE&gt;, where UNIX is the number of seconds since 1 January 1970 UTC and STYLE is a letter such as F or R. Discord replaces it with a date or time formatted for the reader's own time zone and language.</p></details>
+      <details><summary>Why do the times look different for my members?</summary><p>That's the point: each member sees the same moment in their own local time. Someone in London and someone in Tokyo read different clock times for the same stream, and both are correct.</p></details>
+      <details><summary>Can I edit the copied text?</summary><p>Yes. It's plain text, so you can add pings, emoji or channel links before posting. Keep each &lt;t:…&gt; code intact, including both angle brackets, or Discord shows the raw code.</p></details>
+      <details><summary>Do timestamps work in channel topics and embeds?</summary><p>They work in messages, and bots commonly use them in embeds. Support elsewhere, such as some profile fields, can vary, so post the schedule as a message.</p></details>
+      <details><summary>Should I still post the image?</summary><p>Many servers do both: the image catches the eye and shows titles, while the timestamp text answers “what time is that for me?”. Attach the PNG to the same message.</p></details>
+      <h2>More templates and guides</h2>
+      <ul class="related">
+        <li><a href="/">Stream schedule maker</a></li>
+        <li><a href="/vtuber-schedule-template">VTuber schedule template</a></li>
+        <li><a href="/stream-schedule-time-zones">Time zones</a></li>
+        <li><a href="/stream-schedule-for-discord">Discord timestamps</a></li>
+        <li><a href="/twitch-schedule-template">Twitch</a></li>
+        <li><a href="/youtube-live-schedule-template">YouTube Live</a></li>
+      </ul>
+      <p class="small muted">Last updated <time datetime="2026-10-16">16 October 2026</time> · Written by the Rooh Sites team.</p>
+    </article>
+  </main>
+  <footer class="site">
+    <div class="cols">
+      <div><h4>StreamWeek</h4><ul><li><a href="/">Stream schedule maker</a></li><li><a href="/stream-schedule-time-zones">Schedules with time zones</a></li><li><a href="/stream-schedule-for-discord">Discord timestamps</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>Templates</h4><ul><li><a href="/vtuber-schedule-template">VTuber schedule template</a></li><li><a href="/twitch-schedule-template">Twitch schedule template</a></li><li><a href="/youtube-live-schedule-template">YouTube Live schedule template</a></li></ul></div>
+      <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
+    </div>
+    <p>© 2026 StreamWeek · Free tools that respect your privacy. StreamWeek is an independent tool, not affiliated with Twitch, YouTube, Kick, Discord, X, Instagram or TikTok.</p>
+  </footer>
+</div>
+<script src="/core.js" defer></script>
+<script src="/render.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>
