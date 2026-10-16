@@ -1,0 +1,28 @@
+# PanelDex
+
+> PanelDex is a free online electrical panel schedule and breaker label maker. It works with no signup and runs entirely in the browser (nothing is uploaded). Circuits are entered in a two-column editor numbered like a real panel (odd numbers down the left, even down the right), for 120/240 V split-phase, 120/208 V or 277/480 V three-phase panels with 12 to 84 spaces. It supports single-pole, 2-pole, 3-pole, tandem and spare breakers, totals the VA you enter per leg or phase with approximate amps and an imbalance percentage, and outputs a panel schedule PDF, a door directory PDF sized for the panel door, breaker label strips, an Excel .xlsx with live SUMIF formulas, CSV, and a share link with a QR code. Every feature is free. There is no paid tier. It is a labelling tool only: it does not check code compliance and its totals are not an NEC Article 220 load calculation.
+
+## Tool
+- [Electrical panel schedule template (Excel & PDF)](https://panelschedule.roohsites.com/): enter breakers on a panel-shaped editor and download the schedule, directory, labels, Excel and CSV.
+
+## Templates
+- [Panel schedule template PDF](https://panelschedule.roohsites.com/panel-schedule-template-pdf): what's on the filled-in PDF, Letter or A4, multi-page panels.
+- [Circuit breaker directory printable](https://panelschedule.roohsites.com/circuit-breaker-directory-printable): door directory sizes (Letter, half letter, custom) and writing clear descriptions.
+- [42 circuit panel schedule](https://panelschedule.roohsites.com/42-circuit-panel-schedule): numbering of a 42-space panel, legs per row, 2-pole placement near the bottom.
+- [3 phase panel schedule template](https://panelschedule.roohsites.com/3-phase-panel-schedule-template): phases A, B, C by row, 120/208 V and 277/480 V, per-phase totals.
+- [Breaker box label template](https://panelschedule.roohsites.com/breaker-box-label-template): label sizes, numbering of 2-pole and tandem breakers, printing and cutting.
+
+## Guides
+- [Panel load balancing calculator](https://panelschedule.roohsites.com/panel-load-balancing-calculator): VA per leg or phase, approximate amps, imbalance formula and why it is not a code load calculation.
+
+## Key facts
+- Price: completely free. No paid tier.
+- Privacy: panels stay in the browser's local storage. No account. Share links carry the data in the URL hash.
+- Systems: 120/240 V single-phase (L1/L2), 120/208 V and 277/480 V three-phase (A/B/C). Spaces: 12 to 84, even.
+- Output: schedule PDF (Letter/A4), door directory PDF (Letter, half letter or custom size), label strips PDF, Excel .xlsx with formulas, CSV import/export, share link + QR code.
+- Safety: Labelling tool only. Turn power off and follow local code; have a licensed electrician do electrical work.
+- Works with any panel brand; not affiliated with Square D, Siemens, Eaton, Leviton or GE.
+
+## Optional
+- [About](https://panelschedule.roohsites.com/about)
+- [Privacy & Terms](https://panelschedule.roohsites.com/privacy)
