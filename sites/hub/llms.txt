@@ -1,6 +1,6 @@
 # Rooh Sites Tools
 
-> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 9 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
+> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 10 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
 
 ## Tools
 - [InvoiceKit: Free invoice generator](https://invoice.roohsites.com/): Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF. For freelancers and small businesses.
@@ -12,6 +12,7 @@
 - [CollabRate: UGC rate calculator](https://ugcrates.roohsites.com/): Price UGC videos with transparent uplifts for usage rights, whitelisting and exclusivity, then export a rate card and quote. For UGC creators and micro-influencers.
 - [GoalTally: ABA graph maker](https://abagraph.roohsites.com/): Make ABA single-case graphs with phase-change lines, aim and trend lines, plus printable data sheets for 11 measurement types. For BCBAs, RBTs and special education teachers.
 - [BellBook: A/B day calendar generator](https://abday.roohsites.com/): Generate an A/B or Day 1–N rotation calendar that skips holidays and re-flows after snow days; export PDF, .ics or CSV. For teachers and school staff on rotating schedules.
+- [GiftStub: Numbered gift certificate maker](https://giftcert.roohsites.com/): Print numbered gift certificates with matching stubs, 3 per page, and keep a simple log of which numbers were sold and redeemed. For salons, spas, photographers and other small businesses.
 
 ## About
 - [Rooh Sites](https://roohsites.com/): web design studio building websites for local businesses.

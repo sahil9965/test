@@ -55,5 +55,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "giftcert.roohsites.com"
+        }
+      ],
+      "destination": "https://giftcert.roohsites.com/:path*",
+      "permanent": true
+    }
   ]
 }

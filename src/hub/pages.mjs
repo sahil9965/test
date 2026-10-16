@@ -15,6 +15,7 @@ const tools = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(
 // Who each tool is for, and a one-line description of what it does.
 const INFO = {
   invoicekit: { group: "Business & freelancing", who: "freelancers and small businesses", what: "Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF." },
+  giftstub: { group: "Business & freelancing", who: "salons, spas, photographers and other small businesses", what: "Print numbered gift certificates with matching stubs, 3 per page, and keep a simple log of which numbers were sold and redeemed." },
   labelfit: { group: "Online sellers & shipping", who: "Vinted, eBay, Etsy and USPS shippers", what: "Turn A4 or letter-size shipping label PDFs into crisp 6x4 / 100x150 mm thermal labels, with packing slips split off." },
   preplabel: { group: "Online sellers & shipping", who: "Amazon FBA sellers and prep centers", what: "Print Code 128 FNSKU labels for thermal rolls or Avery-size sheets, plus suffocation warning, sold-as-set and bin labels." },
   ticketrun: { group: "Events & fundraising", who: "PTOs, schools, clubs and nonprofits", what: "Print sequentially numbered raffle, 50/50, drink and coat check tickets with matching stubs, and draw winners fairly." },
