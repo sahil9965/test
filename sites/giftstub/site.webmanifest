@@ -1,0 +1,15 @@
+{
+  "name": "GiftStub",
+  "short_name": "GiftStub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#881337",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

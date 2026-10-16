@@ -1,0 +1,27 @@
+# GiftStub
+
+> GiftStub is a free online maker for printable, numbered gift certificates with matching stubs. It works with no signup and runs entirely in the browser (nothing is uploaded). It prints 3 certificates per US Letter or A4 page, up to 500 per PDF, with a prefix, start number and zero padding; each stub repeats the certificate number and has blank Issued to, Date, Amount and Redeemed lines. It also saves a single certificate as a PNG for emailing, downloads an issue log CSV, and keeps a simple issue and redeem log in the browser's local storage. Every feature is free. There is no paid tier. Each sheet carries a small "Made with GiftStub" credit in the page margin, outside the certificates.
+
+## Tool
+- [Printable gift certificates with numbers](https://giftcert.roohsites.com/): design a certificate, set a number range and download a print-ready PDF with matching stubs.
+
+## Templates
+- [Gift certificate template with stub](https://giftcert.roohsites.com/gift-certificate-template-with-stub): what goes on the stub, numbering, layout and cutting.
+- [Salon gift certificate template](https://giftcert.roohsites.com/salon-gift-certificate-template): dollar amount or named service, gratuity and booking notes.
+- [Massage gift certificate template](https://giftcert.roohsites.com/massage-gift-certificate-template): session length, cancellation policy, packages.
+- [Photography gift certificate template](https://giftcert.roohsites.com/photography-gift-certificate-template): session type, edited images, booking windows.
+- [Christmas gift certificate template](https://giftcert.roohsites.com/christmas-gift-certificate-template): holiday wording, a seasonal prefix, last-minute PNG certificates.
+
+## Guides
+- [How to track gift certificates](https://giftcert.roohsites.com/how-to-track-gift-certificates): number, log, redeem and reconcile gift certificates in a small business.
+
+## Key facts
+- Price: completely free. No paid tier.
+- Privacy: certificates, logos and the log stay in the browser. No account.
+- Output: PDF (pdf-lib), PNG image, CSV issue log.
+- Presets: General, Salon, Massage & spa, Photography, Bakery, Auto detailing, Holiday.
+- Expiry date: optional and off by default. Gift certificate expiry and fee rules vary by country and US state.
+
+## Optional
+- [About](https://giftcert.roohsites.com/about)
+- [Privacy & Terms](https://giftcert.roohsites.com/privacy)
