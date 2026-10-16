@@ -8,7 +8,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = join(ROOT, "sites/hub");
 const URL = "https://tools.roohsites.com";
 const AGENCY = "https://roohsites.com";
-const DATE = "2026-10-09", DATE_H = "9 October 2026";
+const DATE = "2026-10-16", DATE_H = "16 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const tools = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(s => s.live !== false);
 
@@ -23,7 +23,9 @@ const INFO = {
   goaltally: { group: "Teachers & education", who: "BCBAs, RBTs and special education teachers", what: "Make ABA single-case graphs with phase-change lines, aim and trend lines, plus printable data sheets for 11 measurement types." },
   bellbook: { group: "Teachers & education", who: "teachers and school staff on rotating schedules", what: "Generate an A/B or Day 1–N rotation calendar that skips holidays and re-flows after snow days; export PDF, .ics or CSV." },
   roomproof: { group: "Property & home", who: "tenants, landlords, contractors and cleaners", what: "Make a dated, captioned photo report PDF for move-in/move-out inspections, punch lists and before/after jobs." },
+  paneldex: { group: "Property & home", who: "electricians, property managers and homeowners", what: "Fill in an electrical panel schedule laid out like the real panel, see the load per leg or phase, and print a door directory and breaker labels." },
   collabrate: { group: "Creators & marketing", who: "UGC creators and micro-influencers", what: "Price UGC videos with transparent uplifts for usage rights, whitelisting and exclusivity, then export a rate card and quote." },
+  streamweek: { group: "Creators & marketing", who: "streamers and VTubers", what: "Make a weekly stream schedule image with times converted for viewers in other time zones, plus Discord timestamps and a calendar file." },
 };
 const GROUPS = ["Business & freelancing", "Online sellers & shipping", "Events & fundraising", "Teachers & education", "Property & home", "Creators & marketing"];
 
