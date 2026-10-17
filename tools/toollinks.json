@@ -1,0 +1,93 @@
+{
+  "_comment": "Cross-tool links injected by tools/toollinks.mjs before each page's FAQ. Per site: '*' applies to every page except about/privacy; a page path overrides it ([] = no block).",
+  "invoicekit": {
+    "*": [
+      ["https://giftcert.roohsites.com/", "Numbered gift certificate maker", "sell gift certificates with matching numbered stubs"],
+      ["https://labels.roohsites.com/", "A4 to 6x4 shipping label converter", "print carrier labels on a thermal printer"],
+      ["https://ugcrates.roohsites.com/", "UGC rate calculator", "work out a fair price before you invoice a brand"]
+    ],
+    "/photography-invoice-template": [
+      ["https://giftcert.roohsites.com/photography-gift-certificate-template", "Photography gift certificate template", "sell session vouchers with numbered stubs"],
+      ["https://ugcrates.roohsites.com/ugc-usage-rights-calculator", "Usage rights calculator", "price licensing for photos and video you make for brands"]
+    ],
+    "/contractor-invoice-template": [
+      ["https://photoreport.roohsites.com/punch-list-with-photos", "Punch list with photos", "document the finished job before you bill it"],
+      ["https://panelschedule.roohsites.com/", "Electrical panel schedule maker", "hand over a labelled panel with your invoice"]
+    ],
+    "/freelance-invoice-template": [
+      ["https://ugcrates.roohsites.com/how-much-to-charge-for-ugc", "How much to charge for UGC", "set your rates before you invoice"],
+      ["https://giftcert.roohsites.com/", "Numbered gift certificate maker", "sell prepaid sessions as gift certificates"]
+    ]
+  },
+  "giftstub": {
+    "*": [
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients for your services and keep a copy"],
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "the same numbered-stub printing, for fundraisers and events"]
+    ],
+    "/photography-gift-certificate-template": [
+      ["https://invoice.roohsites.com/photography-invoice-template", "Photography invoice template", "bill the session when a certificate is redeemed"],
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "the same numbered-stub printing, for fundraisers and events"]
+    ]
+  },
+  "ticketrun": {
+    "*": [
+      ["https://giftcert.roohsites.com/gift-certificate-template-with-stub", "Gift certificate template with stub", "numbered certificates for donated prizes or sales"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill sponsors and vendors for your event"]
+    ]
+  },
+  "labelfit": {
+    "*": [
+      ["https://fnsku.roohsites.com/", "FNSKU label generator", "Amazon FBA prep labels on the same thermal printer"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "add an invoice or receipt to your orders"]
+    ]
+  },
+  "preplabel": {
+    "*": [
+      ["https://labels.roohsites.com/", "A4 to 6x4 shipping label converter", "crop carrier labels for the same thermal printer"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "invoice prep clients or wholesale buyers"]
+    ]
+  },
+  "gradledger": {
+    "*": [
+      ["https://abday.roohsites.com/dated-lesson-plan-book", "Dated lesson plan book", "plan each week's lessons on real calendar dates"],
+      ["https://abday.roohsites.com/teacher-planner-2027-2028", "Printable teacher planner 2027–2028", "a dated year planner that works for homeschool too"]
+    ]
+  },
+  "bellbook": {
+    "*": [
+      ["https://abagraph.roohsites.com/iep-progress-monitoring-graph", "IEP progress monitoring graph", "graph IEP goal data for progress reports"],
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for PTO and class fundraisers"]
+    ],
+    "/today": []
+  },
+  "goaltally": {
+    "*": [
+      ["https://abday.roohsites.com/", "A/B day calendar generator", "plan sessions around a rotating school schedule"],
+      ["https://abday.roohsites.com/teacher-planner-2027-2028", "Printable teacher planner 2027–2028", "dated planner pages for the school year"]
+    ]
+  },
+  "roomproof": {
+    "*": [
+      ["https://panelschedule.roohsites.com/circuit-breaker-directory-printable", "Printable circuit breaker directory", "label the electrical panel for the next tenant or owner"],
+      ["https://invoice.roohsites.com/contractor-invoice-template", "Contractor invoice template", "bill the job you just documented"]
+    ]
+  },
+  "paneldex": {
+    "*": [
+      ["https://photoreport.roohsites.com/before-and-after-photo-report", "Before and after photo report", "show your panel work with dated photos"],
+      ["https://invoice.roohsites.com/contractor-invoice-template", "Contractor invoice template", "invoice the job once the schedule is done"]
+    ]
+  },
+  "collabrate": {
+    "*": [
+      ["https://streamschedule.roohsites.com/", "Stream schedule maker", "post your weekly streams with viewer time zones"],
+      ["https://invoice.roohsites.com/freelance-invoice-template", "Freelance invoice template", "invoice brands once the quote is accepted"]
+    ]
+  },
+  "streamweek": {
+    "*": [
+      ["https://ugcrates.roohsites.com/", "UGC rate calculator", "price sponsored streams and brand deals"],
+      ["https://invoice.roohsites.com/freelance-invoice-template", "Freelance invoice template", "bill sponsors and brands"]
+    ]
+  }
+}

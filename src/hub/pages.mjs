@@ -138,6 +138,20 @@ ${cards}
     <article class="content narrow">
       <p class="tldr"><strong>Quick answer:</strong> Rooh Sites Tools is a collection of ${tools.length} free web tools. Each one solves a single job (making an invoice, converting a shipping label, printing numbered raffle tickets, building a homeschool transcript and so on), works without an account, and processes everything in your browser so your data stays on your device.</p>
 
+      <h2>Popular free templates and guides</h2>
+      <ul>
+        <li><a href="https://abday.roohsites.com/today">Is today an A day or B day?</a></li>
+        <li><a href="https://abagraph.roohsites.com/cold-probe-data-sheet">Cold probe data sheet</a> and <a href="https://abagraph.roohsites.com/task-analysis-data-sheet">task analysis data sheet</a> for ABA</li>
+        <li><a href="https://raffle.roohsites.com/raffle-tickets-1-1000">Raffle tickets 1–1000, printable with stubs</a> and <a href="https://raffle.roohsites.com/50-50-raffle-tickets">50/50 raffle tickets</a></li>
+        <li><a href="https://giftcert.roohsites.com/salon-gift-certificate-template">Salon gift certificate template with numbered stubs</a></li>
+        <li><a href="https://invoice.roohsites.com/contractor-invoice-template">Contractor invoice template</a></li>
+        <li><a href="https://labels.roohsites.com/usps-label-to-4x6">USPS label to 4x6 for thermal printers</a></li>
+        <li><a href="https://photoreport.roohsites.com/photo-report-template">Photo report template</a> for inspections and jobs</li>
+        <li><a href="https://panelschedule.roohsites.com/circuit-breaker-directory-printable">Printable circuit breaker directory</a></li>
+        <li><a href="https://transcript.roohsites.com/homeschool-transcript-template">Homeschool transcript template</a></li>
+        <li><a href="https://streamschedule.roohsites.com/vtuber-schedule-template">VTuber schedule template</a> with viewer time zones</li>
+      </ul>
+
       <h2>Why these tools are different</h2>
       <ul>
         <li><strong>Private by design.</strong> There is no server-side processing. Your files, photos and records never leave your device, which matters for buyers' addresses, student data and client details.</li>
@@ -147,7 +161,7 @@ ${cards}
       </ul>
 
       <h2>How to pick the right tool</h2>
-      <p>Start from the job, not the tool: if you sell online and print labels, LabelFit fixes carrier labels and PrepLabel makes Amazon FNSKU labels. Teachers will find GoalTally for ABA data, BellBook for rotation calendars and GradLedger for homeschool transcripts. Each tool's home page has a short guide, presets for common cases and an FAQ, so you can get a correct result on the first try.</p>
+      <p>Start from the job, not the tool: if you sell online and print labels, LabelFit fixes carrier labels and PrepLabel makes Amazon FNSKU labels. Teachers will find GoalTally for ABA data, BellBook for rotation calendars and GradLedger for homeschool transcripts. Small businesses can make invoices with InvoiceKit and numbered gift certificates with GiftStub; landlords and contractors can document jobs with Roomproof and label electrical panels with PanelDex; creators can price brand deals with CollabRate and post stream schedules with StreamWeek. Each tool's home page has a short guide, presets for common cases and an FAQ, so you can get a correct result on the first try.</p>
 
       <h2>About Rooh Sites</h2>
       <p>Rooh Sites is a web design studio that builds “websites with soul” for local businesses. These tools are a side project: they show the kind of fast, careful, privacy-first work we put into every site. If you need a website for your business, <a href="${AGENCY}/?utm_source=hub&amp;utm_medium=content&amp;utm_campaign=tools">visit roohsites.com</a>.</p>

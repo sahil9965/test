@@ -78,6 +78,13 @@
       <h2>ZPL or PDF?</h2>
       <p>ZPL skips the printer driver, so there's no paper-size or scaling dialog to get wrong, and a run of 200 labels is a few kilobytes. PDF works with every printer, including Rollo, DYMO and printers that don't understand ZPL, and shows exactly what you'll get. Both use the same layout. Set the resolution to match the printer: a 203 dpi file on a 300 dpi printer prints about two thirds of the intended size.</p>
       <p>Before sending a big batch, print a single copy (change the quantity to 1) and scan it. If the barcode sits off-centre, check the label width setting on the printer matches the roll.</p>
+      <!--TOOLLINKS:START-->
+      <h2>Related free tools</h2>
+      <ul>
+        <li><a href="https://labels.roohsites.com/">A4 to 6x4 shipping label converter</a>: crop carrier labels for the same thermal printer.</li>
+        <li><a href="https://invoice.roohsites.com/">Free invoice generator</a>: invoice prep clients or wholesale buyers.</li>
+      </ul>
+      <!--TOOLLINKS:END-->
       <h2 id="faq">FAQ</h2>
       <details><summary>Which Zebra printers accept this ZPL?</summary><p>Zebra desktop and industrial printers that use ZPL II, such as the GK, GX, ZD and ZT series. Printers from other brands may emulate ZPL; check your manual, or use the PDF instead.</p></details>
       <details><summary>How do I print several copies of each label?</summary><p>Set the number of labels per product in the list. Each SKU becomes one ^XA…^XZ format ending in ^PQ with that quantity, so the printer repeats it.</p></details>

@@ -275,7 +275,7 @@ export const PAGES = [
     title: "Task Analysis Data Sheet Template: Free Printable PDF",
     desc: "Free task analysis data sheet template: list each step, score prompt levels or + / – each session and track % of steps independent for chaining. Print or PDF.",
     h1: "Task Analysis Data Sheet Template",
-    lead: "Break a routine into steps, score each step every session and track the percentage done independently. Works for forward, backward and total-task chaining.",
+    lead: "A printable task analysis template, form or worksheet: break a routine into steps, score each step every session and track the percentage done independently. Works for forward, backward and total-task chaining.",
     body: [
       quick("A task analysis data sheet lists every step of a multi-step skill, such as handwashing or packing a school bag, in order, with a column for each session. For each step you record the help needed (a prompt level or + / –), then calculate % of steps independent = steps done independently ÷ steps scored × 100."),
       h2("Writing the task analysis"),

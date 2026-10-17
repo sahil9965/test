@@ -15,10 +15,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 
 const SHEETS = [
-  ["/trial-by-trial-data-sheet", "Trial-by-trial"], ["/prompt-level-data-sheet", "Prompt level"], ["/cold-probe-data-sheet", "Cold probe"],
-  ["/task-analysis-data-sheet", "Task analysis"], ["/frequency-data-sheet", "Frequency"], ["/duration-recording-data-sheet", "Duration & latency"],
-  ["/partial-interval-recording-data-sheet", "Partial interval"], ["/whole-interval-recording-data-sheet", "Whole interval"],
-  ["/momentary-time-sampling-data-sheet", "Momentary time sampling"], ["/abc-data-sheet", "ABC"],
+  ["/trial-by-trial-data-sheet", "Trial-by-trial data sheet"], ["/prompt-level-data-sheet", "Prompt level data sheet"], ["/cold-probe-data-sheet", "Cold probe data sheet"],
+  ["/task-analysis-data-sheet", "Task analysis data sheet"], ["/frequency-data-sheet", "Frequency data sheet"], ["/duration-recording-data-sheet", "Duration & latency data sheet"],
+  ["/partial-interval-recording-data-sheet", "Partial interval data sheet"], ["/whole-interval-recording-data-sheet", "Whole interval data sheet"],
+  ["/momentary-time-sampling-data-sheet", "Momentary time sampling data sheet"], ["/abc-data-sheet", "ABC data sheet"],
 ];
 const GRAPHS = [["/", "ABA graph maker"], ["/iep-progress-monitoring-graph", "IEP progress monitoring graph"], ["/phase-change-line-graph", "Phase change line graph"], ["/aba-graph-template-excel", "ABA graph template (Excel)"]];
 

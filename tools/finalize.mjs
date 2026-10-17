@@ -23,6 +23,7 @@ for (const s of sites) {
   writeFileSync(vj, JSON.stringify(cfg, null, 2) + "\n");
 }
 execFileSync("node", [join(root, "tools/network.mjs")], { stdio: "inherit" });
+execFileSync("node", [join(root, "tools/toollinks.mjs")], { stdio: "inherit" });
 for (const s of sites) {
   const dir = join(root, "sites", s.slug);
   if (!existsSync(join(dir, "index.html"))) continue;

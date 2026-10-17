@@ -19,11 +19,11 @@ const WEBAPP = (name, url, desc) => ({
   publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 
-const NAV_SUB = `<a href="/">Calendar</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a>`;
-const NAV_HOME = `<a href="#how">How it works</a><a href="/today">What day is it?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="#faq">FAQ</a>`;
+const NAV_SUB = `<a href="/">Calendar</a><a href="/today">A or B day today?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="/about">About</a>`;
+const NAV_HOME = `<a href="#how">How it works</a><a href="/today">A or B day today?</a><a href="/ab-day-lesson-planner">Lesson planner</a><a href="#faq">FAQ</a>`;
 const FOOTER = `  <footer class="site">
     <div class="cols">
-      <div><h4>BellBook</h4><ul><li><a href="/">A/B day calendar generator</a></li><li><a href="/today">What day is it today?</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
+      <div><h4>BellBook</h4><ul><li><a href="/">A/B day calendar generator</a></li><li><a href="/today">Is today an A or B day?</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
       <div><h4>Calendars</h4><ul><li><a href="/rotating-schedule-calendar-maker">Rotating schedule maker</a></li><li><a href="/6-day-cycle-calendar">6-day cycle calendar</a></li><li><a href="/block-schedule-calendar">Block schedule calendar</a></li><li><a href="/teacher-planner-2027-2028">2027–28 calendar &amp; planner</a></li></ul></div>
       <div><h4>Lesson planners</h4><ul><li><a href="/ab-day-lesson-planner">A/B day lesson planner</a></li><li><a href="/second-semester-lesson-planner">Second semester planner</a></li><li><a href="/dated-lesson-plan-book">Dated lesson plan book</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
@@ -31,7 +31,7 @@ const FOOTER = `  <footer class="site">
     <p>© 2026 BellBook · Free tools that respect your privacy. BellBook is not affiliated with any school district, Google, Microsoft, Apple, Goodnotes or Notability.</p>
   </footer>`;
 const RELATED = (self) => {
-  const all = [["/", "A/B day calendar generator"], ["/today", "What day is it today?"], ["/rotating-schedule-calendar-maker", "Rotating schedule calendar maker"], ["/6-day-cycle-calendar", "6-day rotation calendar"], ["/block-schedule-calendar", "Block schedule calendar"], ["/ab-day-lesson-planner", "A/B day lesson planner"], ["/second-semester-lesson-planner", "Second semester lesson planner"], ["/teacher-planner-2027-2028", "Teacher planner 2027–2028"], ["/dated-lesson-plan-book", "Dated lesson plan book"]];
+  const all = [["/", "A/B day calendar generator"], ["/today", "Is today an A or B day?"], ["/rotating-schedule-calendar-maker", "Rotating schedule calendar maker"], ["/6-day-cycle-calendar", "6-day rotation calendar"], ["/block-schedule-calendar", "Block schedule calendar"], ["/ab-day-lesson-planner", "A/B day lesson planner"], ["/second-semester-lesson-planner", "Second semester lesson planner"], ["/teacher-planner-2027-2028", "Teacher planner 2027–2028"], ["/dated-lesson-plan-book", "Dated lesson plan book"]];
   return `      <ul class="related">\n${all.filter(([h]) => h !== self).map(([h, t]) => `        <li><a href="${h}">${t}</a></li>`).join("\n")}\n      </ul>`;
 };
 
@@ -215,13 +215,15 @@ ${SNOW_TABLE}
 // TODAY
 {
   const faq = [
+    ["What are A days and B days?", "On an A/B (alternating-day) block schedule, students take one set of classes on A days and a different set on B days, usually in longer class periods. The letters alternate only on school days, so each class meets every other school day and holidays or snow days can shift which letter lands on a date."],
+    ["Can I check if tomorrow is an A day or B day?", "Yes. Below today's answer the page lists tomorrow's rotation day and the next two weeks of school days, so you can plan ahead for tests, gym clothes or band practice."],
     ["How does the page know which day it is?", "It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into the link."],
     ["Where do I get the link for my school?", "Ask the teacher or office that publishes your rotation calendar. Teachers and admins can make one for free with the <a href=\"/\">A/B day calendar generator</a> by clicking “Copy ‘What day is it?’ link”."],
     ["Does the link still work after a snow day?", "Only if the calendar was updated. Whoever made the link should mark the snow day in BellBook and share the new link, because each link holds a fixed copy of the calendar."],
     ["Is any information sent to a server?", "No. The calendar sits after the # in the link, and browsers never send that part to the server. The page reads it on your device."],
   ];
   pages.push({
-    slug: "today", tool: "today", crumb: "What day is it today?",
+    slug: "today", tool: "today", crumb: "Is today an A or B day?",
     title: "Is Today an A Day or B Day? Rotation Day Checker | BellBook",
     desc: "Check if today is an A day or B day, plus tomorrow and the next two weeks. Teachers: set up your calendar in a minute and share a link or classroom poster.",
     h1: "Is today an A day or B day?",
@@ -255,7 +257,7 @@ ${SNOW_TABLE}
       <h2>Private by design</h2>
       <p>The calendar travels inside the link after the # sign. Browsers don't send that part to servers, so BellBook never receives your school's calendar or anything else about you. The page counts visits with cookie-free analytics only.</p>`,
     faq,
-    graph: [crumbLd("today", "What day is it today?"), WEBAPP("What day is it today? (BellBook)", `${URL}/today`, "Shows today's A/B or rotation day from a school's shared BellBook link."), faqLd(faq)],
+    graph: [crumbLd("today", "Is today an A or B day?"), WEBAPP("What day is it today? (BellBook)", `${URL}/today`, "Shows today's A/B or rotation day from a school's shared BellBook link."), faqLd(faq)],
   });
 }
 

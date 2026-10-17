@@ -493,7 +493,7 @@ P.push({
       </table>
       <p>Some 50/50s split differently, for example 60/40, or pay several winners from the winner's half. Print the split you use in the small print so buyers know before they pay.</p>
 
-      <h2>Pricing deals that print well</h2>
+      <h2>How much are 50/50 raffle tickets? Common pricing deals</h2>
       <p>Many 50/50s offer bundles such as <em>$2 each · 3 for $5</em> or <em>$5 for an arm's length</em> to encourage buyers to take more than one ticket. Put the deal in the <em>Price</em> field and it prints in the bottom corner of every ticket. When someone buys a bundle, tear off several consecutive tickets so their numbers are easy to check later.</p>
 
       <h2>Tips for game days and galas</h2>
