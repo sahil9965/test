@@ -598,7 +598,7 @@ const PRIVACY = {
       </ul>
       <p>Clearing your browser's site data for labels.roohsites.com removes all of it.</p>
       <h2>Analytics</h2>
-      <p>We use Vercel Web Analytics to count page views and a few anonymous events, such as “PDF downloaded” with the chosen label size and a rough number of labels. It's cookie-free, doesn't track you across sites, and never receives file names or anything from your labels.</p>
+      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the chosen label size and a rough number of labels. Neither uses cookies or tracks you across sites, and neither ever receives file names or anything from your labels.</p>
       <h2>Terms</h2>
       <p>LabelFit is provided “as is”, without warranty. Always check the preview and print a test label: you're responsible for making sure each label prints completely and scans, and for following your carrier's labelling rules. LabelFit is free for personal and commercial use.</p>`,
 };

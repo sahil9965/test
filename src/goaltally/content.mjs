@@ -724,7 +724,7 @@ export const PAGES = [
       h2("Encrypted backups"),
       p("Backups are encrypted on your device with AES-256-GCM, using a key derived from your passphrase with PBKDF2-SHA-256 (310,000 iterations). We never see the file or the passphrase, so we can't recover a lost passphrase."),
       h2("Analytics"),
-      p("We use Vercel Web Analytics to count page views and a few anonymous events, such as “a graph was exported as PDF” or “a frequency sheet was downloaded”. It's cookie-free, doesn't track you across sites, and never includes anything you type: no initials, goals, data or file contents."),
+      p("We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “a graph was exported as PDF” or “a frequency sheet was downloaded”. Neither uses cookies or tracks you across sites, and neither ever receives anything you type: no initials, goals, data or file contents."),
       h2("Student information"),
       p("Use initials rather than full names. GoalTally makes no claim of FERPA, HIPAA or other regulatory compliance; how you store devices and printed sheets is governed by your school's or organization's policies."),
       h2("Terms"),

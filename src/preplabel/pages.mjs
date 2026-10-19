@@ -641,7 +641,7 @@ const privacy = {
   body: `      <h2>Privacy</h2>
       <p>PrepLabel runs in your browser. The FNSKUs, titles and quantities you type, the CSV, Excel and PDF files you open, and the labels you make are processed on your device and are never sent to our servers. Camera frames used by the scan-check are decoded on your device and are not recorded or sent anywhere.</p>
       <p>Your product list, saved libraries, print log and settings are kept in your browser's local storage so they're there next time. Clearing your browser data deletes them. We can't see or recover them.</p>
-      <p>We use Vercel Web Analytics to count page views and a few anonymous events, such as “a PDF was generated”. It's cookie-free, doesn't track you across sites and never receives the content of your labels or files.</p>
+      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “a PDF was generated”. Neither uses cookies or tracks you across sites, and neither ever receives the content of your labels or files.</p>
       <h2>Terms</h2>
       <p>PrepLabel is free to use for personal and commercial labeling and is provided “as is”, without warranty. You're responsible for checking that your labels scan and meet Amazon's and your marketplace's current requirements before you ship. PrepLabel is not affiliated with Amazon, and the guides on this site are general information, not legal or compliance advice.</p>`,
 };

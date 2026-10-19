@@ -809,7 +809,7 @@ P.push({
   body: `      <h2>Privacy</h2>
       <p>TicketRun runs entirely in your browser. Ticket text, number ranges, guest lists, seller names and logos are processed on your device to build the preview and the PDF. They are never sent to our servers or to anyone else.</p>
       <p>To save you retyping, the tool remembers your last design, any designs you save and your logo in your browser's local storage on this device. Guest lists are not stored. Clearing your browser's site data deletes everything.</p>
-      <p>We use Vercel Web Analytics to count page views and a few anonymous events, such as “PDF downloaded” with a rough size bucket. It's cookie-free, doesn't track you across sites and never receives what you type into the tool.</p>
+      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “PDF downloaded” with a rough size bucket. Neither uses cookies or tracks you across sites, and neither ever receives what you type into the tool.</p>
       <h2>Terms</h2>
       <p>TicketRun is provided “as is”, without warranty. Check your tickets before printing a full run. You're responsible for your event and for following the raffle, gaming and alcohol rules where you hold it. TicketRun is free for personal, nonprofit and commercial use.</p>
       <p>Questions? See the <a href="/about">About page</a>.</p>`,

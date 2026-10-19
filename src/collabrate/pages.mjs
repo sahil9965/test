@@ -580,7 +580,7 @@ ${esc(emailEx.body)}</pre>
     body: `      <h2>Privacy</h2>
       <p>CollabRate runs entirely in your browser. Your rates, quote details, saved deals, rate card settings and headshot are stored in your browser's local storage on this device and are never sent to our servers. PDFs and PNGs are created on your device. Clearing your browser data deletes everything.</p>
       <p>Share links put your numbers and text (never your photo) into the link itself, after the # sign, which browsers don't send to the server. Anyone you give the link to can read what's in it.</p>
-      <p>We use Vercel Web Analytics to count page views and a few anonymous events, such as “quote downloaded”. It's cookie-free, doesn't track you across sites, and doesn't collect anything you type into the tool.</p>
+      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “quote downloaded”. Neither uses cookies or tracks you across sites, and neither collects anything you type into the tool.</p>
       <h2>Terms</h2>
       <p>CollabRate is provided “as is”, without warranty. Default rates and percentages are starting points for negotiation, not financial, legal or tax advice. You're responsible for the prices and terms you send and for any agreements you make with brands. CollabRate is free for personal and commercial use.</p>`,
   },

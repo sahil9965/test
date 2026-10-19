@@ -29,6 +29,8 @@ const b = await chromium.launch();
 let failures = 0;
 for (const [vw, vh, tag] of [[1280, 900, "desktop"], [390, 844, "mobile"]]) {
   const ctx = await b.newContext({ viewport: { width: vw, height: vh } });
+  // Umami loads from its cloud; serve an empty stub so QA stays offline and deterministic.
+  await ctx.route("https://cloud.umami.is/**", r => r.fulfill({ status: 200, contentType: "text/javascript", body: "" }));
   for (const path of pages) {
     const p = await ctx.newPage();
     const errs = [];
