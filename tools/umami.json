@@ -1,5 +1,5 @@
 {
   "_comment": "One Umami Cloud website covers every tool. Paste its Website ID below and run node tools/finalize.mjs. Empty = Umami off.",
-  "websiteId": "",
+  "websiteId": "e358f05d-4c2c-4b80-8680-456830105eea",
   "script": "https://cloud.umami.is/script.js"
 }
