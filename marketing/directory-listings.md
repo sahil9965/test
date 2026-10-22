@@ -107,7 +107,34 @@ Tip: on AlternativeTo and SaaSHub, the "alternative to" links matter more than t
 - **Tags:** A/B day calendar, block schedule, rotating schedule, teacher planner, school calendar
 - **Alternative to:** Google Sheets rotation calendars, Canva calendar templates
 
+## GiftStub
+- **URL:** https://giftcert.roohsites.com
+- **Tagline:** Printable gift certificates with numbered stubs
+- **Short description:** Print numbered gift certificates with matching stubs, 3 per page, for salons, spas, photographers and small shops. Free, no signup.
+- **Description:** GiftStub prints gift certificates that each carry a unique number, with a matching stub you keep for your records. Choose a design and preset (salon, massage and spa, photography, bakery, auto detailing), add your logo and terms, and download a Letter or A4 PDF, or a PNG to email. A simple issue-and-redeem log (CSV export) helps you track which numbers were sold and used.
+- **Categories:** Small business, Retail, Marketing
+- **Tags:** gift certificate template, numbered gift certificates, salon gift certificate, gift voucher, small business tools
+- **Alternative to:** Canva gift certificate templates, Template.net, print-shop numbered certificates
+
+## StreamWeek
+- **URL:** https://streamschedule.roohsites.com
+- **Tagline:** Weekly stream schedules with automatic time zones
+- **Short description:** Make a weekly stream schedule image with times converted for viewers in other time zones, plus Discord timestamps and a calendar file. Free, no signup.
+- **Description:** StreamWeek turns your week of streams into a ready-to-post schedule image in common sizes (16:9, X, Stories, 4:5 and a panel image) with five themes and an optional avatar. It converts times for up to three viewer time zones, handles daylight-saving changes, writes Discord timestamps that show in each viewer's local time, and exports an .ics calendar file.
+- **Categories:** Creator tools, Streaming, Social media
+- **Tags:** stream schedule maker, VTuber schedule, Twitch schedule, time zone converter, Discord timestamps
+- **Alternative to:** Canva stream schedule templates, Adobe Express, Skedul
+
+## PanelDex
+- **URL:** https://panelschedule.roohsites.com
+- **Tagline:** Electrical panel schedules, door directories and breaker labels
+- **Short description:** Fill in an electrical panel schedule laid out like the real panel, see the load per leg or phase, and print a door directory and breaker labels. Free, no signup.
+- **Description:** PanelDex lays out 12–84 space panels in standard numbering for 120/240V, 120/208V and 277/480V systems, with single-pole, 2-pole, 3-pole and tandem breakers. It totals the entered load per leg or phase with an imbalance figure, and exports a schedule PDF, a door directory sized for the panel door, breaker label strips, an Excel file with live formulas, CSV, and a share link with QR code. Labelling tool only; not a code load calculation.
+- **Categories:** Construction, Electrical, Property management
+- **Tags:** panel schedule template, circuit breaker directory, breaker box labels, electricians, property managers
+- **Alternative to:** Excel panel schedule templates, Lucidchart, hand-written panel directories
+
 ## Rooh Sites Tools (the hub, for collection-style directories)
 - **URL:** https://tools.roohsites.com
 - **Tagline:** Free private browser tools that each do one job well
-- **Short description:** Nine free tools for sellers, teachers, freelancers, creators and landlords: invoices, shipping and FNSKU labels, raffle tickets, transcripts, ABA graphs and more.
+- **Short description:** Twelve free tools for sellers, teachers, freelancers, creators, landlords and electricians: invoices, shipping and FNSKU labels, raffle tickets, gift certificates, transcripts, ABA graphs, stream schedules and more.
