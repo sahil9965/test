@@ -5,7 +5,8 @@
 // - The tools' existing window.va("event", …) calls are forwarded to umami.track, so events show up
 //   without touching app code. Vercel Analytics keeps working as before.
 // - The URL hash (where share links keep their data) is never sent, data-domains stops localhost and
-//   preview URLs from being counted, and ?notrack=1 (localStorage "rooh-notrack") turns Umami off too.
+//   preview URLs from being counted, and ?notrack=1 turns Umami (and Vercel) off on every roohsites.com tool at once.
+// - An "engaged" event fires once per page view on the first click, tap or keypress, to tell people from bots.
 // Usage: node tools/umami.mjs   (finalize.mjs runs it). With an empty websiteId it removes the block.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -19,12 +20,25 @@ const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(
   .map(s => ({ slug: s.slug, host: new URL(s.url).host }))
   .concat([{ slug: "hub", host: "tools.roohsites.com" }]);
 
-const shim = slug => `(function(){var inner,replay=false,q=[];` +
+const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
+  // Owner opt-out shared by every *.roohsites.com site: ?notrack=1 sets a cookie on the parent domain (only in
+  // the owner's browser), ?notrack=0 clears it, and this site's localStorage is kept in step with the cookie so
+  // the Vercel opt-out in config.js (which runs later) sees it.
+  `try{var nt=new URLSearchParams(location.search).get("notrack"),dom=location.hostname.replace(/^[^.]+\\./,"");` +
+  `if(nt==="1"){document.cookie="rooh_notrack=1;domain="+dom+";path=/;max-age=315360000;SameSite=Lax;Secure";localStorage.setItem("rooh-notrack","1")}` +
+  `else if(nt==="0"){document.cookie="rooh_notrack=;domain="+dom+";path=/;max-age=0;SameSite=Lax;Secure";localStorage.removeItem("rooh-notrack")}` +
+  `else if(/(^|; )rooh_notrack=1/.test(document.cookie))localStorage.setItem("rooh-notrack","1");else localStorage.removeItem("rooh-notrack")}catch(e){}` +
+  `function off(){try{return !!localStorage.getItem("rooh-notrack")}catch(e){return false}}` +
   `function fwd(n,d){try{if(window.umami&&umami.track)umami.track(n,d);else q.push([n,d])}catch(e){}}` +
   `function w(){var a=arguments;if(!replay&&a[0]==="event"&&a[1]&&a[1].name)fwd(a[1].name,a[1].data);if(inner)return inner.apply(this,a);(window.vaq=window.vaq||[]).push(a)}` +
   `try{Object.defineProperty(window,"va",{configurable:true,get:function(){return w},set:function(f){if(f!==w){inner=f;replay=true;setTimeout(function(){replay=false},0)}}})}catch(e){}` +
-  `window.roohUmamiSend=function(t,p){try{if(localStorage.getItem("rooh-notrack"))return null}catch(e){}` +
-  `if(p&&typeof p.url==="string"){var u=p.url.split("#")[0];p.url="/${slug}"+(u==="/"?"":u)}return p};` +
+  // One "engaged" event per page view on the first real click, tap or keypress: bots rarely interact, people do.
+  `function eng(){if(engaged)return;engaged=true;fwd("engaged")}` +
+  `["pointerdown","keydown"].forEach(function(t){addEventListener(t,eng,{capture:true,passive:true})});` +
+  // Prefix the path with the tool's slug and drop the hash. Umami sends a full URL, so edit its pathname.
+  `window.roohUmamiSend=function(t,p){if(off())return null;` +
+  `if(p&&typeof p.url==="string"){try{var u=new URL(p.url,location.href),path=u.pathname==="/"?"":u.pathname;` +
+  `u.pathname="/${slug}"+path;u.hash="";p.url=/^https?:/.test(p.url)?u.toString():u.pathname+u.search}catch(e){}}return p};` +
   `window.roohUmamiLoaded=function(){while(q.length){var e=q.shift();try{umami.track(e[0],e[1])}catch(x){}}}})();`;
 const block = s => `<!--UMAMI:START--><script>${shim(s.slug)}</script>` +
   `<script defer src="${cfg.script}" data-website-id="${id}" data-domains="${s.host}" data-tag="${s.slug}" ` +
