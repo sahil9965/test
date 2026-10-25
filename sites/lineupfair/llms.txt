@@ -1,0 +1,26 @@
+# LineupFair
+
+> LineupFair is a free online fielding rotation generator for youth baseball, softball and T-ball coaches. It works with no signup and runs entirely in the browser (nothing is uploaded). Add players (one by one or pasted, with optional jersey numbers), choose 1 to 9 innings and a defensive format, and it builds an inning-by-inning chart that shares the bench evenly and rotates positions. Formats: Standard 9 (P, C, 1B, 2B, 3B, SS, LF, CF, RF), 10 fielders with four outfielders (LF, LCF, RCF, RF), Coach pitch (player at pitcher beside the coach, or no pitcher), T-ball (up to 12 fielders with rover and extra outfielders, catcher optional) and Custom. Each rule is a coach setting: bench fairness, no back-to-back bench innings, minimum infield innings, no repeat positions and innings limits at pitcher and catcher. Locks and "never plays" positions are always obeyed. Players can be marked absent or arrive late. Cells can be swapped by hand with live rule checking. It also keeps a continuous batting order (with rotate for next game), a season tally, a JSON backup and a share link that carries the chart in the URL. Outputs are PDFs: a Letter landscape dugout card, a 5 x 8 in index card, a field diagram (one diamond per inning), a season summary and a blank lineup card. Every feature is free. Each PDF carries a small "Made with LineupFair" credit in the page margin.
+
+## Tool
+- [Baseball fielding rotation generator](https://lineup.roohsites.com/): add players, set innings and rules, generate the chart, swap cells, print the dugout card.
+
+## Presets and guides
+- [Fair playing time lineup generator](https://lineup.roohsites.com/fair-playing-time-lineup-generator): bench fairness, the bench arithmetic and the fairness summary.
+- [T-ball fielding rotation](https://lineup.roohsites.com/tball-fielding-rotation): T-ball preset with up to 12 fielders, rover and optional catcher.
+- [Coach pitch lineup generator](https://lineup.roohsites.com/coach-pitch-lineup-generator): coach pitch preset with an optional player at pitcher.
+- [Softball lineup generator](https://lineup.roohsites.com/softball-lineup-generator): 10-fielder preset for slow-pitch and recreational softball; Standard 9 for fastpitch.
+- [Printable baseball lineup card](https://lineup.roohsites.com/printable-baseball-lineup-card): dugout card, index card, field diagram and blank lineup card PDFs.
+- [Youth baseball position rotation](https://lineup.roohsites.com/youth-baseball-position-rotation): plain coaching guidance on rotating positions fairly by age group.
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: names, rosters, charts and season totals stay in the browser. Nothing is uploaded. A share link holds the chart inside the URL after the # sign.
+- Output: PDFs built in the browser with jsPDF. Print at 100% (Actual size) on US Letter, landscape.
+- Rules are coach settings, not league policy. League rules on playing time, batting and pitching vary; coaches should check their own league's rules.
+- Pitch-count and rest-day tracking are out of scope.
+- Not affiliated with any league, governing body or app.
+
+## Optional
+- [About](https://lineup.roohsites.com/about)
+- [Privacy & Terms](https://lineup.roohsites.com/privacy)

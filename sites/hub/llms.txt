@@ -1,6 +1,6 @@
 # Rooh Sites Tools
 
-> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 13 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
+> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 14 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
 
 ## Tools
 - [InvoiceKit: Free invoice generator](https://invoice.roohsites.com/): Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF. For freelancers and small businesses.
@@ -16,6 +16,7 @@
 - [StreamWeek: Stream schedule maker](https://streamschedule.roohsites.com/): Make a weekly stream schedule image with times converted for viewers in other time zones, plus Discord timestamps and a calendar file. For streamers and VTubers.
 - [PanelDex: Electrical panel schedule maker](https://panelschedule.roohsites.com/): Fill in an electrical panel schedule laid out like the real panel, see the load per leg or phase, and print a door directory and breaker labels. For electricians, property managers and homeowners.
 - [PunchPerk: Printable punch card maker](https://punchcard.roohsites.com/): Print loyalty punch cards 10 per page on business-card sheets, with serial numbers, matching backs and a QR code. For cafés, salons, car washes and other small businesses, plus teachers.
+- [LineupFair: Baseball lineup rotation generator](https://lineup.roohsites.com/): Generate a fair inning-by-inning fielding rotation with equal bench time and infield innings, then print a dugout card and field diagram. For youth baseball, softball and t-ball coaches.
 
 ## About
 - [Rooh Sites](https://roohsites.com/): web design studio building websites for local businesses.

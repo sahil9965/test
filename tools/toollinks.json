@@ -33,7 +33,8 @@
   "ticketrun": {
     "*": [
       ["https://giftcert.roohsites.com/gift-certificate-template-with-stub", "Gift certificate template with stub", "numbered certificates for donated prizes or sales"],
-      ["https://invoice.roohsites.com/", "Free invoice generator", "bill sponsors and vendors for your event"]
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill sponsors and vendors for your event"],
+      ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "rotate positions fairly for your youth team"]
     ]
   },
   "labelfit": {
@@ -107,6 +108,12 @@
     "/reward-punch-card-for-kids": [
       ["https://abday.roohsites.com/", "A/B day calendar generator", "plan the school year around a rotating schedule"],
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print reward tickets for home or class"]
+    ]
+  },
+  "lineupfair": {
+    "*": [
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for team fundraisers"],
+      ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "track practice goals with a printable punch card"]
     ]
   }
 }

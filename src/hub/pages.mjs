@@ -20,6 +20,7 @@ const INFO = {
   labelfit: { group: "Online sellers & shipping", who: "Vinted, eBay, Etsy and USPS shippers", what: "Turn A4 or letter-size shipping label PDFs into crisp 6x4 / 100x150 mm thermal labels, with packing slips split off." },
   preplabel: { group: "Online sellers & shipping", who: "Amazon FBA sellers and prep centers", what: "Print Code 128 FNSKU labels for thermal rolls or Avery-size sheets, plus suffocation warning, sold-as-set and bin labels." },
   ticketrun: { group: "Events & fundraising", who: "PTOs, schools, clubs and nonprofits", what: "Print sequentially numbered raffle, 50/50, drink and coat check tickets with matching stubs, and draw winners fairly." },
+  lineupfair: { group: "Sports & coaching", who: "youth baseball, softball and t-ball coaches", what: "Generate a fair inning-by-inning fielding rotation with equal bench time and infield innings, then print a dugout card and field diagram." },
   gradledger: { group: "Teachers & education", who: "homeschool parents of high schoolers", what: "Build a homeschool transcript with exact weighted and unweighted GPA, credits by subject, course descriptions and report cards." },
   goaltally: { group: "Teachers & education", who: "BCBAs, RBTs and special education teachers", what: "Make ABA single-case graphs with phase-change lines, aim and trend lines, plus printable data sheets for 11 measurement types." },
   bellbook: { group: "Teachers & education", who: "teachers and school staff on rotating schedules", what: "Generate an A/B or Day 1–N rotation calendar that skips holidays and re-flows after snow days; export PDF, .ics or CSV." },
@@ -28,7 +29,7 @@ const INFO = {
   collabrate: { group: "Creators & marketing", who: "UGC creators and micro-influencers", what: "Price UGC videos with transparent uplifts for usage rights, whitelisting and exclusivity, then export a rate card and quote." },
   streamweek: { group: "Creators & marketing", who: "streamers and VTubers", what: "Make a weekly stream schedule image with times converted for viewers in other time zones, plus Discord timestamps and a calendar file." },
 };
-const GROUPS = ["Business & freelancing", "Online sellers & shipping", "Events & fundraising", "Teachers & education", "Property & home", "Creators & marketing"];
+const GROUPS = ["Business & freelancing", "Online sellers & shipping", "Events & fundraising", "Sports & coaching", "Teachers & education", "Property & home", "Creators & marketing"];
 
 const FAQ = [
   ["Are these tools really free?", "Yes. Every tool and every feature is free, with no account and no paid tier. Exports carry a small “Made with …” credit."],
@@ -146,6 +147,7 @@ ${cards}
         <li><a href="https://raffle.roohsites.com/raffle-tickets-1-1000">Raffle tickets 1–1000, printable with stubs</a> and <a href="https://raffle.roohsites.com/50-50-raffle-tickets">50/50 raffle tickets</a></li>
         <li><a href="https://giftcert.roohsites.com/salon-gift-certificate-template">Salon gift certificate template with numbered stubs</a></li>
         <li><a href="https://punchcard.roohsites.com/coffee-punch-card-template">Coffee punch card template, 10 per page</a> and <a href="https://punchcard.roohsites.com/behavior-punch-card-printable">behavior punch cards</a> for the classroom</li>
+        <li><a href="https://lineup.roohsites.com/">Baseball fielding rotation generator</a> and <a href="https://lineup.roohsites.com/tball-fielding-rotation">t-ball fielding rotation</a></li>
         <li><a href="https://invoice.roohsites.com/contractor-invoice-template">Contractor invoice template</a></li>
         <li><a href="https://labels.roohsites.com/usps-label-to-4x6">USPS label to 4x6 for thermal printers</a></li>
         <li><a href="https://photoreport.roohsites.com/photo-report-template">Photo report template</a> for inspections and jobs</li>

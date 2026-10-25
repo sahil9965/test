@@ -55,5 +55,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "lineup.roohsites.com"
+        }
+      ],
+      "destination": "https://lineup.roohsites.com/:path*",
+      "permanent": true
+    }
   ]
 }
