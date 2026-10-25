@@ -1,16 +1,23 @@
 // Generates InvoiceKit's landing, pricing and about pages from one layout.
 // Usage: node src/invoicekit/pages.mjs   (writes into sites/invoicekit/)
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/invoicekit");
 const URL = "https://invoice.roohsites.com";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-10-25", DATE_H = "25 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "");
 
-function page({ slug, title, desc, h1, lead, preset, tool = true, body, faq = [], crumb, schemaExtra = [] }) {
+// Template links shown in the footer and the "More invoice templates" list on every page.
+const LINKS = [
+  ["/freelance-invoice-template", "Freelance"], ["/photography-invoice-template", "Photography"], ["/contractor-invoice-template", "Contractor"],
+  ["/gst-invoice-generator", "GST (India)"], ["/invoice-format-without-gst", "Invoice without GST"], ["/bill-of-supply-format", "Bill of Supply"],
+  ["/export-invoice-without-igst-under-lut", "Export under LUT"], ["/vat-invoice-template-uk", "UK VAT"],
+];
+
+function page({ slug, title, desc, h1, lead, preset, tool = true, body, faq = [], crumb, schemaExtra = [], lang = "en", outro = "" }) {
   const url = `${URL}/${slug}`;
   const graph = [
     { "@type": "BreadcrumbList", itemListElement: [
@@ -20,7 +27,7 @@ function page({ slug, title, desc, h1, lead, preset, tool = true, body, faq = []
     ...schemaExtra,
   ];
   return `<!doctype html>
-<html lang="en">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -66,14 +73,10 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 ${tool ? `    <section class="tool card" aria-label="Invoice generator"><div id="ik-tool" data-preset="${preset}"></div></section>\n` : ""}    <article class="content narrow">
 ${body}
 ${faq.length ? `      <h2 id="faq">FAQ</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}` : ""}
-      <h2>More invoice templates</h2>
+${outro ? `      <p class="small">${outro}</p>\n` : ""}      <h2>More invoice templates</h2>
       <ul class="related">
         <li><a href="/">Blank invoice generator</a></li>
-        <li><a href="/freelance-invoice-template">Freelance</a></li>
-        <li><a href="/photography-invoice-template">Photography</a></li>
-        <li><a href="/contractor-invoice-template">Contractor</a></li>
-        <li><a href="/gst-invoice-generator">GST (India)</a></li>
-        <li><a href="/vat-invoice-template-uk">UK VAT</a></li>
+${LINKS.map(([h, t]) => `        <li><a href="${h}">${t}</a></li>`).join("\n")}
       </ul>
       <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. This page is general information, not tax or legal advice.</p>
     </article>
@@ -81,7 +84,7 @@ ${faq.length ? `      <h2 id="faq">FAQ</h2>\n${faq.map(([q, a]) => `      <detai
   <footer class="site">
     <div class="cols">
       <div><h4>InvoiceKit</h4><ul><li><a href="/">Invoice generator</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
-      <div><h4>Templates</h4><ul><li><a href="/freelance-invoice-template">Freelance</a></li><li><a href="/photography-invoice-template">Photography</a></li><li><a href="/contractor-invoice-template">Contractor</a></li><li><a href="/gst-invoice-generator">GST (India)</a></li><li><a href="/vat-invoice-template-uk">UK VAT</a></li></ul></div>
+      <div><h4>Templates</h4><ul>${LINKS.map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join("")}</ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
     <p>© 2026 InvoiceKit · Free tools that respect your privacy.</p>
@@ -196,8 +199,172 @@ const pages = [
     faq: [
       ["Is this a valid GST invoice format?", "It includes the fields usually required on a tax invoice. Add your GSTIN, HSN/SAC codes and place of supply. E-invoicing (IRN) is mandatory only above the turnover threshold notified by the GST Council. Confirm your obligations with a CA."],
       ["How do I show CGST and SGST separately?", "Set tax name to GST, enter the full rate (for example 18), and tick Split tax in half. The invoice shows CGST 9% and SGST 9%."],
-      ["Can I make an invoice without GST?", "Yes. If you're not GST-registered, set the tax rate to 0 and call it an Invoice or Bill of Supply as applicable."],
+      ["Can I make an invoice without GST?", "Yes. If you're not GST-registered, set the tax rate to 0 and use the title Invoice; see our <a href=\"/invoice-format-without-gst\">invoice format without GST</a>. A Bill of Supply is for registered composition or exempt suppliers instead; see the <a href=\"/bill-of-supply-format\">bill of supply format</a>."],
     ],
+  },
+  {
+    slug: "invoice-format-without-gst", preset: "nogst", lang: "en-IN", priceCurrency: "INR", crumb: "Invoice format without GST",
+    title: "Invoice Format Without GST — Free Template for India (PDF)",
+    desc: "Invoice format without GST for freelancers and small businesses in India: PAN, bank and UPI details, no tax lines. Free generator, download a PDF.",
+    h1: "Invoice Format Without GST (India)",
+    lead: "A simple rupee invoice for freelancers and small businesses that are not registered for GST: no GSTIN, no tax lines, just your PAN, payment details and the amount due.",
+    body: `      <p class="tldr"><strong>Quick answer:</strong> An invoice format without GST has no GSTIN and no tax lines. It shows the title “Invoice”, a unique invoice number and date, your name, address and PAN, your client's details, a clear description of the work, the amount in rupees and your bank or UPI details. Edit the example above, then click <em>Download PDF</em>.</p>
+      <h2>What to include when you are not registered for GST</h2>
+      <p>If you have not registered for GST, your invoice can be short and simple. These are the parts that matter:</p>
+      <ul>
+        <li><strong>Title:</strong> “Invoice”. Do not use “Tax Invoice”, because you are not charging tax.</li>
+        <li><strong>Your details:</strong> name or business name, address, phone and email. Add your PAN too. GST does not require it from an unregistered person, but clients who deduct TDS usually ask for it.</li>
+        <li><strong>Invoice number and date:</strong> a unique running number such as INV-0001 or 2026-27/001, the issue date and, if you want one, a due date.</li>
+        <li><strong>Client details:</strong> the client's name and billing address.</li>
+        <li><strong>Description and amount:</strong> what you did, the quantity or hours, the rate and the total in rupees. HSN and SAC codes belong on GST invoices, so you can leave them out.</li>
+        <li><strong>Payment details:</strong> bank name, account number, IFSC and UPI ID, so the client can pay without writing back to ask.</li>
+      </ul>
+      <h2>What to leave out</h2>
+      <p>Leave out the GSTIN, the CGST, SGST and IGST lines and any GST rate. Only a registered person can collect GST from a customer, so an unregistered business should not add it to an invoice. In the generator the tax rate is already 0, so no tax lines appear. Some freelancers add a short line in the notes, such as “Not registered under GST”, so the client's accounts team knows why there is no tax.</p>
+      <h2>A simple layout to copy</h2>
+      <table><thead><tr><th>Section</th><th>Example</th></tr></thead><tbody>
+      <tr><td>Title</td><td>Invoice</td></tr>
+      <tr><td>Number and date</td><td>INV-0007, 25 October 2026</td></tr>
+      <tr><td>From</td><td>Your name, address, email, PAN</td></tr>
+      <tr><td>Bill to</td><td>Client name and address</td></tr>
+      <tr><td>Item</td><td>Website design (fixed fee), 1 × ₹40,000</td></tr>
+      <tr><td>Total due</td><td>₹40,000</td></tr>
+      <tr><td>Payment details</td><td>Bank name, account number, IFSC, UPI ID</td></tr>
+      </tbody></table>
+      <h2>When you need to register for GST</h2>
+      <p>For a business that supplies only services, GST registration is generally required once its aggregate turnover in a financial year crosses ₹20 lakh. In the special category states the limit is ₹10 lakh. Sellers of goods have a different, generally higher, limit. Aggregate turnover is worked out across India for all your businesses under one PAN, and it generally counts exempt supplies and exports as well as taxable sales.</p>
+      <p>The turnover limit is not the only test. Some kinds of supply need registration whatever your turnover, and you can also register voluntarily. The limits and rules can change, so check the <a href="https://www.gst.gov.in/">GST portal</a> or ask a chartered accountant before you decide that you are below the line.</p>
+      <p>Once you are registered, switch to a tax invoice with your GSTIN and the right tax lines. Our <a href="/gst-invoice-generator">GST invoice generator</a> is set up for that.</p>
+      <h2>A bill of supply is not for unregistered businesses</h2>
+      <p>Many people assume that “no GST” means “bill of supply”. It does not. A bill of supply is issued by a <em>registered</em> supplier, either a composition taxpayer or someone selling exempt goods or services, in place of a tax invoice. If you are not registered, you are not required to issue one, and a plain invoice is the right document. If you are registered under the composition scheme or sell exempt items, see our <a href="/bill-of-supply-format">bill of supply format</a>.</p>
+      <h2>Invoicing a client outside India</h2>
+      <p>If you are not registered, an invoice to a foreign client is also a plain invoice without GST. Pick the client's currency in the generator and the amount is shown in that currency. A Letter of Undertaking is something GST-registered exporters file, so it does not apply to you. If you are registered and bill clients abroad, read about the <a href="/export-invoice-without-igst-under-lut">export invoice under LUT</a>. Income tax and foreign exchange rules are separate from GST, so ask your CA about those.</p>
+      <h2>How to make the invoice here</h2>
+      <ol class="steps">
+        <li>The generator above opens in rupees with the tax rate at 0 and the title set to Invoice.</li>
+        <li>Type your name, address and email in the From box, and your client's name and address in Bill to.</li>
+        <li>Replace the example item with your own work, quantity and rate.</li>
+        <li>Fill in the PAN, bank, A/c number, IFSC and UPI lines in the notes box.</li>
+        <li>Click <em>Download PDF</em> and choose Save as PDF. Everything stays in your browser.</li>
+      </ol>
+      <h2>Official sources</h2>
+      <p>Registration limits and invoice rules are published on the <a href="https://www.gst.gov.in/">GST portal</a>. The text of the Act and the Rules is on the <a href="https://taxinformation.cbic.gov.in/">CBIC tax information site</a>.</p>`,
+    faq: [
+      ["Can I issue an invoice without GST in India?", "Yes. If you are not registered under GST, issue a plain invoice without GST. Leave out the GSTIN and the CGST, SGST and IGST lines, because only registered persons can collect GST."],
+      ["Is a PAN required on an invoice?", "No GST rule requires an unregistered person to show a PAN on an invoice. Clients who deduct TDS usually need it, so most freelancers include it. Ask your CA if you are unsure."],
+      ["What happens when my turnover crosses ₹20 lakh?", "For a service provider, GST registration is generally required once aggregate turnover crosses ₹20 lakh, or ₹10 lakh in the special category states. After that you issue tax invoices. Check the current limits and timelines on the GST portal or with a CA."],
+      ["Should I use a bill of supply if I am not registered?", "No. A bill of supply is issued by registered composition taxpayers and by registered suppliers of exempt goods or services. If you are not registered, issue a normal invoice."],
+      ["Can I invoice a foreign client without GST?", "If you are not registered, yes: issue an invoice without GST in the client's currency. If you are registered, you generally need a Letter of Undertaking to export services without paying IGST. See the export invoice under LUT page."],
+    ],
+    outro: "General information, not tax advice. GST rules change; check the GST portal or ask a chartered accountant.",
+  },
+  {
+    slug: "bill-of-supply-format", preset: "billofsupply", lang: "en-IN", priceCurrency: "INR", crumb: "Bill of supply format",
+    title: "Bill of Supply Format — Free Generator with Rule 49 Fields",
+    desc: "Bill of supply format for composition taxpayers and exempt suppliers in India: required details, the composition declaration and a free PDF generator.",
+    h1: "Bill of Supply Format (India)",
+    lead: "Make a bill of supply for a composition taxpayer or an exempt supply: no GST charged, the required particulars, and the composition declaration printed in bold.",
+    body: `      <p class="tldr"><strong>Quick answer:</strong> A bill of supply is issued instead of a tax invoice by registered suppliers who are composition taxpayers or who supply exempt goods or services. No GST is charged on it. It shows the supplier's name, address and GSTIN, a serial number of up to 16 characters, the date, the recipient's details, the HSN or accounting code, a description, the value after any discount, and a signature. A composition taxpayer also writes “Composition taxable person, not eligible to collect tax on supplies”.</p>
+      <h2>Who issues a bill of supply</h2>
+      <ul>
+        <li><strong>Composition taxpayers:</strong> registered businesses that opted for the composition scheme pay tax at a prescribed percentage of their turnover and cannot collect GST from customers. They issue a bill of supply for their sales.</li>
+        <li><strong>Suppliers of exempt goods or services:</strong> a registered person who supplies something that is exempt from GST issues a bill of supply for it, because there is no tax to show.</li>
+      </ul>
+      <p>A registered business that sells both taxable and exempt items uses a tax invoice for the taxable supplies and a bill of supply for the exempt ones. The rules allow a combined document in some cases, so ask your CA how to handle mixed sales. If you are not registered at all, you do not issue a bill of supply. Use a plain invoice instead, as described in our <a href="/invoice-format-without-gst">invoice format without GST</a>.</p>
+      <h2>Details a bill of supply should carry</h2>
+      <p>CGST Rule 49 lists the particulars of a bill of supply. In plain words:</p>
+      <ol class="steps">
+        <li>The supplier's name, address and GSTIN. Put these in the From box.</li>
+        <li>A consecutive serial number of up to 16 characters, made of letters, numbers, a hyphen or a slash, and unique for the financial year. For example BOS/26-27/001.</li>
+        <li>The date of issue.</li>
+        <li>The recipient's name and address, with their GSTIN or UIN if they are registered. Put these in Bill to.</li>
+        <li>The HSN code for goods, or the accounting code (SAC) for services.</li>
+        <li>A description of the goods or services.</li>
+        <li>The value of the supply after any discount or abatement. Because no tax is added, this is also the total.</li>
+        <li>The signature or digital signature of the supplier or an authorised representative. The generator does not place a signature for you, so sign the PDF or the printed copy.</li>
+      </ol>
+      <h2>The composition declaration</h2>
+      <p>A composition taxpayer writes this line on the bill of supply:</p>
+      <p><strong>Composition taxable person, not eligible to collect tax on supplies</strong></p>
+      <p>In the generator, click <em>Composition dealer</em> under Declaration and the line is printed in bold at the top of the bill of supply, under the title, on screen and in the PDF. That matches the composition rules, which ask for the wording at the top of the bill.</p>
+      <h2>Bill of supply vs tax invoice</h2>
+      <table><thead><tr><th></th><th>Bill of supply</th><th>Tax invoice</th></tr></thead><tbody>
+      <tr><td>Issued by</td><td>Registered composition taxpayers, and registered suppliers of exempt goods or services</td><td>Registered suppliers of taxable goods or services</td></tr>
+      <tr><td>GST charged</td><td>No</td><td>Yes: CGST + SGST or IGST</td></tr>
+      <tr><td>Tax lines</td><td>None</td><td>Rate and amount of each tax</td></tr>
+      <tr><td>Customer's input tax credit</td><td>None, because no GST is charged</td><td>Possible, subject to the GST conditions</td></tr>
+      <tr><td>Extra wording</td><td>Composition taxpayers add the composition declaration</td><td>Place of supply and the tax details</td></tr>
+      <tr><td>Rule</td><td>CGST Rules, Rule 49</td><td>CGST Rules, Rule 46</td></tr>
+      </tbody></table>
+      <h2>Make a bill of supply here</h2>
+      <ol class="steps">
+        <li>The generator above opens in rupees with the title set to Bill of Supply, the tax rate at 0 and the composition declaration filled in.</li>
+        <li>Add your name, address and GSTIN in From, and the customer's details in Bill to.</li>
+        <li>Replace the example line with your goods or services and the right HSN or accounting code. The example uses HSN 6109, which is for knitted T-shirts, so use the code for your own goods.</li>
+        <li>Check the notes lines for your GSTIN, bank and UPI details.</li>
+        <li>Click <em>Download PDF</em> and choose Save as PDF.</li>
+      </ol>
+      <h2>Official sources</h2>
+      <p>Rule 49 and the composition rules are published on the <a href="https://taxinformation.cbic.gov.in/">CBIC tax information site</a>. Registration and filing information is on the <a href="https://www.gst.gov.in/">GST portal</a>.</p>`,
+    faq: [
+      ["Who has to issue a bill of supply?", "Registered composition taxpayers, and registered suppliers of exempt goods or services, issue a bill of supply instead of a tax invoice. Businesses that are not registered are not required to issue one."],
+      ["Can I charge GST on a bill of supply?", "No. A composition taxpayer cannot collect tax from customers, and an exempt supply has no tax to collect, so a bill of supply shows no GST."],
+      ["How long can a bill of supply number be?", "The serial number can have up to 16 characters, made of letters, numbers, a hyphen or a slash, and it should be unique for the financial year. BOS/26-27/001 is one example."],
+      ["Do I need a GSTIN to issue a bill of supply?", "Yes. A bill of supply comes from a registered supplier and shows the supplier's GSTIN. If you are not registered, issue a plain invoice without a GSTIN."],
+      ["Is a bill of supply the same as an invoice without GST?", "No. A bill of supply is for registered composition taxpayers and exempt supplies. An unregistered freelancer or small business issues a plain invoice."],
+    ],
+    outro: "General information, not tax advice. GST rules change; check the GST portal or ask a chartered accountant.",
+  },
+  {
+    slug: "export-invoice-without-igst-under-lut", preset: "exportlut", lang: "en-IN", priceCurrency: "INR", crumb: "Export invoice under LUT",
+    title: "Export Invoice Under LUT — Free Format for Foreign Clients",
+    desc: "Export invoice under LUT without paying IGST: the endorsement wording, client and country details, and a free dollar invoice generator for Indian freelancers.",
+    h1: "Export Invoice Under LUT (Without IGST)",
+    lead: "For GST-registered freelancers and agencies billing clients abroad: the endorsement to print, the details to show, and a ready-to-edit invoice in dollars.",
+    body: `      <p class="tldr"><strong>Quick answer:</strong> If you are registered for GST and bill a client outside India, you can export services without charging IGST by filing a Letter of Undertaking (LUT, Form GST RFD-11) on the GST portal, generally once per financial year. The export invoice then carries a standard endorsement, the client's name and address, the delivery address, the country of destination and the amount in the foreign currency.</p>
+      <h2>Step 1: file the LUT before you export</h2>
+      <p>An export of services is a zero-rated supply. You can make it either by paying IGST and claiming a refund, or without paying IGST under a Letter of Undertaking. This page covers the LUT route. The LUT is Form GST RFD-11, filed online on the <a href="https://www.gst.gov.in/">GST portal</a> by a registered person, and it is generally filed once for each financial year, before you start exporting without paying IGST. The portal gives you an acknowledgement reference number (ARN), which is useful to quote on your invoices. The generator's notes box has a line for it.</p>
+      <h2>Export of services invoice format: what to show</h2>
+      <ul>
+        <li><strong>Title:</strong> Tax Invoice. An export of services is a zero-rated taxable supply, so the document is a tax invoice with no IGST charged.</li>
+        <li><strong>Your details:</strong> name, address and GSTIN in the From box.</li>
+        <li><strong>Number and date:</strong> a consecutive serial number, unique for the financial year, and the date of issue.</li>
+        <li><strong>The client:</strong> the overseas client's full name and address in Bill to.</li>
+        <li><strong>Delivery address and country of destination:</strong> write them in the notes, as the preset does.</li>
+        <li><strong>Description and code:</strong> what you did, with the SAC code for the service. The example uses SAC 998314, which is for IT design and development services. Use the code that matches your own service.</li>
+        <li><strong>Value:</strong> the currency and amount, for example 40 hours at $50 gives $2,000.00.</li>
+        <li><strong>Tax:</strong> none charged, plus the endorsement below.</li>
+        <li><strong>Place of supply:</strong> outside India.</li>
+        <li><strong>Payment details:</strong> your bank and SWIFT code, so the client can send the money.</li>
+      </ul>
+      <h2>The endorsement to write on the invoice</h2>
+      <p>An invoice issued under an LUT carries this wording:</p>
+      <p><strong>SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX</strong></p>
+      <p>In the generator, click <em>Export under LUT</em> under Declaration. The line is inserted exactly as written above and printed in bold at the top of the invoice, under the title, on screen and in the PDF.</p>
+      <h2>Invoice for a foreign client from India: currency</h2>
+      <p>You can bill in dollars, euros, pounds or another currency. Pick it in the generator and the invoice shows the currency and the amount. For your GST returns the value has to be stated in rupees using the exchange rate that the rules prescribe, so ask your CA which rate to use. Keep the bank's record of each foreign payment.</p>
+      <h2>When a supply counts as an export of services</h2>
+      <p>Not every invoice to a foreign client qualifies. The IGST Act sets conditions. For example, the supplier is in India, the client is outside India, the place of supply is outside India, and the payment is received in convertible foreign exchange (or in Indian rupees where the Reserve Bank of India permits). Other conditions also apply. If a condition is not met, IGST may be payable even though your client is abroad, so confirm the details for your service with a CA before you invoice without tax.</p>
+      <h2>Not registered for GST?</h2>
+      <p>An LUT is only for GST-registered suppliers. If you are a freelancer who is not required to register because your turnover is below the threshold, you do not file an LUT. You simply issue an invoice without GST. See the <a href="/invoice-format-without-gst">invoice format without GST</a>. If you are a composition taxpayer or sell exempt items, the <a href="/bill-of-supply-format">bill of supply format</a> covers your domestic sales.</p>
+      <h2>Make the export invoice here</h2>
+      <ol class="steps">
+        <li>The generator above opens in US dollars with the tax rate at 0, the title set to Tax Invoice and the LUT endorsement filled in. Change the currency if you bill in something else.</li>
+        <li>Add your name, address and GSTIN in From, and the client's name and address in Bill to.</li>
+        <li>Edit the example item, hours and rate.</li>
+        <li>Complete the notes: LUT ARN, country of destination and bank details with SWIFT code.</li>
+        <li>Click <em>Download PDF</em> and choose Save as PDF.</li>
+      </ol>
+      <h2>Official sources</h2>
+      <p>Forms, the LUT facility and notifications are on the <a href="https://www.gst.gov.in/">GST portal</a>. The text of the Acts and Rules is on the <a href="https://taxinformation.cbic.gov.in/">CBIC tax information site</a>.</p>`,
+    faq: [
+      ["What is an LUT in GST?", "A Letter of Undertaking (Form GST RFD-11) is filed online on the GST portal by a registered person. It lets you make an export without paying IGST. It is generally filed once per financial year."],
+      ["Do I file an LUT for every invoice?", "No. An LUT is generally filed once for the financial year and then covers your exports in that year. Check the current rules on the GST portal."],
+      ["Can my export invoice be in US dollars?", "Yes. Show the currency and the amount on the invoice. For GST returns the value is stated in rupees using the prescribed exchange rate, so ask your CA which rate to use."],
+      ["Do freelancers who are not registered for GST need an LUT?", "No. An LUT is for GST-registered suppliers. A freelancer who is not registered issues an invoice without GST. See the invoice format without GST page."],
+      ["Is every invoice to a foreign client an export of services?", "Not automatically. The IGST Act sets conditions, including that the place of supply is outside India and that payment is received in convertible foreign exchange. Confirm the details for your service with a CA."],
+    ],
+    outro: "General information, not tax advice. GST rules change; check the GST portal or ask a chartered accountant.",
   },
   {
     slug: "vat-invoice-template-uk", preset: "uk", crumb: "UK VAT invoice template",
@@ -234,9 +401,20 @@ const pages = [
         <div class="card"><h3><a href="/photography-invoice-template">Photography invoice</a></h3><p>Session fees, image packages, travel, retainers and usage licences.</p></div>
         <div class="card"><h3><a href="/contractor-invoice-template">Contractor invoice</a></h3><p>Labor and materials, change orders and progress billing for trades.</p></div>
         <div class="card"><h3><a href="/gst-invoice-generator">GST invoice (India)</a></h3><p>Rupees with a CGST + SGST split, GSTIN and HSN/SAC codes.</p></div>
+        <div class="card"><h3><a href="/invoice-format-without-gst">Invoice without GST</a></h3><p>A simple rupee invoice with PAN and UPI details for freelancers who are not GST-registered.</p></div>
+        <div class="card"><h3><a href="/bill-of-supply-format">Bill of supply</a></h3><p>For composition taxpayers and exempt supplies, with the composition declaration.</p></div>
+        <div class="card"><h3><a href="/export-invoice-without-igst-under-lut">Export invoice under LUT</a></h3><p>A dollar invoice with the LUT endorsement for GST-registered exporters of services.</p></div>
         <div class="card"><h3><a href="/vat-invoice-template-uk">UK VAT invoice</a></h3><p>Pounds with 20% VAT and the fields HMRC requires.</p></div>
         <div class="card"><h3><a href="/">Blank invoice</a></h3><p>Start from scratch in any of 24 currencies.</p></div>
       </div>
+      <h2>Which invoice do I need in India?</h2>
+      <table><thead><tr><th>Your situation</th><th>Document</th></tr></thead><tbody>
+      <tr><td>Registered for GST and charging GST</td><td><a href="/gst-invoice-generator">GST tax invoice</a></td></tr>
+      <tr><td>Not registered for GST</td><td><a href="/invoice-format-without-gst">Invoice without GST</a></td></tr>
+      <tr><td>Registered composition taxpayer, or selling exempt items</td><td><a href="/bill-of-supply-format">Bill of supply</a></td></tr>
+      <tr><td>Registered and billing a client abroad without IGST</td><td><a href="/export-invoice-without-igst-under-lut">Export invoice under LUT</a></td></tr>
+      </tbody></table>
+      <p>Rules differ by business and change over time, so confirm with a chartered accountant or on the GST portal.</p>
       <h2>Why use an online invoice generator instead of Word or Excel?</h2>
       <p>Spreadsheets break when you add rows, and Word templates don't calculate totals. A generator handles the maths, keeps invoice numbers in sequence, and gives you a clean PDF every time. InvoiceKit runs entirely in your browser, so your client data stays private.</p>`,
     faq: [],
@@ -270,7 +448,12 @@ const pages = [
 ];
 
 for (const p of pages) {
-  const schemaExtra = p.tool === false ? [] : [{ "@type": "WebApplication", name: p.h1, url: `${URL}/${p.slug}`, applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }];
-  writeFileSync(join(OUT, `${p.slug}.html`), page({ ...p, schemaExtra }));
+  const schemaExtra = p.tool === false ? [] : [{ "@type": "WebApplication", name: p.h1, url: `${URL}/${p.slug}`, applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: p.priceCurrency || "USD" } }];
+  const file = join(OUT, `${p.slug}.html`);
+  let html = page({ ...p, schemaExtra });
+  // Keep the footer links block that tools/finalize.mjs filled in on a previous run.
+  const net = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;
+  if (existsSync(file)) { const old = readFileSync(file, "utf8").match(net); if (old) html = html.replace(net, () => old[0]); }
+  writeFileSync(file, html);
 }
 console.log(`wrote ${pages.length} pages`);

@@ -1,6 +1,6 @@
 # InvoiceKit
 
-> InvoiceKit is a free online invoice generator. It works with no signup, runs entirely in the browser (nothing is uploaded) and downloads invoices as PDF. It supports 24 currencies, tax/VAT/GST (including the CGST + SGST split for India), discounts and payment notes. Every feature is free, including a logo, saved clients, invoice history and three designs. There is no paid tier. Each invoice carries a small "Made with InvoiceKit" credit.
+> InvoiceKit is a free online invoice generator. It works with no signup, runs entirely in the browser (nothing is uploaded) and downloads invoices as PDF. It supports 24 currencies, tax/VAT/GST (including the CGST + SGST split for India), discounts, payment notes, a choice of document title (Invoice, Tax Invoice, Bill of Supply, Proforma Invoice) and an optional declaration line such as the GST export-under-LUT or composition wording. Every feature is free, including a logo, saved clients, invoice history and three designs. There is no paid tier. Each invoice carries a small "Made with InvoiceKit" credit.
 
 ## Tool
 - [Free invoice generator](https://invoice.roohsites.com/): create, preview and download a PDF invoice in about a minute.
@@ -10,6 +10,9 @@
 - [Photography invoice template](https://invoice.roohsites.com/photography-invoice-template): session fees, image packages, retainers, usage licences.
 - [Contractor invoice template](https://invoice.roohsites.com/contractor-invoice-template): labor and materials, change orders, progress billing.
 - [GST invoice generator (India)](https://invoice.roohsites.com/gst-invoice-generator): GSTIN, HSN/SAC, CGST + SGST or IGST.
+- [Invoice format without GST (India)](https://invoice.roohsites.com/invoice-format-without-gst): plain rupee invoice with PAN and UPI details for unregistered freelancers.
+- [Bill of supply format (India)](https://invoice.roohsites.com/bill-of-supply-format): composition taxpayers and exempt supplies, Rule 49 particulars, composition declaration.
+- [Export invoice under LUT](https://invoice.roohsites.com/export-invoice-without-igst-under-lut): zero-rated export of services without IGST, LUT endorsement, foreign currency.
 - [UK VAT invoice template](https://invoice.roohsites.com/vat-invoice-template-uk): 20% VAT and the fields HMRC requires.
 - [All invoice templates](https://invoice.roohsites.com/invoice-templates)
 

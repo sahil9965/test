@@ -10,6 +10,11 @@
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const day = (d = 0) => { const t = new Date(Date.now() + d * 864e5); return t.toISOString().slice(0, 10); };
   const CUR = ["USD","EUR","GBP","INR","CAD","AUD","NZD","SGD","AED","CHF","JPY","ZAR","BRL","MXN","SEK","NOK","DKK","PLN","PHP","NGN","KES","PKR","MYR","IDR"];
+  // Standard GST endorsements, used by the preset declarations and the insert buttons.
+  const DECL = {
+    lut: "SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX",
+    comp: "Composition taxable person, not eligible to collect tax on supplies",
+  };
   const PRESETS = {
     default: { items: [{ d: "", q: 1, r: 0 }] },
     freelancer: { items: [{ d: "Design work (hours)", q: 10, r: 60 }, { d: "Revisions", q: 2, r: 60 }], notes: "Payment due within 14 days. Thank you for your business!" },
@@ -17,6 +22,9 @@
     contractor: { items: [{ d: "Labor (hours)", q: 16, r: 55 }, { d: "Materials", q: 1, r: 380 }, { d: "Disposal / cleanup", q: 1, r: 75 }], taxLabel: "Sales tax", tax: 0, notes: "Payment due upon completion. Materials remain property of the contractor until paid in full." },
     gst: { currency: "INR", taxLabel: "GST", tax: 18, split: true, items: [{ d: "Consulting services (SAC 998311)", q: 1, r: 25000 }], notes: "Bank: \nA/c No: \nIFSC: \nUPI: " },
     uk: { currency: "GBP", taxLabel: "VAT", tax: 20, items: [{ d: "Professional services", q: 1, r: 500 }], notes: "Payment by bank transfer.\nSort code: \nAccount number: " },
+    nogst: { currency: "INR", tax: 0, title: "Invoice", items: [{ d: "Website design (fixed fee)", q: 1, r: 40000 }], notes: "PAN: \nBank: \nA/c No: \nIFSC: \nUPI: " },
+    billofsupply: { currency: "INR", tax: 0, title: "Bill of Supply", declaration: DECL.comp, items: [{ d: "Cotton T-shirts (HSN 6109)", q: 10, r: 350 }], notes: "GSTIN: \nBank: \nUPI: " },
+    exportlut: { currency: "USD", tax: 0, title: "Tax Invoice", declaration: DECL.lut, items: [{ d: "Software development services (SAC 998314), 40 hours", q: 40, r: 50 }], notes: "LUT ARN: \nPlace of supply: Outside India\nCountry of destination: \nBank (SWIFT): " },
   };
   const preset = PRESETS[mount.dataset.preset] || PRESETS.default;
 
@@ -40,6 +48,8 @@
       <div class="row"><div><label for="ik-date">Issue date</label><input type="date" id="ik-date" name="date"></div><div><label for="ik-due">Due date</label><input type="date" id="ik-due" name="due"></div></div>
       <label for="ik-template">Template</label>
       <select id="ik-template" name="template"><option value="classic">Classic</option><option value="modern">Modern</option><option value="minimal">Minimal</option></select>
+      <label for="ik-docTitle">Document title</label>
+      <select id="ik-docTitle" name="docTitle"><option value="">Auto</option><option>Invoice</option><option>Tax Invoice</option><option>Bill of Supply</option><option>Proforma Invoice</option></select>
       <h3>Line items</h3>
       <div class="ik-item small muted" aria-hidden="true"><span>Description</span><span>Qty</span><span>Rate</span><span></span></div>
       <div class="ik-items"></div>
@@ -50,6 +60,9 @@
       </div>
       <label class="ik-check"><input type="checkbox" name="split"> Split tax in half (e.g. CGST + SGST)</label>
       <label for="ik-discount">Discount %</label><input type="number" step="any" min="0" id="ik-discount" name="discount">
+      <h3>Declaration (optional)</h3>
+      <textarea id="ik-declaration" name="declaration" aria-label="Declaration" placeholder="Printed in bold at the top, under the title, e.g. a GST endorsement"></textarea>
+      <div class="ik-decl"><button type="button" class="btn ghost sm" data-a="declLut">Export under LUT</button><button type="button" class="btn ghost sm" data-a="declComp">Composition dealer</button></div>
       <h3>Notes &amp; payment details</h3>
       <textarea id="ik-notes" name="notes" placeholder="Bank / PayPal / UPI details, payment terms, thank-you note"></textarea>
     </form>
@@ -62,12 +75,13 @@
   const blank = () => ({
     from: store.get("from", ""), to: "", number: nextNumber(), currency: preset.currency || store.get("currency", "USD"),
     date: day(), due: day(14), template: "classic", taxLabel: preset.taxLabel || "Tax", tax: preset.tax ?? 0, split: !!preset.split,
+    docTitle: preset.title || "", declaration: preset.declaration || "",
     discount: 0, notes: preset.notes ?? store.get("notes", ""), items: structuredClone(preset.items),
   });
   // Landing pages start from their preset; the home page resumes the last draft.
   let inv = (!mount.dataset.preset && store.get("draft", null)) || blank();
 
-  const FIELDS = ["from","to","number","currency","date","due","template","taxLabel","tax","discount","notes"];
+  const FIELDS = ["from","to","number","currency","date","due","template","docTitle","taxLabel","tax","discount","declaration","notes"];
   function load(v) {
     inv = structuredClone(v);
     FIELDS.forEach(k => { f[k].value = inv[k] ?? ""; });
@@ -100,9 +114,10 @@
       : `<div><span>${label} (${num(inv.tax)}%)</span><span>${money(tax)}</span></div>`;
     p.innerHTML = `
       <div class="p-head">
-        <div>${logo ? `<img class="p-logo" src="${logo}" alt="Business logo">` : ""}<p class="p-title">${inv.taxLabel === "GST" || inv.taxLabel === "VAT" ? "Tax Invoice" : "Invoice"}</p></div>
+        <div>${logo ? `<img class="p-logo" src="${logo}" alt="Business logo">` : ""}<p class="p-title">${esc(inv.docTitle || (inv.taxLabel === "GST" || inv.taxLabel === "VAT" ? "Tax Invoice" : "Invoice"))}</p></div>
         <div class="p-meta r"><b>${esc(inv.number)}</b><br>Issued ${esc(inv.date)}<br>Due ${esc(inv.due)}</div>
       </div>
+      ${inv.declaration ? `<div class="p-decl"><div class="p-label">Declaration</div>${esc(inv.declaration)}</div>` : ""}
       <div class="p-parties"><div><div class="p-label">From</div>${esc(inv.from)}</div><div><div class="p-label">Bill to</div>${esc(inv.to)}</div></div>
       <table><thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead><tbody>
       ${inv.items.map(it => `<tr><td>${esc(it.d)}</td><td class="r">${num(it.q)}</td><td class="r">${money(num(it.r))}</td><td class="r">${money(num(it.q) * num(it.r))}</td></tr>`).join("")}
@@ -148,6 +163,11 @@
     const a = e.target.closest("[data-a]")?.dataset.a;
     if (a === "add") { inv.items.push({ d: "", q: 1, r: 0 }); renderItems(); render(); }
     else if (a === "new") load(blank());
+    else if (a === "declLut" || a === "declComp") {
+      const t = DECL[a === "declLut" ? "lut" : "comp"], cur = inv.declaration || "";
+      if (!cur.includes(t)) inv.declaration = cur.trim() ? cur.replace(/\s+$/, "") + "\n" + t : t;
+      f.declaration.value = inv.declaration; render();
+    }
     else if (a === "dup") { if (Pro.require("Duplicate any invoice with one click.")) load({ ...structuredClone(inv), number: "INV-" + String(Math.max(store.get("seq", 0), parseInt(String(inv.number).replace(/\D/g, ""), 10) || 0) + 1).padStart(4, "0"), date: day(), due: day(14) }); }
     else if (a === "saveClient") {
       if (!Pro.require("Save clients and fill them in with one click.") || !inv.to.trim()) return;

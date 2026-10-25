@@ -17,6 +17,18 @@
     "/freelance-invoice-template": [
       ["https://ugcrates.roohsites.com/how-much-to-charge-for-ugc", "How much to charge for UGC", "set your rates before you invoice"],
       ["https://giftcert.roohsites.com/", "Numbered gift certificate maker", "sell prepaid sessions as gift certificates"]
+    ],
+    "/invoice-format-without-gst": [
+      ["https://raffle.roohsites.com/lucky-draw-coupon-generator", "Lucky draw coupon generator", "numbered coupons for a customer or society event"],
+      ["https://ugcrates.roohsites.com/", "UGC rate calculator", "work out your rate before you invoice a brand"]
+    ],
+    "/bill-of-supply-format": [
+      ["https://raffle.roohsites.com/lucky-draw-coupon-generator", "Lucky draw coupon generator", "numbered coupons for a customer or society event"],
+      ["https://ugcrates.roohsites.com/", "UGC rate calculator", "work out your rate before you invoice a brand"]
+    ],
+    "/export-invoice-without-igst-under-lut": [
+      ["https://raffle.roohsites.com/lucky-draw-coupon-generator", "Lucky draw coupon generator", "numbered coupons for a customer or society event"],
+      ["https://ugcrates.roohsites.com/", "UGC rate calculator", "work out your rate before you invoice a brand"]
     ]
   },
   "giftstub": {

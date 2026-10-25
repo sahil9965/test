@@ -9,6 +9,7 @@
 .ik-bar select{width:auto}
 .ik-item{display:grid;grid-template-columns:minmax(0,1fr) 58px 86px 28px;gap:6px;margin-bottom:6px}
 .ik-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:20px;line-height:1}
+.ik-decl{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .ik-check{display:flex;gap:8px;align-items:center;font-weight:500;color:var(--fg)}
 /* Invoice paper stays light in dark mode, like real paper */
 .ik-paper{background:#fff;color:#1b1b1f;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.06);padding:44px;min-height:880px;font-size:14px;position:relative;overflow:hidden}
@@ -26,6 +27,7 @@
 .p-totals div{display:flex;justify-content:space-between;padding:4px 0}
 .p-totals .grand{border-top:2px solid #1b1b1f;margin-top:6px;padding-top:10px;font-size:18px;font-weight:750}
 .p-notes{margin-top:34px;white-space:pre-line;color:#444}
+.p-decl{margin-top:22px;white-space:pre-line;font-weight:700;color:#1b1b1f}
 .p-wm{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:11px;color:#9a9aa6}
 .p-wm a{color:#6b6b76;text-decoration:none;font-weight:600}
 .ik-paper.t-modern .p-head{background:#2f5bea;color:#fff;margin:-44px -44px 0;padding:34px 44px}

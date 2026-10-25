@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://invoice.roohsites.com/</loc><lastmod>2026-10-08</lastmod><priority>1.0</priority></url>
-  <url><loc>https://invoice.roohsites.com/about</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/contractor-invoice-template</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/freelance-invoice-template</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/gst-invoice-generator</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/invoice-templates</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/photography-invoice-template</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/privacy</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
-  <url><loc>https://invoice.roohsites.com/vat-invoice-template-uk</loc><lastmod>2026-10-08</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/</loc><lastmod>2026-10-25</lastmod><priority>1.0</priority></url>
+  <url><loc>https://invoice.roohsites.com/about</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/bill-of-supply-format</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/contractor-invoice-template</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/export-invoice-without-igst-under-lut</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/freelance-invoice-template</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/gst-invoice-generator</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/invoice-format-without-gst</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/invoice-templates</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/photography-invoice-template</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/privacy</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://invoice.roohsites.com/vat-invoice-template-uk</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
 </urlset>
