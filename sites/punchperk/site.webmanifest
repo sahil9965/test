@@ -1,0 +1,15 @@
+{
+  "name": "PunchPerk",
+  "short_name": "PunchPerk",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#4d7c0f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
