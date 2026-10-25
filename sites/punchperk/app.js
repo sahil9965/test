@@ -250,9 +250,9 @@
     if (s.serials) $(".pp-count").textContent = `${fmtInt(s.cards)} ${s.cards === 1 ? "card" : "cards"}: ${first}${s.cards > 1 ? " to " + C.fmtNum(s.end, s) : ""}`;
     const per = g.perPage;
     $(".pp-sum").textContent = `${fmtInt(s.cards)} ${s.cards === 1 ? "card" : "cards"} on ${fmtInt(sheets)} ${sheets === 1 ? "sheet" : "sheets"} of ${g.paperName}, ${per} per page${s.cards % per ? ` (the last sheet has ${s.cards % per})` : ""}. The PDF has ${fmtInt(pages)} ${pages === 1 ? "page" : "pages"}${s.back ? " including the backs" : ""}.`;
-    const inch = v => (v / 72).toFixed(2).replace(/0$/, ""), mmv = v => Math.round((v / 72) * 25.4);
+    const inch = v => String(+(v / 72).toFixed(2)).replace(/^(\d+)$/, "$1.0").replace(/^(\d+\.\d)$/, "$1"), mmv = v => Math.round((v / 72) * 25.4);
     const facts = [`Each card: ${inch(g.cardW)} × ${inch(g.cardH)} in (${mmv(g.cardW)} × ${mmv(g.cardH)} mm)`];
-    facts.push(L.plain ? "Plain paper: 1/8 in gaps and crop marks for cutting by hand" : "For pre-cut business card sheets with no gaps (compatible with Avery-style 10-up sheets)");
+    facts.push(L.plain ? "Plain paper: 1/8 in gaps and crop marks for cutting by hand" : "For pre-cut 10-up business card sheets with no gaps (compatible with Avery 8371 and 5371 style sheets)");
     facts.push("Print at 100% / Actual size, not Fit to page");
     if (s.back) facts.push("Two-sided: flip on long edge");
     $(".pp-facts").innerHTML = facts.map(f => `<li>${esc(f)}</li>`).join("");

@@ -1,0 +1,30 @@
+# PunchPerk
+
+> PunchPerk is a free online maker for printable loyalty punch cards. It works with no signup and runs entirely in the browser (nothing is uploaded). It prints 10 business-card-size punch cards per page on US Letter (3.5 x 2 in, 2 x 5, compatible with 10-up business card sheets) or A4 (85 x 55 mm, 2 x 5), or 8 per page on plain paper with 1/8 in gaps and crop marks. Cards have 5 to 12 punches in 1 or 2 rows, plain circles or 10 vector icons, an optional filled reward spot, optional serial numbers (prefix, start number, zero padding) and staff initials boxes, up to 500 cards per PDF. Optional matching backs (address, hours, social handle, QR code) are mirrored for two-sided printing with flip on long edge. It also saves a PNG of the card front and an alignment test PDF. Every feature is free. There is no paid tier. Each sheet carries a small "Made with PunchPerk" credit in the page margin, outside the cards.
+
+## Tool
+- [Printable punch card template](https://punchcard.roohsites.com/): design a punch card, set the number of punches and cards, and download a print-ready PDF, 10 per page.
+
+## Templates
+- [Coffee punch card template](https://punchcard.roohsites.com/coffee-punch-card-template): 10-punch coffee card with a free-drink reward for carts, trucks and cafés.
+- [Salon loyalty card template](https://punchcard.roohsites.com/salon-loyalty-card-template): salon and barber cards with scissors punches and a QR code to your booking page.
+- [Behavior punch card printable](https://punchcard.roohsites.com/behavior-punch-card-printable): classroom behavior cards for teachers, with a Name line and a prize.
+- [Reward punch card for kids](https://punchcard.roohsites.com/reward-punch-card-for-kids): reading and chore reward cards for parents and teachers.
+- [Punch card template, 10 per page](https://punchcard.roohsites.com/punch-card-template-10-per-sheet): business card sheet layouts, exact margins, alignment test and duplex backs.
+- [Editable punch card template](https://punchcard.roohsites.com/editable-punch-card-template): edit the card in the browser, no Canva and no login.
+
+## Guides
+- [How to run a punch card loyalty program](https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program): reward sizing, stamp rules, expiry choices and tracking cards with serial numbers.
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: card text, logos and settings stay in the browser. Nothing is uploaded.
+- Output: print-ready PDF (pdf-lib), PNG of the card front, alignment test PDF.
+- Layouts: US Letter 10-up (3.5 x 2 in, 0.5 in top and bottom margins, 0.75 in side margins), A4 10-up (85 x 55 mm), plain Letter or A4 with crop marks (8 per page).
+- Presets: Coffee, Salon & barber, Car wash, Bakery, Dog grooming, Classroom behavior, Reading & chores, General.
+- Serial numbers and staff initials help track cards but are not fraud-proof: printed cards can be copied.
+- Not affiliated with Avery, Canva or any print shop.
+
+## Optional
+- [About](https://punchcard.roohsites.com/about)
+- [Privacy & Terms](https://punchcard.roohsites.com/privacy)
