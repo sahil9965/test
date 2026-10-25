@@ -1,5 +1,5 @@
 // TicketRun UI. #tr-tool mounts the ticket generator (data-preset / data-start / data-end /
-// data-per-page set landing-page defaults); #tr-picker mounts the fair raffle winner picker.
+// data-per-page / data-paper set landing-page defaults); #tr-picker mounts the fair raffle winner picker.
 // Everything runs in the browser: PDFs are built with pdf-lib in a Web Worker, nothing is uploaded.
 (() => {
   const C = window.TRCore;
@@ -261,6 +261,7 @@
       if (ds.end) st.end = +ds.end;
       if (ds.perPage) st.perPage = +ds.perPage;
       if (ds.pad) st.pad = ds.pad;
+      if (ds.paper === "a4" || ds.paper === "letter") st.paper = ds.paper;
     }
     let logo = !presetName ? okLogo(store.get("logo", null)) : null; // { dataUrl, aspect }
     let logoBytes = null;
@@ -325,7 +326,7 @@
       $(".tr-tsvg").innerHTML = C.svgTicket(s, lay, g.cellW, g.cellH, 0, names, logo && logo.dataUrl);
       $(".tr-ssvg").innerHTML = C.svgSheet(s, g, lay, 0, names, logo && logo.dataUrl);
       const inch = v => (v / 72).toFixed(2).replace(/0$/, ""), mm = v => Math.round((v / 72) * 25.4);
-      const tk = s.count === 1 ? "ticket" : "tickets";
+      const noun = s.preset === "lucky" ? "coupon" : "ticket", tk = s.count === 1 ? noun : noun + "s";
       $(".tr-count").textContent = `${fmtInt(s.count)} ${tk}: ${C.fmtNum(s.start, s)} to ${C.fmtNum(s.end, s)}`;
       $(".tr-sum").textContent = `${fmtInt(s.count)} ${tk} on ${fmtInt(sheets)} ${sheets === 1 ? "sheet" : "sheets"} of ${g.paperName}, ${s.perPage} per page.`;
       const facts = [
@@ -358,6 +359,9 @@
       if (t.name === "preset") {
         const keep = {};
         ["start", "end", "prefix", "suffix", "pad", "numLabel", "paper", "order", "crop", "borders", "design", "color", "font"].forEach(k => { keep[k] = st[k]; });
+        // A preset can bring its own number label ("Coupon No."); keep the label only if the user changed it.
+        const lab = p => (C.PRESETS[p] && C.PRESETS[p].numLabel) || C.DEFAULTS.numLabel;
+        if (st.numLabel === lab(st.preset)) keep.numLabel = lab(t.value);
         st = Object.assign(C.presetState(t.value), keep);
         writeForm();
         schedule();

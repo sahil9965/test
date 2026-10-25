@@ -27,7 +27,7 @@ const S = { l8: size("letter", 8), l10: size("letter", 10), l20: size("letter", 
 const FOOT = `  <footer class="site">
     <div class="cols">
       <div><h4>${NAME}</h4><ul><li><a href="/">Raffle ticket generator</a></li><li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li><li><a href="/raffle-winner-picker">Raffle winner picker</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
-      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
+      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/lucky-draw-coupon-generator">Lucky draw coupons</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
       <div><h4>Number ranges</h4><ul><li><a href="/raffle-tickets-1-100">Raffle tickets 1-100</a></li><li><a href="/raffle-tickets-1-250">Raffle tickets 1-250</a></li><li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li><li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li><li><a href="/raffle-tickets-1-2000">Raffle tickets 1-2000</a></li><li><a href="/how-to-number-raffle-tickets-in-word">Numbering tickets in Word</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
@@ -43,6 +43,7 @@ const RELATED = `      <h2>More ticket types and guides</h2>
         <li><a href="/drink-tickets">Drink tickets</a></li>
         <li><a href="/door-prize-tickets">Door prize tickets</a></li>
         <li><a href="/meal-tickets">Meal tickets</a></li>
+        <li><a href="/lucky-draw-coupon-generator">Lucky draw coupons</a></li>
         <li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li>
         <li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li>
         <li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li>
@@ -52,10 +53,10 @@ const RELATED = `      <h2>More ticket types and guides</h2>
 
 const LEGAL = `<p class="note"><strong>Check your local raffle rules.</strong> Raffle and 50/50 laws vary by state, province and country: some require a licence or limit raffles to registered charities and nonprofits, and some restrict prices, prizes or online sales. This page is general information, not legal advice.</p>`;
 
-function head({ title, desc, path, graph }) {
+function head({ title, desc, path, graph, lang }) {
   const url = URL + path;
   return `<!doctype html>
-<html lang="en">
+<html lang="${lang || "en"}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -88,23 +89,23 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 }
 
 const faqLd = faq => ({ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) });
-const appLd = (name, path, desc, features) => ({
+const appLd = (name, path, desc, features, cur) => ({
   "@type": "WebApplication", name, url: URL + path, description: desc, applicationCategory: "UtilitiesApplication",
   operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true,
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  offers: { "@type": "Offer", price: "0", priceCurrency: cur || "USD" },
   ...(features ? { featureList: features } : {}),
   publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 const faqHtml = (faq, h = "Frequently asked questions") => `      <h2 id="faq">${h}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
+const updated = (extra, d) => `      <p class="small muted">Last updated <time datetime="${d ? d[0] : DATE}">${d ? d[1] : DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
 function toolSection(o) {
   if (o.picker) return `    <section class="tool card" aria-label="Raffle winner picker"><div id="tr-picker"></div></section>\n`;
-  const attrs = Object.entries(o).filter(([k, v]) => v !== "" && ["preset", "start", "end", "perPage"].includes(k)).map(([k, v]) => ` data-${k === "perPage" ? "per-page" : k}="${v}"`).join("");
+  const attrs = Object.entries(o).filter(([k, v]) => v !== "" && ["preset", "start", "end", "perPage", "paper"].includes(k)).map(([k, v]) => ` data-${k === "perPage" ? "per-page" : k}="${v}"`).join("");
   return `    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool"${attrs}></div></section>\n`;
 }
 
-function page({ path, title, desc, h1, lead, badges, tool, body, faq = [], crumb, schema = [], nav, noRelated }) {
+function page({ path, title, desc, h1, lead, badges, tool, body, faq = [], crumb, schema = [], nav, noRelated, lang, date }) {
   const isHome = path === "/";
   const graph = [];
   if (!isHome) graph.push({ "@type": "BreadcrumbList", itemListElement: [
@@ -115,7 +116,7 @@ function page({ path, title, desc, h1, lead, badges, tool, body, faq = [], crumb
   const navHtml = nav || (isHome
     ? `<a href="#how">How it works</a><a href="/raffle-winner-picker">Winner picker</a><a href="#faq">FAQ</a>`
     : `<a href="/">Ticket generator</a><a href="/raffle-winner-picker">Winner picker</a><a href="/about">About</a>`);
-  return `${head({ title, desc, path, graph })}
+  return `${head({ title, desc, path, graph, lang })}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
@@ -130,7 +131,7 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
 ${tool ? toolSection(tool) : ""}    <article class="content narrow">
 ${body}
-${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal advice.")}
+${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal advice.", date)}
     </article>
   </main>
 ${FOOT}
@@ -403,6 +404,243 @@ ${R.unique}
     faq: R.faq,
   });
 }
+
+/* ------------------------------------------------- lucky draw coupons (India) */
+const INR = v => "₹" + Number(v).toLocaleString("en-IN");
+const LEGAL_IN = `<p class="note"><strong>Check local rules before you start.</strong> Rules on lucky draws and lotteries differ between Indian states. These coupons are meant for community occasions such as society functions, school fetes and office parties. If you plan to sell coupons to the public, or the prizes are large, check local rules first. This page is general information, not legal advice.</p>`;
+const LUCKY_LEGAL = ["Is a lucky draw legal?", "Rules on lucky draws and lotteries differ between Indian states. For a draw where coupons are sold to the public or the prizes are large, check local rules before you start. This site does not give legal advice."];
+const LUCKY_RELATED = cur => {
+  const L = [["/lucky-draw-coupon-generator", "Lucky draw coupon generator"], ["/lucky-draw-coupons-1-to-1000", "Lucky draw coupons 1 to 1000"], ["/diwali-lucky-draw-coupons", "Diwali lucky draw coupons"], ["/raffle-winner-picker", "Winner picker for the draw"], ["/door-prize-tickets", "Free entry tickets with stubs"], ["/numbered-raffle-ticket-generator", "Prefixes, digits and number order"]];
+  return `      <h2>More lucky draw guides</h2>\n      <ul class="related">\n${L.filter(([h]) => h !== cur).map(([h, t]) => `        <li><a href="${h}">${t}</a></li>`).join("\n")}\n      </ul>`;
+};
+const lucky1000 = [10, 20, 50, 100];
+
+P.push({
+  path: "/lucky-draw-coupon-generator", crumb: "Lucky draw coupon generator", lang: "en-IN", cur: "INR", date: ["2026-10-25", "25 October 2026"], noRelated: true,
+  tool: { preset: "lucky", start: 1, end: 500, paper: "a4" },
+  title: "Lucky Draw Coupon Generator (Free, Numbered, Printable)",
+  desc: "Free lucky draw coupon generator: numbered coupons with matching stubs, 10 per A4 page, your own ₹ price and crop marks. Download a print-ready PDF.",
+  h1: "Lucky Draw Coupon Generator (Free, Numbered, Printable)",
+  lead: "Type your event details, choose how many coupons you need and download an A4 PDF in which every coupon and its stub carry the same number. Free, no signup, and nothing is uploaded.",
+  badges: ["100% free", "Numbered coupons and stubs", "A4, 10 per page", "No signup"],
+  body: `      <p class="tldr"><strong>Quick answer:</strong> To make lucky draw coupons, set the first and last coupon number in the generator above (for example 1 to 500), change the event name, draw time, venue and coupon price, then click <em>Download PDF</em>. Every coupon and its stub get the same number, ten coupons to an A4 page. Print at 100% scale, cut along the crop marks and keep the stubs safe for the draw.</p>
+
+      <p>A lucky draw coupon is a numbered slip with a matching stub. The participant keeps the coupon, the organiser keeps the stub, and at the draw the number that is called out is checked against the coupon in the winner's hand. That is the whole system, and it suits a school fete, a housing society get-together, a community mela or an office party. The generator above uses the <em>Lucky draw</em> preset: <em>Coupon No.</em> before each number, A4 paper, ten coupons per page, and Name and Phone lines on the stub.</p>
+
+      <h2>How to make lucky draw coupons in 5 steps</h2>
+      <ol class="steps">
+        <li><strong>Set the numbers.</strong> Enter the first and last coupon number. For 500 coupons use 1 and 500. Leave <em>Digits</em> on Auto and the numbers print as 001 to 500, which is easier to read out and to sort.</li>
+        <li><strong>Write the coupon.</strong> Add the event name, a line such as the occasion in <em>Prize or main line</em>, the draw time, the venue, the coupon price and the small print. The preview updates as you type.</li>
+        <li><strong>Choose the stub.</strong> Name and Phone lines are ticked, so the holder can be reached if they are not present when the number is called. Untick Phone for an office party.</li>
+        <li><strong>Check the paper.</strong> A4 and ten per page are already selected on this page. Pick eight per page for larger coupons with a logo.</li>
+        <li><strong>Download, test, print.</strong> Print the <em>Test sheet</em> on plain paper first, then the full PDF at 100% / Actual size.</li>
+      </ol>
+
+      <h2>What goes on the coupon and what goes on the stub</h2>
+      <table>
+        <thead><tr><th>Part</th><th>Who keeps it</th><th>What is printed</th></tr></thead>
+        <tbody>
+          <tr><td>Coupon</td><td>The participant</td><td>Coupon number, event name, draw time, venue, price and small print such as “The winner must show the matching number”.</td></tr>
+          <tr><td>Stub</td><td>The organiser, in the box for the draw</td><td>The same number, with write-in lines for the name and phone number.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Coupon sizes on A4</h2>
+      <p>A4 is the standard paper size in India, and this page opens with A4 already selected, so there is nothing to resize. Every page keeps a margin for crop marks and a sheet number, and neighbouring coupons share their cut lines.</p>
+      <table>
+        <thead><tr><th>Layout</th><th>Size on A4</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>8 per page (2 × 4)</td><td>${S.a8.mm}</td><td>Coupons with a society or school logo, or a long prize list</td></tr>
+          <tr><td>10 per page (2 × 5)</td><td>${S.a10.mm}</td><td>Most lucky draws; the setting used on this page</td></tr>
+          <tr><td>20 per page (4 × 5, no stub)</td><td>${S.a20.mm}</td><td>Small free-entry slips where you do not need a stub</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Plan the prize tiers before you print</h2>
+      <p>Decide the prizes first, because they decide how many coupons you need and what to charge. A simple plan has three tiers: one bumper prize, a few second prizes and a larger number of small consolation prizes, so that more people go home with something. Draw the small prizes first and the bumper prize last, which keeps everyone at the venue until the end.</p>
+      <table>
+        <thead><tr><th>Example: 500 coupons</th><th>Winners</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Bumper prize</td><td>1</td><td>Drawn last</td></tr>
+          <tr><td>Second prizes</td><td>3</td><td>Drawn after the consolation prizes</td></tr>
+          <tr><td>Consolation prizes</td><td>10</td><td>Drawn first; sweets, plants or small gifts</td></tr>
+        </tbody>
+      </table>
+      <p>Check the sums before you print. If every one of the 500 coupons is issued, the amount collected is the number of coupons times the price, and it has to cover the prizes, the printing and anything else the event needs. Donated prizes allow a lower price; bought prizes mean working backwards from their cost.</p>
+      <table>
+        <thead><tr><th>Coupon price</th><th>${INR(20)}</th><th>${INR(50)}</th><th>${INR(100)}</th></tr></thead>
+        <tbody>
+          <tr><td>All 500 coupons issued</td><td>${INR(500 * 20)}</td><td>${INR(500 * 50)}</td><td>${INR(500 * 100)}</td></tr>
+          <tr><td>Half issued (250)</td><td>${INR(250 * 20)}</td><td>${INR(250 * 50)}</td><td>${INR(250 * 100)}</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Print on A4 at home or at a local print shop</h2>
+      <ul>
+        <li><strong>At home:</strong> print the Test sheet first. In the print dialog choose A4, single-sided and a scale of 100% or Actual size, never Fit to page. Ordinary copier paper works for a small draw; slightly thicker paper feels better and tears more cleanly at the stub.</li>
+        <li><strong>At a print shop:</strong> take the PDF on a pen drive or email it to the shop. Ask for A4, 100% scale, single-sided, on the paper or colour you want. Colour printing usually costs more per page than black and white, so ask for both prices; the Minimal design uses black ink only.</li>
+        <li><strong>For bigger runs:</strong> a shop with a guillotine can cut the whole pile along the crop marks in minutes, which beats scissors by a long way once you pass a few hundred coupons.</li>
+      </ul>
+
+      <h2>Cutting the coupons and keeping the stubs</h2>
+      <ol class="steps">
+        <li>Trim the four margins along the crop marks, then make one cut down the middle and four across (at 10 per page).</li>
+        <li>Fold back and forth along the dashed line so the stub tears off cleanly.</li>
+        <li>When a coupon is given out, write the name and phone number on the stub, tear it off and drop it straight into a closed box with a slit. Loose stubs in a pile get lost.</li>
+        <li>At the end of the issue, count the stubs in the box. The count should match the number of coupons given out.</li>
+      </ol>
+
+      <h2>Run the draw fairly</h2>
+      <p>Explain the rules before the first coupon is given out: the draw time, the prizes and what happens if a winner is not there. On the day, ask someone who is not handing out coupons to draw. Mix the stubs, draw in front of everyone, read the number out twice and check it against the coupon the winner holds. Write down each number and winner as you go.</p>
+      <p>If you would rather draw by number than from a box, the free <a href="/raffle-winner-picker">raffle winner picker</a> works for any numbered draw. Enter your range, leave out the numbers you did not issue and draw one winner per prize; a number that has won is not drawn again.</p>
+
+      <h2>What the PDF prints: ₹, Hindi and other scripts</h2>
+      <p>You can type ₹50 in the <em>Price</em> box. The standard fonts built into PDF files have no rupee symbol, so the coupon prints it as Rs.50, which is also a common way to write rupees on paper. Those fonts cover English letters only, so Devanagari, Tamil and other Indian scripts cannot be printed. Write the coupon in English, or in Hindi words spelled with English letters. The menus say “ticket” because the tool also makes other kinds of numbered tickets; your coupons say whatever you type.</p>
+      ${LEGAL_IN}
+
+${LUCKY_RELATED("/lucky-draw-coupon-generator")}`,
+  faq: [
+    ["What is a lucky draw coupon?", "A numbered slip given to a participant, with a matching stub kept by the organiser. At the draw a stub is picked or a number is called, and the winner proves the win by showing the coupon with the same number."],
+    ["How many lucky draw coupons should I print?", "Print a few more than you expect to give out. Unused coupons cost only paper, and you simply leave their numbers out of the draw. A society function for 150 households could print 1 to 300; a school fete with a few hundred visitors might print 1 to 500."],
+    ["Can I print lucky draw coupons on A4?", "Yes. This page opens with A4 selected and ten coupons per page. If you ever need US Letter, change it under Paper and layout."],
+    ["Can I print the ₹ sign and Hindi on the coupon?", "You can type ₹ in the price, and the PDF prints it as Rs. because standard PDF fonts have no rupee symbol. Only English letters can be printed, so Devanagari and other Indian scripts are not supported."],
+    LUCKY_LEGAL,
+    ["How do I choose the winners fairly?", "Mix the stubs well and let someone who is not handing out coupons draw them in front of everyone, or use the free raffle winner picker to draw numbers from your printed range. Read the number twice and check it against the coupon before giving a prize."],
+    ["Can I number coupons with a letter, like A-001?", "Yes. Type A- in the Prefix box. A separate prefix for each tower, class or team stops stubs from different boxes being mixed up."],
+    ["Is it free, and is my information uploaded?", "It is free, with no signup. The PDF is built in your browser, so the names and phone numbers you type never leave your device. Each printed sheet carries a small “Made with TicketRun” line in the bottom margin, outside the coupons."],
+  ],
+});
+
+P.push({
+  path: "/lucky-draw-coupons-1-to-1000", crumb: "Lucky draw coupons 1 to 1000", lang: "en-IN", cur: "INR", date: ["2026-10-25", "25 October 2026"], noRelated: true,
+  tool: { preset: "lucky", start: 1, end: 1000, perPage: 10, paper: "a4" },
+  title: "Lucky Draw Coupons 1 to 1000 — Free Numbered Printable PDF",
+  desc: "Print lucky draw coupons 1 to 1000 with matching numbered stubs: 100 A4 sheets, cut-and-stack piles of 100, books of 25. Free PDF, no signup needed.",
+  h1: "Lucky Draw Coupons 1 to 1000, Numbered and Printable",
+  lead: "A thousand numbered lucky draw coupons with matching stubs on 100 A4 sheets, set up for cutting in stacks and handing out in books.",
+  body: `      <p class="tldr"><strong>Quick answer:</strong> Lucky draw coupons 1 to 1000 print on 100 A4 sheets at 10 per page, or 125 sheets at 8 per page. The generator above is already set to 0001–1000 on A4: change the event name, draw time, venue and coupon price, then click <em>Download PDF</em> and print at 100% scale. With cut-and-stack order you get ten piles of 100 coupons, each already in sequence.</p>
+      <p>A thousand coupons suits a large school fete, a mela, a big colony or society festival, or a company's annual day. It is a lot of paper to handle, so a little planning on numbering, cutting and storing stubs saves a great deal of confusion on the day of the draw.</p>
+
+      <h2>Coupons 1 to 1000 at a glance</h2>
+      <table>
+        <tbody>
+          <tr><th>Coupons</th><td>1,000, numbered 0001 to 1000</td></tr>
+          <tr><th>Sheets at 10 per page</th><td>100 (each coupon ${S.a10.mm} on A4)</td></tr>
+          <tr><th>Sheets at 8 per page</th><td>125 (each coupon ${S.a8.mm} on A4)</td></tr>
+          <tr><th>Paper</th><td>100 sheets is a fifth of a 500-sheet ream</td></tr>
+          <tr><th>Cut-and-stack piles</th><td>10 piles of 100 coupons at 10 per page</td></tr>
+          <tr><th>Books of 25 or 50</th><td>40 books of 25, or 20 books of 50</td></tr>
+          <tr><th>Chance for one coupon</th><td>1 in 1,000 for a single prize, if all 1,000 are issued</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Why the numbers start at 0001</h2>
+      <p>With <em>Digits</em> on Auto, every number gets as many digits as the last number. Because 1000 has four digits, the coupons read 0001, 0002 … 1000. Numbers of equal width are easier to read from a distance and sort correctly when you line the stubs up. If you prefer plain 1 to 1000, set Digits to <em>No zeros</em>. If two groups run draws at the same venue, add a prefix such as A- or B- so a stub from one box can never be mistaken for the other.</p>
+
+      <h2>Printing 100 A4 sheets</h2>
+      <ol class="steps">
+        <li>Print the <em>Test sheet</em> on plain A4 and check that the crop marks line up, with the print dialog set to 100% / Actual size.</li>
+        <li>For 100 sheets a print shop is usually quicker than a home printer, and many shops can also cut the pile on a guillotine. Take the PDF on a pen drive and ask for A4, single-sided, no scaling.</li>
+        <li>At home, print in batches of 25 pages (pages 1–25, then 26–50 and so on) and keep the batches in order if you use cut-and-stack.</li>
+        <li>To tell two halves of the run apart, download 1–500 and 501–1000 as two PDFs and print them on different coloured paper.</li>
+      </ol>
+
+      <h2>Cutting 1,000 coupons</h2>
+      <p>Choose <em>Number order: Cut-and-stack</em> before downloading. The numbers are spread so that, after you cut the whole printed stack, every pile comes out in sequence. At 10 per page you trim the four margins, make one cut down the middle and four across: pile 1 is 0001–0100, pile 2 is 0101–0200, and so on up to 0901–1000. Depending on whether your printer stacks pages face up or face down, the lowest or the highest number may be on top; either way each pile is in order. Cutting 100 sheets with scissors is slow, so use a paper cutter in smaller batches or ask the print shop to do it.</p>
+
+      <h2>Keeping 1,000 stubs under control</h2>
+      <ul>
+        <li><strong>Hand out coupons in books.</strong> Open <em>Seller books and tracking sheet</em> in the generator, set 25 or 50 coupons per book and tick <em>Print the book number on each stub</em>. The seller log lists the range of every book, with columns for the volunteer's name, coupons issued, coupons returned and money collected.</li>
+        <li><strong>Return stubs and money together,</strong> in an envelope marked with the book number.</li>
+        <li><strong>Reconcile before the draw.</strong> Coupons issued, plus unissued coupons returned, plus any missing, should add up to 1,000. Leave unissued and missing numbers out of the draw.</li>
+        <li><strong>Store stubs safely</strong> in a closed box with a slit, or in bundles of 100 held with a rubber band, until the draw.</li>
+      </ul>
+
+      <h2>Plan the prizes and the price</h2>
+      <p>A thousand coupons can support more winners than a small draw. One example: 1 bumper prize, 2 second prizes, 5 third prizes and 20 consolation prizes, 28 winners in all, with the small prizes drawn first. Decide what the prizes and the event cost, then choose a coupon price that covers it. The table shows the sum of coupons times price; it is arithmetic, not a forecast.</p>
+      <table>
+        <thead><tr><th>Coupon price</th>${lucky1000.map(p => `<th>${INR(p)}</th>`).join("")}</tr></thead>
+        <tbody>
+          <tr><td>All 1,000 coupons issued</td>${lucky1000.map(p => `<td>${INR(1000 * p)}</td>`).join("")}</tr>
+          <tr><td>Half issued (500)</td>${lucky1000.map(p => `<td>${INR(500 * p)}</td>`).join("")}</tr>
+        </tbody>
+      </table>
+
+      <h2>Drawing from 1,000 stubs</h2>
+      <p>A box holding a thousand stubs is hard to mix properly, and the stubs at the bottom can be missed. The easier way is to open the <a href="/raffle-winner-picker">raffle winner picker</a>, enter 1 to 1000, list the numbers you did not issue as exclusions and draw one winner for each prize. Then pull the matching stub from its bundle to read out the name, and ask the winner to show the coupon with the same number. If you prefer to draw by hand, tip the stubs into a large drum a bundle at a time and turn it between draws.</p>
+      ${LEGAL_IN}
+
+${LUCKY_RELATED("/lucky-draw-coupons-1-to-1000")}`,
+  faq: [
+    ["How many A4 sheets do I need for lucky draw coupons 1 to 1000?", "100 sheets at 10 coupons per page, or 125 sheets at 8 per page. Add a few spare sheets in case of a misprint or a paper jam."],
+    ["Why do the numbers start at 0001?", "With Digits set to Auto, every number gets as many digits as the last number, so 1000 makes them four digits. Choose No zeros to print plain 1 to 1000."],
+    ["Can I print coupons 1001 to 2000 later?", "Yes. Set the first number to 1001 and the last to 2000, keep the same Digits setting and the second batch carries on where the first ended."],
+    ["How do I share 1,000 coupons between volunteers?", "Use books: 40 books of 25 coupons or 20 books of 50. Set the book size under Seller books and tracking sheet, print the book number on each stub and download the seller log to record who took which book."],
+    ["How do I pick winners from 1,000 stubs?", "Use the free raffle winner picker with the range 1 to 1000, leave out the unissued numbers and draw one winner per prize. Then find the matching stub and check the coupon the winner is holding."],
+    LUCKY_LEGAL,
+    ["Does it cost anything to make 1,000 coupons?", "The tool is free and needs no signup; one PDF can hold up to 20,000 numbered coupons. Your only cost is the paper and printing."],
+  ],
+});
+
+P.push({
+  path: "/diwali-lucky-draw-coupons", crumb: "Diwali lucky draw coupons", lang: "en-IN", cur: "INR", date: ["2026-10-25", "25 October 2026"], noRelated: true,
+  tool: { preset: "lucky", start: 1, end: 300, paper: "a4" },
+  title: "Diwali Lucky Draw Coupons — Free Numbered Printable PDF",
+  desc: "Free printable Diwali lucky draw coupons for melas, housing societies and office parties: numbered coupons and stubs on A4. Download a PDF, no signup.",
+  h1: "Diwali Lucky Draw Coupons, Free and Printable",
+  lead: "Numbered coupons with matching stubs for Diwali melas, housing society get-togethers and office Diwali parties. Free A4 PDF, no signup, nothing uploaded.",
+  body: `      <p class="tldr"><strong>Quick answer:</strong> For Diwali lucky draw coupons, choose the number range you need in the generator above (the Lucky draw preset already says <em>Diwali Mela</em> and <em>Coupon No.</em>), change the venue, draw time and coupon price, pick the orange accent colour and click <em>Download PDF</em>. Print on A4 at 100% scale, cut along the crop marks and drop the stubs into a closed box for the draw.</p>
+      <p>A Diwali draw is as much a part of the evening as the sweets. Whether it runs at a stall in a mela, in the clubhouse of a housing society or at the office party, the needs are the same: coupons that cannot be confused with each other, stubs that stay safe until the draw, and a draw that everyone can see is fair.</p>
+
+      <h2>Three Diwali draws and what each one needs</h2>
+      <table>
+        <thead><tr><th>Occasion</th><th>How many coupons</th><th>How they are given out</th><th>Stub</th></tr></thead>
+        <tbody>
+          <tr><td>Diwali mela or stall</td><td>Expected visitors plus spares, for example 1 to 500</td><td>Sold at a counter at a small price</td><td>Name and phone</td></tr>
+          <tr><td>Housing society get-together</td><td>One per flat, or one per family member</td><td>Handed out free, or for a small contribution to the festival fund</td><td>Name and flat number</td></tr>
+          <tr><td>Office Diwali party</td><td>One per employee plus spares</td><td>Handed out at the entrance</td><td>Name only; untick Phone</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Settings that suit Diwali</h2>
+      <ul>
+        <li><strong>Colour.</strong> Under <em>Design, colour and logo</em>, pick the orange swatch. The <em>Bold</em> design gives a solid orange stub that is easy to spot in the box.</li>
+        <li><strong>Logo.</strong> Add your society, school or company logo in the same section; it prints on every coupon.</li>
+        <li><strong>Greeting.</strong> Use <em>Prize or main line</em> for a short greeting in English letters, such as “Shubh Deepavali from Green Park Society”.</li>
+        <li><strong>Flat number.</strong> In the stub options, type “Flat no.” in <em>Extra line</em> so the stub has a line for it next to Name and Phone.</li>
+        <li><strong>Prefix per tower.</strong> Type A- in <em>Prefix</em> and print one PDF for each tower or block (A-, B-, C-), so every coupon shows where it belongs.</li>
+      </ul>
+
+      <h2>Choosing the prizes</h2>
+      <p>Prizes that suit Diwali are easy to find locally: boxes of sweets or dry fruits, diyas and decorations, kitchenware, small appliances and gift hampers. Shopkeepers in the neighbourhood are often happy to donate one prize if you thank them from the stage. Put the prizes on a table or board before the draw, so people can see what is at stake. A society of about 150 households might plan 1 bumper prize, 2 second prizes and 5 consolation prizes, with the small ones drawn first.</p>
+
+      <h2>A simple plan, counted back from your event day</h2>
+      <p>The date of Diwali changes every year, so plan back from your own event day, not from the festival.</p>
+      <ol class="steps">
+        <li><strong>Two to three weeks before:</strong> fix the prizes, the coupon price (or make coupons free for residents) and the draw time.</li>
+        <li><strong>About ten days before:</strong> finish the design, print the <em>Test sheet</em> on plain A4, then print the full run at a local print shop or at home.</li>
+        <li><strong>A week before:</strong> cut the sheets, tear-test a stub, and put the coupons with the volunteers or at the registration table.</li>
+        <li><strong>On the day:</strong> write the name on the stub, tear it off and drop it in the closed box as each coupon is handed over. Count the stubs when the issue closes.</li>
+        <li><strong>At the draw:</strong> announce the rules again and draw at the time printed on the coupon.</li>
+      </ol>
+
+      <h2>Run the Diwali draw on the day</h2>
+      <p>Put the box where everyone can see it and keep it closed. Ask a respected resident or the chief guest, and not someone from the organising committee, to draw each stub. Read the number twice and ask the holder to show the coupon with the matching number before you hand over the prize. Decide in advance what happens when a winner has already left: the usual rule is that the winner must be present, with a short wait before the next stub is drawn, and the small print on the Lucky draw preset already says the winner must show the matching number.</p>
+      <p>To draw by number rather than from the box, use the free <a href="/raffle-winner-picker">raffle winner picker</a>. Enter your range, leave out unissued numbers and draw one winner per prize, from the smallest prize to the bumper prize. Write each result down on the prize list.</p>
+      <p>Print for the language your guests read. The PDF can only print English letters, so type greetings in English or in Hindi words spelled in English letters, and keep the amount as ₹ in the form; it prints as Rs. because standard PDF fonts have no rupee symbol.</p>
+      ${LEGAL_IN}
+
+${LUCKY_RELATED("/diwali-lucky-draw-coupons")}`,
+  faq: [
+    ["What should a Diwali lucky draw coupon say?", "The coupon number, the event name, the draw time and place, the price if there is one, and a line of small print such as “Keep this coupon safe. The winner must show the matching number.” The Lucky draw preset already has all of these, and you can change any line."],
+    ["How many coupons do I need for a housing society?", "One per flat is the simplest, plus a few spares. A society of 180 flats could print 1 to 200. If every family member gets a coupon, count people instead of flats, and give each tower its own prefix such as A- or B-."],
+    ["Can I use the same coupons for an office Diwali party?", "Yes. Print one per employee plus spares, untick Phone on the stub and give each team a prefix if you like. You can also draw winners by number with the free raffle winner picker."],
+    ["Can I print the coupons at a local shop on A4?", "Yes. The PDF is A4 and prints at actual size, so any print shop can use it. Ask for A4, single-sided and 100% scale with no fit to page, and ask the shop to cut along the crop marks."],
+    LUCKY_LEGAL,
+    ["Can I write Diwali wishes in Hindi on the coupon?", "Not in Devanagari: the PDF can only print English letters. Write wishes in English or in Hindi words spelled with English letters, such as Shubh Deepavali."],
+    ["Can I draw the winner by number instead of from the box?", "Yes. Enter the range you printed in the raffle winner picker, leave out the numbers you did not issue and draw one winner per prize. Then check the coupon the winner holds against the stub."],
+  ],
+});
 
 P.push({
   path: "/how-to-number-raffle-tickets-in-word", crumb: "Number raffle tickets in Word", tool: { preset: "raffle", end: 200, perPage: 8 },
@@ -819,7 +1057,7 @@ let count = 0;
 for (const p of [home, ...P]) {
   const file = p.path === "/" ? "index.html" : p.path.slice(1) + ".html";
   const schema = [...(p.schema || [])];
-  if (p.tool && !p.tool.picker && p.path !== "/") schema.push(appLd(p.h1, p.path, p.desc));
+  if (p.tool && !p.tool.picker && p.path !== "/") schema.push(appLd(p.h1, p.path, p.desc, null, p.cur));
   let html = page({ ...p, schema });
   // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
   const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;

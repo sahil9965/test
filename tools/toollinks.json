@@ -35,6 +35,18 @@
       ["https://giftcert.roohsites.com/gift-certificate-template-with-stub", "Gift certificate template with stub", "numbered certificates for donated prizes or sales"],
       ["https://invoice.roohsites.com/", "Free invoice generator", "bill sponsors and vendors for your event"],
       ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "rotate positions fairly for your youth team"]
+    ],
+    "/lucky-draw-coupon-generator": [
+      ["https://invoice.roohsites.com/gst-invoice-generator", "GST invoice generator", "bill sponsors and stall holders with a GST invoice"],
+      ["https://giftcert.roohsites.com/", "Numbered gift voucher maker", "print numbered gift vouchers to give as prizes"]
+    ],
+    "/lucky-draw-coupons-1-to-1000": [
+      ["https://invoice.roohsites.com/gst-invoice-generator", "GST invoice generator", "bill sponsors and stall holders with a GST invoice"],
+      ["https://giftcert.roohsites.com/", "Numbered gift voucher maker", "print numbered gift vouchers to give as prizes"]
+    ],
+    "/diwali-lucky-draw-coupons": [
+      ["https://invoice.roohsites.com/gst-invoice-generator", "GST invoice generator", "bill sponsors and stall holders with a GST invoice"],
+      ["https://giftcert.roohsites.com/", "Numbered gift voucher maker", "print numbered gift vouchers to give as prizes"]
     ]
   },
   "labelfit": {
