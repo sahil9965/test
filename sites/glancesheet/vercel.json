@@ -55,5 +55,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "iepglance.roohsites.com"
+        }
+      ],
+      "destination": "https://iepglance.roohsites.com/:path*",
+      "permanent": true
+    }
   ]
 }

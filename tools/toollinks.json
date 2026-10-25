@@ -58,14 +58,16 @@
   "bellbook": {
     "*": [
       ["https://abagraph.roohsites.com/iep-progress-monitoring-graph", "IEP progress monitoring graph", "graph IEP goal data for progress reports"],
-      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for PTO and class fundraisers"]
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for PTO and class fundraisers"],
+      ["https://iepglance.roohsites.com/student-at-a-glance-template", "Student at a glance template", "a one-page sheet for subs and paras"]
     ],
     "/today": []
   },
   "goaltally": {
     "*": [
       ["https://abday.roohsites.com/", "A/B day calendar generator", "plan sessions around a rotating school schedule"],
-      ["https://abday.roohsites.com/teacher-planner-2027-2028", "Printable teacher planner 2027–2028", "dated planner pages for the school year"]
+      ["https://abday.roohsites.com/teacher-planner-2027-2028", "Printable teacher planner 2027–2028", "dated planner pages for the school year"],
+      ["https://iepglance.roohsites.com/", "IEP at a Glance template", "give gen-ed teachers a one-page summary of each student's supports"]
     ]
   },
   "roomproof": {
@@ -114,6 +116,12 @@
     "*": [
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for team fundraisers"],
       ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "track practice goals with a printable punch card"]
+    ]
+  },
+  "glancesheet": {
+    "*": [
+      ["https://abagraph.roohsites.com/iep-data-sheet-generator", "IEP data sheet generator", "collect data on the goals in each student's IEP"],
+      ["https://abagraph.roohsites.com/iep-progress-monitoring-graph", "IEP progress monitoring graph", "graph goal progress for progress reports"]
     ]
   }
 }

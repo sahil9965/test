@@ -1,7 +1,7 @@
 # Uneed submissions (uneed.best): copy-paste details
 
 Submit **two listings first**:
-1. **Rooh Sites Tools (the hub),** so one listing points at all 12 tools.
+1. **Rooh Sites Tools (the hub),** so one listing points at all 15 tools.
 2. **GiftStub,** because gift certificates sell most from November to December, so it should launch soon.
 
 Then add one more tool a week, using the text in `marketing/directory-listings.md`.
@@ -23,11 +23,11 @@ Images are in this folder (`marketing/uneed/`):
 - **Name:** Rooh Sites Tools
 - **Website:** https://tools.roohsites.com
 - **Tagline (short, 46 chars):** Free private browser tools that do one job well
-- **Tagline (long, ~110 chars):** 12 free tools for sellers, teachers, creators and small businesses. No signup, and nothing is uploaded.
+- **Tagline (long, ~110 chars):** 15 free tools for sellers, teachers, coaches, creators and small businesses. No signup, and nothing is uploaded.
 - **Short description (~200 chars):**
-  Twelve free tools that run entirely in your browser: invoices, shipping and FNSKU labels, raffle tickets, gift certificates, homeschool transcripts, ABA graphs, school calendars, stream schedules and more.
+  Fifteen free tools that run entirely in your browser: invoices, shipping labels, raffle tickets, gift certificates, punch cards, IEP summaries, ABA graphs, baseball lineups, stream schedules and more.
 - **Long description:**
-  Rooh Sites Tools is a collection of 12 small, free web tools, each built for one job:
+  Rooh Sites Tools is a collection of 15 small, free web tools, each built for one job:
   - InvoiceKit: invoices with tax, VAT or GST
   - LabelFit: A4 shipping labels converted to 6x4 thermal labels
   - PrepLabel: FNSKU labels for Amazon FBA
@@ -40,6 +40,9 @@ Images are in this folder (`marketing/uneed/`):
   - CollabRate: UGC rate calculator
   - StreamWeek: stream schedules with viewer time zones
   - PanelDex: electrical panel schedules
+  - PunchPerk: printable loyalty punch cards, 10 per page
+  - LineupFair: fair fielding rotations for youth baseball and softball
+  - GlanceSheet: one-page IEP and 504 at a Glance sheets for teachers
 
   Everything runs in your browser. There's no account and no paid plan, and files, photos and records never leave your device. Each tool has presets and short guides for its exact use, so you get a correct result on the first try.
 - **Categories:** Productivity, Small business, Education. Add "Design" or "Utilities" if offered.

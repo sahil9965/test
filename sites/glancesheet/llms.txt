@@ -1,0 +1,25 @@
+# GlanceSheet
+
+> GlanceSheet is a free online IEP at a Glance maker for US special education case managers, co-teachers, school psychologists and SLPs. It works with no signup and runs entirely in the browser (nothing is uploaded). Build a caseload of students (add, duplicate, delete, reorder), fill in strengths and interests, what helps, what to watch for, accommodations (about 60 plain-language options in six groups, with search and custom entries), modifications (kept separate), goal summaries, services (minutes, frequency, setting, provider role), related services, a behavior plan note, a short optional health and safety note and key contacts by staff role. Plan type can be IEP or 504 plan; dates (meeting, annual review, re-evaluation) show "due in N days" in the editor only. Every section can be hidden from the printout. Printed sheets show initials by default (an Initials only switch is on by default); full names are optional and there are no photos. Outputs are PDFs: a one-page IEP at a Glance per student that shrinks text within a floor and warns, naming sections to trim, instead of overflowing; a caseload batch with one page per ticked student; a landscape class accommodations matrix with rotated headers, a numbered key and repeated headers across pages; a 504 Plan at a Glance variant without goals and services; and a Sub and para version with only strengths, what helps, watch for, accommodations and contacts. Letter or A4. The caseload autosaves in the browser's local storage, with a JSON backup/import and a Delete all data button. Every feature is free. Each PDF carries a small "Made with GlanceSheet" credit in the page margin.
+
+## Tool
+- [IEP at a Glance template](https://iepglance.roohsites.com/): add students, tick accommodations, check the one-page fit and download the PDFs.
+
+## Templates and guides
+- [IEP snapshot template](https://iepglance.roohsites.com/iep-snapshot-template): a one-page student summary of the IEP essentials.
+- [504 plan at a glance template](https://iepglance.roohsites.com/504-plan-at-a-glance-template): 504 Plan at a Glance variant without goals and services.
+- [Accommodations matrix template](https://iepglance.roohsites.com/accommodations-matrix-template): a class chart of students by accommodation, as a landscape PDF.
+- [IEP accommodations checklist](https://iepglance.roohsites.com/iep-accommodations-checklist): 60+ common accommodations by category with a plain sentence each, for general education teachers.
+- [Student at a glance template](https://iepglance.roohsites.com/student-at-a-glance-template): the sub and para version for substitutes and paraprofessionals.
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: everything typed stays in the browser (local storage). Nothing is uploaded. Analytics record only the kind of PDF made, never any student text.
+- A sheet is a summary, not the IEP or 504 plan; the full plan is what the school follows. Accommodations change how a student learns or shows learning; modifications change what the student is expected to learn.
+- GlanceSheet makes no claim of FERPA or IDEA compliance or district approval. Districts decide which tools may be used with student records.
+- Output: PDFs built in the browser with jsPDF. Print at 100% (Actual size) on US Letter or A4.
+- Not affiliated with any school, district or government agency.
+
+## Optional
+- [About](https://iepglance.roohsites.com/about)
+- [Privacy & Terms](https://iepglance.roohsites.com/privacy)

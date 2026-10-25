@@ -22,6 +22,7 @@ const INFO = {
   ticketrun: { group: "Events & fundraising", who: "PTOs, schools, clubs and nonprofits", what: "Print sequentially numbered raffle, 50/50, drink and coat check tickets with matching stubs, and draw winners fairly." },
   lineupfair: { group: "Sports & coaching", who: "youth baseball, softball and t-ball coaches", what: "Generate a fair inning-by-inning fielding rotation with equal bench time and infield innings, then print a dugout card and field diagram." },
   gradledger: { group: "Teachers & education", who: "homeschool parents of high schoolers", what: "Build a homeschool transcript with exact weighted and unweighted GPA, credits by subject, course descriptions and report cards." },
+  glancesheet: { group: "Teachers & education", who: "special education case managers and teachers", what: "Turn each student's IEP or 504 plan into a one-page at-a-glance sheet, print a whole caseload, and build a class accommodations matrix for gen-ed teachers." },
   goaltally: { group: "Teachers & education", who: "BCBAs, RBTs and special education teachers", what: "Make ABA single-case graphs with phase-change lines, aim and trend lines, plus printable data sheets for 11 measurement types." },
   bellbook: { group: "Teachers & education", who: "teachers and school staff on rotating schedules", what: "Generate an A/B or Day 1–N rotation calendar that skips holidays and re-flows after snow days; export PDF, .ics or CSV." },
   roomproof: { group: "Property & home", who: "tenants, landlords, contractors and cleaners", what: "Make a dated, captioned photo report PDF for move-in/move-out inspections, punch lists and before/after jobs." },
@@ -144,6 +145,7 @@ ${cards}
       <ul>
         <li><a href="https://abday.roohsites.com/today">Is today an A day or B day?</a></li>
         <li><a href="https://abagraph.roohsites.com/cold-probe-data-sheet">Cold probe data sheet</a> and <a href="https://abagraph.roohsites.com/task-analysis-data-sheet">task analysis data sheet</a> for ABA</li>
+        <li><a href="https://iepglance.roohsites.com/">IEP at a Glance template</a> and <a href="https://iepglance.roohsites.com/accommodations-matrix-template">class accommodations matrix</a></li>
         <li><a href="https://raffle.roohsites.com/raffle-tickets-1-1000">Raffle tickets 1–1000, printable with stubs</a> and <a href="https://raffle.roohsites.com/50-50-raffle-tickets">50/50 raffle tickets</a></li>
         <li><a href="https://giftcert.roohsites.com/salon-gift-certificate-template">Salon gift certificate template with numbered stubs</a></li>
         <li><a href="https://punchcard.roohsites.com/coffee-punch-card-template">Coffee punch card template, 10 per page</a> and <a href="https://punchcard.roohsites.com/behavior-punch-card-printable">behavior punch cards</a> for the classroom</li>
