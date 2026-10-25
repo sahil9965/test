@@ -8,7 +8,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = join(ROOT, "sites/hub");
 const URL = "https://tools.roohsites.com";
 const AGENCY = "https://roohsites.com";
-const DATE = "2026-10-16", DATE_H = "16 October 2026";
+const DATE = "2026-10-25", DATE_H = "25 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const tools = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(s => s.live !== false);
 
@@ -16,6 +16,7 @@ const tools = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(
 const INFO = {
   invoicekit: { group: "Business & freelancing", who: "freelancers and small businesses", what: "Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF." },
   giftstub: { group: "Business & freelancing", who: "salons, spas, photographers and other small businesses", what: "Print numbered gift certificates with matching stubs, 3 per page, and keep a simple log of which numbers were sold and redeemed." },
+  punchperk: { group: "Business & freelancing", who: "cafés, salons, car washes and other small businesses, plus teachers", what: "Print loyalty punch cards 10 per page on business-card sheets, with serial numbers, matching backs and a QR code." },
   labelfit: { group: "Online sellers & shipping", who: "Vinted, eBay, Etsy and USPS shippers", what: "Turn A4 or letter-size shipping label PDFs into crisp 6x4 / 100x150 mm thermal labels, with packing slips split off." },
   preplabel: { group: "Online sellers & shipping", who: "Amazon FBA sellers and prep centers", what: "Print Code 128 FNSKU labels for thermal rolls or Avery-size sheets, plus suffocation warning, sold-as-set and bin labels." },
   ticketrun: { group: "Events & fundraising", who: "PTOs, schools, clubs and nonprofits", what: "Print sequentially numbered raffle, 50/50, drink and coat check tickets with matching stubs, and draw winners fairly." },
@@ -144,6 +145,7 @@ ${cards}
         <li><a href="https://abagraph.roohsites.com/cold-probe-data-sheet">Cold probe data sheet</a> and <a href="https://abagraph.roohsites.com/task-analysis-data-sheet">task analysis data sheet</a> for ABA</li>
         <li><a href="https://raffle.roohsites.com/raffle-tickets-1-1000">Raffle tickets 1–1000, printable with stubs</a> and <a href="https://raffle.roohsites.com/50-50-raffle-tickets">50/50 raffle tickets</a></li>
         <li><a href="https://giftcert.roohsites.com/salon-gift-certificate-template">Salon gift certificate template with numbered stubs</a></li>
+        <li><a href="https://punchcard.roohsites.com/coffee-punch-card-template">Coffee punch card template, 10 per page</a> and <a href="https://punchcard.roohsites.com/behavior-punch-card-printable">behavior punch cards</a> for the classroom</li>
         <li><a href="https://invoice.roohsites.com/contractor-invoice-template">Contractor invoice template</a></li>
         <li><a href="https://labels.roohsites.com/usps-label-to-4x6">USPS label to 4x6 for thermal printers</a></li>
         <li><a href="https://photoreport.roohsites.com/photo-report-template">Photo report template</a> for inspections and jobs</li>

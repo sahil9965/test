@@ -22,7 +22,8 @@
   "giftstub": {
     "*": [
       ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients for your services and keep a copy"],
-      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "the same numbered-stub printing, for fundraisers and events"]
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "the same numbered-stub printing, for fundraisers and events"],
+      ["https://punchcard.roohsites.com/", "Printable punch card maker", "bring customers back with numbered loyalty cards"]
     ],
     "/photography-gift-certificate-template": [
       ["https://invoice.roohsites.com/photography-invoice-template", "Photography invoice template", "bill the session when a certificate is redeemed"],
@@ -88,6 +89,24 @@
     "*": [
       ["https://ugcrates.roohsites.com/", "UGC rate calculator", "price sponsored streams and brand deals"],
       ["https://invoice.roohsites.com/freelance-invoice-template", "Freelance invoice template", "bill sponsors and brands"]
+    ]
+  },
+  "punchperk": {
+    "*": [
+      ["https://giftcert.roohsites.com/", "Numbered gift certificate maker", "sell gift certificates with matching numbered stubs"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients and keep a copy of every sale"]
+    ],
+    "/salon-loyalty-card-template": [
+      ["https://giftcert.roohsites.com/salon-gift-certificate-template", "Salon gift certificate template", "numbered certificates with stubs for salon services"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients and keep a copy of every sale"]
+    ],
+    "/behavior-punch-card-printable": [
+      ["https://abagraph.roohsites.com/frequency-data-sheet", "Frequency data sheet", "count target behaviors alongside your punch card system"],
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print classroom reward tickets"]
+    ],
+    "/reward-punch-card-for-kids": [
+      ["https://abday.roohsites.com/", "A/B day calendar generator", "plan the school year around a rotating schedule"],
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print reward tickets for home or class"]
     ]
   }
 }

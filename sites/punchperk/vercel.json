@@ -55,5 +55,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "missing": [
+        {
+          "type": "host",
+          "value": "punchcard.roohsites.com"
+        }
+      ],
+      "destination": "https://punchcard.roohsites.com/:path*",
+      "permanent": true
+    }
   ]
 }

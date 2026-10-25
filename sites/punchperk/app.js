@@ -182,6 +182,7 @@
   st.landing = presetName;
   let logo = okLogo(store.get("logo", null));
   let logoBytes = null;
+  let logoNote = ""; // shown under the preview while it applies, so a re-render doesn't wipe it
 
   function writeForm() {
     for (const k of KEYS) {
@@ -264,6 +265,7 @@
     front.notes.forEach(n => msgs.push(n));
     if (lost.length) msgs.push(`These characters can't be printed with the built-in PDF fonts and were left out: ${lost.join(" ")}`);
     if (qr.error) msgs.push(qr.error);
+    if (logo && logoNote) msgs.push(logoNote);
     if (s.back && st.qrUrl && !qr.data && !qr.error) { /* QR library still loading */ }
     $(".pp-msg").innerHTML = msgs.map(m => `<p class="pp-warn">${esc(m)}</p>`).join("");
   }
@@ -298,10 +300,10 @@
     if (a === "pdf") download();
     else if (a === "png") exportPng();
     else if (a === "align") alignmentTest();
-    else if (a === "nologo") { logo = null; logoBytes = null; store.set("logo", null); $("#pp-logo").value = ""; b.hidden = true; schedule(); }
+    else if (a === "nologo") { logo = null; logoBytes = null; logoNote = ""; store.set("logo", null); $("#pp-logo").value = ""; b.hidden = true; schedule(); }
     else if (a === "reset") {
       if (!confirm("Reset every field to the preset and remove your saved logo?")) return;
-      st = fresh(); logo = null; logoBytes = null; store.set("logo", null); store.set("last", null);
+      st = fresh(); logo = null; logoBytes = null; logoNote = ""; store.set("logo", null); store.set("last", null);
       $("#pp-logo").value = "";
       writeForm(); schedule(); flash("Reset to the preset.");
     }
@@ -326,11 +328,11 @@
       let l = draw(600);
       if (l.dataUrl.length > LOGO_CAP) l = draw(360);
       URL.revokeObjectURL(url);
-      logo = l; logoBytes = null;
+      logo = l; logoBytes = null; logoNote = "";
       if (l.dataUrl.length > LOGO_CAP) {
         store.set("logo", null);
-        flash("Your logo is quite detailed, so it works for this session but won't be remembered after you close the page. A simpler or smaller image will be saved.", true);
-      } else if (!store.set("logo", l)) flash("Your logo is in use, but this browser wouldn't save it for next time.", true);
+        logoNote = "Your logo is quite detailed, so it works for this visit but won't be remembered after you close the page. A simpler or smaller image will be saved.";
+      } else if (!store.set("logo", l)) logoNote = "Your logo is in use, but this browser wouldn't save it for next time.";
       $('[data-a="nologo"]').hidden = false;
       schedule();
     };
