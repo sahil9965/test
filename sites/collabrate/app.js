@@ -51,6 +51,7 @@
     return { calc, profile: normProfile(i.profile), quote: normQuote(i.quote), card: K.normalizeCard(i.card), tab: ["quote", "card", "email", "deals"].includes(i.tab) ? i.tab : "quote" };
   }
 
+  const INDIA_NOTE = "Example rates only. Replace them with your own before you send this card.";
   const PRESETS = {
     usage: { calc: { items: [{ type: "video", qty: 2 }], usage: "90d" }, tab: "quote" },
     whitelisting: { calc: { items: [{ type: "video", qty: 3 }, { type: "hook", qty: 3 }], usage: "90d", wlMonths: 3 }, tab: "quote" },
@@ -59,6 +60,19 @@
     beginner: { calc: { level: "beginner", items: [{ type: "video", qty: 1 }] }, card: { mode: "from" }, tab: "card" },
     charge: { calc: { items: [{ type: "video", qty: 3 }, { type: "hook", qty: 3 }], usage: "30d" }, tab: "quote" },
     quote: { calc: { items: [{ type: "video", qty: 3 }, { type: "hook", qty: 6 }], usage: "30d" }, quote: { showOptions: true }, tab: "quote" },
+    // India landing pages: INR, A4 and a placeholder base rate that the UI labels as an example.
+    // The experience-level shortcuts are hidden there, because they only convert US dollar amounts.
+    ugcindia: { example: true, calc: { currency: "INR", level: "custom", base: 5000, items: [{ type: "video", qty: 1 }] }, card: { note: INDIA_NOTE }, quote: { paper: "a4", notes: "" }, tab: "card" },
+    influencerindia: {
+      example: true, baseNote: "On this page it only prices UGC video items. The Reel, Story and YouTube lines have their own typed example prices.",
+      calc: { currency: "INR", level: "custom", base: 5000, ownPosts: true, items: [
+        { type: "custom", qty: 1, price: 6000, label: "Instagram Reel (posted on my account)" },
+        { type: "custom", qty: 1, price: 2500, label: "Instagram Story (3 frames)" },
+        { type: "custom", qty: 1, price: 12000, label: "YouTube integration (60–90 s)" }] },
+      card: { listItems: true, title: "Influencer rate card", note: INDIA_NOTE, included: "Posted on my own account\nOne round of changes before posting\nAd use, reuse and exclusivity are priced separately",
+        show: { hook: false, photo: false, usage30: true, usage90: true, usage12m: false, perpetual: false, whitelist: true, exclusivity: true, raw: false, rush: false, revision: false } },
+      quote: { paper: "a4", notes: "Posts go live on my own account. Paid ad use of a post, reuse by the brand and exclusivity are quoted as separate lines." }, tab: "card",
+    },
   };
   let state = normAll(LS.get("state", null));
   const presetName = mount.dataset.preset;
@@ -70,12 +84,18 @@
     const merged = { ...scen, level: lvl || keep.level, base: lvl ? K.levelBase(lvl, keep.currency) : keep.base, ...(preset.calc || {}) };
     delete merged.usagePct; // let the preset's usage window bring its own default uplift
     state.calc = K.normalize(merged);
-    if (preset.card) state.card = K.normalizeCard({ ...state.card, ...preset.card });
+    // Example presets start from the default card (keeping the creator's colour) so a card edited on another guide can't leak in.
+    if (preset.card) state.card = K.normalizeCard({ ...(preset.example ? { ...K.cardDefaults(), accent: state.card.accent } : state.card), ...preset.card });
     if (preset.quote) state.quote = normQuote({ ...state.quote, ...preset.quote });
     state.tab = preset.tab;
   }
   // A landing page's scenario is a demo: it isn't saved over the visitor's own work (from the
   // home page or another guide) until they change something on this page.
+  // Example presets (India pages): the base rate and typed prices are placeholders, and the UI says so
+  // for as long as they are unchanged.
+  const EG = preset && preset.example ? preset : null;
+  const exItem = it => !!EG && it.type === "custom" && EG.calc.items.some(e => e.label === it.label && e.price === it.price);
+  const exBase = () => !!EG && state.calc.base === EG.calc.base && state.calc.currency === EG.calc.currency;
   let pristine = !!preset;
   const touch = () => { pristine = false; };
   let deals = (LS.get("deals", []) || []).filter(d => d && typeof d === "object" && d.id).slice(0, 500);
@@ -259,6 +279,7 @@
     <div class="cr-deals"></div>
   </div>`;
 
+  if (EG) $(".cr-levels").style.display = "none";
   ["input", "change"].forEach(t => mount.addEventListener(t, touch, true));
   mount.addEventListener("click", e => { if (e.target.closest("[data-a]")) touch(); }, true);
 
@@ -275,12 +296,13 @@
   }
   function renderItems() {
     const s = state.calc;
-    $(".cr-items").innerHTML = `<div class="cr-ihead" aria-hidden="true"><span>Deliverable</span><span>Qty</span><span>Unit price</span><span></span></div>` + s.items.map((it, i) => {
+    const exAny = s.items.some(exItem);
+    $(".cr-items").innerHTML = `<div class="cr-ihead" aria-hidden="true"><span>Deliverable</span><span>Qty</span><span>Unit price${exAny ? " (example)" : ""}</span><span></span></div>` + s.items.map((it, i) => {
       const auto = it.type === "custom" ? "" : String(Math.round(s.base * K.ITEMS[it.type].factor));
       return `<div class="cr-item" role="listitem" data-i="${i}">
         <label class="vh" for="cr-it-${i}">Deliverable ${i + 1} type</label><select id="cr-it-${i}" data-k="type">${ITEM_OPTS.replace(`value="${it.type}"`, `value="${it.type}" selected`)}</select>
         <span class="cr-f"><span class="cr-mini" aria-hidden="true">Qty</span><label class="vh" for="cr-iq-${i}">Deliverable ${i + 1} quantity</label><input id="cr-iq-${i}" data-k="qty" type="number" inputmode="numeric" min="0" max="999" value="${it.qty}"></span>
-        <span class="cr-f"><span class="cr-mini" aria-hidden="true">Price</span><label class="vh" for="cr-ip-${i}">Deliverable ${i + 1} unit price${it.type === "custom" ? "" : " (blank uses the automatic price)"}</label><input id="cr-ip-${i}" data-k="price" type="number" inputmode="decimal" min="0" step="any" value="${it.price == null ? "" : it.price}" placeholder="${esc(auto)}"></span>
+        <span class="cr-f"><span class="cr-mini" aria-hidden="true">${exItem(it) ? "Example price" : "Price"}</span><label class="vh" for="cr-ip-${i}">Deliverable ${i + 1} unit price${exItem(it) ? " (example, replace with your own)" : ""}${it.type === "custom" ? "" : " (blank uses the automatic price)"}</label><input id="cr-ip-${i}" data-k="price" type="number" inputmode="decimal" min="0" step="any" value="${it.price == null ? "" : it.price}" placeholder="${esc(auto)}"></span>
         <button type="button" class="cr-x" data-a="rmItem" aria-label="Remove deliverable ${i + 1}">×</button>
         ${it.type === "custom" ? `<label class="vh" for="cr-il-${i}">Deliverable ${i + 1} name</label><input class="cr-ilabel" id="cr-il-${i}" data-k="label" maxlength="80" value="${esc(it.label)}" placeholder="Item name, e.g. Story frames">` : ""}
       </div>`;
@@ -317,7 +339,9 @@
     $(".cr-sym").textContent = sym;
     const L = K.LEVELS[s.level];
     const [lo, hi] = K.levelRange(s.level in K.LEVELS ? s.level : "building", s.currency);
-    $("#cr-base-hint").innerHTML = `One edited video up to 60 seconds, organic use only, one round of revisions. ${L ? `Starting point for ${esc(L.label.toLowerCase())} creators (${esc(L.hint)}): ${esc(K.money(lo, s.currency))}–${esc(K.money(hi, s.currency))}.` : "You've set your own base rate."}${s.currency !== "USD" ? " Presets outside USD are rough conversions; adjust to your market." : ""}`;
+    const exOn = exBase();
+    $("#cr-total-label").textContent = exOn || s.items.some(exItem) ? "Your quote (example numbers)" : "Your quote";
+    $("#cr-base-hint").innerHTML = exOn ? `<strong>Example rate — replace with your own.</strong> ${esc(money(s.base))} is a placeholder to show how the maths works, not a typical rate. One edited video up to 60 seconds, organic use only, one round of revisions.${EG.baseNote ? " " + esc(EG.baseNote) : ""}` : `One edited video up to 60 seconds, organic use only, one round of revisions. ${L && !EG ? `Starting point for ${esc(L.label.toLowerCase())} creators (${esc(L.hint)}): ${esc(K.money(lo, s.currency))}–${esc(K.money(hi, s.currency))}.` : "You've set your own base rate."}${s.currency !== "USD" ? " Presets outside USD are rough conversions; adjust to your market." : ""}`;
     const U = K.USAGE[s.usage];
     $('[data-hint="usage"]').textContent = s.usage === "none" ? "Organic posting on the brand's own channels is included in the base rate." : `Typical ${U.range[0]}–${U.range[1]}% of the content fee. Change the % to use your own number.`;
     $('[data-hint="wl"]').textContent = `Typical ${K.ADDONS.whitelist.range[0]}–${K.ADDONS.whitelist.range[1]}% of the content fee for each month.`;
@@ -564,7 +588,7 @@
     return busy(btn, async () => {
       const D = await docs(), data = docData();
       const blob = fmt === "png" ? await D.cardPNG(data) : await D.cardPDF(data);
-      download(blob, `ugc-rate-card${state.profile.name ? "-" + slug(state.profile.name) : ""}.${fmt}`);
+      download(blob, `${state.card.listItems ? "rate-card" : "ugc-rate-card"}${state.profile.name ? "-" + slug(state.profile.name) : ""}.${fmt}`);
       status(fmt === "png" ? "Rate card PNG downloaded (1080 × 1350 px)." : "Rate card PDF downloaded.");
       track("card_exported");
     });

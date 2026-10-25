@@ -13,12 +13,15 @@
 - [Beginner UGC rate card](https://ugcrates.roohsites.com/beginner-ugc-rate-card): pricing with no followers or portfolio, and common beginner mistakes.
 - [UGC rate card template](https://ugcrates.roohsites.com/ugc-rate-card-template): free editable rate card in three designs, PNG 1080x1350 or PDF.
 - [UGC quote template for brands](https://ugcrates.roohsites.com/ugc-brand-quote-template): itemised quote PDF with rights, payment terms and usage options, plus a pitch email.
+- [UGC rate card India](https://ugcrates.roohsites.com/ugc-rate-card-india): how Indian UGC creators can set a rupee base rate from their own deals and time, and price usage rights, whitelisting and exclusivity as separate lines; no average rates published.
+- [Influencer rate card India](https://ugcrates.roohsites.com/influencer-rate-card-india): a rupee rate card for Reels, Stories and YouTube integrations as separate items, with ad-use fees, bundles and how to present the PDF to brands; all rupee figures are examples.
 
 ## Key facts
 - Formula: content fee = sum of (quantity x unit price) minus any package discount; each add-on = content fee x uplift % (x months or rounds where it is "per"); total = content fee + add-ons.
 - Default uplifts (editable, last reviewed 8 October 2026): paid usage 30 days +25% (range 20-30%), 60 days +40% (30-50%), 90 days +50% (40-60%), 6 months +75% (60-90%), 12 months +100% (80-120%), perpetual +150% (100-200%); whitelisting / Spark Ads +20% per month (15-30%); exclusivity +10% per month for named competitors (5-15%) or +20% per month for a whole category (15-30%); raw footage +40% (25-60%); extra revision round +15% (10-20%); rush +25% (20-50%). Organic use on the brand's own channels is included in the base rate.
 - Starting base rates for one edited video up to 60 seconds (USD): beginner $50-150, building $150-300, experienced $300-600. These are CollabRate's negotiating starting points, not survey data or an industry standard.
 - Currencies: USD, EUR, GBP, INR, AUD, CAD.
+- India pages: the rupee base rate (5,000 for one UGC video) and the typed Reel, Story and YouTube prices (6,000, 2,500, 12,000) are labelled examples for showing the maths. They are not Indian market rates or averages, and the pages publish no average rates.
 - Price: completely free. No paid tier, no account.
 - Privacy: rates, quotes, deals and photos stay in the browser's local storage. PDFs and PNGs are generated on the device.
 

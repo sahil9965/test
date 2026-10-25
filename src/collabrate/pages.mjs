@@ -25,6 +25,8 @@ const GUIDES = [
   ["/beginner-ugc-rate-card", "Beginner UGC rate card"],
   ["/ugc-rate-card-template", "UGC rate card template"],
   ["/ugc-brand-quote-template", "UGC quote template for brands"],
+  ["/ugc-rate-card-india", "UGC rate card India"],
+  ["/influencer-rate-card-india", "Influencer rate card India"],
 ];
 
 // ---------- shared content blocks built from the engine ----------
@@ -73,10 +75,12 @@ function breakdown(c, cur = "USD") {
 
 // ---------- layout ----------
 function page(p) {
-  const { slug, title, desc, h1, lead, preset, body, faq = [], crumb, home = false, tool = true, howto, badges } = p;
+  const { slug, title, desc, h1, lead, preset, body, faq = [], crumb, home = false, tool = true, howto, badges, lang = "en", cur = "USD", egNote, updated } = p;
+  const [DATE_ISO, DATE_HUM] = updated || [DATE, DATE_H];
   const url = home ? `${URL}/` : `${URL}/${slug}`;
   const faqLd = faq.length ? [{ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) }] : [];
-  const app = { "@type": "WebApplication", name: home ? "CollabRate" : `CollabRate ${crumb}`, url, description: home ? "Free UGC rate calculator for usage rights, whitelisting and exclusivity, with brand quote PDFs and rate cards." : strip(desc), applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } };
+  const app = { "@type": "WebApplication", name: home ? "CollabRate" : `CollabRate ${crumb}`, url, description: home ? "Free UGC rate calculator for usage rights, whitelisting and exclusivity, with brand quote PDFs and rate cards." : strip(desc), applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: cur } };
+  if (lang !== "en") app.inLanguage = lang;
   app.publisher = { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" };
   if (home) Object.assign(app, { featureList: ["UGC rate calculator", "Paid usage rights pricing", "Whitelisting and Spark Ads fees", "Exclusivity fees", "Raw footage, revisions and rush fees", "Brand quote PDF", "Rate card PNG and PDF in 3 templates", "Pitch email builder", "Saved deals with CSV export and calendar reminders", "USD, EUR, GBP, INR, AUD and CAD", "No signup"] });
   const graph = home
@@ -86,7 +90,7 @@ function page(p) {
     ? `<a href="#how">How it works</a><a href="#methodology">Methodology</a><a href="/ugc-rate-card-template">Rate card</a><a href="#faq">FAQ</a>`
     : `<a href="/">Rate calculator</a><a href="/ugc-rate-card-template">Rate card</a><a href="/ugc-brand-quote-template">Quote</a><a href="/about">About</a>`;
   return `<!doctype html>
-<html lang="en">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -128,13 +132,13 @@ ${home ? "" : `    <p class="crumbs"><a href="/">CollabRate</a> › ${esc(crumb)
       <h1>${esc(h1)}</h1>
       <p class="lead">${lead}</p>
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
-${tool ? `    <section class="tool card" aria-label="UGC rate calculator"><div id="cr-tool"${preset ? ` data-preset="${preset}"` : ""}><noscript><p class="cr-noscript">The calculator needs JavaScript. The methodology table below lists every percentage it uses, so you can also work the numbers out by hand.</p></noscript></div></section>\n` : ""}    <article class="content narrow">
+${tool ? `    <section class="tool card" aria-label="UGC rate calculator">${egNote ? `<p class="eg-note" role="note">${egNote}</p>` : ""}<div id="cr-tool"${preset ? ` data-preset="${preset}"` : ""}><noscript><p class="cr-noscript">The calculator needs JavaScript. The methodology table below lists every percentage it uses, so you can also work the numbers out by hand.</p></noscript></div></section>\n` : ""}    <article class="content narrow">
 ${body}
 ${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}      <h2>More UGC pricing guides</h2>
       <ul class="related">
         ${[["/", "UGC rate calculator"], ...GUIDES].filter(([h]) => h !== (home ? "/" : `/${slug}`)).map(([h, l]) => `<li><a href="${h}">${l}</a></li>`).join("\n        ")}
       </ul>
-      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. Rates here are negotiating starting points, not financial, legal or tax advice. CollabRate isn't affiliated with any platform or brand named on this site.</p>
+      <p class="small muted">Last updated <time datetime="${DATE_ISO}">${DATE_HUM}</time> · Written by the Rooh Sites team. Rates here are negotiating starting points, not financial, legal or tax advice. CollabRate isn't affiliated with any platform or brand named on this site.</p>
     </article>
   </main>
   <footer class="site">
@@ -168,6 +172,12 @@ const emailEx = K.pitchEmail(K.compute({ base: 150, items: [{ type: "video", qty
 const usageTable = base => `<table><thead><tr><th>Paid usage window</th><th>Default uplift</th><th>Suggested range</th><th>On a ${$(base)} video</th></tr></thead><tbody>
       ${["30d", "60d", "90d", "6m", "12m", "perpetual"].map(id => { const U = K.USAGE[id]; return `<tr><td>${U.label}</td><td>+${pct(U.pct)}</td><td>${U.range[0]}–${pct(U.range[1])}</td><td>+${$(base * U.pct / 100)} (total ${$(base * (1 + U.pct / 100))})</td></tr>`; }).join("\n      ")}
       </tbody></table>`;
+
+// India pages: every rupee figure is a labelled placeholder (₹5,000 base; typed Reel, Story and YouTube prices).
+const exIn = K.compute({ currency: "INR", level: "custom", base: 5000, items: [{ type: "video", qty: 1 }], usage: "30d", wlMonths: 1, revisions: 1 });
+const exInfl = K.compute({ currency: "INR", level: "custom", base: 5000, discount: 10, usage: "30d", items: [
+  { type: "custom", qty: 1, price: 6000, label: "Instagram Reel (posted on my account)" }, { type: "custom", qty: 1, price: 2500, label: "Instagram Story (3 frames)" }] });
+const IN = n => $(n, "INR");
 
 const homeFaq = [
   ["How much should I charge for a UGC video?", `Start from a base rate for one edited video up to 60 seconds with organic use only. CollabRate's starting points are ${$(50)}–${$(150)} if you're new, ${$(150)}–${$(300)} once you've done a few brand projects, and ${$(300)}–${$(600)} with proven ad results. Then add usage rights, whitelisting and extras on top as percentages.`],
@@ -555,6 +565,135 @@ ${esc(emailEx.body)}</pre>
       ["How long should a UGC quote be valid?", "Fourteen days is a sensible default. It keeps prices current and gives the brand a reason to decide."],
       ["Should I show my rate range to the brand?", "No. The PDF shows only your chosen prices. The range in the calculator is for you, to know your floor."],
       ["Can I quote in euros, pounds or rupees?", "Yes. Choose USD, EUR, GBP, INR, AUD or CAD. The PDF uses A4 or US Letter automatically, or you can pick the paper size."],
+    ],
+  },
+  {
+    slug: "ugc-rate-card-india", preset: "ugcindia", crumb: "UGC rate card India", lang: "en-IN", cur: "INR", updated: ["2026-10-25", "25 October 2026"],
+    title: "UGC Rate Card India: Price Your Videos and Rights in ₹",
+    desc: "Build a UGC rate card for India in rupees. Price videos from your own deals, then add usage rights, whitelisting and exclusivity. Free PDF and PNG, no signup.",
+    h1: "UGC Rate Card India: Price Your Content in Rupees",
+    lead: "Work out your own UGC rates from your own deals and time, add paid usage, whitelisting and exclusivity as separate lines, then download a rupee rate card and a brand quote.",
+    egNote: `<strong>Example numbers only.</strong> The calculator below opens in rupees with a placeholder base rate of ${IN(5000)} for one UGC video. It is not a market rate and not an Indian average. Replace it with your own rate. The rate card footer starts with an example notice so the placeholder can't slip into a real card by accident.`,
+    body: `      <p class="tldr"><strong>Quick answer:</strong> There is no single UGC rate for India. What brands pay varies widely by niche, by your experience and by the brand, and this page does not publish “average” rates. Build your own. Start from what you were paid on past deals and how many hours one finished video really takes, and use that as the base rate for one video with organic use. Then price the extras as separate line items: paid usage (the brand runs your video as an ad), whitelisting (ads that run through your handle), exclusivity and extra revisions. The ${IN(5000)} in the calculator is an example so you can see the maths. Replace it with your own number.</p>
+
+      <h2>Start from your own numbers, not a chart</h2>
+      <p>A single “average UGC rate” hides everything that matters: the niche, how experienced the creator is, how much work the video needed, and which rights the brand got. It can mislead you in either direction. Your own history is better evidence, and you already have it.</p>
+      <ol class="steps">
+        <li><strong>List your past deals.</strong> For each one, write down what you were paid, how many videos it covered and what the brand could do with them (organic posting only, or ads too). Deals that led to a second order tell you the price was acceptable.</li>
+        <li><strong>Time one video honestly.</strong> Count reading the brief, scripting, setting up, filming, editing, captions and the messages around it. Multiply the hours by what you want to earn per hour to get a floor for your base rate.</li>
+        <li><strong>Notice what you say yes to.</strong> If every brand accepts at once, you may be too cheap. If brands stop replying, the price may be too high for your current samples, or the samples may need work.</li>
+        <li><strong>Write down one base rate</strong> for a single edited video up to 60 seconds, with organic use by the brand and one round of revisions. This is the number the calculator starts from.</li>
+        <li><strong>Review it every few months.</strong> Raise it when you are booked out, when brands come back, or when a brand shares ad results from your video.</li>
+      </ol>
+
+      <h2>Charge for rights as separate line items</h2>
+      <p>The base rate buys the video and the brand's right to post it on its own channels. Anything beyond that is a separate line on the quote. The brand then sees what each extra costs, and you can drop one extra without cutting your base rate.</p>
+      <table><thead><tr><th>Line item</th><th>What the brand gets</th><th>CollabRate's editable starting point</th></tr></thead><tbody>
+      <tr><td>Paid usage</td><td>The brand runs your video as an ad from its own account for a set time</td><td>+${pct(K.USAGE["30d"].pct)} of the content fee for 30 days, +${pct(K.USAGE["90d"].pct)} for 90 days, +${pct(K.USAGE["12m"].pct)} for 12 months</td></tr>
+      <tr><td>Whitelisting / partnership ads</td><td>Ads run through your handle, so viewers see your name</td><td>+${pct(K.ADDONS.whitelist.pct)} of the content fee for each month</td></tr>
+      <tr><td>Exclusivity</td><td>You don't make content for named competitors, or a whole category, for a period</td><td>+${pct(K.ADDONS.competitors.pct)} (named competitors) or +${pct(K.ADDONS.category.pct)} (whole category) for each month</td></tr>
+      <tr><td>Extra revisions</td><td>More rounds of changes than the one included</td><td>+${pct(K.ADDONS.revision.pct)} for each extra round</td></tr>
+      </tbody></table>
+      <p>These percentages are CollabRate's own negotiating starting points. They are the same for every country and are not Indian market data. Change any of them in the calculator. For more detail, see the pages on <a href="/ugc-usage-rights-calculator">UGC usage rights</a>, <a href="/ugc-whitelisting-rates">whitelisting rates</a> and the <a href="/ugc-exclusivity-fee">exclusivity fee</a>.</p>
+
+      <h2>A worked example (${IN(5000)} is a placeholder)</h2>
+      <p>Say a brand asks for one video, 30 days of paid usage, one month of whitelisting and one extra round of revisions. With the example base rate of ${IN(5000)}, the quote adds up like this. The base rate is a placeholder to show the maths, not a rate to copy:</p>
+      ${breakdown(exIn, "INR")}
+      <p>The same video with organic use only stays at ${IN(5000)}. Every other line is something the brand chose to add, which makes the conversation easier. If the budget is tight, the brand can shorten the usage window or drop whitelisting instead of asking you to cut your base rate.</p>
+
+      <h2>Make your rupee rate card and brand quote</h2>
+      <p>The calculator above opens in rupees, with A4 paper and the example base rate. To make it yours:</p>
+      <ol class="steps">
+        <li><strong>Replace the ${IN(5000)}</strong> with your own base rate. The “example rate” note under the field disappears once you change it.</li>
+        <li><strong>Open the Rate card tab,</strong> add your name, handle and contact details, pick a template, and choose whether to show prices, “from” prices or “rates on request”.</li>
+        <li><strong>Rewrite the footer note.</strong> It starts as a reminder that the rates are examples. Put your own line there before you send the card.</li>
+        <li><strong>Download the PNG or the PDF.</strong> The PNG suits a media kit or a profile link, and the PDF suits email.</li>
+        <li><strong>For a real brief, use the Brand quote tab.</strong> Add the brand, the deliverables, the usage window and your payment terms, then download an A4 quote PDF.</li>
+      </ol>
+      <p>Amounts print with the ₹ symbol on both the card and the quote, because the files embed a font that includes it, so there is no need to write “Rs.”. Everything is made in your browser and nothing is uploaded. See the <a href="/ugc-rate-card-template">rate card template</a> and <a href="/ugc-brand-quote-template">quote template</a> pages for the layouts, and the <a href="/influencer-rate-card-india">influencer rate card India</a> page if you post to your own audience.</p>
+
+      <h2>Why this page doesn't list average rates</h2>
+      <p>The experience-level shortcuts on the CollabRate home page convert US dollar starting points into rupees. That is arithmetic, not a survey of Indian creators, so those shortcuts are hidden on this page and the base rate is a plain example. Rates in India differ with niche, platform, the effort the video needs, the rights the brand wants and the size of the brand. If you want a reality check, ask two or three creators or brands you trust in your niche what they consider reasonable for your kind of video, and write down what you hear next to your own numbers.</p>
+
+      <h2>GST, invoices and tax</h2>
+      <p>This is general information, not tax advice. CollabRate's rate card and quote show your fee and do not calculate tax. If you are registered for GST, GST is added to the invoice you raise for your services; the <a href="https://invoice.roohsites.com/gst-invoice-generator">GST invoice generator</a> can help you make one. If you are not registered, you invoice without GST; see the <a href="https://invoice.roohsites.com/invoice-format-without-gst">invoice format without GST</a>. If a foreign brand pays you in a foreign currency, read about an <a href="https://invoice.roohsites.com/export-invoice-without-igst-under-lut">export invoice without IGST under LUT</a>. Questions about income tax or TDS are best answered by a chartered accountant.</p>`,
+    faq: [
+      ["How much should I charge for UGC in India?", `There is no single right number. Rates vary widely by niche, experience and the brand, and this page does not publish average rates. Work out a base rate from your past deals and the time one video takes, then add usage rights, whitelisting, exclusivity and extra revisions as separate lines. The ${IN(5000)} shown in the calculator is only an example.`],
+      ["What should a UGC rate card in India include?", "Your name and contact details, the price of one video with organic use, any packages you offer, the add-ons (paid usage, whitelisting, exclusivity, extra revisions), what every video includes, and the currency. If your briefs vary a lot, show “rates on request” and quote each brief."],
+      ["Should paid ad usage be included in my base rate?", "Organic posting on the brand's own channels can sit inside the base rate. Paid usage, where the brand puts money behind your video as an ad, is worth more to the brand and ties your face and voice to its advertising, so price it as its own line for a set period."],
+      ["Do I add GST to my UGC rate card prices?", "The rate card and quote show your fee only. If you are registered for GST, GST is added on the invoice for your services. If you are not registered, you invoice without GST. For tax questions, ask a chartered accountant."],
+      ["Is this UGC rate card for India free?", "Yes. It is free with no signup, and nothing you type is uploaded. Exported cards and quotes carry a small “Made with CollabRate” credit."],
+    ],
+  },
+  {
+    slug: "influencer-rate-card-india", preset: "influencerindia", crumb: "Influencer rate card India", lang: "en-IN", cur: "INR", updated: ["2026-10-25", "25 October 2026"],
+    title: "Influencer Rate Card India: Reels, Stories & YouTube in ₹",
+    desc: "Make an influencer rate card for India in rupees. List Reels, Stories and YouTube integrations as separate items, add ad-use fees and download a PDF or PNG.",
+    h1: "Influencer Rate Card India: Reels, Stories and YouTube",
+    lead: "List each post you offer as its own line, price it from your own reach and past results, and charge extra when a brand wants to run or reuse your post.",
+    egNote: `<strong>Example numbers only.</strong> The ${IN(6000)} Reel, ${IN(2500)} Story set and ${IN(12000)} YouTube integration below are placeholders, not benchmarks or Indian averages. Type your own prices over them. The rate card carries an example notice until you replace it.`,
+    body: `      <p class="tldr"><strong>Quick answer:</strong> An influencer rate card lists what you charge to post on your own account, one item per line: an Instagram Reel, a set of Stories, a YouTube integration. Price each item from your own reach and results, not from a table of strangers' rates, and keep ad use, reuse by the brand and exclusivity as separate lines. The ${IN(6000)} Reel, ${IN(2500)} Story set and ${IN(12000)} YouTube integration in the calculator are examples only, not benchmarks, and this page does not publish “average” rates.</p>
+
+      <h2>UGC and influencer posts: what is the difference?</h2>
+      <table><thead><tr><th></th><th>UGC</th><th>Influencer post</th></tr></thead><tbody>
+      <tr><td>Where it is posted</td><td>On the brand's channels, or run as the brand's ad</td><td>On your own account, to your own audience</td></tr>
+      <tr><td>What the brand pays for</td><td>The content and the right to use it</td><td>The post, plus your audience's attention and trust in your voice</td></tr>
+      <tr><td>What drives your price</td><td>Quality, effort and the rights granted</td><td>Your reach and results, the effort, and the rights granted</td></tr>
+      <tr><td>Common extra lines</td><td>Paid usage, whitelisting, exclusivity, raw footage</td><td>Ad use of your post, partnership ads, reuse, exclusivity</td></tr>
+      </tbody></table>
+      <p>If the brand posts the video and your audience never sees it, you are pricing UGC, and the <a href="/ugc-rate-card-india">UGC rate card India</a> page is the better starting point. If the post goes on your account, read on.</p>
+
+      <h2>Price a post from your own reach and results</h2>
+      <ol class="steps">
+        <li><strong>Open your own analytics</strong> for recent posts in the same format. Look at how many people each Reel reached, how many watched most of it, and how many saved, shared or replied. Use your typical posts, not your best one.</li>
+        <li><strong>Review past brand posts.</strong> Note the reach, link clicks, messages from people asking where to buy, and anything the brand told you about results.</li>
+        <li><strong>Count the work.</strong> Planning, filming, editing, posting, answering comments, and any report the brand asks for all take time.</li>
+        <li><strong>Choose a price per item</strong> and check that you would be happy to repeat the work at that price. Do not raise every price because of one post that took off, and do not copy a number from a chart.</li>
+        <li><strong>Write it down and review it</strong> as your results change.</li>
+      </ol>
+      <p>Follower count alone does not tell a brand what a post will do, which is why your own results make a stronger case than a number on your profile.</p>
+
+      <h2>List each item as a separate line</h2>
+      <p>Reels, Stories and YouTube integrations take different amounts of work and reach people in different ways, so give each its own line and its own price. In the calculator, add a deliverable, choose “Custom item”, type the name and type the price. The three lines above are set up this way.</p>
+      <table><thead><tr><th>Item</th><th>Spell out so nothing is a surprise</th></tr></thead><tbody>
+      <tr><td>Instagram Reel (posted on my account)</td><td>Length, number of posts, tags and links, posting date, how long it stays up, who approves the caption</td></tr>
+      <tr><td>Instagram Story (3 frames)</td><td>Number of frames, link sticker, posting date, whether it is saved to a Highlight</td></tr>
+      <tr><td>YouTube integration (60–90 s)</td><td>Where it sits in the video, length, link in the description, how long the video stays published</td></tr>
+      </tbody></table>
+
+      <h2>Charge extra when the brand wants more than a post</h2>
+      <ul>
+        <li><strong>Ad use.</strong> If the brand runs your post as an ad from its own account, that is paid usage. Price it as a percentage of the content fee for a set period. CollabRate starts at +${pct(K.USAGE["30d"].pct)} for 30 days and +${pct(K.USAGE["90d"].pct)} for 90 days, and you can change both. See <a href="/ugc-usage-rights-calculator">usage rights</a>.</li>
+        <li><strong>Partnership ads.</strong> If ads run through your handle, that is whitelisting, charged for each month. See <a href="/ugc-whitelisting-rates">whitelisting rates</a>.</li>
+        <li><strong>Reuse.</strong> If the brand wants to repost your content on its own page, website or newsletter, add a custom line with a typed price and say where and for how long.</li>
+        <li><strong>Exclusivity.</strong> If you must turn down competing brands for a period, charge for each month. See the <a href="/ugc-exclusivity-fee">exclusivity fee</a> page.</li>
+        <li><strong>Extra changes.</strong> Include one round and price additional rounds.</li>
+      </ul>
+      <p>These percentages are CollabRate's own negotiating starting points for every country, not Indian market data, and every one is editable.</p>
+
+      <h2>Bundles</h2>
+      <p>A bundle sells several items together at a small discount, for example a Reel with a Story set. Use the package discount field in the calculator. The discount comes off the content fee before add-ons are calculated, so it also lowers any percentage-based add-on. Keep it modest. Here is the example Reel and Story pair with a 10% bundle discount and 30 days of ad use. All amounts are placeholders:</p>
+      ${breakdown(exInfl, "INR")}
+
+      <h2>How to present your rate card to brands in India</h2>
+      <ul>
+        <li><strong>Send the PDF by email and use the PNG</strong> in your media kit or as a link from your profile. The PNG is 1080 × 1350 pixels.</li>
+        <li><strong>Add your name, handle, niche and contact details,</strong> and put a date in the file name so brands know it is current.</li>
+        <li><strong>Choose how much to show.</strong> Prices, “from” prices or “rates on request” are all fine. If briefs vary a lot, “from” prices or “on request” keeps you flexible.</li>
+        <li><strong>State the currency and tax treatment.</strong> The card adds “Prices in INR”. If you are registered for GST, say in your quote notes whether your prices are before or after GST.</li>
+        <li><strong>Treat the card as a starting point.</strong> For each real brief, send a quote PDF on A4 that lists the exact deliverables, posting dates, ad-use window and payment terms.</li>
+        <li><strong>Replace the example notice.</strong> The card footer starts as a reminder that the rates are examples. Change it before you send anything.</li>
+      </ul>
+      <p>Amounts print with the ₹ symbol on both the card and the quote, because the files embed a font that includes it. Everything is created in your browser and nothing is uploaded.</p>
+
+      <h2>GST, invoices and tax</h2>
+      <p>This is general information, not tax advice. CollabRate's rate card and quote show your fee and do not calculate tax. If you are registered for GST, GST is added to the invoice you raise for your services; the <a href="https://invoice.roohsites.com/gst-invoice-generator">GST invoice generator</a> can help. If you are not registered, you invoice without GST; see the <a href="https://invoice.roohsites.com/invoice-format-without-gst">invoice format without GST</a>. If a foreign brand pays you in a foreign currency, read about an <a href="https://invoice.roohsites.com/export-invoice-without-igst-under-lut">export invoice without IGST under LUT</a>. For income tax or TDS questions, ask a chartered accountant.</p>`,
+    faq: [
+      ["How much should I charge for an Instagram Reel in India?", `There is no honest single answer, and this page does not publish average or benchmark rates. Your price should come from your own reach and results, your niche, the effort involved, the rights the brand wants and the brand itself. The ${IN(6000)} in the calculator is an example. Start from the results of your recent Reels and your past brand deals.`],
+      ["What is the difference between a UGC rate card and an influencer rate card?", "A UGC rate card prices content the brand posts or runs as its own ads. An influencer rate card prices posts that go on your own account, so your reach and results matter, and ad use of your post is a separate line."],
+      ["Should I charge extra if a brand runs my Reel as an ad?", "Yes. Running your post as an ad is paid usage, and ads that appear under your handle are whitelisting. Both are worth more to the brand than the post alone, so list them as separate lines with a time period."],
+      ["Should I show prices on my influencer rate card?", "That is your choice. Show prices if your offer is simple, show “from” prices if each brief is different, or choose “rates on request” and quote each brief. The calculator supports all three."],
+      ["Is this influencer rate card for India free?", "Yes. It is free with no signup, and nothing you type is uploaded. Exported cards and quotes carry a small “Made with CollabRate” credit."],
     ],
   },
   {

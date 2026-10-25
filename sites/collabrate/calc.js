@@ -105,7 +105,7 @@
       usage: "none", usagePct: 0,
       wlMonths: 0, wlPct: ADDONS.whitelist.pct,
       exMonths: 0, exScope: "competitors", exPct: ADDONS.competitors.pct,
-      raw: false, rawPct: ADDONS.raw.pct,
+      ownPosts: false, raw: false, rawPct: ADDONS.raw.pct,
       revisions: 0, revPct: ADDONS.revision.pct,
       rush: false, rushPct: ADDONS.rush.pct,
     };
@@ -133,7 +133,7 @@
       usage, usagePct: usage === "none" ? 0 : pctOr(i.usagePct, USAGE[usage].pct),
       wlMonths: int(i.wlMonths, 0, 12, 0), wlPct: pctOr(i.wlPct, ADDONS.whitelist.pct),
       exMonths: int(i.exMonths, 0, 12, 0), exScope, exPct: pctOr(i.exPct, ADDONS[exScope].pct),
-      raw: !!i.raw, rawPct: pctOr(i.rawPct, ADDONS.raw.pct),
+      ownPosts: !!i.ownPosts, raw: !!i.raw, rawPct: pctOr(i.rawPct, ADDONS.raw.pct),
       revisions: int(i.revisions, 0, 6, 0), revPct: pctOr(i.revPct, ADDONS.revision.pct),
       rush: !!i.rush, rushPct: pctOr(i.rushPct, ADDONS.rush.pct),
     };
@@ -239,9 +239,13 @@
     const s = c.state, out = [];
     const start = parseDate(q.rightsStart) ? q.rightsStart : "";
     const span = end => (start ? ` (${fmtDate(start)} to ${fmtDate(end)})` : ", starting on the delivery date");
-    if (s.usage === "none") out.push("Usage: the brand may post the content organically on its own social channels and website. Paid ads are not included.");
-    else if (s.usage === "perpetual") out.push("Paid usage: the brand may run the content as paid ads from its own accounts, with no end date. Organic posting is included.");
-    else out.push(`Paid usage: the brand may run the content as paid ads from its own accounts for ${USAGE[s.usage].label}${span(usageEnd(start, s.usage))}. Organic posting is included.`);
+    // ownPosts: influencer posts go live on the creator's account, so the brand gets no organic reposting by default.
+    const organic = s.ownPosts ? "The content also goes live on the creator's own account." : "Organic posting is included.";
+    if (s.usage === "none") out.push(s.ownPosts
+      ? "Posting: the content goes live on the creator's own account. The brand may reshare or repost it only as agreed in writing. Paid ads are not included."
+      : "Usage: the brand may post the content organically on its own social channels and website. Paid ads are not included.");
+    else if (s.usage === "perpetual") out.push(`Paid usage: the brand may run the content as paid ads from its own accounts, with no end date. ${organic}`);
+    else out.push(`Paid usage: the brand may run the content as paid ads from its own accounts for ${USAGE[s.usage].label}${span(usageEnd(start, s.usage))}. ${organic}`);
     if (s.wlMonths > 0) out.push(`Whitelisting / Spark Ads: the brand may run ads through the creator's account for ${plural(s.wlMonths, "month")}${span(start ? monthsEnd(start, s.wlMonths) : "")}, using the platform's own ad-authorisation tools. The creator keeps ownership and control of the account.`);
     if (s.exMonths > 0) out.push(`Exclusivity: the creator won't make content for ${s.exScope === "category" ? "other brands in the same product category" : "the direct competitors named by the brand"} for ${plural(s.exMonths, "month")}${span(start ? monthsEnd(start, s.exMonths) : "")}.`);
     if (s.raw) out.push("Raw footage: unedited source clips are delivered along with the final edits.");
@@ -288,7 +292,7 @@
   };
   function cardDefaults() {
     return {
-      template: "studio", mode: "prices", addonMode: "pct", title: "UGC rate card", accent: "#a21caf",
+      template: "studio", mode: "prices", addonMode: "pct", listItems: false, title: "UGC rate card", accent: "#a21caf",
       packages: [{ label: "1 video", qty: 1, disc: 0 }, { label: "3 videos", qty: 3, disc: 10 }, { label: "5 videos", qty: 5, disc: 15 }],
       show: { hook: true, photo: false, usage30: true, usage90: true, usage12m: false, perpetual: false, whitelist: true, exclusivity: false, raw: true, rush: true, revision: false },
       included: "Edited, ready-to-post video\nOrganic use on your brand's channels\n1 round of revisions\nDelivery within 7 days of receiving the product",
@@ -304,6 +308,7 @@
       template: ["studio", "bold", "soft"].includes(i.template) ? i.template : d.template,
       mode: ["prices", "from", "request"].includes(i.mode) ? i.mode : d.mode,
       addonMode: i.addonMode === "amount" ? "amount" : "pct",
+      listItems: !!i.listItems, // true: the card lists the calculator's deliverables (e.g. typed-price Reels) instead of "1 / 3 / 5 videos" packages
       title: i.title === undefined ? d.title : str(i.title, 40),
       accent: /^#[0-9a-f]{6}$/i.test(i.accent || "") ? i.accent.toLowerCase() : d.accent,
       packages: pk, show,
@@ -316,10 +321,11 @@
   function cardRows(calcState, cardInput) {
     const s = normalize(calcState), card = normalizeCard(cardInput), cur = s.currency, req = card.mode === "request";
     const pre = card.mode === "from" ? "From " : "";
-    const packages = card.packages.filter(p => p.qty > 0).map(p => {
+    let packages = card.packages.filter(p => p.qty > 0).map(p => {
       const price = Math.round(p.qty * s.base * (1 - p.disc / 100));
       return { label: p.label.trim() || plural(p.qty, "video"), price, value: req ? "" : pre + money(price, cur), save: p.disc > 0 ? `save ${fmtPct(p.disc)}` : "" };
     });
+    if (card.listItems) packages = compute(s).lines.filter(l => l.unit > 0).slice(0, 8).map(l => ({ label: l.label, price: l.unit, value: req ? "" : pre + money(l.unit, cur), save: "" }));
     const pctRow = (label, pct, per) => {
       const unit = per ? ` per ${per}` : "";
       const v = card.addonMode === "amount" ? `+${money(Math.round(s.base * pct / 100), cur)} per video${unit}` : `+${fmtPct(pct)}${unit}`;
@@ -340,7 +346,7 @@
     if (sh.rush) rows.push(pctRow(CARD_ADDONS.rush, s.rushPct));
     if (sh.revision) rows.push(pctRow(CARD_ADDONS.revision, s.revPct, "round"));
     const included = card.included.split("\n").map(x => x.trim()).filter(Boolean).slice(0, 8);
-    return { card, packages, addons: rows, included, currency: cur, request: req };
+    return { card, packages, addons: rows, included, currency: cur, request: req, listItems: card.listItems };
   }
 
   // ---------- deals tracker: CSV and iCalendar ----------

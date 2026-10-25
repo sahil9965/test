@@ -168,3 +168,4 @@ legend{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px;padding:
 .cr-short{display:none}
 @media(max-width:520px){.cr-tabs .cr-long{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.cr-tabs .cr-short{display:inline}}
 .formula.email-sample{white-space:pre-wrap;font-family:inherit;font-size:15px}
+.eg-note{border:1px dashed var(--warn);background:var(--soft);border-radius:10px;padding:10px 14px;margin:0 0 16px;font-size:14.5px;line-height:1.5}

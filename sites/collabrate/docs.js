@@ -276,14 +276,15 @@
       y += 24 * s + 14 * s;
       if (kind === "packages") {
         items.forEach((it, i) => {
-          const vs = 38 * s, vw = it.value ? q.measure(it.value, vs, true) : 0, ls = 33 * s;
-          const lab = clip(q, it.label, x1 - x0 - vw - 40 - (it.save ? 150 * s : 0), ls, true);
-          const rh = 70 * s, base = y + rh / 2 + 12 * s;
+          const vs = 38 * s, vw = it.value ? q.measure(it.value, vs, true) : 0, ls = 33 * s, room = x1 - x0 - vw - 40 - (it.save ? 150 * s : 0);
+          // Deliverable lists (influencer cards) wrap long names instead of cutting them off.
+          const names = D.rows.listItems ? wrap(q, it.label, room, ls, true).slice(0, 3) : [clip(q, it.label, room, ls, true)], lab = names[0];
+          const rh = (70 + (names.length - 1) * 38) * s, vbase = y + rh / 2 + 12 * s, base = vbase - (names.length - 1) * 19 * s;
           if (T === "bold") q.rect(x0, y + 6 * s, x1 - x0, rh - 12 * s, { fill: P.wash, r: 14 * s });
           const ix = T === "bold" ? x0 + 22 * s : x0, vx = T === "bold" ? x1 - 22 * s : x1;
-          q.text(lab, ix, base, { size: ls, bold: true });
+          names.forEach((nm, j) => q.text(nm, ix, base + j * 38 * s, { size: ls, bold: true }));
           if (it.save) { const sw = q.measure(it.save, 20 * s, true) + 24 * s, sx = ix + q.measure(lab, ls, true) + 16 * s; q.rect(sx, base - 27 * s, sw, 34 * s, { fill: P.tint, r: 17 * s }); q.text(it.save, sx + sw / 2, base - 4 * s, { size: 20 * s, bold: true, color: P.text, align: "center" }); }
-          if (it.value) q.text(it.value, vx, base + 1 * s, { size: vs, bold: true, color: T === "studio" ? INK : P.text, align: "right" });
+          if (it.value) q.text(it.value, vx, vbase + 1 * s, { size: vs, bold: true, color: T === "studio" ? INK : P.text, align: "right" });
           if (T !== "bold" && i < items.length - 1) q.line(x0, y + rh, x1, y + rh, LINE, 1.5);
           y += rh;
         });
@@ -321,9 +322,9 @@
   function cardBody(p, D, s) {
     let y = cardHeader(p, D, s);
     const R = D.rows;
-    if (R.packages.length) y = cardSection(p, D, s, y, "Packages", "packages", R.packages);
+    if (R.packages.length) y = cardSection(p, D, s, y, R.listItems ? "Deliverables" : "Packages", "packages", R.packages);
     if (R.addons.length) y = cardSection(p, D, s, y, "Add-ons", "addons", R.addons);
-    if (R.included.length) y = cardSection(p, D, s, y, "Every video includes", "included", R.included);
+    if (R.included.length) y = cardSection(p, D, s, y, R.listItems ? "What's included" : "Every video includes", "included", R.included);
     const note = [R.request ? "" : `Prices in ${R.currency}.`, D.card.note.trim()].filter(Boolean).join(" ");
     if (note) {
       const soft = D.card.template === "soft";

@@ -110,6 +110,14 @@
     "*": [
       ["https://streamschedule.roohsites.com/", "Stream schedule maker", "post your weekly streams with viewer time zones"],
       ["https://invoice.roohsites.com/freelance-invoice-template", "Freelance invoice template", "invoice brands once the quote is accepted"]
+    ],
+    "/ugc-rate-card-india": [
+      ["https://streamschedule.roohsites.com/", "Stream schedule maker", "post your weekly streams with viewer time zones"],
+      ["https://invoice.roohsites.com/invoice-format-without-gst", "Invoice format without GST", "bill brands in rupees when you are not GST-registered"]
+    ],
+    "/influencer-rate-card-india": [
+      ["https://streamschedule.roohsites.com/", "Stream schedule maker", "post your weekly streams with viewer time zones"],
+      ["https://invoice.roohsites.com/invoice-format-without-gst", "Invoice format without GST", "bill brands in rupees when you are not GST-registered"]
     ]
   },
   "streamweek": {
