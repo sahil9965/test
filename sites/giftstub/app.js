@@ -164,6 +164,11 @@
   // ---- initial state: the home page remembers your last certificate; landing pages start from their preset.
   const saved = !presetName ? okState(store.get("last", null)) : null;
   let st = saved || C.presetState(presetName || "general", { paper: defaultPaper() });
+  // Landing pages can open on a fixed paper size and prefix (data-paper="a4", data-prefix="GV-").
+  if (!saved) {
+    if (ds.paper === "a4" || ds.paper === "letter") st.paper = ds.paper;
+    if (ds.prefix) st.prefix = ds.prefix;
+  }
   let logo = !presetName ? okLogo(store.get("logo", null)) : null;
   let logoBytes = null;
 
@@ -187,8 +192,12 @@
   // ---- preview
   let last = null, raf = 0;
   const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); };
+  const legalEl = $("#gs-legal"), legalDefault = legalEl.textContent;
+  const legalVoucher = "Voucher expiry and refund rules vary by country. Set clear terms, and check local consumer rules if you're unsure.";
   function render() {
     const { s, errors, lost } = C.normalize(st);
+    const noun = C.noun(s);
+    legalEl.textContent = noun === "voucher" ? legalVoucher : legalDefault;
     $(".gs-exp-only").hidden = !s.expiry;
     $(".gs-tf").hidden = !s.toFrom;
     $$('[data-a="pdf"],[data-a="png"],[data-a="csv"],[data-a="addprinted"]').forEach(b => { b.disabled = !!errors.length; });
@@ -205,9 +214,9 @@
     last = { s, g, lay, sheets };
     const first = C.fmtNum(s.start, s), lastN = C.fmtNum(s.end, s);
     $(".gs-csvg").innerHTML = C.svgCert(s, lay, g.cellW, g.cellH, 0, logo && logo.dataUrl);
-    $(".gs-cert figcaption").textContent = `Certificate ${first} with its stub, exactly as it prints`;
+    $(".gs-cert figcaption").textContent = `${noun === "voucher" ? "Voucher" : "Certificate"} ${first} with its stub, exactly as it prints`;
     $(".gs-ssvg").innerHTML = C.svgSheet(s, g, lay, 0, logo && logo.dataUrl);
-    const word = s.count === 1 ? "certificate" : "certificates";
+    const word = s.count === 1 ? noun : noun + "s";
     $(".gs-count").textContent = `${fmtInt(s.count)} ${word}: ${first}${s.count > 1 ? " to " + lastN : ""}`;
     $(".gs-sum").textContent = `${fmtInt(s.count)} ${word} on ${fmtInt(sheets)} ${sheets === 1 ? "sheet" : "sheets"} of ${g.paperName}, 3 per page.${s.count % 3 ? ` The last sheet has ${s.count % 3}.` : ""}`;
     const inch = v => (v / 72).toFixed(2).replace(/0$/, ""), mm = v => Math.round((v / 72) * 25.4);
@@ -308,7 +317,7 @@
       if (!window.PDFLib) await loadScript("/vendor/pdf-lib.min.js");
       const { s } = last;
       const r = await C.buildPdf(window.PDFLib, st, { logo: logoPayload(), onProgress: (p, n, t) => flash(`Building sheet ${fmtInt(n)} of ${fmtInt(t)}…`) });
-      const name = `gift-certificates-${slug(C.fmtNum(s.start, s))}-${slug(C.fmtNum(s.end, s))}.pdf`;
+      const name = `gift-${C.noun(s)}s-${slug(C.fmtNum(s.start, s))}-${slug(C.fmtNum(s.end, s))}.pdf`;
       saveBlob(new Blob([r.bytes], { type: "application/pdf" }), name);
       flash(`Saved <b>${esc(name)}</b>: ${fmtInt(r.count)} ${r.count === 1 ? "certificate" : "certificates"} on ${fmtInt(r.sheets)} ${r.sheets === 1 ? "sheet" : "sheets"}. Print at 100% / Actual size, then use <em>Add to the log</em> below to track them.`);
       const c = r.count;
@@ -342,7 +351,7 @@
       URL.revokeObjectURL(url);
       cv.toBlob(b => {
         if (!b) return;
-        const name = `${slug(s.business || "gift")}-gift-certificate-${slug(C.fmtNum(n, s))}.png`;
+        const name = `${slug(s.business || "gift")}-gift-${C.noun(s)}-${slug(C.fmtNum(n, s))}.png`;
         saveBlob(b, name);
         flash(`Saved <b>${esc(name)}</b> (${w} × ${h + foot} px) for certificate ${esc(C.fmtNum(n, s))}. Attach it to an email or text, and log the number below.`);
         track("png_export");

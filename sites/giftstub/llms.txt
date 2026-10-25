@@ -11,6 +11,9 @@
 - [Massage gift certificate template](https://giftcert.roohsites.com/massage-gift-certificate-template): session length, cancellation policy, packages.
 - [Photography gift certificate template](https://giftcert.roohsites.com/photography-gift-certificate-template): session type, edited images, booking windows.
 - [Christmas gift certificate template](https://giftcert.roohsites.com/christmas-gift-certificate-template): holiday wording, a seasonal prefix, last-minute PNG certificates.
+- [Gift voucher template](https://giftcert.roohsites.com/gift-voucher-template): numbered gift vouchers with stubs on A4 for India and the UK, with ₹ (printed as Rs.) and £ amounts, terms and double-redemption checks.
+- [Salon gift voucher format](https://giftcert.roohsites.com/salon-gift-voucher-format): voucher wording for salons, spas and beauty parlours, service or amount, terms and front-desk routine.
+- [Diwali gift voucher](https://giftcert.roohsites.com/diwali-gift-voucher): festive numbered vouchers for shops, salons and businesses to give to customers or staff, with values, prefixes and printing on A4.
 
 ## Guides
 - [How to track gift certificates](https://giftcert.roohsites.com/how-to-track-gift-certificates): number, log, redeem and reconcile gift certificates in a small business.
@@ -19,8 +22,9 @@
 - Price: completely free. No paid tier.
 - Privacy: certificates, logos and the log stay in the browser. No account.
 - Output: PDF (pdf-lib), PNG image, CSV issue log.
-- Presets: General, Salon, Massage & spa, Photography, Bakery, Auto detailing, Holiday.
-- Expiry date: optional and off by default. Gift certificate expiry and fee rules vary by country and US state.
+- Presets: General, Salon, Massage & spa, Photography, Bakery, Auto detailing, Holiday, Voucher, Salon voucher, Diwali voucher.
+- Voucher wording: the Voucher presets print "Gift Voucher" as the heading and open on A4. The rupee sign is printed as "Rs." (standard PDF fonts have no rupee symbol); the pound sign prints as £.
+- Expiry date: optional and off by default. Gift certificate and voucher expiry and fee rules vary by country and US state; set clear terms and check local consumer rules.
 
 ## Optional
 - [About](https://giftcert.roohsites.com/about)

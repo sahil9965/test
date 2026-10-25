@@ -30,7 +30,7 @@ const L = size("letter"), A = size("a4");
 const FOOT = `  <footer class="site">
     <div class="cols">
       <div><h4>${NAME}</h4><ul><li><a href="/">Numbered gift certificate maker</a></li><li><a href="/gift-certificate-template-with-stub">Template with stub</a></li><li><a href="/how-to-track-gift-certificates">How to track gift certificates</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
-      <div><h4>Templates</h4><ul><li><a href="/salon-gift-certificate-template">Salon gift certificates</a></li><li><a href="/massage-gift-certificate-template">Massage &amp; spa gift certificates</a></li><li><a href="/photography-gift-certificate-template">Photography gift certificates</a></li><li><a href="/christmas-gift-certificate-template">Christmas gift certificates</a></li></ul></div>
+      <div><h4>Templates</h4><ul><li><a href="/salon-gift-certificate-template">Salon gift certificates</a></li><li><a href="/massage-gift-certificate-template">Massage &amp; spa gift certificates</a></li><li><a href="/photography-gift-certificate-template">Photography gift certificates</a></li><li><a href="/christmas-gift-certificate-template">Christmas gift certificates</a></li><li><a href="/gift-voucher-template">Gift voucher template</a></li><li><a href="/salon-gift-voucher-format">Salon gift voucher format</a></li><li><a href="/diwali-gift-voucher">Diwali gift voucher</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
     <p>© 2026 ${NAME} · Free tools that respect your privacy. ${NAME} is an independent tool, not affiliated with Canva, Microsoft, Google, Apple or any print shop or payment provider.</p>
@@ -44,13 +44,16 @@ const RELATED = `      <h2>More templates and guides</h2>
         <li><a href="/massage-gift-certificate-template">Massage &amp; spa</a></li>
         <li><a href="/photography-gift-certificate-template">Photography</a></li>
         <li><a href="/christmas-gift-certificate-template">Christmas</a></li>
+        <li><a href="/gift-voucher-template">Gift voucher template</a></li>
+        <li><a href="/salon-gift-voucher-format">Salon gift voucher format</a></li>
+        <li><a href="/diwali-gift-voucher">Diwali gift voucher</a></li>
         <li><a href="/how-to-track-gift-certificates">How to track gift certificates</a></li>
       </ul>`;
 
-function head({ title, desc, path, graph }) {
+function head({ title, desc, path, graph, lang }) {
   const url = URL + (path === "/" ? "/" : path);
   return `<!doctype html>
-<html lang="en">
+<html lang="${lang || "en"}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -85,19 +88,19 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 const PUBLISHER = { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" };
 const faqLd = faq => ({ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) });
 const FEATURES = ["Matching numbers on certificate and stub", "Prefix, start number and zero padding", "Up to 500 certificates per PDF", "3 per page on US Letter or A4", "Classic, modern and minimal designs", "Optional logo, To/From lines and expiry date", "PNG image for emailing", "Issue log CSV and a browser-only redeem log"];
-const appLd = (name, path, desc) => ({
+const appLd = (name, path, desc, cur) => ({
   "@type": "WebApplication", name, url: URL + path, description: desc, applicationCategory: "BusinessApplication",
   operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript", isAccessibleForFree: true,
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  offers: { "@type": "Offer", price: "0", priceCurrency: cur || "USD" },
   featureList: FEATURES,
   publisher: PUBLISHER,
 });
 const howToLd = (name, steps) => ({ "@type": "HowTo", name, totalTime: "PT10M", step: steps.map(([n, t]) => ({ "@type": "HowToStep", name: n, text: strip(t) })) });
 const stepsHtml = steps => `      <ol class="steps">\n${steps.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${t}</li>`).join("\n")}\n      </ol>`;
 const faqHtml = faq => `      <h2 id="faq">Frequently asked questions</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
+const updated = (extra, d) => `      <p class="small muted">Last updated <time datetime="${d ? d[0] : DATE}">${d ? d[1] : DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
-function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated }) {
+function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated, lang, date }) {
   const isHome = path === "/";
   const graph = [];
   if (!isHome) graph.push({ "@type": "BreadcrumbList", itemListElement: [
@@ -108,8 +111,8 @@ function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = []
   const navHtml = isHome
     ? `<a href="#how">How it works</a><a href="/how-to-track-gift-certificates">Tracking</a><a href="#faq">FAQ</a>`
     : `<a href="/">Certificate maker</a><a href="/how-to-track-gift-certificates">Tracking</a><a href="/about">About</a>`;
-  const toolAttr = tool && tool.preset ? ` data-preset="${tool.preset}"` : "";
-  return `${head({ title, desc, path, graph })}
+  const toolAttr = tool && tool.preset ? ` data-preset="${tool.preset}"` + (tool.paper ? ` data-paper="${tool.paper}"` : "") + (tool.prefix ? ` data-prefix="${tool.prefix}"` : "") : "";
+  return `${head({ title, desc, path, graph, lang })}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
@@ -122,9 +125,9 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
       <h1>${esc(h1)}</h1>
       <p class="lead">${lead}</p>
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
-${quick ? `    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> ${quick}</p></div>\n` : ""}${tool ? `    <section class="tool card" aria-label="Gift certificate maker"><div id="gs-tool"${toolAttr}></div></section>\n` : ""}    <article class="content narrow">
+${quick ? `    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> ${quick}</p></div>\n` : ""}${tool ? `    <section class="tool card" aria-label="${tool.label || "Gift certificate maker"}"><div id="gs-tool"${toolAttr}></div></section>\n` : ""}    <article class="content narrow">
 ${body}
-${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal or tax advice.")}
+${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal or tax advice.", date)}
     </article>
   </main>
 ${FOOT}
@@ -500,6 +503,203 @@ ${stepsHtml(trackSteps)}
       </ul>`,
 });
 
+/* ------------------------------------------------------- gift voucher pages */
+// India / UK wording. Same generator and layout as the certificates; only the heading word, the sample wording and the paper default differ.
+const VDATE = ["2026-10-25", "25 October 2026"];
+const VOUCHER_SYMBOLS = `<p>You can type ₹ in the value field and GiftStub accepts it, but the PDF is built with the standard built-in PDF fonts, and they have no rupee symbol. So <strong>₹ is printed as “Rs.”</strong>: ₹2,000 appears on paper as Rs.2,000, and typing ₹ 2,000 with a space gives Rs. 2,000. The preview on this page shows exactly what will print. The pound sign (£) and the euro sign (€) are in those fonts and print as they are. The PDF can print English letters only, so type any greeting in English, or in Hindi words spelled with English letters.</p>`;
+
+const voucherSteps = [
+  ["Pick the Voucher preset", "Choose <em>Voucher</em> in the tool. The heading is Gift Voucher, the value is ₹2,000 and the terms line is ready to edit. This page opens on A4 with the prefix GV-."],
+  ["Write the voucher", "Type your business name, the value or service, a short terms line and your contact details. Add a logo if you have one."],
+  ["Set the numbers", "Enter a prefix such as GV-, the first number and how many vouchers you need, up to 500 in one PDF. Zero padding keeps GV-0007 the same width as GV-0107."],
+  ["Download and test print", "Download the PDF, print one page on plain paper at 100% (Actual size) and check that the cut marks line up."],
+  ["Print, cut and log", "Print the full run, cut on the marks, tear off a stub each time you sell a voucher, and add the numbers to the issue log."],
+];
+
+P.push({
+  path: "/gift-voucher-template", crumb: "Gift voucher template", date: VDATE,
+  title: "Gift Voucher Template — Free Printable, Numbered PDF",
+  desc: "Free printable gift voucher template with numbers and tear-off stubs. Edit the wording, use ₹ or £ amounts, print 3 per A4 page and download a PDF. No signup.",
+  h1: "Gift Voucher Template: Free, Printable and Numbered",
+  lead: "A gift voucher format you can edit and print: your business name, a value or service, short terms and a number that matches a tear-off stub. Made for India and the UK, with ₹ and £ amounts, on A4.",
+  quick: "To make a gift voucher template with numbers, pick the <em>Voucher</em> preset above (it already says Gift Voucher and ₹2,000), type your business name, value and terms, set a prefix and start number such as GV- and 1, and click <em>Download PDF</em>. Each A4 page holds 3 vouchers, and each stub repeats the voucher number with blank Issued to, Date, Amount and Redeemed lines. Print at 100% (Actual size).",
+  tool: { preset: "voucher", paper: "a4", prefix: "GV-", label: "Gift voucher maker" },
+  schema: [howToLd("How to make numbered gift vouchers with stubs", voucherSteps)],
+  faq: [
+    ["What should a gift voucher template include?", "The heading Gift Voucher, your business name, the value or service, a unique number, To and From lines, a short terms line and your contact details. A tear-off stub with the same number lets you keep a record of every voucher you sell. An expiry date is optional."],
+    ["Can I use pounds instead of rupees?", "Yes. Type £ in the value field, for example £25, and it prints as £. The rupee sign ₹ is printed as Rs. because the standard PDF fonts have no rupee symbol. The euro sign prints as it is."],
+    ["Is the voucher A4 or US Letter?", "This page opens on A4, the usual paper size in India and the UK. If you need US Letter, change Paper under Paper, design and logo. The preview and the PDF follow your choice."],
+    ["How many vouchers can I make at once?", "Up to 500 in one PDF, which is 167 sheets at 3 per page. For more, make a second run that starts at the next number, for example 501."],
+    ["Does a gift voucher need an expiry date?", "No. The expiry date is off by default, and you can switch it on if you want one. Rules on vouchers and their expiry differ by country, so set clear terms, and check local consumer rules if you're unsure."],
+    ["Can I email a gift voucher instead of printing it?", "Yes. Type the number you are selling into Number on the image and click Certificate image to save a PNG of that one voucher, without the stub. Log the number as issued so it cannot be sold twice."],
+  ],
+  body: `      <h2>The gift voucher format: what goes on it</h2>
+      <p>There is no single official gift voucher format, so the best one is the one your customers understand at a glance. A good voucher has these parts, and the Voucher preset above has a place for each:</p>
+      <ul>
+        <li><strong>The heading.</strong> “Gift Voucher” in large type, so nobody mistakes it for a receipt or a flyer.</li>
+        <li><strong>Your business name</strong>, and a logo if you have one, so the voucher is easy to place months later.</li>
+        <li><strong>The value or the service.</strong> Either an amount such as ₹2,000 or £25, or a named service such as “Hair spa and styling”.</li>
+        <li><strong>A unique number</strong>, printed on the voucher and again on the stub that you keep.</li>
+        <li><strong>To and From lines</strong> for the giver to fill in by hand.</li>
+        <li><strong>Terms</strong> in one short line, such as “Not exchangeable for cash. Present this voucher when you redeem it.”</li>
+        <li><strong>Contact details</strong>: an address, phone number or website, so the holder knows where to go.</li>
+        <li><strong>An expiry date</strong>, only if you want one. It is switched off by default.</li>
+      </ul>
+
+      <h2>How to make numbered gift vouchers in 5 steps</h2>
+${stepsHtml(voucherSteps)}
+
+      <h2>Gift voucher or gift certificate?</h2>
+      <p>They are the same thing. “Gift voucher” is the usual phrase in India and the UK, and “gift certificate” is common in the United States. This page prints the words <em>Gift Voucher</em> in the heading and on the sheet header. If you want the US wording, use the <a href="/gift-certificate-template-with-stub">gift certificate template with stub</a>; the layout is identical.</p>
+
+      <h2>Rupee and pound amounts</h2>
+      ${VOUCHER_SYMBOLS}
+
+      <h2>Choosing voucher values</h2>
+      <p>Each PDF run prints one value on every voucher, so the simplest plan is one run per value. Two or three values cover most customers: for example ₹500, ₹1,000 and ₹2,000, or £10, £25 and £50. Put the value in the prefix (V500-, V1000-) so you can tell the runs apart at the counter and in the log. If a voucher names a service instead of an amount, remember that you have promised that service: if your prices rise before it is used, you provide it as written.</p>
+
+      <h2>Writing the terms</h2>
+      <p>The terms line has room for about two short lines of small print, so keep to what matters: whether the voucher can be exchanged for cash (the preset says it cannot), what it can be used for, whether the holder must hand it over when redeeming, what happens to a balance if only part is used, and an expiry date if you set one. Rules on vouchers and their expiry differ by country, so set clear terms, and check local consumer rules if you're unsure.</p>
+
+      <h2>Numbering and tracking your vouchers</h2>
+      <p>Choose a prefix, a start number and a quantity. With the prefix GV-, start 1 and four-digit padding, the run reads GV-0001, GV-0002 and so on. The number on each voucher and the number on its stub come from the same counter, so they cannot drift apart. When you print another batch, start where the last one ended.</p>
+      <p>Below the tool is an issue and redeem log. Click <em>Add … to the log</em> after printing, add the buyer's name when you sell a voucher, and click <em>Mark redeemed</em> when it comes back. The log is stored only in this browser, so export the CSV regularly. The <a href="/how-to-track-gift-certificates">guide to tracking gift certificates</a> explains a simple monthly routine, and it works the same way for vouchers. If you are not sure how to record voucher sales in your books, ask your accountant.</p>
+
+      <h2>Printing on A4 at home or at a print shop</h2>
+      <p>Each A4 page holds three vouchers stacked in portrait orientation, with cut marks in the margins. A whole piece (voucher plus stub) measures ${A.pieceMm}. The stub is ${A.stubMm} wide, and the voucher measures ${A.certMm} once the stub is torn off.</p>
+      <ul>
+        <li><strong>At home:</strong> print one page on plain paper first. In the print dialog choose A4 and a scale of 100% or Actual size, never Fit to page. For the real run, use thicker card if your printer accepts it, and check the printer's manual for the heaviest paper it takes.</li>
+        <li><strong>At a print shop:</strong> take the PDF on a pen drive or email it. Ask for A4, single-sided, at 100% scale on the card you want, and ask for both the colour and the black-and-white price. The Minimal design uses black ink only.</li>
+        <li><strong>Cutting:</strong> a paper trimmer is quickest. Neighbouring vouchers share a cut line, so one cut separates two. Fold the dashed line back and forth a few times so the stub tears off cleanly.</li>
+      </ul>
+
+      <h2>Keeping stubs and preventing double redemption</h2>
+      <ul>
+        <li>When you sell a voucher, fill in the stub (Issued to, Date, Amount), tear it off and file it in number order. Log the number as issued.</li>
+        <li>When a voucher comes back, look up its number in the log or in the stub box before you accept it. If it is already marked redeemed, do not accept it.</li>
+        <li>Mark it redeemed straight away, write the date on the stub, and keep or cancel the voucher so it cannot be used twice.</li>
+        <li>If only part of a voucher is used, write the balance on the stub and in the log, or replace it with a new numbered voucher for the balance.</li>
+        <li>Once a month, count the vouchers issued and redeemed, and list the ones still outstanding.</li>
+      </ul>
+      <p>A number does not make a voucher impossible to copy. It makes a copy of a voucher that is already marked redeemed easy to catch.</p>
+
+      <h2>Other voucher pages</h2>
+      <p>For beauty businesses, see the <a href="/salon-gift-voucher-format">salon gift voucher format</a> and the <a href="/salon-gift-certificate-template">salon gift certificate template</a>. For the festival season, the <a href="/diwali-gift-voucher">Diwali gift voucher</a> preset has its own wording and colour.</p>`,
+});
+
+P.push({
+  path: "/salon-gift-voucher-format", crumb: "Salon gift voucher format", lang: "en-IN", cur: "INR", date: VDATE,
+  title: "Salon Gift Voucher Format — Free Printable Template",
+  desc: "Free salon gift voucher format for salons, spas and beauty parlours: numbered vouchers with stubs, ₹ or £ amounts, 3 per A4 page. Edit online, get a PDF.",
+  h1: "Salon Gift Voucher Format: Free and Printable",
+  lead: "For salons, spas and beauty parlours: numbered gift vouchers with your name, a service or an amount, short terms and a stub for the front desk.",
+  quick: "Pick the <em>Salon voucher</em> preset above, replace the sample salon name with yours, choose an amount such as ₹2,500 or a named service such as “Hair spa and styling”, add your booking line and click <em>Download PDF</em>. You get numbered vouchers, 3 per A4 page, each with a matching stub for the reception desk.",
+  tool: { preset: "salonvoucher", paper: "a4", prefix: "SV-", label: "Gift voucher maker" },
+  faq: [
+    ["Should the salon voucher include the tip?", "That is your choice, so say it in the terms line. A short line such as “Tip not included” saves an awkward moment at the desk."],
+    ["What if the service costs less than the voucher?", "Decide before you sell any. Some salons keep the balance on file and note it in the log. Others issue a new numbered voucher for the balance and write both numbers in the notes."],
+    ["Can clients use a salon voucher for products?", "Only if you allow it. If you do, “toward any service or product” in the value line makes that clear. If not, list the services it covers in the terms line."],
+    ["Can I add my salon's logo?", "Yes. Open Paper, design and logo and choose a PNG, JPG or SVG file. The logo prints in the top-left corner of every voucher and stays in your browser."],
+    ["How do I stop a voucher being used twice?", "Check the number in the log or against the stubs before you accept it, mark it redeemed straight away and keep or cancel the voucher. A copy with a number that is already marked redeemed then stands out."],
+    ["Does this work for spas and beauty parlours as well as salons?", "Yes. Change the business name and the service or amount. The wording on the Salon voucher preset covers hair, skin and nail services, and you can edit it to match what you offer."],
+  ],
+  body: `      <h2>The salon gift voucher format, part by part</h2>
+      <ul>
+        <li><strong>Your salon name and logo</strong>, so the voucher is recognisable in a drawer months later.</li>
+        <li><strong>A service or an amount.</strong> For example “Hair spa and styling” or “₹2,500 toward any salon service”. In the UK, “£50 toward any treatment” works the same way.</li>
+        <li><strong>A voucher number</strong>, printed on the voucher and on the stub that stays at your desk.</li>
+        <li><strong>To and From lines</strong> for the giver to fill in, or type the names if you are making one for a particular client.</li>
+        <li><strong>Terms</strong> in one short line: which services it covers, that it cannot be exchanged for cash, and that clients should book ahead.</li>
+        <li><strong>How to book</strong>: your phone number, booking page or address on the contact line.</li>
+      </ul>
+
+      <h2>A named service or an amount?</h2>
+      <p>An amount is the flexible choice. Stylists and therapists at different levels charge different prices, a client might want a facial instead of a haircut, and the buyer can pick whatever figure suits them. A named service feels more like a present: “Facial and head massage” reads better in a card than “₹1,800”, and it suits packages such as a bridal trial.</p>
+      <p>Keep in mind that a named service is a promise of that service. If your prices rise before the voucher is used, you provide the service as written. If you would rather cap the value, write an amount, and the holder pays any difference. Either way, write what the customer actually paid on the Amount line of the stub.</p>
+
+      <h2>Wording ideas for salons, spas and beauty parlours</h2>
+      <ul>
+        <li>“Treat yourself: ₹2,000 toward any hair, skin or nail service”</li>
+        <li>“Hair spa and styling”</li>
+        <li>“Manicure and pedicure with any nail technician”</li>
+        <li>“£50 toward any treatment”</li>
+        <li>Terms: “Please book ahead and mention the voucher number. Not exchangeable for cash.”</li>
+      </ul>
+
+      <h2>Terms that save awkward moments at the desk</h2>
+      <p>Decide a few things before you sell the first voucher, and put the short version in the terms line: whether tips are included, whether the voucher covers retail products as well as services, what happens when a service costs less than the voucher, and how much notice you need to move an appointment. Rules on vouchers and their expiry differ by country, so set clear terms, and check local consumer rules if you're unsure. You can print an expiry date from the form if you want one; it is off by default.</p>
+
+      <h2>Running vouchers at reception</h2>
+      <p>Keep a small stack of printed vouchers at the desk with the stubs still attached. When a client buys one, fill in the stub, tear it off and file it in number order, then add the number to the issue and redeem log under the tool. When someone books with a voucher, ask for the number and write it in the appointment notes. At billing, check the number in the log, click <em>Mark redeemed</em>, and keep or cancel the voucher. If several people work the desk, ask each to initial the Redeemed line on the stub.</p>
+      <p>If your billing software has its own gift card feature, printed vouchers still work well for walk-in gifting. Just make sure both records show the same number. If you are unsure how to record voucher sales in your books, ask your accountant.</p>
+
+      <h2>Gifting seasons</h2>
+      <p>Vouchers sell in bursts: festivals, weddings, birthdays, Mother's Day and Christmas. Print a separate batch for each, with its own prefix such as <code>FES-</code> or <code>BDY-</code>, so the log shows afterwards which occasions brought in voucher sales. For the festival of lights, see the <a href="/diwali-gift-voucher">Diwali gift voucher</a> page.</p>
+
+      <h2>Printing and presenting</h2>
+      <p>The Salon voucher preset uses the Modern design with a raspberry accent. Classic border suits a traditional parlour, and Minimal suits a black-and-white brand. Each A4 page holds three vouchers; a whole piece measures ${A.pieceMm}, and the voucher is ${A.certMm} after the stub is torn off, so it slips into a C6 or DL envelope without folding. Print at 100% (Actual size), use thicker card for the real run if your printer takes it, and cut on the marks with a paper trimmer or ask the print shop to do it.</p>
+      <p>The ₹ sign is printed as Rs. in the PDF, because the standard PDF fonts have no rupee symbol, so ₹2,500 appears as Rs.2,500. The pound sign prints as £. For the general version of this format, see the <a href="/gift-voucher-template">gift voucher template</a>. Salons that also use the US wording can look at the <a href="/salon-gift-certificate-template">salon gift certificate template</a>, and the <a href="/how-to-track-gift-certificates">tracking guide</a> covers a monthly check of issued and redeemed numbers.</p>`,
+});
+
+P.push({
+  path: "/diwali-gift-voucher", crumb: "Diwali gift voucher", lang: "en-IN", cur: "INR", date: VDATE,
+  title: "Diwali Gift Voucher — Free Printable Numbered Template",
+  desc: "Free printable Diwali gift voucher for shops, salons and businesses: numbered vouchers with stubs, ₹ amounts, 3 per A4 page. Edit online and download a PDF.",
+  h1: "Diwali Gift Voucher: Free Printable Template",
+  lead: "Numbered Diwali gift vouchers for shops, salons and businesses to give to customers or staff. Edit the wording, set your numbers and print on A4.",
+  quick: "To make a Diwali gift voucher, pick the <em>Diwali voucher</em> preset above (it says Diwali Gift Voucher and ₹1,000), change the business name, value and terms, set a prefix and the number of vouchers, and click <em>Download PDF</em>. Print on A4 at 100% (Actual size), cut on the marks and keep the stubs so you can check each voucher when it comes back.",
+  tool: { preset: "diwalivoucher", paper: "a4", prefix: "DV-", label: "Gift voucher maker" },
+  faq: [
+    ["What should a Diwali gift voucher say?", "The heading, your business name, the value, a number, a short greeting and terms such as “Not exchangeable for cash. Present this voucher when you redeem it.” The Diwali voucher preset has all of these, and you can change any line."],
+    ["Can I give the same voucher to all my staff?", "Yes. Set one value, enter the number of staff plus a few spares and print one run. Write each person's name on the To line and on the stub, and log the number against their name."],
+    ["Can I write Diwali wishes in Hindi?", "Not in Devanagari. The PDF can only print English letters, so write wishes in English or in Hindi words spelled with English letters, such as Shubh Deepavali."],
+    ["Does the ₹ sign print on the voucher?", "It prints as Rs. because the standard PDF fonts have no rupee symbol. ₹1,000 appears as Rs.1,000 in the PDF, and the preview shows this before you download."],
+    ["Should a Diwali voucher have an expiry date?", "That is up to you. The expiry date is off by default. Rules on vouchers and their expiry differ by country, so set clear terms, and check local consumer rules if you're unsure."],
+    ["Can I print the vouchers at a local print shop?", "Yes. The PDF is A4 and prints at actual size. Ask for A4, single-sided, 100% scale with no fit to page, and ask the shop to cut along the marks if you want that done for you."],
+  ],
+  body: `      <h2>Who gives Diwali gift vouchers</h2>
+      <ul>
+        <li><strong>Shops and showrooms</strong> that give a voucher to customers as a thank-you, or sell vouchers as ready-made gifts.</li>
+        <li><strong>Salons, spas and beauty parlours</strong> that sell gift vouchers before the festival. The <a href="/salon-gift-voucher-format">salon gift voucher format</a> has wording for these.</li>
+        <li><strong>Offices and small companies</strong> that hand each member of staff a voucher with a greeting.</li>
+      </ul>
+
+      <h2>What the Diwali voucher preset prints</h2>
+      <p>The heading reads <em>Diwali Gift Voucher</em>, the value is ₹1,000, and the terms line says “Happy Diwali! Not exchangeable for cash. Present this voucher when you redeem it.” The design is the Classic double border in a deep rust colour, which prints as a mid grey on a black-and-white printer. It is festive without being loud. Change the business name, value, terms and contact line, and add your logo if you have one.</p>
+
+      <h2>Plan back from your own date</h2>
+      <p>The date of Diwali changes every year, so plan back from the day you want to start giving vouchers, not from the festival itself.</p>
+      <ol class="steps">
+        <li><strong>A few weeks before:</strong> decide who gets vouchers, the values, and how many of each.</li>
+        <li><strong>Design and test:</strong> choose the preset, edit the wording and print one page on plain A4 to check the cut marks.</li>
+        <li><strong>About a week before you start:</strong> print the full run, cut the sheets and tear-test a stub.</li>
+        <li><strong>While giving:</strong> fill in the stub, tear it off and log the number against the person's name.</li>
+        <li><strong>Afterwards:</strong> keep the stubs in number order, export the log and see which vouchers have come back.</li>
+      </ol>
+
+      <h2>Values for customers and staff</h2>
+      <p>One value for every member of staff is the simplest plan: one run, one prefix, and the same ₹1,000 for everyone. For customers, one or two values are easier to manage than many. Each PDF run prints one value, so make one run per value and put it in the prefix, such as D500- and D1000-.</p>
+      <p>If you both sell vouchers and give them away, use different prefixes, for example DS- for sold and DF- for given free. The log then shows which kind comes back. One PDF holds up to 500 vouchers, which is 167 A4 sheets at 3 per page.</p>
+
+      <h2>Terms and validity</h2>
+      <p>Say clearly what the voucher can be used for, whether it can be combined with other offers, and whether it must be handed over when redeemed. A last date is optional; the expiry date is off by default. Rules on vouchers and their expiry differ by country, so set clear terms, and check local consumer rules if you're unsure. If you sell vouchers or give them to staff, ask your accountant how to record voucher sales and the vouchers you give away.</p>
+
+      <h2>Greetings and the rupee sign</h2>
+      ${VOUCHER_SYMBOLS}
+
+      <h2>Printing on A4 at home or at a print shop</h2>
+      <p>This page opens on A4, so there is nothing to resize. A whole piece (voucher plus stub) measures ${A.pieceMm}, the stub is ${A.stubMm} wide, and the voucher is ${A.certMm} after the stub is torn off.</p>
+      <ul>
+        <li><strong>At home:</strong> print one page on plain paper first, choosing A4 and a scale of 100% or Actual size, not Fit to page. Use thicker card for the real run if your printer accepts it.</li>
+        <li><strong>At a print shop:</strong> take the PDF on a pen drive or email it. Ask for A4, single-sided, 100% scale. Colour printing often costs more per page than black and white, so ask for both prices. The Minimal design uses black ink only.</li>
+        <li><strong>Cutting:</strong> use a paper trimmer, cut on the marks, and fold the dashed line back and forth so the stub tears off neatly.</li>
+      </ul>
+
+      <h2>Handing them over, and checking them later</h2>
+      <p>Write the person's name on the To line, slip the voucher into an envelope with a greeting, and keep the stub. When a voucher comes back after the festival, look up the number in the log or the stub box, mark it redeemed straight away, write the date on the stub and keep or cancel the voucher. If it is already marked redeemed, do not accept it. For part-used vouchers, write the balance on the stub and in the log.</p>
+      <p>The <a href="/how-to-track-gift-certificates">guide to tracking gift certificates</a> explains a monthly check that works for vouchers too, and the general <a href="/gift-voucher-template">gift voucher template</a> covers the voucher format in more detail.</p>`,
+});
+
 /* ----------------------------------------------------------- about/privacy */
 P.push({
   path: "/about", crumb: "About",
@@ -536,7 +736,7 @@ let count = 0;
 for (const p of [home, ...P]) {
   const file = p.path === "/" ? "index.html" : p.path.slice(1) + ".html";
   const schema = [...(p.schema || [])];
-  if (p.tool && p.path !== "/") schema.unshift(appLd(p.h1, p.path, p.desc));
+  if (p.tool && p.path !== "/") schema.unshift(appLd(p.h1, p.path, p.desc, p.cur));
   let html = page({ ...p, schema });
   // Keep the network links that tools/network.mjs filled in, so regenerating never wipes them.
   const NET = /<!--NETWORK:START-->[\s\S]*?<!--NETWORK:END-->/;

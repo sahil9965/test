@@ -140,6 +140,10 @@
     bakery: { label: "Bakery", business: "Sweet Crumb Bakery", value: "$25 toward cakes, pastries and treats", terms: "Custom cake orders need 7 days' notice. Not redeemable for cash.", contact: "Order at sweetcrumb.example · (555) 010-0125", color: "#9a3412", design: "classic" },
     auto: { label: "Auto detailing", business: "Shine Pro Auto Detailing", value: "One full interior and exterior detail", terms: "Appointment required. Valid for one standard-size car or SUV.", contact: "(555) 010-0190 · shinepro.example", color: "#1d4ed8", design: "modern" },
     holiday: { label: "Holiday", headline: "Holiday Gift Certificate", value: "$50 toward any service or purchase", terms: "Wishing you a happy holiday season! Not redeemable for cash.", color: "#b91c1c", design: "classic" },
+    // "Voucher" wording for India, the UK and Australia. The rupee sign prints as "Rs." (see SUBS); the pound sign prints as it is.
+    voucher: { label: "Voucher", headline: "Gift Voucher", value: "₹2,000", terms: "Not exchangeable for cash. Present this voucher when you redeem it.", contact: "12 Market Road · 00000 00000 · yourbusiness.example", color: "#881337", design: "classic" },
+    salonvoucher: { label: "Salon voucher", business: "Lotus Salon & Spa", headline: "Gift Voucher", value: "Hair spa and styling · ₹2,500", terms: "Valid for hair, skin and nail services. Please book ahead. Not exchangeable for cash.", contact: "12 Market Road · 00000 00000 · yoursalon.example", color: "#9d174d", design: "modern" },
+    diwalivoucher: { label: "Diwali voucher", headline: "Diwali Gift Voucher", value: "₹1,000", terms: "Happy Diwali! Not exchangeable for cash. Present this voucher when you redeem it.", contact: "12 Market Road · 00000 00000 · yourshop.example", color: "#9a3412", design: "classic" },
   };
   const PRESET_KEYS = ["business", "headline", "value", "terms", "contact", "color", "design"];
   const isPreset = name => typeof name === "string" && Object.prototype.hasOwnProperty.call(PRESETS, name);
@@ -239,7 +243,7 @@
       const k = clamp(H / 232, 0.8, 1.15);
       let y = H - 16 * k;
       const ls = 6.6 * k;
-      prims.push(text("STUB · CERTIFICATE NO.", x0, y - ASC * ls, ls, "HB", GRAY));
+      prims.push(text(`STUB · ${noun(s).toUpperCase()} NO.`, x0, y - ASC * ls, ls, "HB", GRAY));
       y -= ls + 6 * k;
       const ns = Math.min(17 * k, w / textW(longest, "HB", 1));
       slots.push({ key: "stubnum", x: x0, y: y - ASC * ns, size: ns, font: "HB", color: acc, align: "left", maxW: w });
@@ -364,6 +368,9 @@
     }
   }
 
+  // "voucher" when the headline says so, otherwise "certificate" (so every existing headline prints exactly as before).
+  const noun = s => (/voucher/i.test((s && s.headline) || "") ? "voucher" : "certificate");
+
   // Everything printed on a sheet outside the certificates: crop marks, sheet info, the referral credit.
   function sheetPrims(s, g, sheet, sheets) {
     const P = [];
@@ -372,7 +379,7 @@
       for (const x of [g.gx, right]) { P.push(line(x, top + o, x, top + o + L, { w: 0.5 })); P.push(line(x, g.gy - o, x, g.gy - o - L, { w: 0.5 })); }
       for (let r = 0; r <= g.rows; r++) { const y = g.gy + r * g.cellH; P.push(line(g.gx - o, y, g.gx - o - L, y, { w: 0.5 })); P.push(line(right + o, y, right + o + L, y, { w: 0.5 })); }
     }
-    P.push(text(`Gift certificates · sheet ${sheet + 1} of ${sheets} · cut on the marks, tear or fold on the dashed line`, g.gx + 8, g.pageH - MY + 18, 6.5, "H", GRAY));
+    P.push(text(`Gift ${noun(s)}s · sheet ${sheet + 1} of ${sheets} · cut on the marks, tear or fold on the dashed line`, g.gx + 8, g.pageH - MY + 18, 6.5, "H", GRAY));
     P.push(text("Print at 100% (Actual size)", g.gx + g.gw - 8, g.pageH - MY + 18, 6.5, "H", GRAY, "right"));
     const cw = textW(CREDIT, "H", 7), cx = g.pageW / 2, cy = MY - 26;
     P.push(text(CREDIT, cx, cy, 7, "H", GRAY, "center"));
@@ -528,12 +535,12 @@
     const g = sheetGeometry(s.paper);
     const lay = layoutCert(s, g.cellW, g.cellH, { logo: opts.logo ? { aspect: opts.logo.aspect } : null });
     const doc = await L.PDFDocument.create();
-    const title = `Gift certificates ${fmtNum(s.start, s)}-${fmtNum(s.end, s)}`;
+    const title = `Gift ${noun(s)}s ${fmtNum(s.start, s)}-${fmtNum(s.end, s)}`;
     doc.setTitle(title);
-    doc.setSubject(s.business ? `${s.business} gift certificates` : title);
+    doc.setSubject(s.business ? `${s.business} gift ${noun(s)}s` : title);
     doc.setCreator("GiftStub (giftcert.roohsites.com)");
     doc.setProducer("GiftStub with pdf-lib");
-    doc.setKeywords(["gift certificates", "numbered", "GiftStub"]);
+    doc.setKeywords([`gift ${noun(s)}s`, "numbered", "GiftStub"]);
     const used = new Set(["H"]);
     for (const p of lay.prims.concat(lay.slots)) if (p.font) used.add(p.font);
     const fonts = await embedFonts(L, doc, [...used]);
@@ -612,7 +619,7 @@
   return {
     clean, textW, fitLine, wrap, hexRgb, readable, mix,
     MAX_CERTS, PER_PAGE, STUB_PCT, PAPER, MX, MY, DEFAULTS, PRESETS, PRESET_KEYS, DESIGNS, STUB_LINES, presetValues, presetState, normalize, isPreset, toInt,
-    padWidth, fmtNum, fmtDate, sheetCount, indexAt, sheetGeometry, layoutCert, sheetPrims, slotText, sheetItems, fitSlot,
+    noun, padWidth, fmtNum, fmtDate, sheetCount, indexAt, sheetGeometry, layoutCert, sheetPrims, slotText, sheetItems, fitSlot,
     svgCert, svgSheet, buildPdf, parseCSV, issueLogCsv, logCsv, parseLogCsv, cleanEntry, LOG_HEAD,
     CREDIT, CREDIT_URL, SITE,
   };

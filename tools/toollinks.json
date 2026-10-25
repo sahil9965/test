@@ -40,6 +40,14 @@
     "/photography-gift-certificate-template": [
       ["https://invoice.roohsites.com/photography-invoice-template", "Photography invoice template", "bill the session when a certificate is redeemed"],
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "the same numbered-stub printing, for fundraisers and events"]
+    ],
+    "/salon-gift-voucher-format": [
+      ["https://punchcard.roohsites.com/salon-loyalty-card-template", "Salon loyalty punch card", "bring customers back after they use a voucher"],
+      ["https://invoice.roohsites.com/invoice-format-without-gst", "Invoice format without GST", "simple rupee invoices if you are not GST-registered"]
+    ],
+    "/diwali-gift-voucher": [
+      ["https://raffle.roohsites.com/diwali-lucky-draw-coupons", "Diwali lucky draw coupons", "numbered coupons for a festive customer draw"],
+      ["https://punchcard.roohsites.com/", "Printable punch card maker", "reward repeat customers after the festive rush"]
     ]
   },
   "ticketrun": {

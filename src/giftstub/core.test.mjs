@@ -145,3 +145,25 @@ test("PDF: 10 certificates make 4 Letter pages", async () => {
   const a4 = await C.buildPdf(PDFLib, { qty: 3, paper: "a4" });
   assert.equal((await PDFLib.PDFDocument.load(a4.bytes)).getPageCount(), 1);
 });
+
+test("voucher presets: heading, A4 and rupee sign; certificate wording is unchanged", async () => {
+  const sheetLine = s => C.sheetPrims(C.normalize(s).s, C.sheetGeometry("a4"), 0, 1).find(p => p.text && p.text.startsWith("Gift ")).text;
+  assert.ok(sheetLine(C.presetState("general")).startsWith("Gift certificates · sheet 1 of 1"));
+  assert.ok(sheetLine(C.presetState("holiday")).startsWith("Gift certificates · sheet 1 of 1"));
+  for (const name of ["voucher", "salonvoucher", "diwalivoucher"]) {
+    const st = C.presetState(name);
+    assert.match(st.headline, /Gift Voucher$/);
+    assert.ok(sheetLine(st).startsWith("Gift vouchers · sheet 1 of 1"), name);
+    assert.ok(C.PRESETS[name].value.includes("₹"));
+    assert.equal(C.normalize(st).s.value.includes("₹"), false, "rupee sign is swapped for Rs. before printing");
+    assert.match(C.normalize(st).s.value, /Rs\./);
+    assert.deepEqual(C.normalize(st).lost, []);
+  }
+  assert.equal(C.presetState("diwalivoucher").headline, "Diwali Gift Voucher");
+  assert.equal(C.presetState("voucher").value, "₹2,000");
+  assert.equal(C.presetState("diwalivoucher").value, "₹1,000");
+  const r = await C.buildPdf(PDFLib, Object.assign(C.presetState("voucher"), { paper: "a4", qty: 4 }));
+  const doc = await PDFLib.PDFDocument.load(r.bytes);
+  assert.equal(doc.getTitle(), "Gift vouchers GC-0001-GC-0004");
+  assert.equal(doc.getPageCount(), 2);
+});
