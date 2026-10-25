@@ -13,6 +13,8 @@
 - [eBay half-sheet label to 4x6](https://labels.roohsites.com/ebay-half-sheet-label-to-4x6): half-sheet to 4x6, two labels per half-sheet page, eBay UK A4.
 - [Split a shipping label and packing slip](https://labels.roohsites.com/split-shipping-label-and-packing-slip): separate pages for label, packing slip and customs form.
 - [Print shipping labels from your phone](https://labels.roohsites.com/print-shipping-label-from-phone): 203/300 dpi images for Bluetooth label printer apps.
+- [Meesho label crop to 4x6](https://labels.roohsites.com/meesho-label-crop-4x6): crop the label from an A4 PDF that also holds a tax invoice and print it on 4x6 (100 x 150 mm) thermal labels; check the first page, fix the box once and reuse it as a saved layout.
+- [Flipkart label crop to 4x6](https://labels.roohsites.com/flipkart-label-crop-4x6): the same label-plus-invoice A4 workflow for Flipkart shipping labels, with printer settings and saved layouts for busy days.
 
 ## Key facts
 - Price: completely free. No paid tier, no account, no label limit.
@@ -21,7 +23,7 @@
 - Image sizes: 4 x 6 in = 812 x 1218 px at 203 dpi, 1200 x 1800 px at 300 dpi; 100 x 150 mm = 799 x 1199 px at 203 dpi, 1181 x 1772 px at 300 dpi.
 - Scale: the label is cropped before it is fitted, so a label already about 6x4 on the page prints at roughly 90-100% of its size; the tool shows the exact scale and warns below 80%.
 - Made by Rooh Sites (https://roohsites.com/), which publishes a collection of free single-purpose web tools.
-- Independent: not affiliated with Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari or any printer maker.
+- Independent: not affiliated with Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari, Meesho, Flipkart or any printer maker.
 
 ## Optional
 - [About](https://labels.roohsites.com/about)

@@ -73,6 +73,14 @@
     "*": [
       ["https://fnsku.roohsites.com/", "FNSKU label generator", "Amazon FBA prep labels on the same thermal printer"],
       ["https://invoice.roohsites.com/", "Free invoice generator", "add an invoice or receipt to your orders"]
+    ],
+    "/meesho-label-crop-4x6": [
+      ["https://invoice.roohsites.com/invoice-format-without-gst", "Invoice format without GST", "simple rupee invoices for buyers who ask for one"],
+      ["https://giftcert.roohsites.com/gift-voucher-template", "Gift voucher template", "numbered vouchers to slip into festive orders"]
+    ],
+    "/flipkart-label-crop-4x6": [
+      ["https://invoice.roohsites.com/invoice-format-without-gst", "Invoice format without GST", "simple rupee invoices for buyers who ask for one"],
+      ["https://giftcert.roohsites.com/gift-voucher-template", "Gift voucher template", "numbered vouchers to slip into festive orders"]
     ]
   },
   "preplabel": {

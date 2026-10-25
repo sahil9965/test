@@ -20,20 +20,22 @@ const GUIDES = [
   ["/ebay-half-sheet-label-to-4x6", "eBay half-sheet label to 4x6", "eBay half-sheet"],
   ["/split-shipping-label-and-packing-slip", "Split a label and packing slip", "Label + packing slip"],
   ["/print-shipping-label-from-phone", "Print labels from your phone", "From your phone"],
+  ["/meesho-label-crop-4x6", "Meesho label crop to 4x6", "Meesho label 4x6"],
+  ["/flipkart-label-crop-4x6", "Flipkart label crop to 4x6", "Flipkart label 4x6"],
 ];
-const DISCLAIM = `LabelFit is an independent tool. It isn't affiliated with or endorsed by Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari, any printer maker or any other company named on this site. Their names are used only to describe which labels, printers and apps it works with.`;
+const DISCLAIM = `LabelFit is an independent tool. It isn't affiliated with or endorsed by Vinted, Evri, Royal Mail, InPost, DPD, USPS, eBay, Mercari, Meesho, Flipkart, any printer maker or any other company named on this site. Their names are used only to describe which labels, printers and apps it works with.`;
 
-const APP = (name, url, desc) => ({
+const APP = (name, url, desc, cur = "USD") => ({
   "@type": "WebApplication", name, url, description: desc,
   applicationCategory: "BusinessApplication", operatingSystem: "Any (web browser)", browserRequirements: "Requires JavaScript",
-  isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: cur },
   publisher: { "@type": "Organization", name: "Rooh Sites", url: "https://roohsites.com/" },
 });
 
-function layout({ path, title, desc, ogTitle, ogDesc, graph, main, tool }) {
+function layout({ path, title, desc, ogTitle, ogDesc, graph, main, tool, lang }) {
   const url = URL + path;
   return `<!doctype html>
-<html lang="en">
+<html lang="${lang || "en"}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -225,7 +227,7 @@ function landing(p) {
       { "@type": "ListItem", position: 2, name: p.crumb, item: url }] },
     faqLd(p.faq),
     ...(p.steps ? [{ "@type": "HowTo", name: p.howto, step: p.steps.map(([n, t]) => ({ "@type": "HowToStep", name: n, text: strip(t) })) }] : []),
-    APP(p.appName, url, p.appDesc),
+    APP(p.appName, url, p.appDesc, p.currency),
   ];
   const attrs = Object.entries(p.data || {}).map(([k, v]) => ` data-${k}="${esc(v)}"`).join("");
   const main = `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(p.crumb)}</p>
@@ -245,7 +247,7 @@ ${faqHtml(p.faq)}
 ${related(p.path)}
 ${updated(p.note || "")}
     </article>`;
-  return layout({ path: p.path, title: p.title, desc: p.desc, graph, main, tool: true });
+  return layout({ path: p.path, title: p.title, desc: p.desc, graph, main, tool: true, lang: p.lang });
 }
 
 const PAGES = [
@@ -547,6 +549,158 @@ const PAGES = [
       ["Is the image watermarked?", "No. Nothing is printed on the label. The file only carries a small Software note in its metadata."],
     ],
     note: "Printer apps differ; check your app's own help for its import options.",
+  },
+  {
+    path: "/meesho-label-crop-4x6", crumb: "Meesho label crop to 4x6", lang: "en-IN", currency: "INR",
+    title: "Meesho Label Crop to 4x6 – Thermal Printer Guide",
+    desc: "Crop a Meesho label from the A4 PDF and print it on 4x6 (100 × 150 mm) thermal labels. Fix the crop box once, save it, reuse it. Free, no upload.",
+    h1: "Meesho Label Crop to 4x6 for Thermal Printers",
+    lead: "A Meesho label download is usually an A4 PDF with the shipping label in one area and the tax invoice in another. Crop out just the label and print it on a 4x6 (100 × 150 mm) thermal sticker. The file stays in your browser.",
+    appName: "Meesho label crop to 4x6 tool", appDesc: "Crops the shipping label from an A4 PDF that also holds a tax invoice and fits it to a 4x6 (100 x 150 mm) thermal label, in the browser.",
+    answer: "To crop a Meesho label for a 4x6 thermal printer, open the label PDF in LabelFit, check that the green box covers the shipping label and not the tax invoice, and download the PDF. Print it on 4x6 (100 × 150 mm) labels at 100% or Actual size. If the box is wrong on page 1, drag it once and press <em>Save layout</em>. After that, every PDF with the same design crops in one click.",
+    howto: "How to crop a Meesho label and print it on 4x6 thermal labels",
+    steps: [
+      ["Download the label PDF", "Download your Meesho labels the way you normally do and keep them as a PDF. A file with many orders is fine: LabelFit checks every page on its own."],
+      ["Add it to LabelFit", "Choose the PDF above. Under <em>Print on</em>, pick 100 × 150 mm, or 4 × 6 in if that is what is printed on your roll."],
+      ["Check the green box on page 1", "The box should wrap the shipping label (courier name, barcode, address) and leave out the tax invoice. The preview beside it shows exactly what will print."],
+      ["Drag the box if it is off, then Save layout", "Drag the box or its corners until the whole label is inside, with a millimetre or two of white paper around it. Type a name such as <em>Meesho A4 label</em> and press <em>Save layout</em>. The box is applied to every page of the file."],
+      ["Download and print at 100%", "Press <em>Download PDF</em>, open it, and print on 4x6 labels with the paper size set to 4 × 6 in or 100 × 150 mm and the scale at Actual size."],
+    ],
+    body: `      <h2>What a Meesho label PDF usually looks like</h2>
+      <p>A downloaded Meesho label is normally an A4 page. One part of the page holds the shipping label: the courier's name, a barcode with the AWB number, the delivery address and a return address. Another part holds the tax invoice, a table of items with totals. A file with many orders usually has one order per page. Courier partners use different designs, and marketplaces change them from time to time, so treat this as a general picture and not a promise about your file.</p>
+      <p>A thermal printer cannot print that page as it is. Sent to a 4x6 printer with Fit to page, the whole A4 sheet shrinks to about 48% (100 ÷ 210), and the barcode becomes too thin to scan. The fix is to cut the label out first, which is what the steps above do.</p>
+
+      <h2>What LabelFit does by itself, and what you check</h2>
+      <p>LabelFit looks for the label automatically. It reads each page, finds the blocks of ink, and treats the block with barcodes and address lines as the label. Words such as “Tax invoice”, “Qty” and “Subtotal” mark a block as an invoice, which is left out by default.</p>
+      <p>Be clear about the limits. We built and tested this flow on sample A4 files with a label above an invoice, not on live Meesho downloads, and LabelFit has no special support for Meesho. Marketplaces change their label layouts from time to time, so check the first page. If the box is off, drag it once and save the layout.</p>
+
+      <h2>Save the crop once, reuse it every day</h2>
+      <p>A saved layout remembers where the label sits on the page, as a share of the page's width and height. It never stores the label itself. Because it is a position and not a guess, it is applied to every page of every file with the same design, including the pages that auto-detect would have got wrong.</p>
+      <ol class="steps">
+        <li><strong>Save it.</strong> Fix the box on page 1, type a name, press <em>Save layout</em>. Under <em>More options</em> you will find it listed in <em>Saved layouts</em>.</li>
+        <li><strong>Use it next time.</strong> Open LabelFit and check that your layout is selected under <em>Label from</em> (it sits under <em>My saved layouts</em>). Then add the day's PDFs.</li>
+        <li><strong>Glance at the thumbnails.</strong> Each page should say “1 label”. A page that says “No label” needs a box added with <em>+ Add a crop box</em>, or <em>Skip this page</em>.</li>
+        <li><strong>Keep a spare copy.</strong> Layouts live in this browser on this device. <em>Export layouts</em> downloads them as a small file and <em>Import layouts</em> loads that file on another computer.</li>
+      </ol>
+
+      <h2>Common problems and how to fix them</h2>
+      <table>
+        <thead><tr><th>What you see</th><th>Why</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>The invoice appears under the label in the preview</td><td>The box is too tall. LabelFit also warns that the label is printed at only a small percentage</td><td>Drag the bottom edge up until only the label is inside, then save the layout again</td></tr>
+          <tr><td>The warning says something runs off an edge of the box</td><td>The box is slightly smaller than the label border</td><td>Drag the box outward by a millimetre or two</td></tr>
+          <tr><td>A page shows “No label”</td><td>No barcode was found, for example on a cover page or an unusual design</td><td>Press <em>+ Add a crop box</em> and fit it, or <em>Skip this page</em></td></tr>
+          <tr><td>The label looks a little smaller than the sticker</td><td>The default <em>Fit the label to the page</em> keeps a 2 mm margin. Our sample 100 × 150 mm labels printed at about 94–98%</td><td>Normal. For 100%, open <em>More options</em>, choose <em>Actual size (100%)</em> and margin <em>None</em>, with a box no larger than the sticker</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Keep the invoice as a separate page</h2>
+      <p>If you need the invoice with the parcel, press <em>+ Add a crop box</em>, drag it over the invoice and set <em>Use this box as</em> to <em>Packing slip (own page)</em>. Save the layout again under a new name such as <em>Meesho label + invoice</em>. Each order then gives you two 4x6 pages: the label, then its invoice. You can also set <em>Packing slips</em> to <em>Print on their own page</em> under <em>More options</em> and let LabelFit find the invoice itself. See <a href="/split-shipping-label-and-packing-slip">how to split a label and packing slip</a> for more.</p>
+      <p>One honest warning: a full-width A4 invoice has to be turned sideways and shrunk to fit a 4x6 page. In our sample test it came out at about 76% of its size, and LabelFit flags anything under 80%. The small print gets small. If you need a readable invoice, print the original A4 page on plain paper instead. A kept invoice gets a small “Made with LabelFit” line underneath.</p>
+
+      <h2>Meesho label print settings for a thermal printer</h2>
+      <ul>
+        <li><strong>Paper size:</strong> 4 × 6 in or 100 × 150 mm, the same as your roll. If it is not listed, add a custom size in the printer preferences.</li>
+        <li><strong>Scaling:</strong> Actual size or 100%. The PDF is already 4x6, so Fit to page only shrinks it again.</li>
+        <li><strong>Orientation:</strong> portrait. The PDF is already upright.</li>
+        <li><strong>Media type:</strong> labels with gaps. After loading a new roll, run the printer's calibration so it knows where each label starts.</li>
+        <li><strong>Darkness:</strong> start with the default. If bars look pale, raise it one step. Too dark makes the bars bleed together and can stop the barcode from scanning.</li>
+        <li><strong>Test first:</strong> print one label and scan it with your phone before you print the batch.</li>
+      </ul>
+      <p>The tool also has a copyable step list under <em>Print settings for a perfect 100% print</em> for Acrobat, Chrome or Edge, and Mac Preview.</p>
+
+      <h2>Busy days: many orders in one PDF</h2>
+      <p>A multi-page PDF becomes one 4x6 page per label, in the same order. You can drop several PDFs at once and download a single combined file, then print it in one run. Use the arrows under the preview to flip through the output pages before you print. If one file comes from a different courier layout, use a separate saved layout for it, or convert it as its own batch. When a very large file feels slow, split the day's PDFs into two or three batches.</p>
+      <p>Printing from a phone to a Bluetooth printer? Choose <em>Image</em> instead of PDF and follow the <a href="/print-shipping-label-from-phone">phone printing guide</a>.</p>
+
+      <h2>Your buyers' details stay on your device</h2>
+      <p>Labels carry names, phone numbers and home addresses. LabelFit opens the PDF and builds the new one inside your browser tab. There is no upload step, and after your first use it keeps working with the network switched off. One thing to know: the converted PDF hides the rest of the original page (such as the invoice) rather than deleting it. That is fine for printing. If you send the converted file to someone else, choose <em>Image</em> output instead, because an image holds only what you see.</p>
+      <p class="small muted">Meesho and Flipkart are trademarks of their owners; LabelFit is not affiliated with them. Looking for the other marketplace? See the <a href="/flipkart-label-crop-4x6">Flipkart label crop guide</a>.</p>`,
+    faq: [
+      ["How do I print a Meesho label in a thermal printer?", "Crop the label out of the A4 PDF first, then print the cropped file. In LabelFit, add the PDF, check the green box, download the 100 × 150 mm PDF and print it at Actual size. That gives you a proper Meesho label 4x6 print instead of a shrunken A4 page."],
+      ["Does LabelFit detect Meesho labels automatically?", "LabelFit looks for the label automatically, using barcodes, address lines and borders. It has no special support for Meesho, and marketplaces change their label layouts from time to time, so check the first page. If the box is off, drag it once and save the layout."],
+      ["What size is a Meesho label on a thermal printer?", "4x6 (100 × 150 mm) is the common thermal label size in India. Choose the size printed on your roll under Print on, and set the printer to the same paper size."],
+      ["Do I have to crop every Meesho PDF by hand?", "No. Fix the box once and press Save layout. The saved layout is then used for every page of every file with the same design, so each later PDF takes one click."],
+      ["Can I print the tax invoice as well?", "Yes. Add a second crop box over the invoice and set it to Packing slip (own page), or set Packing slips to Print on their own page. The invoice is shrunk to fit 4x6, so print the original A4 page if you need it to be easy to read."],
+      ["Why does my Meesho label print small or in a corner?", "Usually the printer is still set to A4 paper, or the print dialog uses Fit to page. Download the cropped 4x6 PDF, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size."],
+      ["Are my customers' addresses uploaded anywhere?", "No. The PDF is read and converted inside your browser, so names, phone numbers and addresses stay on your device."],
+    ],
+  },
+  {
+    path: "/flipkart-label-crop-4x6", crumb: "Flipkart label crop to 4x6", lang: "en-IN", currency: "INR",
+    title: "Flipkart Label Crop to 4x6 – Print on Thermal Labels",
+    desc: "Crop a Flipkart shipping label from the A4 PDF and print it on a 4x6 (100 × 150 mm) thermal printer. Save the crop box once and reuse it. Free, no upload.",
+    h1: "Flipkart Label Crop for 4x6 Thermal Printers",
+    lead: "Flipkart shipping labels are usually downloaded as A4 PDFs, with the label in one area of the page and the tax invoice in another. Cut out the label and print it on a 4x6 (100 × 150 mm) thermal sticker, right in your browser.",
+    appName: "Flipkart label crop to 4x6 tool", appDesc: "Crops the shipping label from an A4 PDF that also holds a tax invoice and fits it to a 4x6 (100 x 150 mm) thermal label, in the browser.",
+    answer: "To print a Flipkart shipping label on a thermal printer, open the label PDF in LabelFit, make sure the green box covers only the label, and download the 4x6 (100 × 150 mm) PDF. Print it at 100% or Actual size. LabelFit looks for the label automatically, but marketplaces change their label layouts from time to time, so check the first page. If the box is off, drag it once and save the layout.",
+    howto: "How to print a Flipkart shipping label on a 4x6 thermal printer",
+    steps: [
+      ["Get the label PDF", "Download your Flipkart labels the way you usually do. Keep the PDF as it comes, with the invoice still on the page."],
+      ["Open it in LabelFit", "Choose the file above and set <em>Print on</em> to 100 × 150 mm (or 4 × 6 in if your roll says that)."],
+      ["Look at page 1 first", "The green box should hold the label with its barcode and delivery address. The tax invoice should be outside it."],
+      ["Fix the box once and save it", "If the box is wrong, drag it or its corners, name it, and press <em>Save layout</em>. Every page in the file now uses it."],
+      ["Print one test, then the batch", "Download the PDF, print one label at 100%, scan the barcode with your phone, and then print the rest."],
+    ],
+    body: `      <h2>What a Flipkart label download usually contains</h2>
+      <p>Expect an A4 page for each order. The label part carries the courier name, a barcode with the tracking or AWB number, the delivery address and the seller's return address. The tax invoice sits in another part of the same page, with a table of items, tax and a total. Where exactly each block sits depends on the courier and on the day, because marketplaces update their label designs from time to time. LabelFit does not rely on a fixed Flipkart layout, which is why the first page deserves a look.</p>
+      <p>That A4 page is why a Flipkart label 4x6 print goes wrong. A 4x6 roll cannot take A4 paper, and scaling the page down to fit makes everything about 48% of its size. Cropping first fixes it: only the label is kept, then fitted to the 4x6 page.</p>
+
+      <h2>Check the first page before you print a batch</h2>
+      <p>LabelFit finds the label by looking for barcodes, address blocks and borders, and it recognises words such as “Tax invoice” and “Qty” as invoice text. On our sample files, which have a shipping label above a tax invoice, it picked the right block. We have not tested it on live Flipkart downloads, so this is a habit to keep, not a guarantee.</p>
+      <p>Here is a case where auto-detect gets it wrong. In one of our sample files the invoice started only about 2 mm under the label border. LabelFit then drew one tall box around both, and the preview warned that the label would print at a small percentage of its size. The fix took two drags: pull the top-left corner and the bottom-right corner of the box onto the label. After <em>Save layout</em>, the box was applied to all three pages, and the 4x6 output contained only the label.</p>
+      <p>Watch for these signs on the first page:</p>
+      <ul>
+        <li>The box reaches down into the invoice table.</li>
+        <li>A warning reads “Something runs off the … edge of the box”.</li>
+        <li>The thumbnail strip shows “No label” for a page that has one.</li>
+        <li>The scale under the preview is far below 90%.</li>
+      </ul>
+
+      <h2>Saved layouts: set up once, reuse every day</h2>
+      <p>Once the box is right, give it a clear name, for example <em>Flipkart A4 label</em>, and press <em>Save layout</em>. Next time, pick it under <em>Label from</em> in <em>My saved layouts</em> and add your PDFs. Every page uses the saved box, so there is nothing to drag.</p>
+      <p>If Flipkart changes the design, or one courier uses a different page, the old layout may cut the new label in the wrong place. Do not delete it. Fix the box again for the new design and save it under another name, so you can pick the right one for each file.</p>
+      <p>Layouts are kept in your browser on one device. To use them on a second computer, or to hand them to a packing helper, press <em>Export layouts</em> to download a small file and <em>Import layouts</em> to load it elsewhere. Clearing your browser's site data removes saved layouts, so keep the exported file.</p>
+
+      <h2>Flipkart shipping label print settings for a thermal printer</h2>
+      <table>
+        <thead><tr><th>Setting</th><th>What to choose</th></tr></thead>
+        <tbody>
+          <tr><td>Paper size</td><td>4 × 6 in or 100 × 150 mm, matching the roll</td></tr>
+          <tr><td>Scale</td><td>Actual size in Acrobat; Default or 100 in the Chrome or Edge dialog</td></tr>
+          <tr><td>Margins</td><td>None or Default. The PDF already has a small margin of its own</td></tr>
+          <tr><td>Orientation</td><td>Portrait</td></tr>
+          <tr><td>Darkness</td><td>Printer default first. Raise one step if the bars look pale</td></tr>
+          <tr><td>Roll</td><td>Direct thermal labels print on one side only. If the page comes out blank, flip the roll</td></tr>
+        </tbody>
+      </table>
+      <p>The <em>Open to print</em> button opens the finished PDF in a new tab so you can print straight from the browser viewer. Expect a small difference in size: with the default <em>Fit the label to the page</em> setting, our 100 × 150 mm sample labels printed at about 94–98% because LabelFit leaves a 2 mm margin. The percentage is shown under the preview.</p>
+
+      <h2>Label only, or label and invoice?</h2>
+      <table>
+        <thead><tr><th>You want</th><th>Do this</th></tr></thead>
+        <tbody>
+          <tr><td>Just the label on the sticker</td><td>Leave <em>Packing slips</em> on <em>Leave them out</em> (the default)</td></tr>
+          <tr><td>The invoice on its own 4x6 page after the label</td><td>Add a crop box over the invoice, set it to <em>Packing slip (own page)</em>, and save the layout under a new name</td></tr>
+          <tr><td>A readable invoice</td><td>Print the original A4 page on plain paper. A full-width invoice shrinks to roughly three-quarters size on 4x6 in our sample test</td></tr>
+        </tbody>
+      </table>
+      <p>More detail is in the guide to <a href="/split-shipping-label-and-packing-slip">splitting a label and packing slip</a>. A kept invoice gets a small “Made with LabelFit” line under it. Labels are never marked.</p>
+
+      <h2>A busy day with many orders</h2>
+      <p>Drop in a multi-page PDF, or several PDFs together. Each label becomes one 4x6 page, in page order, in a single download. Use the thumbnails above the page to jump to any page and the arrows under the preview to flip through the result. Pages with no label can be skipped. Sheets with two or four labels give one output page per label, and a label that sits sideways on the sheet is turned upright, though you can use <em>Rotate</em> if it picks the wrong way. For a Bluetooth printer, switch to <em>Image</em> and see <a href="/print-shipping-label-from-phone">printing labels from your phone</a>.</p>
+
+      <h2>Privacy for your customers' addresses</h2>
+      <p>The file never leaves your device. LabelFit reads it and writes the new PDF in the browser tab, with no account and no upload. The converted PDF keeps the rest of the original page hidden, not deleted, so if you send the result to someone else, choose <em>Image</em> output.</p>
+      <p class="small muted">Meesho and Flipkart are trademarks of their owners; LabelFit is not affiliated with them. The matching guide for the other marketplace is <a href="/meesho-label-crop-4x6">Meesho label crop to 4x6</a>.</p>`,
+    faq: [
+      ["Does LabelFit detect Flipkart labels automatically?", "LabelFit looks for the label automatically, using barcodes, address lines and borders. It has no special support for Flipkart, and marketplaces change their label layouts from time to time, so check the first page. If the box is off, drag it once and save the layout."],
+      ["Which thermal label size should I use for a Flipkart label?", "For a Flipkart label, 4x6 (100 × 150 mm) is the common thermal label size in India. Use whatever is printed on your roll, and set the same paper size in your printer."],
+      ["Do I need to crop the label again for every file?", "No. After you press Save layout, pick that layout under Label from. It is applied to every page of every file with the same design."],
+      ["What if Flipkart changes the label design?", "The old layout may then miss the label. Fix the box on the new design and save it under a new name. Keep the old one for older PDFs."],
+      ["Can I print a Flipkart label from my phone?", "Yes. Choose Image output, pick 203 dpi for most printers, and share the image to your printer's app. The phone printing guide has the steps."],
+      ["Is my customers' data uploaded?", "No. Everything happens in your browser. Names, phone numbers and addresses on the label never leave your device."],
+    ],
   },
 ];
 
