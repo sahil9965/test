@@ -1,11 +1,11 @@
 # Live check of the Pinterest schedule (tools/pins-check.mjs): every image and link in https://tools.roohsites.com/pins/schedule.json.
+# Runs after each push that changes the pins (it waits for the deploy to put the new schedule live, then checks it).
 name: pins-check
 on:
+  push:
+    branches: [claude/ecstatic-pascal-yzcrhr]
+    paths: ['sites/hub/pins/**', 'tools/pins-check.mjs', '.github/workflows/pins-check.yml']
   workflow_dispatch:
-    inputs:
-      expected:
-        description: Expected number of posts (0 = do not check the count)
-        default: '0'
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -14,4 +14,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node tools/pins-check.mjs ${{ inputs.expected }}
+      - run: node tools/pins-check.mjs
