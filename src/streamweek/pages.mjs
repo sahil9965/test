@@ -156,7 +156,7 @@ const homeFaq = [
 ];
 const home = {
   path: "/",
-  title: "Stream Schedule Maker with Time Zones — Free | StreamWeek",
+  title: "Stream Schedule Template & Maker with Time Zones | StreamWeek",
   desc: "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
   h1: "Stream Schedule Maker with Time Zones",
   lead: "Plan your week once and get a schedule image, Discord timestamps and a calendar file, with every time converted for your viewers. Free, no signup, and nothing leaves your browser.",

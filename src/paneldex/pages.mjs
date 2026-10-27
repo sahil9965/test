@@ -399,7 +399,7 @@ ${numberingDiagram("3p208", 6)}
 
 P.push({
   path: "/breaker-box-label-template", crumb: "Breaker box label template",
-  title: "Breaker Box Label Template — Printable Numbered Strips",
+  title: "Breaker Box Label Template — Electrical Panel Labels, Free",
   desc: "Free breaker box label template: one small numbered label per circuit with a short name, 4 across on Letter or A4 with cut lines. Print, cut and stick.",
   h1: "Breaker Box Label Template",
   lead: "Small printed labels, one per circuit, with the circuit number and a short name to stick beside each breaker.",

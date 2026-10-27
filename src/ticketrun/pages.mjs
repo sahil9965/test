@@ -980,7 +980,7 @@ P.push({
 
 P.push({
   path: "/raffle-winner-picker", crumb: "Raffle winner picker", tool: { picker: true },
-  title: "Random Raffle Number Picker — Fair Winner Draw, Free",
+  title: "Online Raffle Generator: Random Winner Picker, Free",
   desc: "Pick raffle winners fairly: enter your ticket range, leave out unsold numbers and draw one or more winners with an unbiased random generator. Free, no signup.",
   h1: "Random Raffle Number Picker",
   lead: "Enter the ticket numbers you printed, leave out the ones you didn't sell and draw winners with an unbiased, cryptographic random number.",
