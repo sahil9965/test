@@ -84,12 +84,71 @@ const PINS = [
     points: ["Crops and rotates for you", "Splits packing slips", "Nothing uploaded"], visual: "label",
     desc: "Convert A4 Vinted, Evri and Royal Mail labels into crisp 6x4 thermal labels. It finds the label, crops and rotates it, all in your browser.",
     keywords: "vinted label, thermal printer, 6x4 label, shipping label converter, reseller tips" },
+  // Holiday season (Nov–Dec): gift certificates, punch cards, holiday raffles and holiday shipping.
+  { slug: "giftstub", file: "christmas-gift-certificate-template", path: "/christmas-gift-certificate-template", board: "Small Business Printables",
+    headline: "Christmas Gift Certificate Template", sub: "Holiday wording, numbered stubs, free PDF",
+    points: ["3 per Letter or A4 page", "A numbered stub for every certificate", "Print a batch or email a PNG"], visual: "certificate",
+    cert: { line: "$50 toward any service" },
+    desc: "Free Christmas gift certificate template with holiday wording and numbered stubs, 3 per page on Letter or A4. Print a batch for the season or email a PNG to a last-minute shopper. No signup.",
+    keywords: "christmas gift certificate template, holiday gift certificate, printable gift certificate, gift certificate with stub, small business holiday" },
+  { slug: "labelfit", file: "usps-label-to-4x6", path: "/usps-label-to-4x6", board: "Online Seller Shipping",
+    headline: "USPS Label to 4x6", sub: "Click-N-Ship labels on a thermal printer",
+    points: ["Crops and rotates the label", "Keeps the barcode sharp", "Free and private, in your browser"], visual: "label",
+    desc: "Turn a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. It crops, rotates and keeps the barcode sharp, right in your browser. Free.",
+    keywords: "usps label 4x6, click n ship thermal printer, 4x6 shipping label, thermal label printer, holiday shipping" },
+  { slug: "punchperk", file: "coffee-punch-card-template", path: "/coffee-punch-card-template", board: "Small Business Printables",
+    headline: "Coffee Punch Card Template", sub: "Free printable loyalty cards for cafés",
+    points: ["Coffee cup punches", "A free-drink reward", "Optional serial numbers and QR menu"], visual: "punch",
+    card: { name: "Your Café", reward: "Buy 9 drinks, get the 10th free" },
+    desc: "Free coffee punch card template for cafés, carts and trucks: coffee cup punches, a free-drink reward, optional serial numbers and a QR menu on the back. 10 cards per page.",
+    keywords: "coffee punch card template, coffee loyalty card, printable punch card, cafe loyalty program, buy 9 get 1 free" },
+  { slug: "ticketrun", file: "door-prize-tickets", path: "/door-prize-tickets", board: "Raffle & Event Tickets",
+    headline: "Printable Door Prize Tickets", sub: "For holiday parties and staff events",
+    points: ["Numbered ticket and stub", "Letter or A4 PDF", "Random number picker included"], visual: "tickets",
+    tk: ["DOOR PRIZE", "Holiday party · Main hall"],
+    desc: "Printable numbered door prize tickets with stubs for holiday parties, staff events and fundraisers: guests keep one half and drop the stub in the box. Letter or A4 PDF plus a random number picker. Free.",
+    keywords: "door prize tickets, printable door prize tickets, holiday party raffle, christmas party games, numbered tickets" },
+  { slug: "giftstub", file: "salon-gift-certificate-template", path: "/salon-gift-certificate-template", board: "Small Business Printables",
+    headline: "Salon Gift Certificate Template", sub: "Sell gift certificates this holiday season",
+    points: ["Your salon name and logo", "A dollar amount or a service", "Numbered stubs, 3 per page"], visual: "certificate",
+    cert: { line: "Cut & blow-dry with Maria" },
+    desc: "Free printable salon gift certificate template with numbered stubs. Add your salon name, logo, a dollar amount or service and booking notes. 3 per page, Letter or A4.",
+    keywords: "salon gift certificate template, hair salon gift certificate, printable gift certificate, salon holiday gift, gift certificate with stub" },
+  { slug: "invoicekit", file: "contractor-invoice-template", path: "/contractor-invoice-template", board: "Small Business Invoices",
+    headline: "Contractor Invoice Template", sub: "Labor, materials and disposal lines",
+    points: ["For builders, handymen and electricians", "Tax, VAT or GST", "Free PDF, no signup"], visual: "document",
+    desc: "Free contractor invoice template with labor, materials and disposal lines, for builders, handymen, electricians and plumbers. Download a PDF, no signup.",
+    keywords: "contractor invoice template, handyman invoice, construction invoice template, free invoice generator, electrician invoice" },
+  { slug: "punchperk", file: "salon-loyalty-card-template", path: "/salon-loyalty-card-template", board: "Small Business Printables",
+    headline: "Salon Loyalty Card Template", sub: "Punch cards for salons and barbers",
+    points: ["Scissors punches", "A free-service reward", "QR code to your booking page"], visual: "punch",
+    card: { name: "Your Salon", reward: "Your 10th cut is on us" },
+    desc: "Free salon and barber loyalty card template: scissors punches, a free-service reward and a QR code to your booking page. 10 cards per page, Letter or A4.",
+    keywords: "salon loyalty card, barber punch card, salon punch card template, loyalty card template, salon rewards" },
+  { slug: "ticketrun", file: "raffle-tickets-1-100", path: "/raffle-tickets-1-100", board: "Raffle & Event Tickets",
+    headline: "Raffle Tickets 1–100 with Stubs", sub: "For holiday fairs and fundraisers",
+    points: ["10 per page, 10 sheets", "Numbered ticket and stub", "Letter or A4, free PDF"], visual: "tickets",
+    tk: ["HOLIDAY RAFFLE", "Winter fair · School hall"],
+    desc: "Print raffle tickets 1–100 with matching numbered stubs for holiday fairs, PTO fundraisers and office parties: 10 per page on Letter or A4. Edit the text and download a free PDF, no signup.",
+    keywords: "raffle tickets 1-100, holiday raffle tickets, christmas raffle, printable raffle tickets, PTO fundraiser" },
+  { slug: "giftstub", file: "massage-gift-certificate-template", path: "/massage-gift-certificate-template", board: "Small Business Printables",
+    headline: "Massage Gift Certificate Template", sub: "For massage therapists and spas",
+    points: ["Session length and booking line", "Your cancellation policy", "Numbered stubs, 3 per page"], visual: "certificate",
+    cert: { line: "60-minute relaxation massage" },
+    desc: "Free massage gift certificate template for therapists and spas: session length, cancellation policy and booking line, with numbered stubs, 3 per page as a PDF.",
+    keywords: "massage gift certificate template, spa gift certificate, printable spa gift card, massage therapist, holiday gift certificate" },
+  { slug: "labelfit", file: "ebay-half-sheet-label-to-4x6", path: "/ebay-half-sheet-label-to-4x6", board: "Online Seller Shipping",
+    headline: "eBay Half-Sheet Label to 4x6", sub: "Ship faster this holiday season",
+    points: ["8.5x11 label to a 4x6 thermal label", "Or two labels on one page", "Free, private, in your browser"], visual: "label",
+    desc: "Turn an eBay half-sheet (8.5x11) shipping label into a 4x6 thermal label, or put two labels on one half-sheet page. Free, private and it works in your browser.",
+    keywords: "ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label" },
 ];
 
-function visual(kind, accent) {
+function visual(kind, accent, p = {}) {
   const pale = `${accent}22`;
+  const [tkTitle, tkLine] = p.tk || ["SPRING RAFFLE", "Saturday · School gym"];
   if (kind === "tickets") return `<div class="tickets">${[1, 2, 3, 4].map(n => `
-    <div class="tk"><div class="tk-main"><b>SPRING RAFFLE</b><span>Saturday · School gym</span><i>No. ${String(n).padStart(4, "0")}</i></div>
+    <div class="tk"><div class="tk-main"><b>${esc(tkTitle)}</b><span>${esc(tkLine)}</span><i>No. ${String(n).padStart(4, "0")}</i></div>
     <div class="tk-stub"><i>No. ${String(n).padStart(4, "0")}</i><span>Name ________</span><span>Phone ________</span></div></div>`).join("")}</div>`;
   if (kind === "calendar") {
     const days = []; let d = 0;
@@ -109,6 +168,13 @@ function visual(kind, accent) {
   }
   if (kind === "photos") return `<div class="photos">${["Living room · walls", "Kitchen · oven", "Bedroom · carpet", "Bathroom · tiles"].map((c, i) => `<figure><div class="ph" style="background:linear-gradient(135deg,${pale},${accent}55)"><small>12 Oct 2026 · 09:4${i}</small></div><figcaption>${c}<b>${["Good", "Fair", "Good", "Worn"][i]}</b></figcaption></figure>`).join("")}</div>`;
   if (kind === "label") return `<div class="lbl-row"><div class="a4"><div class="lab"></div><div class="slip"></div></div><div class="arrow">→</div><div class="l64"><div class="bars"></div><span>6 × 4 in</span></div></div>`;
+  if (kind === "certificate") return `<div class="cert"><div class="cert-stub"><b>STUB</b><i>GC-0001</i><span>Issued to</span><span>Date</span><span>Amount</span></div>
+    <div class="cert-main"><small>YOUR BUSINESS NAME</small><h2>Gift Certificate</h2><p>${esc((p.cert || {}).line || "$50 toward any service")}</p><div class="tf"><span>To</span><span>From</span></div></div></div>`;
+  if (kind === "punch") {
+    const c = p.card || { name: "Your Business", reward: "Buy 9, get the 10th free" };
+    return `<div class="punches">${[6, 3].map(on => `<div class="pc"><b>${esc(c.name)}</b><em>${esc(c.reward)}</em><div class="dots">${Array.from({ length: 10 }, (_, i) =>
+      i === 9 ? `<span class="free">FREE</span>` : `<span class="${i < on ? "on" : ""}"></span>`).join("")}</div></div>`).join("")}</div>`;
+  }
   // document (invoice / transcript)
   return `<div class="doc"><div class="doc-h"><b></b><i></i></div>${Array.from({ length: 6 }, (_, i) => `<div class="doc-r"><span style="width:${50 + (i * 13) % 30}%"></span><em></em></div>`).join("")}<div class="doc-t"><span>Total</span><b></b></div></div>`;
 }
@@ -148,13 +214,28 @@ figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-b
 .lab{flex:1;border:3px solid ${accent};border-radius:6px}.slip{height:110px;background:#eee;border-radius:6px}
 .arrow{font-size:90px;color:${accent};font-weight:800}.l64{width:260px;height:390px;background:#fff;border:3px solid #1b1b1f;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;font-size:28px;font-weight:700}
 .bars{width:190px;height:140px;background:repeating-linear-gradient(90deg,#1b1b1f 0 6px,#fff 6px 10px,#1b1b1f 10px 12px,#fff 12px 18px)}
+.cert{display:flex;width:100%;height:440px;background:#fff;border:3px solid #1b1b1f;border-radius:12px;overflow:hidden}
+.cert-stub{width:240px;background:${accent}14;border-right:3px dashed #1b1b1f;padding:26px 20px;display:flex;flex-direction:column;gap:24px}
+.cert-stub b{font-size:20px;color:#555;letter-spacing:.1em}.cert-stub i{font-style:normal;font-size:32px;font-weight:800;color:${accent}}
+.cert-stub span{border-bottom:2px solid #999;font-size:20px;color:#666;padding-bottom:6px}
+.cert-main{flex:1;margin:22px;border:5px double ${accent};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:20px}
+.cert-main small{font-size:22px;letter-spacing:.14em;font-weight:700;color:#444}
+.cert-main h2{margin:0;font-family:Georgia,"DejaVu Serif",serif;font-size:66px;color:${accent};font-weight:700}
+.cert-main p{margin:0;font-size:30px;font-weight:700}
+.cert-main .tf{display:flex;gap:30px;width:100%;margin-top:18px}.cert-main .tf span{flex:1;border-bottom:2px solid #999;text-align:left;font-size:20px;color:#666;padding-bottom:6px}
+.punches{display:flex;flex-direction:column;gap:34px;width:100%}
+.pc{background:#fff;border:3px solid #1b1b1f;border-radius:18px;padding:26px 34px 30px}
+.pc b{display:block;font-size:40px}.pc em{display:block;font-style:normal;font-size:28px;color:${accent};font-weight:700;margin:4px 0 22px}
+.pc .dots{display:grid;grid-template-columns:repeat(5,96px);justify-content:space-between;row-gap:18px}
+.pc .dots span{width:96px;height:96px;border-radius:50%;border:5px solid ${accent};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
+.pc .dots .on{background:${accent}88}.pc .dots .free{background:${accent};color:#fff}
 .doc{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:82%;padding:36px;display:flex;flex-direction:column;gap:22px}
 .doc-h{display:flex;justify-content:space-between;margin-bottom:10px}.doc-h b{width:200px;height:44px;background:${accent};border-radius:6px}.doc-h i{width:140px;height:44px;background:#ddd;border-radius:6px}
 .doc-r{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eee;padding-bottom:16px}.doc-r span{height:20px;background:#ccc;border-radius:4px}.doc-r em{width:90px;height:20px;background:#bbb;border-radius:4px}
 .doc-t{display:flex;justify-content:space-between;align-items:center;font-size:32px;font-weight:800}.doc-t b{width:150px;height:34px;background:${accent};border-radius:6px}
 </style></head><body>
 <div class="top"><div class="kicker">${esc(s.name)} · Free tool</div><h1>${esc(p.headline)}</h1><div class="sub">${esc(p.sub)}</div></div>
-<div class="vis">${visual(p.visual, accent)}</div>
+<div class="vis">${visual(p.visual, accent, p)}</div>
 <div class="pts">${p.points.map(x => `<span>${esc(x)}</span>`).join("")}</div>
 <div class="foot"><span><b>${esc(new URL(s.url).host)}</b></span><span class="badge">Free · No signup</span></div>
 </body></html>`;
@@ -183,13 +264,18 @@ const BOARDS = {
   "Landlord & Tenant Checklists": "Free move-in, move-out and inspection checklists with dated photos for renters and landlords.",
   "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
   "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
+  "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
 };
 const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
   "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
-  "ab-day-lesson-planner", "drink-tickets", "task-analysis-data-sheet", "free-invoice-generator", "raffle-tickets-1-500", "abc-data-sheet"];
+  "ab-day-lesson-planner", "drink-tickets", "task-analysis-data-sheet", "free-invoice-generator", "raffle-tickets-1-500", "abc-data-sheet",
+  // Holiday season, added 27 Oct 2026
+  "christmas-gift-certificate-template", "usps-label-to-4x6", "coffee-punch-card-template", "door-prize-tickets", "salon-gift-certificate-template",
+  "contractor-invoice-template", "salon-loyalty-card-template", "raffle-tickets-1-100", "massage-gift-certificate-template", "ebay-half-sheet-label-to-4x6"];
 const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching stubs", calendar: "a month calendar with school days labelled A and B",
   graph: "a line graph with a dashed phase change line between baseline and intervention", grid: "a printable data sheet grid with plus and minus scores",
-  photos: "four dated room photos with condition ratings", label: "an A4 label page converted into a 6 by 4 inch thermal label", document: "a one-page document preview" };
+  photos: "four dated room photos with condition ratings", label: "an A4 label page converted into a 6 by 4 inch thermal label", document: "a one-page document preview",
+  certificate: "a gift certificate with a numbered tear-off stub", punch: "two loyalty punch cards with ten punch circles and a free reward" };
 const byFile = Object.fromEntries(PINS.map(p => [p.file, p]));
 const schedule = ORDER.map((f, i) => {
   const p = byFile[f], s = sites[p.slug];
@@ -197,7 +283,7 @@ const schedule = ORDER.map((f, i) => {
     link: `${s.url}${p.path}?${UTM}`, alt: `${p.headline}: ${p.sub}. The image shows ${VISUAL_ALT[p.visual]}, from ${new URL(s.url).host}.`,
     keywords: p.keywords };
 });
-writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: "2026-10-15", boards: BOARDS, posts: schedule }, null, 2) + "\n");
+writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: "2026-10-27", boards: BOARDS, posts: schedule }, null, 2) + "\n");
 const md = [`# Pinterest posts: daily schedule`, ``,
   `One pin a day, in this order. Cowork reads the same list from ${PIN_BASE}/schedule.json (see marketing/cowork-pinterest-prompt.md). Regenerate both with \`node tools/pins.mjs\`.`, ``,
   `## Boards to create first`, ``, ...Object.entries(BOARDS).map(([n, d]) => `- **${n}**: ${d}`), ``,

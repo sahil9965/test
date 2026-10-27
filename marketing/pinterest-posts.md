@@ -11,6 +11,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Landlord & Tenant Checklists**: Free move-in, move-out and inspection checklists with dated photos for renters and landlords.
 - **Small Business Invoices**: Free invoice templates and an invoice generator for freelancers and small businesses.
 - **Online Seller Shipping**: Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.
+- **Small Business Printables**: Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.
 
 ## Day 1: Printable Raffle Tickets with Numbers
 
@@ -137,3 +138,93 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free printable ABC data sheet for recording antecedents, behaviors and consequences. Choose a checklist or narrative layout and print or save as PDF.
 - **Alt text:** ABC Data Sheet: Antecedent, behavior, consequence. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
 - **Keywords:** abc data sheet, abc data collection, behavior data sheet, aba, special education teacher
+
+## Day 15: Christmas Gift Certificate Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/christmas-gift-certificate-template.png
+- **Link:** https://giftcert.roohsites.com/christmas-gift-certificate-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free Christmas gift certificate template with holiday wording and numbered stubs, 3 per page on Letter or A4. Print a batch for the season or email a PNG to a last-minute shopper. No signup.
+- **Alt text:** Christmas Gift Certificate Template: Holiday wording, numbered stubs, free PDF. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** christmas gift certificate template, holiday gift certificate, printable gift certificate, gift certificate with stub, small business holiday
+
+## Day 16: USPS Label to 4x6
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/usps-label-to-4x6.png
+- **Link:** https://labels.roohsites.com/usps-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Turn a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. It crops, rotates and keeps the barcode sharp, right in your browser. Free.
+- **Alt text:** USPS Label to 4x6: Click-N-Ship labels on a thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** usps label 4x6, click n ship thermal printer, 4x6 shipping label, thermal label printer, holiday shipping
+
+## Day 17: Coffee Punch Card Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/coffee-punch-card-template.png
+- **Link:** https://punchcard.roohsites.com/coffee-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free coffee punch card template for cafés, carts and trucks: coffee cup punches, a free-drink reward, optional serial numbers and a QR menu on the back. 10 cards per page.
+- **Alt text:** Coffee Punch Card Template: Free printable loyalty cards for cafés. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** coffee punch card template, coffee loyalty card, printable punch card, cafe loyalty program, buy 9 get 1 free
+
+## Day 18: Printable Door Prize Tickets
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/door-prize-tickets.png
+- **Link:** https://raffle.roohsites.com/door-prize-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable numbered door prize tickets with stubs for holiday parties, staff events and fundraisers: guests keep one half and drop the stub in the box. Letter or A4 PDF plus a random number picker. Free.
+- **Alt text:** Printable Door Prize Tickets: For holiday parties and staff events. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** door prize tickets, printable door prize tickets, holiday party raffle, christmas party games, numbered tickets
+
+## Day 19: Salon Gift Certificate Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/salon-gift-certificate-template.png
+- **Link:** https://giftcert.roohsites.com/salon-gift-certificate-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable salon gift certificate template with numbered stubs. Add your salon name, logo, a dollar amount or service and booking notes. 3 per page, Letter or A4.
+- **Alt text:** Salon Gift Certificate Template: Sell gift certificates this holiday season. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** salon gift certificate template, hair salon gift certificate, printable gift certificate, salon holiday gift, gift certificate with stub
+
+## Day 20: Contractor Invoice Template
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/contractor-invoice-template.png
+- **Link:** https://invoice.roohsites.com/contractor-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free contractor invoice template with labor, materials and disposal lines, for builders, handymen, electricians and plumbers. Download a PDF, no signup.
+- **Alt text:** Contractor Invoice Template: Labor, materials and disposal lines. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** contractor invoice template, handyman invoice, construction invoice template, free invoice generator, electrician invoice
+
+## Day 21: Salon Loyalty Card Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/salon-loyalty-card-template.png
+- **Link:** https://punchcard.roohsites.com/salon-loyalty-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free salon and barber loyalty card template: scissors punches, a free-service reward and a QR code to your booking page. 10 cards per page, Letter or A4.
+- **Alt text:** Salon Loyalty Card Template: Punch cards for salons and barbers. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** salon loyalty card, barber punch card, salon punch card template, loyalty card template, salon rewards
+
+## Day 22: Raffle Tickets 1–100 with Stubs
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/raffle-tickets-1-100.png
+- **Link:** https://raffle.roohsites.com/raffle-tickets-1-100?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print raffle tickets 1–100 with matching numbered stubs for holiday fairs, PTO fundraisers and office parties: 10 per page on Letter or A4. Edit the text and download a free PDF, no signup.
+- **Alt text:** Raffle Tickets 1–100 with Stubs: For holiday fairs and fundraisers. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** raffle tickets 1-100, holiday raffle tickets, christmas raffle, printable raffle tickets, PTO fundraiser
+
+## Day 23: Massage Gift Certificate Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/massage-gift-certificate-template.png
+- **Link:** https://giftcert.roohsites.com/massage-gift-certificate-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free massage gift certificate template for therapists and spas: session length, cancellation policy and booking line, with numbered stubs, 3 per page as a PDF.
+- **Alt text:** Massage Gift Certificate Template: For massage therapists and spas. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** massage gift certificate template, spa gift certificate, printable spa gift card, massage therapist, holiday gift certificate
+
+## Day 24: eBay Half-Sheet Label to 4x6
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/ebay-half-sheet-label-to-4x6.png
+- **Link:** https://labels.roohsites.com/ebay-half-sheet-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Turn an eBay half-sheet (8.5x11) shipping label into a 4x6 thermal label, or put two labels on one half-sheet page. Free, private and it works in your browser.
+- **Alt text:** eBay Half-Sheet Label to 4x6: Ship faster this holiday season. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label
