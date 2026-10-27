@@ -1,0 +1,150 @@
+# Deploys the static sites to Cloudflare Pages (one project per site: rooh-<slug>).
+# Push to the branch below deploys only the sites whose files changed; run it by hand to deploy "all" or a list.
+# Needs two repo secrets: CLOUDFLARE_API_TOKEN (Pages: Edit) and CLOUDFLARE_ACCOUNT_ID. See docs/cloudflare.md.
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [claude/ecstatic-pascal-yzcrhr]
+    paths: ["sites/**", "sites.json", "tools/cf-build.mjs", "kit/functions/**", ".github/workflows/deploy-cf.yml"]
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Sites to deploy: "changed" (files changed in the last commit), "all", or space-separated slugs'
+        default: changed
+      indexnow:
+        description: Submit each deployed site's sitemap to IndexNow after the deploy
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-cf
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check Cloudflare secrets
+        id: secrets
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          # Until the secrets exist, pushes skip quietly (no red runs); a manual run fails loudly.
+          for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
+            if [ -z "${!v}" ]; then
+              if [ "$EVENT" = push ]; then
+                echo "::notice title=Skipped::Repository secret $v is not set yet, so nothing was deployed. See docs/cloudflare.md."
+                echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+              fi
+              echo "::error title=Missing secret::Add the repository secret $v (Settings > Secrets and variables > Actions) and re-run. See docs/cloudflare.md."
+              exit 1
+            fi
+          done
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.skip != 'true'
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        if: steps.secrets.outputs.skip != 'true'
+        with:
+          node-version: 22
+
+      - name: Decide which sites to deploy
+        id: pick
+        if: steps.secrets.outputs.skip != 'true'
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          INPUT_SITES: ${{ inputs.sites }}
+        run: |
+          set -euo pipefail
+          all=$(node -p 'JSON.parse(require("fs").readFileSync("sites.json","utf8")).filter(s=>s.live!==false).map(s=>s.slug).concat("hub").join(" ")')
+          want="${INPUT_SITES:-changed}"
+          if [ "$EVENT" = push ]; then want=changed; base="$BEFORE"; else base=$(git rev-parse --verify -q HEAD^ || true); fi
+          if [ "$want" = all ]; then
+            slugs="$all"
+          elif [ "$want" = changed ]; then
+            # Everything when the base is unknown (first push, force push, shallow history) or a shared file changed.
+            if [ -z "$base" ] || [[ "$base" =~ ^0+$ ]] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+              slugs="$all"
+            else
+              files=$(git diff --name-only "$base" "$GITHUB_SHA")
+              if grep -qxE 'sites\.json|tools/cf-build\.mjs|kit/functions/.*|\.github/workflows/deploy-cf\.yml' <<<"$files"; then
+                slugs="$all"
+              else
+                slugs=$(sed -n 's#^sites/\([^/]*\)/.*#\1#p' <<<"$files" | sort -u | grep -Fxf <(tr ' ' '\n' <<<"$all") | tr '\n' ' ' || true)
+              fi
+            fi
+          else
+            slugs="$want"
+            for s in $slugs; do
+              grep -qxF -- "$s" <(tr ' ' '\n' <<<"$all") || { echo "::error::Unknown site '$s'. Known: $all"; exit 1; }
+            done
+          fi
+          slugs=$(echo $slugs)
+          echo "Sites to deploy: ${slugs:-none}"
+          echo "slugs=$slugs" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        if: steps.pick.outputs.slugs != ''
+        env:
+          SLUGS: ${{ steps.pick.outputs.slugs }}
+        run: node tools/cf-build.mjs $SLUGS
+
+      - name: Deploy
+        if: steps.pick.outputs.slugs != ''
+        env:
+          SLUGS: ${{ steps.pick.outputs.slugs }}
+        run: |
+          failed=""
+          for s in $SLUGS; do
+            p="rooh-$s"
+            echo "::group::$p"
+            # Create the project once; an existing one is fine.
+            if ! out=$(npx --yes wrangler@4 pages project create "$p" --production-branch=main 2>&1); then
+              echo "$out"
+              grep -qi "already exists" <<<"$out" || { echo "::error::Could not create project $p"; failed="$failed $s"; echo "::endgroup::"; continue; }
+            else
+              echo "$out"
+            fi
+            (cd "dist/$s" && npx --yes wrangler@4 pages deploy public --project-name="$p" --branch=main --commit-dirty=true) || { echo "::error::Deploy of $p failed"; failed="$failed $s"; }
+            echo "::endgroup::"
+          done
+          [ -z "$failed" ] || { echo "::error::Failed:$failed"; exit 1; }
+
+      - name: Post-deploy check
+        if: always() && steps.pick.outputs.slugs != ''
+        env:
+          SLUGS: ${{ steps.pick.outputs.slugs }}
+          INDEXNOW: ${{ inputs.indexnow }}
+        run: |
+          # Prints "<http status> <server header>" for a URL; a Cloudflare answer says "cloudflare", Vercel says "Vercel".
+          probe() { curl -s -o /dev/null -D - -m 20 "$1" | tr -d '\r' | awk 'tolower($1)=="server:"{s=$2} /^HTTP/{c=$2} END{print (c?c:"ERR"), (s?s:"-")}'; }
+          table=$(printf '| site | pages.dev | server | custom host | status | server |\n|---|---|---|---|---|---|\n')
+          for s in $SLUGS; do
+            host=$(S=$s node -p 'const s=JSON.parse(require("fs").readFileSync("sites.json","utf8")).find(x=>x.slug===process.env.S);s?new URL(s.url).host:"tools.roohsites.com"')
+            read -r pc pv <<<"$(probe "https://rooh-$s.pages.dev/")"
+            if [ "$pc" != 200 ]; then sleep 10; read -r pc pv <<<"$(probe "https://rooh-$s.pages.dev/")"; fi   # new project: give it a moment
+            read -r cc cv <<<"$(probe "https://$host/")"
+            table+=$'\n'"| $s | $pc | $pv | $host | $cc | $cv |"
+          done
+          echo "$table"
+          { echo "### Post-deploy check"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
+          # The custom host may still point at Vercel until DNS is switched, so it never fails the job.
+          if [ "$INDEXNOW" = true ]; then
+            for s in $SLUGS; do
+              host=$(S=$s node -p 'const s=JSON.parse(require("fs").readFileSync("sites.json","utf8")).find(x=>x.slug===process.env.S);s?new URL(s.url).host:"tools.roohsites.com"')
+              echo "IndexNow $host:"; curl -s -m 60 "https://$host/api/indexnow?go=1" | head -c 600 || true; echo
+            done
+          fi

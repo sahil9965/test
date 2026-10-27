@@ -32,7 +32,7 @@
 
 ## Key facts
 - Price: completely free. No paid tier, no account.
-- Privacy: ticket text, guest lists and logos are processed on the device; nothing is uploaded. Cookie-free Vercel Web Analytics counts page views.
+- Privacy: ticket text, guest lists and logos are processed on the device; nothing is uploaded. Cookie-free Umami analytics counts page views.
 - Output: vector PDF built with pdf-lib in the browser. Ticket sizes: 3.75 x 1.97 in (10 per Letter page), 3.75 x 2.46 in (8 per Letter page), 92 x 53 mm (10 per A4 page).
 - Limits: up to 20,000 tickets per PDF; numbers up to 99,999,999. Built-in PDF fonts (Helvetica, Times) cover Western European characters only.
 - Lucky draw coupons: the "Lucky draw" preset prints "Coupon No." before each number and opens on A4 on the India pages. The rupee sign is printed as Rs. and only English letters can be printed (no Devanagari or other Indian scripts). Rules on lucky draws and lotteries differ between Indian states; the pages are general information, not legal advice.

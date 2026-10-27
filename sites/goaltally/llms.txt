@@ -23,7 +23,7 @@
 
 ## Key facts
 - Price: completely free. No paid tier, no account.
-- Privacy: student data, saved goals and recorded sessions stay in the browser's local storage on the device; nothing is uploaded. Users are asked to enter initials, not names. Backups are encrypted on the device (AES-256-GCM, key from the passphrase with PBKDF2-SHA256). Cookie-free Vercel Web Analytics counts page views. GoalTally makes no FERPA, HIPAA or other compliance claims.
+- Privacy: student data, saved goals and recorded sessions stay in the browser's local storage on the device; nothing is uploaded. Users are asked to enter initials, not names. Backups are encrypted on the device (AES-256-GCM, key from the passphrase with PBKDF2-SHA256). Cookie-free Umami analytics counts page views. GoalTally makes no FERPA, HIPAA or other compliance claims.
 - Graph output: PNG at 2000 x 1240 px, or a vector PDF (US Letter or A4, landscape) with an optional phase summary table (mean, median, range, trend, PND) and progress note. Up to 3 data series. Session-number or calendar-date x-axis. Data can be pasted from Excel or Google Sheets and exported as CSV.
 - Data sheet output: vector PDF on US Letter or A4, portrait or landscape (chosen automatically to fit), up to 31 session columns and 40 trials on skill sheets, interval sheets from 5-second to 30-minute intervals with clock times, an optional school or clinic logo, and a print button that prints the same pages.
 - Built-in PDF fonts cover Western European characters only.

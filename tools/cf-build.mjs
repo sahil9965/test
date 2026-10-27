@@ -12,6 +12,7 @@ const live = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(s
 const slugs = process.argv.length > 2 ? process.argv.slice(2) : live;
 const walk = d => readdirSync(d).flatMap(n => { const p = join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const fail = msg => { throw new Error(msg); };
+process.on("uncaughtException", e => { console.error("cf-build: " + e.message); process.exit(1); }); // clean one-line failure for CI
 
 // What Vercel serves from sites/<slug> but Cloudflare must not: functions, config, test files, junk.
 const skip = rel => /^(api|vercel\.json|node_modules)$/.test(rel.split("/")[0]) || /(^|\/)(tests?|__tests__)(\/|$)|\.(test|spec)\.[cm]?js$|(^|\/)\.DS_Store$/.test(rel);
@@ -25,16 +26,29 @@ const globs = src => {
   return fail(`unknown vercel.json header source: ${src}`);
 };
 
+// Do two globs (at most one "*" each) match some common path? Decides when a detach is needed.
+const overlap = (a, b) => {
+  const [pa, sa = null] = a.split("*"), [pb, sb = null] = b.split("*");
+  if (sa === null && sb === null) return a === b;
+  if (sa === null || sb === null) { const [lit, g] = sa === null ? [a, b] : [b, a], [p, s] = g.split("*"); return lit.startsWith(p) && lit.endsWith(s) && lit.length >= p.length + s.length; }
+  return (pa.startsWith(pb) || pb.startsWith(pa)) && (sa.endsWith(sb) || sb.endsWith(sa));
+};
+
 // Vercel lets a later rule override an earlier one for the same header; Cloudflare COMBINES values of all matching
-// rules ("a, b"). So whenever an earlier rule already set a header, the later rule first detaches it (`! Name`).
+// rules ("a, b"). So when an earlier rule that can match the same path already set a header, the later rule first
+// detaches it (`! Name`) and then sets its own value, so the final header equals what Vercel sent.
 const headersFile = vj => {
-  const set = new Set(), out = [];
+  const seen = [], out = []; // seen: [glob, header] pairs set by earlier rules
   for (const { source, headers } of vj.headers || []) {
-    for (const g of globs(source)) {
+    const gs = globs(source);
+    for (const g of gs) {
       out.push(g);
-      for (const { key, value } of headers) { if (set.has(key.toLowerCase())) out.push(`  ! ${key}`); out.push(`  ${key}: ${value}`); }
+      for (const { key, value } of headers) {
+        if (seen.some(([sg, sk]) => sk === key.toLowerCase() && overlap(sg, g))) out.push(`  ! ${key}`);
+        out.push(`  ${key}: ${value}`);
+      }
     }
-    headers.forEach(h => set.add(h.key.toLowerCase()));
+    for (const g of gs) for (const h of headers) seen.push([g, h.key.toLowerCase()]);
   }
   // Keep the *.pages.dev copies (project alias and per-deployment hosts) out of search engines.
   out.push("https://:project.pages.dev/*", "  X-Robots-Tag: noindex", "https://:version.:project.pages.dev/*", "  X-Robots-Tag: noindex");
