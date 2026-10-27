@@ -134,13 +134,13 @@ After follow-up 2, stop. No reply means no.
 |---|---|
 | "Yes, send it" | Send the PDF. Add: "If you'd like a website that shows your services and lets people book, I can sketch a homepage idea for free. Just send a few photos." |
 | "How much?" | "From $299 one-time for 1–3 pages, $599 for up to 6 pages, or $39 a month with domain, hosting and updates included. Full details: roohsites.com/#pricing" |
-| "How does it work?" | "You tell us about the business and send photos. We send a first draft in about a week, you ask for changes, then we go live. It all happens by email or WhatsApp, and calls at a time that suits you." |
+| "How does it work?" | "You tell us about the business and send photos. We send a first draft in about a week, you ask for changes, then we go live. It all happens by email or WhatsApp. If you'd like to talk it through, pick a time here: cal.com/roohsites/15min" |
 | "We use Facebook" | "Facebook is great for regulars. A website is what new customers find on Google, and you own it. Happy to show you an example for your trade." |
 | "Where are you based?" | "We're a small studio based in India and work with clients by email and WhatsApp. Calls happen at a time that suits you, in your time zone." |
 | "Not now" | "No problem at all. I won't follow up. Good luck this season!" Mark them **Not now** and don't email again. |
 | "Stop" / "Unsubscribe" / anything rude | Reply nothing, or "Removed, sorry for the bother." Mark them **Opted out** the same day. Never contact them again. |
 
-When someone is interested, move them to the roohsites.com contact form, WhatsApp, or the Cal.com link once it's set up. The enquiry then lands in your dashboard Inbox.
+When someone is interested, send them the booking link, **https://cal.com/roohsites/15min** (a 15-minute call), or point them to the roohsites.com contact form or WhatsApp. Form enquiries land in your dashboard Inbox.
 
 ---
 
