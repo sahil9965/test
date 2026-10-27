@@ -1,0 +1,17 @@
+# Live check of the Pinterest schedule (tools/pins-check.mjs): every image and link in https://tools.roohsites.com/pins/schedule.json.
+name: pins-check
+on:
+  workflow_dispatch:
+    inputs:
+      expected:
+        description: Expected number of posts (0 = do not check the count)
+        default: '0'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/pins-check.mjs ${{ inputs.expected }}
