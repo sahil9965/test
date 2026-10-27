@@ -12,6 +12,8 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Small Business Invoices**: Free invoice templates and an invoice generator for freelancers and small businesses.
 - **Online Seller Shipping**: Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.
 - **Small Business Printables**: Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.
+- **Amazon FBA Prep Labels**: Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.
+- **Electrician Printables**: Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.
 
 ## Day 1: Printable Raffle Tickets with Numbers
 
@@ -228,3 +230,93 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Turn an eBay half-sheet (8.5x11) shipping label into a 4x6 thermal label, or put two labels on one half-sheet page. Free, private and it works in your browser.
 - **Alt text:** eBay Half-Sheet Label to 4x6: Ship faster this holiday season. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label
+
+## Day 25: Free FNSKU Label Generator
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/fnsku-label-generator.png
+- **Link:** https://fnsku.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make FNSKU labels for Amazon FBA in your browser: paste your X00 codes or import a CSV, pick 2 × 1 in thermal rolls, DYMO 30334 or 30-up Letter sheets, and download a PDF to print at 100%.
+- **Alt text:** Free FNSKU Label Generator: Thermal rolls, DYMO 30334 or label sheets. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** fnsku label generator, fnsku labels, amazon fba labels, fba prep, thermal label printer
+
+## Day 26: Punch Cards, 10 per Page
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/punch-card-template-10-per-sheet.png
+- **Link:** https://punchcard.roohsites.com/punch-card-template-10-per-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print 10 loyalty punch cards per page on business card sheets: 3.5 × 2 in on Letter or 85 × 55 mm on A4, with an alignment test and matching backs. Free PDF from your browser.
+- **Alt text:** Punch Cards, 10 per Page: A template sized for business card sheets. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** punch card template, punch card 10 per page, business card punch card, loyalty card template, printable punch cards
+
+## Day 27: Electrical Panel Schedule Template
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/electrical-panel-schedule-template.png
+- **Link:** https://panelschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Fill in a panel schedule that looks like the panel: odd circuits down the left, even down the right, with amps, wire size, AFCI/GFCI and load per leg. Download a PDF, Excel, a door directory or labels.
+- **Alt text:** Electrical Panel Schedule Template: Laid out like the real panel. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** panel schedule template, electrical panel schedule, breaker panel directory, electrician printables, circuit directory
+
+## Day 28: IEP at a Glance Template
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/iep-at-a-glance-template.png
+- **Link:** https://iepglance.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make a one-page IEP at a glance for the teachers, subs and paras who don't read the full IEP: strengths, what helps, what to watch for and accommodations. Batch a whole caseload as one PDF.
+- **Alt text:** IEP at a Glance Template: One page per student for subs and paras. The image shows a one-page document preview, from iepglance.roohsites.com.
+- **Keywords:** iep at a glance, iep at a glance template, special education printables, 504 plan, sub plans
+
+## Day 29: Split Label and Packing Slip
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/split-shipping-label-and-packing-slip.png
+- **Link:** https://labels.roohsites.com/split-shipping-label-and-packing-slip?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Got a PDF with the shipping label and packing slip on one page? Split it into two 4 × 6 in (100 × 150 mm) pages for your thermal printer, or drop the slip. Free and it runs in your browser.
+- **Alt text:** Split Label and Packing Slip: One PDF page into two 4 × 6 pages. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** split shipping label, packing slip, 4x6 label, thermal printer, shipping label pdf
+
+## Day 30: Photography Gift Certificate Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/photography-gift-certificate-template.png
+- **Link:** https://giftcert.roohsites.com/photography-gift-certificate-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** A free gift certificate template for photographers: session type, edited images, booking window and a numbered stub. Print 3 per page, or save one as a PNG to email to the buyer.
+- **Alt text:** Photography Gift Certificate Template: Sell portrait sessions as gifts. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** photography gift certificate, photo session gift card, photographer gift certificate template, mini session, holiday photos
+
+## Day 31: Breaker Box Label Template
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/breaker-box-label-template.png
+- **Link:** https://panelschedule.roohsites.com/breaker-box-label-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print one small label per breaker with its circuit number and a short name, 4 across with cut lines on Letter or A4. Cut them out and stick each one beside its breaker. Free, no signup.
+- **Alt text:** Breaker Box Label Template: One numbered label per circuit. The image shows numbered breaker labels with short circuit names and cut lines, from panelschedule.roohsites.com.
+- **Keywords:** breaker box labels, circuit breaker labels, breaker label template, electrical panel labels, label maker
+
+## Day 32: DYMO 30334 FNSKU Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/dymo-30334-fnsku-labels.png
+- **Link:** https://fnsku.roohsites.com/dymo-30334-fnsku-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print FNSKU labels on DYMO 30334 rolls (2-1/4 × 1-1/4 in) with a LabelWriter: the PDF is cut to the exact label size with 300 dpi barcodes and two title lines. Free, no signup.
+- **Alt text:** DYMO 30334 FNSKU Labels: 2.25 × 1.25 in, one label per page. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** dymo 30334, dymo fnsku labels, labelwriter fnsku, amazon fba labels, 2.25 x 1.25 labels
+
+## Day 33: Gift Certificate Template with Stub
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/gift-certificate-template-with-stub.png
+- **Link:** https://giftcert.roohsites.com/gift-certificate-template-with-stub?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Keep track of every gift certificate you sell: each one has a stub with the same number and lines for issued to, date, amount and redeemed. 3 per Letter or A4 page, free PDF.
+- **Alt text:** Gift Certificate Template with Stub: Numbered stubs so you can track every one. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** gift certificate template with stub, numbered gift certificates, gift certificate tracking, small business, printable gift certificate
+
+## Day 34: Print a Shipping Label from Your Phone
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/print-shipping-label-from-phone.png
+- **Link:** https://labels.roohsites.com/print-shipping-label-from-phone?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Selling from your phone? Turn the label PDF into a 4 × 6 in image at 203 or 300 dpi and share it to your Bluetooth printer app. Works on iPhone and Android, free.
+- **Alt text:** Print a Shipping Label from Your Phone: To a Bluetooth thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label

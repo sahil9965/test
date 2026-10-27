@@ -142,6 +142,59 @@ const PINS = [
     points: ["8.5x11 label to a 4x6 thermal label", "Or two labels on one page", "Free, private, in your browser"], visual: "label",
     desc: "Turn an eBay half-sheet (8.5x11) shipping label into a 4x6 thermal label, or put two labels on one half-sheet page. Free, private and it works in your browser.",
     keywords: "ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label" },
+  // Days 25–34, added 27 Oct 2026: the tools that now carry Amazon supply links, plus the IEP sheet
+  { slug: "preplabel", file: "fnsku-label-generator", path: "/", board: "Amazon FBA Prep Labels",
+    headline: "Free FNSKU Label Generator", sub: "Thermal rolls, DYMO 30334 or label sheets",
+    points: ["Paste FNSKUs or import a CSV", "2 × 1 in thermal or 30-up sheets", "Print-ready PDF, no signup"], visual: "fnsku",
+    desc: "Make FNSKU labels for Amazon FBA in your browser: paste your X00 codes or import a CSV, pick 2 × 1 in thermal rolls, DYMO 30334 or 30-up Letter sheets, and download a PDF to print at 100%.",
+    keywords: "fnsku label generator, fnsku labels, amazon fba labels, fba prep, thermal label printer" },
+  { slug: "punchperk", file: "punch-card-template-10-per-sheet", path: "/punch-card-template-10-per-sheet", board: "Small Business Printables",
+    headline: "Punch Cards, 10 per Page", sub: "A template sized for business card sheets",
+    points: ["3.5 × 2 in on Letter, 85 × 55 mm on A4", "Alignment test page", "Matching backs for double-sided"], visual: "punch",
+    card: { name: "Corner Bakery", reward: "Every 10th pastry is free" },
+    desc: "Print 10 loyalty punch cards per page on business card sheets: 3.5 × 2 in on Letter or 85 × 55 mm on A4, with an alignment test and matching backs. Free PDF from your browser.",
+    keywords: "punch card template, punch card 10 per page, business card punch card, loyalty card template, printable punch cards" },
+  { slug: "paneldex", file: "electrical-panel-schedule-template", path: "/", board: "Electrician Printables",
+    headline: "Electrical Panel Schedule Template", sub: "Laid out like the real panel",
+    points: ["Odd circuits left, even right", "Load per leg as you type", "PDF, Excel, door directory, labels"], visual: "panel",
+    desc: "Fill in a panel schedule that looks like the panel: odd circuits down the left, even down the right, with amps, wire size, AFCI/GFCI and load per leg. Download a PDF, Excel, a door directory or labels.",
+    keywords: "panel schedule template, electrical panel schedule, breaker panel directory, electrician printables, circuit directory" },
+  { slug: "glancesheet", file: "iep-at-a-glance-template", path: "/", board: "ABA Data Sheets & Graphs",
+    headline: "IEP at a Glance Template", sub: "One page per student for subs and paras",
+    points: ["Strengths, supports, what to watch", "Whole-caseload batch", "504 and sub versions"], visual: "document",
+    desc: "Make a one-page IEP at a glance for the teachers, subs and paras who don't read the full IEP: strengths, what helps, what to watch for and accommodations. Batch a whole caseload as one PDF.",
+    keywords: "iep at a glance, iep at a glance template, special education printables, 504 plan, sub plans" },
+  { slug: "labelfit", file: "split-shipping-label-and-packing-slip", path: "/split-shipping-label-and-packing-slip", board: "Online Seller Shipping",
+    headline: "Split Label and Packing Slip", sub: "One PDF page into two 4 × 6 pages",
+    points: ["Label on page 1, slip on page 2", "Or leave the slip out", "Nothing is uploaded"], visual: "label",
+    desc: "Got a PDF with the shipping label and packing slip on one page? Split it into two 4 × 6 in (100 × 150 mm) pages for your thermal printer, or drop the slip. Free and it runs in your browser.",
+    keywords: "split shipping label, packing slip, 4x6 label, thermal printer, shipping label pdf" },
+  { slug: "giftstub", file: "photography-gift-certificate-template", path: "/photography-gift-certificate-template", board: "Small Business Printables",
+    headline: "Photography Gift Certificate Template", sub: "Sell portrait sessions as gifts",
+    points: ["Session type and edited images", "How and when to book", "Numbered stubs or a PNG to email"], visual: "certificate",
+    cert: { line: "One 1-hour portrait session" },
+    desc: "A free gift certificate template for photographers: session type, edited images, booking window and a numbered stub. Print 3 per page, or save one as a PNG to email to the buyer.",
+    keywords: "photography gift certificate, photo session gift card, photographer gift certificate template, mini session, holiday photos" },
+  { slug: "paneldex", file: "breaker-box-label-template", path: "/breaker-box-label-template", board: "Electrician Printables",
+    headline: "Breaker Box Label Template", sub: "One numbered label per circuit",
+    points: ["Number and short name on each", "4 across with cut lines", "Letter or A4, print and stick"], visual: "strips",
+    desc: "Print one small label per breaker with its circuit number and a short name, 4 across with cut lines on Letter or A4. Cut them out and stick each one beside its breaker. Free, no signup.",
+    keywords: "breaker box labels, circuit breaker labels, breaker label template, electrical panel labels, label maker" },
+  { slug: "preplabel", file: "dymo-30334-fnsku-labels", path: "/dymo-30334-fnsku-labels", board: "Amazon FBA Prep Labels",
+    headline: "DYMO 30334 FNSKU Labels", sub: "2.25 × 1.25 in, one label per page",
+    points: ["Exact DYMO 30334 size", "Sharp 300 dpi barcodes", "Two title lines"], visual: "fnsku",
+    desc: "Print FNSKU labels on DYMO 30334 rolls (2-1/4 × 1-1/4 in) with a LabelWriter: the PDF is cut to the exact label size with 300 dpi barcodes and two title lines. Free, no signup.",
+    keywords: "dymo 30334, dymo fnsku labels, labelwriter fnsku, amazon fba labels, 2.25 x 1.25 labels" },
+  { slug: "giftstub", file: "gift-certificate-template-with-stub", path: "/gift-certificate-template-with-stub", board: "Small Business Printables",
+    headline: "Gift Certificate Template with Stub", sub: "Numbered stubs so you can track every one",
+    points: ["Issued to, date, amount, redeemed", "Matching numbers on both parts", "3 per page, free PDF"], visual: "certificate",
+    desc: "Keep track of every gift certificate you sell: each one has a stub with the same number and lines for issued to, date, amount and redeemed. 3 per Letter or A4 page, free PDF.",
+    keywords: "gift certificate template with stub, numbered gift certificates, gift certificate tracking, small business, printable gift certificate" },
+  { slug: "labelfit", file: "print-shipping-label-from-phone", path: "/print-shipping-label-from-phone", board: "Online Seller Shipping",
+    headline: "Print a Shipping Label from Your Phone", sub: "To a Bluetooth thermal printer",
+    points: ["PDF to a 4 × 6 in image", "203 or 300 dpi", "iPhone and Android"], visual: "label",
+    desc: "Selling from your phone? Turn the label PDF into a 4 × 6 in image at 203 or 300 dpi and share it to your Bluetooth printer app. Works on iPhone and Android, free.",
+    keywords: "print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label" },
 ];
 
 function visual(kind, accent, p = {}) {
@@ -170,6 +223,14 @@ function visual(kind, accent, p = {}) {
   if (kind === "label") return `<div class="lbl-row"><div class="a4"><div class="lab"></div><div class="slip"></div></div><div class="arrow">→</div><div class="l64"><div class="bars"></div><span>6 × 4 in</span></div></div>`;
   if (kind === "certificate") return `<div class="cert"><div class="cert-stub"><b>STUB</b><i>GC-0001</i><span>Issued to</span><span>Date</span><span>Amount</span></div>
     <div class="cert-main"><small>YOUR BUSINESS NAME</small><h2>Gift Certificate</h2><p>${esc((p.cert || {}).line || "$50 toward any service")}</p><div class="tf"><span>To</span><span>From</span></div></div></div>`;
+  if (kind === "fnsku") return `<div class="fn">${["Bamboo cutting board", "Silicone spatula set", "Glass jar 16 oz", "Linen napkins 4-pack"].map((t, i) => `
+    <div class="fn-l"><div class="fn-bars"></div><b>X00${["2K7QF1", "3B9TZ4", "1M5RD8", "4H2WC6"][i]}</b><span>${t}</span><span>New</span></div>`).join("")}</div>`;
+  if (kind === "panel") {
+    const L = ["Kitchen counter", "Range", "Range", "Dishwasher", "Laundry", "Bath GFCI"], R = ["Furnace", "Water heater", "Water heater", "Garage", "Bedrooms", "Spare"];
+    return `<div class="pnl"><div class="pnl-h">PANEL SCHEDULE · 200 A MAIN</div>${L.map((l, i) => `<div class="pnl-r"><span>${l}</span><b>${2 * i + 1}</b><b>${2 * i + 2}</b><span>${R[i]}</span></div>`).join("")}</div>`;
+  }
+  if (kind === "strips") return `<div class="strips">${["1 Kitchen", "2 Furnace", "3/5 Range", "4/6 Water htr", "7 Dishwasher", "8 Garage", "9 Laundry", "10 Bedrooms", "11 Bath", "12 Spare", "13 Lights", "14 Outdoor"].map(x => {
+    const [n, ...w] = x.split(" "); return `<div class="st"><b>${n}</b><span>${w.join(" ")}</span></div>`; }).join("")}</div>`;
   if (kind === "punch") {
     const c = p.card || { name: "Your Business", reward: "Buy 9, get the 10th free" };
     return `<div class="punches">${[6, 3].map(on => `<div class="pc"><b>${esc(c.name)}</b><em>${esc(c.reward)}</em><div class="dots">${Array.from({ length: 10 }, (_, i) =>
@@ -223,12 +284,23 @@ figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-b
 .cert-main h2{margin:0;font-family:Georgia,"DejaVu Serif",serif;font-size:66px;color:${accent};font-weight:700}
 .cert-main p{margin:0;font-size:30px;font-weight:700}
 .cert-main .tf{display:flex;gap:30px;width:100%;margin-top:18px}.cert-main .tf span{flex:1;border-bottom:2px solid #999;text-align:left;font-size:20px;color:#666;padding-bottom:6px}
-.punches{display:flex;flex-direction:column;gap:34px;width:100%}
-.pc{background:#fff;border:3px solid #1b1b1f;border-radius:18px;padding:26px 34px 30px}
-.pc b{display:block;font-size:40px}.pc em{display:block;font-style:normal;font-size:28px;color:${accent};font-weight:700;margin:4px 0 22px}
-.pc .dots{display:grid;grid-template-columns:repeat(5,96px);justify-content:space-between;row-gap:18px}
-.pc .dots span{width:96px;height:96px;border-radius:50%;border:5px solid ${accent};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
+.punches{display:flex;flex-direction:column;gap:24px;width:100%}
+.pc{background:#fff;border:3px solid #1b1b1f;border-radius:18px;padding:20px 34px 22px}
+.pc b{display:block;font-size:40px}.pc em{display:block;font-style:normal;font-size:28px;color:${accent};font-weight:700;margin:4px 0 16px}
+.pc .dots{display:grid;grid-template-columns:repeat(5,80px);justify-content:space-between;row-gap:14px}
+.pc .dots span{width:80px;height:80px;border-radius:50%;border:5px solid ${accent};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
 .pc .dots .on{background:${accent}88}.pc .dots .free{background:${accent};color:#fff}
+.fn{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:100%}
+.fn-l{background:#fff;border:3px solid #1b1b1f;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.fn-bars{height:110px;background:repeating-linear-gradient(90deg,#1b1b1f 0 5px,#fff 5px 8px,#1b1b1f 8px 10px,#fff 10px 15px,#1b1b1f 15px 18px,#fff 18px 21px)}
+.fn-l b{font-size:28px;letter-spacing:.08em}.fn-l span{font-size:20px;color:#444}
+.pnl{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.pnl-h{background:${accent};color:#fff;font-size:28px;font-weight:800;padding:16px 22px;letter-spacing:.04em}
+.pnl-r{display:grid;grid-template-columns:1fr 70px 70px 1fr;border-top:2px solid #ddd}.pnl-r span{font-size:26px;padding:20px 18px}.pnl-r span:last-child{text-align:right}
+.pnl-r b{font-size:28px;text-align:center;padding:20px 0;background:${accent}18;border-left:2px solid #ddd;border-right:2px solid #ddd}
+.strips{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;background:#fff;border:3px solid #1b1b1f;border-radius:10px;overflow:hidden}
+.st{border-right:2px dashed #999;border-bottom:2px dashed #999;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.st b{font-size:38px;color:${accent}}.st span{font-size:20px;color:#333;text-align:center}
 .doc{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:82%;padding:36px;display:flex;flex-direction:column;gap:22px}
 .doc-h{display:flex;justify-content:space-between;margin-bottom:10px}.doc-h b{width:200px;height:44px;background:${accent};border-radius:6px}.doc-h i{width:140px;height:44px;background:#ddd;border-radius:6px}
 .doc-r{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eee;padding-bottom:16px}.doc-r span{height:20px;background:#ccc;border-radius:4px}.doc-r em{width:90px;height:20px;background:#bbb;border-radius:4px}
@@ -265,17 +337,25 @@ const BOARDS = {
   "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
   "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
   "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
+  "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
+  "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
 };
 const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
   "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
   "ab-day-lesson-planner", "drink-tickets", "task-analysis-data-sheet", "free-invoice-generator", "raffle-tickets-1-500", "abc-data-sheet",
   // Holiday season, added 27 Oct 2026
   "christmas-gift-certificate-template", "usps-label-to-4x6", "coffee-punch-card-template", "door-prize-tickets", "salon-gift-certificate-template",
-  "contractor-invoice-template", "salon-loyalty-card-template", "raffle-tickets-1-100", "massage-gift-certificate-template", "ebay-half-sheet-label-to-4x6"];
+  "contractor-invoice-template", "salon-loyalty-card-template", "raffle-tickets-1-100", "massage-gift-certificate-template", "ebay-half-sheet-label-to-4x6",
+  // Added 27 Oct 2026 (days 25–34): tools with Amazon supply links, two new boards
+  "fnsku-label-generator", "punch-card-template-10-per-sheet", "electrical-panel-schedule-template", "iep-at-a-glance-template",
+  "split-shipping-label-and-packing-slip", "photography-gift-certificate-template", "breaker-box-label-template", "dymo-30334-fnsku-labels",
+  "gift-certificate-template-with-stub", "print-shipping-label-from-phone"];
 const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching stubs", calendar: "a month calendar with school days labelled A and B",
   graph: "a line graph with a dashed phase change line between baseline and intervention", grid: "a printable data sheet grid with plus and minus scores",
   photos: "four dated room photos with condition ratings", label: "an A4 label page converted into a 6 by 4 inch thermal label", document: "a one-page document preview",
-  certificate: "a gift certificate with a numbered tear-off stub", punch: "two loyalty punch cards with ten punch circles and a free reward" };
+  certificate: "a gift certificate with a numbered tear-off stub", punch: "two loyalty punch cards with ten punch circles and a free reward",
+  fnsku: "a sheet of FNSKU barcode labels with product names", panel: "a two-column breaker panel schedule with numbered circuits",
+  strips: "numbered breaker labels with short circuit names and cut lines" };
 const byFile = Object.fromEntries(PINS.map(p => [p.file, p]));
 const schedule = ORDER.map((f, i) => {
   const p = byFile[f], s = sites[p.slug];

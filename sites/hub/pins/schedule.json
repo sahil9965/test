@@ -8,7 +8,9 @@
     "Landlord & Tenant Checklists": "Free move-in, move-out and inspection checklists with dated photos for renters and landlords.",
     "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
     "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
-    "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops."
+    "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
+    "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
+    "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners."
   },
   "posts": [
     {
@@ -250,6 +252,106 @@
       "link": "https://labels.roohsites.com/ebay-half-sheet-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "eBay Half-Sheet Label to 4x6: Ship faster this holiday season. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
       "keywords": "ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label"
+    },
+    {
+      "day": 25,
+      "title": "Free FNSKU Label Generator",
+      "description": "Make FNSKU labels for Amazon FBA in your browser: paste your X00 codes or import a CSV, pick 2 × 1 in thermal rolls, DYMO 30334 or 30-up Letter sheets, and download a PDF to print at 100%.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/fnsku-label-generator.png",
+      "link": "https://fnsku.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Free FNSKU Label Generator: Thermal rolls, DYMO 30334 or label sheets. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.",
+      "keywords": "fnsku label generator, fnsku labels, amazon fba labels, fba prep, thermal label printer"
+    },
+    {
+      "day": 26,
+      "title": "Punch Cards, 10 per Page",
+      "description": "Print 10 loyalty punch cards per page on business card sheets: 3.5 × 2 in on Letter or 85 × 55 mm on A4, with an alignment test and matching backs. Free PDF from your browser.",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/punch-card-template-10-per-sheet.png",
+      "link": "https://punchcard.roohsites.com/punch-card-template-10-per-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Punch Cards, 10 per Page: A template sized for business card sheets. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "punch card template, punch card 10 per page, business card punch card, loyalty card template, printable punch cards"
+    },
+    {
+      "day": 27,
+      "title": "Electrical Panel Schedule Template",
+      "description": "Fill in a panel schedule that looks like the panel: odd circuits down the left, even down the right, with amps, wire size, AFCI/GFCI and load per leg. Download a PDF, Excel, a door directory or labels.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/electrical-panel-schedule-template.png",
+      "link": "https://panelschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Electrical Panel Schedule Template: Laid out like the real panel. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "panel schedule template, electrical panel schedule, breaker panel directory, electrician printables, circuit directory"
+    },
+    {
+      "day": 28,
+      "title": "IEP at a Glance Template",
+      "description": "Make a one-page IEP at a glance for the teachers, subs and paras who don't read the full IEP: strengths, what helps, what to watch for and accommodations. Batch a whole caseload as one PDF.",
+      "board": "ABA Data Sheets & Graphs",
+      "image": "https://tools.roohsites.com/pins/iep-at-a-glance-template.png",
+      "link": "https://iepglance.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "IEP at a Glance Template: One page per student for subs and paras. The image shows a one-page document preview, from iepglance.roohsites.com.",
+      "keywords": "iep at a glance, iep at a glance template, special education printables, 504 plan, sub plans"
+    },
+    {
+      "day": 29,
+      "title": "Split Label and Packing Slip",
+      "description": "Got a PDF with the shipping label and packing slip on one page? Split it into two 4 × 6 in (100 × 150 mm) pages for your thermal printer, or drop the slip. Free and it runs in your browser.",
+      "board": "Online Seller Shipping",
+      "image": "https://tools.roohsites.com/pins/split-shipping-label-and-packing-slip.png",
+      "link": "https://labels.roohsites.com/split-shipping-label-and-packing-slip?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Split Label and Packing Slip: One PDF page into two 4 × 6 pages. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
+      "keywords": "split shipping label, packing slip, 4x6 label, thermal printer, shipping label pdf"
+    },
+    {
+      "day": 30,
+      "title": "Photography Gift Certificate Template",
+      "description": "A free gift certificate template for photographers: session type, edited images, booking window and a numbered stub. Print 3 per page, or save one as a PNG to email to the buyer.",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/photography-gift-certificate-template.png",
+      "link": "https://giftcert.roohsites.com/photography-gift-certificate-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Photography Gift Certificate Template: Sell portrait sessions as gifts. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.",
+      "keywords": "photography gift certificate, photo session gift card, photographer gift certificate template, mini session, holiday photos"
+    },
+    {
+      "day": 31,
+      "title": "Breaker Box Label Template",
+      "description": "Print one small label per breaker with its circuit number and a short name, 4 across with cut lines on Letter or A4. Cut them out and stick each one beside its breaker. Free, no signup.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/breaker-box-label-template.png",
+      "link": "https://panelschedule.roohsites.com/breaker-box-label-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Breaker Box Label Template: One numbered label per circuit. The image shows numbered breaker labels with short circuit names and cut lines, from panelschedule.roohsites.com.",
+      "keywords": "breaker box labels, circuit breaker labels, breaker label template, electrical panel labels, label maker"
+    },
+    {
+      "day": 32,
+      "title": "DYMO 30334 FNSKU Labels",
+      "description": "Print FNSKU labels on DYMO 30334 rolls (2-1/4 × 1-1/4 in) with a LabelWriter: the PDF is cut to the exact label size with 300 dpi barcodes and two title lines. Free, no signup.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/dymo-30334-fnsku-labels.png",
+      "link": "https://fnsku.roohsites.com/dymo-30334-fnsku-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "DYMO 30334 FNSKU Labels: 2.25 × 1.25 in, one label per page. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.",
+      "keywords": "dymo 30334, dymo fnsku labels, labelwriter fnsku, amazon fba labels, 2.25 x 1.25 labels"
+    },
+    {
+      "day": 33,
+      "title": "Gift Certificate Template with Stub",
+      "description": "Keep track of every gift certificate you sell: each one has a stub with the same number and lines for issued to, date, amount and redeemed. 3 per Letter or A4 page, free PDF.",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/gift-certificate-template-with-stub.png",
+      "link": "https://giftcert.roohsites.com/gift-certificate-template-with-stub?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Gift Certificate Template with Stub: Numbered stubs so you can track every one. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.",
+      "keywords": "gift certificate template with stub, numbered gift certificates, gift certificate tracking, small business, printable gift certificate"
+    },
+    {
+      "day": 34,
+      "title": "Print a Shipping Label from Your Phone",
+      "description": "Selling from your phone? Turn the label PDF into a 4 × 6 in image at 203 or 300 dpi and share it to your Bluetooth printer app. Works on iPhone and Android, free.",
+      "board": "Online Seller Shipping",
+      "image": "https://tools.roohsites.com/pins/print-shipping-label-from-phone.png",
+      "link": "https://labels.roohsites.com/print-shipping-label-from-phone?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Print a Shipping Label from Your Phone: To a Bluetooth thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
+      "keywords": "print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label"
     }
   ]
 }
