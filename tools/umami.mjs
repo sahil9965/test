@@ -29,7 +29,9 @@ const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
   `else if(nt==="0"){document.cookie="rooh_notrack=;domain="+dom+";path=/;max-age=0;SameSite=Lax;Secure";localStorage.removeItem("rooh-notrack")}` +
   `else if(/(^|; )rooh_notrack=1/.test(document.cookie))localStorage.setItem("rooh-notrack","1");else localStorage.removeItem("rooh-notrack")}catch(e){}` +
   `function off(){try{return !!localStorage.getItem("rooh-notrack")}catch(e){return false}}` +
-  `function fwd(n,d){try{if(window.umami&&umami.track)umami.track(n,d);else q.push([n,d])}catch(e){}}` +
+  // Every event is also announced on the page as "rooh:event" (name only), so add-ons like tools/leadline.mjs can react.
+  `function fwd(n,d){try{document.dispatchEvent(new CustomEvent("rooh:event",{detail:{name:n}}))}catch(e){}` +
+  `try{if(window.umami&&umami.track)umami.track(n,d);else q.push([n,d])}catch(e){}}` +
   `function w(){var a=arguments;if(!replay&&a[0]==="event"&&a[1]&&a[1].name)fwd(a[1].name,a[1].data);if(inner)return inner.apply(this,a);(window.vaq=window.vaq||[]).push(a)}` +
   `try{Object.defineProperty(window,"va",{configurable:true,get:function(){return w},set:function(f){if(f!==w){inner=f;replay=true;setTimeout(function(){replay=false},0)}}})}catch(e){}` +
   // One "engaged" event per page view on the first real click, tap or keypress: bots rarely interact, people do.
