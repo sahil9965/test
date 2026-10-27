@@ -1,5 +1,5 @@
 # Every morning: add the day's automatic Pinterest pins (tools/pins-auto.mjs, 3 a day), publish them on tools.roohsites.com and check
-# the live schedule (tools/pins-check.mjs). The Cowork posting task picks them up from schedule.json, so posting never runs dry.
+# the live schedule (tools/pins-check.mjs). When fewer than 30 days of pins are left it opens a GitHub issue (GitHub emails you). The Cowork posting task picks them up from schedule.json, so posting never runs dry.
 # A push made by this job does not start other workflows, so it deploys the hub site itself (the same commands as deploy-cf.yml).
 # Scheduled runs only start from the repository's default branch: it must be claude/ecstatic-pascal-yzcrhr (Settings > General).
 name: pins-daily
@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: deploy-cf
@@ -41,7 +42,20 @@ jobs:
         run: cd tools && npm ci && npx playwright install --with-deps chromium
 
       - name: Add the day's pins
+        id: add
         run: node tools/pins-auto.mjs ${{ inputs.count }}
+
+      - name: Warn when fewer than 30 days of pins are left
+        if: steps.add.outputs.days != '' && fromJSON(steps.add.outputs.days) < 30
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LEFT: ${{ steps.add.outputs.left }}
+          DAYS: ${{ steps.add.outputs.days }}
+        run: |
+          title="Pinterest pins running low: about $DAYS days left"
+          if gh issue list --state open --search "Pinterest pins running low in:title" --json number --jq 'length' | grep -qx 0; then
+            gh issue create --title "$title" --body "The daily pin robot can make only $LEFT more pins (about $DAYS days at 3 a day). Ask Claude Code to add pages or pins so Pinterest posting doesn't stop."
+          fi
 
       - name: Commit and push
         id: commit

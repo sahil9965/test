@@ -2,9 +2,11 @@
 // A pin only repeats what its page already says: the page's <h1> (headline), its first intro sentence or the tool's tagline (subline),
 // its meta description, and the tool's feature badges (the points in pins-auto.json). No AI and no made-up claims.
 // Skipped: about, privacy and 404 pages, noindex pages, and India pages (lang en-IN; Pinterest traffic is mostly US and UK).
+// Each page gives several pins, used in this order: its <h1>, the first part of its <title>, then its FAQ questions (the question is the
+// headline, the start of the answer the subline and description; brand-name and privacy questions are skipped). A page with fewer pins
+// always goes first, so every page gets its first pin before any page gets a second.
 // Order: tools take turns (the one whose last pin is longest ago goes first; money tools come round about twice as often), never the
-// same tool twice in one day, and a tool's home page before its other pages. When every page has a pin, it makes a second version
-// of a page with its <title> as the headline instead; when that is used up too, it adds nothing and says so.
+// same tool twice in one day. It prints how many pins are left; the workflow opens a GitHub issue when that is under 30 days.
 // Usage: node tools/pins-auto.mjs [count] [--dry-run]   (the "pins-daily" workflow runs it every morning)
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -22,6 +24,7 @@ const count = Number(process.argv.find(a => /^\d+$/.test(a)) || cfg.per_day || 3
 const dry = process.argv.includes("--dry-run");
 const MONEY_BONUS = 9;          // a money tool is due again this many schedule places sooner
 const MAX_HEADLINE = 48;        // longer headlines take 3 lines on the image
+const MAX_QUESTION = 60;        // FAQ questions may be longer: tools/pins.mjs shrinks the headline to fit
 
 const unesc = s => String(s).replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&rsquo;/g, "'")
   .replace(/&times;/g, "×").replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&nbsp;/g, " ");
@@ -48,7 +51,9 @@ function readPage(slug, f) {
   const desc = text((html.match(/<meta name="description" content="([^"]*)"/) || [])[1]);
   const lede = text((html.match(/<h1[^>]*>[\s\S]*?<\/h1>\s*<p[^>]*>([\s\S]*?)<\/p>/) || [])[1]);
   if (!h1 || !desc) return null;
-  return { path: f === "index.html" ? "/" : "/" + f.slice(0, -5), h1, title, desc, lede };
+  const faqHtml = html.split('id="faq"')[1] || "";
+  const faq = [...faqHtml.matchAll(/<details><summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)].map(m => ({ q: text(m[1]), a: text(m[2]) }));
+  return { path: f === "index.html" ? "/" : "/" + f.slice(0, -5), h1, title, desc, lede, faq };
 }
 
 function pages(slug) {
@@ -59,44 +64,59 @@ function pages(slug) {
     .map(f => readPage(slug, f)).filter(Boolean);
 }
 
-// a pin for one page; version 1 uses the <h1>, version 2 the first part of the <title>
-function makePin(slug, pg, version) {
-  const site = bySlug[slug], c = cfg.sites[slug];
-  let headline = version === 1 ? cleanHead(pg.h1) : cleanHead(pg.title.split(/\s+[—–|]\s+|\s+-\s+/)[0]);
-  if (headline.length > MAX_HEADLINE && version === 1) headline = cleanHead(pg.title.split(/\s+[—–|]\s+|\s+-\s+/)[0]);
-  if (!headline || headline.length > MAX_HEADLINE || titles.has(headline)) return null;
-  const first = pg.lede.split(/(?<=[.!?])\s+/)[0].replace(/[.!?]$/, "");
-  const sub = version === 1 && first && first.length <= 64 ? first : site.tagline;
-  if (!sub || sub === headline) return null;
-  let file = slugify(pg.path === "/" ? headline : pg.path.slice(1)) + (version > 1 ? `-v${version}` : "");
+const BRANDS = new RegExp(`\\b(${sites.map(s => s.name).join("|")}|rooh)\\b`, "i");
+const firstSentence = t => (String(t || "").split(/(?<=[.!?])\s+/)[0] || "").replace(/[.!?]$/, "");
+const upTo = (t, n) => { let out = ""; for (const x of String(t).split(/(?<=[.!?])\s+/)) { if ((out + " " + x).trim().length > n) break; out = (out + " " + x).trim(); } return out || String(t).slice(0, n); };
+
+// every pin a page can give, in order: <h1>, <title>, then FAQ questions
+function candidates(slug, pg) {
+  const site = bySlug[slug], out = [];
+  let h = cleanHead(pg.h1);
+  const t = cleanHead(pg.title.split(/\s+[—–|]\s+|\s+-\s+/)[0]);
+  if (h.length > MAX_HEADLINE) h = t;
+  const lede = firstSentence(pg.lede);
+  if (h && h.length <= MAX_HEADLINE) out.push({ headline: h, sub: lede && lede.length <= 64 ? lede : site.tagline, desc: pg.desc });
+  if (t && t.length <= MAX_HEADLINE) out.push({ headline: t, sub: site.tagline, desc: pg.desc });
+  for (const { q, a } of pg.faq) {
+    if (q.length < 18 || q.length > MAX_QUESTION || BRANDS.test(q) || /privacy|private|upload|account|data|cookie|safe|secure|offline/i.test(q)) continue;
+    const s1 = firstSentence(a);
+    out.push({ headline: q, sub: s1 && s1.length <= 64 && s1.length > 3 ? s1 : site.tagline, desc: `${upTo(a, 380)} Free tool: ${new URL(site.url).host}` });
+  }
+  return out.filter(c => c.sub && c.sub !== c.headline && c.desc.length < 500);
+}
+
+function makePin(slug, pg, c) {
+  const cfgSite = cfg.sites[slug];
+  let file = slugify(c.headline).slice(0, 70).replace(/-$/, "");
   for (let n = 2; files.has(file); n++) file = `${file.replace(/-\d+$/, "")}-${n}`;
-  const visual = Object.entries(c.visual_by_path || {}).find(([re]) => new RegExp(re).test(pg.path))?.[1] || c.visual;
-  const kw = [...new Set([headline.toLowerCase().replace(/^free /, ""), ...c.keywords.split(/,\s*/)])].slice(0, 5).join(", ");
-  return { slug, file, path: pg.path, board: c.board, headline, sub, points: c.points, visual, desc: pg.desc.slice(0, 480), keywords: kw,
-    added: new Date().toISOString().slice(0, 10) };
+  const visual = Object.entries(cfgSite.visual_by_path || {}).find(([re]) => new RegExp(re).test(pg.path))?.[1] || cfgSite.visual;
+  const kw = [...new Set([cleanHead(pg.h1).toLowerCase().replace(/^free /, ""), ...cfgSite.keywords.split(/,\s*/)])].slice(0, 5).join(", ");
+  return { slug, file, path: pg.path, board: cfgSite.board, headline: c.headline, sub: c.sub, points: cfgSite.points, visual, desc: c.desc.slice(0, 480),
+    keywords: kw, added: new Date().toISOString().slice(0, 10) };
 }
 
 // tools in turn order: longest since their last pin first, money tools due sooner
 const order = sites.map(s => s.slug).sort((a, b) =>
   ((last[a] ?? -99) - (cfg.money.includes(a) ? MONEY_BONUS : 0)) - ((last[b] ?? -99) - (cfg.money.includes(b) ? MONEY_BONUS : 0)) || a.localeCompare(b));
 const lastSlug = schedule.length ? byHost[new URL(schedule[schedule.length - 1].link).host] : null;
+const pageCache = Object.fromEntries(sites.map(s => [s.slug, pages(s.slug)]));
+const unused = (slug, pg) => candidates(slug, pg).filter(c => !titles.has(c.headline));
 const picked = [];
-for (const version of [1, 2]) {
-  for (const slug of order) {
-    if (picked.length >= count) break;
-    if (picked.some(p => p.slug === slug) || (picked.length === 0 && slug === lastSlug)) continue;
-    for (const pg of pages(slug)) {
-      if ((versions[`${slug}${pg.path}`] || 0) !== version - 1) continue;
-      const pin = makePin(slug, pg, version);
-      if (!pin) continue;
-      picked.push(pin); titles.add(pin.headline); files.add(pin.file); versions[`${slug}${pg.path}`] = version;
-      break;
-    }
-  }
+for (const slug of order) {
   if (picked.length >= count) break;
+  if (picked.length === 0 && slug === lastSlug) continue;
+  // the page with the fewest pins that still has an unused headline (home page first on ties)
+  const pg = pageCache[slug].filter(p => unused(slug, p).length).sort((a, b) => (versions[`${slug}${a.path}`] || 0) - (versions[`${slug}${b.path}`] || 0))[0];
+  if (!pg) continue;
+  const pin = makePin(slug, pg, unused(slug, pg)[0]);
+  picked.push(pin); titles.add(pin.headline); files.add(pin.file); versions[`${slug}${pg.path}`] = (versions[`${slug}${pg.path}`] || 0) + 1;
 }
+const left = sites.reduce((n, s) => n + pageCache[s.slug].reduce((m, p) => m + unused(s.slug, p).length, 0), 0);
+const days = Math.floor(left / (cfg.per_day || 3));
+console.log(`pins left to make: ${left} (about ${days} days at ${cfg.per_day || 3} a day)`);
+if (process.env.GITHUB_OUTPUT) writeFileSync(process.env.GITHUB_OUTPUT, `left=${left}\ndays=${days}\n`, { flag: "a" });
 
-if (!picked.length) { console.log("No new pins possible: every page already has two versions. Add pages or hand-written pins."); process.exit(0); }
+if (!picked.length) { console.log("No new pins possible: every page and FAQ question already has a pin. Add pages or hand-written pins."); process.exit(0); }
 for (const p of picked) console.log(`+ ${p.headline} | ${p.board} | ${bySlug[p.slug].url}${p.path} | ${p.visual}`);
 if (dry) { console.log("(dry run: nothing written)"); process.exit(0); }
 cfg.pins.push(...picked);
