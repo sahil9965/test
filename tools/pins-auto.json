@@ -221,6 +221,57 @@
       "desc": "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
       "keywords": "stream schedule maker with time zones, stream schedule, twitch schedule, streamer",
       "added": "2026-10-27"
+    },
+    {
+      "slug": "gradledger",
+      "file": "free-homeschool-transcript-generator",
+      "path": "/",
+      "board": "Homeschool Records",
+      "headline": "Free Homeschool Transcript Generator",
+      "sub": "Homeschool transcripts and GPA, free",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "visual": "document",
+      "desc": "Free homeschool transcript generator with weighted GPA, credits, course descriptions and an hours log. Download a PDF. No signup; data stays in your browser.",
+      "keywords": "homeschool transcript generator, homeschool transcript, homeschool high school, gpa",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "roomproof",
+      "file": "photo-report-generator",
+      "path": "/",
+      "board": "Landlord & Tenant Checklists",
+      "headline": "Photo Report Generator",
+      "sub": "Captioned, timestamped photo reports as PDF",
+      "points": [
+        "Photos stay on your device",
+        "A4 & US Letter",
+        "No signup"
+      ],
+      "visual": "photos",
+      "desc": "Free photo report generator and template: date-stamped photos, captions, condition ratings and signatures, room by room, as a PDF. No signup, no uploads.",
+      "keywords": "photo report generator, move in checklist, rental inspection, landlord",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "bellbook",
+      "file": "6-day-cycle-calendar",
+      "path": "/6-day-cycle-calendar",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "headline": "6-Day Rotation Calendar (Day 1–6 Cycle)",
+      "sub": "A/B and rotating-day school calendars",
+      "points": [
+        "Snow-day re-flow",
+        "PDF, .ics & share link",
+        "No signup"
+      ],
+      "visual": "calendar",
+      "desc": "Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.",
+      "keywords": "6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule",
+      "added": "2026-10-27"
     }
   ]
 }

@@ -350,3 +350,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.
 - **Alt text:** Stream Schedule Maker with Time Zones: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
 - **Keywords:** stream schedule maker with time zones, stream schedule, twitch schedule, streamer
+
+## Day 38: Free Homeschool Transcript Generator
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/free-homeschool-transcript-generator.png
+- **Link:** https://transcript.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free homeschool transcript generator with weighted GPA, credits, course descriptions and an hours log. Download a PDF. No signup; data stays in your browser.
+- **Alt text:** Free Homeschool Transcript Generator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** homeschool transcript generator, homeschool transcript, homeschool high school, gpa
+
+## Day 39: Photo Report Generator
+
+- **Board:** Landlord & Tenant Checklists
+- **Image:** https://tools.roohsites.com/pins/photo-report-generator.png
+- **Link:** https://photoreport.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free photo report generator and template: date-stamped photos, captions, condition ratings and signatures, room by room, as a PDF. No signup, no uploads.
+- **Alt text:** Photo Report Generator: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.
+- **Keywords:** photo report generator, move in checklist, rental inspection, landlord
+
+## Day 40: 6-Day Rotation Calendar (Day 1–6 Cycle)
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/6-day-cycle-calendar.png
+- **Link:** https://abday.roohsites.com/6-day-cycle-calendar?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.
+- **Alt text:** 6-Day Rotation Calendar (Day 1–6 Cycle): A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** 6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule
