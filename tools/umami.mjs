@@ -7,6 +7,7 @@
 // - The URL hash (where share links keep their data) is never sent, data-domains stops localhost and
 //   preview URLs from being counted, and ?notrack=1 turns Umami off on every roohsites.com tool at once.
 // - An "engaged" event fires once per page view on the first click, tap or keypress, to tell people from bots.
+// - Automated browsers (navigator.webdriver, headless user agents) send nothing at all; nothing else is filtered.
 // Usage: node tools/umami.mjs   (finalize.mjs runs it). With an empty websiteId it removes the block.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -29,6 +30,9 @@ const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
   `else if(nt==="0"){document.cookie="rooh_notrack=;domain="+dom+";path=/;max-age=0;SameSite=Lax;Secure";localStorage.removeItem("rooh-notrack")}` +
   `else if(/(^|; )rooh_notrack=1/.test(document.cookie))localStorage.setItem("rooh-notrack","1");else localStorage.removeItem("rooh-notrack")}catch(e){}` +
   `function off(){try{return !!localStorage.getItem("rooh-notrack")}catch(e){return false}}` +
+  // Browsers that say they are automated (Selenium, Puppeteer, Playwright and most scanners set navigator.webdriver)
+  // are not counted. Only that clear signal is used: anything uncertain is counted as a real visitor.
+  `function bot(){try{return navigator.webdriver===true||/HeadlessChrome|PhantomJS/.test(navigator.userAgent)}catch(e){return false}}` +
   // Every event is also announced on the page as "rooh:event" (name only), so add-ons like tools/leadline.mjs can react.
   `function fwd(n,d){try{document.dispatchEvent(new CustomEvent("rooh:event",{detail:{name:n}}))}catch(e){}` +
   `try{if(window.umami&&umami.track)umami.track(n,d);else q.push([n,d])}catch(e){}}` +
@@ -38,7 +42,7 @@ const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
   `function eng(){if(engaged)return;engaged=true;fwd("engaged")}` +
   `["pointerdown","keydown"].forEach(function(t){addEventListener(t,eng,{capture:true,passive:true})});` +
   // Prefix the path with the tool's slug and drop the hash. Umami sends a full URL, so edit its pathname.
-  `window.roohUmamiSend=function(t,p){if(off())return null;` +
+  `window.roohUmamiSend=function(t,p){if(off()||bot())return null;` +
   `if(p&&typeof p.url==="string"){try{var u=new URL(p.url,location.href),path=u.pathname==="/"?"":u.pathname;` +
   `u.pathname="/${slug}"+path;u.hash="";p.url=/^https?:/.test(p.url)?u.toString():u.pathname+u.search}catch(e){}}return p};` +
   `window.roohUmamiLoaded=function(){while(q.length){var e=q.shift();try{umami.track(e[0],e[1])}catch(x){}}}})();`;
