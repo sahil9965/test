@@ -272,6 +272,57 @@
       "desc": "Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.",
       "keywords": "6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule",
       "added": "2026-10-27"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "freelance-invoice-template",
+      "path": "/freelance-invoice-template",
+      "board": "Small Business Invoices",
+      "headline": "Freelance Invoice Template",
+      "sub": "Create and download PDF invoices free",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Free freelance invoice template for designers, writers, developers and consultants. Bill hourly or per project, add deposits and download a PDF. No signup.",
+      "keywords": "freelance invoice template, invoice template, free invoice generator, small business",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "goaltally",
+      "file": "aba-graph-template-for-excel",
+      "path": "/aba-graph-template-excel",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "ABA Graph Template for Excel",
+      "sub": "ABA graphs and data sheets for IEP goals",
+      "points": [
+        "Nothing uploaded",
+        "Works offline",
+        "No signup"
+      ],
+      "visual": "graph",
+      "desc": "Free ABA graph template for Excel and Google Sheets (CSV), step-by-step Excel graphing steps, or paste your columns here for an instant phase change graph.",
+      "keywords": "aba graph template for excel, aba graph, data sheet, special education",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "punchperk",
+      "file": "printable-punch-card-template",
+      "path": "/",
+      "board": "Small Business Printables",
+      "headline": "Printable Punch Card Template",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Free printable punch card template: 10 business-card-size loyalty cards per page, with your logo, icons, serial numbers and matching backs. No login.",
+      "keywords": "printable punch card template, punch card template, loyalty card, small business",
+      "added": "2026-10-27"
     }
   ]
 }

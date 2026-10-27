@@ -377,3 +377,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.
 - **Alt text:** 6-Day Rotation Calendar (Day 1–6 Cycle): A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
 - **Keywords:** 6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule
+
+## Day 41: Freelance Invoice Template
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/freelance-invoice-template.png
+- **Link:** https://invoice.roohsites.com/freelance-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free freelance invoice template for designers, writers, developers and consultants. Bill hourly or per project, add deposits and download a PDF. No signup.
+- **Alt text:** Freelance Invoice Template: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** freelance invoice template, invoice template, free invoice generator, small business
+
+## Day 42: ABA Graph Template for Excel
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/aba-graph-template-for-excel.png
+- **Link:** https://abagraph.roohsites.com/aba-graph-template-excel?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free ABA graph template for Excel and Google Sheets (CSV), step-by-step Excel graphing steps, or paste your columns here for an instant phase change graph.
+- **Alt text:** ABA Graph Template for Excel: ABA graphs and data sheets for IEP goals. The image shows a line graph with a dashed phase change line between baseline and intervention, from abagraph.roohsites.com.
+- **Keywords:** aba graph template for excel, aba graph, data sheet, special education
+
+## Day 43: Printable Punch Card Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/printable-punch-card-template.png
+- **Link:** https://punchcard.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable punch card template: 10 business-card-size loyalty cards per page, with your logo, icons, serial numbers and matching backs. No login.
+- **Alt text:** Printable Punch Card Template: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** printable punch card template, punch card template, loyalty card, small business
