@@ -1,6 +1,6 @@
 # Cowork: daily Pinterest posting
 
-Hand the prompt below to Claude Cowork as a **scheduled task that runs once a day**. Most of your search traffic is from the US, so run it in the US evening (for example 9:00 PM US Eastern, which is 6:30 AM IST).
+Hand the prompt below to Claude Cowork as a **scheduled task that runs 3 times a day**, spread over the US day (most visitors are American): **9:00 AM, 1:00 PM and 8:00 PM US Eastern** (6:30 PM, 10:30 PM and 5:30 AM IST; one hour later in IST after US daylight saving ends on 1 Nov). Each run posts one pin.
 
 **Before the first run (one-time, 5 minutes)**
 1. Log in to Pinterest in the browser Cowork uses, and stay logged in.
@@ -14,14 +14,14 @@ The schedule (34 posts, one per day; days 15–24 are holiday-season pins, days 
 ## Prompt to paste into Cowork
 
 ```
-You post one Pinterest pin per day for my free web tools (Rooh Sites). Work in my browser, where I'm already logged in to Pinterest.
+You post one Pinterest pin per run for my free web tools (Rooh Sites). This task runs 3 times a day. Work in my browser, where I'm already logged in to Pinterest.
 
 1. Get the schedule
    Open https://tools.roohsites.com/pins/schedule.json and read it. It has "boards" (board name → board description) and "posts", a list ordered by "day". Each post has: title, description, board, image (a PNG URL), link, alt, keywords.
 
-2. Find today's post
+2. Find the next post
    Go to my Pinterest profile and look at the pins already saved on each board named in the schedule. The next post is the lowest "day" whose exact title does not already appear as a pin on its board.
-   If every post in the schedule is already published, don't post anything. Tell me "All scheduled pins are published. Ask Claude Code for more pins." and stop.
+   If every post in the schedule is already published, don't post anything. Tell me "All scheduled pins are published. New ones are added every morning, so the next run will try again." and stop.
 
 3. Get the image
    Open the post's image URL and download the PNG to this computer. If the image does not load, don't post. Tell me which image failed and stop.
@@ -47,7 +47,7 @@ You post one Pinterest pin per day for my free web tools (Rooh Sites). Work in m
    "Next up: day N+1: <next title>" (or "That was the last scheduled pin.")
 
 Rules
-- Post at most one pin per run, even if earlier days were missed.
+- Post at most one pin per run, even if earlier days were missed. If a pin from the schedule was published less than 2 hours ago, don't post; say "Last pin was under 2 hours ago, skipping this run." and stop.
 - Use the text from the schedule as it is. Only shorten it if Pinterest rejects the length, and say so in the report.
 - Don't follow, like, comment on, message or save other people's pins. Don't change my profile, settings or existing pins. Don't run ads or promotions.
 - Never type a password or a verification code. If Pinterest asks me to log in, shows a captcha, or asks for a code, stop and tell me.
