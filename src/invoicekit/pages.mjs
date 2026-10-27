@@ -52,7 +52,6 @@ function page({ slug, title, desc, h1, lead, preset, tool = true, body, faq = []
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>
@@ -440,7 +439,7 @@ const pages = [
     lead: "Short version: your invoices never leave your device.",
     body: `      <h2>Privacy</h2>
       <p>InvoiceKit runs in your browser. Invoice content, clients and your logo are stored in your browser's local storage on your device and are never sent to our servers. Clearing your browser data deletes them.</p>
-      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views. Neither uses cookies or tracks you across sites, and neither collects what you type into the tool.</p>
+      <p>We use one privacy-friendly analytics service, Umami, to count page views. It does not use cookies or track you across sites, and it does not collect what you type into the tool.</p>
       <h2>Terms</h2>
       <p>InvoiceKit is provided “as is”, without warranty. You're responsible for the accuracy of your invoices and for following the invoicing and tax rules in your country. InvoiceKit is free to use for personal and commercial invoicing.</p>`,
     faq: [],

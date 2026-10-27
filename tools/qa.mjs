@@ -16,7 +16,6 @@ const resolve = url => {
   return cands.map(c => join(dir, c)).find(f => existsSync(f) && statSync(f).isFile());
 };
 const server = createServer((req, res) => {
-  if (req.url.startsWith("/_vercel/")) { res.writeHead(200, { "Content-Type": "text/javascript" }); return res.end(""); }
   const f = resolve(req.url);
   if (!f) { res.writeHead(404); return res.end("not found"); }
   res.writeHead(200, { "Content-Type": types[extname(f)] || "application/octet-stream" });
@@ -35,7 +34,7 @@ for (const [vw, vh, tag] of [[1280, 900, "desktop"], [390, 844, "mobile"]]) {
     const p = await ctx.newPage();
     const errs = [];
     p.on("pageerror", e => errs.push("pageerror: " + e.message));
-    p.on("console", m => { if (m.type() === "error" && !/favicon|_vercel|\/api\//.test(m.text())) errs.push("console: " + m.text()); });
+    p.on("console", m => { if (m.type() === "error" && !/favicon|\/api\//.test(m.text())) errs.push("console: " + m.text()); });
     p.on("requestfailed", r => { if (r.url().startsWith(base) && !/\/api\//.test(r.url())) errs.push("requestfailed: " + r.url()); });
     p.on("response", r => { if (r.url().startsWith(base) && r.status() >= 400 && !/\/api\//.test(r.url())) errs.push(`HTTP ${r.status()}: ${r.url().slice(base.length)}`); });
     await p.goto(base + path, { waitUntil: "load" });

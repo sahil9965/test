@@ -69,7 +69,6 @@ ${p.tool.kind === "sheet" ? `<script src="/sheet-ui.js" defer></script>\n` : ""}
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>

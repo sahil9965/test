@@ -90,7 +90,6 @@ function head({ title, desc, path, graph }) {
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>
@@ -568,7 +567,7 @@ P.push({
       <p>LineupFair runs entirely in your browser. Player names, jersey numbers, game names, rosters, charts and season totals are processed on your device to build the chart, the PDFs and the share link. They are never sent to our servers or to anyone else.</p>
       <p>To save you retyping, the tool remembers your current roster and chart and your saved season games in this browser's local storage. Clearing your browser's site data deletes them, and the <em>Clear roster</em> button clears the roster. A backup file you export is saved on your device.</p>
       <p>A share link contains the roster and chart inside the link itself, after the # sign, which browsers do not send to servers. Anyone you give the link to can read the names in it, so share it only with people who should see them.</p>
-      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the kind of PDF. Neither uses cookies or tracks you across sites, and neither ever receives what you type into the tool.</p>
+      <p>We use one privacy-friendly analytics service, Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the kind of PDF. It does not use cookies or track you across sites, and it never receives what you type into the tool.</p>
       <h2>Terms</h2>
       <p>LineupFair is provided “as is”, without warranty. You are responsible for the lineups you use and for following the rules of your league, including rules on playing time, batting, substitutions, pitching and safety. Every rule in the tool is a coach setting, not official league policy. The tool does not track pitch counts. LineupFair is free for personal and commercial use.</p>
       <p>Questions? See the <a href="/about">About page</a>.</p>`,

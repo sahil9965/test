@@ -67,7 +67,6 @@ function page({ slug, title, desc, h1, lead, badges, tool, preset = "", body, fa
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.va("beforeSend",function(e){if(e&&e.url)e.url=String(e.url).split("#")[0];return e});</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify(ld)}
 </script>
@@ -636,7 +635,7 @@ pages.push({
       <p>BellBook runs in your browser. Your calendar settings, saved calendars and lesson-planner details are kept in your browser's local storage on your device and are never sent to our servers. PDFs, .ics and .csv files are generated on your device. Clearing your browser data deletes everything BellBook stored.</p>
       <p>The “What day is it?” share link contains the calendar (dates, rotation, days off and their names, but not your lesson planner) after the # sign. Browsers don't send that part of a link to servers, so we never receive it. Anyone you give the link to can read the calendar, so don't put private information in day names or notes.</p>
       <p>Student names you paste for class pages (attendance, gradebook, seating chart) are used only to draw the PDF in your browser. They are not saved, not put in share links and never uploaded.</p>
-      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page visits and a few anonymous events (for example “PDF downloaded”). Neither uses cookies or tracks you across sites, and neither collects anything you type into the tool. The part of a share link after the # is removed before a visit is counted.</p>
+      <p>We use one privacy-friendly analytics service, Umami, to count page visits and a few anonymous events (for example “PDF downloaded”). It does not use cookies or track you across sites, and it does not collect anything you type into the tool. The part of a share link after the # is removed before a visit is counted.</p>
       <h2>Terms</h2>
       <p>BellBook is provided “as is”, without warranty. Check generated calendars and planners against your school's official calendar before publishing or printing them. You may use BellBook and its outputs freely for personal, classroom and school use.</p>`,
   graph: [crumbLd("privacy", "Privacy & Terms")],

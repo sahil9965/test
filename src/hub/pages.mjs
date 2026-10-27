@@ -66,7 +66,6 @@ function head({ title, desc, path, jsonld }) {
 <link rel="stylesheet" href="/style.css">
 <script>(function(){try{var q=new URLSearchParams(location.search).get("notrack");if(q==="1")localStorage.setItem("rooh-notrack","1");if(q==="0")localStorage.removeItem("rooh-notrack");if(localStorage.getItem("rooh-notrack")){window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.va("beforeSend",function(){return null})}}catch(e){}})();</script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify(jsonld)}
 </script>
@@ -190,7 +189,7 @@ ${header}
   <main id="main" class="content narrow">
     <h1>Privacy &amp; Terms</h1>
     <p>Every Rooh Sites tool runs entirely in your web browser. What you type, upload or photograph is processed on your device and is never sent to our servers. Some tools save your work in your browser's local storage so you can come back to it. Clearing your browser data deletes it.</p>
-    <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page visits. Neither uses cookies or tracks you across websites, and neither sees what you enter into a tool.</p>
+    <p>We use one privacy-friendly analytics service, Umami, to count page visits. It does not use cookies or track you across websites, and it never sees what you enter into a tool.</p>
     <h2>Terms</h2>
     <p>The tools are provided free and “as is”, without warranty. You're responsible for checking anything you print, send or rely on, including tax, shipping, school and legal requirements in your country. Each tool's own Privacy &amp; Terms page has any tool-specific notes.</p>
     <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Rooh Sites</p>

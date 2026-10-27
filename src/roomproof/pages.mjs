@@ -71,7 +71,6 @@ function page(p) {
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>
@@ -623,7 +622,7 @@ ${tbl(["Layout", "Best for"], [
       <p><strong>On-device processing.</strong> When you add a photo, your browser reads it, resizes it, reads the capture time and calculates its fingerprint on your device. The resized photo and your report are stored in your browser's storage (IndexedDB) on this device so a draft survives a reload. PDFs and <code>.roomproof</code> project files are created on your device and downloaded directly to you. None of this is sent to our servers.</p>
       <p><strong>Deleting your data.</strong> Choosing <em>New report</em> clears the photos stored for the previous report. Clearing this site's data in your browser settings deletes everything. Files you downloaded are yours to keep or delete.</p>
       <p><strong>Offline files.</strong> A service worker caches the site's own pages and scripts so Roomproof works offline. It never stores your photos.</p>
-      <p><strong>Analytics.</strong> We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “a PDF was created” with the template name and a rough photo-count range. Neither uses cookies or tracks you across sites, and neither ever receives photos, file names or anything you type.</p>
+      <p><strong>Analytics.</strong> We use one privacy-friendly analytics service, Umami, to count page views and a few anonymous events, such as “a PDF was created” with the template name and a rough photo-count range. It does not use cookies or track you across sites, and it never receives photos, file names or anything you type.</p>
       <h2>Terms</h2>
       <p>Roomproof is provided free and “as is”, without warranty. You're responsible for what you photograph and include in a report, for its accuracy, and for respecting other people's privacy (don't photograph people or their belongings without permission). Roomproof doesn't give legal advice and doesn't guarantee that any report will be accepted as evidence. You may use Roomproof and the reports you create for personal and commercial purposes.</p>`,
   },

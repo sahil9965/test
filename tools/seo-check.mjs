@@ -33,7 +33,7 @@ for (const file of walk(dir)) {
   if (/lorem ipsum|TODO|FIXME/i.test(text(html))) err(rel, "placeholder text (lorem/TODO) in visible content");
   if (!/<html[^>]+lang=/i.test(html)) err(rel, "missing <html lang>");
   if (!/name=["']viewport["']/i.test(html)) err(rel, "missing viewport");
-  if (!/\/_vercel\/insights\/script\.js/.test(html)) err(rel, "missing Vercel Analytics script");
+  if (/_vercel\/insights/.test(html)) err(rel, "Vercel Analytics script must not be present (hosting moved to Cloudflare Pages)");
   // Internal links
   for (const [, href] of html.matchAll(/href=["'](\/[^"'#?]*)[^"']*["']/g)) {
     if (href.startsWith("/api") || href.startsWith("/_vercel") || href.startsWith("//")) continue;

@@ -74,7 +74,6 @@ function head({ title, desc, path, graph }) {
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>
@@ -517,7 +516,7 @@ P.push({
       <p>PanelDex runs entirely in your browser. Panel details, circuit descriptions, loads and settings are processed on your device to build the editor, the totals, the PDFs, the Excel and CSV files and the QR code. They are never sent to our servers or anyone else.</p>
       <p>Your panels are saved in this browser's local storage so they're there next time. Clearing your browser's site data deletes them, so download a backup or CSV if you want to keep them.</p>
       <p>The share link holds the panel inside the link itself, after the # sign, which browsers don't send to the web server. Anyone you give the link or its QR code to can see that panel.</p>
-      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the panel size. Neither uses cookies or tracks you across sites, and neither ever receives what you type into the tool.</p>
+      <p>We use one privacy-friendly analytics service, Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the panel size. It does not use cookies or track you across sites, and it never receives what you type into the tool.</p>
       <h2>Terms</h2>
       <p>PanelDex is provided “as is”, without warranty. Check every schedule, directory and label against the panel before you rely on it. ${SAFETY} PanelDex doesn't check code compliance, and its load totals aren't a code load calculation. You're responsible for how you use what it produces. PanelDex is free for personal and commercial use.</p>
       <p>Questions? See the <a href="/about">About page</a>.</p>`,

@@ -3,9 +3,9 @@
 // - One Umami website for the whole network: each site sends data-tag=<slug>, and page paths are
 //   prefixed with the slug (/bellbook/today) so the Pages report tells the tools apart.
 // - The tools' existing window.va("event", …) calls are forwarded to umami.track, so events show up
-//   without touching app code. Vercel Analytics keeps working as before.
+//   without touching app code (the old Vercel Analytics script is gone; only the window.va stub remains).
 // - The URL hash (where share links keep their data) is never sent, data-domains stops localhost and
-//   preview URLs from being counted, and ?notrack=1 turns Umami (and Vercel) off on every roohsites.com tool at once.
+//   preview URLs from being counted, and ?notrack=1 turns Umami off on every roohsites.com tool at once.
 // - An "engaged" event fires once per page view on the first click, tap or keypress, to tell people from bots.
 // Usage: node tools/umami.mjs   (finalize.mjs runs it). With an empty websiteId it removes the block.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
@@ -23,7 +23,7 @@ const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(
 const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
   // Owner opt-out shared by every *.roohsites.com site: ?notrack=1 sets a cookie on the parent domain (only in
   // the owner's browser), ?notrack=0 clears it, and this site's localStorage is kept in step with the cookie so
-  // the Vercel opt-out in config.js (which runs later) sees it.
+  // the opt-out in config.js (which runs later) sees it.
   `try{var nt=new URLSearchParams(location.search).get("notrack"),dom=location.hostname.replace(/^[^.]+\\./,"");` +
   `if(nt==="1"){document.cookie="rooh_notrack=1;domain="+dom+";path=/;max-age=315360000;SameSite=Lax;Secure";localStorage.setItem("rooh-notrack","1")}` +
   `else if(nt==="0"){document.cookie="rooh_notrack=;domain="+dom+";path=/;max-age=0;SameSite=Lax;Secure";localStorage.removeItem("rooh-notrack")}` +

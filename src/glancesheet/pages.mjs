@@ -62,7 +62,6 @@ function head({ title, desc, path, graph }) {
 <script src="/config.js"></script>
 <script defer src="/pro.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}
 </script>
@@ -526,7 +525,7 @@ P.push({
       <h2>Your district's rules</h2>
       <p>${POLICY} GlanceSheet does not claim to meet FERPA, IDEA or any district requirement, and it has no district approval.</p>
       <h2>Analytics</h2>
-      <p>We use two privacy-friendly analytics services, Vercel Web Analytics and Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the kind of PDF. Neither uses cookies or tracks you across sites, and neither ever receives what you type into the tool.</p>
+      <p>We use one privacy-friendly analytics service, Umami, to count page views and a few anonymous events, such as “PDF downloaded” with the kind of PDF. It does not use cookies or track you across sites, and it never receives what you type into the tool.</p>
       <h2>Terms</h2>
       <p>GlanceSheet is provided “as is”, without warranty. A sheet is a summary and not the IEP or 504 plan, and not legal advice. You are responsible for checking each sheet against the full plan, for sharing it only with staff who work with the student, and for following your school's and district's rules on student records. GlanceSheet is free for personal and commercial use.</p>
       <p>Questions? See the <a href="/about">About page</a>.</p>`,
