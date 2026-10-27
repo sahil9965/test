@@ -10,7 +10,10 @@
     "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
     "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
     "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
-    "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners."
+    "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
+    "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
+    "Streamer Schedules": "Free weekly stream schedule makers with automatic time zones for Twitch, YouTube and Kick streamers.",
+    "Youth Baseball & Softball": "Free fair fielding rotation and lineup tools for youth baseball, softball and T-ball coaches."
   },
   "posts": [
     {
@@ -352,6 +355,36 @@
       "link": "https://labels.roohsites.com/print-shipping-label-from-phone?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Print a Shipping Label from Your Phone: To a Bluetooth thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
       "keywords": "print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label"
+    },
+    {
+      "day": 35,
+      "title": "UGC Rate Calculator",
+      "description": "Free UGC rate calculator. Price videos, hooks, paid usage rights, whitelisting and exclusivity, then download a brand quote PDF or rate card. No signup.",
+      "board": "Creator Rate Cards",
+      "image": "https://tools.roohsites.com/pins/ugc-rate-calculator.png",
+      "link": "https://ugcrates.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "UGC Rate Calculator: Price UGC with usage rights and whitelisting. The image shows a one-page document preview, from ugcrates.roohsites.com.",
+      "keywords": "ugc rate calculator, ugc rates, ugc creator, influencer rate card"
+    },
+    {
+      "day": 36,
+      "title": "Baseball Fielding Rotation Generator",
+      "description": "Free baseball fielding rotation generator for youth coaches: fair bench time, position variety, batting order and a dugout card PDF. No login, in-browser.",
+      "board": "Youth Baseball & Softball",
+      "image": "https://tools.roohsites.com/pins/baseball-fielding-rotation-generator.png",
+      "link": "https://lineup.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Baseball Fielding Rotation Generator: Build an inning-by-inning defensive chart in seconds. The image shows a fielding rotation chart with positions for each inning and bench turns, from lineup.roohsites.com.",
+      "keywords": "baseball fielding rotation generator, baseball lineup, fielding rotation, youth baseball coach"
+    },
+    {
+      "day": 37,
+      "title": "Stream Schedule Maker with Time Zones",
+      "description": "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
+      "board": "Streamer Schedules",
+      "image": "https://tools.roohsites.com/pins/stream-schedule-maker-with-time-zones.png",
+      "link": "https://streamschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Stream Schedule Maker with Time Zones: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.",
+      "keywords": "stream schedule maker with time zones, stream schedule, twitch schedule, streamer"
     }
   ]
 }

@@ -7,7 +7,7 @@ Hand the prompt below to Claude Cowork as a **scheduled task that runs once a da
 2. Optional but recommended: switch to a free Pinterest **Business** account (Settings → Account management → Convert to business). It adds pin analytics and costs nothing.
 3. Optional: claim your websites in Pinterest (Settings → Claimed accounts → Websites). Pinterest gives you a meta tag or file; send it to me and I'll add it to the sites.
 
-The schedule (34 posts, one per day; days 15–24 are holiday-season pins, days 25–34 cover the FNSKU, panel schedule, punch card, gift certificate, label and IEP tools) is published at https://tools.roohsites.com/pins/schedule.json. A readable copy is in `marketing/pinterest-posts.md`. When I add more pins, the task picks them up automatically.
+The schedule (34 posts, one per day; days 15–24 are holiday-season pins, days 25–34 cover the FNSKU, panel schedule, punch card, gift certificate, label and IEP tools) is published at https://tools.roohsites.com/pins/schedule.json. A readable copy is in `marketing/pinterest-posts.md`. New pins are added automatically every morning (3 a day, by the `pins-daily` workflow: `tools/pins-auto.mjs`), so the task never runs out. Run the task **3 times a day** (for example 9:00 AM, 1:00 PM and 8:00 PM US Eastern); each run posts one pin.
 
 ---
 

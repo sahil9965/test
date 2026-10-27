@@ -1,7 +1,9 @@
 // Render Pinterest pins (1000x1500 PNG) for the tool sites, plus a CSV for Pinterest's bulk upload.
-// Usage: node tools/pins.mjs   (writes sites/hub/pins/*.png and marketing/pinterest-pins.csv)
+// Usage: node tools/pins.mjs [--only file1,file2]   (writes sites/hub/pins/*.png, schedule.json, marketing/pinterest-pins.csv and pinterest-posts.md)
+// Pins come from the hand-written PINS list below (days in ORDER), then the automatic ones in tools/pins-auto.json (added daily by
+// tools/pins-auto.mjs, in the order added). --only draws just those images (the daily run draws only its new pins); the files are always rewritten.
 import { chromium } from "playwright";
-import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -196,6 +198,11 @@ const PINS = [
     desc: "Selling from your phone? Turn the label PDF into a 4 × 6 in image at 203 or 300 dpi and share it to your Bluetooth printer app. Works on iPhone and Android, free.",
     keywords: "print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label" },
 ];
+const AUTO_FILE = join(ROOT, "tools/pins-auto.json");
+const AUTO = existsSync(AUTO_FILE) ? JSON.parse(readFileSync(AUTO_FILE, "utf8")).pins || [] : [];
+const ALL = PINS.concat(AUTO);
+const oi = process.argv.indexOf("--only");
+const ONLY = oi > 0 ? new Set(String(process.argv[oi + 1] || "").split(",").filter(Boolean)) : null;
 
 function visual(kind, accent, p = {}) {
   const pale = `${accent}22`;
@@ -231,6 +238,13 @@ function visual(kind, accent, p = {}) {
   }
   if (kind === "strips") return `<div class="strips">${["1 Kitchen", "2 Furnace", "3/5 Range", "4/6 Water htr", "7 Dishwasher", "8 Garage", "9 Laundry", "10 Bedrooms", "11 Bath", "12 Spare", "13 Lights", "14 Outdoor"].map(x => {
     const [n, ...w] = x.split(" "); return `<div class="st"><b>${n}</b><span>${w.join(" ")}</span></div>`; }).join("")}</div>`;
+  if (kind === "week") return `<div class="wk">${[["MON", "7 PM", "Ranked grind"], ["TUE", "", "Off"], ["WED", "7 PM", "Community games"], ["THU", "", "Off"], ["FRI", "8 PM", "Late show"], ["SAT", "2 PM", "Long stream"], ["SUN", "", "Off"]].map(([d, t, w]) =>
+    `<div class="wk-r${t ? "" : " off"}"><b>${d}</b><i>${t || "–"}</i><span>${w}</span></div>`).join("")}</div>`;
+  if (kind === "lineup") {
+    const pos = [["P", "C", "1B", "2B"], ["SS", "P", "C", "1B"], ["Bench", "SS", "P", "C"], ["LF", "Bench", "SS", "P"], ["C", "LF", "Bench", "SS"]];
+    return `<div class="lu"><div class="lu-r lu-h"><span>Player</span>${[1, 2, 3, 4].map(i => `<span>Inn ${i}</span>`).join("")}</div>${["Ava", "Ben", "Cruz", "Dev", "Eli"].map((n, r) =>
+      `<div class="lu-r"><span>${n}</span>${pos[r].map(x => `<span class="${x === "Bench" ? "bn" : ""}">${x}</span>`).join("")}</div>`).join("")}</div>`;
+  }
   if (kind === "punch") {
     const c = p.card || { name: "Your Business", reward: "Buy 9, get the 10th free" };
     return `<div class="punches">${[6, 3].map(on => `<div class="pc"><b>${esc(c.name)}</b><em>${esc(c.reward)}</em><div class="dots">${Array.from({ length: 10 }, (_, i) =>
@@ -301,6 +315,12 @@ figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-b
 .strips{display:grid;grid-template-columns:repeat(4,1fr);gap:0;width:100%;background:#fff;border:3px solid #1b1b1f;border-radius:10px;overflow:hidden}
 .st{border-right:2px dashed #999;border-bottom:2px dashed #999;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:6px}
 .st b{font-size:38px;color:${accent}}.st span{font-size:20px;color:#333;text-align:center}
+.wk{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.wk-r{display:grid;grid-template-columns:110px 130px 1fr;align-items:center;border-top:2px solid #ddd;font-size:30px}.wk-r:first-child{border-top:0}
+.wk-r b{padding:18px 20px;color:${accent}}.wk-r i{font-style:normal;font-weight:800}.wk-r span{padding:18px 10px}.wk-r.off{color:#999}.wk-r.off b{color:#999}
+.lu{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.lu-r{display:grid;grid-template-columns:1.3fr repeat(4,1fr);border-top:2px solid #ddd}.lu-r span{padding:20px 10px;font-size:28px;font-weight:700;text-align:center}
+.lu-r span:first-child{text-align:left;padding-left:22px}.lu-h{background:${accent};color:#fff;border-top:0}.lu-h span{font-size:24px}.lu-r .bn{background:#f0eee9;color:#888}
 .doc{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:82%;padding:36px;display:flex;flex-direction:column;gap:22px}
 .doc-h{display:flex;justify-content:space-between;margin-bottom:10px}.doc-h b{width:200px;height:44px;background:${accent};border-radius:6px}.doc-h i{width:140px;height:44px;background:#ddd;border-radius:6px}
 .doc-r{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eee;padding-bottom:16px}.doc-r span{height:20px;background:#ccc;border-radius:4px}.doc-r em{width:90px;height:20px;background:#bbb;border-radius:4px}
@@ -317,9 +337,17 @@ mkdirSync(OUT, { recursive: true });
 const b = await chromium.launch();
 const page = await b.newPage({ viewport: { width: 1000, height: 1500 } });
 const rows = [["Title", "Media URL", "Pinterest board", "Thumbnail", "Description", "Link", "Publish date", "Keywords"]];
-for (const p of PINS) {
-  await page.setContent(pinHtml(p));
-  await page.screenshot({ path: join(OUT, `${p.file}.png`) });
+for (const p of ALL) {
+  if (!ONLY || ONLY.has(p.file)) {
+    await page.setContent(pinHtml(p));
+    // If a long headline pushes the footer off the 1500 px image, shrink the headline (and then the picture) until it fits.
+    for (let size = 78; size >= 54; size -= 6) {
+      if (await page.evaluate(() => document.querySelector(".foot").getBoundingClientRect().bottom <= 1500)) break;
+      await page.addStyleTag({ content: `h1{font-size:${size}px}.vis{padding:20px 60px}.vis>*{transform:scale(${size >= 66 ? 1 : 0.9})}` });
+    }
+    if (!(await page.evaluate(() => document.querySelector(".foot").getBoundingClientRect().bottom <= 1500))) throw new Error(`pin ${p.file}: does not fit 1000x1500`);
+    await page.screenshot({ path: join(OUT, `${p.file}.png`) });
+  }
   const link = `${sites[p.slug].url}${p.path}${p.path.includes("?") ? "&" : "?"}${UTM}`;
   rows.push([p.headline, `${PIN_BASE}/${p.file}.png`, p.board, "", p.desc, link, "", p.keywords]);
 }
@@ -339,6 +367,9 @@ const BOARDS = {
   "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
   "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
   "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
+  "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
+  "Streamer Schedules": "Free weekly stream schedule makers with automatic time zones for Twitch, YouTube and Kick streamers.",
+  "Youth Baseball & Softball": "Free fair fielding rotation and lineup tools for youth baseball, softball and T-ball coaches.",
 };
 const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
   "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
@@ -355,19 +386,20 @@ const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching 
   photos: "four dated room photos with condition ratings", label: "an A4 label page converted into a 6 by 4 inch thermal label", document: "a one-page document preview",
   certificate: "a gift certificate with a numbered tear-off stub", punch: "two loyalty punch cards with ten punch circles and a free reward",
   fnsku: "a sheet of FNSKU barcode labels with product names", panel: "a two-column breaker panel schedule with numbered circuits",
-  strips: "numbered breaker labels with short circuit names and cut lines" };
-const byFile = Object.fromEntries(PINS.map(p => [p.file, p]));
-const schedule = ORDER.map((f, i) => {
+  strips: "numbered breaker labels with short circuit names and cut lines", week: "a weekly stream schedule with days, times and stream titles",
+  lineup: "a fielding rotation chart with positions for each inning and bench turns" };
+const byFile = Object.fromEntries(ALL.map(p => [p.file, p]));
+const schedule = ORDER.concat(AUTO.map(p => p.file)).map((f, i) => {
   const p = byFile[f], s = sites[p.slug];
   return { day: i + 1, title: p.headline, description: p.desc, board: p.board, image: `${PIN_BASE}/${p.file}.png`,
     link: `${s.url}${p.path}?${UTM}`, alt: `${p.headline}: ${p.sub}. The image shows ${VISUAL_ALT[p.visual]}, from ${new URL(s.url).host}.`,
     keywords: p.keywords };
 });
-writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: "2026-10-27", boards: BOARDS, posts: schedule }, null, 2) + "\n");
+writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: AUTO.reduce((d, p) => (p.added > d ? p.added : d), "2026-10-27"), boards: BOARDS, posts: schedule }, null, 2) + "\n");
 const md = [`# Pinterest posts: daily schedule`, ``,
   `One pin a day, in this order. Cowork reads the same list from ${PIN_BASE}/schedule.json (see marketing/cowork-pinterest-prompt.md). Regenerate both with \`node tools/pins.mjs\`.`, ``,
   `## Boards to create first`, ``, ...Object.entries(BOARDS).map(([n, d]) => `- **${n}**: ${d}`), ``,
   ...schedule.flatMap(x => [`## Day ${x.day}: ${x.title}`, ``, `- **Board:** ${x.board}`, `- **Image:** ${x.image}`, `- **Link:** ${x.link}`,
     `- **Description:** ${x.description}`, `- **Alt text:** ${x.alt}`, `- **Keywords:** ${x.keywords}`, ``])].join("\n");
 writeFileSync(join(ROOT, "marketing/pinterest-posts.md"), md);
-console.log(`wrote ${PINS.length} pins, sites/hub/pins/schedule.json, marketing/pinterest-pins.csv and marketing/pinterest-posts.md`);
+console.log(`${ONLY ? `drew ${ONLY.size} of ${ALL.length}` : `wrote ${ALL.length}`} pins, sites/hub/pins/schedule.json, marketing/pinterest-pins.csv and marketing/pinterest-posts.md`);

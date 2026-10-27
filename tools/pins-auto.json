@@ -1,0 +1,226 @@
+{
+  "_comment": "Automatic Pinterest pins (tools/pins-auto.mjs adds them every day; tools/pins.mjs draws them and puts them after the hand-written ones in schedule.json). 'sites': per tool, the board, the picture, three points taken from the tool's own feature badges, base keywords and pages that use another picture. 'money': tools that get a pin more often. 'pins': the pins added so far, oldest first; delete one to drop it from the schedule.",
+  "per_day": 3,
+  "money": [
+    "labelfit",
+    "preplabel",
+    "giftstub",
+    "punchperk",
+    "paneldex",
+    "invoicekit"
+  ],
+  "sites": {
+    "invoicekit": {
+      "board": "Small Business Invoices",
+      "visual": "document",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "keywords": "invoice template, free invoice generator, small business"
+    },
+    "labelfit": {
+      "board": "Online Seller Shipping",
+      "visual": "label",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "keywords": "shipping label, 4x6 label, thermal printer"
+    },
+    "preplabel": {
+      "board": "Amazon FBA Prep Labels",
+      "visual": "document",
+      "visual_by_path": {
+        "fnsku|dymo": "fnsku"
+      },
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "keywords": "amazon fba, fba prep, fnsku labels"
+    },
+    "ticketrun": {
+      "board": "Raffle & Event Tickets",
+      "visual": "tickets",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "keywords": "raffle tickets, fundraiser, printable tickets"
+    },
+    "gradledger": {
+      "board": "Homeschool Records",
+      "visual": "document",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "keywords": "homeschool transcript, homeschool high school, gpa"
+    },
+    "roomproof": {
+      "board": "Landlord & Tenant Checklists",
+      "visual": "photos",
+      "points": [
+        "Photos stay on your device",
+        "A4 & US Letter",
+        "No signup"
+      ],
+      "keywords": "move in checklist, rental inspection, landlord"
+    },
+    "collabrate": {
+      "board": "Creator Rate Cards",
+      "visual": "document",
+      "points": [
+        "Usage rights & whitelisting",
+        "Quote PDF + rate card",
+        "No signup"
+      ],
+      "keywords": "ugc rates, ugc creator, influencer rate card"
+    },
+    "goaltally": {
+      "board": "ABA Data Sheets & Graphs",
+      "visual": "graph",
+      "visual_by_path": {
+        "data-sheet|sheet": "grid"
+      },
+      "points": [
+        "Nothing uploaded",
+        "Works offline",
+        "No signup"
+      ],
+      "keywords": "aba graph, data sheet, special education"
+    },
+    "bellbook": {
+      "board": "Teacher Planning & A/B Day Calendars",
+      "visual": "calendar",
+      "points": [
+        "Snow-day re-flow",
+        "PDF, .ics & share link",
+        "No signup"
+      ],
+      "keywords": "a/b day calendar, teacher planner, block schedule"
+    },
+    "giftstub": {
+      "board": "Small Business Printables",
+      "visual": "certificate",
+      "points": [
+        "Matching numbered stubs",
+        "Up to 500 per PDF",
+        "Letter & A4"
+      ],
+      "keywords": "gift certificate template, printable gift certificate, small business"
+    },
+    "streamweek": {
+      "board": "Streamer Schedules",
+      "visual": "week",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "keywords": "stream schedule, twitch schedule, streamer"
+    },
+    "paneldex": {
+      "board": "Electrician Printables",
+      "visual": "panel",
+      "visual_by_path": {
+        "label": "strips"
+      },
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "keywords": "panel schedule, breaker labels, electrician"
+    },
+    "punchperk": {
+      "board": "Small Business Printables",
+      "visual": "punch",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "keywords": "punch card template, loyalty card, small business"
+    },
+    "lineupfair": {
+      "board": "Youth Baseball & Softball",
+      "visual": "lineup",
+      "points": [
+        "Fair bench time",
+        "Baseball, softball, T-ball",
+        "Prints for the dugout"
+      ],
+      "keywords": "baseball lineup, fielding rotation, youth baseball coach"
+    },
+    "glancesheet": {
+      "board": "ABA Data Sheets & Graphs",
+      "visual": "document",
+      "points": [
+        "Initials only by default",
+        "Stays on your device",
+        "Letter or A4"
+      ],
+      "keywords": "iep at a glance, special education, 504 plan"
+    }
+  },
+  "pins": [
+    {
+      "slug": "collabrate",
+      "file": "ugc-rate-calculator",
+      "path": "/",
+      "board": "Creator Rate Cards",
+      "headline": "UGC Rate Calculator",
+      "sub": "Price UGC with usage rights and whitelisting",
+      "points": [
+        "Usage rights & whitelisting",
+        "Quote PDF + rate card",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Free UGC rate calculator. Price videos, hooks, paid usage rights, whitelisting and exclusivity, then download a brand quote PDF or rate card. No signup.",
+      "keywords": "ugc rate calculator, ugc rates, ugc creator, influencer rate card",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "lineupfair",
+      "file": "baseball-fielding-rotation-generator",
+      "path": "/",
+      "board": "Youth Baseball & Softball",
+      "headline": "Baseball Fielding Rotation Generator",
+      "sub": "Build an inning-by-inning defensive chart in seconds",
+      "points": [
+        "Fair bench time",
+        "Baseball, softball, T-ball",
+        "Prints for the dugout"
+      ],
+      "visual": "lineup",
+      "desc": "Free baseball fielding rotation generator for youth coaches: fair bench time, position variety, batting order and a dugout card PDF. No login, in-browser.",
+      "keywords": "baseball fielding rotation generator, baseball lineup, fielding rotation, youth baseball coach",
+      "added": "2026-10-27"
+    },
+    {
+      "slug": "streamweek",
+      "file": "stream-schedule-maker-with-time-zones",
+      "path": "/",
+      "board": "Streamer Schedules",
+      "headline": "Stream Schedule Maker with Time Zones",
+      "sub": "Weekly stream schedules with time zones",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "visual": "week",
+      "desc": "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
+      "keywords": "stream schedule maker with time zones, stream schedule, twitch schedule, streamer",
+      "added": "2026-10-27"
+    }
+  ]
+}
