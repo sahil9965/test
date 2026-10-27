@@ -1,0 +1,34 @@
+{
+  "_comment": "Amazon Associates 'Supplies' block, injected by tools/affiliate.mjs on the money tools (100-per-day plan). Links go to Amazon search results (no product claims, no prices, nothing that goes stale). Pages with lang en-IN use the 'in' store; pages in 'skip' (UK pages: no Amazon.co.uk account yet) get no block. Amazon rules: never put these links in emails or PDFs, always show the disclosure next to them.",
+  "stores": {
+    "us": { "base": "https://www.amazon.com/s", "tag": "roohsites-20" },
+    "in": { "base": "https://www.amazon.in/s", "tag": "roohsites-21" }
+  },
+  "disclosure": "As an Amazon Associate I earn from qualifying purchases.",
+  "sites": {
+    "labelfit": {
+      "intro": "The converter is free. If you print a lot of labels, these are the supplies most sellers use:",
+      "skip": ["/royal-mail-label-6x4", "/evri-label-6x4", "/vinted-label-thermal-printer"],
+      "us": [["4x6 direct thermal shipping labels", "4x6 direct thermal shipping labels"], ["4x6 thermal label printers", "4x6 thermal shipping label printer"]],
+      "in": [["4x6 thermal label rolls", "4x6 thermal label roll"], ["Thermal label printers for shipping", "thermal label printer 4x6 shipping"]]
+    },
+    "preplabel": {
+      "intro": "The label maker is free. For printing FNSKU labels in bulk, these are the usual supplies:",
+      "us": [["2.25 x 1.25 inch direct thermal labels", "2.25 x 1.25 direct thermal labels"], ["Thermal label printers", "thermal label printer barcode"], ["Poly bags with suffocation warning", "self seal poly bags suffocation warning"]]
+    },
+    "giftstub": {
+      "intro": "The maker is free. For printing certificates that feel like a real gift, these help:",
+      "skip": ["/gift-voucher-template"],
+      "us": [["White cardstock, 8.5 x 11 inch", "white cardstock 8.5 x 11"], ["Gift certificate envelopes", "gift certificate envelopes"], ["Paper trimmers", "paper trimmer"]],
+      "in": [["A4 card paper (250-300 gsm)", "A4 card paper 300 gsm"], ["Gift envelopes", "gift envelopes"], ["Paper trimmers", "paper trimmer"]]
+    },
+    "punchperk": {
+      "intro": "The maker is free. For printing and punching cards, these are the usual supplies:",
+      "us": [["Printable business card paper (10 per sheet)", "printable business card paper 10 per sheet"], ["White cardstock, 8.5 x 11 inch", "white cardstock 8.5 x 11"], ["Shaped hole punches", "shaped hole punch for punch cards"]]
+    },
+    "paneldex": {
+      "intro": "The tool is free. For labelling the panel itself, electricians usually use:",
+      "us": [["Label makers", "label maker electrical"], ["Circuit breaker labels", "circuit breaker labels"], ["Panel directory label sheets", "electrical panel directory label"]]
+    }
+  }
+}
