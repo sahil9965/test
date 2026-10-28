@@ -3,6 +3,7 @@
 Hand the prompt below to Claude Cowork as a **scheduled task that runs 3 times a day**, spread over the US day (most visitors are American): **9:00 AM, 1:00 PM and 8:00 PM US Eastern** (6:30 PM, 10:30 PM and 5:30 AM IST; one hour later in IST after US daylight saving ends on 1 Nov). Each run posts one pin.
 
 **Before the first run (one-time, 5 minutes)**
+0. In the Claude desktop app, connect your **Downloads** folder to Cowork, so it can upload the pin images that Chrome downloads from https://tools.roohsites.com/pins/. In Chrome settings → Downloads, turn off "Ask where to save each file".
 1. Log in to Pinterest in the browser Cowork uses, and stay logged in.
 2. Optional but recommended: switch to a free Pinterest **Business** account (Settings → Account management → Convert to business). It adds pin analytics and costs nothing.
 3. Optional: claim your websites in Pinterest (Settings → Claimed accounts → Websites). Pinterest gives you a meta tag or file; send it to me and I'll add it to the sites.
@@ -24,13 +25,13 @@ You post one Pinterest pin per run for my free web tools (Rooh Sites). This task
    If every post in the schedule is already published, don't post anything. Tell me "All scheduled pins are published. New ones are added every morning, so the next run will try again." and stop.
 
 3. Get the image
-   Open the post's image URL and download the PNG to this computer. If the image does not load, don't post. Tell me which image failed and stop.
+   In Chrome, open https://tools.roohsites.com/pins/#day-N (N = the post's day) and click that day's "Download PNG" button. Chrome saves the file to my Downloads folder (the connected folder) with the name at the end of the post's image URL, for example abc-data-sheet.png. Don't try to fetch the image any other way. If the page or the download fails, don't post. Tell me which day failed and stop.
 
 4. Check the link
    Open the post's link in a new tab and confirm the page loads (a tool page from roohsites.com, not an error page). If it fails, don't post. Tell me which link failed and stop.
 
 5. Create the pin
-   On Pinterest, go to Create → Pin and upload the downloaded PNG. Then fill in:
+   On Pinterest, go to Create → Pin (the normal organic pin builder) and upload the PNG from my Downloads folder. Then fill in:
    - Title: the post's title, exactly.
    - Description: the post's description, exactly.
    - Link (destination URL): the post's link, exactly, including everything after the "?".
@@ -49,6 +50,7 @@ You post one Pinterest pin per run for my free web tools (Rooh Sites). This task
 Rules
 - Post at most one pin per run, even if earlier days were missed. If a pin from the schedule was published less than 2 hours ago, don't post; say "Last pin was under 2 hours ago, skipping this run." and stop.
 - Use the text from the schedule as it is. Only shorten it if Pinterest rejects the length, and say so in the report.
+- Never use "Save from URL", "Save from website" or anything that says "ad", "promote" or "boost". Those are Pinterest's ad tools.
 - Don't follow, like, comment on, message or save other people's pins. Don't change my profile, settings or existing pins. Don't run ads or promotions.
 - Never type a password or a verification code. If Pinterest asks me to log in, shows a captcha, or asks for a code, stop and tell me.
 - If Pinterest shows a warning about the pin or my account (spam, policy, blocked link), stop and tell me exactly what it says. Don't retry.

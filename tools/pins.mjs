@@ -396,6 +396,22 @@ const schedule = ORDER.concat(AUTO.map(p => p.file)).map((f, i) => {
     keywords: p.keywords };
 });
 writeFileSync(join(OUT, "schedule.json"), JSON.stringify({ updated: AUTO.reduce((d, p) => (p.added > d ? p.added : d), "2026-10-27"), boards: BOARDS, posts: schedule }, null, 2) + "\n");
+// tools.roohsites.com/pins/: one "Download PNG" button per scheduled pin, so the Cowork posting task can save the image through the
+// user's own Chrome (its sandbox can't fetch the site) and upload it from the Downloads folder. Not for search engines.
+const dl = schedule.map(x => { const f = x.image.split("/").pop();
+  return `<li id="day-${x.day}"><img src="${f}" width="120" height="180" loading="lazy" alt=""><div><b>Day ${x.day}: ${esc(x.title)}</b><span>${esc(x.board)}</span>` +
+    `<a class="dl" href="${f}" download="${f}">Download PNG</a></div></li>`; }).join("\n");
+writeFileSync(join(OUT, "index.html"), `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Pinterest pin images: download page</title>
+<style>body{font:16px/1.4 system-ui,sans-serif;margin:24px;color:#1b1b1f;background:#fbfaf7}ol{list-style:none;padding:0;display:grid;gap:12px;max-width:760px}
+li{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid #ddd;border-radius:10px;padding:10px}li div{display:grid;gap:4px}li span{color:#666;font-size:14px}
+img{border-radius:6px;background:#eee}.dl{display:inline-block;padding:8px 14px;border-radius:8px;background:#1b1b1f;color:#fff;text-decoration:none;font-weight:700;width:max-content}</style>
+</head><body><h1>Pinterest pin images</h1><p>Every pin in <a href="schedule.json">schedule.json</a>, in posting order. "Download PNG" saves the image to your Downloads folder. Jump to a day with #day-N in the address.</p>
+<ol>
+${dl}
+</ol></body></html>
+`);
 const md = [`# Pinterest posts: daily schedule`, ``,
   `One pin a day, in this order. Cowork reads the same list from ${PIN_BASE}/schedule.json (see marketing/cowork-pinterest-prompt.md). Regenerate both with \`node tools/pins.mjs\`.`, ``,
   `## Boards to create first`, ``, ...Object.entries(BOARDS).map(([n, d]) => `- **${n}**: ${d}`), ``,
