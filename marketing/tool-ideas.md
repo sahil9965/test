@@ -378,3 +378,86 @@ Church ministry rotation scheduler. Enter ushers, lectors, greeters, nursery and
 - **Risks:** The broad 'church volunteer scheduling' terms are owned by SaaS review sites and vendors (Planning Center, Ministry Scheduler Pro, Church CREW, Grasshopper Signup's free tier), so this has to win on printable long-tails. Volunteers cannot self-sign-up or swap without a backend, which the paid tools do, so keep the scope to 'generate and print'. Search volume per ministry long-tail is probably small. I spent only 2 searches here, so confidence is moderate. Use generic wording, with no denominational trademarks.
 - **Evidence checked:** 'church usher schedule maker free volunteer rotation': blog.grasshoppersignup.com and grasshoppersignup.com/church-scheduling and /church-volunteer-signup (vendor says all features are free, volunteers need no account, and there are usher, greeter and parking templates, reminders and Excel export), Ministry Scheduler Pro listings on getapp.co.nz/.co.uk/.za.com, network.crcna.org/comment/61339 (a free Windows Access-based usher scheduler from an individual), and alternativeto.net/software/rosterthat (fair rotation by availability, swaps, free plan up to 20 people and 2 rosters). Earlier evidence: Capterra and GetApp listings and stjoetosa.com/usher-schedule. I spent only 1 search here and did not check 'usher schedule template' or 'lector schedule template' directly.
 
+
+---
+
+# Browser games and game-night tools (researched 28 Oct 2026)
+
+The question was whether browser mini games could bring traffic. They were checked with the same points as the tools above (live Google results; **D** = demand, **C** = how winnable page 1 is, 5 = easiest), plus the money-fit rule from `100-per-day-plan.md`: a new tool needs an affiliate product or a business user. One researcher, about 14 searches, no paid keyword data, so the scores are judgement from what page 1 shows. Names are working names; nobody checked them for trademarks.
+
+**Conclusion:** real games (arcade, puzzle, daily word games, a game portal) are a drop. They earn only from ads at low game rates, have no affiliate or web-lead fit, grow through portals and social sharing rather than Google, and cost more to build and keep fresh. **Game-night tools** (score sheets, bingo cards) pass: they follow the formula that works for our tools (printable PDF, Pinterest, page 1 full of spam mirrors, Amazon links). Order: the salon & spa price list stays first (web leads); game score sheets are the candidate for the month after.
+
+## Shortlist
+
+| Verdict | Idea | Main search | D | C | Build | Repeat use | Pinterest | Money |
+|---|---|---|---|---|---|---|---|---|
+| build | **ScoreNight** (game score sheets + phone scorer) | yahtzee score sheet printable | 4 | 4.5 | S–M | yes | yes | Amazon: the games, dice, domino sets |
+| build | **BingoRun** (bingo card maker) | bingo card generator printable | 5 | 3 | S–M | seasonal | yes (very strong) | Amazon: daubers, cages, prizes; pairs with TicketRun |
+| maybe | **TriviaDesk** (trivia night answer sheets + scoreboard) | trivia night score sheet template | 3 | 4 | S | yes (weekly hosts) | yes | Low; bars that host trivia are possible web leads |
+| maybe | **ShowerPlay** (baby shower games with the couple's names) | baby shower games printable | 5 | 2.5 | M | no | yes (very strong) | Low (party supplies); better as BingoRun pages |
+| drop | **BoardBuzz** (classroom Jeopardy maker) | jeopardy game maker for classroom | 4 | 2 | M | yes | no | None |
+| drop | **DailyWord** (Wordle-style daily puzzle) | games like wordle | 4 | 1.5 | M | yes | no | Ads only |
+| drop | **Arcade games or a game portal** (solitaire, 2048, snake) | free online games | 5 | 1 | L | yes | no | Ads only |
+
+## Why real games are a drop
+- **Money:** ads only. Guides put AdSense for game pages at about $1–3 per 1,000 views (US traffic); game ad networks that pay more want about 500,000 views a month. These figures come from vendor and SEO blogs, not our data. At today's traffic this earns close to nothing.
+- **No money fit:** players do not buy printer supplies or hire web designers, so neither Amazon links nor the Rooh Sites lead line fit.
+- **Competition:** Poki, CrazyGames, Arkadium and Google's own built-in games hold the head terms; daily puzzles are led by NYT (Connections, Strands) and Puzzmo, and new ones spread by social sharing, not search.
+- **Cost:** a game needs art, sound, levels and regular updates to keep players. Tools are what this setup builds well.
+- **Children:** much of the audience is under 13, which makes ads risky under COPPA.
+- **If ever tried:** publish an HTML5 game on Poki or CrazyGames, which bring the players and share ad income. Third-party guides say Poki splits ad revenue 50/50 (developers keep all revenue from traffic they bring) and guess $200–3,000 a month for a game that does well; Poki does not publish its terms. It is a hit-driven business of its own.
+
+## Details
+
+### ScoreNight (game score sheets) — build
+Pick a game and print clean score sheets (2 or 4 per page), or keep score on the phone with totals, bonuses and the winner worked out for you. Games: Yahtzee (upper bonus, Yahtzee bonus), Farkle (scoring chart on the sheet, 500 to get on the board, 10,000 to win, both editable), Mexican Train (rounds 12 to 0, lowest total wins), then Phase 10, Rummy, Hearts, Spades, Euchre and a blank "any game" sheet.
+
+- **Audience:** US families and couples who play weekly, seniors' game groups, RV and retirement communities (Mexican Train is popular there), teachers using dice games for math
+- **Keywords:** yahtzee score sheet printable; yahtzee score card free printable, farkle score sheet printable, farkle scoring chart, mexican train score sheet printable, phase 10 score sheet, online yahtzee score card
+- **What we'd do better:** A real generator, not a copied PDF: names printed on the sheet, large-print option, 2 or 4 per page, and a phone scorer that adds up as you go (no app, no account, saved in the browser). One landing page per game, each with the scoring rules written out.
+- **Output:** Print-ready PDF score sheets per game (Letter and A4), the phone scorer, and the 'Made with ScoreNight' credit in the margin
+- **Fits the network:** LineupFair (families), GoalTally and BellBook (teachers using dice games). A new audience mostly, so cross-links are light.
+- **Money:** Amazon search links for the games themselves (Yahtzee, Farkle dice sets, Mexican Train domino sets), score pads and dice cups. Low web-lead fit.
+- **My call:** Page 1 for three different games was nothing but spam mirror pages, the same sign we saw before building GlanceSheet and PunchPerk (real demand, no good answer). The phone scorer gives repeat visits every game night, which most of our tools lack. Small build: one sheet layout engine plus per-game rules.
+- **Risks:** "Yahtzee" is a Hasbro trademark: say "score sheet for Yahtzee", use no logos, and add a "not affiliated with Hasbro" line. Rules differ by house; make the bonus and target values editable instead of claiming official rules. Search volume per game was not measured.
+- **Evidence checked:** 'yahtzee score sheet printable online score card': all 9 results were spam mirrors (live.museum.manchester.ac.uk x2, iris.londoncouncils.gov.uk x3, msoid.icmbio.gov.br x2, usa8-dev1.alpinelinux.org x2). 'farkle score sheet printable scoring chart': all 9 spam (blog.mozilla.com.tw, msoid.icmbio.gov.br x4, live.museum.manchester.ac.uk x3, educationsurvey.steelcase.com). 'mexican train dominoes score sheet printable': all 9 spam (manchester x2, icmbio, betteruptime, mds.oandg.co.uk, londoncouncils, chw.dhis2.org x2, internals.basemark.com). 'online score keeper for card games and board games': mostly iPhone/iPad and Windows apps; one web tool (utilverse.pages.dev/en/scorekeeper). Not checked: Phase 10, Rummy and the card games; keepthescore.com and other known score sites; Pinterest.
+
+### BingoRun (bingo card maker) — build
+Numbered bingo (1–75 or 1–90) with unique cards and a calling sheet for school and PTO bingo nights, plus word and picture bingo for baby showers, holidays, classrooms and road trips. Paste a word list, get as many unique cards as you need, 1, 2 or 4 per page.
+
+- **Audience:** PTO and school fundraiser organizers (the TicketRun audience), baby shower and party hosts, teachers, senior centers, churches
+- **Keywords:** bingo card generator printable; free printable bingo cards, bingo cards 1-75 printable, baby shower bingo, christmas bingo cards printable, classroom bingo generator, bingo calling sheet
+- **What we'd do better:** No login and no watermark, unique numbered cards with card numbers (so the winner can be checked against the calling sheet), a "bingo night kit" page that pairs cards with TicketRun admission and raffle tickets, and themed presets (baby shower gift bingo, Christmas, Halloween, classroom vocabulary).
+- **Output:** Bingo card PDF (1/2/4 per page), calling sheet PDF, and the 'Made with BingoRun' credit in the margin
+- **Fits the network:** Strong with TicketRun: PTO bingo nights run alongside raffles and 50/50s (seen on school PTO pages). Shares TicketRun's numbering and multi-up layout code. Teachers link to BellBook and GoalTally.
+- **Money:** Amazon search links for bingo daubers, bingo cage sets, chips and prize items. Also more traffic for TicketRun's raffle pages, our top Google topic.
+- **My call:** Huge seasonal demand and very strong on Pinterest, but real competitors exist, so C is lower than ScoreNight. Win on the PTO bingo night angle (numbered cards + calling sheet + tickets in one place) and themed long-tails, not the head term.
+- **Risks:** Established generators (Bingo Card Creator, Bingo Baker, myfreebingocards, 101planners, Icebreaker Games) will hold many terms. Very seasonal (Christmas, back-to-school fundraisers). Never mention prizes for money or "bingo for cash": gaming rules for charity bingo vary by state; give no legal advice.
+- **Evidence checked:** 'bingo card generator printable free': all 9 results were spam mirrors (londoncouncils, chw.dhis2.org x2, msoid.icmbio.gov.br x5, lounge.cloudshark.org), but well-known generators exist off that page. 'baby shower bingo cards generator with gift names': bingocardcreator.com x2, icebreaker-games-org.pages.dev, 101planners.com, plus spam and PDF farms. 'PTO family bingo night fundraiser how to run printable': school PTO pages (galesburg205.org, casdschools.org, littletonpublicschools.net, givebutter.com) describe $1–5 cards, raffles and 50/50s at the same event; one paid Canva bundle ($30) for flyers and tickets. Not checked: Bingo Baker and myfreebingocards on Google directly; Pinterest.
+
+### TriviaDesk (trivia night kit) — maybe
+Team answer sheets per round, a host scoresheet and a live scoreboard for a TV or projector, for pub quizzes and school trivia fundraisers.
+
+- **Audience:** Bar and brewery trivia hosts (weekly), PTO trivia fundraisers, office parties
+- **Keywords:** trivia night score sheet template; trivia answer sheet printable, pub quiz answer sheet, trivia scoreboard online
+- **Money:** Low affiliate fit. Bars and breweries that host trivia are small businesses, so a light web-lead fit.
+- **My call:** Page 1 was spam, so it is winnable, but demand looks smaller and the money is thin. Better later as pages in BingoRun or TicketRun ("fundraiser night" pack) than as its own site.
+- **Evidence checked:** 'trivia night score sheet template printable': all 9 results were spam mirrors (my-test.valpo.edu, podcast.chasejarvis.com, get.cloudshark.org, msoid.icmbio.gov.br, chw.dhis2.org, live.museum.manchester.ac.uk, lbas.lboro.ac.uk x2, track.ctrader.com). Trivialogy, Template.net and The Real Quiz Company were named as real sources. Not checked: live scoreboard competitors.
+
+### ShowerPlay (baby shower games) — maybe
+Printable shower games with the couple's names and baby's theme: gift bingo, word scramble, "who knows mommy best", prediction cards.
+
+- **Money:** Low (party supplies on Amazon). **My call:** very strong on Pinterest, but Pampers, Yahoo, bloggers and Etsy sellers crowd page 1. Do it as baby shower pages inside BingoRun, not a separate site.
+- **Evidence checked:** 'baby shower games printable free': pampers.co.uk (8 free games), yahoo.com lifestyle article, and spam (londoncouncils x4, alpinelinux, icmbio, molecularconnections).
+
+### BoardBuzz (classroom Jeopardy maker) — drop
+- **Why:** Jeopardy Labs (free, long-established), Factile (free tier, buzzers, Google Classroom) and Quizado (free, phone buzzers) already answer it well, plus AI generators (Knowt, TeachShare). No money fit.
+- **Evidence checked:** 'jeopardy game maker for classroom free': playfactile.com, a Gumroad product, knowt.com, library.stonybrook.edu on Jeopardy Labs, teachshare.com, quizado.com, plus one spam page.
+
+### DailyWord (Wordle-style daily puzzle) — drop
+- **Why:** NYT (Wordle, Connections, Strands) and Puzzmo lead; new dailies like Hunch, Clues by Sam and EveryClue spread through social sharing and press, not search. Ads-only money. A lottery ticket, not a plan.
+- **Evidence checked:** 'daily puzzle game like wordle new 2026': nodes-game.com, summerengine.com lists, pcgamer.com articles (Ribbit by Puzzmo, Hunch), everyclue.pages.dev, fastplaygames.com.
+
+### Arcade games or a game portal — drop
+- **Why:** Poki, CrazyGames, Pogo and Arkadium are the hubs; Google shows its own playable games for many classics. Ads-only money at $1–3 per 1,000 views.
+- **Evidence checked:** 'free online games play in browser': spam and roundup pages plus arkadium.com; the summary named CrazyGames, Poki, Pogo and Arkadium as the hubs. 'Poki CrazyGames developer revenue share': third-party guides only (app.cinevva.com, playgama.com, abratabia.com, multigamedev.blogspot.com); neither portal publishes its terms. 'browser game website AdSense RPM': ranktracker.com, abratabia.com, dinogame.gg, webmasterworld.com (a 2009 post: $0.62 for 10,000 game page views), all rough.
