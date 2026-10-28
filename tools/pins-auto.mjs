@@ -20,7 +20,11 @@ const schedule = JSON.parse(readFileSync(join(ROOT, "sites/hub/pins/schedule.jso
 const sites = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(s => s.live !== false && cfg.sites[s.slug]);
 const bySlug = Object.fromEntries(sites.map(s => [s.slug, s]));
 const byHost = Object.fromEntries(sites.map(s => [new URL(s.url).host, s.slug]));
-const count = Number(process.argv.find(a => /^\d+$/.test(a)) || cfg.per_day || 3);
+// default: top today up to per_day (pins already added today count), so the twice-daily schedule never adds more than per_day a day
+const today = new Date().toISOString().slice(0, 10);
+const doneToday = (cfg.pins || []).filter(p => p.added === today).length;
+const argCount = process.argv.find(a => /^\d+$/.test(a));
+const count = argCount ? Number(argCount) : Math.max(0, (cfg.per_day || 3) - doneToday);
 const dry = process.argv.includes("--dry-run");
 const MONEY_BONUS = 9;          // a money tool is due again this many schedule places sooner
 const MAX_HEADLINE = 48;        // longer headlines take 3 lines on the image
@@ -116,6 +120,7 @@ const days = Math.floor(left / (cfg.per_day || 3));
 console.log(`pins left to make: ${left} (about ${days} days at ${cfg.per_day || 3} a day)`);
 if (process.env.GITHUB_OUTPUT) writeFileSync(process.env.GITHUB_OUTPUT, `left=${left}\ndays=${days}\n`, { flag: "a" });
 
+if (!count) { console.log(`Already ${doneToday} pins added today (${today}); nothing to do.`); process.exit(0); }
 if (!picked.length) { console.log("No new pins possible: every page and FAQ question already has a pin. Add pages or hand-written pins."); process.exit(0); }
 for (const p of picked) console.log(`+ ${p.headline} | ${p.board} | ${bySlug[p.slug].url}${p.path} | ${p.visual}`);
 if (dry) { console.log("(dry run: nothing written)"); process.exit(0); }

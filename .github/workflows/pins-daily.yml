@@ -7,10 +7,11 @@ name: pins-daily
 on:
   schedule:
     - cron: '23 2 * * *'          # 02:23 UTC = 7:53 AM India, before the first US posting run
+    - cron: '47 13 * * *'         # 13:47 UTC = 7:17 PM India: a second chance if GitHub skipped the morning run (adds nothing if it worked)
   workflow_dispatch:
     inputs:
       count:
-        description: How many pins to add (empty = per_day in tools/pins-auto.json)
+        description: How many pins to add (empty = top today up to per_day in tools/pins-auto.json)
         default: ''
 
 permissions:
