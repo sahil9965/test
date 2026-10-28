@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -445,6 +445,36 @@
       "link": "https://punchcard.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Printable Punch Card Template: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "printable punch card template, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 44,
+      "title": "3 Phase Panel Schedule Template",
+      "description": "Free 3 phase panel schedule template for 120/208 V and 277/480 V panels: phases A, B, C by row, 2- and 3-pole breakers, VA per phase, PDF and Excel.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/3-phase-panel-schedule-template.png",
+      "link": "https://panelschedule.roohsites.com/3-phase-panel-schedule-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "3 Phase Panel Schedule Template: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "3 phase panel schedule template, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 45,
+      "title": "Printable Coat Check Tickets, Numbered",
+      "description": "Printable numbered coat check tickets in two parts: one half for the hanger, one for the guest, each with the same big number. Letter or A4, free PDF.",
+      "board": "Raffle & Event Tickets",
+      "image": "https://tools.roohsites.com/pins/printable-coat-check-tickets-numbered.png",
+      "link": "https://raffle.roohsites.com/coat-check-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Printable Coat Check Tickets, Numbered: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.",
+      "keywords": "printable coat check tickets, numbered, raffle tickets, fundraiser, printable tickets"
+    },
+    {
+      "day": 46,
+      "title": "Printable Bin Location Labels",
+      "description": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/printable-bin-location-labels.png",
+      "link": "https://fnsku.roohsites.com/bin-location-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Printable Bin Location Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.",
+      "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels"
     }
   ]
 }

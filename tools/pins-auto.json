@@ -323,6 +323,57 @@
       "desc": "Free printable punch card template: 10 business-card-size loyalty cards per page, with your logo, icons, serial numbers and matching backs. No login.",
       "keywords": "printable punch card template, punch card template, loyalty card, small business",
       "added": "2026-10-27"
+    },
+    {
+      "slug": "paneldex",
+      "file": "3-phase-panel-schedule-template",
+      "path": "/3-phase-panel-schedule-template",
+      "board": "Electrician Printables",
+      "headline": "3 Phase Panel Schedule Template",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Free 3 phase panel schedule template for 120/208 V and 277/480 V panels: phases A, B, C by row, 2- and 3-pole breakers, VA per phase, PDF and Excel.",
+      "keywords": "3 phase panel schedule template, panel schedule, breaker labels, electrician",
+      "added": "2026-10-28"
+    },
+    {
+      "slug": "ticketrun",
+      "file": "printable-coat-check-tickets-numbered",
+      "path": "/coat-check-tickets",
+      "board": "Raffle & Event Tickets",
+      "headline": "Printable Coat Check Tickets, Numbered",
+      "sub": "Printable numbered raffle tickets with stubs",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "visual": "tickets",
+      "desc": "Printable numbered coat check tickets in two parts: one half for the hanger, one for the guest, each with the same big number. Letter or A4, free PDF.",
+      "keywords": "printable coat check tickets, numbered, raffle tickets, fundraiser, printable tickets",
+      "added": "2026-10-28"
+    },
+    {
+      "slug": "preplabel",
+      "file": "printable-bin-location-labels",
+      "path": "/bin-location-labels",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "Printable Bin Location Labels",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
+      "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels",
+      "added": "2026-10-28"
     }
   ]
 }

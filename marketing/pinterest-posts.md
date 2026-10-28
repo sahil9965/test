@@ -404,3 +404,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free printable punch card template: 10 business-card-size loyalty cards per page, with your logo, icons, serial numbers and matching backs. No login.
 - **Alt text:** Printable Punch Card Template: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** printable punch card template, punch card template, loyalty card, small business
+
+## Day 44: 3 Phase Panel Schedule Template
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/3-phase-panel-schedule-template.png
+- **Link:** https://panelschedule.roohsites.com/3-phase-panel-schedule-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free 3 phase panel schedule template for 120/208 V and 277/480 V panels: phases A, B, C by row, 2- and 3-pole breakers, VA per phase, PDF and Excel.
+- **Alt text:** 3 Phase Panel Schedule Template: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** 3 phase panel schedule template, panel schedule, breaker labels, electrician
+
+## Day 45: Printable Coat Check Tickets, Numbered
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/printable-coat-check-tickets-numbered.png
+- **Link:** https://raffle.roohsites.com/coat-check-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable numbered coat check tickets in two parts: one half for the hanger, one for the guest, each with the same big number. Letter or A4, free PDF.
+- **Alt text:** Printable Coat Check Tickets, Numbered: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** printable coat check tickets, numbered, raffle tickets, fundraiser, printable tickets
+
+## Day 46: Printable Bin Location Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/printable-bin-location-labels.png
+- **Link:** https://fnsku.roohsites.com/bin-location-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.
+- **Alt text:** Printable Bin Location Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** printable bin location labels, amazon fba, fba prep, fnsku labels
