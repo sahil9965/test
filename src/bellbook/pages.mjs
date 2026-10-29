@@ -216,7 +216,8 @@ ${SNOW_TABLE}
   const faq = [
     ["What are A days and B days?", "On an A/B (alternating-day) block schedule, students take one set of classes on A days and a different set on B days, usually in longer class periods. The letters alternate only on school days, so each class meets every other school day and holidays or snow days can shift which letter lands on a date."],
     ["Can I check if tomorrow is an A day or B day?", "Yes. Below today's answer the page lists tomorrow's rotation day and the next two weeks of school days, so you can plan ahead for tests, gym clothes or band practice."],
-    ["How does the page know which day it is?", "It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into the link."],
+    ["How do I find out without a link from my school?", "Pick a recent school day you're sure of and what it was (for example last Friday was an A day), and add any days off since then. The page counts the school days from there, skipping weekends, and shows today, tomorrow and the next two weeks. It remembers your answers on that device. It assumes no other days off, so add a snow day or check with your school after a closure."],
+    ["How does the page know which day it is?", "It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into your school's link, or counted from the day you're sure of."],
     ["Where do I get the link for my school?", "Ask the teacher or office that publishes your rotation calendar. Teachers and admins can make one for free with the <a href=\"/\">A/B day calendar generator</a> by clicking “Copy ‘What day is it?’ link”."],
     ["Does the link still work after a snow day?", "Only if the calendar was updated. Whoever made the link should mark the snow day in BellBook and share the new link, because each link holds a fixed copy of the calendar."],
     ["Is any information sent to a server?", "No. The calendar sits after the # in the link, and browsers never send that part to the server. The page reads it on your device."],
@@ -224,10 +225,10 @@ ${SNOW_TABLE}
   pages.push({
     slug: "today", tool: "today", crumb: "Is today an A or B day?",
     title: "Is Today an A Day or B Day? Rotation Day Checker | BellBook",
-    desc: "Check if today is an A day or B day, plus tomorrow and the next two weeks. Teachers: set up your calendar in a minute and share a link or classroom poster.",
+    desc: "Is today an A day or B day? Pick one school day you're sure of and any days off, and see today's day, tomorrow's and the next two weeks. Free, no app.",
     h1: "Is today an A day or B day?",
-    lead: "Open your school's BellBook link to see today's rotation day, tomorrow's and the next two weeks. No app and no account.",
-    body: `      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Open the BellBook link your school or teacher shared and it shows today's rotation day straight away. Without a link, the page above shows an example calendar.</p>
+    lead: "Pick one school day you're sure of and any days off since, and see today's rotation day, tomorrow's and the next two weeks. If your school shared a BellBook link, open that instead. No app and no account.",
+    body: `      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Without a link, pick a day you're sure of above and add the days off since then: the page counts the school days for you. If your school or teacher shared a BellBook link, it shows the whole calendar, holidays included.</p>
 
       <h2>Why you can't tell from the date</h2>
       <p>On an A/B schedule the days alternate A, B, A, B, but only on school days. A three-day weekend, a teacher workday or a snow day stops the count, so a Monday can be an A day one week and a B day the next. That's why a printed list or a calendar that knows the days off is more reliable than guessing from the weekday.</p>
@@ -254,9 +255,9 @@ ${SNOW_TABLE}
       <p>Below that is a list of the next 10 school days with their labels. You can check any other date with the date box, or add the whole rotation to your own calendar with the .ics button. Both work on phones.</p>
 
       <h2>Private by design</h2>
-      <p>The calendar travels inside the link after the # sign. Browsers don't send that part to servers, so BellBook never receives your school's calendar or anything else about you. The page counts visits with cookie-free analytics only.</p>`,
+      <p>The calendar travels inside the link after the # sign. Browsers don't send that part to servers, so BellBook never receives your school's calendar or anything else about you. Without a link, the day you're sure of and your days off are saved only in this browser. The page counts visits with cookie-free analytics only.</p>`,
     faq,
-    graph: [crumbLd("today", "Is today an A or B day?"), WEBAPP("What day is it today? (BellBook)", `${URL}/today`, "Shows today's A/B or rotation day from a school's shared BellBook link."), faqLd(faq)],
+    graph: [crumbLd("today", "Is today an A or B day?"), WEBAPP("What day is it today? (BellBook)", `${URL}/today`, "Shows today's A/B or rotation day from a school's shared BellBook link, or counted from a school day you're sure of."), faqLd(faq)],
   });
 }
 

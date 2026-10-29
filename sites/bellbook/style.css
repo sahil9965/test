@@ -125,6 +125,12 @@ span.bb-d{cursor:default}
 .td-check label{margin:0 0 4px}
 .td-check input{width:auto}
 .td-demo{margin:0 0 14px}
+.tc-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;text-align:left;max-width:620px;margin:0 auto}
+.tc-form label{margin:0 0 4px}
+.tc-form select,.tc-form input{width:100%}
+.tc-offs{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.tc-offs li{background:var(--soft);border-radius:999px;padding:3px 6px 3px 12px;font-size:14px}
+.tc-x{border:0;background:none;cursor:pointer;font-size:16px;line-height:1;padding:0 4px;color:var(--muted)}
 /* roster pages */
 .bb-roster{order:5;margin-top:20px;box-shadow:none}
 .bb-roster>h3{margin:0 0 4px;font-size:19px}

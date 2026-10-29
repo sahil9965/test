@@ -209,6 +209,16 @@ export function compute(input) {
   res.counts = cfg.labels.map((l, i) => ({ label: l, long: cfg.fmt.replace("{L}", l), count: counts[i] }));
   return res;
 }
+// The /today page without a school link: the label index on day `d`, counted in school days from a day the visitor is sure of
+// (`ref` had label index `refIdx` of `n`). Weekends and the day numbers in `off` (a Set) are not school days. -1 when `d` is not one.
+export function rotationFrom(ref, refIdx, n, off, d) {
+  const school = x => wday(x) !== 0 && wday(x) !== 6 && !off.has(x);
+  if (!school(d)) return -1;
+  let steps = 0;
+  if (d >= ref) { for (let x = ref + 1; x <= d; x++) if (school(x)) steps++; }
+  else for (let x = d + 1; x <= ref; x++) if (school(x)) steps--;
+  return (((refIdx + steps) % n) + n) % n;
+}
 export const dayAt = (res, d) => (d >= res.s && d <= res.e ? res.days[d - res.s] : null);
 export function nextSchoolDay(res, from) {
   for (let d = Math.max(from, res.s); d <= res.e; d++) if (res.days[d - res.s].school) return res.days[d - res.s];
