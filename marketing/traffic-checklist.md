@@ -16,7 +16,6 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 - [x] **"Website by Rooh Sites" credit link** (done 29 Oct) in the footer of ksautolabel.com and halosell.com, pointing to `https://roohsites.com/` (a normal link, no nofollow). Or add the two repos to a session and I'll do it.
 - [x] **Pinterest website claim:** tools.roohsites.com is claimed (checked 29 Oct). But every pin links to a tool subdomain (raffle., labels., giftcert. and others), not to tools.roohsites.com, so also:
 - [ ] **Claim roohsites.com itself with a TXT record:** Pinterest → Claim → `https://roohsites.com` → "Add TXT record" → add that TXT record (host `@`) where the domain's DNS is managed. After 1–2 days, check whether pins to raffle.roohsites.com show the claimed-site attribution. If they don't, tell me and I'll add the tag to the busiest tool sites so you can claim them one by one.
-- Old instructions, for reference: Pinterest → Settings → Claimed accounts → Website → `tools.roohsites.com` → choose the HTML tag option and send me the tag. I add it to the hub page; then Pinterest credits the pins to your site and shows their stats.
 - [ ] **Directories, one a week**, with the copy in `directory-listings.md`: SaaSHub → Microlaunch → Fazier. AlternativeTo is in review until mid-December. Uneed: paste me the rejection message so I can fix the listing and you can resubmit.
 - [ ] **Videos:** record the 6 scripts in `short-videos.md` (raffle first: it's our biggest Google topic) plus the Rooh Sites video (script 7).
 
