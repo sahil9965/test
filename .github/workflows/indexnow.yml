@@ -1,0 +1,27 @@
+# Tells Bing (and the other IndexNow engines) about every page in the chosen sites' sitemaps. Run it by hand after big page
+# changes; nothing is deployed. The deploy workflow's "indexnow" option runs the same script after a deploy.
+name: IndexNow
+
+on:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: '"all" or space-separated slugs (hub = tools.roohsites.com)'
+        default: all
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Submit sitemaps to IndexNow
+        env:
+          SITES: ${{ inputs.sites }}
+        run: node tools/indexnow.mjs $SITES
