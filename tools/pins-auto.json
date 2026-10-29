@@ -7,7 +7,8 @@
     "giftstub",
     "punchperk",
     "paneldex",
-    "invoicekit"
+    "invoicekit",
+    "priceboard"
   ],
   "sites": {
     "invoicekit": {
@@ -168,6 +169,16 @@
         "Letter or A4"
       ],
       "keywords": "iep at a glance, special education, 504 plan"
+    },
+    "priceboard": {
+      "board": "Small Business Printables",
+      "visual": "menu",
+      "points": [
+        "Fits on one page",
+        "Print & Instagram sizes",
+        "No signup"
+      ],
+      "keywords": "salon price list, salon menu, beauty business"
     }
   },
   "pins": [
