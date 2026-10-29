@@ -1,4 +1,4 @@
-# Short videos: 6 scripts (YouTube Shorts, Instagram Reels, Facebook Reels)
+# Short videos: 7 scripts (YouTube Shorts, Instagram Reels, Facebook Reels)
 
 Each video is a 20–30 second **screen recording of the tool doing its job**, with big text on screen. No face, no voice needed (add a voice-over only if you like). Post one a day; when all 6 are up, record them again with the alternative hooks.
 
@@ -125,6 +125,28 @@ Times are approximate; shorter is fine.
 **Link:** https://labels.roohsites.com/meesho-label-crop-4x6?utm_source=youtube&utm_medium=shorts
 **Hashtags:** #meeshoseller #meesho #flipkartseller #onlineseller #thermalprinter #resellingindia
 **Alternative hooks:** "Flipkart label crop 4x6 free" (use labels.roohsites.com/flipkart-label-crop-4x6)
+
+---
+
+## 7. Rooh Sites: a website for your small business (for roohsites.com)
+**Title (YouTube):** A custom website for your small business: from $299, first draft in 5 business days
+
+| Time | On screen | Text on screen |
+|---|---|---|
+| 0–3 s | roohsites.com home page, top of the page | **Customers find you on Google Maps. Then what?** |
+| 3–8 s | Slow scroll through the hero | A custom website, made for phones |
+| 8–14 s | Scroll to "What you get", pause on the call, message and directions buttons | One tap to call, message or get directions |
+| 14–19 s | The pricing cards | **$299 one-time**, or **$39/month** with nothing up front |
+| 19–24 s | The work section: KS Auto Label, the inventory tracker card, the free tools | We also build web apps and 15 free tools |
+| 24–28 s | "How it works" | First draft in 5 business days |
+| 28–32 s | End card: tap **Book a 15-minute call** | **Book a 15-minute call: roohsites.com** |
+
+**Voice-over (optional):** "Customers find you on Google Maps. Then they look for your website. Rooh Sites builds custom websites for small businesses, made for phones, with one-tap call, message and directions buttons. Your domain is registered in your name. It's two hundred ninety-nine dollars one-time, or thirty-nine a month with nothing up front. You see a first draft in five business days. Book a fifteen-minute call at roohsites.com."
+**Caption:** Custom websites for small businesses in the US, UK, Canada and Australia. From $299 one-time, or $39/month with no setup fee (6-month minimum). Your domain stays in your name. First draft in 5 business days. Book a 15-minute call 👇
+**Link:** https://roohsites.com/?utm_source=instagram&utm_medium=reels (YouTube: utm_source=youtube&utm_medium=shorts)
+**Hashtags:** #smallbusiness #websitedesign #webdesigner #smallbusinessowner #localbusiness #websitedevelopment
+**Alternative hooks:** "Your business deserves more than a Facebook page" · "What a $299 website looks like" · "A booking page isn't a website" (salons and spas with only a GlossGenius or Booksy link)
+**Before recording:** open roohsites.com/?notrack=1 once on the phone you record with; don't show the /ops dashboard or the inside of the client's inventory tracker; no "trusted by" or client counts.
 
 ---
 
