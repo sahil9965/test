@@ -21,7 +21,8 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 
 ### Me
 - [x] **A/B day pages** (done 29 Oct): the searches are students asking "is today an A day or B day" (/today, position ~7, 94 impressions, 0 clicks). Without a school link the page only showed an example calendar; now it works the day out for any school from one day the visitor is sure of plus the days off, and remembers it on that device. Check Search Console clicks for /today in 2–3 weeks.
-- [ ] **Raffle and ABA pages:** same treatment for the queries that sit at positions 5–20 in Search Console.
+- [x] **Raffle pages** (done 29 Oct): titles already matched their searches, so the gap was searches that want a file ("raffle tickets 1-100 pdf", "meal ticket free download"). 11 ticket pages now link a ready-made numbered PDF (Letter and A4) under the generator; Umami counts downloads as ready_pdf.
+- [ ] **ABA pages:** same check against the Search Console queries at positions 5–20.
 - [ ] **Holiday pages now (Nov–Dec searches):** check the Christmas and holiday pages for gift certificates, raffle tickets and punch cards exist and are linked from the hubs. Pinterest needs holiday pins 30–45 days ahead (the 10 holiday pins are already in the schedule).
 - [ ] **Salon & spa price list maker** (this month's money tool), then **ScoreNight** next month (`tool-ideas.md`, games section).
 
