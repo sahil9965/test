@@ -142,9 +142,5 @@ jobs:
           echo "$table"
           { echo "### Post-deploy check"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
           # The custom host may still point at Vercel until DNS is switched, so it never fails the job.
-          if [ "$INDEXNOW" = true ]; then
-            for s in $SLUGS; do
-              host=$(S=$s node -p 'const s=JSON.parse(require("fs").readFileSync("sites.json","utf8")).find(x=>x.slug===process.env.S);s?new URL(s.url).host:"tools.roohsites.com"')
-              echo "IndexNow $host:"; curl -s -m 60 "https://$host/api/indexnow?go=1" | head -c 600 || true; echo
-            done
-          fi
+          # Submitted from this runner: IndexNow answered 429 to every site when the Pages Function called it from Cloudflare (29 Oct 2026).
+          if [ "$INDEXNOW" = true ]; then node tools/indexnow.mjs $SLUGS; fi

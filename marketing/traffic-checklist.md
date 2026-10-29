@@ -12,7 +12,7 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 
 ### You
 - [x] **Pinterest is posting** (done 29 Oct): open your Pinterest profile and check that today's 3 pins went up. If not, allow `tools.roohsites.com` in Claude desktop → Settings → Capabilities (network) for Cowork, then check again tomorrow.
-- [ ] **Bing Webmaster Tools** (free, about 5 minutes): bing.com/webmasters → sign in → "Import from Google Search Console". Bing results also feed DuckDuckGo and Yahoo. IndexNow (which tells Bing about new and changed pages) is set up but only runs when a deploy is started with its IndexNow option, so I run it after big page changes.
+- [x] **Bing Webmaster Tools** (done 29 Oct): roohsites.com verified and its sitemap submitted. The tool subdomains are not in that Bing site; instead all 16 tool sites (177 pages) went to Bing through IndexNow on 29 Oct, all accepted. After big page changes I run the "IndexNow" workflow (or a deploy with its IndexNow option) again. Bing results also feed DuckDuckGo and Yahoo.
 - [x] **"Website by Rooh Sites" credit link** (done 29 Oct) in the footer of ksautolabel.com and halosell.com, pointing to `https://roohsites.com/` (a normal link, no nofollow). Or add the two repos to a session and I'll do it.
 - [x] **Pinterest website claim:** tools.roohsites.com is claimed (checked 29 Oct). But every pin links to a tool subdomain (raffle., labels., giftcert. and others), not to tools.roohsites.com, so also:
 - [x] **Claim roohsites.com itself** (claimed 29 Oct, TXT record). Around 31 Oct: check whether pins to raffle.roohsites.com show the claimed-site attribution. If they don't, tell me and I'll add the tag to the busiest tool sites so you can claim them one by one.
