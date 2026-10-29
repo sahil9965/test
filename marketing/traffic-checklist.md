@@ -20,7 +20,7 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 - [ ] **Videos:** record the 6 scripts in `short-videos.md` (raffle first: it's our biggest Google topic) plus the Rooh Sites video (script 7).
 
 ### Me
-- [ ] **A/B day pages (positions 7–8):** make them the best answer on page 1: fuller FAQ from the real searches, a printable example near the top, links from the hub and BellBook's other pages. A move into the top 3 is where clicks start.
+- [x] **A/B day pages** (done 29 Oct): the searches are students asking "is today an A day or B day" (/today, position ~7, 94 impressions, 0 clicks). Without a school link the page only showed an example calendar; now it works the day out for any school from one day the visitor is sure of plus the days off, and remembers it on that device. Check Search Console clicks for /today in 2–3 weeks.
 - [ ] **Raffle and ABA pages:** same treatment for the queries that sit at positions 5–20 in Search Console.
 - [ ] **Holiday pages now (Nov–Dec searches):** check the Christmas and holiday pages for gift certificates, raffle tickets and punch cards exist and are linked from the hubs. Pinterest needs holiday pins 30–45 days ahead (the 10 holiday pins are already in the schedule).
 - [ ] **Salon & spa price list maker** (this month's money tool), then **ScoreNight** next month (`tool-ideas.md`, games section).
