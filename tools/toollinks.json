@@ -149,6 +149,7 @@
     ],
     "/salon-loyalty-card-template": [
       ["https://giftcert.roohsites.com/salon-gift-certificate-template", "Salon gift certificate template", "numbered certificates with stubs for salon services"],
+      ["https://pricelist.roohsites.com/hair-salon-price-list-template", "Salon price list template", "print your service menu or post it on Instagram"],
       ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients and keep a copy of every sale"]
     ],
     "/behavior-punch-card-printable": [
@@ -164,6 +165,25 @@
     "*": [
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for team fundraisers"],
       ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "track practice goals with a printable punch card"]
+    ]
+  },
+  "priceboard": {
+    "*": [
+      ["https://giftcert.roohsites.com/salon-gift-certificate-template", "Salon gift certificate template", "sell numbered gift certificates for your services"],
+      ["https://punchcard.roohsites.com/salon-loyalty-card-template", "Salon loyalty punch card", "bring clients back with a printable punch card"],
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients and keep a copy of every sale"]
+    ],
+    "/spa-menu-template": [
+      ["https://giftcert.roohsites.com/massage-gift-certificate-template", "Massage gift certificate template", "numbered spa and massage gift certificates with stubs"],
+      ["https://punchcard.roohsites.com/salon-loyalty-card-template", "Salon and spa loyalty punch card", "bring clients back with a printable punch card"]
+    ],
+    "/barber-price-list-template": [
+      ["https://punchcard.roohsites.com/salon-loyalty-card-template", "Barber loyalty punch card", "buy 7 cuts, get the 8th free, with scissors punches"],
+      ["https://giftcert.roohsites.com/", "Numbered gift certificate maker", "sell haircut gift certificates with matching stubs"]
+    ],
+    "/how-to-price-salon-services": [
+      ["https://invoice.roohsites.com/", "Free invoice generator", "bill clients and keep a copy of every sale"],
+      ["https://giftcert.roohsites.com/salon-gift-certificate-template", "Salon gift certificate template", "sell numbered gift certificates for your services"]
     ]
   },
   "glancesheet": {

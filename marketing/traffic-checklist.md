@@ -11,6 +11,7 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 ## One-time: do these first
 
 ### You
+- [ ] **PriceBoard domain** (one time): Cloudflare → Workers & Pages → rooh-priceboard → Custom domains → Set up a custom domain → `pricelist.roohsites.com` → Activate domain. Tell me when it opens and I'll switch on its pins and the roohsites.com links.
 - [x] **Pinterest is posting** (done 29 Oct): open your Pinterest profile and check that today's 3 pins went up. If not, allow `tools.roohsites.com` in Claude desktop → Settings → Capabilities (network) for Cowork, then check again tomorrow.
 - [x] **Bing Webmaster Tools** (done 29 Oct): roohsites.com verified and its sitemap submitted. The tool subdomains are not in that Bing site; instead all 16 tool sites (177 pages) went to Bing through IndexNow on 29 Oct, all accepted. After big page changes I run the "IndexNow" workflow (or a deploy with its IndexNow option) again. Bing results also feed DuckDuckGo and Yahoo.
 - [x] **"Website by Rooh Sites" credit link** (done 29 Oct) in the footer of ksautolabel.com and halosell.com, pointing to `https://roohsites.com/` (a normal link, no nofollow). Or add the two repos to a session and I'll do it.
@@ -24,7 +25,8 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 - [x] **Raffle pages** (done 29 Oct): titles already matched their searches, so the gap was searches that want a file ("raffle tickets 1-100 pdf", "meal ticket free download"). 11 ticket pages now link a ready-made numbered PDF (Letter and A4) under the generator; Umami counts downloads as ready_pdf.
 - [ ] **ABA pages:** same check against the Search Console queries at positions 5–20.
 - [ ] **Holiday pages now (Nov–Dec searches):** check the Christmas and holiday pages for gift certificates, raffle tickets and punch cards exist and are linked from the hubs. Pinterest needs holiday pins 30–45 days ahead (the 10 holiday pins are already in the schedule).
-- [ ] **Salon & spa price list maker** (this month's money tool), then **ScoreNight** next month (`tool-ideas.md`, games section).
+- [x] **Salon & spa price list maker** (built 29 Oct): **PriceBoard** at pricelist.roohsites.com. It has 7 sample menus, print sizes from 5 × 7 in to Tabloid, and Instagram, story and TV images, with 7 landing pages and a "how to price salon services" guide. It shows the "Need a website?" card after a download and has Amazon supplies (sign holders, cardstock, laminating pouches). Once the domain works: Pinterest pins switch on, and the salon, barbershop and spa pages on roohsites.com link to it.
+- [ ] **ScoreNight** next month (`tool-ideas.md`, games section).
 
 ## Daily (about 20–30 minutes, you)
 - [ ] **Pinterest:** glance at the profile: 3 new pins? (1 minute)

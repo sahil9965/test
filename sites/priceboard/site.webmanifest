@@ -1,0 +1,15 @@
+{
+  "name": "PriceBoard",
+  "short_name": "PriceBoard",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#8e3b5f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

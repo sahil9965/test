@@ -250,6 +250,10 @@ function visual(kind, accent, p = {}) {
     return `<div class="punches">${[6, 3].map(on => `<div class="pc"><b>${esc(c.name)}</b><em>${esc(c.reward)}</em><div class="dots">${Array.from({ length: 10 }, (_, i) =>
       i === 9 ? `<span class="free">FREE</span>` : `<span class="${i < on ? "on" : ""}"></span>`).join("")}</div></div>`).join("")}</div>`;
   }
+  if (kind === "menu") {
+    const rows = [["Women's cut & style", "$65+"], ["Men's cut", "$40+"], ["Blow-dry & style", "$45+"], ["All-over color", "$110+"], ["Balayage", "$195+"], ["Deep conditioning", "$25"]];
+    return `<div class="mn"><div class="mn-h">Your Salon Name</div><div class="mn-s">CUTS &amp; COLOR</div>${rows.map(([n, pr]) => `<div class="mn-r"><span>${n}</span><i></i><b>${pr}</b></div>`).join("")}</div>`;
+  }
   // document (invoice / transcript)
   return `<div class="doc"><div class="doc-h"><b></b><i></i></div>${Array.from({ length: 6 }, (_, i) => `<div class="doc-r"><span style="width:${50 + (i * 13) % 30}%"></span><em></em></div>`).join("")}<div class="doc-t"><span>Total</span><b></b></div></div>`;
 }
@@ -309,6 +313,12 @@ figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-b
 .fn-bars{height:110px;background:repeating-linear-gradient(90deg,#1b1b1f 0 5px,#fff 5px 8px,#1b1b1f 8px 10px,#fff 10px 15px,#1b1b1f 15px 18px,#fff 18px 21px)}
 .fn-l b{font-size:28px;letter-spacing:.08em}.fn-l span{font-size:20px;color:#444}
 .pnl{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.mn{background:#fff;border:3px solid #1b1b1f;border-radius:14px;width:100%;padding:30px 44px 34px}
+.mn-h{font-family:Georgia,'Times New Roman',serif;font-size:46px;font-weight:700;text-align:center}
+.mn-s{color:${accent};font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:28px;letter-spacing:.05em;border-bottom:2px solid ${accent}44;margin:22px 0 8px;padding-bottom:8px}
+.mn-r{display:flex;align-items:baseline;gap:12px;font-size:30px;padding:9px 0}
+.mn-r i{flex:1;border-bottom:5px dotted #b5b5bb;transform:translateY(-7px)}
+.mn-r b{font-weight:800}
 .pnl-h{background:${accent};color:#fff;font-size:28px;font-weight:800;padding:16px 22px;letter-spacing:.04em}
 .pnl-r{display:grid;grid-template-columns:1fr 70px 70px 1fr;border-top:2px solid #ddd}.pnl-r span{font-size:26px;padding:20px 18px}.pnl-r span:last-child{text-align:right}
 .pnl-r b{font-size:28px;text-align:center;padding:20px 0;background:${accent}18;border-left:2px solid #ddd;border-right:2px solid #ddd}
@@ -364,7 +374,7 @@ const BOARDS = {
   "Landlord & Tenant Checklists": "Free move-in, move-out and inspection checklists with dated photos for renters and landlords.",
   "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
   "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
-  "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
+  "Small Business Printables": "Free printable gift certificates, loyalty punch cards, vouchers and price lists for salons, spas, cafés and small shops.",
   "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
   "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
   "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
@@ -387,7 +397,8 @@ const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching 
   certificate: "a gift certificate with a numbered tear-off stub", punch: "two loyalty punch cards with ten punch circles and a free reward",
   fnsku: "a sheet of FNSKU barcode labels with product names", panel: "a two-column breaker panel schedule with numbered circuits",
   strips: "numbered breaker labels with short circuit names and cut lines", week: "a weekly stream schedule with days, times and stream titles",
-  lineup: "a fielding rotation chart with positions for each inning and bench turns" };
+  lineup: "a fielding rotation chart with positions for each inning and bench turns",
+  menu: "a salon price list with services, dot leaders and prices" };
 const byFile = Object.fromEntries(ALL.map(p => [p.file, p]));
 const schedule = ORDER.concat(AUTO.map(p => p.file)).map((f, i) => {
   const p = byFile[f], s = sites[p.slug];

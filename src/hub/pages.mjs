@@ -16,6 +16,7 @@ const tools = JSON.parse(readFileSync(join(ROOT, "sites.json"), "utf8")).filter(
 const INFO = {
   invoicekit: { group: "Business & freelancing", who: "freelancers and small businesses", what: "Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF." },
   giftstub: { group: "Business & freelancing", who: "salons, spas, photographers and other small businesses", what: "Print numbered gift certificates with matching stubs, 3 per page, and keep a simple log of which numbers were sold and redeemed." },
+  priceboard: { group: "Business & freelancing", who: "hair salons, barbers, nail studios, spas, lash artists and estheticians", what: "Type your services and prices and get a one-page price list that fits automatically, as a print-ready PDF or an image for Instagram or a TV screen." },
   punchperk: { group: "Business & freelancing", who: "cafés, salons, car washes and other small businesses, plus teachers", what: "Print loyalty punch cards 10 per page on business-card sheets, with serial numbers, matching backs and a QR code." },
   labelfit: { group: "Online sellers & shipping", who: "Vinted, eBay, Etsy and USPS shippers", what: "Turn A4 or letter-size shipping label PDFs into crisp 6x4 / 100x150 mm thermal labels, with packing slips split off." },
   preplabel: { group: "Online sellers & shipping", who: "Amazon FBA sellers and prep centers", what: "Print Code 128 FNSKU labels for thermal rolls or Avery-size sheets, plus suffocation warning, sold-as-set and bin labels." },

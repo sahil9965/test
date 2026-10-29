@@ -6,6 +6,7 @@
     "giftstub": { "events": ["certificates_generated"], "done": "Your gift certificates are ready.", "ask": "Need a simple website for your salon, spa or shop?" },
     "punchperk": { "events": ["pdf_download", "png_download"], "done": "Your punch cards are ready.", "ask": "Need a simple website for your café, salon or shop?" },
     "invoicekit": { "events": ["pdf_download"], "done": "Your invoice is ready.", "ask": "Need a simple website for your business?" },
-    "paneldex": { "events": ["export"], "done": "Your panel schedule is ready.", "ask": "Need a simple website for your electrical business?" }
+    "paneldex": { "events": ["export"], "done": "Your panel schedule is ready.", "ask": "Need a simple website for your electrical business?" },
+    "priceboard": { "events": ["pdf_download", "png_download"], "done": "Your price list is ready.", "ask": "Want this menu on a website clients can book from?" }
   }
 }

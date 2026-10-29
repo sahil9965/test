@@ -1,0 +1,30 @@
+# PriceBoard
+
+> PriceBoard is a free online maker for salon and spa price lists and service menus. It works with no signup and runs entirely in the browser (nothing is uploaded). You start from a sample menu (hair salon, barbershop, nail salon, spa & massage, lash & brow, esthetician & waxing, or blank), edit sections and services with a price and an optional note, or paste an existing price list as text. It fits up to 150 services in up to 12 sections on one page, choosing the largest text size and 1 to 3 columns automatically, with optional dot leaders. Print sizes: US Letter, A4, Tabloid (11 x 17 in), A3, Half Letter, A5 and 5 x 7 in (small sizes can print centred on a full sheet with crop marks), portrait or landscape. Image sizes: Instagram post 1080 x 1080 px, story 1080 x 1920 px, TV screen 1920 x 1080 px. Four styles (clean, colour band, soft, dark), three fonts, a logo, fine print, a contact line and a static QR code to a booking page. Output: one-page PDF and PNG. Every feature is free. There is no paid tier. Printed PDFs carry a small "Made with PriceBoard" line at the bottom; images have none.
+
+## Tool
+- [Salon price list template](https://pricelist.roohsites.com/): make a salon, barber, nail or spa price list and download a print-ready PDF or a PNG.
+
+## Templates
+- [Hair salon price list template](https://pricelist.roohsites.com/hair-salon-price-list-template): cuts, color and treatments with starting prices.
+- [Barber price list template](https://pricelist.roohsites.com/barber-price-list-template): haircuts, beard and shave, extras; poster and TV sizes.
+- [Nail salon price list template](https://pricelist.roohsites.com/nail-salon-price-list-template): manicures, pedicures and enhancements.
+- [Spa menu template](https://pricelist.roohsites.com/spa-menu-template): massage, facials and body treatments with treatment times.
+- [Lash and brow price list](https://pricelist.roohsites.com/lash-and-brow-price-list): full sets, fills, lifts and brows.
+- [Esthetician price list template](https://pricelist.roohsites.com/esthetician-price-list-template): facials, peels and a waxing menu.
+- [Instagram price list template](https://pricelist.roohsites.com/instagram-price-list-template): 1080 x 1080 post and 1080 x 1920 story images.
+
+## Guides
+- [How to price salon services](https://pricelist.roohsites.com/how-to-price-salon-services): a cost-per-hour method with a worked example (made-up numbers).
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: services, prices, logos and settings stay in the browser. Nothing is uploaded.
+- Output: one-page PDF (pdf-lib, standard PDF fonts) and PNG (print sizes at 300 dpi, image sizes at their pixel size).
+- A price typed as a plain number gets the chosen currency sign ($, £, € or none); "45+" prints as a starting price ($45+).
+- Sample businesses, phone numbers and prices are placeholders, not price advice.
+- Not affiliated with Canva, Adobe, any booking app or any print shop.
+
+## Optional
+- [About](https://pricelist.roohsites.com/about)
+- [Privacy & Terms](https://pricelist.roohsites.com/privacy)

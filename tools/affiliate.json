@@ -192,6 +192,27 @@
           "3 ring binder 1 inch"
         ]
       ]
+    },
+    "priceboard": {
+      "intro": "The maker is free. For printing and showing your price list, these are the usual supplies:",
+      "us": [
+        [
+          "Acrylic sign holders, 8.5 x 11 inch",
+          "acrylic sign holder 8.5 x 11"
+        ],
+        [
+          "Acrylic sign holders, 5 x 7 inch",
+          "acrylic sign holder 5 x 7"
+        ],
+        [
+          "Matte cardstock, 8.5 x 11 inch",
+          "matte white cardstock 8.5 x 11"
+        ],
+        [
+          "Laminating pouches, letter size",
+          "laminating pouches letter size"
+        ]
+      ]
     }
   }
 }
