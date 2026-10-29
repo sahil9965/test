@@ -43,8 +43,10 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 - [ ] **Me (automatic):** the pins-daily workflow tops up pins twice a day and opens a GitHub issue if fewer than 30 days are left. Nothing to do unless an issue appears.
 
 ## Monthly
+- [ ] **Me: one roohsites.com guide a month** for US small businesses, from the queue in the agency repo (`brand/guides/TOPICS.md`), linked to the matching trade page under roohsites.com/websites-for/.
 - [ ] **You:** export Search Console → Performance → last 28 days → Export → ZIP (Queries and Pages), and send it to me.
 - [ ] **Me:** from the export, find queries at positions 5–20 and fix titles, add FAQ answers or write a new page for each; add pages only where Search Console shows demand.
+- [ ] **Me: Amazon rule pages check.** Google's AI answers quote PrepLabel's Amazon pages (suffocation warning label, expiration date label, FNSKU requirements). Each month, check them against Amazon's current Seller Central help pages and update the "Last updated" date; wrong rules quoted by an AI answer would hurt trust.
 - [ ] **Me:** one new money tool (salon price list → ScoreNight → contractor estimate maker).
 - [ ] **Me:** a one-page report against the milestones (month 3: 3–5k page views; month 6: 15–25k). If month 6 is far below, we change course instead of building more.
 - [ ] **Seasonal pages, 6 weeks ahead:**
