@@ -4,6 +4,7 @@ import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { READY, PAPERS } from "./ready-pdfs.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, "../../sites/ticketrun");
@@ -104,6 +105,15 @@ function toolSection(o) {
   return `    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool"${attrs}></div></section>\n`;
 }
 
+// A ready-made, already numbered PDF (src/ticketrun/ready-pdfs.mjs) for pages whose searches ask for a file ("... pdf", "free download").
+function readySection(path) {
+  const r = READY.find(x => x.page === path);
+  if (!r) return "";
+  const per = r.perPage || (r.preset === "drink" ? 20 : 10), sheets = Math.ceil((r.end - r.start + 1) / per);
+  const links = PAPERS.map(([p, label]) => `<a href="/pdf/${r.file}-${p}.pdf" download data-umami-event="ready_pdf" data-umami-event-file="${r.file}-${p}">${label} PDF</a>`).join(" · ");
+  return `    <section class="ready card" aria-label="Ready-made PDF"><p><strong>Just need them printed?</strong> Download ${esc(r.what)} already numbered ${r.start}–${r.end.toLocaleString("en-US")}, with blank lines to fill in by hand: ${links} <span class="muted">(${sheets} sheets, ${per} per page)</span>. To print your own event name, prize, price or logo instead, use the generator above.</p></section>\n`;
+}
+
 function page({ path, title, desc, h1, lead, badges, tool, body, faq = [], crumb, schema = [], nav, noRelated, lang, date }) {
   const isHome = path === "/";
   const graph = [];
@@ -128,7 +138,7 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
       <h1>${esc(h1)}</h1>
       <p class="lead">${lead}</p>
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
-${tool ? toolSection(tool) : ""}    <article class="content narrow">
+${tool ? toolSection(tool) : ""}${readySection(path)}    <article class="content narrow">
 ${body}
 ${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal advice.", date)}
     </article>
@@ -366,7 +376,7 @@ for (const [N0, R] of Object.entries(RANGE)) {
   P.push({
     path: `/raffle-tickets-1-${N}`, crumb: `Raffle tickets 1-${N}`, tool: { preset: "raffle", start: 1, end: N },
     title: R.title, desc: R.desc, h1: `Raffle Tickets 1-${N}, Printable with Stubs`, lead: R.lead,
-    body: `      <p class="tldr"><strong>Quick answer:</strong> Raffle tickets 1-${N} print on ${n(Math.ceil(N / 10))} sheets at 10 per page (or ${n(Math.ceil(N / 8))} sheets at 8 per page). The generator above is already set to ${first}–${N}: change the event name, prize, date and price, then click <em>Download PDF</em> and print at 100% scale.</p>
+    body: `      <p class="tldr"><strong>Quick answer:</strong> Raffle tickets 1-${N} print on ${n(Math.ceil(N / 10))} sheets at 10 per page (or ${n(Math.ceil(N / 8))} sheets at 8 per page). The generator above is already set to ${first}–${N}: change the event name, prize, date and price, then click <em>Download PDF</em> and print at 100% scale. Or download the ready-made PDF under the generator: already numbered, with blank lines to fill in by hand.</p>
       <p>${R.intro}</p>
 
       <h2>1-${N} at a glance</h2>

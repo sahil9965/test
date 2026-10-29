@@ -93,3 +93,5 @@ details.tr-fold p{margin:8px 0 0}
 .cards p{margin:0;font-size:15px;color:var(--muted)}
 .note{background:var(--soft);border-radius:10px;padding:12px 16px;font-size:15px}
 @media print{.tr,.tp{display:none!important}}
+.ready{padding:14px 18px;margin:14px 0 0}
+.ready p{margin:0;font-size:15px;line-height:1.5}
