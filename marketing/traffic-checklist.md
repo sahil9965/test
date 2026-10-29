@@ -12,7 +12,7 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 
 ### You
 - [ ] **Pinterest is posting:** open your Pinterest profile and check that today's 3 pins went up. If not, allow `tools.roohsites.com` in Claude desktop → Settings → Capabilities (network) for Cowork, then check again tomorrow.
-- [ ] **Bing Webmaster Tools** (free, about 5 minutes): bing.com/webmasters → sign in → "Import from Google Search Console". Bing results also feed DuckDuckGo and Yahoo. Our pages already ping Bing through IndexNow when they change.
+- [ ] **Bing Webmaster Tools** (free, about 5 minutes): bing.com/webmasters → sign in → "Import from Google Search Console". Bing results also feed DuckDuckGo and Yahoo. IndexNow (which tells Bing about new and changed pages) is set up but only runs when a deploy is started with its IndexNow option, so I run it after big page changes.
 - [ ] **"Website by Rooh Sites" credit link** in the footer of ksautolabel.com and halosell.com, pointing to `https://roohsites.com/` (a normal link, no nofollow). Or add the two repos to a session and I'll do it.
 - [ ] **Pinterest website claim** (if not done): Pinterest → Settings → Claimed accounts → Website → `tools.roohsites.com` → choose the HTML tag option and send me the tag. I add it to the hub page; then Pinterest credits the pins to your site and shows their stats.
 - [ ] **Directories, one a week**, with the copy in `directory-listings.md`: SaaSHub → Microlaunch → Fazier. AlternativeTo is in review until mid-December. Uneed: paste me the rejection message so I can fix the listing and you can resubmit.
