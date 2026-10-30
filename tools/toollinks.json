@@ -54,7 +54,8 @@
     "*": [
       ["https://giftcert.roohsites.com/gift-certificate-template-with-stub", "Gift certificate template with stub", "numbered certificates for donated prizes or sales"],
       ["https://invoice.roohsites.com/", "Free invoice generator", "bill sponsors and vendors for your event"],
-      ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "rotate positions fairly for your youth team"]
+      ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "rotate positions fairly for your youth team"],
+      ["https://scoresheet.roohsites.com/", "Printable game score sheets", "score sheets for a family game night fundraiser"]
     ],
     "/lucky-draw-coupon-generator": [
       ["https://invoice.roohsites.com/gst-invoice-generator", "GST invoice generator", "bill sponsors and stall holders with a GST invoice"],
@@ -164,7 +165,8 @@
   "lineupfair": {
     "*": [
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for team fundraisers"],
-      ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "track practice goals with a printable punch card"]
+      ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "track practice goals with a printable punch card"],
+      ["https://scoresheet.roohsites.com/", "Printable score sheets for game night", "Yahtzee, Farkle and card game sheets with names printed on"]
     ]
   },
   "priceboard": {
@@ -190,6 +192,13 @@
     "*": [
       ["https://abagraph.roohsites.com/iep-data-sheet-generator", "IEP data sheet generator", "collect data on the goals in each student's IEP"],
       ["https://abagraph.roohsites.com/iep-progress-monitoring-graph", "IEP progress monitoring graph", "graph goal progress for progress reports"]
+    ]
+  },
+  "scorenight": {
+    "*": [
+      ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for a game night or fundraiser raffle"],
+      ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "a punch for every family game night"],
+      ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "fair positions for a youth team"]
     ]
   }
 }

@@ -213,6 +213,27 @@
           "laminating pouches letter size"
         ]
       ]
+    },
+    "scorenight": {
+      "intro": "The score sheets are free. If you're setting up a game night, these are the usual supplies:",
+      "us": [
+        [
+          "Yahtzee dice game",
+          "yahtzee dice game"
+        ],
+        [
+          "Farkle dice set with cup",
+          "farkle dice game set"
+        ],
+        [
+          "Mexican Train double 12 domino set",
+          "mexican train double 12 dominoes"
+        ],
+        [
+          "Score pads and clipboards",
+          "score pad clipboard game night"
+        ]
+      ]
     }
   }
 }

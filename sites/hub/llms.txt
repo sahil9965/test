@@ -1,6 +1,6 @@
 # Rooh Sites Tools
 
-> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 16 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
+> Rooh Sites Tools (https://tools.roohsites.com) is a collection of 17 free, private web tools made by Rooh Sites (https://roohsites.com), a web design studio. Every tool runs entirely in the browser (nothing is uploaded), needs no signup and has no paid tier.
 
 ## Tools
 - [InvoiceKit: Free invoice generator](https://invoice.roohsites.com/): Create a professional invoice with tax, VAT or GST (CGST + SGST split), your logo and saved clients, then download a PDF. For freelancers and small businesses.
@@ -19,6 +19,7 @@
 - [LineupFair: Baseball lineup rotation generator](https://lineup.roohsites.com/): Generate a fair inning-by-inning fielding rotation with equal bench time and infield innings, then print a dugout card and field diagram. For youth baseball, softball and t-ball coaches.
 - [GlanceSheet: IEP at a Glance maker](https://iepglance.roohsites.com/): Turn each student's IEP or 504 plan into a one-page at-a-glance sheet, print a whole caseload, and build a class accommodations matrix for gen-ed teachers. For special education case managers and teachers.
 - [PriceBoard: Salon price list maker](https://pricelist.roohsites.com/): Type your services and prices and get a one-page price list that fits automatically, as a print-ready PDF or an image for Instagram or a TV screen. For hair salons, barbers, nail studios, spas, lash artists and estheticians.
+- [ScoreNight: Game score sheet maker](https://scoresheet.roohsites.com/): Print score sheets for Yahtzee-style dice games, Farkle, Mexican Train and any card game with your players' names, or keep score on a phone that adds up the totals and names the winner. For families, friends, seniors' game groups and game clubs.
 
 ## About
 - [Rooh Sites](https://roohsites.com/): web design studio building websites for local businesses.

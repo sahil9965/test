@@ -14,5 +14,6 @@
   {"slug": "punchperk", "name": "PunchPerk", "url": "https://punchcard.roohsites.com", "label": "Printable punch card maker", "tagline": "Loyalty punch cards, 10 per page", "accent": "#4d7c0f", "accentDark": "#bef264", "glyph": "☕", "live": true},
   {"slug": "lineupfair", "name": "LineupFair", "url": "https://lineup.roohsites.com", "label": "Baseball lineup rotation generator", "tagline": "Fair fielding rotations for youth baseball", "accent": "#0f4c81", "accentDark": "#93c5fd", "glyph": "⚾", "live": true},
   {"slug": "glancesheet", "name": "GlanceSheet", "url": "https://iepglance.roohsites.com", "label": "IEP at a Glance maker", "tagline": "One-page IEP and 504 summaries for teachers", "accent": "#6b21a8", "accentDark": "#d8b4fe", "glyph": "📋", "live": true},
-  {"slug": "priceboard", "name": "PriceBoard", "url": "https://pricelist.roohsites.com", "label": "Salon price list maker", "tagline": "Salon and spa price lists for print and Instagram", "accent": "#8e3b5f", "accentDark": "#f0a6c8", "glyph": "💈", "live": true}
+  {"slug": "priceboard", "name": "PriceBoard", "url": "https://pricelist.roohsites.com", "label": "Salon price list maker", "tagline": "Salon and spa price lists for print and Instagram", "accent": "#8e3b5f", "accentDark": "#f0a6c8", "glyph": "💈", "live": true},
+  {"slug": "scorenight", "name": "ScoreNight", "url": "https://scoresheet.roohsites.com", "label": "Game score sheet maker", "tagline": "Score sheets for Yahtzee, Farkle and game night", "accent": "#1f6f43", "accentDark": "#6ee7b7", "glyph": "🎲", "live": true}
 ]

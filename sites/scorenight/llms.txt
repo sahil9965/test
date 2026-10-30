@@ -1,0 +1,25 @@
+# ScoreNight
+
+> ScoreNight is a free online maker for printable game score sheets and a phone score keeper. It works with no signup and runs entirely in the browser (nothing is uploaded). Games: a dice score card for Yahtzee and other 5-dice games (one card per player, 1 to 6 games per card, the 35-point upper bonus at 63 and every box's points printed), Farkle (a turn-by-turn sheet with Score and Total columns for 2 to 8 players, editable points to get on the board and points to win, and the scoring chart), Mexican Train dominoes (one row per round from the highest double to the double blank, double-6, 9, 12 or 15 sets, lowest total wins) and a blank sheet for any game (title, 3 to 30 rounds, 2 to 10 players, highest or lowest total wins). Player names print on the sheet. Paper: US Letter or A4, 1, 2 or 4 sheets per page, and a large-print option. The phone score keeper adds up totals, applies the Yahtzee upper bonus and the Farkle entry minimum and final round, and names the winner; scores are saved in the browser. Output: PDF. Every feature is free. There is no paid tier. Printed PDFs carry a small "Made with ScoreNight" line at the bottom of each page.
+
+## Tool
+- [Printable score sheets](https://scoresheet.roohsites.com/): make score sheets for Yahtzee, Farkle, Mexican Train or any game and download a print-ready PDF.
+- [Online score keeper](https://scoresheet.roohsites.com/online-score-keeper): keep score on a phone with automatic totals and winner.
+
+## Score sheets
+- [Yahtzee score sheet](https://scoresheet.roohsites.com/yahtzee-score-sheet): one card per player, 6 games per card, 2 or 4 cards per page, large print.
+- [Farkle score sheet](https://scoresheet.roohsites.com/farkle-score-sheet): Score and Total columns per player with the scoring chart.
+- [Farkle scoring chart](https://scoresheet.roohsites.com/farkle-scoring-chart): points for every combination and the common house rules.
+- [Mexican Train score sheet](https://scoresheet.roohsites.com/mexican-train-score-sheet): 13 rounds for a double-12 set, lowest total wins.
+- [Blank score sheet template](https://scoresheet.roohsites.com/printable-score-sheet): any game, your title and rounds.
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: names, settings and scores stay in the browser. Nothing is uploaded.
+- Farkle default chart: single 1 = 100, single 5 = 50, three 1s = 1,000 (or 300), three of a kind = 100 x the number, four of a kind = 1,000, five = 2,000, six = 3,000, straight 1-6 = 1,500, three pairs = 1,500, four of a kind + a pair = 1,500, two triplets = 2,500; an optional doubling rule.
+- Rules vary by table; the sheets print the common rules plus the house rules you choose.
+- Not affiliated with Hasbro, Mattel, Patch Products or any game maker. Yahtzee is a trademark of Hasbro.
+
+## Optional
+- [About](https://scoresheet.roohsites.com/about)
+- [Privacy & Terms](https://scoresheet.roohsites.com/privacy)
