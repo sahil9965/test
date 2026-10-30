@@ -8,7 +8,8 @@
     "punchperk",
     "paneldex",
     "invoicekit",
-    "priceboard"
+    "priceboard",
+    "scorenight"
   ],
   "sites": {
     "invoicekit": {
@@ -179,6 +180,16 @@
         "No signup"
       ],
       "keywords": "salon price list, salon menu, beauty business"
+    },
+    "scorenight": {
+      "board": "Family Game Night",
+      "visual": "scores",
+      "points": [
+        "Names printed on",
+        "Yahtzee, Farkle, Mexican Train",
+        "Phone score keeper"
+      ],
+      "keywords": "yahtzee score sheet, farkle, game night printables"
     }
   },
   "pins": [
@@ -486,6 +497,57 @@
       "visual": "punch",
       "desc": "Free behavior punch card printable for teachers: star punches, a prize at the end, a name line and 10 cards per page. Print for a whole class in minutes.",
       "keywords": "behavior punch card printable, punch card template, loyalty card, small business",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "scorenight",
+      "file": "free-printable-score-sheets-for-game-night",
+      "path": "/",
+      "board": "Family Game Night",
+      "headline": "Free Printable Score Sheets for Game Night",
+      "sub": "Score sheets for Yahtzee, Farkle and game night",
+      "points": [
+        "Names printed on",
+        "Yahtzee, Farkle, Mexican Train",
+        "Phone score keeper"
+      ],
+      "visual": "scores",
+      "desc": "Free printable score sheets for Yahtzee, Farkle, Mexican Train and any card game, with names printed on, large print and a phone score keeper. No login.",
+      "keywords": "printable score sheets for game night, yahtzee score sheet, farkle, game night printables",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "collabrate",
+      "file": "beginner-ugc-rate-card-no-followers-needed",
+      "path": "/beginner-ugc-rate-card",
+      "board": "Creator Rate Cards",
+      "headline": "Beginner UGC Rate Card (No Followers Needed)",
+      "sub": "You don't need an audience to charge for UGC",
+      "points": [
+        "Usage rights & whitelisting",
+        "Quote PDF + rate card",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Make a beginner UGC rate card with no followers or portfolio needed. Starting rates, “from” prices, usage rights and a free PNG or PDF rate card download.",
+      "keywords": "beginner ugc rate card (no followers needed), ugc rates, ugc creator, influencer rate card",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "paneldex",
+      "file": "42-circuit-panel-schedule-template",
+      "path": "/42-circuit-panel-schedule",
+      "board": "Electrician Printables",
+      "headline": "42 Circuit Panel Schedule Template",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Free 42 circuit panel schedule template: circuits 1–41 down the left, 2–42 down the right, legs or phases per row, with PDF, Excel, directory and labels.",
+      "keywords": "42 circuit panel schedule template, panel schedule, breaker labels, electrician",
       "added": "2026-10-30"
     }
   ]

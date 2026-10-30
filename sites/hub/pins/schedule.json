@@ -13,7 +13,8 @@
     "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
     "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
     "Streamer Schedules": "Free weekly stream schedule makers with automatic time zones for Twitch, YouTube and Kick streamers.",
-    "Youth Baseball & Softball": "Free fair fielding rotation and lineup tools for youth baseball, softball and T-ball coaches."
+    "Youth Baseball & Softball": "Free fair fielding rotation and lineup tools for youth baseball, softball and T-ball coaches.",
+    "Family Game Night": "Free printable score sheets for Yahtzee, Farkle, Mexican Train and card games, with names printed on, plus a phone score keeper."
   },
   "posts": [
     {
@@ -555,6 +556,36 @@
       "link": "https://punchcard.roohsites.com/behavior-punch-card-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Behavior Punch Card Printable: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "behavior punch card printable, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 55,
+      "title": "Free Printable Score Sheets for Game Night",
+      "description": "Free printable score sheets for Yahtzee, Farkle, Mexican Train and any card game, with names printed on, large print and a phone score keeper. No login.",
+      "board": "Family Game Night",
+      "image": "https://tools.roohsites.com/pins/free-printable-score-sheets-for-game-night.png",
+      "link": "https://scoresheet.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Free Printable Score Sheets for Game Night: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.",
+      "keywords": "printable score sheets for game night, yahtzee score sheet, farkle, game night printables"
+    },
+    {
+      "day": 56,
+      "title": "Beginner UGC Rate Card (No Followers Needed)",
+      "description": "Make a beginner UGC rate card with no followers or portfolio needed. Starting rates, “from” prices, usage rights and a free PNG or PDF rate card download.",
+      "board": "Creator Rate Cards",
+      "image": "https://tools.roohsites.com/pins/beginner-ugc-rate-card-no-followers-needed.png",
+      "link": "https://ugcrates.roohsites.com/beginner-ugc-rate-card?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Beginner UGC Rate Card (No Followers Needed): You don't need an audience to charge for UGC. The image shows a one-page document preview, from ugcrates.roohsites.com.",
+      "keywords": "beginner ugc rate card (no followers needed), ugc rates, ugc creator, influencer rate card"
+    },
+    {
+      "day": 57,
+      "title": "42 Circuit Panel Schedule Template",
+      "description": "Free 42 circuit panel schedule template: circuits 1–41 down the left, 2–42 down the right, legs or phases per row, with PDF, Excel, directory and labels.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/42-circuit-panel-schedule-template.png",
+      "link": "https://panelschedule.roohsites.com/42-circuit-panel-schedule?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "42 Circuit Panel Schedule Template: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "42 circuit panel schedule template, panel schedule, breaker labels, electrician"
     }
   ]
 }

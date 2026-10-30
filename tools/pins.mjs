@@ -266,6 +266,12 @@ function visual(kind, accent, p = {}) {
     const rows = [["Women's cut & style", "$65+"], ["Men's cut", "$40+"], ["Blow-dry & style", "$45+"], ["All-over color", "$110+"], ["Balayage", "$195+"], ["Deep conditioning", "$25"]];
     return `<div class="mn"><div class="mn-h">Your Salon Name</div><div class="mn-s">CUTS &amp; COLOR</div>${rows.map(([n, pr]) => `<div class="mn-r"><span>${n}</span><i></i><b>${pr}</b></div>`).join("")}</div>`;
   }
+  if (kind === "scores") {
+    // a dice score card mid-game: three players' upper sections, two of them over 63 for the bonus
+    const rows = [["Ones", 3, 2, 4], ["Twos", 6, 8, 4], ["Threes", 9, 12, 6], ["Fours", 12, 8, 16], ["Fives", 15, 20, 10], ["Sixes", 24, 18, 18]];
+    return `<div class="sc"><div class="sc-h">Dice score card</div><div class="sc-r sc-n"><span></span><b>Ana</b><b>Ben</b><b>Cara</b></div>${rows.map(([n, ...v]) =>
+      `<div class="sc-r"><span>${n}</span>${v.map(x => `<em>${x}</em>`).join("")}</div>`).join("")}<div class="sc-r sc-t"><span>Bonus (63+)</span><em>35</em><em>35</em><em>0</em></div></div>`;
+  }
   // document (invoice / transcript)
   return `<div class="doc"><div class="doc-h"><b></b><i></i></div>${Array.from({ length: 6 }, (_, i) => `<div class="doc-r"><span style="width:${50 + (i * 13) % 30}%"></span><em></em></div>`).join("")}<div class="doc-t"><span>Total</span><b></b></div></div>`;
 }
@@ -325,6 +331,13 @@ figcaption{font-size:24px;padding:12px 14px;display:flex;justify-content:space-b
 .fn-bars{height:110px;background:repeating-linear-gradient(90deg,#1b1b1f 0 5px,#fff 5px 8px,#1b1b1f 8px 10px,#fff 10px 15px,#1b1b1f 15px 18px,#fff 18px 21px)}
 .fn-l b{font-size:28px;letter-spacing:.08em}.fn-l span{font-size:20px;color:#444}
 .pnl{background:#fff;border:3px solid #1b1b1f;border-radius:12px;width:100%;overflow:hidden}
+.sc{background:#fff;border:3px solid #1b1b1f;border-radius:14px;width:100%;padding:28px 36px 30px}
+.sc-h{font-size:42px;font-weight:800;color:${accent};margin-bottom:14px}
+.sc-r{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;border-bottom:2px solid #ddd}
+.sc-r span,.sc-r b,.sc-r em{padding:13px 10px;font-size:32px;text-align:center}
+.sc-r span{text-align:left;color:#444}.sc-r em{font-style:normal;font-weight:700}
+.sc-n b{font-size:30px;background:${accent}1f}
+.sc-t{background:${accent}14;border-bottom:0}.sc-t span{font-weight:700;color:#1b1b1f}.sc-t em{color:${accent}}
 .mn{background:#fff;border:3px solid #1b1b1f;border-radius:14px;width:100%;padding:30px 44px 34px}
 .mn-h{font-family:Georgia,'Times New Roman',serif;font-size:46px;font-weight:700;text-align:center}
 .mn-s{color:${accent};font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:28px;letter-spacing:.05em;border-bottom:2px solid ${accent}44;margin:22px 0 8px;padding-bottom:8px}
@@ -392,6 +405,7 @@ const BOARDS = {
   "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
   "Streamer Schedules": "Free weekly stream schedule makers with automatic time zones for Twitch, YouTube and Kick streamers.",
   "Youth Baseball & Softball": "Free fair fielding rotation and lineup tools for youth baseball, softball and T-ball coaches.",
+  "Family Game Night": "Free printable score sheets for Yahtzee, Farkle, Mexican Train and card games, with names printed on, plus a phone score keeper.",
 };
 const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
   "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
@@ -410,7 +424,8 @@ const VISUAL_ALT = { tickets: "a sheet of numbered raffle tickets with matching 
   fnsku: "a sheet of FNSKU barcode labels with product names", panel: "a two-column breaker panel schedule with numbered circuits",
   strips: "numbered breaker labels with short circuit names and cut lines", week: "a weekly stream schedule with days, times and stream titles",
   lineup: "a fielding rotation chart with positions for each inning and bench turns",
-  menu: "a salon price list with services, dot leaders and prices" };
+  menu: "a salon price list with services, dot leaders and prices",
+  scores: "a dice score card with three players' scores and the 35-point bonus" };
 const byFile = Object.fromEntries(ALL.map(p => [p.file, p]));
 const schedule = ORDER.concat(AUTO.map(p => p.file)).map((f, i) => {
   const p = byFile[f], s = sites[p.slug];
