@@ -28,7 +28,8 @@ env:
 
 jobs:
   pins:
-    runs-on: ubuntu-latest
+    # pinned: ubuntu-latest moved to 26.04 on 28 Oct 2026, where Playwright 1.56 can't install Chromium (every run failed)
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
