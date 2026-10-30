@@ -1,5 +1,5 @@
 // TicketRun UI. #tr-tool mounts the ticket generator (data-preset / data-start / data-end /
-// data-per-page / data-paper set landing-page defaults); #tr-picker mounts the fair raffle winner picker.
+// data-per-page / data-paper, plus example wording and colour, set landing-page defaults); #tr-picker mounts the fair raffle winner picker.
 // Everything runs in the browser: PDFs are built with pdf-lib in a Web Worker, nothing is uploaded.
 (() => {
   const C = window.TRCore;
@@ -262,6 +262,9 @@
       if (ds.perPage) st.perPage = +ds.perPage;
       if (ds.pad) st.pad = ds.pad;
       if (ds.paper === "a4" || ds.paper === "letter") st.paper = ds.paper;
+      // Seasonal landing pages bring their own example wording and colour (data-title, data-subtitle, data-color, ...).
+      for (const k of ["title", "subtitle", "date", "venue", "price", "fine"]) if (ds[k]) st[k] = ds[k];
+      if (/^#[0-9a-f]{6}$/i.test(ds.color || "")) st.color = ds.color;
     }
     let logo = !presetName ? okLogo(store.get("logo", null)) : null; // { dataUrl, aspect }
     let logoBytes = null;

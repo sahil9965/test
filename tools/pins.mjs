@@ -87,6 +87,18 @@ const PINS = [
     desc: "Convert A4 Vinted, Evri and Royal Mail labels into crisp 6x4 thermal labels. It finds the label, crops and rotates it, all in your browser.",
     keywords: "vinted label, thermal printer, 6x4 label, shipping label converter, reseller tips" },
   // Holiday season (Nov–Dec): gift certificates, punch cards, holiday raffles and holiday shipping.
+  { slug: "ticketrun", file: "turkey-raffle-tickets", path: "/turkey-raffle-tickets", board: "Raffle & Event Tickets",
+    headline: "Turkey Raffle Tickets", sub: "For Thanksgiving fundraisers",
+    points: ["Numbered ticket and stub", "Draw date and pickup line", "Letter or A4 PDF"], visual: "tickets",
+    tk: ["TURKEY RAFFLE", "Win a turkey for Thanksgiving"],
+    desc: "Free printable turkey raffle tickets for Thanksgiving fundraisers: numbered tickets with matching stubs, the draw date and a pickup line, 10 per page on Letter or A4. No signup.",
+    keywords: "turkey raffle tickets, thanksgiving raffle, thanksgiving fundraiser, printable raffle tickets, numbered tickets" },
+  { slug: "ticketrun", file: "christmas-raffle-tickets", path: "/christmas-raffle-tickets", board: "Raffle & Event Tickets",
+    headline: "Christmas Raffle Tickets", sub: "Printable, numbered, with stubs",
+    points: ["Numbered ticket and stub", "Holiday red or your colours", "Letter or A4 PDF"], visual: "tickets",
+    tk: ["CHRISTMAS RAFFLE", "Holiday fair · School hall"],
+    desc: "Free printable Christmas raffle tickets with matching numbered stubs for holiday fairs, school and church raffles and office parties. 10 per page on Letter or A4. No signup.",
+    keywords: "christmas raffle tickets, holiday raffle, christmas fundraiser, printable raffle tickets, pto fundraiser" },
   { slug: "giftstub", file: "christmas-gift-certificate-template", path: "/christmas-gift-certificate-template", board: "Small Business Printables",
     headline: "Christmas Gift Certificate Template", sub: "Holiday wording, numbered stubs, free PDF",
     points: ["3 per Letter or A4 page", "A numbered stub for every certificate", "Print a batch or email a PNG"], visual: "certificate",
@@ -384,8 +396,8 @@ const BOARDS = {
 const ORDER = ["printable-raffle-tickets-with-numbers", "ab-day-calendar-generator", "aba-graph-maker", "homeschool-transcript-template",
   "50-50-raffle-tickets", "trial-by-trial-data-sheet", "move-in-checklist-with-photos", "vinted-label-thermal-printer",
   "ab-day-lesson-planner", "drink-tickets", "task-analysis-data-sheet", "free-invoice-generator", "raffle-tickets-1-500", "abc-data-sheet",
-  // Holiday season, added 27 Oct 2026
-  "christmas-gift-certificate-template", "usps-label-to-4x6", "coffee-punch-card-template", "door-prize-tickets", "salon-gift-certificate-template",
+  // Holiday season, added 27 Oct 2026 (turkey and Christmas raffle pins added 30 Oct, early so they post in time)
+  "turkey-raffle-tickets", "christmas-raffle-tickets", "christmas-gift-certificate-template", "usps-label-to-4x6", "coffee-punch-card-template", "door-prize-tickets", "salon-gift-certificate-template",
   "contractor-invoice-template", "salon-loyalty-card-template", "raffle-tickets-1-100", "massage-gift-certificate-template", "ebay-half-sheet-label-to-4x6",
   // Added 27 Oct 2026 (days 25–34): tools with Amazon supply links, two new boards
   "fnsku-label-generator", "punch-card-template-10-per-sheet", "electrical-panel-schedule-template", "iep-at-a-glance-template",

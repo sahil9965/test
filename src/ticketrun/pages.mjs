@@ -28,7 +28,7 @@ const S = { l8: size("letter", 8), l10: size("letter", 10), l20: size("letter", 
 const FOOT = `  <footer class="site">
     <div class="cols">
       <div><h4>${NAME}</h4><ul><li><a href="/">Raffle ticket generator</a></li><li><a href="/numbered-raffle-ticket-generator">Numbered ticket generator</a></li><li><a href="/raffle-winner-picker">Raffle winner picker</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy &amp; Terms</a></li></ul></div>
-      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/lucky-draw-coupon-generator">Lucky draw coupons</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
+      <div><h4>Ticket types</h4><ul><li><a href="/50-50-raffle-tickets">50/50 raffle tickets</a></li><li><a href="/coat-check-tickets">Coat check tickets</a></li><li><a href="/drink-tickets">Drink tickets</a></li><li><a href="/door-prize-tickets">Door prize tickets</a></li><li><a href="/christmas-raffle-tickets">Christmas raffle tickets</a></li><li><a href="/turkey-raffle-tickets">Turkey raffle tickets</a></li><li><a href="/meal-tickets">Meal tickets</a></li><li><a href="/lucky-draw-coupon-generator">Lucky draw coupons</a></li><li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li></ul></div>
       <div><h4>Number ranges</h4><ul><li><a href="/raffle-tickets-1-100">Raffle tickets 1-100</a></li><li><a href="/raffle-tickets-1-250">Raffle tickets 1-250</a></li><li><a href="/raffle-tickets-1-500">Raffle tickets 1-500</a></li><li><a href="/raffle-tickets-1-1000">Raffle tickets 1-1000</a></li><li><a href="/raffle-tickets-1-2000">Raffle tickets 1-2000</a></li><li><a href="/how-to-number-raffle-tickets-in-word">Numbering tickets in Word</a></li></ul></div>
       <div><h4>More free tools</h4><!--NETWORK:START--><!--NETWORK:END--></div>
     </div>
@@ -43,6 +43,8 @@ const RELATED = `      <h2>More ticket types and guides</h2>
         <li><a href="/coat-check-tickets">Coat check tickets</a></li>
         <li><a href="/drink-tickets">Drink tickets</a></li>
         <li><a href="/door-prize-tickets">Door prize tickets</a></li>
+        <li><a href="/christmas-raffle-tickets">Christmas raffle tickets</a></li>
+        <li><a href="/turkey-raffle-tickets">Turkey raffle tickets</a></li>
         <li><a href="/meal-tickets">Meal tickets</a></li>
         <li><a href="/lucky-draw-coupon-generator">Lucky draw coupons</a></li>
         <li><a href="/raffle-ticket-template-8-per-page">8 per page template</a></li>
@@ -101,7 +103,8 @@ const updated = (extra, d) => `      <p class="small muted">Last updated <time d
 
 function toolSection(o) {
   if (o.picker) return `    <section class="tool card" aria-label="Raffle winner picker"><div id="tr-picker"></div></section>\n`;
-  const attrs = Object.entries(o).filter(([k, v]) => v !== "" && ["preset", "start", "end", "perPage", "paper"].includes(k)).map(([k, v]) => ` data-${k === "perPage" ? "per-page" : k}="${v}"`).join("");
+  const keys = ["preset", "start", "end", "perPage", "paper", "title", "subtitle", "date", "venue", "price", "fine", "color"];
+  const attrs = Object.entries(o).filter(([k, v]) => v !== "" && keys.includes(k)).map(([k, v]) => ` data-${k === "perPage" ? "per-page" : k}="${esc(v)}"`).join("");
   return `    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool"${attrs}></div></section>\n`;
 }
 
@@ -894,6 +897,102 @@ P.push({
     ["What is a door prize ticket?", "A free numbered ticket given to each guest on arrival. One half goes in a box for the draw and the guest keeps the other half."],
     ["Do door prize tickets need a name?", "A name on the stub helps if the winner has to be found, and it stops arguments over lost tickets. A phone number is optional for door prizes."],
     ["How do I pick a door prize winner?", "Draw a stub from a well-mixed box, or enter the range you handed out into the TicketRun winner picker, which draws numbers with an unbiased random generator."],
+  ],
+});
+
+// Holiday season, added 30 Oct 2026: page 1 for these searches is template-editor sites and copied spam pages.
+const HOLIDAY_DATE = ["2026-10-30", "30 October 2026"];
+P.push({
+  path: "/christmas-raffle-tickets", crumb: "Christmas raffle tickets", date: HOLIDAY_DATE,
+  tool: { preset: "raffle", end: 200, title: "Christmas Raffle", subtitle: "Prize: holiday gift basket", date: "Draw: Sat, Dec 12, 2026 at 3 pm", venue: "Holiday Craft Fair · Lincoln Elementary", price: "$2 · 3 for $5", fine: "Need not be present to win. Thank you for supporting our school!", color: "#b91c1c" },
+  title: "Christmas Raffle Tickets Printable: Numbered with Stubs, Free",
+  desc: "Free printable Christmas raffle tickets with matching numbered stubs for holiday fairs, school and church raffles and office parties. Letter or A4 PDF.",
+  h1: "Christmas Raffle Tickets (Printable, Numbered)",
+  lead: "Numbered raffle tickets with matching stubs for a holiday fair, a school, church or club Christmas raffle, or an office party, ready to print on Letter or A4.",
+  body: `      <p class="tldr"><strong>Quick answer:</strong> The generator above is already set up for a Christmas raffle in holiday red: a title, a prize line, the draw date, the price and a stub with Name and Phone lines. Change the wording, pick your number range (1–200 is a good start for a school or church fair) and download the PDF. Every ticket and its stub carry the same number, 10 to a page. Just want plain numbered tickets to fill in by hand? Download the ready-made PDF under the generator.</p>
+
+      <h2>What to print on a Christmas raffle ticket</h2>
+      <ul>
+        <li><strong>The event:</strong> “Christmas Raffle”, “Holiday Fair Raffle” or your group's name.</li>
+        <li><strong>The main prize</strong>, or “Prizes: gift basket, tree and more” if there are several.</li>
+        <li><strong>When the draw happens</strong>, with the date and time, and where.</li>
+        <li><strong>The price</strong>, including any bundle such as 3 for $5.</li>
+        <li><strong>Who it supports</strong>, in the small print, and whether the winner needs to be present.</li>
+        <li><strong>On the stub:</strong> the buyer's name and phone number, so you can reach a winner who has gone home.</li>
+      </ul>
+      <p>The ticket the buyer keeps and the stub you keep carry the same number. At the draw you pull a stub, or draw a number with the <a href="/raffle-winner-picker">raffle winner picker</a>, and the person holding that number wins.</p>
+
+      <h2>Christmas raffle prize ideas</h2>
+      <ul>
+        <li><strong>A holiday gift basket</strong> put together from donated items: hot chocolate, mugs, a blanket, cookies, a board game.</li>
+        <li><strong>Gift cards and services from local businesses:</strong> a restaurant meal, a haircut, a car wash, a family photo session. Many shops are happy to donate in exchange for a thank-you on the ticket or a sign.</li>
+        <li><strong>A decorated tree or wreath</strong>, delivered by volunteers.</li>
+        <li><strong>Experiences:</strong> movie tickets, a skating session, a class or a cooking lesson.</li>
+      </ul>
+      <p>Several smaller prizes usually sell more tickets than one large one, because more people feel they have a chance. Put the main prize on the ticket and list the rest on a sign at the table.</p>
+
+      <h2>A simple timeline</h2>
+      <ol class="steps">
+        <li><strong>Four weeks before:</strong> check your local raffle rules, confirm the prizes and set the price.</li>
+        <li><strong>Three weeks before:</strong> print the tickets. If several volunteers sell, give each one a separate number range and write it down.</li>
+        <li><strong>During the sale:</strong> sellers tear off the stub for every ticket sold and keep the stubs with the money.</li>
+        <li><strong>Draw day:</strong> count the stubs against the money, put them in one container, and draw. Read each winning number twice.</li>
+        <li><strong>After the draw:</strong> phone the winners who weren't there and post the winning numbers where buyers will see them.</li>
+      </ol>
+
+      <h2>How many tickets to print</h2>
+      <p>Print more than you expect to sell; unsold tickets are cheap, but running out at a busy fair is not. A school fair for a few hundred families often prints 200 to 500. Ten tickets per page means 200 tickets is 20 sheets. If you sell in bundles, such as 3 for $5, your stubs still show exactly which numbers were sold, so the draw stays fair.</p>
+      <p>For an office party where everyone gets a free ticket at the door, the <a href="/door-prize-tickets">door prize tickets</a> layout fits better. For a cash pot that grows as tickets sell, see <a href="/50-50-raffle-tickets">50/50 raffle tickets</a>.</p>
+      ${LEGAL}`,
+  faq: [
+    ["Can I print Christmas raffle tickets in red or green?", "Yes. The page starts in holiday red. Open the design options to pick another colour, such as a deep green, or upload your school, church or club logo."],
+    ["What range of numbers should I use?", "Start at 1 and pick a round end number above what you expect to sell, such as 1–200 or 1–500. If you print a second batch, start it where the first one ended so no number repeats."],
+    ["How do I draw the winner fairly?", "Mix all the stubs in one container and draw without looking, or enter your number range in the TicketRun winner picker, which draws with an unbiased random number generator and can skip numbers you didn't sell."],
+    ["Do I need a licence for a Christmas raffle?", "It depends on where you are. Many states, provinces and countries limit raffles to registered charities and nonprofits or require a permit. Check your local rules before you sell tickets."],
+  ],
+});
+
+P.push({
+  path: "/turkey-raffle-tickets", crumb: "Turkey raffle tickets", date: HOLIDAY_DATE,
+  tool: { preset: "raffle", end: 300, title: "Turkey Raffle", subtitle: "Win a turkey for Thanksgiving", date: "Draw: Sat, Nov 21, 2026 at noon", venue: "Maple Street Community Center", price: "$1 · 6 for $5", fine: "Pick up your prize by Tue, Nov 24. Need not be present to win.", color: "#9a3412" },
+  title: "Turkey Raffle Tickets: Printable Thanksgiving Raffle, Free",
+  desc: "Free printable turkey raffle tickets for Thanksgiving fundraisers: numbered tickets with stubs, prize and pickup details, on Letter or A4. No signup.",
+  h1: "Turkey Raffle Tickets for Thanksgiving",
+  lead: "Numbered tickets with stubs for a Thanksgiving turkey raffle at a school, church, team or club, with room for the draw date and the pickup time.",
+  body: `      <p class="tldr"><strong>Quick answer:</strong> The generator above is set up for a turkey raffle: “Turkey Raffle” with the prize, the draw date, the price and a pickup line, in autumn orange. Change the wording, choose your number range and download the PDF, 10 tickets to a page with matching numbered stubs. Draw a few days before Thanksgiving (Thursday, November 26, 2026) so winners have time to thaw a frozen turkey.</p>
+
+      <h2>How a turkey raffle works</h2>
+      <p>A turkey raffle is a small, friendly fundraiser held in the weeks before Thanksgiving. Tickets are cheap, often a dollar or a bundle such as 6 for $5, and the prizes are turkeys or Thanksgiving dinners. Many groups draw several winners, one turkey each, so lots of people have a chance. Each buyer keeps a numbered ticket, the stub with their name and phone number goes in the drum, and the winners are drawn on the day.</p>
+
+      <h2>Choose the prize: a frozen turkey or a gift card?</h2>
+      <table>
+        <thead><tr><th></th><th>Frozen turkey</th><th>Grocery gift card</th></tr></thead>
+        <tbody>
+          <tr><td>Appeal</td><td>The classic prize, great for photos and posters</td><td>Winners choose their own bird, or skip it</td></tr>
+          <tr><td>Storage</td><td>Needs a freezer until pickup</td><td>None</td></tr>
+          <tr><td>Pickup</td><td>Winners must collect it in a set window</td><td>Can be handed over or mailed later</td></tr>
+          <tr><td>Sponsors</td><td>A local grocer or farm may donate the birds</td><td>Easy for a store to donate</td></tr>
+        </tbody>
+      </table>
+      <p>A “Thanksgiving dinner basket” with stuffing, cranberry sauce, potatoes and a pie, plus a turkey or a gift card, makes a bigger first prize.</p>
+
+      <h2>Draw early enough to thaw</h2>
+      <p>A frozen turkey takes days to thaw safely in the fridge. The USDA's rule of thumb is about 24 hours in the refrigerator for every 4 to 5 pounds, so a 15-pound bird needs around three days. Hold the draw the weekend before Thanksgiving, print the pickup deadline on the ticket, and keep the turkeys frozen until the winners collect them.</p>
+
+      <h2>Run the draw</h2>
+      <ol class="steps">
+        <li><strong>Print the tickets</strong> and give each seller their own number range.</li>
+        <li><strong>Sell:</strong> tear off a stub for every ticket sold and keep it with the money.</li>
+        <li><strong>Draw day:</strong> put all the stubs in one container, or use the <a href="/raffle-winner-picker">raffle winner picker</a> with your range. Add one prize per turkey in the picker and each winner is taken out of the next draw, so nobody wins twice unless your rules allow it.</li>
+        <li><strong>Call the winners</strong> who aren't there, and confirm the pickup time.</li>
+      </ol>
+      <p>Running a Christmas raffle too? <a href="/christmas-raffle-tickets">Christmas raffle tickets</a> are set up the same way.</p>
+      ${LEGAL}`,
+  faq: [
+    ["When should a turkey raffle be drawn?", "The weekend before Thanksgiving works well: close enough to build excitement, early enough for winners to thaw a frozen bird. Thanksgiving is on Thursday, November 26, 2026."],
+    ["How much should turkey raffle tickets cost?", "Many groups charge a small amount, such as $1 a ticket or a bundle like 6 for $5, and draw several winners. Low prices and many prizes keep it friendly."],
+    ["Can one person win more than one turkey?", "That's your rule to set; print it on the ticket. Most groups allow one prize per person. The TicketRun winner picker removes each winning number from the next draw."],
+    ["Do I need a permit for a turkey raffle?", "Raffle rules vary by state, province and country, and some require a permit or limit raffles to nonprofits. Check your local rules before you sell tickets."],
   ],
 });
 

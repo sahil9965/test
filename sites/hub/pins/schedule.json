@@ -8,7 +8,7 @@
     "Landlord & Tenant Checklists": "Free move-in, move-out and inspection checklists with dated photos for renters and landlords.",
     "Small Business Invoices": "Free invoice templates and an invoice generator for freelancers and small businesses.",
     "Online Seller Shipping": "Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.",
-    "Small Business Printables": "Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.",
+    "Small Business Printables": "Free printable gift certificates, loyalty punch cards, vouchers and price lists for salons, spas, cafés and small shops.",
     "Amazon FBA Prep Labels": "Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.",
     "Electrician Printables": "Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.",
     "Creator Rate Cards": "Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.",
@@ -158,6 +158,26 @@
     },
     {
       "day": 15,
+      "title": "Turkey Raffle Tickets",
+      "description": "Free printable turkey raffle tickets for Thanksgiving fundraisers: numbered tickets with matching stubs, the draw date and a pickup line, 10 per page on Letter or A4. No signup.",
+      "board": "Raffle & Event Tickets",
+      "image": "https://tools.roohsites.com/pins/turkey-raffle-tickets.png",
+      "link": "https://raffle.roohsites.com/turkey-raffle-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Turkey Raffle Tickets: For Thanksgiving fundraisers. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.",
+      "keywords": "turkey raffle tickets, thanksgiving raffle, thanksgiving fundraiser, printable raffle tickets, numbered tickets"
+    },
+    {
+      "day": 16,
+      "title": "Christmas Raffle Tickets",
+      "description": "Free printable Christmas raffle tickets with matching numbered stubs for holiday fairs, school and church raffles and office parties. 10 per page on Letter or A4. No signup.",
+      "board": "Raffle & Event Tickets",
+      "image": "https://tools.roohsites.com/pins/christmas-raffle-tickets.png",
+      "link": "https://raffle.roohsites.com/christmas-raffle-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Christmas Raffle Tickets: Printable, numbered, with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.",
+      "keywords": "christmas raffle tickets, holiday raffle, christmas fundraiser, printable raffle tickets, pto fundraiser"
+    },
+    {
+      "day": 17,
       "title": "Christmas Gift Certificate Template",
       "description": "Free Christmas gift certificate template with holiday wording and numbered stubs, 3 per page on Letter or A4. Print a batch for the season or email a PNG to a last-minute shopper. No signup.",
       "board": "Small Business Printables",
@@ -167,7 +187,7 @@
       "keywords": "christmas gift certificate template, holiday gift certificate, printable gift certificate, gift certificate with stub, small business holiday"
     },
     {
-      "day": 16,
+      "day": 18,
       "title": "USPS Label to 4x6",
       "description": "Turn a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. It crops, rotates and keeps the barcode sharp, right in your browser. Free.",
       "board": "Online Seller Shipping",
@@ -177,7 +197,7 @@
       "keywords": "usps label 4x6, click n ship thermal printer, 4x6 shipping label, thermal label printer, holiday shipping"
     },
     {
-      "day": 17,
+      "day": 19,
       "title": "Coffee Punch Card Template",
       "description": "Free coffee punch card template for cafés, carts and trucks: coffee cup punches, a free-drink reward, optional serial numbers and a QR menu on the back. 10 cards per page.",
       "board": "Small Business Printables",
@@ -187,7 +207,7 @@
       "keywords": "coffee punch card template, coffee loyalty card, printable punch card, cafe loyalty program, buy 9 get 1 free"
     },
     {
-      "day": 18,
+      "day": 20,
       "title": "Printable Door Prize Tickets",
       "description": "Printable numbered door prize tickets with stubs for holiday parties, staff events and fundraisers: guests keep one half and drop the stub in the box. Letter or A4 PDF plus a random number picker. Free.",
       "board": "Raffle & Event Tickets",
@@ -197,7 +217,7 @@
       "keywords": "door prize tickets, printable door prize tickets, holiday party raffle, christmas party games, numbered tickets"
     },
     {
-      "day": 19,
+      "day": 21,
       "title": "Salon Gift Certificate Template",
       "description": "Free printable salon gift certificate template with numbered stubs. Add your salon name, logo, a dollar amount or service and booking notes. 3 per page, Letter or A4.",
       "board": "Small Business Printables",
@@ -207,7 +227,7 @@
       "keywords": "salon gift certificate template, hair salon gift certificate, printable gift certificate, salon holiday gift, gift certificate with stub"
     },
     {
-      "day": 20,
+      "day": 22,
       "title": "Contractor Invoice Template",
       "description": "Free contractor invoice template with labor, materials and disposal lines, for builders, handymen, electricians and plumbers. Download a PDF, no signup.",
       "board": "Small Business Invoices",
@@ -217,7 +237,7 @@
       "keywords": "contractor invoice template, handyman invoice, construction invoice template, free invoice generator, electrician invoice"
     },
     {
-      "day": 21,
+      "day": 23,
       "title": "Salon Loyalty Card Template",
       "description": "Free salon and barber loyalty card template: scissors punches, a free-service reward and a QR code to your booking page. 10 cards per page, Letter or A4.",
       "board": "Small Business Printables",
@@ -227,7 +247,7 @@
       "keywords": "salon loyalty card, barber punch card, salon punch card template, loyalty card template, salon rewards"
     },
     {
-      "day": 22,
+      "day": 24,
       "title": "Raffle Tickets 1–100 with Stubs",
       "description": "Print raffle tickets 1–100 with matching numbered stubs for holiday fairs, PTO fundraisers and office parties: 10 per page on Letter or A4. Edit the text and download a free PDF, no signup.",
       "board": "Raffle & Event Tickets",
@@ -237,7 +257,7 @@
       "keywords": "raffle tickets 1-100, holiday raffle tickets, christmas raffle, printable raffle tickets, PTO fundraiser"
     },
     {
-      "day": 23,
+      "day": 25,
       "title": "Massage Gift Certificate Template",
       "description": "Free massage gift certificate template for therapists and spas: session length, cancellation policy and booking line, with numbered stubs, 3 per page as a PDF.",
       "board": "Small Business Printables",
@@ -247,7 +267,7 @@
       "keywords": "massage gift certificate template, spa gift certificate, printable spa gift card, massage therapist, holiday gift certificate"
     },
     {
-      "day": 24,
+      "day": 26,
       "title": "eBay Half-Sheet Label to 4x6",
       "description": "Turn an eBay half-sheet (8.5x11) shipping label into a 4x6 thermal label, or put two labels on one half-sheet page. Free, private and it works in your browser.",
       "board": "Online Seller Shipping",
@@ -257,7 +277,7 @@
       "keywords": "ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label"
     },
     {
-      "day": 25,
+      "day": 27,
       "title": "Free FNSKU Label Generator",
       "description": "Make FNSKU labels for Amazon FBA in your browser: paste your X00 codes or import a CSV, pick 2 × 1 in thermal rolls, DYMO 30334 or 30-up Letter sheets, and download a PDF to print at 100%.",
       "board": "Amazon FBA Prep Labels",
@@ -267,7 +287,7 @@
       "keywords": "fnsku label generator, fnsku labels, amazon fba labels, fba prep, thermal label printer"
     },
     {
-      "day": 26,
+      "day": 28,
       "title": "Punch Cards, 10 per Page",
       "description": "Print 10 loyalty punch cards per page on business card sheets: 3.5 × 2 in on Letter or 85 × 55 mm on A4, with an alignment test and matching backs. Free PDF from your browser.",
       "board": "Small Business Printables",
@@ -277,7 +297,7 @@
       "keywords": "punch card template, punch card 10 per page, business card punch card, loyalty card template, printable punch cards"
     },
     {
-      "day": 27,
+      "day": 29,
       "title": "Electrical Panel Schedule Template",
       "description": "Fill in a panel schedule that looks like the panel: odd circuits down the left, even down the right, with amps, wire size, AFCI/GFCI and load per leg. Download a PDF, Excel, a door directory or labels.",
       "board": "Electrician Printables",
@@ -287,7 +307,7 @@
       "keywords": "panel schedule template, electrical panel schedule, breaker panel directory, electrician printables, circuit directory"
     },
     {
-      "day": 28,
+      "day": 30,
       "title": "IEP at a Glance Template",
       "description": "Make a one-page IEP at a glance for the teachers, subs and paras who don't read the full IEP: strengths, what helps, what to watch for and accommodations. Batch a whole caseload as one PDF.",
       "board": "ABA Data Sheets & Graphs",
@@ -297,7 +317,7 @@
       "keywords": "iep at a glance, iep at a glance template, special education printables, 504 plan, sub plans"
     },
     {
-      "day": 29,
+      "day": 31,
       "title": "Split Label and Packing Slip",
       "description": "Got a PDF with the shipping label and packing slip on one page? Split it into two 4 × 6 in (100 × 150 mm) pages for your thermal printer, or drop the slip. Free and it runs in your browser.",
       "board": "Online Seller Shipping",
@@ -307,7 +327,7 @@
       "keywords": "split shipping label, packing slip, 4x6 label, thermal printer, shipping label pdf"
     },
     {
-      "day": 30,
+      "day": 32,
       "title": "Photography Gift Certificate Template",
       "description": "A free gift certificate template for photographers: session type, edited images, booking window and a numbered stub. Print 3 per page, or save one as a PNG to email to the buyer.",
       "board": "Small Business Printables",
@@ -317,7 +337,7 @@
       "keywords": "photography gift certificate, photo session gift card, photographer gift certificate template, mini session, holiday photos"
     },
     {
-      "day": 31,
+      "day": 33,
       "title": "Breaker Box Label Template",
       "description": "Print one small label per breaker with its circuit number and a short name, 4 across with cut lines on Letter or A4. Cut them out and stick each one beside its breaker. Free, no signup.",
       "board": "Electrician Printables",
@@ -327,7 +347,7 @@
       "keywords": "breaker box labels, circuit breaker labels, breaker label template, electrical panel labels, label maker"
     },
     {
-      "day": 32,
+      "day": 34,
       "title": "DYMO 30334 FNSKU Labels",
       "description": "Print FNSKU labels on DYMO 30334 rolls (2-1/4 × 1-1/4 in) with a LabelWriter: the PDF is cut to the exact label size with 300 dpi barcodes and two title lines. Free, no signup.",
       "board": "Amazon FBA Prep Labels",
@@ -337,7 +357,7 @@
       "keywords": "dymo 30334, dymo fnsku labels, labelwriter fnsku, amazon fba labels, 2.25 x 1.25 labels"
     },
     {
-      "day": 33,
+      "day": 35,
       "title": "Gift Certificate Template with Stub",
       "description": "Keep track of every gift certificate you sell: each one has a stub with the same number and lines for issued to, date, amount and redeemed. 3 per Letter or A4 page, free PDF.",
       "board": "Small Business Printables",
@@ -347,7 +367,7 @@
       "keywords": "gift certificate template with stub, numbered gift certificates, gift certificate tracking, small business, printable gift certificate"
     },
     {
-      "day": 34,
+      "day": 36,
       "title": "Print a Shipping Label from Your Phone",
       "description": "Selling from your phone? Turn the label PDF into a 4 × 6 in image at 203 or 300 dpi and share it to your Bluetooth printer app. Works on iPhone and Android, free.",
       "board": "Online Seller Shipping",
@@ -357,7 +377,7 @@
       "keywords": "print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label"
     },
     {
-      "day": 35,
+      "day": 37,
       "title": "UGC Rate Calculator",
       "description": "Free UGC rate calculator. Price videos, hooks, paid usage rights, whitelisting and exclusivity, then download a brand quote PDF or rate card. No signup.",
       "board": "Creator Rate Cards",
@@ -367,7 +387,7 @@
       "keywords": "ugc rate calculator, ugc rates, ugc creator, influencer rate card"
     },
     {
-      "day": 36,
+      "day": 38,
       "title": "Baseball Fielding Rotation Generator",
       "description": "Free baseball fielding rotation generator for youth coaches: fair bench time, position variety, batting order and a dugout card PDF. No login, in-browser.",
       "board": "Youth Baseball & Softball",
@@ -377,7 +397,7 @@
       "keywords": "baseball fielding rotation generator, baseball lineup, fielding rotation, youth baseball coach"
     },
     {
-      "day": 37,
+      "day": 39,
       "title": "Stream Schedule Maker with Time Zones",
       "description": "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
       "board": "Streamer Schedules",
@@ -387,7 +407,7 @@
       "keywords": "stream schedule maker with time zones, stream schedule, twitch schedule, streamer"
     },
     {
-      "day": 38,
+      "day": 40,
       "title": "Free Homeschool Transcript Generator",
       "description": "Free homeschool transcript generator with weighted GPA, credits, course descriptions and an hours log. Download a PDF. No signup; data stays in your browser.",
       "board": "Homeschool Records",
@@ -397,7 +417,7 @@
       "keywords": "homeschool transcript generator, homeschool transcript, homeschool high school, gpa"
     },
     {
-      "day": 39,
+      "day": 41,
       "title": "Photo Report Generator",
       "description": "Free photo report generator and template: date-stamped photos, captions, condition ratings and signatures, room by room, as a PDF. No signup, no uploads.",
       "board": "Landlord & Tenant Checklists",
@@ -407,7 +427,7 @@
       "keywords": "photo report generator, move in checklist, rental inspection, landlord"
     },
     {
-      "day": 40,
+      "day": 42,
       "title": "6-Day Rotation Calendar (Day 1–6 Cycle)",
       "description": "Make a 6 day rotation calendar for your school year. Day 1–6 labels skip weekends and holidays, re-flow after snow days, and print as PDF or export to Google.",
       "board": "Teacher Planning & A/B Day Calendars",
@@ -417,7 +437,7 @@
       "keywords": "6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule"
     },
     {
-      "day": 41,
+      "day": 43,
       "title": "Freelance Invoice Template",
       "description": "Free freelance invoice template for designers, writers, developers and consultants. Bill hourly or per project, add deposits and download a PDF. No signup.",
       "board": "Small Business Invoices",
@@ -427,7 +447,7 @@
       "keywords": "freelance invoice template, invoice template, free invoice generator, small business"
     },
     {
-      "day": 42,
+      "day": 44,
       "title": "ABA Graph Template for Excel",
       "description": "Free ABA graph template for Excel and Google Sheets (CSV), step-by-step Excel graphing steps, or paste your columns here for an instant phase change graph.",
       "board": "ABA Data Sheets & Graphs",
@@ -437,7 +457,7 @@
       "keywords": "aba graph template for excel, aba graph, data sheet, special education"
     },
     {
-      "day": 43,
+      "day": 45,
       "title": "Printable Punch Card Template",
       "description": "Free printable punch card template: 10 business-card-size loyalty cards per page, with your logo, icons, serial numbers and matching backs. No login.",
       "board": "Small Business Printables",
@@ -447,7 +467,7 @@
       "keywords": "printable punch card template, punch card template, loyalty card, small business"
     },
     {
-      "day": 44,
+      "day": 46,
       "title": "3 Phase Panel Schedule Template",
       "description": "Free 3 phase panel schedule template for 120/208 V and 277/480 V panels: phases A, B, C by row, 2- and 3-pole breakers, VA per phase, PDF and Excel.",
       "board": "Electrician Printables",
@@ -457,7 +477,7 @@
       "keywords": "3 phase panel schedule template, panel schedule, breaker labels, electrician"
     },
     {
-      "day": 45,
+      "day": 47,
       "title": "Printable Coat Check Tickets, Numbered",
       "description": "Printable numbered coat check tickets in two parts: one half for the hanger, one for the guest, each with the same big number. Letter or A4, free PDF.",
       "board": "Raffle & Event Tickets",
@@ -467,7 +487,7 @@
       "keywords": "printable coat check tickets, numbered, raffle tickets, fundraiser, printable tickets"
     },
     {
-      "day": 46,
+      "day": 48,
       "title": "Printable Bin Location Labels",
       "description": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
       "board": "Amazon FBA Prep Labels",

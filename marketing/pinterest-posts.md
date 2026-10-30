@@ -11,7 +11,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Landlord & Tenant Checklists**: Free move-in, move-out and inspection checklists with dated photos for renters and landlords.
 - **Small Business Invoices**: Free invoice templates and an invoice generator for freelancers and small businesses.
 - **Online Seller Shipping**: Free tools and tips for Vinted, eBay and Etsy sellers: shipping labels, thermal printers and packing.
-- **Small Business Printables**: Free printable gift certificates, loyalty punch cards and vouchers for salons, spas, cafés and small shops.
+- **Small Business Printables**: Free printable gift certificates, loyalty punch cards, vouchers and price lists for salons, spas, cafés and small shops.
 - **Amazon FBA Prep Labels**: Free FNSKU label tools for Amazon FBA sellers: thermal rolls, DYMO labels, label sheets and prep warnings.
 - **Electrician Printables**: Free electrical panel schedule templates, breaker box labels and circuit directories for electricians and homeowners.
 - **Creator Rate Cards**: Free UGC and influencer rate calculators, rate cards and brand quotes for content creators.
@@ -144,7 +144,25 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** ABC Data Sheet: Antecedent, behavior, consequence. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
 - **Keywords:** abc data sheet, abc data collection, behavior data sheet, aba, special education teacher
 
-## Day 15: Christmas Gift Certificate Template
+## Day 15: Turkey Raffle Tickets
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/turkey-raffle-tickets.png
+- **Link:** https://raffle.roohsites.com/turkey-raffle-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable turkey raffle tickets for Thanksgiving fundraisers: numbered tickets with matching stubs, the draw date and a pickup line, 10 per page on Letter or A4. No signup.
+- **Alt text:** Turkey Raffle Tickets: For Thanksgiving fundraisers. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** turkey raffle tickets, thanksgiving raffle, thanksgiving fundraiser, printable raffle tickets, numbered tickets
+
+## Day 16: Christmas Raffle Tickets
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/christmas-raffle-tickets.png
+- **Link:** https://raffle.roohsites.com/christmas-raffle-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable Christmas raffle tickets with matching numbered stubs for holiday fairs, school and church raffles and office parties. 10 per page on Letter or A4. No signup.
+- **Alt text:** Christmas Raffle Tickets: Printable, numbered, with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** christmas raffle tickets, holiday raffle, christmas fundraiser, printable raffle tickets, pto fundraiser
+
+## Day 17: Christmas Gift Certificate Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/christmas-gift-certificate-template.png
@@ -153,7 +171,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Christmas Gift Certificate Template: Holiday wording, numbered stubs, free PDF. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** christmas gift certificate template, holiday gift certificate, printable gift certificate, gift certificate with stub, small business holiday
 
-## Day 16: USPS Label to 4x6
+## Day 18: USPS Label to 4x6
 
 - **Board:** Online Seller Shipping
 - **Image:** https://tools.roohsites.com/pins/usps-label-to-4x6.png
@@ -162,7 +180,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** USPS Label to 4x6: Click-N-Ship labels on a thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** usps label 4x6, click n ship thermal printer, 4x6 shipping label, thermal label printer, holiday shipping
 
-## Day 17: Coffee Punch Card Template
+## Day 19: Coffee Punch Card Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/coffee-punch-card-template.png
@@ -171,7 +189,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Coffee Punch Card Template: Free printable loyalty cards for cafés. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** coffee punch card template, coffee loyalty card, printable punch card, cafe loyalty program, buy 9 get 1 free
 
-## Day 18: Printable Door Prize Tickets
+## Day 20: Printable Door Prize Tickets
 
 - **Board:** Raffle & Event Tickets
 - **Image:** https://tools.roohsites.com/pins/door-prize-tickets.png
@@ -180,7 +198,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Printable Door Prize Tickets: For holiday parties and staff events. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
 - **Keywords:** door prize tickets, printable door prize tickets, holiday party raffle, christmas party games, numbered tickets
 
-## Day 19: Salon Gift Certificate Template
+## Day 21: Salon Gift Certificate Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/salon-gift-certificate-template.png
@@ -189,7 +207,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Salon Gift Certificate Template: Sell gift certificates this holiday season. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** salon gift certificate template, hair salon gift certificate, printable gift certificate, salon holiday gift, gift certificate with stub
 
-## Day 20: Contractor Invoice Template
+## Day 22: Contractor Invoice Template
 
 - **Board:** Small Business Invoices
 - **Image:** https://tools.roohsites.com/pins/contractor-invoice-template.png
@@ -198,7 +216,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Contractor Invoice Template: Labor, materials and disposal lines. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** contractor invoice template, handyman invoice, construction invoice template, free invoice generator, electrician invoice
 
-## Day 21: Salon Loyalty Card Template
+## Day 23: Salon Loyalty Card Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/salon-loyalty-card-template.png
@@ -207,7 +225,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Salon Loyalty Card Template: Punch cards for salons and barbers. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** salon loyalty card, barber punch card, salon punch card template, loyalty card template, salon rewards
 
-## Day 22: Raffle Tickets 1–100 with Stubs
+## Day 24: Raffle Tickets 1–100 with Stubs
 
 - **Board:** Raffle & Event Tickets
 - **Image:** https://tools.roohsites.com/pins/raffle-tickets-1-100.png
@@ -216,7 +234,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Raffle Tickets 1–100 with Stubs: For holiday fairs and fundraisers. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
 - **Keywords:** raffle tickets 1-100, holiday raffle tickets, christmas raffle, printable raffle tickets, PTO fundraiser
 
-## Day 23: Massage Gift Certificate Template
+## Day 25: Massage Gift Certificate Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/massage-gift-certificate-template.png
@@ -225,7 +243,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Massage Gift Certificate Template: For massage therapists and spas. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** massage gift certificate template, spa gift certificate, printable spa gift card, massage therapist, holiday gift certificate
 
-## Day 24: eBay Half-Sheet Label to 4x6
+## Day 26: eBay Half-Sheet Label to 4x6
 
 - **Board:** Online Seller Shipping
 - **Image:** https://tools.roohsites.com/pins/ebay-half-sheet-label-to-4x6.png
@@ -234,7 +252,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** eBay Half-Sheet Label to 4x6: Ship faster this holiday season. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** ebay shipping label 4x6, ebay half sheet label, thermal label printer, ebay seller tips, 4x6 label
 
-## Day 25: Free FNSKU Label Generator
+## Day 27: Free FNSKU Label Generator
 
 - **Board:** Amazon FBA Prep Labels
 - **Image:** https://tools.roohsites.com/pins/fnsku-label-generator.png
@@ -243,7 +261,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Free FNSKU Label Generator: Thermal rolls, DYMO 30334 or label sheets. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
 - **Keywords:** fnsku label generator, fnsku labels, amazon fba labels, fba prep, thermal label printer
 
-## Day 26: Punch Cards, 10 per Page
+## Day 28: Punch Cards, 10 per Page
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/punch-card-template-10-per-sheet.png
@@ -252,7 +270,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Punch Cards, 10 per Page: A template sized for business card sheets. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** punch card template, punch card 10 per page, business card punch card, loyalty card template, printable punch cards
 
-## Day 27: Electrical Panel Schedule Template
+## Day 29: Electrical Panel Schedule Template
 
 - **Board:** Electrician Printables
 - **Image:** https://tools.roohsites.com/pins/electrical-panel-schedule-template.png
@@ -261,7 +279,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Electrical Panel Schedule Template: Laid out like the real panel. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
 - **Keywords:** panel schedule template, electrical panel schedule, breaker panel directory, electrician printables, circuit directory
 
-## Day 28: IEP at a Glance Template
+## Day 30: IEP at a Glance Template
 
 - **Board:** ABA Data Sheets & Graphs
 - **Image:** https://tools.roohsites.com/pins/iep-at-a-glance-template.png
@@ -270,7 +288,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** IEP at a Glance Template: One page per student for subs and paras. The image shows a one-page document preview, from iepglance.roohsites.com.
 - **Keywords:** iep at a glance, iep at a glance template, special education printables, 504 plan, sub plans
 
-## Day 29: Split Label and Packing Slip
+## Day 31: Split Label and Packing Slip
 
 - **Board:** Online Seller Shipping
 - **Image:** https://tools.roohsites.com/pins/split-shipping-label-and-packing-slip.png
@@ -279,7 +297,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Split Label and Packing Slip: One PDF page into two 4 × 6 pages. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** split shipping label, packing slip, 4x6 label, thermal printer, shipping label pdf
 
-## Day 30: Photography Gift Certificate Template
+## Day 32: Photography Gift Certificate Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/photography-gift-certificate-template.png
@@ -288,7 +306,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Photography Gift Certificate Template: Sell portrait sessions as gifts. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** photography gift certificate, photo session gift card, photographer gift certificate template, mini session, holiday photos
 
-## Day 31: Breaker Box Label Template
+## Day 33: Breaker Box Label Template
 
 - **Board:** Electrician Printables
 - **Image:** https://tools.roohsites.com/pins/breaker-box-label-template.png
@@ -297,7 +315,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Breaker Box Label Template: One numbered label per circuit. The image shows numbered breaker labels with short circuit names and cut lines, from panelschedule.roohsites.com.
 - **Keywords:** breaker box labels, circuit breaker labels, breaker label template, electrical panel labels, label maker
 
-## Day 32: DYMO 30334 FNSKU Labels
+## Day 34: DYMO 30334 FNSKU Labels
 
 - **Board:** Amazon FBA Prep Labels
 - **Image:** https://tools.roohsites.com/pins/dymo-30334-fnsku-labels.png
@@ -306,7 +324,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** DYMO 30334 FNSKU Labels: 2.25 × 1.25 in, one label per page. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
 - **Keywords:** dymo 30334, dymo fnsku labels, labelwriter fnsku, amazon fba labels, 2.25 x 1.25 labels
 
-## Day 33: Gift Certificate Template with Stub
+## Day 35: Gift Certificate Template with Stub
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/gift-certificate-template-with-stub.png
@@ -315,7 +333,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Gift Certificate Template with Stub: Numbered stubs so you can track every one. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** gift certificate template with stub, numbered gift certificates, gift certificate tracking, small business, printable gift certificate
 
-## Day 34: Print a Shipping Label from Your Phone
+## Day 36: Print a Shipping Label from Your Phone
 
 - **Board:** Online Seller Shipping
 - **Image:** https://tools.roohsites.com/pins/print-shipping-label-from-phone.png
@@ -324,7 +342,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Print a Shipping Label from Your Phone: To a Bluetooth thermal printer. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** print shipping label from phone, bluetooth thermal printer, 4x6 label, iphone shipping label, poshmark label
 
-## Day 35: UGC Rate Calculator
+## Day 37: UGC Rate Calculator
 
 - **Board:** Creator Rate Cards
 - **Image:** https://tools.roohsites.com/pins/ugc-rate-calculator.png
@@ -333,7 +351,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** UGC Rate Calculator: Price UGC with usage rights and whitelisting. The image shows a one-page document preview, from ugcrates.roohsites.com.
 - **Keywords:** ugc rate calculator, ugc rates, ugc creator, influencer rate card
 
-## Day 36: Baseball Fielding Rotation Generator
+## Day 38: Baseball Fielding Rotation Generator
 
 - **Board:** Youth Baseball & Softball
 - **Image:** https://tools.roohsites.com/pins/baseball-fielding-rotation-generator.png
@@ -342,7 +360,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Baseball Fielding Rotation Generator: Build an inning-by-inning defensive chart in seconds. The image shows a fielding rotation chart with positions for each inning and bench turns, from lineup.roohsites.com.
 - **Keywords:** baseball fielding rotation generator, baseball lineup, fielding rotation, youth baseball coach
 
-## Day 37: Stream Schedule Maker with Time Zones
+## Day 39: Stream Schedule Maker with Time Zones
 
 - **Board:** Streamer Schedules
 - **Image:** https://tools.roohsites.com/pins/stream-schedule-maker-with-time-zones.png
@@ -351,7 +369,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Stream Schedule Maker with Time Zones: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
 - **Keywords:** stream schedule maker with time zones, stream schedule, twitch schedule, streamer
 
-## Day 38: Free Homeschool Transcript Generator
+## Day 40: Free Homeschool Transcript Generator
 
 - **Board:** Homeschool Records
 - **Image:** https://tools.roohsites.com/pins/free-homeschool-transcript-generator.png
@@ -360,7 +378,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Free Homeschool Transcript Generator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
 - **Keywords:** homeschool transcript generator, homeschool transcript, homeschool high school, gpa
 
-## Day 39: Photo Report Generator
+## Day 41: Photo Report Generator
 
 - **Board:** Landlord & Tenant Checklists
 - **Image:** https://tools.roohsites.com/pins/photo-report-generator.png
@@ -369,7 +387,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Photo Report Generator: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.
 - **Keywords:** photo report generator, move in checklist, rental inspection, landlord
 
-## Day 40: 6-Day Rotation Calendar (Day 1–6 Cycle)
+## Day 42: 6-Day Rotation Calendar (Day 1–6 Cycle)
 
 - **Board:** Teacher Planning & A/B Day Calendars
 - **Image:** https://tools.roohsites.com/pins/6-day-cycle-calendar.png
@@ -378,7 +396,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** 6-Day Rotation Calendar (Day 1–6 Cycle): A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
 - **Keywords:** 6-day rotation calendar (day 1–6 cycle), a/b day calendar, teacher planner, block schedule
 
-## Day 41: Freelance Invoice Template
+## Day 43: Freelance Invoice Template
 
 - **Board:** Small Business Invoices
 - **Image:** https://tools.roohsites.com/pins/freelance-invoice-template.png
@@ -387,7 +405,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Freelance Invoice Template: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** freelance invoice template, invoice template, free invoice generator, small business
 
-## Day 42: ABA Graph Template for Excel
+## Day 44: ABA Graph Template for Excel
 
 - **Board:** ABA Data Sheets & Graphs
 - **Image:** https://tools.roohsites.com/pins/aba-graph-template-for-excel.png
@@ -396,7 +414,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** ABA Graph Template for Excel: ABA graphs and data sheets for IEP goals. The image shows a line graph with a dashed phase change line between baseline and intervention, from abagraph.roohsites.com.
 - **Keywords:** aba graph template for excel, aba graph, data sheet, special education
 
-## Day 43: Printable Punch Card Template
+## Day 45: Printable Punch Card Template
 
 - **Board:** Small Business Printables
 - **Image:** https://tools.roohsites.com/pins/printable-punch-card-template.png
@@ -405,7 +423,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Printable Punch Card Template: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** printable punch card template, punch card template, loyalty card, small business
 
-## Day 44: 3 Phase Panel Schedule Template
+## Day 46: 3 Phase Panel Schedule Template
 
 - **Board:** Electrician Printables
 - **Image:** https://tools.roohsites.com/pins/3-phase-panel-schedule-template.png
@@ -414,7 +432,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** 3 Phase Panel Schedule Template: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
 - **Keywords:** 3 phase panel schedule template, panel schedule, breaker labels, electrician
 
-## Day 45: Printable Coat Check Tickets, Numbered
+## Day 47: Printable Coat Check Tickets, Numbered
 
 - **Board:** Raffle & Event Tickets
 - **Image:** https://tools.roohsites.com/pins/printable-coat-check-tickets-numbered.png
@@ -423,7 +441,7 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Alt text:** Printable Coat Check Tickets, Numbered: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
 - **Keywords:** printable coat check tickets, numbered, raffle tickets, fundraiser, printable tickets
 
-## Day 46: Printable Bin Location Labels
+## Day 48: Printable Bin Location Labels
 
 - **Board:** Amazon FBA Prep Labels
 - **Image:** https://tools.roohsites.com/pins/printable-bin-location-labels.png
