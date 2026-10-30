@@ -173,3 +173,10 @@ details.gt-paste textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas
   body.gt-printing .gt-page:last-of-type{break-after:auto;page-break-after:auto}
   body.gt-printing .gt-page svg{width:100%;height:auto}
 }
+/* ready-made blank sheet under the generator */
+.ready{display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;align-items:center;padding:16px 18px;margin:14px 0 0}
+.ready p{margin:0;font-size:15px;line-height:1.5}
+.ready p+p,.ready ul+p{margin-top:6px}
+.ready ul{margin:6px 0 0;padding-left:18px;font-size:15px}
+.ready-img img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+@media(max-width:560px){.ready{grid-template-columns:1fr}.ready-img{max-width:240px}}

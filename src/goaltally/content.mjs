@@ -285,6 +285,10 @@ export const PAGES = [
         "Put the steps in the order they'll be taught and check the list by having someone follow it exactly.",
         "Use the same list every session so the percentages are comparable. Edit the steps in the sheet options above.",
       ]),
+      h2("Sample task analysis: handwashing"),
+      p("The default steps above, and the handwashing sheet you can download under the generator, break handwashing into 8 observable steps:"),
+      `      <ol>\n${["Turn on the water", "Wet hands", "Get soap", "Rub hands together for 20 seconds", "Rinse hands", "Turn off the water", "Dry hands with a towel", "Throw the towel away"].map(s => `        <li>${s}</li>`).join("\n")}\n      </ol>`,
+      p("Write your own steps the same way: one action per step, in the order the learner does them, each one something you can see happen. A blank 10-step sheet is also there to fill in by hand."),
       h2("Forward, backward or total-task chaining"),
       tbl(["Method", "What you teach", "Often a good fit when"], [
         ["Forward chaining", "The first step is taught to mastery while you help with the rest; then the first two steps, and so on.", "The early steps are the easiest or the learner does well starting at the beginning."],
@@ -488,6 +492,12 @@ export const PAGES = [
         ["Count and divide:", "marked moments ÷ moments observed × 100."],
         ["Graph % of intervals", "for each observation."],
       ]),
+      h2("Momentary time sampling examples"),
+      ul([
+        "<strong>On-task behavior during independent work:</strong> a 20-minute work period checked every minute gives 20 moments. The student was working at 14 of them: 14 ÷ 20 × 100 = 70% of moments on task.",
+        "<strong>In-seat behavior at circle time:</strong> 10 minutes checked every 30 seconds gives 20 moments. The student was in their seat at 15: 75%.",
+        "<strong>Engagement in a small group:</strong> every 2 minutes, mark whether the student is looking at the speaker or the materials. Over 3 sessions you can graph the percentage and see whether a new seating plan helped.",
+      ]),
       h2("Interval length and accuracy"),
       tbl(["Interval", "Moments in 15 minutes", "Trade-off"], [
         ["10 seconds", "90", "Closest estimate, but hard to keep up while teaching."],
@@ -510,8 +520,8 @@ export const PAGES = [
   /* ------------------------------------------------------------------ ABC */
   {
     slug: "abc-data-sheet", tool: { kind: "sheet", preset: "abc" }, crumb: "ABC data sheet",
-    title: "ABC Data Sheet Printable: Free Checklist and Narrative",
-    desc: "Free printable ABC data sheet: record antecedent, behavior and consequence with tick-box checklists or write-in columns, plus possible function. Edit, print.",
+    title: "ABC Data Sheet: Free Printable PDF, Checklist or Narrative",
+    desc: "Free printable ABC data sheet PDF: record antecedent, behavior and consequence with tick-box checklists or write-in columns, plus possible function.",
     h1: "ABC Data Sheet",
     lead: "Record what happened right before, during and right after each incident. Choose a quick tick-box checklist or open write-in columns, edit the options, and print.",
     body: [
@@ -530,9 +540,23 @@ export const PAGES = [
         ["Consequence:", "what happened right after: what adults and peers did, and what the student got or avoided."],
         ["Possible function:", "a staff hypothesis, to be confirmed by looking at many incidents together."],
       ]),
-      h2("Example entry"),
+      h2("What's on the ABC checklist"),
+      p("The checklist layout prints these options as tick boxes, each with an “Other” line. They're a starting point: edit the lists above to match what your team actually sees."),
+      tbl(["Antecedents (before)", "Consequences (after)", "Possible function"], [
+        ["Demand or instruction given", "Verbal redirection", "Escape / avoid"],
+        ["Told “no” / item denied", "Reprimand", "Attention"],
+        ["Transition between activities", "Demand removed or delayed", "Tangible / item"],
+        ["Attention given to others", "Item or activity given", "Automatic / sensory"],
+        ["Preferred item removed", "Attention from adult or peer", ""],
+        ["Alone / unstructured time", "Planned ignoring", ""],
+        ["Noise or crowding", "Break given", ""],
+      ]),
+      h2("ABC narrative recording example"),
+      p("Three entries from a narrative ABC sheet for one student. Each behavior is described so another observer could check it, and the function column is a guess to test, not a conclusion."),
       tbl(["Date & time", "Setting", "Antecedent", "Behavior", "Consequence", "Possible function"], [
         ["9/15 10:05", "Math, whole group", "Worksheet handed out", "Tore the worksheet and put head down for about 2 minutes", "Sent to the calm corner; worksheet not completed", "Escape"],
+        ["9/15 12:20", "Lunch, cafeteria", "A peer sat in the student's usual seat", "Pushed the peer's shoulder and yelled “move”", "Lunch aide moved the peer; student sat in the seat", "Tangible"],
+        ["9/16 1:40", "Reading, small group", "Teacher working with another student", "Called out the teacher's name 6 times in 2 minutes", "Teacher turned and said “wait, please”", "Attention"],
       ]),
       h2("Common functions of behavior"),
       ul([

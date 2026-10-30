@@ -5,6 +5,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { PAGES } from "./content.mjs";
+import { READY, PAPERS } from "./ready.mjs";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "../../sites/goaltally");
 const URL = "https://abagraph.roohsites.com";
@@ -20,6 +21,23 @@ const SHEETS = [
   ["/partial-interval-recording-data-sheet", "Partial interval data sheet"], ["/whole-interval-recording-data-sheet", "Whole interval data sheet"],
   ["/momentary-time-sampling-data-sheet", "Momentary time sampling data sheet"], ["/abc-data-sheet", "ABC data sheet"],
 ];
+// A ready-made blank sheet (src/goaltally/ready.mjs) with its preview image, for searches that ask for a PDF or a printable.
+const pngSize = file => { const b = readFileSync(join(OUT, "img", file + ".png")); return [b.readUInt32BE(16), b.readUInt32BE(20)]; };
+function readySection(p) {
+  const list = READY.filter(r => r.page === p.slug);
+  if (!list.length) return "";
+  const links = r => PAPERS.map(([paper, label]) => `<a href="/pdf/${r.file}-${paper}.pdf" download data-umami-event="ready_pdf" data-umami-event-file="${r.file}-${paper}">${label} PDF</a>`).join(" · ");
+  const [w, h] = pngSize(list[0].file), name = (p.crumb || p.h1).toLowerCase().replace(/^abc/, "ABC");
+  const which = list.length > 1 ? `:</p>\n        <ul>${list.map(r => `<li><strong>${esc(r.label)}:</strong> ${links(r)}</li>`).join("")}</ul>` : `: ${links(list[0])}</p>`;
+  return `    <section class="ready card" aria-label="Ready-made blank sheet">
+      <a class="ready-img" href="/pdf/${list[0].file}-letter.pdf" download data-umami-event="ready_pdf" data-umami-event-file="${list[0].file}-letter"><img src="/img/${list[0].file}.png" alt="${esc(list[0].alt)}" width="${w}" height="${h}" loading="lazy"></a>
+      <div>
+        <p><strong>Just need a blank sheet?</strong> Download a ready-made ${esc(name)}, free and with no signup${which}
+        <p class="small muted">Or fill in the student, goal and options above and download a sheet made for them.</p>
+      </div>
+    </section>
+`;
+}
 const GRAPHS = [["/", "ABA graph maker"], ["/iep-progress-monitoring-graph", "IEP progress monitoring graph"], ["/phase-change-line-graph", "Phase change line graph"], ["/aba-graph-template-excel", "ABA graph template (Excel)"]];
 
 function page(p) {
@@ -87,13 +105,13 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(p.crumb
 ${p.tool ? `      <ul class="badges"><li>Free</li><li>No signup</li><li>Nothing uploaded</li><li>Works offline</li></ul>
       <p class="privacy-note">Runs entirely in your browser. Use student initials, not names.</p>
 ` : ""}    </section>
-${toolHTML}    <article class="content narrow">
+${toolHTML}${readySection(p)}    <article class="content narrow">
 ${p.body}
 ${p.faq && p.faq.length ? `      <h2 id="faq">Frequently asked questions</h2>\n${p.faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${p.noRelated ? "" : `      <h2>${p.relatedTitle || "More free graphs and data sheets"}</h2>
       <ul class="related">
 ${related.map(([h, t]) => `        <li><a href="${h}">${esc(t)}</a></li>`).join("\n")}
       </ul>
-`}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${p.footnote ? " " + p.footnote : ""}</p>
+`}      <p class="small muted">Last updated <time datetime="${(p.updated || [DATE])[0]}">${(p.updated || [DATE, DATE_H])[1]}</time> · Written by the Rooh Sites team.${p.footnote ? " " + p.footnote : ""}</p>
     </article>
   </main>
   <footer class="site">
@@ -110,6 +128,8 @@ ${scripts}</body>
 `;
 }
 
+// Pages with a ready-made sheet were last changed when the sheets were added.
+for (const p of PAGES) if (!p.updated && READY.some(r => r.page === p.slug)) p.updated = ["2026-10-30", "30 October 2026"];
 const report = [];
 for (const p of PAGES) {
   let html = page(p);
