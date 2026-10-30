@@ -449,3 +449,57 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.
 - **Alt text:** Printable Bin Location Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
 - **Keywords:** printable bin location labels, amazon fba, fba prep, fnsku labels
+
+## Day 49: Salon Price List Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/salon-price-list-template.png
+- **Link:** https://pricelist.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free salon and spa price list maker: pick a sample menu, type your services and prices, and download a print-ready PDF or an Instagram image. No login.
+- **Alt text:** Salon Price List Template: Salon and spa price lists for print and Instagram. The image shows a salon price list with services, dot leaders and prices, from pricelist.roohsites.com.
+- **Keywords:** salon price list template, salon price list, salon menu, beauty business
+
+## Day 50: Printable Gift Certificates with Numbers
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/printable-gift-certificates-with-numbers.png
+- **Link:** https://giftcert.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make printable gift certificates with matching numbered stubs, 3 per page on Letter or A4. Free PDF, PNG for email and an issue log. No signup, no uploads.
+- **Alt text:** Printable Gift Certificates with Numbers: Printable gift certificates with numbered stubs. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** printable gift certificates with numbers, gift certificate template, printable gift certificate, small business
+
+## Day 51: A4 to 6x4 Label Converter
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/a4-to-6x4-label-converter.png
+- **Link:** https://labels.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Convert A4 or letter shipping label PDFs to 6x4 (100x150 mm or 4x6 in) for thermal printers. Free, and nothing is uploaded: labels stay on your device.
+- **Alt text:** A4 to 6x4 Label Converter: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer
+
+## Day 52: 504 Plan at a Glance Template
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/504-plan-at-a-glance-template.png
+- **Link:** https://iepglance.roohsites.com/504-plan-at-a-glance-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free 504 plan at a glance template: a one-page summary of a student's 504 accommodations for teachers. Editable, printable, and private in your browser.
+- **Alt text:** 504 Plan at a Glance Template: One-page IEP and 504 summaries for teachers. The image shows a one-page document preview, from iepglance.roohsites.com.
+- **Keywords:** 504 plan at a glance template, iep at a glance, special education, 504 plan
+
+## Day 53: GST Invoice Generator (India)
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/gst-invoice-generator-india.png
+- **Link:** https://invoice.roohsites.com/gst-invoice-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.
+- **Alt text:** GST Invoice Generator (India): Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** gst invoice generator (india), invoice template, free invoice generator, small business
+
+## Day 54: Behavior Punch Card Printable
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/behavior-punch-card-printable.png
+- **Link:** https://punchcard.roohsites.com/behavior-punch-card-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free behavior punch card printable for teachers: star punches, a prize at the end, a name line and 10 cards per page. Print for a whole class in minutes.
+- **Alt text:** Behavior Punch Card Printable: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** behavior punch card printable, punch card template, loyalty card, small business

@@ -385,6 +385,108 @@
       "desc": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
       "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels",
       "added": "2026-10-28"
+    },
+    {
+      "slug": "priceboard",
+      "file": "salon-price-list-template",
+      "path": "/",
+      "board": "Small Business Printables",
+      "headline": "Salon Price List Template",
+      "sub": "Salon and spa price lists for print and Instagram",
+      "points": [
+        "Fits on one page",
+        "Print & Instagram sizes",
+        "No signup"
+      ],
+      "visual": "menu",
+      "desc": "Free salon and spa price list maker: pick a sample menu, type your services and prices, and download a print-ready PDF or an Instagram image. No login.",
+      "keywords": "salon price list template, salon price list, salon menu, beauty business",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "giftstub",
+      "file": "printable-gift-certificates-with-numbers",
+      "path": "/",
+      "board": "Small Business Printables",
+      "headline": "Printable Gift Certificates with Numbers",
+      "sub": "Printable gift certificates with numbered stubs",
+      "points": [
+        "Matching numbered stubs",
+        "Up to 500 per PDF",
+        "Letter & A4"
+      ],
+      "visual": "certificate",
+      "desc": "Make printable gift certificates with matching numbered stubs, 3 per page on Letter or A4. Free PDF, PNG for email and an issue log. No signup, no uploads.",
+      "keywords": "printable gift certificates with numbers, gift certificate template, printable gift certificate, small business",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "labelfit",
+      "file": "a4-to-6x4-label-converter",
+      "path": "/",
+      "board": "Online Seller Shipping",
+      "headline": "A4 to 6x4 Label Converter",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Convert A4 or letter shipping label PDFs to 6x4 (100x150 mm or 4x6 in) for thermal printers. Free, and nothing is uploaded: labels stay on your device.",
+      "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "glancesheet",
+      "file": "504-plan-at-a-glance-template",
+      "path": "/504-plan-at-a-glance-template",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "504 Plan at a Glance Template",
+      "sub": "One-page IEP and 504 summaries for teachers",
+      "points": [
+        "Initials only by default",
+        "Stays on your device",
+        "Letter or A4"
+      ],
+      "visual": "document",
+      "desc": "Free 504 plan at a glance template: a one-page summary of a student's 504 accommodations for teachers. Editable, printable, and private in your browser.",
+      "keywords": "504 plan at a glance template, iep at a glance, special education, 504 plan",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "gst-invoice-generator-india",
+      "path": "/gst-invoice-generator",
+      "board": "Small Business Invoices",
+      "headline": "GST Invoice Generator (India)",
+      "sub": "Create and download PDF invoices free",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.",
+      "keywords": "gst invoice generator (india), invoice template, free invoice generator, small business",
+      "added": "2026-10-30"
+    },
+    {
+      "slug": "punchperk",
+      "file": "behavior-punch-card-printable",
+      "path": "/behavior-punch-card-printable",
+      "board": "Small Business Printables",
+      "headline": "Behavior Punch Card Printable",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Free behavior punch card printable for teachers: star punches, a prize at the end, a name line and 10 cards per page. Print for a whole class in minutes.",
+      "keywords": "behavior punch card printable, punch card template, loyalty card, small business",
+      "added": "2026-10-30"
     }
   ]
 }
