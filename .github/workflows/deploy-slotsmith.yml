@@ -81,7 +81,7 @@ jobs:
             echo "**$DOMAIN** still serves an older copy: move the domain to **$PROJECT** (Custom domains)." >> "$GITHUB_STEP_SUMMARY"
           fi
           # http:// should redirect to https:// (Cloudflare: SSL/TLS > Edge Certificates > Always Use HTTPS).
-          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}' "http://$DOMAIN/compare")
+          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "http://$DOMAIN/compare")
           if [[ "$code" =~ ^30[178]$ && "$to" == "https://$DOMAIN/compare" ]]; then
             echo "http://$DOMAIN redirects to https ($code)."
             { echo; echo "http → https: $code"; } >> "$GITHUB_STEP_SUMMARY"
