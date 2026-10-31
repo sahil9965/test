@@ -59,8 +59,6 @@ on a push that touches it, or by hand (Actions > Deploy Slotsmith site > Run wor
 the footers, hub, pins and IndexNow.
 
 `node tools/cf-pages-project.mjs slotsmith.roohsites.com rooh-slotsmith` asks the Cloudflare API which Pages project serves the domain.
-The site was first uploaded by hand outside this account's Pages projects (31 Oct: none of the 20 projects had the domain), so the
-workflow deploys to `rooh-slotsmith` (created on the first run) until the domain is moved there: remove `slotsmith.roohsites.com` from
-the Worker or project that has it now, then add it under Workers & Pages > rooh-slotsmith > Custom domains. After that the lookup finds
-the project by its domain. Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`; the run
+The site was first uploaded by hand as a Worker, so the workflow created `rooh-slotsmith` and the domain was moved onto it
+(31 Oct; the Worker is deleted). The lookup now finds the project by its domain; `rooh-slotsmith` stays the fallback. Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`; the run
 summary shows every page on both hosts and warns while the domain still serves something else.
