@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Slotsmith Help &amp; Support: Setup Guides and Contact</title>
-<meta name="description" content="Slotsmith help: set up the WordPress booking form, Razorpay, Stripe and PayPal payments, WhatsApp reminders and Google Calendar, or contact support.">
+<title>Slotsmith Documentation: Setup Guides for Every Feature</title>
+<meta name="description" content="Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
 <link rel="canonical" href="https://slotsmith.roohsites.com/support">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Slotsmith">
-<meta property="og:title" content="Slotsmith Help &amp; Support: Setup Guides and Contact">
-<meta property="og:description" content="Slotsmith help: set up the WordPress booking form, Razorpay, Stripe and PayPal payments, WhatsApp reminders and Google Calendar, or contact support.">
+<meta property="og:title" content="Slotsmith Documentation: Setup Guides for Every Feature">
+<meta property="og:description" content="Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
 <meta property="og:url" content="https://slotsmith.roohsites.com/support">
 <meta property="og:image" content="https://slotsmith.roohsites.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json" id="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Slotsmith Help & Support: Setup Guides and Contact","description":"Slotsmith help: set up the WordPress booking form, Razorpay, Stripe and PayPal payments, WhatsApp reminders and Google Calendar, or contact support.","url":"https://slotsmith.roohsites.com/support","dateModified":"2026-10-31"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Slotsmith","item":"https://slotsmith.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://slotsmith.roohsites.com/support"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"The booking form doesn't show on my page","acceptedAnswer":{"@type":"Answer","text":"The form needs at least one published service and one staff member who offers it. When you're logged in as an administrator, the page shows a note saying what's missing; visitors see nothing."}},{"@type":"Question","name":"Booking emails don't arrive","acceptedAnswer":{"@type":"Answer","text":"Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Slotsmith uses the standard WordPress mail function, so it works with all of them. Also check the spam folder."}},{"@type":"Question","name":"Times are an hour or more out","acceptedAnswer":{"@type":"Answer","text":"Slotsmith uses the time zone in Settings → General. Set it to your business's city rather than a UTC offset, so daylight saving time is handled for you."}},{"@type":"Question","name":"A day or time I expected isn't offered","acceptedAnswer":{"@type":"Answer","text":"Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in Slotsmith → Settings, and (with Pro) busy times in their Google Calendar."}},{"@type":"Question","name":"Reminders are late, or paid bookings stay “awaiting payment”","acceptedAnswer":{"@type":"Answer","text":"Reminders and payment checks run every 5 minutes through WP-Cron, which only runs when someone visits your site. On quiet sites, ask your host to set up a real cron job that calls wp-cron.php every 5 minutes, and add payment webhooks so payments are confirmed instantly."}},{"@type":"Question","name":"The payment page shows a currency error","acceptedAnswer":{"@type":"Answer","text":"Check the currency in Slotsmith → Settings → Currency. Each provider supports its own list of currencies, and Slotsmith hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on Pro settings → Payments says which payment method is hidden and why."}},{"@type":"Question","name":"Google Calendar says “Connected”, but bookings don't appear in it","acceptedAnswer":{"@type":"Answer","text":"The Google Calendar API isn't switched on in your Google Cloud project. Open APIs & Services → Library in the same project as your OAuth client, search for “Google Calendar API” and click Enable. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Slotsmith Pro show Google's message in red on the staff page when this happens."}},{"@type":"Question","name":"Google says “Access blocked: … has not completed the Google verification process”","acceptedAnswer":{"@type":"Answer","text":"Your Google app is still in Testing. Open Audience on the consent screen and click Publish app. See Part 1, step 4."}},{"@type":"Question","name":"Google says “redirect_uri_mismatch”","acceptedAnswer":{"@type":"Answer","text":"The redirect address in your Google client must match the one shown under Pro settings → Google Calendar exactly, including https, www and every character at the end. Edit the client in Google Cloud, fix it and try again after a minute or two."}},{"@type":"Question","name":"Google Calendar worked, then stopped about a week later","acceptedAnswer":{"@type":"Answer","text":"Your Google app was left in Testing, which ends connections after 7 days. Click Publish app under Audience, then disconnect and connect each staff member again."}},{"@type":"Question","name":"Where do I find my licence key, invoices or downloads?","acceptedAnswer":{"@type":"Answer","text":"In your purchase email, and in your account at users.freemius.com. Our reseller, Freemius, runs the checkout and the customer account."}},{"@type":"Question","name":"How do I move my licence to another website?","acceptedAnswer":{"@type":"Answer","text":"On the old site, go to Slotsmith → Account and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up."}},{"@type":"Question","name":"How do I cancel automatic renewal?","acceptedAnswer":{"@type":"Answer","text":"Cancel it in your account at users.freemius.com, or email us. Your licence stays active until the end of the period you paid for, and Slotsmith Pro keeps working after that. You just stop getting updates and support."}},{"@type":"Question","name":"Can I get a refund?","acceptedAnswer":{"@type":"Answer","text":"Yes, within 14 days of purchase. See our refund policy."}}]}]}</script>
+<script type="application/ld+json" id="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Slotsmith Documentation: Setup Guides for Every Feature","description":"Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.","url":"https://slotsmith.roohsites.com/support","dateModified":"2026-10-31"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Slotsmith","item":"https://slotsmith.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://slotsmith.roohsites.com/support"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"The booking form doesn't show on my page","acceptedAnswer":{"@type":"Answer","text":"The form needs at least one published service and one staff member who offers it. When you're logged in as an administrator, the page shows a note saying what's missing; visitors see nothing."}},{"@type":"Question","name":"Booking emails don't arrive","acceptedAnswer":{"@type":"Answer","text":"Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Slotsmith uses the standard WordPress mail function, so it works with all of them. Also check the spam folder."}},{"@type":"Question","name":"Times are an hour or more out","acceptedAnswer":{"@type":"Answer","text":"Slotsmith uses the time zone in Settings → General, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See Time zone and currency. Set it before real bookings come in."}},{"@type":"Question","name":"A day or time I expected isn't offered","acceptedAnswer":{"@type":"Answer","text":"Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in Slotsmith → Settings, and (with Pro) busy times in their Google Calendar."}},{"@type":"Question","name":"Reminders are late, or paid bookings stay “awaiting payment”","acceptedAnswer":{"@type":"Answer","text":"Reminders and payment checks run every 5 minutes through WP-Cron, which only runs when someone visits your site. On quiet sites, ask your host to set up a real cron job that calls wp-cron.php every 5 minutes, and add payment webhooks so payments are confirmed instantly."}},{"@type":"Question","name":"The payment page shows a currency error","acceptedAnswer":{"@type":"Answer","text":"Check the currency in Slotsmith → Settings → Currency. Each provider supports its own list of currencies, and Slotsmith hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on Pro settings → Payments says which payment method is hidden and why."}},{"@type":"Question","name":"Google Calendar says “Connected”, but bookings don't appear in it","acceptedAnswer":{"@type":"Answer","text":"The Google Calendar API isn't switched on in your Google Cloud project. Open APIs & Services → Library in the same project as your OAuth client, search for “Google Calendar API” and click Enable. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Slotsmith Pro show Google's message in red on the staff page when this happens."}},{"@type":"Question","name":"Google says “Access blocked: … has not completed the Google verification process”","acceptedAnswer":{"@type":"Answer","text":"Your Google app is still in Testing. Open Audience on the consent screen and click Publish app. See Part 1, step 4."}},{"@type":"Question","name":"Google says “redirect_uri_mismatch”","acceptedAnswer":{"@type":"Answer","text":"The redirect address in your Google client must match the one shown under Pro settings → Google Calendar exactly, including https, www and every character at the end. Edit the client in Google Cloud, fix it and try again after a minute or two."}},{"@type":"Question","name":"Google Calendar worked, then stopped about a week later","acceptedAnswer":{"@type":"Answer","text":"Your Google app was left in Testing, which ends connections after 7 days. Click Publish app under Audience, then disconnect and connect each staff member again."}},{"@type":"Question","name":"A payment method is missing from the booking form","acceptedAnswer":{"@type":"Answer","text":"Check that Take payments online is ticked, that the method is ticked with its keys saved, and that it takes your currency. Slotsmith hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in Slotsmith → Settings → Currency."}},{"@type":"Question","name":"No SMS or WhatsApp reminder arrived","acceptedAnswer":{"@type":"Answer","text":"Check, in order: the booking is Confirmed; the customer gave a phone number; it was made earlier than the reminder window (a booking made one hour before the appointment gets no 2-hour reminder); the reminder time has passed; and WordPress's scheduler has run (see the next answer). Then use Send a test message on the Reminders tab, which shows the provider's exact error."}},{"@type":"Question","name":"WhatsApp says “(#132001) Template name does not exist in the translation”","acceptedAnswer":{"@type":"Answer","text":"Meta can't find an Active template with that name and language for your number. Check in WhatsApp Manager that the template's status is Active, that the name is exactly what you typed (lower case with underscores), that the Template language code matches (English is en, English (US) is en_US), and that the template belongs to the same WhatsApp business account as your phone number ID."}},{"@type":"Question","name":"WhatsApp says “Recipient phone number not in allowed list”","acceptedAnswer":{"@type":"Answer","text":"You're using Meta's test number, which can only message numbers you've added under API setup → Recipient → Manage phone number list. Add the number there, or go live with your own business number."}},{"@type":"Question","name":"WhatsApp or SMS worked, then stopped","acceptedAnswer":{"@type":"Answer","text":"The most likely cause is an expired token. Meta's temporary access token lasts 24 hours: create a permanent one (Part 4). On a Twilio trial account, messages only go to numbers you've verified, and the trial's credit can run out."}},{"@type":"Question","name":"Where do I find my licence key, invoices or downloads?","acceptedAnswer":{"@type":"Answer","text":"In your purchase email, and in your account at users.freemius.com. Our reseller, Freemius, runs the checkout and the customer account."}},{"@type":"Question","name":"How do I move my licence to another website?","acceptedAnswer":{"@type":"Answer","text":"On the old site, go to Slotsmith → Account and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up."}},{"@type":"Question","name":"How do I cancel automatic renewal?","acceptedAnswer":{"@type":"Answer","text":"Cancel it in your account at users.freemius.com, or email us. Your licence stays active until the end of the period you paid for, and Slotsmith Pro keeps working after that. You just stop getting updates and support."}},{"@type":"Question","name":"Can I get a refund?","acceptedAnswer":{"@type":"Answer","text":"Yes, within 14 days of purchase. See our refund policy."}}]}]}</script>
 <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/pages.css">
 </head>
@@ -32,8 +32,8 @@
 
 <main class="wrap">
 	<p class="crumbs"><a href="/">Slotsmith</a> › Support</p>
-	<h1>Help &amp; support</h1>
-	<p class="lead">Setup guides for Slotsmith and Slotsmith Pro, answers to common questions, and how to reach us.</p>
+	<h1>Help &amp; documentation</h1>
+	<p class="lead">Step-by-step guides for every Slotsmith and Slotsmith Pro feature, answers to common problems, and how to reach us.</p>
 
 	<div class="cards">
 		<div class="box accent">
@@ -58,31 +58,147 @@
 	</div>
 
 	<h2>On this page</h2>
+	<p><strong>Free plugin</strong></p>
 	<ul class="toc">
 		<li><a href="#start">Getting started</a></li>
+		<li><a href="#timezone">Time zone and currency (do this first)</a></li>
+		<li><a href="#services">Services</a></li>
+		<li><a href="#staff">Staff</a></li>
+		<li><a href="#form">Adding the booking form to a page</a></li>
+		<li><a href="#settings">Settings explained</a></li>
+		<li><a href="#bookings">Managing bookings and emails</a></li>
+	</ul>
+	<p><strong>Slotsmith Pro</strong></p>
+	<ul class="toc">
 		<li><a href="#pro">Installing Slotsmith Pro</a></li>
-		<li><a href="#payments">Online payments</a></li>
+		<li><a href="#payments">Online payments (Razorpay, PayPal, Stripe)</a></li>
 		<li><a href="#webhooks">Payment webhooks</a></li>
 		<li><a href="#refunds">Refunds to customers</a></li>
 		<li><a href="#reminders">Reminders</a></li>
+		<li><a href="#sms">SMS reminders (Twilio)</a></li>
+		<li><a href="#whatsapp">WhatsApp reminders</a></li>
 		<li><a href="#google">Google Calendar</a></li>
 		<li><a href="#calendar">Admin calendar</a></li>
-		<li><a href="#portal">My bookings page</a></li>
-		<li><a href="#more">Extras, coupons and more</a></li>
+		<li><a href="#portal">My bookings page (customer portal)</a></li>
+		<li><a href="#extras">Service extras</a></li>
+		<li><a href="#coupons">Coupons</a></li>
+		<li><a href="#questions">Extra questions on the form</a></li>
+		<li><a href="#schedules">Breaks and special dates</a></li>
+		<li><a href="#emails">Branded emails</a></li>
 		<li><a href="#privacy-requests">Customer data requests</a></li>
+	</ul>
+	<p><strong>Help</strong></p>
+	<ul class="toc">
 		<li><a href="#troubleshooting">Troubleshooting</a></li>
 		<li><a href="#account">Licence and billing</a></li>
 	</ul>
 
 	<h2 id="start">Getting started (free plugin)</h2>
+	<p>You can have a working booking page in about 10 minutes. Do these in order:</p>
 	<ol>
 		<li><strong>Install.</strong> In your dashboard go to <span class="path">Plugins → Add New</span>, search for “Slotsmith”, then install and activate it.</li>
-		<li><strong>Add services.</strong> <span class="path">Slotsmith → Services → Add New</span>: name, duration, price, buffer time and a short description.</li>
-		<li><strong>Add staff.</strong> <span class="path">Slotsmith → Staff → Add New</span>: photo, the services they offer, weekly hours and days off. Every service needs at least one staff member who offers it.</li>
-		<li><strong>Add the form to a page.</strong> In the block editor, add the <strong>Booking form</strong> block. Its sidebar can preselect a service and staff member. With the classic editor or a page builder (Elementor, Divi and others), use the shortcode <code>[slotsmith]</code>.</li>
-		<li><strong>Check your settings.</strong> <span class="path">Slotsmith → Settings</span>: brand colour, currency symbol, slot interval, minimum notice, how far ahead people can book, and whether you approve bookings yourself.</li>
-		<li><strong>Make a test booking</strong> and check that the confirmation emails arrive. If they don't, see <a href="#troubleshooting">Troubleshooting</a>.</li>
+		<li><strong>Set your <a href="#timezone">time zone and currency</a>.</strong> Do this before you take real bookings.</li>
+		<li><strong>Add a <a href="#services">service</a>.</strong> <span class="path">Slotsmith → Services → Add New</span>.</li>
+		<li><strong>Add a <a href="#staff">staff member</a></strong> who offers it, with working hours. <span class="path">Slotsmith → Staff → Add New</span>.</li>
+		<li><strong>Put the <a href="#form">booking form on a page</a>.</strong> Use the Booking form block or the shortcode <code>[slotsmith]</code>.</li>
+		<li><strong>Make a test booking</strong> and check that the emails arrive. If they don't, see <a href="#troubleshooting">Troubleshooting</a>. Then delete the test booking in <span class="path">Slotsmith → Bookings</span>.</li>
 	</ol>
+
+	<h2 id="timezone">Time zone and currency (do this first)</h2>
+	<h3>Time zone</h3>
+	<p>Slotsmith shows and books times in your website's time zone, and new WordPress sites start on <strong>UTC</strong>. If you leave it, customers see UTC times, which are probably wrong for your city. Slotsmith shows a warning on its own screens until you change it.</p>
+	<ol>
+		<li>Go to <span class="path">Settings → General</span> and find <strong>Timezone</strong>.</li>
+		<li>Open the list and choose your <strong>city</strong>, for example <em>Asia → Kolkata</em>. A city also handles daylight saving time for you.</li>
+		<li><strong>If the list only shows UTC offsets</strong> (UTC−5, UTC+5:30 and so on, with no cities), your host hasn't installed the city list. Choose your offset instead: India is <strong>UTC+5:30</strong>, Dubai UTC+4, Singapore UTC+8, New York UTC−5 in winter. An offset doesn't change for daylight saving time, so if your country uses it, switch the offset twice a year, or ask your host to enable the PHP time zone database so cities appear.</li>
+		<li>Click <span class="path">Save Changes</span>.</li>
+	</ol>
+	<p>Set this <em>before</em> real bookings come in. A booking is stored as an exact moment in time, so changing the zone afterwards shows existing bookings at the new zone's clock time. Delete test bookings made before you changed it.</p>
+	<h3>Currency</h3>
+	<ol>
+		<li>Go to <span class="path">Slotsmith → Settings</span> and open the <strong>Currency</strong> list.</li>
+		<li>Choose yours, for example <em>₹ Indian rupee (INR)</em> or <em>$ US dollar (USD)</em>. The symbol shown next to prices follows your choice straight away. Choose <strong>Other</strong> to type your own symbol.</li>
+		<li>Click <span class="path">Save Changes</span>.</li>
+	</ol>
+	<p>With Slotsmith Pro, this is also the currency customers are charged in, and the payment methods that don't take it are hidden. See <a href="#payments">Online payments</a>.</p>
+
+	<h2 id="services">Services</h2>
+	<p>A service is something customers book, like “Haircut” or “Maths lesson”.</p>
+	<ol>
+		<li>Go to <span class="path">Slotsmith → Services → Add New</span> and type the service name as the title. Customers see it.</li>
+		<li>In the <strong>Service details</strong> box fill in:
+			<ul>
+				<li><strong>Short description</strong>: one line shown under the name, such as “Wash, cut and blow-dry”.</li>
+				<li><strong>Duration (minutes)</strong>: how long the appointment takes.</li>
+				<li><strong>Buffer after (minutes)</strong>: clean-up or travel time blocked after each appointment. Nobody can book into it.</li>
+				<li><strong>Price</strong>: shown to customers. Leave it empty to hide the price. In the free plugin, payment is collected in person. With Pro, customers can pay online.</li>
+			</ul>
+		</li>
+		<li>Click <strong>Publish</strong>.</li>
+		<li>Open the staff members who offer it and tick it under <strong>Services offered</strong>. A service nobody offers can't be booked.</li>
+	</ol>
+	<p>The Services list shows each service's <strong>ID</strong>, which you can use in the <a href="#form">shortcode</a>. With Pro, services can also have <a href="#extras">extras</a>.</p>
+
+	<h2 id="staff">Staff</h2>
+	<p>Staff are the people customers book with: hairdressers, tutors, coaches. A one-person business adds one.</p>
+	<ol>
+		<li>Go to <span class="path">Slotsmith → Staff → Add New</span> and type the person's name as the title.</li>
+		<li>Click <strong>Set photo</strong> (optional) to show a picture on the form.</li>
+		<li><strong>Email</strong> (optional): this person is emailed about their new bookings.</li>
+		<li><strong>Services offered:</strong> tick every service they do.</li>
+		<li><strong>Working hours:</strong> tick each day they work and set the start and end time. Times use the <a href="#timezone">site time zone</a>.</li>
+		<li><strong>Days off:</strong> add the dates they're away. Nobody can book them.</li>
+		<li>Click <strong>Publish</strong>.</li>
+	</ol>
+	<p>If more than one person offers a service, customers can pick one, or choose <strong>Anyone available</strong>, which books the first free person. A new staff member with no services ticked or no working days shows no times. With Pro, you can also add <a href="#schedules">breaks and special dates</a> and connect a <a href="#google">Google Calendar</a>.</p>
+
+	<h2 id="form">Adding the booking form to a page</h2>
+	<h3>Block editor</h3>
+	<ol>
+		<li>Create or edit a page (for example “Book now”).</li>
+		<li>Click the <strong>+</strong> button, search for <strong>Booking form</strong> and add it.</li>
+		<li>In the block's sidebar, <strong>Start with</strong> can preselect a service and a staff member, which is handy for a page about one service.</li>
+		<li>Click <strong>Update</strong>, then link the page from your menu.</li>
+	</ol>
+	<h3>Shortcode (classic editor and page builders)</h3>
+	<p>Paste <code>[slotsmith]</code> into the page. In Elementor use the <em>Shortcode</em> widget, and in Divi a <em>Text</em> or <em>Code</em> module. You can preselect with the IDs shown in the Services and Staff lists:</p>
+	<ul>
+		<li><code>[slotsmith service="12"]</code> starts with service 12 chosen;</li>
+		<li><code>[slotsmith staff="7"]</code> starts with staff member 7 chosen;</li>
+		<li><code>[slotsmith service="12" staff="7"]</code> preselects both.</li>
+	</ul>
+	<h3>What customers see</h3>
+	<p>Three steps: <strong>Service</strong>, <strong>Date &amp; time</strong>, then <strong>Your details</strong> (name, email, phone, notes). The calendar only lets them pick days with free times, and times are grouped into morning, afternoon and evening. The confirmation screen has an <strong>Add to calendar</strong> button. The form uses your brand colour and your theme's fonts, and works on phones.</p>
+	<p>Pages with the form tell caching plugins (LiteSpeed, WP Rocket and others) not to cache them, so times are always live. If a cache plugin still shows old times, add the page to its “never cache” list.</p>
+
+	<h2 id="settings">Settings explained</h2>
+	<p>Go to <span class="path">Slotsmith → Settings</span>:</p>
+	<ul>
+		<li><strong>Time slot interval:</strong> how often a new start time is offered (every 5 to 60 minutes). With 30 minutes you get 9:00, 9:30, 10:00.</li>
+		<li><strong>Minimum notice (hours):</strong> customers can't book a slot starting sooner than this.</li>
+		<li><strong>Booking window (days):</strong> how far ahead customers can book.</li>
+		<li><strong>New bookings:</strong> <em>Need my approval (pending)</em> or <em>Are confirmed automatically</em>.</li>
+		<li><strong>Notification email:</strong> where new booking and cancellation emails go.</li>
+		<li><strong>Currency:</strong> see <a href="#timezone">above</a>.</li>
+		<li><strong>Brand colour:</strong> used for buttons and selected items in the form.</li>
+		<li><strong>Uninstall:</strong> tick this only if you want all bookings, services, staff and settings deleted when the plugin is deleted.</li>
+	</ul>
+
+	<h2 id="bookings">Managing bookings and emails</h2>
+	<p><span class="path">Slotsmith → Bookings</span> lists every booking. The links at the top filter it: <strong>Upcoming</strong>, <strong>Pending</strong>, <strong>Confirmed</strong>, <strong>Cancelled</strong> and <strong>Past</strong> (and <strong>Awaiting payment</strong> with Pro). Under each booking:</p>
+	<ul>
+		<li><strong>Confirm</strong> (for pending bookings): the customer is emailed that it's confirmed.</li>
+		<li><strong>Cancel:</strong> cancels it and emails the customer.</li>
+		<li><strong>Delete:</strong> removes it completely. Use it for test bookings.</li>
+	</ul>
+	<h3>Who gets which email</h3>
+	<ul>
+		<li><strong>The customer:</strong> a <em>request received</em> email when you approve bookings yourself, or a <em>booking confirmed</em> email otherwise, with a link to cancel; a <em>confirmed</em> email when you approve; and a <em>cancelled</em> email.</li>
+		<li><strong>You</strong> (the notification email) <strong>and the staff member</strong> (if they have an email): a new booking, and a cancellation or move by the customer.</li>
+	</ul>
+	<p>The cancel link opens a page asking the customer to confirm. The booking is only cancelled when they press the button, so email scanners that open links can't cancel by accident. Customers can't cancel closer to the appointment than your minimum notice.</p>
+	<p>Slotsmith blocks spam with a hidden field and a short limit on repeat bookings from one visitor. It stores a one-way hash of the visitor's IP address for 10 minutes, never the address itself.</p>
+	<p>If emails don't reach customers, your host may not deliver WordPress mail. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP.</p>
 
 	<h2 id="pro">Installing Slotsmith Pro</h2>
 	<ol>
@@ -91,29 +207,56 @@
 		<li>Go to <span class="path">Slotsmith → Pro settings</span> and enter your licence key. Updates then arrive under <span class="path">Plugins</span> like any other plugin.</li>
 		<li>A <strong>My bookings</strong> page is created for you. Pro settings has a tab for each feature: Payments, Reminders, Google Calendar, Booking form, Customer portal and Emails.</li>
 	</ol>
+	<p>You can try every Pro feature free for 14 days with no card. Start the trial from the <a href="/#pricing">pricing section</a>.</p>
 
-	<h2 id="payments">Online payments</h2>
-	<p>Customers pay on Stripe's, Razorpay's or PayPal's own secure page, so card details never touch your site. Set it up under <span class="path">Slotsmith → Pro settings → Payments</span>:</p>
+	<h2 id="payments">Online payments (Razorpay, PayPal, Stripe)</h2>
+	<p>Customers pay on Razorpay's, PayPal's or Stripe's own secure page, so card details never touch your site. Set it up in three steps.</p>
+	<h3>Step 1: Choose your currency</h3>
+	<p>In <span class="path">Slotsmith → Settings → Currency</span>. The symbol on prices and the amount charged always use it. Each payment method takes some currencies, and Slotsmith hides the ones that don't take yours:</p>
 	<ul>
-		<li><strong>Take payments online.</strong> Choose your currency once, in <span class="path">Slotsmith → Settings → Currency</span>. The symbol shown on prices and the currency customers are charged in both follow that choice. Payment methods that don't take it are hidden from customers automatically.</li>
-		<li><strong>Amount to collect:</strong> the full price, or a deposit (a percentage), with the rest paid at the appointment.</li>
-		<li><strong>Hold unpaid bookings for:</strong> the time slot is reserved while the customer pays (at least 30 minutes), then released if they don't.</li>
-		<li><strong>Paid bookings become</strong> confirmed, or pending if you want to approve them yourself.</li>
+		<li><strong>Razorpay:</strong> Indian rupees (INR). It's hidden for other currencies, unless Razorpay has switched on international payments for your account and you tick <strong>Razorpay international payments</strong>.</li>
+		<li><strong>PayPal:</strong> USD, EUR, GBP, AUD, CAD and most other major currencies, but <strong>not</strong> Indian rupees.</li>
+		<li><strong>Stripe:</strong> whatever your Stripe account supports. Stripe isn't open in every country, so check its supported-countries list.</li>
 	</ul>
-	<h3>Stripe</h3>
-	<p>Paste your secret key from <span class="path">Stripe → Developers → API keys</span>. Use a key starting with <code>sk_test_</code> to try it first, then switch to your <code>sk_live_</code> key.</p>
-	<h3>Razorpay (India: UPI, cards, netbanking)</h3>
-	<p>Paste your key ID and key secret from <span class="path">Razorpay → Account &amp; Settings → API keys</span>. Use test-mode keys first. Razorpay takes Indian rupees, so it's offered when your currency is <strong>INR</strong>. If Razorpay has switched on international payments for your account, tick <strong>Razorpay international payments</strong> to offer it in other currencies too.</p>
-	<h3>PayPal</h3>
+	<p>So a shop in India that charges in rupees uses Razorpay (UPI, cards, netbanking). A site charging in dollars uses PayPal or Stripe. Switching the currency switches which methods customers see.</p>
+	<h3>Step 2: Payment options</h3>
+	<p>Under <span class="path">Slotsmith → Pro settings → Payments</span>:</p>
+	<ul>
+		<li><strong>Take payments online:</strong> tick it to turn payments on.</li>
+		<li><strong>Amount to collect:</strong> the full price, or a deposit (set the <strong>Deposit (%)</strong>), with the rest paid at the appointment. The bookings list then shows “Paid online” and “To pay at appointment”.</li>
+		<li><strong>Hold unpaid bookings for:</strong> the time slot is reserved while the customer pays (at least 30 minutes), then released if they don't. Unpaid bookings show under <strong>Awaiting payment</strong>.</li>
+		<li><strong>Paid bookings become:</strong> confirmed, or pending if you want to approve them yourself.</li>
+		<li><strong>Refund paid bookings:</strong> see <a href="#refunds">Refunds</a>.</li>
+	</ul>
+	<h3>Step 3: Connect a payment method</h3>
+	<h4>Razorpay (India: UPI, cards, netbanking)</h4>
+	<ol>
+		<li>Log in at <a href="https://dashboard.razorpay.com/" rel="noopener">dashboard.razorpay.com</a>. The switch at the top chooses <strong>Test mode</strong> or <strong>Live mode</strong>. Each has its own keys, so start in Test mode.</li>
+		<li>Open <span class="path">Account &amp; Settings → API keys → Generate key</span>. Copy the <strong>Key ID</strong> and <strong>Key Secret</strong> now. The secret is shown once.</li>
+		<li>In <span class="path">Pro settings → Payments</span> tick <strong>Razorpay</strong>, paste both and save.</li>
+		<li>Add the <a href="#webhooks">webhook</a> so bookings confirm even if the customer closes the tab.</li>
+		<li>Make a test booking. In Test mode, pay with the test UPI ID <code>success@razorpay</code>. When you're happy, switch to Live mode, generate Live keys and paste those instead.</li>
+	</ol>
+	<h4>PayPal</h4>
 	<ol>
 		<li>Go to <a href="https://developer.paypal.com/" rel="noopener">developer.paypal.com</a>, log in and open <span class="path">Apps &amp; Credentials</span>. The switch at the top chooses <strong>Sandbox</strong> (for testing) or <strong>Live</strong>. Each has its own keys.</li>
 		<li>Click <span class="path">Create App</span>, name it after your business, keep the type <em>Merchant</em> and create it.</li>
 		<li>Copy the <strong>Client ID</strong>. Under <span class="path">Secret key 1</span> click <span class="path">Show</span> and copy the <strong>secret</strong>.</li>
 		<li>In <span class="path">Pro settings → Payments</span>, tick PayPal and paste both. Tick <strong>PayPal sandbox</strong> if you used Sandbox keys, and untick it for Live keys. If PayPal rejects the keys, this tick box not matching the keys is the usual reason.</li>
-		<li>Choose a currency PayPal accepts, such as USD, EUR or GBP, in <span class="path">Slotsmith → Settings → Currency</span>. PayPal doesn't take Indian rupees, so it's hidden when your currency is INR. Use Razorpay for customers in India.</li>
-		<li>Add the webhook described below, so bookings confirm even if the customer closes the tab.</li>
+		<li>Choose a currency PayPal accepts, such as USD, EUR or GBP, in <span class="path">Slotsmith → Settings → Currency</span>.</li>
+		<li>Add the <a href="#webhooks">webhook</a>.</li>
 	</ol>
-	<p><strong>To test first:</strong> with Sandbox keys, open <span class="path">Testing tools → Sandbox accounts</span> in the PayPal developer dashboard and create a <strong>Personal</strong> account. That is a fake buyer. When you pay on your booking form, log in to PayPal with that account's email and password (open it with the <span class="path">…</span> menu, then <span class="path">View/edit account</span>). Real PayPal logins don't work in the sandbox, and no real money moves. When you're happy, paste your Live keys and untick <strong>PayPal sandbox</strong>.</p>
+	<p><strong>To test first:</strong> with Sandbox keys, open <span class="path">Testing tools → Sandbox accounts</span> in the PayPal developer dashboard and create a <strong>Personal</strong> account. That is a fake buyer. When you pay on your booking form, log in to PayPal with that account's email and password (open it with the <span class="path">…</span> menu, then <span class="path">View/edit account</span>). Don't use the Business sandbox account to pay, because a shop can't pay itself. Real PayPal logins don't work in the sandbox, and no real money moves. When you're happy, paste your Live keys and untick <strong>PayPal sandbox</strong>.</p>
+	<h4>Stripe</h4>
+	<ol>
+		<li>Log in at <a href="https://dashboard.stripe.com/" rel="noopener">dashboard.stripe.com</a> and turn on <strong>Test mode</strong>.</li>
+		<li>Open <span class="path">Developers → API keys</span> and reveal the <strong>Secret key</strong> (it starts with <code>sk_test_</code>).</li>
+		<li>In <span class="path">Pro settings → Payments</span> tick <strong>Stripe</strong>, paste the key and save.</li>
+		<li>Add the <a href="#webhooks">webhook</a> and paste its signing secret.</li>
+		<li>Pay with Stripe's test card <code>4242 4242 4242 4242</code>, any future expiry date and any CVC. For real payments, turn Test mode off and use your <code>sk_live_</code> key.</li>
+	</ol>
+	<h3>What customers see</h3>
+	<p>On the last step they choose how to pay (only if you've connected more than one method), pay on the provider's page, and come back to “You're booked!” with the amount paid. If they abandon the payment, the slot is released after the hold time.</p>
 
 	<h2 id="webhooks">Payment webhooks (recommended)</h2>
 	<p>Without webhooks, a booking is confirmed when the customer comes back to your site, or by a background check every few minutes. With webhooks, the payment provider tells your site the moment the money arrives, even if the customer closes the tab.</p>
@@ -135,13 +278,73 @@
 	<p>The full amount goes back the way it was paid (card, UPI or PayPal). Paid, cancelled bookings also get a <strong>Refund</strong> link in the bookings list, which you can use if automatic refunds are off or a refund failed. The failure reason is shown there too.</p>
 
 	<h2 id="reminders">Reminders</h2>
-	<p>Under <span class="path">Pro settings → Reminders</span>, set the first and second reminder in hours before the appointment (for example 24 and 2; 0 turns one off), then choose how they're sent:</p>
+	<p>Reminders cut no-shows. Under <span class="path">Pro settings → Reminders</span>:</p>
+	<ol>
+		<li><strong>Email reminders:</strong> tick it. It works straight away.</li>
+		<li><strong>First reminder</strong> and <strong>Second reminder</strong> (hours before): for example 24 and 2. Enter 0 to turn one off.</li>
+		<li><strong>Make phone number required:</strong> tick it if you use SMS or WhatsApp, so every booking has a number.</li>
+		<li><strong>Default country code:</strong> for example <code>+91</code>. It's added to numbers typed without one.</li>
+		<li>To add SMS or WhatsApp, follow <a href="#sms">SMS</a> or <a href="#whatsapp">WhatsApp</a> below, then click <span class="path">Save Changes</span>.</li>
+	</ol>
+	<h3>How reminders work</h3>
 	<ul>
-		<li><strong>Email</strong>: works straight away.</li>
-		<li><strong>SMS through Twilio</strong>: paste your Twilio account SID, auth token and Twilio phone number.</li>
-		<li><strong>WhatsApp (WhatsApp Cloud API)</strong>: WhatsApp only allows business messages that use an approved template. In WhatsApp Manager, create a template whose body has three variables: <code>{{1}}</code> customer name, <code>{{2}}</code> service, <code>{{3}}</code> date and time. Then enter your phone number ID, access token, the template name and its language code.</li>
+		<li>Only <strong>confirmed</strong> bookings get reminders. Pending and cancelled ones don't.</li>
+		<li>Each reminder is sent once. A customer who books inside a reminder's window (for example one hour before the appointment) doesn't get that reminder, because they just booked.</li>
+		<li>They go out within about 5 minutes of the time. WordPress runs this when someone visits your site, so on a very quiet site ask your host for a real cron job (see <a href="#troubleshooting">Troubleshooting</a>).</li>
+		<li>If you turn reminders on late, or the site was quiet, a booking gets one reminder, the nearest one, not two in a row.</li>
+		<li>A failed SMS or WhatsApp message doesn't stop the others and isn't retried every few minutes.</li>
 	</ul>
-	<p>For SMS and WhatsApp, turn on <strong>Make phone number required</strong> and set a <strong>Default country code</strong> (for example +91), which is added to numbers typed without one.</p>
+	<h3>Send a test message</h3>
+	<p>The <strong>Send a test message</strong> box at the bottom of the Reminders tab sends one SMS or WhatsApp message to a number you type, so you can check your keys before real customers rely on them. If it fails, the box shows the provider's exact error. Save your settings first.</p>
+
+	<h2 id="sms">SMS reminders (Twilio)</h2>
+	<p>Slotsmith sends SMS through <a href="https://www.twilio.com/" rel="noopener">Twilio</a>. You need a Twilio account and a Twilio phone number that can send to your customers' country.</p>
+	<ol>
+		<li>Create an account at twilio.com. A free trial gives some credit.</li>
+		<li>In the Twilio Console, copy your <strong>Account SID</strong> and <strong>Auth Token</strong> (<span class="path">Account → API keys &amp; tokens → Auth tokens</span>).</li>
+		<li>Get a phone number: <span class="path">Phone Numbers → Manage → Buy a number</span>. Choose one that supports SMS in the countries you'll message. Not every country offers a free trial number.</li>
+		<li><strong>Allow the destination country:</strong> <span class="path">Messaging → Settings → Geo permissions</span>. Tick the countries your customers are in.</li>
+		<li>On a trial account, Twilio can only message numbers you've verified (<span class="path">Phone Numbers → Manage → Verified Caller IDs</span>) and adds “Sent from your Twilio trial account” to messages. Upgrading removes both limits.</li>
+		<li>In <span class="path">Pro settings → Reminders</span> tick <strong>SMS reminders (Twilio)</strong> and paste the SID, the auth token and the Twilio number with its <code>+</code> and country code. Save.</li>
+		<li>Use <strong>Send a test message</strong> to check it.</li>
+	</ol>
+	<p>The message reads “Reminder: Haircut on Monday, 2 November at 11:30 am at Your Business. To change or cancel: (link)”.</p>
+	<p><strong>Sending to India:</strong> Indian networks require senders to register their message templates and sender names (called DLT), and messages from an unregistered international number are often blocked. For Indian customers use <a href="#whatsapp">WhatsApp</a> instead, or a registered Indian SMS provider.</p>
+
+	<h2 id="whatsapp">WhatsApp reminders</h2>
+	<p>Slotsmith sends WhatsApp messages through Meta's official <strong>WhatsApp Cloud API</strong>. WhatsApp only lets a business start a conversation with an approved <strong>message template</strong>, so you create one template and Slotsmith fills it in for each booking. It's free to try with Meta's test number. Meta renames screens now and then, so if a menu looks different, look for the same words.</p>
+	<h3>Part 1: Create the app and the test number</h3>
+	<ol>
+		<li>Go to <a href="https://developers.facebook.com/" rel="noopener">developers.facebook.com</a>, log in with Facebook and finish the developer sign-up.</li>
+		<li>Click <span class="path">Create App</span>, name it (for example “Slotsmith”), and choose the use case <strong>Connect with customers through WhatsApp</strong>. Choose or create a free <strong>business portfolio</strong> when asked.</li>
+		<li>In the app, open <span class="path">Use cases → Customize</span> on the WhatsApp use case, then <span class="path">API setup</span>. You'll see a free <strong>test phone number</strong>, its <strong>Phone number ID</strong> and a temporary <strong>access token</strong> (valid for 24 hours).</li>
+		<li>Under <strong>Recipient</strong>, choose <span class="path">Manage phone number list</span>, add your own WhatsApp number and enter the code WhatsApp sends you. The test number can only message numbers on this list.</li>
+		<li>Click <strong>Send message</strong> under Meta's sample template. A message from the test number should arrive on your phone. That proves the number and recipient work.</li>
+	</ol>
+	<h3>Part 2: Create the reminder template</h3>
+	<ol>
+		<li>Open <strong>WhatsApp Manager</strong> (business.facebook.com) → <span class="path">Message templates → Create template</span>. Make sure the business account matches the <strong>Messaging account ID</strong> on your API setup page.</li>
+		<li>Category <strong>Utility</strong>, name <code>appointment_reminder</code> (lower case, underscores), language <strong>English</strong>.</li>
+		<li>Body, with exactly these three variables in this order:<br><code>Hi {{1}}, this is a reminder of your {{2}} appointment on {{3}}. Reply to this chat if you need to change it.</code><br>{{1}} is the customer's name, {{2}} the service and {{3}} the date and time.</li>
+		<li>Add sample values when asked (for example <em>Asha</em>, <em>Haircut</em>, <em>Monday 2 November at 11:30 am</em>) and submit. Review takes minutes to a few hours. Wait for the status <strong>Active</strong>.</li>
+	</ol>
+	<h3>Part 3: Connect it to Slotsmith</h3>
+	<ol>
+		<li>In <span class="path">Pro settings → Reminders</span> tick <strong>WhatsApp reminders</strong>.</li>
+		<li><strong>Phone number ID:</strong> from API setup. <strong>Access token:</strong> click <em>Generate new token</em> there and paste it. <strong>Message template name:</strong> <code>appointment_reminder</code>.</li>
+		<li><strong>Template language code:</strong> <code>en</code> for “English”, <code>en_US</code> for “English (US)”, <code>en_GB</code> for “English (UK)”. It must match the template exactly.</li>
+		<li>Set the <strong>default country code</strong>, tick <strong>Make phone number required</strong> and save.</li>
+		<li>In <strong>Send a test message</strong>, type your WhatsApp number with its country code, choose <strong>WhatsApp</strong> and click <strong>Send test</strong>.</li>
+	</ol>
+	<h3>Part 4: Go live for your customers</h3>
+	<p>The test number and the 24-hour token are for trying things out. For real customers:</p>
+	<ol>
+		<li><strong>Add your own business number.</strong> In WhatsApp Manager open <span class="path">Phone numbers → Add phone number</span> and verify it. The number must not be in use in a normal WhatsApp or WhatsApp Business app (delete that account from the app first) and must be able to receive a call or SMS for the code. Use the new number's <strong>Phone number ID</strong> in Slotsmith.</li>
+		<li><strong>Create a permanent token.</strong> In Meta Business settings open <span class="path">Users → System users → Add</span>, name it “Slotsmith” and give it the <em>Admin</em> role. Choose <span class="path">Add assets</span> and give it full control of your app and your WhatsApp account. Then <span class="path">Generate token</span>: choose your app, set expiry to <strong>Never</strong>, tick <code>whatsapp_business_messaging</code> and <code>whatsapp_business_management</code>, and copy the token into Slotsmith's <strong>Access token</strong>.</li>
+		<li><strong>Publish the app.</strong> In the app's menu open <span class="path">Publish</span> and switch it to Live. Meta may ask for your website's privacy policy address.</li>
+		<li>Re-send a test message to check the live setup.</li>
+	</ol>
+	<p>Meta charges for template messages once any free allowance is used up, so check its current pricing for your country. WhatsApp messages only go to customers who gave a phone number on the form.</p>
 
 	<h2 id="google">Google Calendar</h2>
 	<p>Slotsmith Pro can add each booking to a staff member's Google Calendar, and stop customers booking times when that person is already busy. You set it up once per website in Google Cloud (free, about 10 minutes). Then each staff member connects their own calendar.</p>
@@ -179,23 +382,73 @@
 	</ul>
 
 	<h2 id="calendar">Admin calendar</h2>
-	<p><span class="path">Slotsmith → Calendar</span> shows bookings by day or week, with a colour for each staff member. Drag a booking to move it (you'll be asked to confirm if the new time is in the past). Click an empty time to add a walk-in or phone booking.</p>
+	<p><span class="path">Slotsmith → Calendar</span> shows your bookings on a calendar, for you and your team.</p>
+	<ul>
+		<li>Switch between <strong>Day</strong> and <strong>Week</strong>, jump back with <strong>Today</strong>, and use the staff list (<strong>All staff</strong> by default) to look at one person.</li>
+		<li><strong>Add a booking</strong> for a walk-in or phone call: click an empty time. Choose the service, staff member, date, time, the customer's name, optionally their email (a confirmation is sent if you add one), phone and notes, and whether it's <em>Confirmed</em> or <em>Pending</em>, then click <strong>Add booking</strong>.</li>
+		<li><strong>Move a booking:</strong> drag it to a new time. The customer is emailed the new time. Slotsmith asks you first if the new time overlaps another booking or has already passed.</li>
+		<li><strong>Confirm or cancel:</strong> click a booking, then <strong>Confirm</strong> or <strong>Cancel booking</strong>. Cancelling emails the customer.</li>
+	</ul>
+	<p>You need at least one staff member before the calendar shows anything.</p>
 
 	<h2 id="portal">My bookings page (customer portal)</h2>
-	<p>Customers open their bookings from the link in any booking email, or ask for a sign-in link by email. No account is needed. From there they can cancel and, if you allow it, reschedule. Under <span class="path">Pro settings → Customer portal</span>, set:</p>
-	<ul>
-		<li><strong>Let customers reschedule</strong>, and the <strong>latest change</strong> (how many hours before the appointment);</li>
-		<li>the <strong>My bookings page</strong> that booking emails link to. It holds the My bookings block, or the shortcode <code>[slotsmith_my_bookings]</code>.</li>
-	</ul>
+	<p>Customers see and manage their bookings without an account. Every booking email has a <strong>Manage booking</strong> link, and the <strong>My bookings</strong> page lets them type their email to get a sign-in link (it works for 24 hours). From there they can cancel and, if you allow it, reschedule: they pick a new day and time on a calendar and click <strong>Move my booking</strong>, and everyone is emailed the new time.</p>
+	<ol>
+		<li>Go to <span class="path">Pro settings → Customer portal</span>.</li>
+		<li><strong>Let customers reschedule:</strong> tick it to allow it.</li>
+		<li><strong>Latest change (hours before):</strong> customers can't cancel or move closer to the appointment than this.</li>
+		<li><strong>My bookings page:</strong> choose the page that emails link to. Slotsmith creates one for you. It holds the <strong>My bookings</strong> block, or the shortcode <code>[slotsmith_my_bookings]</code> if you use a page builder.</li>
+		<li>Add that page to your menu so returning customers can find it.</li>
+	</ol>
 
-	<h2 id="more">Extras, coupons, questions and schedules</h2>
+	<h2 id="extras">Service extras</h2>
+	<p>Optional add-ons customers can pick with a service, like “Head massage”. They add to the price and to the appointment length.</p>
+	<ol>
+		<li>Open the service in <span class="path">Slotsmith → Services</span>.</li>
+		<li>In the <strong>Extras</strong> box click <strong>Add extra</strong>.</li>
+		<li>Type the <strong>Name</strong> (for example “Head massage”), the <strong>Price</strong> and the <strong>Extra minutes</strong>.</li>
+		<li>Click <strong>Update</strong>. Customers see <strong>Add extras</strong> under the service, and the booking summary shows the new total and length.</li>
+	</ol>
+
+	<h2 id="coupons">Coupons</h2>
+	<ol>
+		<li>Go to <span class="path">Slotsmith → Coupons → Add New</span>.</li>
+		<li>Type the code as the title, for example <code>WELCOME10</code>.</li>
+		<li>Under <strong>Discount</strong> choose <strong>% off</strong> or a fixed amount off, and enter the number.</li>
+		<li><strong>Expires</strong> (optional): the coupon is valid until the end of that day.</li>
+		<li><strong>Usage limit:</strong> how many times it can be used. Leave it empty for unlimited. The coupon shows how many times it's been used.</li>
+		<li><strong>Services:</strong> tick the services it applies to, or none to allow every service.</li>
+		<li>Click <strong>Publish</strong>. Customers type it into <strong>Coupon code</strong> on the booking form and see the new price straight away.</li>
+	</ol>
+
+	<h2 id="questions">Extra questions on the form</h2>
+	<p>Ask customers anything you need to know before the appointment, like “Hair length” or “Allergies”.</p>
+	<ol>
+		<li>Go to <span class="path">Pro settings → Booking form</span>.</li>
+		<li>Click <strong>Add question</strong> and type the <strong>Question</strong>.</li>
+		<li>Choose the <strong>Answer type</strong>: <em>Short answer</em>, <em>Paragraph</em>, <em>Drop-down</em> (type the <strong>Options</strong> separated by commas) or <em>Checkbox</em>.</li>
+		<li>Tick <strong>Required</strong> if customers must answer.</li>
+		<li>Click <span class="path">Save Changes</span>. The questions appear in the “Your details” step, below name, email, phone and notes, and the answers are kept with the booking.</li>
+	</ol>
+
+	<h2 id="schedules">Breaks and special dates</h2>
+	<p>Open a staff member in <span class="path">Slotsmith → Staff</span> and use the <strong>Breaks and special dates</strong> box.</p>
 	<ul>
-		<li><strong>Service extras</strong> (for example “Head massage, +$10, +15 min”): open a service and use the <strong>Extras</strong> box.</li>
-		<li><strong>Coupons:</strong> <span class="path">Slotsmith → Coupons</span>. Set a percentage or fixed discount, an expiry date, a usage limit and which services it applies to.</li>
-		<li><strong>Extra questions</strong> on the booking form (text, paragraph, drop-down, checkbox): <span class="path">Pro settings → Booking form</span>.</li>
-		<li><strong>Breaks and special dates</strong> (a lunch break, holidays, different hours on a given day): open a staff member and use the <strong>Breaks and special dates</strong> box.</li>
-		<li><strong>Branded emails</strong> with your logo and footer, and editable subjects and messages: <span class="path">Pro settings → Emails</span>.</li>
+		<li><strong>Breaks</strong> (like lunch): click <strong>Add break</strong>, choose <em>Every day</em>, <em>Weekdays (Mon–Fri)</em> or one day, and set <strong>From</strong> and <strong>To</strong>. Nobody can book that time.</li>
+		<li><strong>Special dates</strong> (holidays, or a day with different hours): click <strong>Add date</strong>, pick the <strong>Date</strong> and choose <strong>Closed</strong>, or <strong>Open</strong> with its own hours. A special date replaces the weekly hours for that day only.</li>
 	</ul>
+	<p>Click <strong>Update</strong> to save.</p>
+
+	<h2 id="emails">Branded emails</h2>
+	<ol>
+		<li>Go to <span class="path">Pro settings → Emails</span>.</li>
+		<li>Tick <strong>Branded HTML emails</strong>. Emails then use your brand colour.</li>
+		<li><strong>Logo URL:</strong> the web address of your logo image (upload it in <span class="path">Media</span> and copy its URL).</li>
+		<li><strong>Footer text:</strong> shown at the bottom of every email, for example your address and phone number.</li>
+		<li>For each email (<em>Booking confirmed</em>, <em>Request received (pending)</em>, <em>Booking moved</em>, <em>Booking cancelled</em> and <em>Reminder</em>) you can change the <strong>subject</strong> and the opening <strong>message</strong>. Leave a box empty to keep the default wording.</li>
+		<li>In your wording you can use <code>{customer_name}</code>, <code>{service}</code>, <code>{staff}</code>, <code>{date}</code>, <code>{time}</code> and <code>{site_name}</code>. They're replaced for each booking.</li>
+		<li>Click <span class="path">Save Changes</span>, then make a test booking to see the result.</li>
+	</ol>
 
 	<h2 id="privacy-requests">Customer data requests</h2>
 	<p>If a customer asks for a copy of their data, or asks you to delete it, use WordPress's own privacy tools:</p>
@@ -216,7 +469,7 @@
 	</details>
 	<details>
 		<summary>Times are an hour or more out</summary>
-		<p>Slotsmith uses the time zone in <span class="path">Settings → General</span>. Set it to your business's city rather than a UTC offset, so daylight saving time is handled for you.</p>
+		<p>Slotsmith uses the time zone in <span class="path">Settings → General</span>, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See <a href="#timezone">Time zone and currency</a>. Set it before real bookings come in.</p>
 	</details>
 	<details>
 		<summary>A day or time I expected isn't offered</summary>
@@ -246,6 +499,26 @@
 	<details>
 		<summary>Google Calendar worked, then stopped about a week later</summary>
 		<p>Your Google app was left in <em>Testing</em>, which ends connections after 7 days. Click <span class="path">Publish app</span> under <span class="path">Audience</span>, then disconnect and connect each staff member again.</p>
+	</details>
+	<details>
+		<summary>A payment method is missing from the booking form</summary>
+		<p>Check that <strong>Take payments online</strong> is ticked, that the method is ticked with its keys saved, and that it takes your currency. Slotsmith hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in <span class="path">Slotsmith → Settings → Currency</span>.</p>
+	</details>
+	<details>
+		<summary>No SMS or WhatsApp reminder arrived</summary>
+		<p>Check, in order: the booking is <strong>Confirmed</strong>; the customer gave a phone number; it was made earlier than the reminder window (a booking made one hour before the appointment gets no 2-hour reminder); the reminder time has passed; and WordPress's scheduler has run (see the next answer). Then use <strong>Send a test message</strong> on the Reminders tab, which shows the provider's exact error.</p>
+	</details>
+	<details>
+		<summary>WhatsApp says “(#132001) Template name does not exist in the translation”</summary>
+		<p>Meta can't find an <strong>Active</strong> template with that name and language for your number. Check in WhatsApp Manager that the template's status is <em>Active</em>, that the name is exactly what you typed (lower case with underscores), that the <strong>Template language code</strong> matches (English is <code>en</code>, English (US) is <code>en_US</code>), and that the template belongs to the same WhatsApp business account as your phone number ID.</p>
+	</details>
+	<details>
+		<summary>WhatsApp says “Recipient phone number not in allowed list”</summary>
+		<p>You're using Meta's test number, which can only message numbers you've added under <span class="path">API setup → Recipient → Manage phone number list</span>. Add the number there, or <a href="#whatsapp">go live</a> with your own business number.</p>
+	</details>
+	<details>
+		<summary>WhatsApp or SMS worked, then stopped</summary>
+		<p>The most likely cause is an expired token. Meta's temporary access token lasts 24 hours: create a permanent one (<a href="#whatsapp">Part 4</a>). On a Twilio trial account, messages only go to numbers you've verified, and the trial's credit can run out.</p>
 	</details>
 
 	<h2 id="account">Licence and billing</h2>
