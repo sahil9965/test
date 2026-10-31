@@ -549,6 +549,57 @@
       "desc": "Free 42 circuit panel schedule template: circuits 1–41 down the left, 2–42 down the right, legs or phases per row, with PDF, Excel, directory and labels.",
       "keywords": "42 circuit panel schedule template, panel schedule, breaker labels, electrician",
       "added": "2026-10-30"
+    },
+    {
+      "slug": "lineupfair",
+      "file": "coach-pitch-lineup-generator-for-fair-rotations",
+      "path": "/coach-pitch-lineup-generator",
+      "board": "Youth Baseball & Softball",
+      "headline": "Coach Pitch Lineup Generator for Fair Rotations",
+      "sub": "Fair fielding rotations for youth baseball",
+      "points": [
+        "Fair bench time",
+        "Baseball, softball, T-ball",
+        "Prints for the dugout"
+      ],
+      "visual": "lineup",
+      "desc": "Free coach pitch lineup generator with fair fielding rotations. Choose a player at pitcher beside the coach or no pitcher, set innings, print the dugout card.",
+      "keywords": "coach pitch lineup generator for fair rotations, baseball lineup, fielding rotation, youth baseball coach",
+      "added": "2026-10-31"
+    },
+    {
+      "slug": "preplabel",
+      "file": "fba-expiration-date-labels",
+      "path": "/expiration-date-label",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "FBA Expiration Date Labels",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Print FBA expiration date labels in MM-DD-YYYY or MM-YYYY with optional lot numbers. Large text sized to your label, thermal or sheet PDF. Free, no signup.",
+      "keywords": "fba expiration date labels, amazon fba, fba prep, fnsku labels",
+      "added": "2026-10-31"
+    },
+    {
+      "slug": "streamweek",
+      "file": "stream-schedule-for-discord-with-timestamps",
+      "path": "/stream-schedule-for-discord",
+      "board": "Streamer Schedules",
+      "headline": "Stream Schedule for Discord with Timestamps",
+      "sub": "Weekly stream schedules with time zones",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "visual": "week",
+      "desc": "Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the <t:…> codes for your week and add the image too.",
+      "keywords": "stream schedule for discord with timestamps, stream schedule, twitch schedule, streamer",
+      "added": "2026-10-31"
     }
   ]
 }

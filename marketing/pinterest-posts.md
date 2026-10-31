@@ -531,3 +531,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free 42 circuit panel schedule template: circuits 1–41 down the left, 2–42 down the right, legs or phases per row, with PDF, Excel, directory and labels.
 - **Alt text:** 42 Circuit Panel Schedule Template: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
 - **Keywords:** 42 circuit panel schedule template, panel schedule, breaker labels, electrician
+
+## Day 58: Coach Pitch Lineup Generator for Fair Rotations
+
+- **Board:** Youth Baseball & Softball
+- **Image:** https://tools.roohsites.com/pins/coach-pitch-lineup-generator-for-fair-rotations.png
+- **Link:** https://lineup.roohsites.com/coach-pitch-lineup-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free coach pitch lineup generator with fair fielding rotations. Choose a player at pitcher beside the coach or no pitcher, set innings, print the dugout card.
+- **Alt text:** Coach Pitch Lineup Generator for Fair Rotations: Fair fielding rotations for youth baseball. The image shows a fielding rotation chart with positions for each inning and bench turns, from lineup.roohsites.com.
+- **Keywords:** coach pitch lineup generator for fair rotations, baseball lineup, fielding rotation, youth baseball coach
+
+## Day 59: FBA Expiration Date Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/fba-expiration-date-labels.png
+- **Link:** https://fnsku.roohsites.com/expiration-date-label?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print FBA expiration date labels in MM-DD-YYYY or MM-YYYY with optional lot numbers. Large text sized to your label, thermal or sheet PDF. Free, no signup.
+- **Alt text:** FBA Expiration Date Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** fba expiration date labels, amazon fba, fba prep, fnsku labels
+
+## Day 60: Stream Schedule for Discord with Timestamps
+
+- **Board:** Streamer Schedules
+- **Image:** https://tools.roohsites.com/pins/stream-schedule-for-discord-with-timestamps.png
+- **Link:** https://streamschedule.roohsites.com/stream-schedule-for-discord?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the <t:…> codes for your week and add the image too.
+- **Alt text:** Stream Schedule for Discord with Timestamps: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
+- **Keywords:** stream schedule for discord with timestamps, stream schedule, twitch schedule, streamer
