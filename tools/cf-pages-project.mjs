@@ -1,11 +1,13 @@
 // Finds the Cloudflare Pages project that serves a custom domain, for deploying a site that was first
 // uploaded by hand in the dashboard (so its project name isn't rooh-<slug>).
-// Usage: node tools/cf-pages-project.mjs slotsmith.roohsites.com
-// Needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID. Prints every project, then writes name= and
-// branch= (the production branch) to $GITHUB_OUTPUT when set. Exits non-zero if no direct-upload project has the domain.
+// Usage: node tools/cf-pages-project.mjs slotsmith.roohsites.com [fallback-project]
+// Needs CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID. Prints every project, then writes name=, branch= (the
+// production branch) and attached=true|false to $GITHUB_OUTPUT when set. When no project has the domain yet, the
+// fallback project (branch main) is used, so the site can be deployed before the domain is moved onto it.
+// Exits non-zero if the domain is on a git-connected project, or isn't found and there is no fallback.
 import { appendFileSync } from "node:fs";
 
-const domain = process.argv[2];
+const [domain, fallback] = process.argv.slice(2);
 const { CLOUDFLARE_API_TOKEN: token, CLOUDFLARE_ACCOUNT_ID: account, GITHUB_OUTPUT: output } = process.env;
 if (!domain || !token || !account) {
   console.error("usage: CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=… node tools/cf-pages-project.mjs <domain>");
@@ -34,12 +36,18 @@ for (const p of projects.values()) {
 
 const hit = [...projects.values()].find(p => (p.domains || []).includes(domain));
 if (!hit) {
-  console.error(`No Pages project in this account serves ${domain}.`);
-  process.exit(1);
+  if (!fallback) {
+    console.error(`No Pages project in this account serves ${domain}.`);
+    process.exit(1);
+  }
+  const exists = projects.has(fallback);
+  console.log(`\nNo Pages project in this account serves ${domain} yet. Deploying to ${fallback}${exists ? "" : " (new)"}; then add ${domain} to it under Workers & Pages > ${fallback} > Custom domains.`);
+  if (output) appendFileSync(output, `name=${fallback}\nbranch=${exists ? projects.get(fallback).production_branch : "main"}\nattached=false\n`);
+  process.exit(0);
 }
 if (hit.source) {
   console.error(`${hit.name} is connected to ${hit.source.type}; it deploys from there, not from here.`);
   process.exit(1);
 }
 console.log(`\n${domain} is served by ${hit.name} (production branch ${hit.production_branch})`);
-if (output) appendFileSync(output, `name=${hit.name}\nbranch=${hit.production_branch}\n`);
+if (output) appendFileSync(output, `name=${hit.name}\nbranch=${hit.production_branch}\nattached=true\n`);

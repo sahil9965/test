@@ -56,7 +56,11 @@ cd dist/labelfit && npx wrangler@4 pages dev public --port 8799
 
 `external/slotsmith-site/` (a copy of `site/` from the private slotsmith repo) is published by `.github/workflows/deploy-slotsmith.yml`
 on a push that touches it, or by hand (Actions > Deploy Slotsmith site > Run workflow). It is not in `sites.json`, so it stays out of
-the footers, hub, pins and IndexNow. The site was first uploaded in the dashboard, so its project isn't `rooh-<slug>`:
-`node tools/cf-pages-project.mjs slotsmith.roohsites.com` asks the Cloudflare API which direct-upload project serves the domain, and the
-workflow deploys there, to that project's production branch, adding an `X-Robots-Tag: noindex` rule for its `*.pages.dev` hosts.
-The run summary lists the status of every page on the live domain.
+the footers, hub, pins and IndexNow.
+
+`node tools/cf-pages-project.mjs slotsmith.roohsites.com rooh-slotsmith` asks the Cloudflare API which Pages project serves the domain.
+The site was first uploaded by hand outside this account's Pages projects (31 Oct: none of the 20 projects had the domain), so the
+workflow deploys to `rooh-slotsmith` (created on the first run) until the domain is moved there: remove `slotsmith.roohsites.com` from
+the Worker or project that has it now, then add it under Workers & Pages > rooh-slotsmith > Custom domains. After that the lookup finds
+the project by its domain. Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`; the run
+summary shows every page on both hosts and warns while the domain still serves something else.

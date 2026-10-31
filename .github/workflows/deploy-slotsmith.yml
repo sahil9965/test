@@ -1,5 +1,6 @@
 # Publishes the Slotsmith sales site (external/slotsmith-site, a copy of site/ from the private slotsmith repo)
-# to the Cloudflare Pages project that already serves slotsmith.roohsites.com. Not in sites.json on purpose:
+# to the Cloudflare Pages project that serves slotsmith.roohsites.com, or to rooh-slotsmith (created if needed)
+# until the domain is added to a project in this account. Not in sites.json on purpose:
 # it isn't one of the free tools, so it stays out of the footers, hub, pins and IndexNow.
 # Same secrets as deploy-cf.yml. See docs/cloudflare.md.
 name: Deploy Slotsmith site
@@ -35,7 +36,7 @@ jobs:
 
       - name: Find the Pages project for the domain
         id: project
-        run: node tools/cf-pages-project.mjs "$DOMAIN"
+        run: node tools/cf-pages-project.mjs "$DOMAIN" rooh-slotsmith
 
       - name: Deploy
         env:
@@ -48,23 +49,34 @@ jobs:
           cp -r external/slotsmith-site/. "$out/"
           # Keep the *.pages.dev copies out of search engines; the custom domain is the real site.
           printf 'https://:project.pages.dev/*\n  X-Robots-Tag: noindex\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex\n' > "$out/_headers"
+          # Lets the check below tell this deploy apart from whatever was live before.
+          echo "$GITHUB_SHA" > "$out/version.txt"
+          # A new project needs creating once; an existing one is fine.
+          if ! msg=$(npx --yes wrangler@4 pages project create "$PROJECT" --production-branch="$BRANCH" 2>&1); then
+            grep -qi "already exists" <<<"$msg" || { echo "$msg"; exit 1; }
+          fi
           npx --yes wrangler@4 pages deploy "$out" --project-name="$PROJECT" --branch="$BRANCH" --commit-dirty=true
 
       - name: Check the live site
+        env:
+          PROJECT: ${{ steps.project.outputs.name }}
         run: |
           set -uo pipefail
-          title=$(grep -o '<title>[^<]*</title>' external/slotsmith-site/index.html)
-          ok=""
-          for try in 1 2 3 4 5 6; do
-            if curl -fsS -m 20 "https://$DOMAIN/?v=$GITHUB_SHA" | grep -qF "$title"; then ok=1; break; fi
-            sleep 10
-          done
-          table=$'| page | status |\n|---|---|'
+          live() { curl -fsS -m 20 "https://$1/version.txt?v=$GITHUB_SHA" 2>/dev/null | tr -d '[:space:]'; }
+          for try in 1 2 3 4 5 6; do [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] && break; sleep 10; done
+          table=$'| page | '"$PROJECT"$'.pages.dev | '"$DOMAIN"$' |\n|---|---|---|'
           for f in external/slotsmith-site/*.html; do
             p=$(basename "$f" .html); [ "$p" = index ] && p=""
-            code=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
-            table+=$'\n'"| /$p | $code |"
+            a=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$PROJECT.pages.dev/$p")
+            b=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
+            table+=$'\n'"| /$p | $a | $b |"
           done
           echo "$table"
-          { echo "### https://$DOMAIN"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
-          [ -n "$ok" ] || { echo "::error::The live home page doesn't show the deployed title yet."; exit 1; }
+          { echo "### Slotsmith site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
+          [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] || { echo "::error::$PROJECT.pages.dev isn't serving this deploy."; exit 1; }
+          if [ "$(live "$DOMAIN")" = "$GITHUB_SHA" ]; then
+            echo "$DOMAIN is serving this deploy."
+          else
+            echo "::warning title=Domain not moved yet::$DOMAIN still serves something else. In Cloudflare, remove the domain from the Worker or project it is on now, then add it under Workers & Pages > $PROJECT > Custom domains."
+            echo "**$DOMAIN** still serves an older copy: move the domain to **$PROJECT** (Custom domains)." >> "$GITHUB_STEP_SUMMARY"
+          fi
