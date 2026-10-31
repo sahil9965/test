@@ -51,3 +51,12 @@ Run the workflow manually with `indexnow` ticked. After the deploy it calls `htt
 node tools/cf-build.mjs labelfit
 cd dist/labelfit && npx wrangler@4 pages dev public --port 8799
 ```
+
+## Slotsmith sales site
+
+`external/slotsmith-site/` (a copy of `site/` from the private slotsmith repo) is published by `.github/workflows/deploy-slotsmith.yml`
+on a push that touches it, or by hand (Actions > Deploy Slotsmith site > Run workflow). It is not in `sites.json`, so it stays out of
+the footers, hub, pins and IndexNow. The site was first uploaded in the dashboard, so its project isn't `rooh-<slug>`:
+`node tools/cf-pages-project.mjs slotsmith.roohsites.com` asks the Cloudflare API which direct-upload project serves the domain, and the
+workflow deploys there, to that project's production branch, adding an `X-Robots-Tag: noindex` rule for its `*.pages.dev` hosts.
+The run summary lists the status of every page on the live domain.

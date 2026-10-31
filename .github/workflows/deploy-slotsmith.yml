@@ -1,0 +1,70 @@
+# Publishes the Slotsmith sales site (external/slotsmith-site, a copy of site/ from the private slotsmith repo)
+# to the Cloudflare Pages project that already serves slotsmith.roohsites.com. Not in sites.json on purpose:
+# it isn't one of the free tools, so it stays out of the footers, hub, pins and IndexNow.
+# Same secrets as deploy-cf.yml. See docs/cloudflare.md.
+name: Deploy Slotsmith site
+
+on:
+  push:
+    branches: [claude/ecstatic-pascal-yzcrhr]
+    paths: ["external/slotsmith-site/**", "tools/cf-pages-project.mjs", ".github/workflows/deploy-slotsmith.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-slotsmith
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  DOMAIN: slotsmith.roohsites.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Find the Pages project for the domain
+        id: project
+        run: node tools/cf-pages-project.mjs "$DOMAIN"
+
+      - name: Deploy
+        env:
+          PROJECT: ${{ steps.project.outputs.name }}
+          BRANCH: ${{ steps.project.outputs.branch }}
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/slotsmith-site"
+          mkdir -p "$out"
+          cp -r external/slotsmith-site/. "$out/"
+          # Keep the *.pages.dev copies out of search engines; the custom domain is the real site.
+          printf 'https://:project.pages.dev/*\n  X-Robots-Tag: noindex\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex\n' > "$out/_headers"
+          npx --yes wrangler@4 pages deploy "$out" --project-name="$PROJECT" --branch="$BRANCH" --commit-dirty=true
+
+      - name: Check the live site
+        run: |
+          set -uo pipefail
+          title=$(grep -o '<title>[^<]*</title>' external/slotsmith-site/index.html)
+          ok=""
+          for try in 1 2 3 4 5 6; do
+            if curl -fsS -m 20 "https://$DOMAIN/?v=$GITHUB_SHA" | grep -qF "$title"; then ok=1; break; fi
+            sleep 10
+          done
+          table=$'| page | status |\n|---|---|'
+          for f in external/slotsmith-site/*.html; do
+            p=$(basename "$f" .html); [ "$p" = index ] && p=""
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
+            table+=$'\n'"| /$p | $code |"
+          done
+          echo "$table"
+          { echo "### https://$DOMAIN"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
+          [ -n "$ok" ] || { echo "::error::The live home page doesn't show the deployed title yet."; exit 1; }

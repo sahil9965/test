@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help &amp; support — Slotsmith</title>
+<meta name="description" content="Get help with Slotsmith, the WordPress booking plugin: contact support, set up the booking form, and configure payments, reminders and Google Calendar in Slotsmith Pro.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/pages.css">
+</head>
+<body>
+<header class="top">
+	<div class="wrap">
+		<a class="logo" href="index.html"><img src="assets/icon.svg" alt="">Slotsmith</a>
+		<nav aria-label="Main">
+			<a href="index.html#features">Features</a>
+			<a href="index.html#pricing">Pricing</a>
+			<a href="support.html" aria-current="page">Support</a>
+		</nav>
+	</div>
+</header>
+
+<main class="wrap">
+	<h1>Help &amp; support</h1>
+	<p class="lead">Setup guides for Slotsmith and Slotsmith Pro, answers to common questions, and how to reach us.</p>
+
+	<div class="cards">
+		<div class="box accent">
+			<h3>Slotsmith Pro customers</h3>
+			<p>Email <a href="mailto:hello@roohsites.com?subject=Slotsmith%20Pro%20support">hello@roohsites.com</a>. We reply within two business days (Monday to Friday, India time). Business and Agency plans are answered first.</p>
+		</div>
+		<div class="box">
+			<h3>Free plugin</h3>
+			<p>Ask in the <a href="https://wordpress.org/support/plugin/slotsmith/" rel="noopener">Slotsmith forum on WordPress.org</a>, so others with the same question find the answer too.</p>
+		</div>
+	</div>
+
+	<div class="box">
+		<h3>To get an answer faster, include</h3>
+		<ul>
+			<li>the email address you bought with (Pro customers);</li>
+			<li>your website address;</li>
+			<li>your WordPress and PHP versions (<span class="path">Tools → Site Health → Info</span>);</li>
+			<li>what you did, what you expected, and what happened instead, with a screenshot if you can.</li>
+		</ul>
+		<p><strong>Never email passwords, API keys or licence keys.</strong> If we need to look at your site, we'll ask you to create a temporary account that you can delete afterwards.</p>
+	</div>
+
+	<h2>On this page</h2>
+	<ul class="toc">
+		<li><a href="#start">Getting started</a></li>
+		<li><a href="#pro">Installing Slotsmith Pro</a></li>
+		<li><a href="#payments">Online payments</a></li>
+		<li><a href="#webhooks">Payment webhooks</a></li>
+		<li><a href="#refunds">Refunds to customers</a></li>
+		<li><a href="#reminders">Reminders</a></li>
+		<li><a href="#google">Google Calendar</a></li>
+		<li><a href="#calendar">Admin calendar</a></li>
+		<li><a href="#portal">My bookings page</a></li>
+		<li><a href="#more">Extras, coupons and more</a></li>
+		<li><a href="#privacy-requests">Customer data requests</a></li>
+		<li><a href="#troubleshooting">Troubleshooting</a></li>
+		<li><a href="#account">Licence and billing</a></li>
+	</ul>
+
+	<h2 id="start">Getting started (free plugin)</h2>
+	<ol>
+		<li><strong>Install.</strong> In your dashboard go to <span class="path">Plugins → Add New</span>, search for “Slotsmith”, then install and activate it.</li>
+		<li><strong>Add services.</strong> <span class="path">Slotsmith → Services → Add New</span>: name, duration, price, buffer time and a short description.</li>
+		<li><strong>Add staff.</strong> <span class="path">Slotsmith → Staff → Add New</span>: photo, the services they offer, weekly hours and days off. Every service needs at least one staff member who offers it.</li>
+		<li><strong>Add the form to a page.</strong> In the block editor, add the <strong>Booking form</strong> block. Its sidebar can preselect a service and staff member. With the classic editor or a page builder (Elementor, Divi and others), use the shortcode <code>[slotsmith]</code>.</li>
+		<li><strong>Check your settings.</strong> <span class="path">Slotsmith → Settings</span>: brand colour, currency symbol, slot interval, minimum notice, how far ahead people can book, and whether you approve bookings yourself.</li>
+		<li><strong>Make a test booking</strong> and check that the confirmation emails arrive. If they don't, see <a href="#troubleshooting">Troubleshooting</a>.</li>
+	</ol>
+
+	<h2 id="pro">Installing Slotsmith Pro</h2>
+	<ol>
+		<li>Make sure the free Slotsmith plugin (version 1.0.0 or newer) is installed and active. Pro adds to it.</li>
+		<li>Download Slotsmith Pro (a .zip file) from your purchase email, then go to <span class="path">Plugins → Add New → Upload Plugin</span>, upload it and activate it.</li>
+		<li>Go to <span class="path">Slotsmith → Pro settings</span> and enter your licence key. Updates then arrive under <span class="path">Plugins</span> like any other plugin.</li>
+		<li>A <strong>My bookings</strong> page is created for you. Pro settings has a tab for each feature: Payments, Reminders, Google Calendar, Booking form, Customer portal and Emails.</li>
+	</ol>
+
+	<h2 id="payments">Online payments</h2>
+	<p>Customers pay on Stripe's, Razorpay's or PayPal's own secure page, so card details never touch your site. Set it up under <span class="path">Slotsmith → Pro settings → Payments</span>:</p>
+	<ul>
+		<li><strong>Take payments online</strong> and choose the <strong>Currency code</strong>. It should match the currency symbol in <span class="path">Slotsmith → Settings</span>; Slotsmith warns you if they don't.</li>
+		<li><strong>Amount to collect:</strong> the full price, or a deposit (a percentage), with the rest paid at the appointment.</li>
+		<li><strong>Hold unpaid bookings for:</strong> the time slot is reserved while the customer pays (at least 30 minutes), then released if they don't.</li>
+		<li><strong>Paid bookings become</strong> confirmed, or pending if you want to approve them yourself.</li>
+	</ul>
+	<h3>Stripe</h3>
+	<p>Paste your secret key from <span class="path">Stripe → Developers → API keys</span>. Use a key starting with <code>sk_test_</code> to try it first, then switch to your <code>sk_live_</code> key.</p>
+	<h3>Razorpay (India: UPI, cards, netbanking)</h3>
+	<p>Paste your key ID and key secret from <span class="path">Razorpay → Account &amp; Settings → API keys</span>. Use test-mode keys first.</p>
+	<h3>PayPal</h3>
+	<p>Create an app in the PayPal developer dashboard and paste its client ID and secret. Tick <strong>PayPal sandbox</strong> to test. PayPal doesn't take payments in Indian rupees, so use Razorpay for customers in India.</p>
+
+	<h2 id="webhooks">Payment webhooks (recommended)</h2>
+	<p>Without webhooks, a booking is confirmed when the customer comes back to your site, or by a background check every few minutes. With webhooks, the payment provider tells your site the moment the money arrives, even if the customer closes the tab.</p>
+	<p>The <strong>Webhooks</strong> box under <span class="path">Pro settings → Payments</span> shows your webhook address, the events to tick, and when the last notice arrived. Add the address in your provider's dashboard:</p>
+	<ul>
+		<li><strong>Stripe:</strong> <span class="path">Developers → Webhooks → Add endpoint</span>, then paste the signing secret (<code>whsec_…</code>) into “Stripe webhook secret”.</li>
+		<li><strong>Razorpay:</strong> <span class="path">Account &amp; Settings → Webhooks → Add new webhook</span>. Make up a secret and type it both there and in “Razorpay webhook secret”.</li>
+		<li><strong>PayPal:</strong> <span class="path">Apps &amp; Credentials → your app → Webhooks → Add webhook</span>. No secret is needed.</li>
+	</ul>
+	<p>Every notice is double-checked with the provider before a booking changes.</p>
+
+	<h2 id="refunds">Refunds to your customers</h2>
+	<p>Choose when a cancelled paid booking is refunded under <span class="path">Pro settings → Payments → Refund paid bookings</span>:</p>
+	<ul>
+		<li><strong>When you cancel a paid booking</strong> (the default);</li>
+		<li><strong>When you or the customer cancels</strong> (customers can only cancel up to your minimum notice);</li>
+		<li><strong>Never</strong>: you refund in your payment dashboard yourself.</li>
+	</ul>
+	<p>The full amount goes back the way it was paid (card, UPI or PayPal). Paid, cancelled bookings also get a <strong>Refund</strong> link in the bookings list, which you can use if automatic refunds are off or a refund failed. The failure reason is shown there too.</p>
+
+	<h2 id="reminders">Reminders</h2>
+	<p>Under <span class="path">Pro settings → Reminders</span>, set the first and second reminder in hours before the appointment (for example 24 and 2; 0 turns one off), then choose how they're sent:</p>
+	<ul>
+		<li><strong>Email</strong>: works straight away.</li>
+		<li><strong>SMS through Twilio</strong>: paste your Twilio account SID, auth token and Twilio phone number.</li>
+		<li><strong>WhatsApp (WhatsApp Cloud API)</strong>: WhatsApp only allows business messages that use an approved template. In WhatsApp Manager, create a template whose body has three variables: <code>{{1}}</code> customer name, <code>{{2}}</code> service, <code>{{3}}</code> date and time. Then enter your phone number ID, access token, the template name and its language code.</li>
+	</ul>
+	<p>For SMS and WhatsApp, turn on <strong>Make phone number required</strong> and set a <strong>Default country code</strong> (for example +91), which is added to numbers typed without one.</p>
+
+	<h2 id="google">Google Calendar</h2>
+	<ol>
+		<li>In Google Cloud Console, create a project and enable the Google Calendar API.</li>
+		<li>Under <span class="path">APIs &amp; Services → Credentials</span>, create an OAuth client ID of type “Web application”.</li>
+		<li>Add the redirect address shown under <span class="path">Pro settings → Google Calendar</span> as an authorised redirect URI.</li>
+		<li>Paste the client ID and secret into Pro settings and save.</li>
+		<li>Open each staff member and click <strong>Connect Google Calendar</strong>.</li>
+	</ol>
+	<p>Then choose whether to <strong>add bookings to staff calendars</strong> and whether to <strong>block times that are busy in Google Calendar</strong>.</p>
+
+	<h2 id="calendar">Admin calendar</h2>
+	<p><span class="path">Slotsmith → Calendar</span> shows bookings by day or week, with a colour for each staff member. Drag a booking to move it (you'll be asked to confirm if the new time is in the past). Click an empty time to add a walk-in or phone booking.</p>
+
+	<h2 id="portal">My bookings page (customer portal)</h2>
+	<p>Customers open their bookings from the link in any booking email, or ask for a sign-in link by email. No account is needed. From there they can cancel and, if you allow it, reschedule. Under <span class="path">Pro settings → Customer portal</span>, set:</p>
+	<ul>
+		<li><strong>Let customers reschedule</strong>, and the <strong>latest change</strong> (how many hours before the appointment);</li>
+		<li>the <strong>My bookings page</strong> that booking emails link to. It holds the My bookings block, or the shortcode <code>[slotsmith_my_bookings]</code>.</li>
+	</ul>
+
+	<h2 id="more">Extras, coupons, questions and schedules</h2>
+	<ul>
+		<li><strong>Service extras</strong> (for example “Head massage, +$10, +15 min”): open a service and use the <strong>Extras</strong> box.</li>
+		<li><strong>Coupons:</strong> <span class="path">Slotsmith → Coupons</span>. Set a percentage or fixed discount, an expiry date, a usage limit and which services it applies to.</li>
+		<li><strong>Extra questions</strong> on the booking form (text, paragraph, drop-down, checkbox): <span class="path">Pro settings → Booking form</span>.</li>
+		<li><strong>Breaks and special dates</strong> (a lunch break, holidays, different hours on a given day): open a staff member and use the <strong>Breaks and special dates</strong> box.</li>
+		<li><strong>Branded emails</strong> with your logo and footer, and editable subjects and messages: <span class="path">Pro settings → Emails</span>.</li>
+	</ul>
+
+	<h2 id="privacy-requests">Customer data requests</h2>
+	<p>If a customer asks for a copy of their data, or asks you to delete it, use WordPress's own privacy tools:</p>
+	<ul>
+		<li><span class="path">Tools → Export Personal Data</span> includes all of their bookings, with Pro's payment details and answers to extra questions.</li>
+		<li><span class="path">Tools → Erase Personal Data</span> removes their name, email, phone and notes from past and cancelled bookings. The service, staff member and time are kept for your records, as are payment records. With Pro, their answers to extra questions are removed, and so are the events in staff Google Calendars. Upcoming bookings are kept so an appointment isn't lost by accident: cancel it first, then erase again.</li>
+	</ul>
+	<p>Suggested wording for your own privacy policy is under <span class="path">Settings → Privacy</span>.</p>
+
+	<h2 id="troubleshooting">Troubleshooting</h2>
+	<details>
+		<summary>The booking form doesn't show on my page</summary>
+		<p>The form needs at least one published service and one staff member who offers it. When you're logged in as an administrator, the page shows a note saying what's missing; visitors see nothing.</p>
+	</details>
+	<details>
+		<summary>Booking emails don't arrive</summary>
+		<p>Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Slotsmith uses the standard WordPress mail function, so it works with all of them. Also check the spam folder.</p>
+	</details>
+	<details>
+		<summary>Times are an hour or more out</summary>
+		<p>Slotsmith uses the time zone in <span class="path">Settings → General</span>. Set it to your business's city rather than a UTC offset, so daylight saving time is handled for you.</p>
+	</details>
+	<details>
+		<summary>A day or time I expected isn't offered</summary>
+		<p>Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in <span class="path">Slotsmith → Settings</span>, and (with Pro) busy times in their Google Calendar.</p>
+	</details>
+	<details>
+		<summary>Reminders are late, or paid bookings stay “awaiting payment”</summary>
+		<p>Reminders and payment checks run every 5 minutes through WP-Cron, which only runs when someone visits your site. On quiet sites, ask your host to set up a real cron job that calls <code>wp-cron.php</code> every 5 minutes, and add <a href="#webhooks">payment webhooks</a> so payments are confirmed instantly.</p>
+	</details>
+	<details>
+		<summary>The payment page shows a currency error</summary>
+		<p>Check the currency code under <span class="path">Pro settings → Payments</span>. Each provider supports its own list of currencies; for example, PayPal doesn't accept Indian rupees.</p>
+	</details>
+
+	<h2 id="account">Licence and billing</h2>
+	<details>
+		<summary>Where do I find my licence key, invoices or downloads?</summary>
+		<p>In your purchase email, and in your account at <a href="https://users.freemius.com/" rel="noopener">users.freemius.com</a>. Our reseller, Freemius, runs the checkout and the customer account.</p>
+	</details>
+	<details>
+		<summary>How do I move my licence to another website?</summary>
+		<p>On the old site, go to <span class="path">Slotsmith → Account</span> and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up.</p>
+	</details>
+	<details>
+		<summary>How do I cancel automatic renewal?</summary>
+		<p>Cancel it in your account at <a href="https://users.freemius.com/" rel="noopener">users.freemius.com</a>, or email us. Your licence stays active until the end of the period you paid for, and Slotsmith Pro keeps working after that. You just stop getting updates and support.</p>
+	</details>
+	<details>
+		<summary>Can I get a refund?</summary>
+		<p>Yes, within 14 days of purchase. See our <a href="refund-policy.html">refund policy</a>.</p>
+	</details>
+</main>
+
+<footer>
+	<div class="wrap">
+		<nav aria-label="Footer">
+			<a href="index.html">Home</a>
+			<a href="support.html">Support</a>
+			<a href="refund-policy.html">Refund policy</a>
+			<a href="terms.html">Terms</a>
+			<a href="privacy.html">Privacy</a>
+		</nav>
+		<span>© 2026 Slotsmith by Rooh Sites. Not affiliated with WordPress.</span>
+	</div>
+</footer>
+</body>
+</html>
