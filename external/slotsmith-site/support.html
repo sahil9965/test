@@ -105,7 +105,15 @@
 	<h3>Razorpay (India: UPI, cards, netbanking)</h3>
 	<p>Paste your key ID and key secret from <span class="path">Razorpay → Account &amp; Settings → API keys</span>. Use test-mode keys first.</p>
 	<h3>PayPal</h3>
-	<p>Create an app in the PayPal developer dashboard and paste its client ID and secret. Tick <strong>PayPal sandbox</strong> to test. PayPal doesn't take payments in Indian rupees, so use Razorpay for customers in India.</p>
+	<ol>
+		<li>Go to <a href="https://developer.paypal.com/" rel="noopener">developer.paypal.com</a>, log in and open <span class="path">Apps &amp; Credentials</span>. The switch at the top chooses <strong>Sandbox</strong> (for testing) or <strong>Live</strong>. Each has its own keys.</li>
+		<li>Click <span class="path">Create App</span>, name it after your business, keep the type <em>Merchant</em> and create it.</li>
+		<li>Copy the <strong>Client ID</strong>. Under <span class="path">Secret key 1</span> click <span class="path">Show</span> and copy the <strong>secret</strong>.</li>
+		<li>In <span class="path">Pro settings → Payments</span>, tick PayPal and paste both. Tick <strong>PayPal sandbox</strong> if you used Sandbox keys, and untick it for Live keys. If PayPal rejects the keys, this tick box not matching the keys is the usual reason.</li>
+		<li>Set the <strong>Currency code</strong> to one PayPal accepts, such as USD, EUR or GBP. PayPal doesn't take Indian rupees, so use Razorpay for customers in India.</li>
+		<li>Add the webhook described below, so bookings confirm even if the customer closes the tab.</li>
+	</ol>
+	<p><strong>To test first:</strong> with Sandbox keys, open <span class="path">Testing tools → Sandbox accounts</span> in the PayPal developer dashboard and create a <strong>Personal</strong> account. That is a fake buyer. When you pay on your booking form, log in to PayPal with that account's email and password (open it with the <span class="path">…</span> menu, then <span class="path">View/edit account</span>). Real PayPal logins don't work in the sandbox, and no real money moves. When you're happy, paste your Live keys and untick <strong>PayPal sandbox</strong>.</p>
 
 	<h2 id="webhooks">Payment webhooks (recommended)</h2>
 	<p>Without webhooks, a booking is confirmed when the customer comes back to your site, or by a background check every few minutes. With webhooks, the payment provider tells your site the moment the money arrives, even if the customer closes the tab.</p>
@@ -113,7 +121,7 @@
 	<ul>
 		<li><strong>Stripe:</strong> <span class="path">Developers → Webhooks → Add endpoint</span>, then paste the signing secret (<code>whsec_…</code>) into “Stripe webhook secret”.</li>
 		<li><strong>Razorpay:</strong> <span class="path">Account &amp; Settings → Webhooks → Add new webhook</span>. Make up a secret and type it both there and in “Razorpay webhook secret”.</li>
-		<li><strong>PayPal:</strong> <span class="path">Apps &amp; Credentials → your app → Webhooks → Add webhook</span>. No secret is needed.</li>
+		<li><strong>PayPal:</strong> <span class="path">Apps &amp; Credentials → your app → Webhooks → Add webhook</span>. Tick the two events the Webhooks box lists (<em>Checkout order approved</em> and <em>Payment capture completed</em>). No secret is needed.</li>
 	</ul>
 	<p>Every notice is double-checked with the provider before a booking changes.</p>
 
