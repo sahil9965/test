@@ -62,3 +62,4 @@ the footers, hub, pins and IndexNow.
 The site was first uploaded by hand as a Worker, so the workflow created `rooh-slotsmith` and the domain was moved onto it
 (31 Oct; the Worker is deleted). The lookup now finds the project by its domain; `rooh-slotsmith` stays the fallback. Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`; the run
 summary shows every page on both hosts and warns while the domain still serves something else.
+Then it sends the sitemap's URLs to IndexNow (the key file is the 32-hex `.txt` in the site root), once the live domain serves the deploy.
