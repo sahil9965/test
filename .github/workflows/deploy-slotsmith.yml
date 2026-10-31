@@ -80,3 +80,19 @@ jobs:
             echo "::warning title=Domain not moved yet::$DOMAIN still serves something else. In Cloudflare, remove the domain from the Worker or project it is on now, then add it under Workers & Pages > $PROJECT > Custom domains."
             echo "**$DOMAIN** still serves an older copy: move the domain to **$PROJECT** (Custom domains)." >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Tell search engines (IndexNow)
+        run: |
+          set -uo pipefail
+          keyfile=$(ls external/slotsmith-site/ | grep -E '^[0-9a-f]{32}\.txt$' | head -1 || true)
+          [ -n "$keyfile" ] || { echo "No IndexNow key file; skipping."; exit 0; }
+          key=${keyfile%.txt}
+          # IndexNow fetches the key from the live domain, so only ping once it serves this deploy.
+          if [ "$(curl -fsS -m 20 "https://$DOMAIN/$keyfile" 2>/dev/null | tr -d '[:space:]')" != "$key" ]; then
+            echo "::warning::The IndexNow key isn't live on $DOMAIN yet; skipped."; exit 0
+          fi
+          urls=$(grep -o '<loc>[^<]*</loc>' external/slotsmith-site/sitemap.xml | sed 's/<[^>]*>//g' | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>process.stdout.write(JSON.stringify(d.trim().split("\n"))))')
+          body=$(printf '{"host":"%s","key":"%s","keyLocation":"https://%s/%s","urlList":%s}' "$DOMAIN" "$key" "$DOMAIN" "$keyfile" "$urls")
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 30 -H 'Content-Type: application/json; charset=utf-8' -d "$body" https://api.indexnow.org/indexnow)
+          echo "IndexNow answered HTTP $code for $(grep -c '<loc>' external/slotsmith-site/sitemap.xml) URLs (200 or 202 means accepted)."
+          { echo; echo "IndexNow: HTTP $code"; } >> "$GITHUB_STEP_SUMMARY"

@@ -3,12 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Slotsmith — Appointment booking for WordPress</title>
-<meta name="description" content="A beautiful, mobile-first booking form for salons, tutors and coaches. Unlimited staff and services free. Pro adds payments, WhatsApp reminders and Google Calendar sync.">
-<meta property="og:title" content="Slotsmith — Appointment booking for WordPress">
+<title>Slotsmith: Free WordPress Booking Plugin for Salons &amp; Tutors</title>
+<meta name="description" content="Free WordPress booking plugin for salons, tutors and coaches with unlimited staff and services. Pro adds Razorpay/UPI, WhatsApp reminders and Google Calendar.">
+<link rel="canonical" href="https://slotsmith.roohsites.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Slotsmith">
+<meta property="og:title" content="Slotsmith: Free WordPress Booking Plugin for Salons &amp; Tutors">
 <meta property="og:description" content="Online booking your clients will love. Take deposits, cut no-shows with WhatsApp reminders, and sync with Google Calendar.">
-<meta property="og:image" content="assets/shot-2.png">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<meta property="og:url" content="https://slotsmith.roohsites.com/">
+<meta property="og:image" content="https://slotsmith.roohsites.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" id="ld">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Slotsmith","applicationCategory":"BusinessApplication","operatingSystem":"WordPress","url":"https://slotsmith.roohsites.com/","image":"https://slotsmith.roohsites.com/assets/og.png","description":"Appointment booking plugin for WordPress: unlimited staff and services free; Pro adds payments, reminders and Google Calendar sync.","offers":[{"@type":"Offer","name":"Slotsmith (free)","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Slotsmith Pro, 1 site","price":"79","priceCurrency":"USD"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"No. Install the plugin, add your services and staff from the WordPress dashboard, and add the Booking form block to a page. Most businesses are live in about 10 minutes."}},{"@type":"Question","name":"Does it work with my theme and page builder?","acceptedAnswer":{"@type":"Answer","text":"Yes. The booking form is self-contained, so it looks great with any theme, and works in the block editor (as a block), Elementor, Divi and other builders (via the shortcode)."}},{"@type":"Question","name":"How does the free trial work?","acceptedAnswer":{"@type":"Answer","text":"Install Slotsmith Pro and start a 14-day trial — no card required. If you don't upgrade, Pro features switch off and the free booking form keeps working."}},{"@type":"Question","name":"Which payment methods can my clients use?","acceptedAnswer":{"@type":"Answer","text":"With Razorpay: UPI, cards, netbanking and wallets (India). With Stripe: cards, Apple Pay and Google Pay. Or PayPal. Money goes straight to your own account — Slotsmith never touches it."}},{"@type":"Question","name":"How do WhatsApp reminders work?","acceptedAnswer":{"@type":"Answer","text":"Slotsmith Pro connects to Meta's official WhatsApp Cloud API and sends an approved message template to your client before their appointment. SMS reminders use Twilio. Messaging fees are charged by those providers."}},{"@type":"Question","name":"What happens when my license expires?","acceptedAnswer":{"@type":"Answer","text":"Your bookings keep working. You stop receiving updates and support until you renew — and renewals cost the same as your first year."}},{"@type":"Question","name":"Can I get a refund?","acceptedAnswer":{"@type":"Answer","text":"Yes — if Slotsmith Pro isn't right for you, contact us within 14 days of purchase for a full refund. See our refund policy."}}]}]}</script>
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -157,6 +163,9 @@ th { background: var(--soft); font-weight: 700; }
 th.us, td.us { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
 tr:last-child td { border-bottom: 0; }
 
+.compare-links { margin: 20px 0 4px; text-align: center; font-weight: 600; }
+.compare-note { margin: 0; text-align: center; color: var(--muted); font-size: 13px; }
+
 /* FAQ */
 .faq { max-width: 800px; margin: 40px auto 0; }
 details { border-bottom: 1px solid var(--line); padding: 20px 4px; }
@@ -207,11 +216,12 @@ footer a:hover { color: var(--ink); }
 
 <header class="nav" id="top">
 	<div class="wrap">
-		<a class="logo" href="#top"><img src="assets/icon.svg" alt="">Slotsmith</a>
+		<a class="logo" href="#top"><img src="/assets/icon.svg" alt="">Slotsmith</a>
 		<nav class="nav-links" aria-label="Main">
 			<a href="#features">Features</a>
 			<a href="#pro">Pro</a>
 			<a href="#pricing">Pricing</a>
+			<a href="/compare">Compare</a>
 			<a href="#faq">FAQ</a>
 			<a class="btn btn-primary" href="#pricing">Get Slotsmith</a>
 		</nav>
@@ -233,8 +243,8 @@ footer a:hover { color: var(--ink); }
 				<div class="hero-note"><span>Free forever plan</span><span>No card for the trial</span><span>Unlimited staff &amp; services</span></div>
 			</div>
 			<div class="hero-art">
-				<img class="main" src="assets/shot-2.png" alt="Slotsmith booking form showing a calendar and available times" width="1690" height="1474">
-				<img class="phone" src="assets/shot-5.png" alt="The booking form on a phone" width="780" height="1688">
+				<img class="main" src="/assets/shot-2.png" alt="Slotsmith booking form showing a calendar and available times" width="1690" height="1474">
+				<img class="phone" src="/assets/shot-5.png" alt="The booking form on a phone" width="780" height="1688">
 				<div class="toast"><i>✓</i><div>New booking · Haircut<small>Riya · Thu 12:30 pm · ₹500 paid</small></div></div>
 			</div>
 		</div>
@@ -276,7 +286,7 @@ footer a:hover { color: var(--ink); }
 						<li>Your brand colour, your theme's fonts</li>
 					</ul>
 				</div>
-				<img class="shot" src="assets/shot-1.png" alt="Choosing a service and a professional" loading="lazy" width="1690" height="1900">
+				<img class="shot" src="/assets/shot-1.png" alt="Choosing a service and a professional" loading="lazy" width="1690" height="1900">
 			</div>
 
 			<div class="feature flip">
@@ -291,7 +301,7 @@ footer a:hover { color: var(--ink); }
 						<li>Minimum notice and booking window rules</li>
 					</ul>
 				</div>
-				<img class="shot" src="assets/shot-6.png" alt="Bookings list in the WordPress dashboard" loading="lazy" width="1200" height="1074">
+				<img class="shot" src="/assets/shot-6.png" alt="Bookings list in the WordPress dashboard" loading="lazy" width="1200" height="1074">
 			</div>
 		</div>
 	</section>
@@ -326,9 +336,9 @@ footer a:hover { color: var(--ink); }
 				<h2>Designed to convert on every screen</h2>
 			</div>
 			<div class="gallery">
-				<figure><img class="shot" src="assets/shot-3.png" alt="Client details with booking summary" loading="lazy" width="1690" height="1242"><figcaption>Clear summary before they confirm</figcaption></figure>
+				<figure><img class="shot" src="/assets/shot-3.png" alt="Client details with booking summary" loading="lazy" width="1690" height="1242"><figcaption>Clear summary before they confirm</figcaption></figure>
 				<div class="stack">
-					<figure><img class="shot" src="assets/shot-4.png" alt="Booking confirmed screen" loading="lazy" width="1750" height="1060"><figcaption>Instant confirmation + Add to calendar</figcaption></figure>
+					<figure><img class="shot" src="/assets/shot-4.png" alt="Booking confirmed screen" loading="lazy" width="1750" height="1060"><figcaption>Instant confirmation + Add to calendar</figcaption></figure>
 				</div>
 			</div>
 		</div>
@@ -403,25 +413,28 @@ footer a:hover { color: var(--ink); }
 	</section>
 
 	<!-- Compare -->
-	<section>
+	<section id="compare">
 		<div class="wrap">
 			<div class="center">
-				<span class="eyebrow">Why Slotsmith</span>
-				<h2>Built for small businesses, priced fairly</h2>
+				<span class="eyebrow">Compare</span>
+				<h2>Slotsmith vs Bookly, Amelia and LatePoint</h2>
+				<p class="lead" style="margin:0 auto">The free version is where WordPress booking plugins differ most. Slotsmith is the only one of the four with unlimited staff for free.</p>
 			</div>
 			<div class="compare">
 				<table>
-					<thead><tr><th></th><th class="us">Slotsmith</th><th>Typical booking plugins</th></tr></thead>
+					<thead><tr><th></th><th class="us">Slotsmith</th><th>Bookly</th><th>Amelia</th><th>LatePoint</th></tr></thead>
 					<tbody>
-						<tr><td>Staff &amp; services on the free plan</td><td class="us">Unlimited</td><td>Often capped (e.g. 1 staff, 5 services)</td></tr>
-						<tr><td>Payments, reminders, calendar sync</td><td class="us">All included in Pro</td><td>Often sold as separate paid add-ons</td></tr>
-						<tr><td>UPI payments (Razorpay)</td><td class="us">Included</td><td>Not always available</td></tr>
-						<tr><td>WhatsApp reminders</td><td class="us">Included in Pro</td><td>Usually an extra add-on</td></tr>
-						<tr><td>Renewal price</td><td class="us">Same every year</td><td>Can increase after year one</td></tr>
-						<tr><td>Tracking &amp; external scripts</td><td class="us">None</td><td>Varies</td></tr>
+						<tr><td>Staff on the free version</td><td class="us">Unlimited</td><td>Limited</td><td>Limited</td><td>One</td></tr>
+						<tr><td>Online payments on the free version</td><td class="us">In Pro</td><td>In Pro</td><td>Square only</td><td>Stripe, PayPal, Razorpay</td></tr>
+						<tr><td>Razorpay (UPI)</td><td class="us">Pro</td><td>Not listed</td><td>Paid plans</td><td>Yes</td></tr>
+						<tr><td>Google Calendar sync</td><td class="us">Pro (two-way)</td><td>Bookly Pro</td><td>Paid plans</td><td>Pro</td></tr>
+						<tr><td>1 website, per year</td><td class="us">$79</td><td>From $99</td><td>Several plans</td><td>$99</td></tr>
+						<tr><td>Renewal price</td><td class="us">Same every year</td><td>Yearly, or lifetime once</td><td>Regular price after a first-year offer</td><td>Regular price</td></tr>
 					</tbody>
 				</table>
 			</div>
+			<p class="compare-links"><a href="/compare">See the full comparison</a> · <a href="/bookly-alternative">Bookly alternative</a> · <a href="/amelia-alternative">Amelia alternative</a> · <a href="/latepoint-alternative">LatePoint alternative</a></p>
+			<p class="compare-note">Checked October 31, 2026 from each plugin's WordPress.org and pricing pages; regular prices in US dollars.</p>
 		</div>
 	</section>
 
@@ -439,7 +452,7 @@ footer a:hover { color: var(--ink); }
 				<details><summary>Which payment methods can my clients use?</summary><p>With Razorpay: UPI, cards, netbanking and wallets (India). With Stripe: cards, Apple Pay and Google Pay. Or PayPal. Money goes straight to your own account — Slotsmith never touches it.</p></details>
 				<details><summary>How do WhatsApp reminders work?</summary><p>Slotsmith Pro connects to Meta's official WhatsApp Cloud API and sends an approved message template to your client before their appointment. SMS reminders use Twilio. Messaging fees are charged by those providers.</p></details>
 				<details><summary>What happens when my license expires?</summary><p>Your bookings keep working. You stop receiving updates and support until you renew — and renewals cost the same as your first year.</p></details>
-				<details><summary>Can I get a refund?</summary><p>Yes — if Slotsmith Pro isn't right for you, contact us within 14 days of purchase for a full refund. See our <a href="refund-policy.html">refund policy</a>.</p></details>
+				<details><summary>Can I get a refund?</summary><p>Yes — if Slotsmith Pro isn't right for you, contact us within 14 days of purchase for a full refund. See our <a href="/refund-policy">refund policy</a>.</p></details>
 			</div>
 		</div>
 	</section>
@@ -461,16 +474,17 @@ footer a:hover { color: var(--ink); }
 
 <footer>
 	<div class="wrap">
-		<a class="logo" href="#top" style="font-size:17px"><img src="assets/icon.svg" alt="" style="width:26px;height:26px">Slotsmith</a>
+		<a class="logo" href="#top" style="font-size:17px"><img src="/assets/icon.svg" alt="" style="width:26px;height:26px">Slotsmith</a>
 		<nav aria-label="Footer">
 			<a href="#features">Features</a>
 			<a href="#pricing">Pricing</a>
 			<a href="#faq">FAQ</a>
 			<a data-contact href="#">Contact</a>
-			<a href="support.html">Support</a>
-			<a href="refund-policy.html">Refund policy</a>
-			<a href="terms.html">Terms</a>
-			<a href="privacy.html">Privacy</a>
+			<a href="/compare">Compare</a>
+			<a href="/support">Support</a>
+			<a href="/refund-policy">Refund policy</a>
+			<a href="/terms">Terms</a>
+			<a href="/privacy">Privacy</a>
 		</nav>
 		<span>© <span id="year">2026</span> Slotsmith by Rooh Sites</span>
 	</div>
