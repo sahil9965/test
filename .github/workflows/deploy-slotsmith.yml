@@ -80,6 +80,15 @@ jobs:
             echo "::warning title=Domain not moved yet::$DOMAIN still serves something else. In Cloudflare, remove the domain from the Worker or project it is on now, then add it under Workers & Pages > $PROJECT > Custom domains."
             echo "**$DOMAIN** still serves an older copy: move the domain to **$PROJECT** (Custom domains)." >> "$GITHUB_STEP_SUMMARY"
           fi
+          # http:// should redirect to https:// (Cloudflare: SSL/TLS > Edge Certificates > Always Use HTTPS).
+          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}' "http://$DOMAIN/compare")
+          if [[ "$code" =~ ^30[178]$ && "$to" == "https://$DOMAIN/compare" ]]; then
+            echo "http://$DOMAIN redirects to https ($code)."
+            { echo; echo "http → https: $code"; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning title=No https redirect::http://$DOMAIN/compare answered $code ${to:-without a redirect}. Turn on Always Use HTTPS in Cloudflare (SSL/TLS > Edge Certificates)."
+            { echo; echo "http → https: **not redirecting** ($code)"; } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Tell search engines (IndexNow)
         run: |
