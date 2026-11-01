@@ -600,6 +600,57 @@
       "desc": "Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the <t:…> codes for your week and add the image too.",
       "keywords": "stream schedule for discord with timestamps, stream schedule, twitch schedule, streamer",
       "added": "2026-10-31"
+    },
+    {
+      "slug": "gradledger",
+      "file": "dual-enrollment-on-a-homeschool-transcript",
+      "path": "/dual-enrollment-homeschool-transcript",
+      "board": "Homeschool Records",
+      "headline": "Dual Enrollment on a Homeschool Transcript",
+      "sub": "Homeschool transcripts and GPA, free",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "visual": "document",
+      "desc": "How to list dual enrollment on a homeschool transcript: course names, credit conversion, weighting and notes, plus a free generator that formats it for you.",
+      "keywords": "dual enrollment on a homeschool transcript, homeschool transcript, homeschool high school, gpa",
+      "added": "2026-11-01"
+    },
+    {
+      "slug": "priceboard",
+      "file": "barber-price-list-template",
+      "path": "/barber-price-list-template",
+      "board": "Small Business Printables",
+      "headline": "Barber Price List Template",
+      "sub": "Salon and spa price lists for print and Instagram",
+      "points": [
+        "Fits on one page",
+        "Print & Instagram sizes",
+        "No signup"
+      ],
+      "visual": "menu",
+      "desc": "Free barber price list template with haircuts, beard and shave services and extras. Print a poster for the wall or post it on Instagram. No login.",
+      "keywords": "barber price list template, salon price list, salon menu, beauty business",
+      "added": "2026-11-01"
+    },
+    {
+      "slug": "giftstub",
+      "file": "gift-voucher-template",
+      "path": "/gift-voucher-template",
+      "board": "Small Business Printables",
+      "headline": "Gift Voucher Template",
+      "sub": "Printable gift certificates with numbered stubs",
+      "points": [
+        "Matching numbered stubs",
+        "Up to 500 per PDF",
+        "Letter & A4"
+      ],
+      "visual": "certificate",
+      "desc": "Free printable gift voucher template with numbers and tear-off stubs. Edit the wording, use ₹ or £ amounts, print 3 per A4 page and download a PDF. No signup.",
+      "keywords": "gift voucher template: free, printable and numbered, gift certificate template, printable gift certificate, small business",
+      "added": "2026-11-01"
     }
   ]
 }

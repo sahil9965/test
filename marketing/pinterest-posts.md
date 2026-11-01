@@ -558,3 +558,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Post your stream schedule in Discord with timestamps that show in every member's own time zone. Copy the <t:…> codes for your week and add the image too.
 - **Alt text:** Stream Schedule for Discord with Timestamps: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
 - **Keywords:** stream schedule for discord with timestamps, stream schedule, twitch schedule, streamer
+
+## Day 61: Dual Enrollment on a Homeschool Transcript
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/dual-enrollment-on-a-homeschool-transcript.png
+- **Link:** https://transcript.roohsites.com/dual-enrollment-homeschool-transcript?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** How to list dual enrollment on a homeschool transcript: course names, credit conversion, weighting and notes, plus a free generator that formats it for you.
+- **Alt text:** Dual Enrollment on a Homeschool Transcript: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** dual enrollment on a homeschool transcript, homeschool transcript, homeschool high school, gpa
+
+## Day 62: Barber Price List Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/barber-price-list-template.png
+- **Link:** https://pricelist.roohsites.com/barber-price-list-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free barber price list template with haircuts, beard and shave services and extras. Print a poster for the wall or post it on Instagram. No login.
+- **Alt text:** Barber Price List Template: Salon and spa price lists for print and Instagram. The image shows a salon price list with services, dot leaders and prices, from pricelist.roohsites.com.
+- **Keywords:** barber price list template, salon price list, salon menu, beauty business
+
+## Day 63: Gift Voucher Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/gift-voucher-template.png
+- **Link:** https://giftcert.roohsites.com/gift-voucher-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable gift voucher template with numbers and tear-off stubs. Edit the wording, use ₹ or £ amounts, print 3 per A4 page and download a PDF. No signup.
+- **Alt text:** Gift Voucher Template: Printable gift certificates with numbered stubs. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** gift voucher template: free, printable and numbered, gift certificate template, printable gift certificate, small business
