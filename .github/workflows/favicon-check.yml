@@ -1,0 +1,32 @@
+# One-off and on-demand: tests every live host's favicon the way Google's favicon fetcher would.
+# For each host: the <link rel=icon> tags in the home page, each file's status, type and size, /favicon.ico, and robots.txt rules.
+name: Favicon check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check every host
+        run: |
+          set -uo pipefail
+          hosts=$(node -p 'JSON.parse(require("fs").readFileSync("sites.json","utf8")).filter(s=>s.live!==false).map(s=>new URL(s.url).host).concat(["roohsites.com","slotsmith.roohsites.com"]).join(" ")')
+          for h in $hosts; do
+            echo "=== $h"
+            html=$(curl -sL -m 25 -A "Mozilla/5.0 (compatible; Googlebot/2.1)" "https://$h/" || true)
+            echo "home: $(echo "$html" | wc -c) bytes"
+            tags=$(echo "$html" | grep -oiE '<link[^>]+rel="[^"]*icon[^"]*"[^>]*>' | head -8)
+            [ -z "$tags" ] && echo "NO ICON LINK TAGS FOUND"
+            echo "$tags"
+            for href in $(echo "$tags" | grep -oE 'href="[^"]+"' | sed 's/href="//; s/"$//' | sort -u) /favicon.ico; do
+              case "$href" in http*) u="$href";; /*) u="https://$h$href";; *) u="https://$h/$href";; esac
+              r=$(curl -sIL -m 20 -o /dev/null -w '%{http_code} %{content_type} %{size_download}b final=%{url_effective}' "$u" || echo "curl failed")
+              b=$(curl -sL -m 20 "$u" | wc -c)
+              echo "  $href -> $r (body ${b}b)"
+            done
+            echo "  robots.txt:"; curl -sL -m 15 "https://$h/robots.txt" | grep -iE '^(user-agent|disallow|allow)' | head -8 | sed 's/^/    /'
+          done
