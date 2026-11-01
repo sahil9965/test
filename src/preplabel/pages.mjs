@@ -12,7 +12,7 @@ const Core = require(join(OUT, "core.js"));
 const URL = "https://fnsku.roohsites.com";
 const NAME = "PrepLabel";
 const ACCENT = "#c2410c";
-const DATE = "2026-10-08", DATE_H = "8 October 2026";
+const DATE = "2026-11-01", DATE_H = "1 November 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 
@@ -507,7 +507,7 @@ X003GHI789,Used hardcover cookbook,Used - Very Good,1</code></pre>
       <p>Seller guides agree that the 36 pt minimum applies to the outside of the shipping box, where staff need to read the date at a glance. Some also apply it to each unit, so use 36 pt on units too whenever the packaging has room, and never print a date that's hard to read. 36 pt is a type size of half an inch (12.7 mm), so “EXP 03-31-2027” at that size needs a label of about 3 × 2 in or larger (PrepLabel reaches 38 pt on 3 × 2 in and 52 pt on 4 × 2 in). The tool reports the size reached on the label you choose and tells you when it hits 36 pt.</p>
       <h2>Shelf life rules to plan for</h2>
       <ul>
-        <li>Seller guides quoting Amazon's policy say units need more than 90 days of shelf life left when they arrive, and units within 50 days of expiry are removed from sale.</li>
+        <li>Seller guides quoting Amazon's policy describe a minimum shelf life on arrival of at least 90 days beyond the time a customer needs to use the product, and some categories need more (food and drink is often quoted at 105 days). Units within 50 days of expiry are removed from sale. Amazon revises these numbers, so check the expiration-dated product page for your category.</li>
         <li>Each box should contain only one expiration date per ASIN. Split units with different dates into different boxes.</li>
         <li>Expiration labels are separate from the FNSKU label. PrepLabel keeps unit FNSKU labels to barcode, FNSKU, title and condition.</li>
       </ul>
