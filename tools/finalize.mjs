@@ -2,7 +2,8 @@
 //  1. vercel.json: 308-redirect any non-canonical host (auto-assigned aliases, team aliases,
 //     deployment URLs) to the canonical host so search engines see one URL per page.
 //  2. Inject the cross-site "More free tools" footer links (tools/network.mjs).
-//  3. Run the SEO linter on every site and exit non-zero if any site has errors.
+//  3. Put the favicon link block (tools/favicons.mjs) into every page.
+//  4. Run the SEO linter on every site and exit non-zero if any site has errors.
 // Usage: node tools/finalize.mjs
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -27,6 +28,7 @@ execFileSync("node", [join(root, "tools/toollinks.mjs")], { stdio: "inherit" });
 execFileSync("node", [join(root, "tools/affiliate.mjs")], { stdio: "inherit" });
 execFileSync("node", [join(root, "tools/leadline.mjs")], { stdio: "inherit" });
 execFileSync("node", [join(root, "tools/umami.mjs")], { stdio: "inherit" });
+execFileSync("node", [join(root, "tools/favicons.mjs")], { stdio: "inherit" });
 for (const s of sites) {
   const dir = join(root, "sites", s.slug);
   if (!existsSync(join(dir, "index.html"))) continue;
