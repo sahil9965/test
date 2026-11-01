@@ -234,7 +234,7 @@ export const PAGES = [
 
   /* ------------------------------------------------------------------ PROBE */
   {
-    slug: "cold-probe-data-sheet", tool: { kind: "sheet", preset: "probe" }, crumb: "Cold probe data sheet",
+    slug: "cold-probe-data-sheet", updated: ["2026-11-01", "1 November 2026"], tool: { kind: "sheet", preset: "probe" }, crumb: "Cold probe data sheet",
     title: "Cold Probe Data Sheet: Free Printable Template (PDF)",
     desc: "Free cold probe data sheet: list targets, mark Y or N on the first trial each day, and track date introduced and date mastered. Print, PDF or score on screen.",
     h1: "Cold Probe Data Sheet",
@@ -262,6 +262,7 @@ export const PAGES = [
       p("Two graphs are common. The first is the <strong>percentage of targets correct</strong> each day (Y ÷ targets probed × 100); on-screen scoring adds this point to the goal's graph automatically. The second is a <strong>cumulative graph of targets mastered</strong>, where the line steps up by one each time a target meets the criterion. For that one, enter the running total in the <a href=\"/\">graph maker</a> and label the y-axis “Number of targets mastered”."),
     ].join("\n"),
     faq: [
+      ["What is a probe data sheet?", "A sheet that lists the targets and records, with Y or N, whether the learner did each one independently on a probe trial. The cold probe version records the first trial of the day, before any teaching, so the data show what the learner can do without help."],
       ["What does “cold” mean in a cold probe?", "The first opportunity of the day, before any teaching, prompting or warm-up on that target. It tests what the learner can do on their own."],
       ["How many consecutive Y probes count as mastered?", "Your team decides. Common criteria are 2 or 3 consecutive sessions, sometimes across two different staff members. Write it in the mastery criterion box so it prints on the sheet."],
       ["How many targets fit on one sheet?", "About 20 on a portrait page with the default layout. Longer lists continue onto more pages, with the column headers repeated."],
@@ -271,7 +272,7 @@ export const PAGES = [
 
   /* ------------------------------------------------------------------ TASK */
   {
-    slug: "task-analysis-data-sheet", tool: { kind: "sheet", preset: "task" }, crumb: "Task analysis data sheet",
+    slug: "task-analysis-data-sheet", updated: ["2026-11-01", "1 November 2026"], tool: { kind: "sheet", preset: "task" }, crumb: "Task analysis data sheet",
     title: "Task Analysis Data Sheet Template: Free Printable PDF",
     desc: "Free task analysis data sheet template: list each step, score prompt levels or + / – each session and track % of steps independent for chaining. Print or PDF.",
     h1: "Task Analysis Data Sheet Template",
@@ -310,6 +311,7 @@ export const PAGES = [
       ["How many steps should a task analysis have?", "As many as the learner needs: a handwashing routine might be 6 steps for one student and 14 for another. The sheet fits about 20 steps on a portrait page and continues onto more pages for longer lists."],
       ["How do I calculate % independent?", "Count the steps completed independently and divide by the number of steps scored. 6 of 8 steps is 75%."],
       ["Can I use + and – instead of prompt levels?", "Yes. Set <em>Score each step with</em> to + / –. + means the step was done independently."],
+      ["Is this a task analysis template or a diagram?", "It is a data sheet: a table with one row per step, so you can score each step every session. It does not draw a flowchart. If you want a diagram, copy the steps into a drawing tool such as Visio; if you want to score the steps and track % independent, use the sheet."],
       ["Which chaining method should I use?", "It depends on the learner and the task, and your BCBA or teaching team should decide. The sheet prints the method in the key so everyone uses the same one."],
     ],
   },
@@ -519,9 +521,9 @@ export const PAGES = [
 
   /* ------------------------------------------------------------------ ABC */
   {
-    slug: "abc-data-sheet", tool: { kind: "sheet", preset: "abc" }, crumb: "ABC data sheet",
+    slug: "abc-data-sheet", updated: ["2026-11-01", "1 November 2026"], tool: { kind: "sheet", preset: "abc" }, crumb: "ABC data sheet",
     title: "ABC Data Sheet: Free Printable PDF, Checklist or Narrative",
-    desc: "Free printable ABC data sheet PDF: record antecedent, behavior and consequence with tick-box checklists or write-in columns, plus possible function.",
+    desc: "Free printable ABC data sheet PDF and editable form: record antecedent, behavior and consequence with tick-box checklists or write-in columns, plus function.",
     h1: "ABC Data Sheet",
     lead: "Record what happened right before, during and right after each incident. Choose a quick tick-box checklist or open write-in columns, edit the options, and print.",
     body: [
@@ -577,6 +579,8 @@ export const PAGES = [
       ["What does ABC stand for?", "Antecedent, Behavior, Consequence: what happened before, what the student did, and what happened after."],
       ["How many ABC entries do I need?", "There's no fixed number. Collect enough incidents across different settings and times to see a pattern; your behavior team will say when there's enough."],
       ["Can I change the antecedent and consequence options?", "Yes. In checklist layout, edit the option lists, one per line. They print as tick boxes with an “Other” line."],
+      ["What is an ABC checklist?", "The checklist version of the ABC data sheet. Instead of writing a sentence for each incident, you tick the antecedent, behavior and consequence from short lists, with an “Other” line. It is quicker to fill in during a session. The narrative version has write-in columns instead."],
+      ["Is there an editable ABC data collection form?", "Yes. Choose the layout, edit the antecedent and consequence lists, then print the sheet or save the PDF. You can also print a blank one and fill it in by hand. Nothing you type is uploaded."],
       ["Is an ABC chart the same as an FBA?", "No. ABC recording is one descriptive part of a functional behavior assessment (FBA), which also includes interviews, other observations and sometimes a functional analysis."],
     ],
   },
