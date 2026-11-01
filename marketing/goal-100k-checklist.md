@@ -247,6 +247,7 @@ Why these prices: freelance US small-business sites are quoted at $2,000–$8,00
 - [ ] **15 Nov:** Instagram review
 - [ ] Monthly: roohsites guide (next in the queue: "What should a salon website include? A checklist")
 - [ ] Monthly: Amazon rule pages check
+- [ ] **Search Console, to refresh the search-result icons (favicons fixed 1 Nov):** URL Inspection → paste each home page → Request indexing: roohsites.com, pricelist.roohsites.com, lineup.roohsites.com, slotsmith.roohsites.com, iepglance.roohsites.com, punchcard.roohsites.com (then the other 12 tool hosts if you like). Google updates icons days to weeks after it re-reads the home page; check `site:roohsites.com` again in about 2 weeks. `.github/workflows/favicon-check.yml` (run it from the Actions tab) tests every host live.
 - [ ] WordPress.org review reply (roohsites@gmail.com)
 - [ ] Slotsmith testing left: Stripe (no account), Twilio SMS (no free number), real phones and other themes
 

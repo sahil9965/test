@@ -74,3 +74,8 @@ Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks,
 | Page views a month | Umami | Monthly | 3,000–5,000 |
 | Clicks and impressions | Search Console | Monthly | Clicks rising; A/B day, raffle and ABA in the top 5 |
 | Visitors by source | Umami UTM report | Weekly | Find the 1–2 sources worth doubling |
+
+## Done 1 Nov: favicons in Google results
+- Cause: the live check found every tool site served only an SVG (no /favicon.ico, no PNG), roohsites.com used an inline data: icon (Google can't fetch it), and slotsmith answered /favicon.ico with its home page and returned 200 for unknown addresses (no 404.html).
+- Fix: `tools/favicons.mjs` (run by `tools/finalize.mjs`) makes favicon.ico (16/32/48) and apple-touch-icon.png for every site and puts the link block (ico 48, svg, apple-touch-icon) in every page; roohsites.com got real icon files and a font-free R; Slotsmith got the same files plus a 404 page. Verified live on 9 hosts (streamschedule to slotsmith, including all of pricelist, lineup, iepglance, punchcard, roohsites.com and slotsmith).
+- New tool sites get it automatically, because finalize runs the script.
