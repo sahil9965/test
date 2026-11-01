@@ -4,14 +4,16 @@
 //      favicon.ico  (16, 32 and 48 px PNG images),  apple-touch-icon.png (180 px, kept if the site already has one)
 // 2. Puts the same <link> block, between <!--FAVICON:START--> and <!--FAVICON:END-->, into every HTML page,
 //    replacing any older icon or apple-touch-icon tags. Safe to run again.
-// Usage: node tools/favicons.mjs [--force]      (finalize.mjs runs it, so regenerated pages keep the block)
+// Usage: node tools/favicons.mjs [--force] [--dir <folder>]   (finalize.mjs runs it, so regenerated pages keep the block;
+//        --dir does one folder that has a favicon.svg, e.g. another site's output)
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const force = process.argv.includes("--force");
+const dirArg = process.argv.includes("--dir") ? resolve(process.argv[process.argv.indexOf("--dir") + 1]) : null;
 const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(s => s.live !== false).map(s => s.slug).concat("hub");
 
 export const BLOCK = '<!--FAVICON:START--><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><!--FAVICON:END-->';
@@ -67,10 +69,9 @@ async function render(svgPath, sizes) {
 }
 
 let made = 0, pages = 0;
-for (const slug of sites) {
-  const dir = join(root, "sites", slug);
+for (const dir of dirArg ? [dirArg] : sites.map(slug => join(root, "sites", slug))) {
   const svg = join(dir, "favicon.svg");
-  if (!existsSync(svg)) { console.log(`skip ${slug}: no favicon.svg`); continue; }
+  if (!existsSync(svg)) { console.log(`skip ${dir}: no favicon.svg`); continue; }
   const needIco = force || !existsSync(join(dir, "favicon.ico"));
   const needApple = force || !existsSync(join(dir, "apple-touch-icon.png"));
   if (needIco || needApple) {
