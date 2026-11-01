@@ -1,5 +1,7 @@
 # Traffic checklist
 
+> **Main goal: $100,000 by 30 April 2027.** See `marketing/goal-100k-checklist.md` (scoreboard, weekly quotas, engines, packages, affiliate program, first pitches) and `marketing/plan-100k-by-april-2027.md` (plan and sources).
+
 Made 29 Oct 2026. It turns the traffic part of `100-per-day-plan.md` into tasks, using what we know so far. **You** = your 8–15 hours a week; **Me** = work you ask me for in a session. Tick items as you go (edit the file, or tell me and I'll tick them).
 
 ## Where we start
