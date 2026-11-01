@@ -66,13 +66,21 @@ jobs:
           for try in 1 2 3 4 5 6; do [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] && break; sleep 10; done
           table=$'| page | '"$PROJECT"$'.pages.dev | '"$DOMAIN"$' |\n|---|---|---|'
           for f in external/slotsmith-site/*.html; do
-            p=$(basename "$f" .html); [ "$p" = index ] && p=""
+            p=$(basename "$f" .html); [ "$p" = 404 ] && continue; [ "$p" = index ] && p=""
             a=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$PROJECT.pages.dev/$p")
             b=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
             table+=$'\n'"| /$p | $a | $b |"
           done
           echo "$table"
           { echo "### Slotsmith site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
+          # Icons Google can use, and a real 404 for unknown addresses (no 404.html makes Pages answer 200 with the home page).
+          for f in /favicon.ico /favicon.svg /apple-touch-icon.png; do
+            line=$(curl -sIL -m 20 "https://$DOMAIN$f" | tr -d '\r' | grep -iE '^(HTTP|content-type)' | tr '\n' ' ')
+            echo "$f: $line"; echo "- $f: $line" >> "$GITHUB_STEP_SUMMARY"
+          done
+          nf=$(curl -s -o /dev/null -m 20 -w '%{http_code}' "https://$DOMAIN/this-page-does-not-exist-$GITHUB_RUN_ID")
+          echo "unknown address answers HTTP $nf"; echo "- unknown address: HTTP $nf" >> "$GITHUB_STEP_SUMMARY"
+          [ "$nf" = 404 ] || echo "::warning title=Soft 404::$DOMAIN answers $nf for an unknown address; it should be 404."
           [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] || { echo "::error::$PROJECT.pages.dev isn't serving this deploy."; exit 1; }
           if [ "$(live "$DOMAIN")" = "$GITHUB_SHA" ]; then
             echo "$DOMAIN is serving this deploy."
