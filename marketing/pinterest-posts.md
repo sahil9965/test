@@ -585,3 +585,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free printable gift voucher template with numbers and tear-off stubs. Edit the wording, use ₹ or £ amounts, print 3 per A4 page and download a PDF. No signup.
 - **Alt text:** Gift Voucher Template: Printable gift certificates with numbered stubs. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** gift voucher template: free, printable and numbered, gift certificate template, printable gift certificate, small business
+
+## Day 64: Airbnb Turnover Checklist with Photos
+
+- **Board:** Landlord & Tenant Checklists
+- **Image:** https://tools.roohsites.com/pins/airbnb-turnover-checklist-with-photos.png
+- **Link:** https://photoreport.roohsites.com/airbnb-turnover-checklist-with-photos?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free Airbnb turnover checklist with photos for cleaners and hosts: room tasks, restock checks, damage and missing items, and a dated PDF. No app needed.
+- **Alt text:** Airbnb Turnover Checklist with Photos: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.
+- **Keywords:** airbnb turnover checklist with photos, move in checklist, rental inspection, landlord
+
+## Day 65: Block Schedule Calendar Template
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/block-schedule-calendar-template.png
+- **Link:** https://abday.roohsites.com/block-schedule-calendar?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free block schedule calendar template with A/B block days and an optional all-classes Monday. Skips holidays and re-flows after snow days. Print a PDF.
+- **Alt text:** Block Schedule Calendar Template: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** block schedule calendar template, a/b day calendar, teacher planner, block schedule
+
+## Day 66: Evri Label 6x4 for Thermal Printers
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/evri-label-6x4-for-thermal-printers.png
+- **Link:** https://labels.roohsites.com/evri-label-6x4?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Turn an A4 Evri label into a 6x4 (100x150 mm) label for your thermal printer. Crops and rotates in your browser, keeps the barcode sharp. Free, no upload.
+- **Alt text:** Evri Label 6x4 for Thermal Printers: Got an Evri label on an A4 page. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** evri label 6x4 for thermal printers, shipping label, 4x6 label, thermal printer
