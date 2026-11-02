@@ -35,7 +35,7 @@ Answered 1 Nov:
 - [x] Who to pitch first: **Claude decides** (section 8)
 
 Still to approve:
-- [x] **Packages and prices approved 2 Nov** (section 5): the Monthly $39 plan is removed; **Launch $1,500** and **Growth $3,000** are added; **care plans $99 and $199 a month** are added. Starter $299 and Business $599 stay as they are. Build on Wednesday after the reset.
+- [x] **Packages and prices approved 2 Nov, revised the same day:** three packages, **Standard** (Starter and Business merged), **Launch $1,500** and **Growth $3,000**, plus **care plans $99 and $199 a month**. The Monthly $39 plan is removed. Standard's price: **default $599** (the old Business price) unless you give another number (section 5). Build on Wednesday after the reset.
 - [ ] **Creator affiliate settings** (section 6): 30% lifetime, 90-day cookie, first referrer, manual approval
 
 ---
@@ -66,7 +66,7 @@ Still to approve:
 
 **Claude does (in this order):**
 - [ ] 1. Ask for approval of packages and affiliate settings (drafting continues meanwhile)
-- [ ] 2. **Offer change on roohsites.com (approved 2 Nov; this is the first build):** follow section 5 "What changes in the repo". Run the tests, then push to main (this deploys live). Update the outreach email templates in the same push, so no email goes out with the old $39 plan.
+- [ ] 2. **Offer change on roohsites.com (approved 2 Nov, revised: 3 packages; this is the first build):** follow section 5 "What changes in the repo". Run the tests, then push to main (this deploys live). Update the outreach email templates in the same push, so no email goes out with the old $39 plan or the old Starter and Business names.
 - [ ] 3. **Outreach copy**: new email sequence with a Google Business Profile audit as the opener; raise the robot's weekly sending toward 100 within safe limits (compliance: honest subject, postal address, unsubscribe line).
 - [ ] 4. **Freelance kit**: Upwork and Contra profiles, three portfolio pieces, proposal templates.
 - [ ] 5. **Creator kit and affiliate page**: `/affiliates` page, affiliate terms, pitch emails, DM scripts, video ideas, assets list.
@@ -109,24 +109,25 @@ Still to approve:
 
 ---
 
-## 5. Packages and prices (approved 2 Nov, build on Wednesday)
+## 5. Packages and prices (approved 2 Nov, revised the same day; build on Wednesday)
 
-**Final line-up on roohsites.com (international offer):**
+**Final line-up on roohsites.com (international offer): three packages and two care plans**
 
 | Package | Price | Notes |
 |---|---|---|
-| **Starter** | $299 one-time | Unchanged |
-| **Business** | $599 one-time | Unchanged (kept as it is) |
-| **Launch** (new) | **$1,500** one-time | Details below |
-| **Growth** (new) | **$3,000** one-time | Details below |
-| **Care plans** (new) | **$99** and **$199** a month | Details below |
-| ~~Monthly $39 a month~~ | **Removed** | Remove it everywhere (see "What changes in the repo") |
+| **Standard** | **$599** one-time (default; change if you give another number) | Starter and Business merged into one package |
+| **Launch** | **$1,500** one-time | New |
+| **Growth** | **$3,000** one-time | New |
+| **Care plans** | **$99** and **$199** a month | New, for any package |
+| ~~Starter $299~~, ~~Business $599~~, ~~Monthly $39~~ | **Removed as separate plans** | Starter and Business become Standard; Monthly goes |
+
+**Standard $599** (the old Business plan, renamed, with the best parts of Starter). Template-based custom design with your name, colours, photos and words. Up to 6 pages (add Gallery, About, Pricing, FAQ and more). Looks right on phones, tablets and computers. Call, message and directions buttons, plus a link to your booking tool. Search basics (page titles, descriptions, sitemap). Your own domain, registered in your name, and secure hosting, first year included. 2 rounds of changes before launch. Live in about 15 business days. Not included: online shop or payments, logo design, photo shoots, ads or ongoing SEO, changes after launch (quoted, or covered by a care plan).
 
 **Launch $1,500.** 5 custom-styled pages, mobile-first. Google Business Profile cleanup (website link, categories, hours, photos). Contact or quote form, or Slotsmith booking (Pro licence included for a year). Basic SEO and analytics. 2 revision rounds. First month of care free. 10–14 days.
 
 **Growth $3,000.** Everything in Launch, plus up to 10 pages (3–5 service pages for local search). Online booking with deposits, and email and WhatsApp reminders. A review-request flow. 3 months of care. A 60-minute training call. 3–4 weeks.
 
-**Care plans:**
+**Care plans (for any package):**
 - Basic **$99 a month**: updates, backups, security, uptime, 30 minutes of edits
 - Plus **$199 a month**: 2 hours of changes, a monthly report, a Google Business Profile post, review follow-up
 
@@ -138,19 +139,19 @@ Still to approve:
 
 **India:** the India page's own offer (Punjab, ₹999 a month retainer) stays as it is unless you say otherwise.
 
-**Why these prices:** freelance US small-business sites are quoted at $2,000–$8,000 with a median of $3,000–$5,000; care plans run $100–$300 a month. Launch and Growth sit at or below the low end because we have no case studies yet.
+**Why these prices:** freelance US small-business sites are quoted at $2,000–$8,000 with a median of $3,000–$5,000; care plans run $100–$300 a month. Standard sits at the DIY end, Launch and Growth at or below the low end of freelance prices, because we have no case studies yet.
 
-**Question for Wednesday (not blocking):** Business $599 now sits between Starter and Launch. Keep the four side by side as approved, or rename Business (for example "Standard") so the ladder reads clearly? Default: keep as approved.
+**One thing to confirm (not blocking):** the old headline says "from $299" (Google result, home page title). With Starter gone, it becomes **"from $599"**. If you want a lower entry price (for example $399 or $499), tell me the number and Standard uses it.
 
 ### What changes in the repo (found 2 Nov; roohsites repo, main deploys live)
-- `config/offer_intl.json`: `plans` (remove `monthly`; add `launch` and `growth` as one-time plans; add the two care plans as a separate monthly section), `policies` (cancel, refunds, payments wording), the FAQ texts that mention the Monthly plan, and `owner_must_confirm` if it lists plan items.
-- `engine/intl_page.py`: `PLAN_IDS = ('starter', 'business', 'monthly')` and the monthly billing code; add a care-plan block.
-- `engine/brand_site.py` (around line 564): the structured-data offers and the FAQ text that mention the Monthly price.
-- `engine/emails.py` (lines about 147 and 190–194): **the outreach emails list the Monthly plan**. Update these before any further US sending.
+- `config/offer_intl.json`: `plans` becomes three one-time plans, `standard` (from the old `business`, renamed), `launch`, `growth`; remove `starter` and `monthly`; add a separate `care_plans` list (Basic $99, Plus $199); update `policies` (domain, site, cancel, payments, refunds), the FAQ texts that mention Starter, Business or the Monthly plan, and `owner_must_confirm` if it lists plan items.
+- `engine/intl_page.py`: `PLAN_IDS = ('starter', 'business', 'monthly')` becomes `('standard', 'launch', 'growth')`, drop the monthly billing code, and render the care plans as a block under the packages.
+- `engine/brand_site.py` (around line 564): the structured-data offers and the FAQ text that mention the Monthly price. Search the whole repo for `299` and `from $299` (home title and description, the Google snippet) and change it to the new entry price.
+- `engine/emails.py` (lines about 147 and 190–194): **the outreach emails list Starter, Business and the Monthly plan.** Update these before any further US sending.
 - `engine/dashboard_data.py` (line about 58): the price shown for US leads in the dashboard.
-- `engine/tests/test_intl_site.py` (lines about 101, 122, 134, 153–160): tests that assert the three old prices, the "Monthly · $39" option and the Monthly card. Update to the new line-up.
+- `engine/tests/test_intl_site.py` (lines about 101, 122, 134, 153–160): tests that assert the old prices (299, 599, 39), the "Monthly · $39" option and the Monthly card. Update to Standard, Launch, Growth and the care plans.
 - Guides that quote the old prices: `brand/guides/2026-10-02-website-vs-google-maps-instagram.md` and `brand/guides/2026-10-29-small-business-website-cost.md`.
-- The trade pages (`engine/trade_pages.py`) show "what each site costs": check they read from the same offer.
+- Trade pages (`engine/trade_pages.py`) show "what each site costs": check they read from the same offer.
 - Do not touch the India offer (`INDIA['monthly']` = 999) or the India page.
 
 ---
