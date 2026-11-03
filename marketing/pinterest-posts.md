@@ -612,3 +612,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Turn an A4 Evri label into a 6x4 (100x150 mm) label for your thermal printer. Crops and rotates in your browser, keeps the barcode sharp. Free, no upload.
 - **Alt text:** Evri Label 6x4 for Thermal Printers: Got an Evri label on an A4 page. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** evri label 6x4 for thermal printers, shipping label, 4x6 label, thermal printer
+
+## Day 67: Cold Probe Data Sheet
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/cold-probe-data-sheet.png
+- **Link:** https://abagraph.roohsites.com/cold-probe-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free cold probe data sheet: list targets, mark Y or N on the first trial each day, and track date introduced and date mastered. Print, PDF or score on screen.
+- **Alt text:** Cold Probe Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
+- **Keywords:** cold probe data sheet, aba graph, data sheet, special education
+
+## Day 68: Free Invoice Templates
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/free-invoice-templates.png
+- **Link:** https://invoice.roohsites.com/invoice-templates?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Browse free invoice templates for freelancers, photographers, contractors, GST in India and VAT in the UK. Edit online and download a PDF with no signup.
+- **Alt text:** Free Invoice Templates: Pick the template closest to your work. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** invoice templates, invoice template, free invoice generator, small business
+
+## Day 69: Editable Punch Card Template: No Canva, No Login
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/editable-punch-card-template-no-canva-no-login.png
+- **Link:** https://punchcard.roohsites.com/editable-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Editable punch card template you edit right on the page: change the text, punches, icons and colours, add a logo and print 10 per page. No Canva, no login.
+- **Alt text:** Editable Punch Card Template: No Canva, No Login: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** editable punch card template (no canva, no login), punch card template, loyalty card, small business

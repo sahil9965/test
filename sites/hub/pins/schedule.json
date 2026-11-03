@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -676,6 +676,36 @@
       "link": "https://labels.roohsites.com/evri-label-6x4?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Evri Label 6x4 for Thermal Printers: Got an Evri label on an A4 page. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
       "keywords": "evri label 6x4 for thermal printers, shipping label, 4x6 label, thermal printer"
+    },
+    {
+      "day": 67,
+      "title": "Cold Probe Data Sheet",
+      "description": "Free cold probe data sheet: list targets, mark Y or N on the first trial each day, and track date introduced and date mastered. Print, PDF or score on screen.",
+      "board": "ABA Data Sheets & Graphs",
+      "image": "https://tools.roohsites.com/pins/cold-probe-data-sheet.png",
+      "link": "https://abagraph.roohsites.com/cold-probe-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Cold Probe Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.",
+      "keywords": "cold probe data sheet, aba graph, data sheet, special education"
+    },
+    {
+      "day": 68,
+      "title": "Free Invoice Templates",
+      "description": "Browse free invoice templates for freelancers, photographers, contractors, GST in India and VAT in the UK. Edit online and download a PDF with no signup.",
+      "board": "Small Business Invoices",
+      "image": "https://tools.roohsites.com/pins/free-invoice-templates.png",
+      "link": "https://invoice.roohsites.com/invoice-templates?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Free Invoice Templates: Pick the template closest to your work. The image shows a one-page document preview, from invoice.roohsites.com.",
+      "keywords": "invoice templates, invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 69,
+      "title": "Editable Punch Card Template: No Canva, No Login",
+      "description": "Editable punch card template you edit right on the page: change the text, punches, icons and colours, add a logo and print 10 per page. No Canva, no login.",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/editable-punch-card-template-no-canva-no-login.png",
+      "link": "https://punchcard.roohsites.com/editable-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Editable Punch Card Template: No Canva, No Login: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "editable punch card template (no canva, no login), punch card template, loyalty card, small business"
     }
   ]
 }

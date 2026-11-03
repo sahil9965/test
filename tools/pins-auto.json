@@ -702,6 +702,57 @@
       "desc": "Turn an A4 Evri label into a 6x4 (100x150 mm) label for your thermal printer. Crops and rotates in your browser, keeps the barcode sharp. Free, no upload.",
       "keywords": "evri label 6x4 for thermal printers, shipping label, 4x6 label, thermal printer",
       "added": "2026-11-02"
+    },
+    {
+      "slug": "goaltally",
+      "file": "cold-probe-data-sheet",
+      "path": "/cold-probe-data-sheet",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "Cold Probe Data Sheet",
+      "sub": "ABA graphs and data sheets for IEP goals",
+      "points": [
+        "Nothing uploaded",
+        "Works offline",
+        "No signup"
+      ],
+      "visual": "grid",
+      "desc": "Free cold probe data sheet: list targets, mark Y or N on the first trial each day, and track date introduced and date mastered. Print, PDF or score on screen.",
+      "keywords": "cold probe data sheet, aba graph, data sheet, special education",
+      "added": "2026-11-03"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "free-invoice-templates",
+      "path": "/invoice-templates",
+      "board": "Small Business Invoices",
+      "headline": "Free Invoice Templates",
+      "sub": "Pick the template closest to your work",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Browse free invoice templates for freelancers, photographers, contractors, GST in India and VAT in the UK. Edit online and download a PDF with no signup.",
+      "keywords": "invoice templates, invoice template, free invoice generator, small business",
+      "added": "2026-11-03"
+    },
+    {
+      "slug": "punchperk",
+      "file": "editable-punch-card-template-no-canva-no-login",
+      "path": "/editable-punch-card-template",
+      "board": "Small Business Printables",
+      "headline": "Editable Punch Card Template: No Canva, No Login",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Editable punch card template you edit right on the page: change the text, punches, icons and colours, add a logo and print 10 per page. No Canva, no login.",
+      "keywords": "editable punch card template (no canva, no login), punch card template, loyalty card, small business",
+      "added": "2026-11-03"
     }
   ]
 }
