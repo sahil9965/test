@@ -65,17 +65,17 @@ Still to approve:
 ## 3. Wednesday start list (after the reset)
 
 **Claude does (in this order):**
-- [ ] 1. Ask for approval of packages and affiliate settings (drafting continues meanwhile)
-- [ ] 2. **Offer change on roohsites.com (approved 2 Nov, revised: 3 packages; this is the first build):** follow section 5 "What changes in the repo". Run the tests, then push to main (this deploys live). Update the outreach email templates in the same push, so no email goes out with the old $39 plan or the old Starter and Business names.
-- [ ] 3. **Outreach copy**: new email sequence with a Google Business Profile audit as the opener; raise the robot's weekly sending toward 100 within safe limits (compliance: honest subject, postal address, unsubscribe line).
-- [ ] 4. **Freelance kit**: Upwork and Contra profiles, three portfolio pieces, proposal templates.
-- [ ] 5. **Creator kit and affiliate page**: `/affiliates` page, affiliate terms, pitch emails, DM scripts, video ideas, assets list.
-- [ ] 6. **Partner kit**: white-label one-pager, pricing, pitch emails for local SEO consultants and small agencies.
-- [ ] 7. **Proof-client kit**: discount offer, testimonial and case-study request, release form, case-study page template.
+- [x] 1. Packages approved 2 Nov. Affiliate settings still waiting for your approval (drafting went ahead without them)
+- [x] 2. **DONE 4 Nov: offer change live on roohsites.com** (commit e7a92f4, deploy run 67 succeeded; Standard $599, Launch $1,500, Growth $3,000, care plans $99 and $199; tests pass). Original instruction:  follow section 5 "What changes in the repo". Run the tests, then push to main (this deploys live). Update the outreach email templates in the same push, so no email goes out with the old $39 plan or the old Starter and Business names.
+- [x] 3. **DRAFTED 4 Nov, not sent** (`marketing/kit-outreach-sequence.md`): **Outreach copy**: new email sequence with a Google Business Profile audit as the opener; raise the robot's weekly sending toward 100 within safe limits (compliance: honest subject, postal address, unsubscribe line).
+- [x] 4. **DRAFTED 4 Nov** (`marketing/kit-freelance.md`): **Freelance kit**: Upwork and Contra profiles, three portfolio pieces, proposal templates.
+- [~] 5. **Creator kit and affiliate terms DRAFTED 4 Nov** (`marketing/kit-creators-and-affiliate-terms.md`); the `/affiliates` page is NOT published until you approve the settings and the Freemius test works.
+- [x] 6. **DRAFTED 4 Nov** (`marketing/kit-partners-and-30-pitches.md`, partner prices need your approval): **Partner kit**: white-label one-pager, pricing, pitch emails for local SEO consultants and small agencies.
+- [x] 7. **DRAFTED 4 Nov** (`marketing/kit-proof-clients.md`): **Proof-client kit**: discount offer, testimonial and case-study request, release form, case-study page template.
 - [ ] 8. **Monday scoreboard**: script to pull the outreach log and a Search Console summary.
 
 **You do (this week):**
-- [ ] Approve the packages and prices, or change them
+- [x] Approve the packages and prices, or change them (Standard stays $599 unless you give another number)
 - [ ] Approve the affiliate settings (section 6)
 - [ ] Turn on the Freemius affiliate program and run the test (section 6)
 - [ ] Ask your CA and PayPal how to pay creators outside India
@@ -143,7 +143,9 @@ Still to approve:
 
 **One thing to confirm (not blocking):** the old headline says "from $299" (Google result, home page title). With Starter gone, it becomes **"from $599"**. If you want a lower entry price (for example $399 or $499), tell me the number and Standard uses it.
 
-### What changes in the repo (found 2 Nov; roohsites repo, main deploys live)
+### What changed in the repo (BUILT and live 4 Nov; roohsites repo, commit e7a92f4)
+Besides the list below, I also changed: the contact form (`ops-server/contact.js`) now accepts `standard`, `launch`, `growth` and still the old plan names; the dashboard shows the Basic care plan ($99) as the monthly figure for US leads, so its "MRR" counts $99 per won client; the home page got a care plans section; the November Instagram and Facebook content (captions, 4 slides, the cover image, the Instagram plans slides) now quote the new prices. **Things you must do by hand:** upload the new Facebook cover (`brand/social/fb-cover.png` is the old file; the new one is `brand/social/facebook/cover.png`), change the Facebook Intro to "...From $599." (in `calendar.md`), and replace any already-published Instagram posts that show Starter/Monthly prices. Old text, kept for the record:
+
 - `config/offer_intl.json`: `plans` becomes three one-time plans, `standard` (from the old `business`, renamed), `launch`, `growth`; remove `starter` and `monthly`; add a separate `care_plans` list (Basic $99, Plus $199); update `policies` (domain, site, cancel, payments, refunds), the FAQ texts that mention Starter, Business or the Monthly plan, and `owner_must_confirm` if it lists plan items.
 - `engine/intl_page.py`: `PLAN_IDS = ('starter', 'business', 'monthly')` becomes `('standard', 'launch', 'growth')`, drop the monthly billing code, and render the care plans as a block under the packages.
 - `engine/brand_site.py` (around line 564): the structured-data offers and the FAQ text that mention the Monthly price. Search the whole repo for `299` and `from $299` (home title and description, the Google snippet) and change it to the new entry price.
