@@ -639,3 +639,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Editable punch card template you edit right on the page: change the text, punches, icons and colours, add a logo and print 10 per page. No Canva, no login.
 - **Alt text:** Editable Punch Card Template: No Canva, No Login: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** editable punch card template (no canva, no login), punch card template, loyalty card, small business
+
+## Day 70: Farkle Score Sheet
+
+- **Board:** Family Game Night
+- **Image:** https://tools.roohsites.com/pins/farkle-score-sheet.png
+- **Link:** https://scoresheet.roohsites.com/farkle-score-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable Farkle score sheet with player names, Score and Total columns, your house rules and the scoring chart on the page. Phone scorer included.
+- **Alt text:** Farkle Score Sheet: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.
+- **Keywords:** farkle score sheet, yahtzee score sheet, farkle, game night printables
+
+## Day 71: How to Number Raffle Tickets in Word
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/how-to-number-raffle-tickets-in-word.png
+- **Link:** https://raffle.roohsites.com/how-to-number-raffle-tickets-in-word?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep each stub matching its ticket, and see why a Word template numbers only one page.
+- **Alt text:** How to Number Raffle Tickets in Word: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** how to number raffle tickets in word, raffle tickets, fundraiser, printable tickets
+
+## Day 72: Circuit Breaker Directory Printable
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/circuit-breaker-directory-printable.png
+- **Link:** https://panelschedule.roohsites.com/circuit-breaker-directory-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable circuit breaker directory for the inside of the panel door: large text in the panel's own two-column order, on Letter, half letter or a custom size.
+- **Alt text:** Circuit Breaker Directory Printable: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** circuit breaker directory printable, panel schedule, breaker labels, electrician

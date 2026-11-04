@@ -753,6 +753,57 @@
       "desc": "Editable punch card template you edit right on the page: change the text, punches, icons and colours, add a logo and print 10 per page. No Canva, no login.",
       "keywords": "editable punch card template (no canva, no login), punch card template, loyalty card, small business",
       "added": "2026-11-03"
+    },
+    {
+      "slug": "scorenight",
+      "file": "farkle-score-sheet",
+      "path": "/farkle-score-sheet",
+      "board": "Family Game Night",
+      "headline": "Farkle Score Sheet",
+      "sub": "Score sheets for Yahtzee, Farkle and game night",
+      "points": [
+        "Names printed on",
+        "Yahtzee, Farkle, Mexican Train",
+        "Phone score keeper"
+      ],
+      "visual": "scores",
+      "desc": "Free printable Farkle score sheet with player names, Score and Total columns, your house rules and the scoring chart on the page. Phone scorer included.",
+      "keywords": "farkle score sheet, yahtzee score sheet, farkle, game night printables",
+      "added": "2026-11-04"
+    },
+    {
+      "slug": "ticketrun",
+      "file": "how-to-number-raffle-tickets-in-word",
+      "path": "/how-to-number-raffle-tickets-in-word",
+      "board": "Raffle & Event Tickets",
+      "headline": "How to Number Raffle Tickets in Word",
+      "sub": "Printable numbered raffle tickets with stubs",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "visual": "tickets",
+      "desc": "Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep each stub matching its ticket, and see why a Word template numbers only one page.",
+      "keywords": "how to number raffle tickets in word, raffle tickets, fundraiser, printable tickets",
+      "added": "2026-11-04"
+    },
+    {
+      "slug": "paneldex",
+      "file": "circuit-breaker-directory-printable",
+      "path": "/circuit-breaker-directory-printable",
+      "board": "Electrician Printables",
+      "headline": "Circuit Breaker Directory Printable",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Printable circuit breaker directory for the inside of the panel door: large text in the panel's own two-column order, on Letter, half letter or a custom size.",
+      "keywords": "circuit breaker directory printable, panel schedule, breaker labels, electrician",
+      "added": "2026-11-04"
     }
   ]
 }
