@@ -846,6 +846,7 @@
       if (jobs.length > 3 && window.Pro && !Pro.require("Convert any number of labels at once.")) return;
       const { bytes, raster } = await buildPdf(sheets);
       const name = `${baseName()}.pdf`;
+      track("pdf_download", { kind: "converted" });
       track("output_pdf", { size: S.size, count: jobs.length > 10 ? "10+" : String(jobs.length), open: open ? "1" : "0" });
       if (win) { const url = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" })); win.location.href = url; shown = true; setTimeout(() => URL.revokeObjectURL(url), 600000); }
       else download(bytes, name, "application/pdf");
@@ -860,6 +861,7 @@
     await withBusy($(`[data-a="${share ? "share" : "img"}"]`), async () => {
       const { sheets } = plan(); if (!sheets.length) return;
       const files = await buildImages(sheets);
+      track("png_download", { kind: "converted" });
       track("output_png", { fmt: S.fmt, dpi: String(S.dpi), count: files.length > 10 ? "10+" : String(files.length), share: share ? "1" : "0" });
       if (share) {
         const fl = files.map(f => new File([f.data], f.name, { type: f.type }));

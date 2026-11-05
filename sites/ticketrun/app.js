@@ -502,6 +502,7 @@
           ? `Saved <b>${esc(name)}</b> (sheet 1 only). Print it at 100% / Actual size on plain paper and check the cut marks before printing the full run.`
           : `Saved <b>${esc(name)}</b>: ${fmtInt(info.count)} ${info.count === 1 ? "ticket" : "tickets"} on ${fmtInt(info.sheets)} ${info.sheets === 1 ? "sheet" : "sheets"}. Print at 100% / Actual size. <a href="${pickUrl}">Pick a winner from ${esc(C.fmtNum(s.start, s))}–${esc(C.fmtNum(s.end, s))} →</a>`);
         const c = info.count;
+        track("pdf_download", { kind: testOnly ? "test" : "tickets" });
         track(testOnly ? "test_sheet" : "tickets_generated", { bucket: c <= 100 ? "1-100" : c <= 500 ? "101-500" : c <= 1000 ? "501-1000" : c <= 5000 ? "1001-5000" : "5000+", preset: s.preset });
       } catch (err) {
         flash("Couldn't build the PDF: " + (err && err.message ? err.message : err), true);
@@ -550,7 +551,7 @@
         x.textAlign = "center";
         x.fillText("Made with TicketRun · raffle.roohsites.com", 600, 605);
         URL.revokeObjectURL(url);
-        cv.toBlob(b => { if (b) { saveBlob(b, `${slug(s.title || s.typeLabel || "ticket")}.png`); track("png_export"); } }, "image/png");
+        cv.toBlob(b => { if (b) { saveBlob(b, `${slug(s.title || s.typeLabel || "ticket")}.png`); track("png_export"); track("png_download"); } }, "image/png");
       };
       img.onerror = () => { URL.revokeObjectURL(url); flash("Your browser couldn't draw the image. Try another browser.", true); };
       img.src = url;

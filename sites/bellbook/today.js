@@ -5,6 +5,8 @@
 // kept in this browser's localStorage only.
 import * as E from "./engine.js";
 
+const track = (name, data) => { try { window.va && window.va("event", data ? { name, data } : { name }); } catch {} };
+
 
 async function run(mount) {
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -89,6 +91,7 @@ async function run(mount) {
         save(doc.output("blob"), fileBase + "-poster.pdf");
         st.textContent = "Poster downloaded. Print it for your classroom: students scan the QR code to see today's day.";
         try { window.va && window.va("event", { name: "poster_pdf", data: { from: "today" } }); } catch {}
+        track("pdf_download", { kind: "poster", from: "today" });
       } catch (err) { st.textContent = err.message || String(err); }
       finally { btn.disabled = false; btn.textContent = old; }
     }
@@ -115,7 +118,6 @@ function workItOut(mount, esc, badLink) {
   const labOpts = () => `<option value="">Choose…</option>` + rot()[2].map(l => `<option value="${l}"${l === st.lab ? " selected" : ""}>${esc(rot()[3].replace("{L}", l))}</option>`).join("");
   const offChips = () => st.off.map(d => `<li>${E.fmtShort(E.dn(d))} <button type="button" class="tc-x" data-a="rmoff" data-d="${d}" aria-label="Remove ${E.fmtShort(E.dn(d))}">×</button></li>`).join("");
   let counted = false;
-  const track = (name, data) => { try { window.va && window.va("event", data ? { name, data } : { name }); } catch {} };
   const lastIso = E.iso(last);
   // The one-tap answer: an A/B school, and the visitor says what the last school day was.
   const quick = () => st.rot === "ab" && st.ref === lastIso && !st.off.length;

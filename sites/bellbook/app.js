@@ -694,12 +694,12 @@ function init(mount) {
         const doc = P.calendarPdf(jsPDF, res, { size: ui.size, color: ui.color, year: ui.year, months: ui.months, weekStart: Number(ui.weekStart) || 0, hideWeekends: ui.hideWeekends });
         save(doc.output("blob"), slug() + ".pdf");
         status(`PDF ready: ${doc.getNumberOfPages()} page${doc.getNumberOfPages() === 1 ? "" : "s"}.`);
-        track("calendar_pdf", { type: cfg.type });
+        track("calendar_pdf", { type: cfg.type }); track("pdf_download", { kind: "calendar" });
       } else {
         const doc = P.plannerPdf(jsPDF, res, { size: ui.size, color: ui.color, weekStart: Number(ui.weekStart) || 0 });
         save(doc.output("blob"), slug() + (slug().includes("planner") ? ".pdf" : "-lesson-planner.pdf"));
         status(`Lesson planner ready: ${doc.getNumberOfPages()} pages.`);
-        track("planner_generated", { pages: doc.getNumberOfPages() });
+        track("planner_generated", { pages: doc.getNumberOfPages() }); track("pdf_download", { kind: "planner" });
       }
     } catch (err) { status(err.message || String(err)); }
     finally { btn.disabled = false; btn.textContent = old; }
@@ -712,7 +712,7 @@ function init(mount) {
       save(doc.output("blob"), `sub-plan-${E.iso(d)}.pdf`);
       dlg.close();
       status(`Substitute plan for ${E.fmtShort(d)} downloaded.`);
-      track("sub_plan");
+      track("sub_plan"); track("pdf_download", { kind: "sub_plan" });
     } catch (err) { status(err.message || String(err)); dlg.close(); }
     finally { btn.disabled = false; btn.textContent = old; }
   }
@@ -752,7 +752,7 @@ function init(mount) {
       const doc = await makePoster(res, url, { size: ui.size });
       save(doc.output("blob"), slug() + "-poster.pdf");
       status("Classroom poster ready. The QR code holds this version of the calendar: after a snow day or other change, print a new poster.");
-      track("poster_pdf", { type: cfg.type });
+      track("poster_pdf", { type: cfg.type }); track("pdf_download", { kind: "poster" });
     } catch (err) { status(err.message || String(err)); }
     finally { btn.disabled = false; btn.textContent = old; }
   }

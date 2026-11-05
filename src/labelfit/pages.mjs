@@ -100,7 +100,7 @@ const related = (except) => `      <h2>More label guides</h2>
         <li><a href="/">A4 to 6x4 label converter</a></li>
 ${GUIDES.filter(([h]) => h !== except).map(([h, t]) => `        <li><a href="${h}">${esc(t)}</a></li>`).join("\n")}
       </ul>`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
+const updated = (extra, d) => `      <p class="small muted">Last updated <time datetime="${d ? d[0] : DATE}">${d ? d[1] : DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
 // ---------------------------------------------------------------- Home
 const HOME_FAQ = [
@@ -244,14 +244,14 @@ ${p.steps.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${t}</li>`).j
 ` : ""}${p.body}
 ${faqHtml(p.faq)}
 ${related(p.path)}
-${updated(p.note || "")}
+${updated(p.note || "", p.updatedOn)}
     </article>`;
   return layout({ path: p.path, title: p.title, desc: p.desc, graph, main, tool: true, lang: p.lang });
 }
 
 const PAGES = [
   {
-    path: "/vinted-label-thermal-printer", crumb: "Vinted label on a thermal printer", data: { preset: "vinted" },
+    path: "/vinted-label-thermal-printer", crumb: "Vinted label on a thermal printer", data: { preset: "vinted" }, updatedOn: ["2026-11-05", "5 November 2026"],
     title: "Vinted Label on a Thermal Printer – A4 to 6x4 Free",
     desc: "Print Vinted labels on a 6x4 thermal printer. Crop the A4 Evri, InPost, Royal Mail or DPD label to 100x150 mm in your browser. Free, nothing uploaded.",
     h1: "Print a Vinted Label on a Thermal Printer",
@@ -266,7 +266,20 @@ const PAGES = [
       ["Download or share", "Use <em>Download PDF</em> for a desktop printer, or <em>Image</em> and <em>Share to printer app</em> for a Bluetooth printer."],
       ["Print at 100%", "Paper size 100 × 150 mm or 4 × 6 in, scale 100% or Actual size, portrait. Stick the label flat on the biggest side of the parcel."],
     ],
-    body: `      <h2>Fixing common Vinted label printing problems</h2>
+    body: `      <h2>Vinted labels by carrier: Evri, InPost, Royal Mail and DPD</h2>
+      <p>What you get depends on the carrier and the sale, and Vinted changes its options from time to time, so check the label screen for your parcel first. The converter works the same way for all of them.</p>
+      <table>
+        <thead><tr><th>Carrier</th><th>What to expect</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>Evri</td><td>Often an A4 PDF when the label comes through a marketplace. Booked on Evri's own site, you can download a 4 × 6 thermal label instead.</td><td>Use the <em>Vinted A4</em> preset above. More in the <a href="/evri-label-6x4">Evri label 6x4 guide</a>.</td></tr>
+          <tr><td>InPost</td><td>Printing may be optional: some sales let you send the parcel from a locker or drop-off point without printing, so check what your label screen offers.</td><td>If you do get a printable PDF, open it above. If you only get a QR code, there is nothing to convert.</td></tr>
+          <tr><td>Royal Mail</td><td>An A4 PDF, possibly with more than one label or a despatch note on the sheet.</td><td>Each label becomes its own 100 × 150 mm page. See the <a href="/royal-mail-label-6x4">Royal Mail label 6x4 guide</a>.</td></tr>
+          <tr><td>DPD</td><td>If the label arrives as an A4 PDF, it is handled like the others.</td><td>Open it above. LabelFit looks for the label and its barcode wherever they sit on the page, so there is no carrier setting to pick.</td></tr>
+        </tbody>
+      </table>
+      <p>Whichever carrier it is, check the preview before you print: the label should fill the 6x4 page, show the green <em>Nothing cut off</em> tick and print at a scale close to 100%.</p>
+
+      <h2>Fixing common Vinted label printing problems</h2>
       <table>
         <thead><tr><th>What you see</th><th>Likely cause</th><th>Fix</th></tr></thead>
         <tbody>
