@@ -44,6 +44,10 @@
     <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> The editor above starts with a 42-space 120/208 V three-phase example. Set the system to 120/208 V or 277/480 V, choose the number of spaces, and enter each breaker. Rows cycle A, B, C from the top. Download the schedule PDF, Excel with SUMIF totals per phase, a door directory and labels.</p></div>
     <section class="tool card" aria-label="Panel schedule maker"><div id="pd-tool" data-preset="p3"></div></section>
     <article class="content narrow">
+      <h2>Example: a filled-in 3 phase panel schedule</h2>
+      <p>This is page 1 of the PDF the editor makes from its built-in example: panel LP-1, 120/208 V, 42 spaces, main lugs only, fed from a switchboard. Phases A, B and C are filled in by row, the 3-pole rooftop unit takes three spaces, and the load card shows each phase's VA and the imbalance.</p>
+      <figure class="example"><img src="/img/3-phase-panel-schedule-example.png" alt="Filled-in 3 phase panel schedule template for panel LP-1, 120/208 V, 42 spaces: circuits with phases A, B and C, breaker sizes, wire sizes, load in VA and totals per phase" width="880" height="680" loading="lazy"><figcaption>Panel LP-1, 120/208 V three-phase, 42 spaces. Made with this page's editor.</figcaption></figure>
+
       <h2>Phase by row: A, B, C</h2>
       <p>Three-phase panelboards use the same odd-left, even-right numbering as residential panels, but the bus connects each row to one of three phases in turn:</p>
       <pre class="diagram" aria-label="Numbering of the first 12 spaces">  1  ─┤ A  ├─  2  
@@ -60,6 +64,9 @@
         <li><strong>120/208 V</strong>: 120 V from any phase to neutral and 208 V between phases. Single-pole circuits feed 120 V receptacles and lighting; 2-pole and 3-pole breakers feed 208 V equipment such as water heaters, rooftop units and motors.</li>
         <li><strong>277/480 V</strong>: 277 V from phase to neutral and 480 V between phases. Single-pole circuits often feed commercial lighting at 277 V; 3-pole breakers feed larger motors and equipment. Ordinary 120 V receptacles are usually supplied from a separate 120/208 V panel fed through a transformer.</li>
       </ul>
+
+      <h3>Where these voltages come from</h3>
+      <p>In a three-phase wye system the voltage between two phases is about 1.73 times (the square root of 3) the voltage from one phase to neutral: 120 V × 1.732 is about 208 V, and 277 V × 1.732 is about 480 V. The National Electrical Code lists these two systems among its nominal voltages in 220.5(A), where it writes them 208Y/120 and 480Y/277, line-to-line voltage first. Schedules and nameplates often write them the other way round (120/208, 277/480), as this page does. ANSI C84.1 also lists 208Y/120 and 480Y/277 among its standard nominal three-phase, four-wire system voltages (<a href="https://electrical-engineering-portal.com/the-choice-of-system-voltage-according-to-ansi-standard-c84-1" rel="noopener">summary of the ANSI C84.1 table</a>). Which one your building has is on the panel's nameplate or the one-line diagram; don't guess it from the wiring.</p>
 
       <h2>Totals per phase</h2>
       <p>The totals card adds the VA you enter on each phase. A multi-pole load is split evenly across its poles, so a 14,000 VA rooftop unit on a 3-pole breaker counts about 4,667 VA on each phase. Approximate amps are the phase VA divided by 120 V (120/208 V panels) or 277 V (277/480 V panels). For two-pole loads on a three-phase panel, the real current is somewhat higher than this even split suggests, so treat the amps as a rough guide.</p>
@@ -105,7 +112,7 @@
         <li><a href="/3-phase-panel-schedule-template">3 phase panel</a></li>
         <li><a href="/panel-load-balancing-calculator">Load per leg</a></li>
       </ul>
-      <p class="small muted">Last updated <time datetime="2026-10-16">16 October 2026</time> · Written by the Rooh Sites team. General information, not electrical advice.</p>
+      <p class="small muted">Last updated <time datetime="2026-11-05">5 November 2026</time> · Written by the Rooh Sites team. General information, not electrical advice.</p>
     </article>
   </main>
   <footer class="site">

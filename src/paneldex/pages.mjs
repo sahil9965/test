@@ -14,6 +14,8 @@ const ACCENT = "#854d0e";
 const DATE = "2026-10-16", DATE_H = "16 October 2026";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const strip = s => s.replace(/<[^>]+>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&");
+// Example image (src/paneldex/examples.mjs) with caption, width/height read from the PNG header.
+const figure = (file, alt, caption) => { const b = readFileSync(join(OUT, "img", file + ".png")); return `<figure class="example"><img src="/img/${file}.png" alt="${esc(alt)}" width="${b.readUInt32BE(16)}" height="${b.readUInt32BE(20)}" loading="lazy"><figcaption>${caption}</figcaption></figure>`; };
 const SAFETY = "Labelling tool only. Turn power off and follow local code; have a licensed electrician do electrical work.";
 const NOT_CODE = "These are totals of the loads you entered — not a code load calculation. For sizing a service, feeder or panel, a licensed electrician does an NEC Article 220 load calculation.";
 const BRANDS = "PanelDex works with any brand of panel, including Square D, Siemens, Eaton, Leviton and GE, and is not affiliated with any of them.";
@@ -93,9 +95,9 @@ const appLd = (name, path, desc) => ({
 const howToLd = (name, steps) => ({ "@type": "HowTo", name, totalTime: "PT30M", step: steps.map(([n, t]) => ({ "@type": "HowToStep", name: n, text: strip(t) })) });
 const stepsHtml = steps => `      <ol class="steps">\n${steps.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${t}</li>`).join("\n")}\n      </ol>`;
 const faqHtml = faq => `      <h2 id="faq">Frequently asked questions</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}`;
-const updated = extra => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
+const updated = (extra, d) => `      <p class="small muted">Last updated <time datetime="${d ? d[0] : DATE}">${d ? d[1] : DATE_H}</time> · Written by the Rooh Sites team.${extra ? " " + extra : ""}</p>`;
 
-function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated }) {
+function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated, updatedOn }) {
   const isHome = path === "/";
   const graph = [];
   if (!isHome) graph.push({ "@type": "BreadcrumbList", itemListElement: [
@@ -122,7 +124,7 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
 ${quick ? `    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> ${quick}</p></div>\n` : ""}${tool ? `    <section class="tool card" aria-label="Panel schedule maker"><div id="pd-tool"${toolAttr}></div></section>\n` : ""}    <article class="content narrow">
 ${body}
-${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not electrical advice.")}
+${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not electrical advice.", updatedOn)}
     </article>
   </main>
 ${FOOT}
@@ -161,7 +163,7 @@ const homeFaq = [
   ["Is my panel data uploaded anywhere?", "No. Everything runs in your browser and is stored only on this device. The share link carries the panel inside the link itself, so it only goes where you send it."],
 ];
 const home = {
-  path: "/",
+  path: "/", updatedOn: ["2026-11-05", "5 November 2026"],
   title: "Electrical Panel Schedule Template (Excel & PDF) | PanelDex",
   desc: "Free electrical panel schedule template laid out like a real panel. Enter breakers, see load per leg, then download Excel, a PDF, a door directory and labels.",
   h1: "Electrical Panel Schedule Template (Excel & PDF)",
@@ -174,6 +176,10 @@ const home = {
   body: `      <h2 id="how">How to fill in a panel schedule in 5 steps</h2>
 ${stepsHtml(homeSteps)}
       <p class="note"><strong>Safety:</strong> ${SAFETY} You don't need to take the cover off to make a schedule: everything above can be read from the front of the panel.</p>
+
+      <h2>What a finished panel schedule looks like</h2>
+      <p>Page 1 of the PDF made from the built-in 40-space residential example (a 200 A panel in a garage): odd circuits on the left, even on the right, each row marked with its leg, breaker size, wire, protection and load, with the totals underneath.</p>
+      ${figure("panel-schedule-example", "Finished electrical panel schedule template filled in for a 200 A residential main panel: circuits numbered down both sides with descriptions, rooms, breaker sizes, wire sizes and load per leg", "A filled-in panel schedule from the home example. Yours takes a few minutes.")}
 
       <h2>How breaker panels are numbered</h2>
       <p>In a standard North American panel, the breaker spaces are numbered in pairs across the panel: 1 and 2 on the top row, 3 and 4 on the next, and so on. That puts all the odd numbers down the left and all the even numbers down the right. The editor above uses the same layout, so the screen looks like the panel in front of you.</p>
@@ -360,7 +366,7 @@ ${numberingDiagram("1p240", 3)}
 });
 
 P.push({
-  path: "/3-phase-panel-schedule-template", crumb: "3 phase panel schedule template",
+  path: "/3-phase-panel-schedule-template", crumb: "3 phase panel schedule template", updatedOn: ["2026-11-05", "5 November 2026"],
   title: "3 Phase Panel Schedule Template — 120/208V and 277/480V",
   desc: "Free 3 phase panel schedule template for 120/208 V and 277/480 V panels: phases A, B, C by row, 2- and 3-pole breakers, VA per phase, PDF and Excel.",
   h1: "3 Phase Panel Schedule Template",
@@ -373,7 +379,11 @@ P.push({
     ["How are amps per phase estimated?", "Phase VA divided by 120 V on a 120/208 V panel, or by 277 V on a 277/480 V panel. A 2-pole load on these panels is connected between two phases and draws somewhat more current than this even-split estimate shows."],
     ["Can I use this for a 277/480 V lighting panel?", "Yes. Choose 277/480 V three-phase. Single-pole circuits on that panel are 277 V, which is typical for commercial lighting. The approximate amps use 277 V."],
   ],
-  body: `      <h2>Phase by row: A, B, C</h2>
+  body: `      <h2>Example: a filled-in 3 phase panel schedule</h2>
+      <p>This is page 1 of the PDF the editor makes from its built-in example: panel LP-1, 120/208 V, 42 spaces, main lugs only, fed from a switchboard. Phases A, B and C are filled in by row, the 3-pole rooftop unit takes three spaces, and the load card shows each phase's VA and the imbalance.</p>
+      ${figure("3-phase-panel-schedule-example", "Filled-in 3 phase panel schedule template for panel LP-1, 120/208 V, 42 spaces: circuits with phases A, B and C, breaker sizes, wire sizes, load in VA and totals per phase", "Panel LP-1, 120/208 V three-phase, 42 spaces. Made with this page's editor.")}
+
+      <h2>Phase by row: A, B, C</h2>
       <p>Three-phase panelboards use the same odd-left, even-right numbering as residential panels, but the bus connects each row to one of three phases in turn:</p>
 ${numberingDiagram("3p208", 6)}
       <p>Because each row is one phase, a column of three spaces always covers A, B and C once each. That's why a 3-pole breaker takes spaces like 1, 3 and 5, and why a 2-pole breaker in 11 and 13 sits on two different phases.</p>
@@ -383,6 +393,9 @@ ${numberingDiagram("3p208", 6)}
         <li><strong>120/208 V</strong>: 120 V from any phase to neutral and 208 V between phases. Single-pole circuits feed 120 V receptacles and lighting; 2-pole and 3-pole breakers feed 208 V equipment such as water heaters, rooftop units and motors.</li>
         <li><strong>277/480 V</strong>: 277 V from phase to neutral and 480 V between phases. Single-pole circuits often feed commercial lighting at 277 V; 3-pole breakers feed larger motors and equipment. Ordinary 120 V receptacles are usually supplied from a separate 120/208 V panel fed through a transformer.</li>
       </ul>
+
+      <h3>Where these voltages come from</h3>
+      <p>In a three-phase wye system the voltage between two phases is about 1.73 times (the square root of 3) the voltage from one phase to neutral: 120 V × 1.732 is about 208 V, and 277 V × 1.732 is about 480 V. The National Electrical Code lists these two systems among its nominal voltages in 220.5(A), where it writes them 208Y/120 and 480Y/277, line-to-line voltage first. Schedules and nameplates often write them the other way round (120/208, 277/480), as this page does. ANSI C84.1 also lists 208Y/120 and 480Y/277 among its standard nominal three-phase, four-wire system voltages (<a href="https://electrical-engineering-portal.com/the-choice-of-system-voltage-according-to-ansi-standard-c84-1" rel="noopener">summary of the ANSI C84.1 table</a>). Which one your building has is on the panel's nameplate or the one-line diagram; don't guess it from the wiring.</p>
 
       <h2>Totals per phase</h2>
       <p>The totals card adds the VA you enter on each phase. A multi-pole load is split evenly across its poles, so a 14,000 VA rooftop unit on a 3-pole breaker counts about 4,667 VA on each phase. Approximate amps are the phase VA divided by 120 V (120/208 V panels) or 277 V (277/480 V panels). For two-pole loads on a three-phase panel, the real current is somewhat higher than this even split suggests, so treat the amps as a rough guide.</p>
@@ -398,7 +411,7 @@ ${numberingDiagram("3p208", 6)}
 });
 
 P.push({
-  path: "/breaker-box-label-template", crumb: "Breaker box label template",
+  path: "/breaker-box-label-template", crumb: "Breaker box label template", updatedOn: ["2026-11-05", "5 November 2026"],
   title: "Breaker Box Label Template — Electrical Panel Labels, Free",
   desc: "Free breaker box label template: one small numbered label per circuit with a short name, 4 across on Letter or A4 with cut lines. Print, cut and stick.",
   h1: "Breaker Box Label Template",
@@ -411,7 +424,11 @@ P.push({
     ["How are 2-pole and tandem breakers labelled?", "A 2-pole breaker gets one label with both space numbers, such as 3/5, and a 3-pole gets three, such as 1/3/5. A tandem gets two labels, such as 13A and 13B, one for each circuit."],
     ["Should I label spares?", "Spare breakers get a label that says Spare, so nobody has to switch them to find out. Empty spaces don't get a label."],
   ],
-  body: `      <h2>What's on the label sheet</h2>
+  body: `      <h2>Example: a printed breaker box label sheet</h2>
+      <p>The top of a label sheet made from the built-in example panel (a 200 A residential panel). Each label has the circuit number in large type and a short name; a 2-pole breaker shows both spaces (3/5) and a tandem shows one label per circuit (13A, 13B).</p>
+      ${figure("breaker-box-labels-example", "Breaker box label template filled in: numbered breaker labels with short names such as Kitchen counter, Range, Dishwasher and Water heater, four across with dashed cut lines", "Top of the label sheet for the example panel. Print at 100%, cut on the dashed lines.")}
+
+      <h2>What's on the label sheet</h2>
       <p>One label per circuit, in panel order, 4 across. Each label has the circuit number in large bold type on the left and a short name on the right: the description you typed, or the room if there's no description. Long names wrap onto two lines before they're shortened. The title at the top of the sheet names the panel, and the credit line sits in the bottom margin, away from the labels.</p>
       <table>
         <thead><tr><th>Paper</th><th>Label size</th><th>Labels per page</th></tr></thead>

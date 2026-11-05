@@ -113,3 +113,8 @@
 .note{background:var(--soft);border-radius:10px;padding:12px 16px;font-size:15px}
 .diagram{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;background:var(--soft);border-radius:10px;padding:12px 14px;overflow-x:auto;white-space:pre;line-height:1.5}
 @media print{.pd,.pd-dlg{display:none!important}}
+
+/* filled-in example images */
+.example{margin:14px 0 18px}
+.example img{display:block;width:100%;max-width:880px;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:var(--shadow)}
+.example figcaption{margin-top:6px;font-size:14px;color:var(--muted)}
