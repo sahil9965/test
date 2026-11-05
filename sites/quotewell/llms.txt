@@ -1,0 +1,31 @@
+# Quotewell
+
+> Quotewell is a free online estimate, quote and proposal maker for contractors, handymen, electricians, plumbers, painters, cleaners, lawn care businesses and roofers. It works with no signup and runs entirely in the browser (nothing is uploaded). It adds up labor and materials, applies markup, discount, tax and a deposit, and downloads a PDF in US Letter or A4.
+
+## Tool
+- [Free estimate maker](https://estimate.roohsites.com/): make an estimate, quote or proposal and download a PDF.
+
+## Templates by trade
+- [Contractor estimate template](https://estimate.roohsites.com/contractor-estimate-template): Pick General contractor, add your business and the customer, put a price on each line, and download the PDF. The total, tax and deposit are worked out for you, and nothing is uploaded.
+- [Handyman estimate template](https://estimate.roohsites.com/handyman-estimate-template): Choose Handyman, list each small job as a line, add your hourly rate and materials, and download the PDF. Totals, tax and deposit are worked out for you.
+- [Electrician estimate template](https://estimate.roohsites.com/electrician-estimate-template): Choose Electrician, enter your license or registration number, price each line and download the PDF. Parts can be marked taxable; the tax is worked out on those lines only.
+- [Plumbing estimate template](https://estimate.roohsites.com/plumbing-estimate-template): Choose Plumber, price each line, set tax and a deposit if you take one, and download the PDF. Nothing is uploaded.
+- [Painting estimate template](https://estimate.roohsites.com/painting-estimate-template): Choose Painter, enter the rooms in the scope box, price each line by hour, square foot or item, and download the PDF.
+- [Cleaning service quote template](https://estimate.roohsites.com/cleaning-service-quote-template): Choose Cleaning service, list what is included in the scope box, price each visit or add-on, and download the PDF quote.
+- [Lawn care quote template](https://estimate.roohsites.com/lawn-care-quote-template): Choose Lawn care and landscaping, put the areas and tasks in the scope box, price each line and download the PDF quote.
+- [Roofing estimate template](https://estimate.roohsites.com/roofing-estimate-template): Choose Roofer, write the roof area and the layers in the scope box, price each line, set the deposit and download the PDF.
+
+## Guides
+- [How to write a contractor estimate](https://estimate.roohsites.com/how-to-write-a-contractor-estimate): eight steps from site visit to signed approval, with a worked example.
+- [Estimate vs quote vs bid](https://estimate.roohsites.com/estimate-vs-quote-vs-bid): how the terms are commonly used and how to say which one you mean.
+
+## Key facts
+- Price: completely free. No paid tier. No login.
+- Privacy: business details, customers and documents stay in the browser. Nothing is uploaded.
+- Maths: worked out in whole cents in this order: line amounts, subtotal, discount, markup on what is left, tax on the taxable share, total, deposit, balance.
+- Starting lines and terms exist for eight trades; they contain no prices and no tax rules.
+- Not legal, tax or accounting advice. Rules for estimates, contracts, permits and sales tax differ by place.
+
+## Optional
+- [About](https://estimate.roohsites.com/about)
+- [Privacy & Terms](https://estimate.roohsites.com/privacy)

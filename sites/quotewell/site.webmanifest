@@ -1,0 +1,15 @@
+{
+  "name": "Quotewell",
+  "short_name": "Quotewell",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#b45309",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -15,5 +15,6 @@
   {"slug": "lineupfair", "name": "LineupFair", "url": "https://lineup.roohsites.com", "label": "Baseball lineup rotation generator", "tagline": "Fair fielding rotations for youth baseball", "accent": "#0f4c81", "accentDark": "#93c5fd", "glyph": "⚾", "live": true},
   {"slug": "glancesheet", "name": "GlanceSheet", "url": "https://iepglance.roohsites.com", "label": "IEP at a Glance maker", "tagline": "One-page IEP and 504 summaries for teachers", "accent": "#6b21a8", "accentDark": "#d8b4fe", "glyph": "📋", "live": true},
   {"slug": "priceboard", "name": "PriceBoard", "url": "https://pricelist.roohsites.com", "label": "Salon price list maker", "tagline": "Salon and spa price lists for print and Instagram", "accent": "#8e3b5f", "accentDark": "#f0a6c8", "glyph": "💈", "live": true},
-  {"slug": "scorenight", "name": "ScoreNight", "url": "https://scoresheet.roohsites.com", "label": "Game score sheet maker", "tagline": "Score sheets for Yahtzee, Farkle and game night", "accent": "#1f6f43", "accentDark": "#6ee7b7", "glyph": "🎲", "live": true}
+  {"slug": "scorenight", "name": "ScoreNight", "url": "https://scoresheet.roohsites.com", "label": "Game score sheet maker", "tagline": "Score sheets for Yahtzee, Farkle and game night", "accent": "#1f6f43", "accentDark": "#6ee7b7", "glyph": "🎲", "live": true},
+  {"slug": "quotewell", "name": "Quotewell", "url": "https://estimate.roohsites.com", "label": "Contractor estimate maker", "tagline": "Estimates and quotes for trades, as PDF", "accent": "#b45309", "accentDark": "#fbbf24", "glyph": "\ud83e\uddf0", "live": true}
 ]

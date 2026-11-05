@@ -11,6 +11,7 @@
       ["https://ugcrates.roohsites.com/ugc-usage-rights-calculator", "Usage rights calculator", "price licensing for photos and video you make for brands"]
     ],
     "/contractor-invoice-template": [
+      ["https://estimate.roohsites.com/contractor-estimate-template", "Contractor estimate template", "send an estimate before the job, then invoice the finished work"],
       ["https://photoreport.roohsites.com/punch-list-with-photos", "Punch list with photos", "document the finished job before you bill it"],
       ["https://panelschedule.roohsites.com/", "Electrical panel schedule maker", "hand over a labelled panel with your invoice"]
     ],
@@ -119,6 +120,7 @@
   },
   "paneldex": {
     "*": [
+      ["https://estimate.roohsites.com/electrician-estimate-template", "Electrician estimate template", "quote the job before you start the panel work"],
       ["https://photoreport.roohsites.com/before-and-after-photo-report", "Before and after photo report", "show your panel work with dated photos"],
       ["https://invoice.roohsites.com/contractor-invoice-template", "Contractor invoice template", "invoice the job once the schedule is done"]
     ]
@@ -199,6 +201,16 @@
       ["https://raffle.roohsites.com/", "Numbered raffle ticket generator", "print tickets for a game night or fundraiser raffle"],
       ["https://punchcard.roohsites.com/reward-punch-card-for-kids", "Reward punch cards for kids", "a punch for every family game night"],
       ["https://lineup.roohsites.com/", "Baseball fielding rotation generator", "fair positions for a youth team"]
+    ]
+  },
+  "quotewell": {
+    "*": [
+      ["https://invoice.roohsites.com/contractor-invoice-template", "Contractor invoice template", "invoice the job once the work is done"],
+      ["https://photoreport.roohsites.com/punch-list-with-photos", "Punch list with photos", "list and photograph the finishing touches before you bill"],
+      ["https://pricelist.roohsites.com/", "Price list maker", "print a menu of your standard services and prices"]
+    ],
+    "/electrician-estimate-template": [
+      ["https://panelschedule.roohsites.com/", "Electrical panel schedule maker", "label the panel when the job is done"]
     ]
   }
 }
