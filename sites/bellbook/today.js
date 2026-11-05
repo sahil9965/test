@@ -115,12 +115,17 @@ function workItOut(mount, esc, badLink) {
   const labOpts = () => `<option value="">Choose…</option>` + rot()[2].map(l => `<option value="${l}"${l === st.lab ? " selected" : ""}>${esc(rot()[3].replace("{L}", l))}</option>`).join("");
   const offChips = () => st.off.map(d => `<li>${E.fmtShort(E.dn(d))} <button type="button" class="tc-x" data-a="rmoff" data-d="${d}" aria-label="Remove ${E.fmtShort(E.dn(d))}">×</button></li>`).join("");
   let counted = false;
+  const track = (name, data) => { try { window.va && window.va("event", data ? { name, data } : { name }); } catch {} };
+  const lastIso = E.iso(last);
+  // The one-tap answer: an A/B school, and the visitor says what the last school day was.
+  const quick = () => st.rot === "ab" && st.ref === lastIso && !st.off.length;
+  const quickBtns = () => ["A", "B"].map(l => `<button type="button" class="btn${quick() && st.lab === l ? "" : " ghost"}" data-a="preset" data-l="${l}" aria-pressed="${quick() && st.lab === l}">It was ${l === "A" ? "an A" : "a B"} day</button>`).join("");
 
   function result() {
     const [, , labels, fmt] = rot(), n = labels.length, idx = labels.indexOf(st.lab);
     if (!E.isIso(st.ref)) return `<p class="td-next">Pick a school day you're sure of.</p>`;
     const ref = E.dn(st.ref), off = new Set(st.off.map(E.dn));
-    if (idx < 0) return `<p class="td-next">Choose what ${E.fmtShort(ref)} was to see today's day.</p>`;
+    if (idx < 0) return `<p class="td-next muted">Tap A or B above and today's day shows here.</p>`;
     if (weekend(ref) || off.has(ref)) return `<p class="bb-err">Pick a school day for the day you're sure of, not a weekend or a day off.</p>`;
     const at = d => E.rotationFrom(ref, idx, n, off, d);
     const name = i => esc(fmt.replace("{L}", labels[i]));
@@ -131,28 +136,33 @@ function workItOut(mount, esc, badLink) {
     const up = [];
     for (let x = TODAY + 1; x <= TODAY + 40 && up.length < 10; x++) { const i = at(x); if (i >= 0) up.push([x, i]); }
     const next = up.length ? `${up[0][0] === TODAY + 1 ? "Tomorrow" : `Next school day, ${E.fmtShort(up[0][0])}`}: <strong>${name(up[0][1])}</strong>` : "";
-    if (!counted) { counted = true; try { window.va && window.va("event", { name: "today_calc", data: { rot: st.rot } }); } catch {} }
+    if (!counted) { counted = true; track("today_calc", { rot: st.rot, quick: quick() }); }
     return `<p class="td-date">Today, ${E.fmtLong(TODAY)}</p>${big}${next ? `<p class="td-next">${next}</p>` : ""}
       <ul class="td-list" aria-label="Coming up">${up.map(([x, i]) => `<li><span>${E.fmtShort(x)}</span><b ${chip(i)}>${name(i)}</b></li>`).join("")}</ul>`;
   }
 
   mount.innerHTML = `${badLink ? `<p class="notice td-demo">This link couldn't be read. Ask for a new link, or work the day out below.</p>` : ""}
-    <p class="td-school">Work out today's day for your school</p>
-    <p class="small muted" style="margin:2px 0 14px">Pick one school day you're sure of. Weekends are skipped, and you can add the days off since then.</p>
-    <div class="tc-form">
-      <div><label for="tc-rot">Your school's rotation</label><select id="tc-rot">${ROTS.map(r => `<option value="${r[0]}"${r[0] === st.rot ? " selected" : ""}>${r[1]}</option>`).join("")}</select></div>
-      <div><label for="tc-ref">A school day you're sure of</label><input type="date" id="tc-ref" max="${E.iso(TODAY)}" value="${esc(st.ref)}"></div>
-      <div><label for="tc-lab">That day was</label><select id="tc-lab">${labOpts()}</select></div>
-    </div>
-    <div class="td-check"><div><label for="tc-off">Days off since then (holidays, snow days)</label><input type="date" id="tc-off"></div><button type="button" class="btn ghost sm" data-a="addoff">Add day off</button></div>
-    <ul class="tc-offs" aria-label="Days off">${offChips()}</ul>
+    <p class="tc-q" id="tc-q">Which was your last school day, <strong>${E.fmtShort(last)}</strong>?</p>
+    <div class="tc-quick" role="group" aria-labelledby="tc-q">${quickBtns()}</div>
     <div class="td-view" aria-live="polite">${result()}</div>
+    <details class="tc-more"${quick() || (!st.lab && st.rot === "ab" && !st.off.length) ? "" : " open"}>
+      <summary>Different schedule, or days off since?</summary>
+      <p class="small muted" style="margin:6px 0 12px">Pick one school day you're sure of. Weekends are skipped, and you can add the days off since then. Use this for A/B/C and Day 1–8 schedules too.</p>
+      <div class="tc-form">
+        <div><label for="tc-rot">Your school's rotation</label><select id="tc-rot">${ROTS.map(r => `<option value="${r[0]}"${r[0] === st.rot ? " selected" : ""}>${r[1]}</option>`).join("")}</select></div>
+        <div><label for="tc-ref">A school day you're sure of</label><input type="date" id="tc-ref" max="${E.iso(TODAY)}" value="${esc(st.ref)}"></div>
+        <div><label for="tc-lab">That day was</label><select id="tc-lab">${labOpts()}</select></div>
+      </div>
+      <div class="td-check"><div><label for="tc-off">Days off since then (holidays, snow days)</label><input type="date" id="tc-off"></div><button type="button" class="btn ghost sm" data-a="addoff">Add day off</button></div>
+      <ul class="tc-offs" aria-label="Days off">${offChips()}</ul>
+    </details>
     <p class="small muted">This assumes no other days off. After a snow day or a special schedule, add it above or check with your school. Your answers stay on this device, so the page remembers them next time.</p>
-    <p class="notice td-demo"><strong>Teachers:</strong> <a href="/">make your school's full calendar</a> with the holidays built in, then share a "What day is it?" link or print a classroom poster with a QR code.</p>
+    <p class="notice td-demo"><strong>Teachers:</strong> <a href="/" data-a="school-link">make your school's full calendar</a> with the holidays built in, then share a "What day is it?" link or print a classroom poster with a QR code.</p>
     <p class="small muted">Made with <a href="${E.CREDIT_URL}">BellBook</a> · free A/B day calendar generator</p>`;
 
-  const viewEl = mount.querySelector(".td-view"), offsEl = mount.querySelector(".tc-offs"), labEl = mount.querySelector("#tc-lab");
-  const redraw = () => { save(); viewEl.innerHTML = result(); offsEl.innerHTML = offChips(); };
+  const viewEl = mount.querySelector(".td-view"), offsEl = mount.querySelector(".tc-offs"), labEl = mount.querySelector("#tc-lab"),
+    quickEl = mount.querySelector(".tc-quick"), refEl = mount.querySelector("#tc-ref"), rotEl = mount.querySelector("#tc-rot");
+  const redraw = () => { save(); viewEl.innerHTML = result(); offsEl.innerHTML = offChips(); quickEl.innerHTML = quickBtns(); };
   mount.addEventListener("change", e => {
     const id = e.target.id, v = e.target.value;
     if (id === "tc-rot") { st.rot = v; if (!rot()[2].includes(st.lab)) st.lab = ""; labEl.innerHTML = labOpts(); }
@@ -164,7 +174,13 @@ function workItOut(mount, esc, badLink) {
   mount.addEventListener("click", e => {
     const b = e.target.closest("[data-a]");
     if (!b) return;
-    if (b.dataset.a === "addoff") {
+    if (b.dataset.a === "school-link") track("school_link_click", { from: "today" });
+    else if (b.dataset.a === "preset") {
+      st.rot = "ab"; st.ref = lastIso; st.lab = b.dataset.l; st.off = [];
+      rotEl.value = "ab"; refEl.value = lastIso; labEl.innerHTML = labOpts();
+      track("today_preset", { l: st.lab });
+      redraw();
+    } else if (b.dataset.a === "addoff") {
       const v = mount.querySelector("#tc-off").value;
       if (E.isIso(v) && !st.off.includes(v)) { st.off.push(v); st.off.sort(); }
       mount.querySelector("#tc-off").value = "";

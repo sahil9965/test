@@ -35,7 +35,7 @@ const RELATED = (self) => {
   return `      <ul class="related">\n${all.filter(([h]) => h !== self).map(([h, t]) => `        <li><a href="${h}">${t}</a></li>`).join("\n")}\n      </ul>`;
 };
 
-function page({ slug, title, desc, h1, lead, badges, tool, preset = "", body, faq = [], crumb, graph, home = false }) {
+function page({ slug, title, desc, h1, lead, badges, tool, preset = "", body, faq = [], crumb, graph, home = false, updated }) {
   const url = home ? `${URL}/` : `${URL}/${slug}`;
   const ld = { "@context": "https://schema.org", "@graph": graph };
   const toolHtml = tool === "gen"
@@ -85,7 +85,7 @@ ${home ? "" : `    <p class="crumbs"><a href="/">BellBook</a> › ${esc(crumb ||
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
 ${toolHtml}    <article class="content narrow">
 ${body}
-${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${home || tool ? `      <h2>More rotation calendars and planners</h2>\n${RELATED(home ? "/" : "/" + slug)}\n` : ""}      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
+${faq.length ? `      <h2 id="faq">${home ? "Frequently asked questions" : "FAQ"}</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}\n` : ""}${home || tool ? `      <h2>More rotation calendars and planners</h2>\n${RELATED(home ? "/" : "/" + slug)}\n` : ""}      <p class="small muted">Last updated <time datetime="${updated ? updated[0] : DATE}">${updated ? updated[1] : DATE_H}</time> · Written by the Rooh Sites team. Holiday dates are US federal holidays; always check your own district's calendar.</p>
     </article>
   </main>
 ${FOOTER}
@@ -216,19 +216,19 @@ ${SNOW_TABLE}
   const faq = [
     ["What are A days and B days?", "On an A/B (alternating-day) block schedule, students take one set of classes on A days and a different set on B days, usually in longer class periods. The letters alternate only on school days, so each class meets every other school day and holidays or snow days can shift which letter lands on a date."],
     ["Can I check if tomorrow is an A day or B day?", "Yes. Below today's answer the page lists tomorrow's rotation day and the next two weeks of school days, so you can plan ahead for tests, gym clothes or band practice."],
-    ["How do I find out without a link from my school?", "Pick a recent school day you're sure of and what it was (for example last Friday was an A day), and add any days off since then. The page counts the school days from there, skipping weekends, and shows today, tomorrow and the next two weeks. It remembers your answers on that device. It assumes no other days off, so add a snow day or check with your school after a closure."],
+    ["How do I find out without a link from my school?", "Tap what your last school day was (an A day or a B day). For an older day, or an A/B/C or Day 1–8 schedule, open “Different schedule, or days off since?”, pick a recent school day you're sure of and what it was (for example last Friday was an A day), and add any days off since then. The page counts the school days from there, skipping weekends, and shows today, tomorrow and the next two weeks. It remembers your answers on that device. It assumes no other days off, so add a snow day or check with your school after a closure."],
     ["How does the page know which day it is?", "It uses the date on the device you open it with, so a student in any time zone sees their own local date. The rotation is worked out from the calendar packed into your school's link, or counted from the day you're sure of."],
     ["Where do I get the link for my school?", "Ask the teacher or office that publishes your rotation calendar. Teachers and admins can make one for free with the <a href=\"/\">A/B day calendar generator</a> by clicking “Copy ‘What day is it?’ link”."],
     ["Does the link still work after a snow day?", "Only if the calendar was updated. Whoever made the link should mark the snow day in BellBook and share the new link, because each link holds a fixed copy of the calendar."],
     ["Is any information sent to a server?", "No. The calendar sits after the # in the link, and browsers never send that part to the server. The page reads it on your device."],
   ];
   pages.push({
-    slug: "today", tool: "today", crumb: "Is today an A or B day?",
+    slug: "today", tool: "today", crumb: "Is today an A or B day?", updated: ["2026-11-05", "5 November 2026"],
     title: "Is Today an A Day or B Day? Rotation Day Checker | BellBook",
     desc: "Is today an A day or B day? Pick one school day you're sure of and any days off, and see today's day, tomorrow's and the next two weeks. Free, no app.",
     h1: "Is today an A day or B day?",
-    lead: "Pick one school day you're sure of and any days off since, and see today's rotation day, tomorrow's and the next two weeks. If your school shared a BellBook link, open that instead. No app and no account.",
-    body: `      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Without a link, pick a day you're sure of above and add the days off since then: the page counts the school days for you. If your school or teacher shared a BellBook link, it shows the whole calendar, holidays included.</p>
+    lead: "Tap what your last school day was and see whether today is an A day or a B day, with tomorrow's and the next two weeks. Other schedules (A/B/C, Day 1–8) and days off are covered below. If your school shared a BellBook link, open that instead. No app and no account.",
+    body: `      <p class="tldr"><strong>Quick answer:</strong> If your school runs an A/B or rotating-day schedule, today's letter depends on how many school days have passed since the first day, not on the date itself. Holidays, breaks and snow days all change it. Without a link, tap whether your last school day was an A day or a B day: the page counts the school days from there and skips weekends. After a break or a snow day, open “Different schedule, or days off since?” and add the days off. If your school or teacher shared a BellBook link, it shows the whole calendar, holidays included.</p>
 
       <h2>Why you can't tell from the date</h2>
       <p>On an A/B schedule the days alternate A, B, A, B, but only on school days. A three-day weekend, a teacher workday or a snow day stops the count, so a Monday can be an A day one week and a B day the next. That's why a printed list or a calendar that knows the days off is more reliable than guessing from the weekday.</p>

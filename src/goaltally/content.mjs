@@ -115,7 +115,7 @@ export const PAGES = [
         ["“…will begin work within 30 seconds of the instruction”", "Seconds until the response starts", "Latency (on the <a href=\"/duration-recording-data-sheet\">duration</a> page)"],
         ["“…will be on task during 80% of intervals”", "Percent of intervals", "<a href=\"/whole-interval-recording-data-sheet\">Whole interval</a> or <a href=\"/momentary-time-sampling-data-sheet\">momentary time sampling</a>"],
         ["“…will reduce off-task behavior” (brief or hard-to-count behavior)", "Percent of intervals", "<a href=\"/partial-interval-recording-data-sheet\">Partial interval</a>"],
-        ["A behavior plan or FBA asks “why does it happen?”", "What comes before and after", "<a href=\"/abc-data-sheet\">ABC</a>"],
+        ["A behavior plan or FBA asks “why does it happen?”", "What comes before and after", "<a href=\"/abc-data-sheet\">ABC</a> (<a href=\"/abc-data-sheet-checklist\">ABC data sheet checklist</a>)"],
       ]),
       h2("How to set up a data sheet"),
       steps([
@@ -279,6 +279,8 @@ export const PAGES = [
     lead: "A printable task analysis template, form or worksheet: break a routine into steps, score each step every session and track the percentage done independently. Works for forward, backward and total-task chaining.",
     body: [
       quick("A task analysis data sheet lists every step of a multi-step skill, such as handwashing or packing a school bag, in order, with a column for each session. For each step you record the help needed (a prompt level or + / –), then calculate % of steps independent = steps done independently ÷ steps scored × 100."),
+      h2("Task analysis template: blank PDF and a filled-in example"),
+      p("Under the title you can download a blank 10-step task analysis template and a filled-in handwashing example, each as a US Letter or A4 PDF. Both are data sheets: one row per step, one column per session, with prompt-level codes and a % of steps independent row. Use the generator below them to change the steps, the scoring or the chaining method before you print."),
       h2("Writing the task analysis"),
       ul([
         "Watch a competent person do the task, or do it yourself, and write each step as an observable action: “Turn on the water”, not “Get ready”.",
@@ -528,6 +530,8 @@ export const PAGES = [
     lead: "Record what happened right before, during and right after each incident. Choose a quick tick-box checklist or open write-in columns, edit the options, and print.",
     body: [
       quick("An ABC data sheet records the <strong>A</strong>ntecedent (what happened just before the behavior), the <strong>B</strong>ehavior (what the student did, described objectively) and the <strong>C</strong>onsequence (what happened right after). Collected over several incidents, ABC data helps a team spot patterns and form a hypothesis about the behavior's function, such as escape, attention, access to items or automatic reinforcement."),
+      h2("ABC data sheet PDF: free printable download"),
+      p("Two blank ABC data sheet PDFs are at the top of this page, each in US Letter and A4: the checklist (tick boxes, three incidents per landscape page) and the narrative sheet (open write-in columns). They print as they are. To change the antecedent or consequence options first, use the generator under the downloads. The tick-box version has its own page: <a href=\"/abc-data-sheet-checklist\">ABC data sheet checklist</a>."),
       h2("Checklist or narrative?"),
       tbl(["Layout", "Strengths", "Limits"], [
         ["Checklist (structured)", "Fast to complete; easy to tally patterns; consistent between staff.", "Limited to the listed options, so keep an “Other” line."],
@@ -582,6 +586,53 @@ export const PAGES = [
       ["What is an ABC checklist?", "The checklist version of the ABC data sheet. Instead of writing a sentence for each incident, you tick the antecedent, behavior and consequence from short lists, with an “Other” line. It is quicker to fill in during a session. The narrative version has write-in columns instead."],
       ["Is there an editable ABC data collection form?", "Yes. Choose the layout, edit the antecedent and consequence lists, then print the sheet or save the PDF. You can also print a blank one and fill it in by hand. Nothing you type is uploaded."],
       ["Is an ABC chart the same as an FBA?", "No. ABC recording is one descriptive part of a functional behavior assessment (FBA), which also includes interviews, other observations and sometimes a functional analysis."],
+    ],
+  },
+
+  /* ------------------------------------------------------------------ ABC CHECKLIST */
+  {
+    slug: "abc-data-sheet-checklist", updated: ["2026-11-05", "5 November 2026"], tool: { kind: "sheet", preset: "abc" }, crumb: "ABC data sheet checklist",
+    title: "ABC Data Sheet Checklist: Free Printable PDF (Tick-Box)",
+    desc: "Free printable ABC data sheet checklist: tick the antecedent and consequence, write the behavior, tick a possible function. Letter and A4 PDF, no signup.",
+    h1: "ABC Data Sheet Checklist",
+    lead: "A printable ABC data sheet checklist: tick the antecedent and the consequence from short lists, write the behavior in your own words, and tick a possible function. Download the blank PDF, or edit the lists below and print one that fits your student.",
+    related: [["/abc-data-sheet", "ABC data sheet (checklist and narrative)"], ["/frequency-data-sheet", "Frequency data sheet"], ["/duration-recording-data-sheet", "Duration and latency data sheet"], ["/task-analysis-data-sheet", "Task analysis data sheet"], ["/trial-by-trial-data-sheet", "Trial-by-trial data sheet"], ["/", "ABA graph maker"], ["/aba-graph-template-excel", "ABA graph template (Excel)"], ["/iep-data-sheet-generator", "All data sheets"]],
+    body: [
+      quick("An ABC data sheet checklist is the tick-box version of ABC recording. For each incident you tick what happened right before (the antecedent) and right after (the consequence) from a short list, write the behavior in the middle column, and tick a possible function. It takes seconds instead of a paragraph, and the ticks are easy to count across many incidents."),
+      h2("What the ABC checklist looks like"),
+      p("The free PDF is a landscape sheet with room for three incidents per page. Each incident is one row:"),
+      tbl(["Column", "What you do", "Example"], [
+        ["Date & time, setting / activity", "Write it in.", "9/15 10:05, math, whole group"],
+        ["Antecedent", "Tick one or more from the list, or use the “Other” line.", "Demand or instruction given"],
+        ["Behavior", "Write what the student did, in words anyone could check.", "Tore the worksheet and put head down for about 2 minutes"],
+        ["Consequence", "Tick one or more from the list, or use the “Other” line.", "Demand removed or delayed"],
+        ["Possible function", "Tick your best guess.", "Escape / avoid"],
+        ["Initials", "Who recorded it.", "AB"],
+      ]),
+      p("The lists are a starting point. The antecedent options are demand or instruction given, told “no”, a transition, attention given to others, a preferred item removed, alone or unstructured time, and noise or crowding. The consequence options are verbal redirection, reprimand, demand removed or delayed, item or activity given, attention from an adult or peer, planned ignoring and a break."),
+      h2("How to count an ABC checklist"),
+      steps([
+        ["Collect the sheets", "from every setting and staff member into one pile, in date order."],
+        ["Tally the ticks:", "count how often each antecedent, each consequence and each possible function was ticked."],
+        ["Look for what repeats.", "For example, 7 of 10 incidents followed a demand and ended with the demand removed."],
+        ["Take the tally to the team.", "A pattern is a hypothesis to test, not a diagnosis. The behavior team decides what to do next."],
+      ]),
+      p("To see how often incidents happen from day to day, tally them on a <a href=\"/frequency-data-sheet\">frequency data sheet</a>, or graph the weekly counts in the <a href=\"/\">ABA graph maker</a>."),
+      h2("Checklist or narrative ABC?"),
+      p("Use the checklist when you already know the usual antecedents and consequences and want quick, countable data. Use the narrative sheet when you are still learning what typically happens: its open columns catch details a list can't. Many teams start narrative, then build the checklist from those notes. Both are on the <a href=\"/abc-data-sheet\">ABC data sheet</a> page."),
+      h2("Make the checklist fit your student"),
+      ul([
+        "Keep each list to 6 to 8 options and keep the “Other” line, so staff never have to force a tick.",
+        "Use the words your team uses (“transition to lunch”, not “transition”) so everyone ticks the same thing.",
+        "Write the behavior and its definition at the top of the sheet, so every observer records the same thing.",
+        "Print one student's sheets only for that student, and use initials, not full names, on anything that travels.",
+      ]),
+    ].join("\n"),
+    faq: [
+      ["What is an ABC checklist?", "The tick-box version of an ABC data sheet. Instead of writing a sentence for the antecedent and the consequence, you tick them from short lists, with an “Other” line. The behavior is still written in your own words."],
+      ["Is there an ABC data sheet checklist I can edit?", "Yes. In the generator on this page, edit the antecedent and consequence lists, one option per line, and the sheet prints them as tick boxes. You can also download the blank PDF and write the options in by hand. Nothing you type is uploaded."],
+      ["How do I tally an ABC checklist?", "Count the ticks in each column across all the sheets: which antecedents, which consequences and which possible functions come up most often. Treat the biggest counts as a hypothesis for the team to check."],
+      ["Does the checklist tell me why the behavior happens?", "No. It shows what tends to come before and after the behavior. The function is a guess that a team confirms with more data, interviews and, where needed, a functional behavior assessment led by a qualified professional."],
     ],
   },
 

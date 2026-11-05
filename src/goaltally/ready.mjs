@@ -14,9 +14,9 @@ const BLANK_STEPS = Array.from({ length: 10 }, () => "__________________________
 // Blank sheets: no sample behavior, criterion or goal, so they work for any student.
 const blank = { student: "", title: "", goal: "", criterion: "", definition: "", behaviors: "" };
 
-// page: the landing page slug; label: name of the variant when a page has more than one; alt: the preview image's alt text
+// page: the landing page slug (also: more pages that show this file); label: name of the variant when a page has more than one; alt: the preview image's alt text
 export const READY = [
-  { page: "abc-data-sheet", file: "abc-data-sheet-checklist", type: "abc", label: "Checklist", docTitle: "ABC Data Sheet (Checklist), Printable",
+  { page: "abc-data-sheet", also: ["abc-data-sheet-checklist"], file: "abc-data-sheet-checklist", type: "abc", label: "Checklist", docTitle: "ABC Data Sheet (Checklist), Printable",
     alt: "Printable ABC data sheet with tick-box checklists of common antecedents and consequences, a behavior column and a possible function column" },
   { page: "abc-data-sheet", file: "abc-data-sheet-narrative", type: "abc", extra: { layout: "narrative" }, label: "Narrative (write-in)", docTitle: "ABC Data Sheet (Narrative), Printable",
     alt: "Printable narrative ABC data sheet with open columns for date, setting, antecedent, behavior, consequence and possible function" },
