@@ -1,0 +1,82 @@
+{
+ "GoalTally": [
+  "Most clicks of any tool (15 page-level clicks), mostly on the home page and the Excel graph page. The ABC data sheet cluster is the biggest open opportunity: it has the most impressions but sits around page 5.",
+  "Improve `/abc-data-sheet` (140 impressions, position 50) and `/task-analysis-data-sheet` (78, position 33); they are the largest unclaimed impressions. Keep `/cold-probe-data-sheet` (position 11) and `/aba-graph-template-excel` (position 14) as they are."
+ ],
+ "BellBook": [
+  "The best rankings of any tool (average 10.3, `/today` at 5.9) and the largest AI footprint (57 impressions). But `/today` earns 3 clicks from 244 impressions at position 6.",
+  "Test a title and description that make the answer and the page's purpose obvious in the result; keep the answer on the page. Watch the effect of the 29 Oct change over the next two weeks before touching it again."
+ ],
+ "TicketRun": [
+  "404 impressions, 4 clicks. It ranks best on long-tail pages (\"how to number raffle tickets in Word\" at 14, meal tickets at 29). The head terms (\"raffle generator\", \"raffle ticket generator\") sit at positions 85 to 98.",
+  "Win the long-tail first: numbered tickets, meal tickets, door prizes, how-to pages. The Christmas and Thanksgiving raffle pages (30 Oct) don't appear in this data yet."
+ ],
+ "PanelDex": [
+  "251 impressions, 2 clicks. `/breaker-box-label-template` converts (2 clicks from 57 impressions at position 24). The home page has 83 impressions at position 39.",
+  "Push the label page and the 3-phase page (39 impressions, position 18). \"Electrical panel labels template\" (position 29) is the closest query."
+ ],
+ "InvoiceKit": [
+  "157 impressions but an average position of 62. The home page ranks well (position 10, 1 click). The freelance, photography and VAT pages get about 40 impressions each at positions 64 to 78.",
+  "Lowest priority for now: its queries sit at positions 74 to 92. Revisit after the faster wins."
+ ],
+ "GradLedger": [
+  "128 impressions, 0 clicks, average position 34.5. Best pages: dual-enrollment transcript (position 17) and report card template (position 28).",
+  "Check titles and descriptions on the three pages in the top 30. The query \"what tool can calculate weighted and unweighted homeschool gpa\" shows at position 3.7 (7 impressions); the export doesn't say which page."
+ ],
+ "LabelFit": [
+  "121 impressions, 2 clicks (both on the home page). `/vinted-label-thermal-printer` is at position 12 with 36 impressions and 0 clicks. Image search shows 13 impressions.",
+  "Quick win: improve the title and snippet of the Vinted page. The home page has 57 impressions at position 38."
+ ],
+ "Rooh Sites (agency site)": [
+  "Not a mini tool. 108 impressions, 0 clicks. The home page is at position 6.9 (33 impressions); the guides rank at 26 (website vs Google Maps and Instagram) and 78 (small business website cost).",
+  "The 4 Nov price change is live on these pages. The cost guide needs links and time to move from position 78."
+ ],
+ "PunchPerk": [
+  "78 impressions, 0 clicks, average position 43. Closest: `/behavior-punch-card-printable` at position 24.",
+  "Improve that page and `/editable-punch-card-template` (21 impressions, position 48)."
+ ],
+ "StreamWeek": [
+  "77 impressions, 0 clicks, position 28.5. Nearly all of it is one query, \"stream schedule template\" (54 impressions, position 28.5).",
+  "A single focused page for that query is the whole opportunity. Check that `/youtube-live-schedule-template` is indexed: it has no impressions in this data."
+ ],
+ "Roomproof": [
+  "58 impressions, 0 clicks, position 19. The home page is at 13 (43 impressions).",
+  "Small volume. Check the home page's title and description."
+ ],
+ "PrepLabel": [
+  "The best click-through rate (7.3%, 4 clicks from 55 impressions) at position 23.7. `/suffocation-warning-label` earned 2 clicks, and \"suffocation warning label pdf\" shows at position 6.",
+  "Its clicks come from specific label queries, so more pages of the same kind (label types and requirements) are the cheapest next step."
+ ],
+ "CollabRate": [
+  "49 impressions, 0 clicks, position 32. The home page is at 22.",
+  "Small volume; wait."
+ ],
+ "GiftStub": [
+  "42 impressions, 0 clicks, position 47.5. Best: `/how-to-track-gift-certificates` (position 40).",
+  "Small volume. The Christmas page has 2 impressions at position 50."
+ ],
+ "LineupFair": [
+  "23 impressions, average position 83. Every page is on page 7 or lower.",
+  "Leave it for now: every page is far down, and youth baseball is a spring sport, so interest should return later."
+ ],
+ "Slotsmith (plugin site)": [
+  "Not a mini tool. 16 impressions, position 70 (the comparison pages). The query \"latepoint alternatives\" shows at position 64.",
+  "Expected for a new site. The launch offer and video matter more than SEO this month."
+ ],
+ "Hub": [
+  "Hub (tools.roohsites.com): 16 impressions at position 7.8. The home page is at position 2.",
+  "Nothing to do."
+ ],
+ "GlanceSheet": [
+  "15 impressions, position 66.5.",
+  "Small volume; wait."
+ ],
+ "ScoreNight": [
+  "11 impressions, position 74. Live since 30 Oct.",
+  "Too early to judge: new sites usually take a few weeks to settle."
+ ],
+ "PriceBoard": [
+  "4 impressions, position 79. Live since 29 Oct.",
+  "Too early to judge."
+ ]
+}
