@@ -108,13 +108,35 @@ function toolSection(o) {
   return `    <section class="tool card" aria-label="Ticket generator"><div id="tr-tool"${attrs}></div></section>\n`;
 }
 
-// A ready-made, already numbered PDF (src/ticketrun/ready-pdfs.mjs) for pages whose searches ask for a file ("... pdf", "free download").
+// A ready-made, already numbered PDF (src/ticketrun/ready-pdfs.mjs) for pages whose searches ask for a file ("... pdf", "free download"),
+// with a preview of its first page. The how-to-number-in-Word page also offers the Word file (src/ticketrun/ready-docx.py).
+const WORD = { page: "/how-to-number-raffle-tickets-in-word", file: "raffle-tickets-1-200-word", what: "raffle tickets with stubs", end: 200, per: 8,
+  alt: "First page of the free Word raffle ticket template: eight tickets, each with a stub on the left, numbered 1 to 8 by SEQ fields" };
 function readySection(path) {
   const r = READY.find(x => x.page === path);
-  if (!r) return "";
+  const png = f => { const b = readFileSync(join(OUT, "img", f + ".png")); return [b.readUInt32BE(16), b.readUInt32BE(20)]; };
+  const img = (f, alt) => { const [w, h] = png(f); return `<img src="/img/${f}.png" alt="${esc(alt)}" width="${w}" height="${h}">`; };
+  const dl = (href, label, file) => `<a href="${href}" download data-umami-event="ready_pdf" data-umami-event-file="${file}">${label}</a>`;
+  let word = "";
+  if (path === WORD.page) {
+    const links = [["letter", "US Letter"], ["a4", "A4"]].map(([p, label]) => dl(`/docx/${WORD.file}-${p}.docx`, `${label} Word file`, `${WORD.file}-${p}`)).join(" · ");
+    word = `    <section class="ready card" aria-label="Ready-made Word file">
+      <a class="ready-img" href="/docx/${WORD.file}-letter.docx" download data-umami-event="ready_pdf" data-umami-event-file="${WORD.file}-letter">${img(WORD.file, WORD.alt)}</a>
+      <div><p><strong>Free Word raffle ticket template:</strong> ${links}. ${WORD.what[0].toUpperCase() + WORD.what.slice(1)} numbered 1–${WORD.end}, ${WORD.per} per page, with the ticket and stub numbers already set up as SEQ fields. Open it in Word, change the wording and print.</p>
+      <p class="small muted">Prefer a PDF? Set your range in the generator below and download it, no Word needed.</p></div>
+    </section>
+`;
+  }
+  if (!r) return word;
   const per = r.perPage || (r.preset === "drink" ? 20 : 10), sheets = Math.ceil((r.end - r.start + 1) / per);
-  const links = PAPERS.map(([p, label]) => `<a href="/pdf/${r.file}-${p}.pdf" download data-umami-event="ready_pdf" data-umami-event-file="${r.file}-${p}">${label} PDF</a>`).join(" · ");
-  return `    <section class="ready card" aria-label="Ready-made PDF"><p><strong>Just need them printed?</strong> Download ${esc(r.what)} already numbered ${r.start}–${r.end.toLocaleString("en-US")}, with blank lines to fill in by hand: ${links} <span class="muted">(${sheets} sheets, ${per} per page)</span>. To print your own event name, prize, price or logo instead, use the generator above.</p></section>\n`;
+  const links = PAPERS.map(([p, label]) => dl(`/pdf/${r.file}-${p}.pdf`, `${label} PDF`, `${r.file}-${p}`)).join(" · ");
+  const alt = `First page of the free printable PDF: ${r.what} numbered ${r.start} to ${r.end}, ${per} per page, with blank lines for the event details`;
+  return word + `    <section class="ready card" aria-label="Ready-made PDF">
+      <a class="ready-img" href="/pdf/${r.file}-letter.pdf" download data-umami-event="ready_pdf" data-umami-event-file="${r.file}-letter">${img(r.file, alt)}</a>
+      <div><p><strong>Just need them printed?</strong> Free download: ${esc(r.what)} already numbered ${r.start}–${r.end.toLocaleString("en-US")}, with blank lines to fill in by hand: ${links} <span class="muted">(${sheets} sheets, ${per} per page)</span>.</p>
+      <p class="small muted">To print your own event name, prize, price or logo instead, use the generator below.</p></div>
+    </section>
+`;
 }
 
 function page({ path, title, desc, h1, lead, badges, tool, body, faq = [], crumb, schema = [], nav, noRelated, lang, date }) {
@@ -141,7 +163,7 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
       <h1>${esc(h1)}</h1>
       <p class="lead">${lead}</p>
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
-${tool ? toolSection(tool) : ""}${readySection(path)}    <article class="content narrow">
+${readySection(path)}${tool ? toolSection(tool) : ""}    <article class="content narrow">
 ${body}
 ${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(path === "/privacy" || path === "/about" ? "" : "General information, not legal advice.", date)}
     </article>
@@ -377,7 +399,7 @@ for (const [N0, R] of Object.entries(RANGE)) {
   const piles = Math.ceil(N / 10);
   const price = [1, 2, 5, 10, 20];
   P.push({
-    path: `/raffle-tickets-1-${N}`, crumb: `Raffle tickets 1-${N}`, tool: { preset: "raffle", start: 1, end: N },
+    path: `/raffle-tickets-1-${N}`, crumb: `Raffle tickets 1-${N}`, date: ["2026-11-05", "5 November 2026"], tool: { preset: "raffle", start: 1, end: N },
     title: R.title, desc: R.desc, h1: `Raffle Tickets 1-${N}, Printable with Stubs`, lead: R.lead,
     body: `      <p class="tldr"><strong>Quick answer:</strong> Raffle tickets 1-${N} print on ${n(Math.ceil(N / 10))} sheets at 10 per page (or ${n(Math.ceil(N / 8))} sheets at 8 per page). The generator above is already set to ${first}–${N}: change the event name, prize, date and price, then click <em>Download PDF</em> and print at 100% scale. Or download the ready-made PDF under the generator: already numbered, with blank lines to fill in by hand.</p>
       <p>${R.intro}</p>
@@ -655,7 +677,7 @@ ${LUCKY_RELATED("/diwali-lucky-draw-coupons")}`,
 });
 
 P.push({
-  path: "/how-to-number-raffle-tickets-in-word", crumb: "Number raffle tickets in Word", tool: { preset: "raffle", end: 200, perPage: 8 },
+  path: "/how-to-number-raffle-tickets-in-word", crumb: "Number raffle tickets in Word", date: ["2026-11-05", "5 November 2026"], tool: { preset: "raffle", end: 200, perPage: 8 },
   title: "How to Number Raffle Tickets in Word: SEQ Fields or Mail Merge",
   desc: "Number raffle tickets in Microsoft Word with SEQ fields or mail merge, keep each stub matching its ticket, and see why a Word template numbers only one page.",
   h1: "How to Number Raffle Tickets in Word",
@@ -670,6 +692,14 @@ P.push({
     ],
   }],
   body: `      <p class="tldr"><strong>Quick answer:</strong> In Word, put a <code>{ SEQ ticket \\# "000" }</code> field where each ticket number goes and <code>{ SEQ ticket \\c \\# "000" }</code> on the stub to repeat the same number, copy the ticket across the page and the page as often as needed, then press Ctrl+A and F9 to update. Mail merge from an Excel list of numbers also works. To skip both, set your range in the generator above and download a numbered PDF.</p>
+
+      <h2>Free Word raffle ticket template, numbered 1–200</h2>
+      <p>The Word files at the top of this page are a ready-made version of Method 1 below: 200 raffle tickets, 8 per page, each with a stub on the left, numbered 001 to 200 by SEQ fields. The stub counts up and the ticket repeats the stub's number, so the two always match. They are ordinary Word tables, so you can edit anything.</p>
+      <ul>
+        <li><strong>Change the wording on every ticket at once.</strong> Press <kbd>Ctrl</kbd>+<kbd>H</kbd>, copy the whole <em>Event:</em> line of the first ticket, underscores included, into <em>Find what</em>, type <em>Event: Spring Fundraiser</em> (or your own text) in <em>Replace with</em> and click <em>Replace All</em>. Do the same for the prize and drawing lines.</li>
+        <li><strong>Need fewer tickets?</strong> Delete the pages you don't need. To add pages, copy one and press <kbd>Ctrl</kbd>+<kbd>A</kbd>, then <kbd>F9</kbd> to renumber.</li>
+        <li><strong>Other programs.</strong> The file is made for Microsoft Word. LibreOffice opens it too, but shows the numbers as 1, 2, 3 without leading zeros.</li>
+      </ul>
 
       <h2>Why a Word raffle template only gives you one page of tickets</h2>
       <p>A Word template is a single page with a fixed grid, usually 8 or 10 tickets, and the numbers on it are typed text. Word doesn't number copies of a page by itself. If you copy the page, you copy the same numbers, so you either retype every number, add fields, or merge from a data source. That's where mismatched stubs come from: a number changed on the ticket but not on the stub, or a page pasted twice.</p>
@@ -712,6 +742,7 @@ P.push({
     ["How do I make Word count up on each ticket?", "Use a SEQ field such as { SEQ ticket } where the number goes. Each SEQ field with the same name counts up by one through the document. Update with Ctrl+A then F9."],
     ["How do I get the same number on the stub?", "Use { SEQ ticket \\c } on whichever part comes second in the document. The \\c switch repeats the previous number instead of counting on."],
     ["How do I add leading zeros in Word?", "Add a numeric picture switch to the field: { SEQ ticket \\# \"000\" } prints 001, 002 and so on. For mail merge use { MERGEFIELD Number \\# \"000\" }."],
+    ["Is there a free Word template for numbered raffle tickets?", "Yes. Download the Word file at the top of this page: raffle tickets 1–200, 8 per page, each with a stub on the left and the numbers set up as SEQ fields. For another range, set it in the generator and download a PDF."],
     ["Can I number raffle tickets in Google Docs?", "Google Docs has no sequence fields. Use a mail merge add-on, or generate a numbered PDF with TicketRun and print it."],
   ],
 });
@@ -856,7 +887,7 @@ P.push({
 });
 
 P.push({
-  path: "/door-prize-tickets", crumb: "Door prize tickets", tool: { preset: "door", end: 300 },
+  path: "/door-prize-tickets", crumb: "Door prize tickets", date: ["2026-11-05", "5 November 2026"], tool: { preset: "door", end: 300 },
   title: "Door Prize Tickets Printable — Numbered with Stubs, Free",
   desc: "Printable numbered door prize tickets with stubs: guests keep one half and drop the stub in the box. Letter or A4 PDF, plus a random number picker. Free.",
   h1: "Printable Door Prize Tickets",
@@ -997,12 +1028,15 @@ P.push({
 });
 
 P.push({
-  path: "/meal-tickets", crumb: "Meal tickets", tool: { preset: "meal", end: 300 },
+  path: "/meal-tickets", crumb: "Meal tickets", date: ["2026-11-05", "5 November 2026"], tool: { preset: "meal", end: 300 },
   title: "Printable Meal Tickets — Free Download, Numbered or Named",
   desc: "Printable numbered meal tickets for pancake breakfasts, spaghetti dinners, conferences and galas. Print names, tables and meal choices from a CSV. Free PDF.",
   h1: "Printable Meal Tickets",
   lead: "Numbered meal tickets for fundraiser dinners and events, or named tickets with table and meal choice from your guest list.",
   body: `      <p class="tldr"><strong>Quick answer:</strong> Print numbered meal tickets with the event name, date, place and price, sell or hand them out, and collect them at the serving table. For seated dinners, paste your guest list into <em>Named tickets from a guest list</em> and each ticket prints the guest's name, table and meal choice.</p>
+
+      <h2>Meal ticket free download</h2>
+      <p>The two files at the top of this page are a free meal ticket download: 300 numbered meal tickets (001 to 300), 10 per page, with blank lines for the date and the event, as a US Letter or A4 PDF. No signup. If you want your own event name, prices, names or meal choices on the tickets, use the generator below instead.</p>
 
       <h2>Numbered meal tickets for fundraiser meals</h2>
       <p>Pancake breakfasts, spaghetti dinners, fish fries and barbecues usually sell tickets in advance. Numbered tickets let you count advance sales, plan how much food to buy and see how many tickets were used at the door. The generator above is set to 300 meal tickets, 10 per page, with no stub; turn on a stub if you want a record of who bought each ticket.</p>
@@ -1044,7 +1078,7 @@ P.push({
 });
 
 P.push({
-  path: "/raffle-ticket-template-8-per-page", crumb: "Raffle ticket template 8 per page", tool: { preset: "raffle", end: 200, perPage: 8 },
+  path: "/raffle-ticket-template-8-per-page", crumb: "Raffle ticket template 8 per page", date: ["2026-11-05", "5 November 2026"], tool: { preset: "raffle", end: 200, perPage: 8 },
   title: "Raffle Ticket Template 8 per Page — Numbered, Free PDF",
   desc: "A raffle ticket template with 8 tickets per Letter or A4 page, stubs and crop marks, already numbered. Edit the text and download a free PDF, no Word needed.",
   h1: "Raffle Ticket Template, 8 per Page",

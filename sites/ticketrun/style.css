@@ -93,5 +93,8 @@ details.tr-fold p{margin:8px 0 0}
 .cards p{margin:0;font-size:15px;color:var(--muted)}
 .note{background:var(--soft);border-radius:10px;padding:12px 16px;font-size:15px}
 @media print{.tr,.tp{display:none!important}}
-.ready{padding:14px 18px;margin:14px 0 0}
+.ready{display:grid;grid-template-columns:130px minmax(0,1fr);gap:16px;align-items:center;padding:14px 18px;margin:14px 0 0}
+.ready-img img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.ready p+p{margin-top:6px}
+@media(max-width:480px){.ready{grid-template-columns:96px minmax(0,1fr);gap:12px}}
 .ready p{margin:0;font-size:15px;line-height:1.5}

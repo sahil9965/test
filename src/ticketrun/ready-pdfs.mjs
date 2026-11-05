@@ -2,9 +2,11 @@
 // plain numbered tickets can download one file without using the generator. Built with the tool's own PDF code
 // (sites/ticketrun/core.js + the vendored pdf-lib), written to sites/ticketrun/pdf/<file>-letter.pdf and -a4.pdf.
 // src/ticketrun/pages.mjs imports READY to link them under the generator on each page.
-// Usage: node src/ticketrun/ready-pdfs.mjs   (re-run after changing the ticket layout or this list)
+// Usage: node src/ticketrun/ready-pdfs.mjs                  (re-run after changing the ticket layout or this list)
+//        node src/ticketrun/ready-pdfs.mjs --previews-only   (only redraw the preview images in sites/ticketrun/img/ from the PDFs; needs pdftoppm)
 import { createRequire } from "node:module";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, existsSync, readdirSync, renameSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -43,7 +45,18 @@ export const READY = [
 
 export const PAPERS = [["letter", "US Letter"], ["a4", "A4"]];
 
+// First page of each US Letter PDF as a small PNG (about 425 px wide), shown beside the download links.
+function previews() {
+  const pdfs = join(ROOT, "sites/ticketrun/pdf"), img = join(ROOT, "sites/ticketrun/img");
+  mkdirSync(img, { recursive: true });
+  for (const r of READY) {
+    execFileSync("pdftoppm", ["-png", "-r", "50", "-f", "1", "-l", "1", "-singlefile", join(pdfs, `${r.file}-letter.pdf`), join(img, r.file)]);
+    console.log(`img/${r.file}.png`);
+  }
+}
+
 async function main() {
+  if (process.argv.includes("--previews-only")) return previews();
   const require = createRequire(import.meta.url);
   const C = require(join(ROOT, "sites/ticketrun/core.js"));
   const L = require(join(ROOT, "sites/ticketrun/vendor/pdf-lib.min.js"));
@@ -64,6 +77,7 @@ async function main() {
       console.log(`${file}  ${doc.getPageCount()} pages  ${(data.length / 1024).toFixed(0)} KB`);
     }
   }
+  previews();
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) await main();
