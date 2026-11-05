@@ -72,3 +72,19 @@ code{font-size:.92em;background:var(--soft);border-radius:5px;padding:1px 5px;ov
 .note{background:var(--soft);border-radius:10px;padding:12px 16px;font-size:15px}
 pre.ex{background:var(--soft);border-radius:10px;padding:12px 14px;font-size:13.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-width:72ch}
 @media print{.sw{display:none!important}}
+
+/* template gallery on the home page */
+.gallery{margin:22px 0 6px}
+.gallery h2{margin:0 0 4px;font-size:22px}
+.gal{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
+.gal-wide{grid-template-columns:repeat(2,1fr)}
+@media(min-width:600px){.gal-wide{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.gal-wide{grid-template-columns:repeat(5,1fr)}}
+.gal-tall{display:flex;flex-wrap:wrap;align-items:flex-end}
+.gal a{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.gal a:hover span,.gal a:focus-visible span{text-decoration:underline}
+.gal img{display:block;width:100%;height:auto}
+.gal span{display:block;padding:8px 10px;font-size:14px;font-weight:600}
+.gal-tall li{width:calc((100% - 24px) / 3)}
+.gal-tall img{max-height:210px;width:auto;margin:0 auto;object-fit:contain}
+@media(max-width:560px){.gal-tall li{width:calc((100% - 12px) / 2)}.gal-tall img{max-height:200px}.gal span{font-size:13px;padding:7px 8px}}

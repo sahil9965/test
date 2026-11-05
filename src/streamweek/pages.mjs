@@ -1,5 +1,6 @@
 // Generates every StreamWeek page (home, landing pages, about, privacy) plus llms.txt from one layout.
 // Usage: node src/streamweek/pages.mjs   (writes into sites/streamweek/)
+import { GALLERY } from "./gallery.mjs";
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,7 +37,7 @@ const FOOT = `  <footer class="site">
 
 const RELATED = `      <h2>More templates and guides</h2>
       <ul class="related">
-        <li><a href="/">Stream schedule maker</a></li>
+        <li><a href="/">Stream schedule template and maker</a></li>
         <li><a href="/vtuber-schedule-template">VTuber schedule template</a></li>
         <li><a href="/stream-schedule-time-zones">Time zones</a></li>
         <li><a href="/stream-schedule-for-discord">Discord timestamps</a></li>
@@ -91,9 +92,9 @@ const appLd = (name, path, desc) => ({
 const howToLd = (name, steps) => ({ "@type": "HowTo", name, totalTime: "PT10M", step: steps.map(([n, t]) => ({ "@type": "HowToStep", name: n, text: strip(t) })) });
 const stepsHtml = steps => `      <ol class="steps">\n${steps.map(([n, t]) => `        <li><strong>${esc(n)}.</strong> ${t}</li>`).join("\n")}\n      </ol>`;
 const faqHtml = faq => `      <h2 id="faq">Frequently asked questions</h2>\n${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("\n")}`;
-const updated = () => `      <p class="small muted">Last updated <time datetime="${DATE}">${DATE_H}</time> · Written by the Rooh Sites team.</p>`;
+const updated = d => `      <p class="small muted">Last updated <time datetime="${d ? d[0] : DATE}">${d ? d[1] : DATE_H}</time> · Written by the Rooh Sites team.</p>`;
 
-function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated }) {
+function page({ path, title, desc, h1, lead, quick, badges, tool, body, faq = [], crumb, schema = [], noRelated, gallery, updatedOn }) {
   const isHome = path === "/";
   const graph = [];
   if (!isHome) graph.push({ "@type": "BreadcrumbList", itemListElement: [
@@ -118,9 +119,9 @@ ${isHome ? "" : `    <p class="crumbs"><a href="/">${NAME}</a> › ${esc(crumb |
       <h1>${esc(h1)}</h1>
       <p class="lead">${lead}</p>
 ${badges ? `      <ul class="badges">${badges.map(b => `<li>${b}</li>`).join("")}</ul>\n` : ""}    </section>
-${quick ? `    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> ${quick}</p></div>\n` : ""}${tool ? `    <section class="tool card" aria-label="Stream schedule maker"><div id="sw-tool"${toolAttr}></div></section>\n` : ""}    <article class="content narrow">
+${quick ? `    <div class="content narrow quick"><p class="tldr"><strong>Quick answer:</strong> ${quick}</p></div>\n` : ""}${gallery || ""}${tool ? `    <section class="tool card" aria-label="Stream schedule maker"><div id="sw-tool"${toolAttr}></div></section>\n` : ""}    <article class="content narrow">
 ${body}
-${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated()}
+${faq.length ? faqHtml(faq) + "\n" : ""}${noRelated ? "" : RELATED + "\n"}${updated(updatedOn)}
     </article>
   </main>
 ${FOOT}
@@ -154,12 +155,42 @@ const homeFaq = [
   ["Will my schedule be there next week?", "Yes, in the same browser. The schedule saves automatically in local storage. Click <em>Next week</em> to move every stream forward 7 days, change what's different and export again."],
   ["Is my avatar or model art uploaded anywhere?", "No. The picture is read and drawn by your browser and saved only in this browser's local storage. Nothing you type or upload is sent to a server."],
 ];
+
+// Template gallery on the home page: the five themes link to their landing pages, the three other formats to the image-size table.
+const GAL = {
+  "stream-schedule-template-neon": ["Stream schedule for Discord", "/stream-schedule-for-discord", "Stream schedule template, midnight neon theme: a weekly landscape schedule with each stream shown in GMT, EST and JST"],
+  "stream-schedule-template-pastel-vtuber": ["VTuber schedule template", "/vtuber-schedule-template", "VTuber schedule template, pastel idol theme: English and Japanese day labels with times in EST, JST and PST"],
+  "stream-schedule-template-clean": ["YouTube live schedule template", "/youtube-live-schedule-template", "YouTube live schedule template, clean light theme: white day cards with start times in several time zones"],
+  "stream-schedule-template-retro": ["Twitch schedule template", "/twitch-schedule-template", "Twitch schedule template, retro arcade theme: chunky borders and a checker strip with converted times"],
+  "stream-schedule-template-minimal": ["Stream schedule with time zones", "/stream-schedule-time-zones", "Minimal dark stream schedule template with each stream converted to three viewer time zones"],
+  "stream-schedule-template-instagram-story": ["Instagram story size, 1080×1920", "#sizes", "Stream schedule template in Instagram story size: a tall list of the week's streams with converted times"],
+  "stream-schedule-template-portrait": ["4:5 feed post, 1080×1350", "#sizes", "Stream schedule template in 4:5 portrait size for Instagram feed posts, pastel theme with English and Japanese labels"],
+  "stream-schedule-template-panel": ["Channel panel, 320 px wide", "#sizes", "Stream schedule template as a narrow channel panel, retro theme, for Twitch or YouTube About sections"],
+};
+const galleryHtml = (() => {
+  const tile = ([file, , , , w, h], eager) => { const [label, href, alt] = GAL[file]; return `        <li><a href="${href}"><img src="/img/${file}.webp" alt="${esc(alt)}" width="${w}" height="${h}"${eager ? "" : ` loading="lazy"`}><span>${label}</span></a></li>`; };
+  const dims = { landscape: [720, 405], story: [720, 1280], portrait: [720, 900], panel: [320, 724] };
+  const items = GALLERY.map(g => [g.file, g.preset, g.size, g.home, ...dims[g.size]]);
+  const wide = items.filter(i => i[2] === "landscape"), tall = items.filter(i => i[2] !== "landscape");
+  return `    <section class="gallery" aria-labelledby="gal-h">
+      <h2 id="gal-h">Stream schedule template styles</h2>
+      <p class="small muted">Five themes and three image formats from the same maker, each drawn with sample times. Pick one below, then type your own week. Tap a style to read about it.</p>
+      <ul class="gal gal-wide">
+${wide.map((i, n) => tile(i, n < 3)).join("\n")}
+      </ul>
+      <ul class="gal gal-tall" aria-label="Other image formats">
+${tall.map(i => tile(i, false)).join("\n")}
+      </ul>
+    </section>
+`;
+})();
 const home = {
   path: "/",
   title: "Stream Schedule Template & Maker with Time Zones | StreamWeek",
   desc: "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
-  h1: "Stream Schedule Maker with Time Zones",
-  lead: "Plan your week once and get a schedule image, Discord timestamps and a calendar file, with every time converted for your viewers. Free, no signup, and nothing leaves your browser.",
+  h1: "Stream Schedule Template and Maker with Time Zones",
+  lead: "Pick a stream schedule template, type your week once and get a schedule image, Discord timestamps and a calendar file, with every time converted for your viewers. Free, no signup, and nothing leaves your browser.",
+  gallery: galleryHtml, updatedOn: ["2026-11-05", "5 November 2026"],
   quick: "Pick the week, set your home time zone and up to 3 viewer zones (such as JST, ET and UK), type each day's start time, title and game, then click <em>Download PNG</em>. Times are converted with daylight saving handled for that exact week, <em>Copy for Discord</em> writes timestamps every viewer sees in their own time, and <em>Next week</em> copies the schedule forward.",
   badges: ["100% free", "Auto time zones", "Discord timestamps", "5 image sizes"],
   tool: { preset: "" },
@@ -184,7 +215,7 @@ ${stepsHtml(homeSteps)}
       <h2>What the +1 and −1 marks mean</h2>
       <p>A converted time can land on a different day. Rather than move the stream to another column, StreamWeek keeps it under your day and adds a small mark: <strong>+1</strong> means the next day for that viewer, <strong>−1</strong> the day before. It's the convention airline timetables use, and it keeps the image readable as one week. Late-night streams in Europe and the Americas usually show +1 in Japan and Australia; afternoon streams from Japan often show −1 in the Americas.</p>
 
-      <h2>Image sizes and layouts</h2>
+      <h2 id="sizes">Image sizes and layouts</h2>
       <p>Each size has its own layout rather than one picture squeezed into different frames. Wide images use seven columns, tall ones a stacked list, and the panel a compact list whose height grows with your week.</p>
       <table>
         <thead><tr><th>Size (px)</th><th>Layout</th><th>Common use</th></tr></thead>
