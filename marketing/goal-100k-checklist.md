@@ -104,7 +104,7 @@ Still to approve:
 - Engine 3: [ ] white-label offer sheet · [ ] 5 partners signed · [ ] commission-only sales partner terms (20–30% of project value)
 - Engine 4: [ ] WordPress.org approval · [ ] launch posts (`slotsmith/marketing/launch-kit.md`) · [ ] demo video · [ ] affiliate program live · [ ] setup service page · [ ] apply to AppSumo (sell.appsumo.com) · [ ] comparison posts
 - Engine 5: [ ] automation offer page · [ ] 2 builds sold in December · [ ] freelance profiles live
-- Engine 6: [ ] contractor estimate maker (5 Nov) · [ ] paid unlock on the 2–3 busiest tools · [ ] Etsy and TPT stores · [ ] AdSense only once a site passes about 10,000 page views a month
+- Engine 6: [x] contractor estimate maker, **Quotewell**, built 5 Nov at estimate.roohsites.com (live once you add the domain in Cloudflare) · [ ] paid unlock on the 2–3 busiest tools · [ ] Etsy and TPT stores · [ ] AdSense only once a site passes about 10,000 page views a month
 - Engine 7: [ ] pilot offer for contractors (per lead $50–$100 or a retainer, they fund the ads) · [ ] 2 pilots signed
 
 ---
@@ -230,7 +230,7 @@ Besides the list below, I also changed: the contact form (`ops-server/contact.js
 - [ ] Packages approved and live
 - [ ] 3 proof clients signed and delivered
 - [ ] Outreach at 100 a week
-- [ ] Estimate maker live (5 Nov)
+- [~] Estimate maker built and deployed 5 Nov (Quotewell); live once you add estimate.roohsites.com to the Pages project rooh-quotewell
 - [ ] Slotsmith: WordPress.org approval, launch posts, demo video, affiliate program on, 10 creator pitches
 - [ ] Freelance profiles live and first proposals sent
 
@@ -267,7 +267,7 @@ Besides the list below, I also changed: the contact form (`ops-server/contact.js
 
 ## 11. Other scheduled items (don't forget)
 
-- [ ] **Thu 5 Nov, 10:00 AM IST:** contractor estimate maker build (scheduled)
+- [x] **Thu 5 Nov, 10:00 AM IST:** contractor estimate maker build: done (Quotewell). **You:** add the custom domain in Cloudflare, then run the IndexNow workflow for `quotewell`
 - [ ] ~7–15 Nov: Search Console check (your export, then my fixes)
 - [ ] **15 Nov:** Instagram review
 - [ ] Monthly: roohsites guide (next in the queue: "What should a salon website include? A checklist")
