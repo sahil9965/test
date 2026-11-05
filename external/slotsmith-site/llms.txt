@@ -3,6 +3,7 @@
 > Appointment booking plugin for WordPress, for salons, tutors, coaches and other service businesses. The free plugin (on WordPress.org) has unlimited staff and services. Slotsmith Pro ($79/year for 1 site, $149 for 5, $299 for unlimited; same price at renewal; 14-day free trial without a card) adds Razorpay (UPI), Stripe and PayPal payments or deposits with automatic refunds, email/SMS/WhatsApp reminders, two-way Google Calendar sync, a drag-and-drop admin calendar and a customer page to reschedule or cancel.
 
 - [Home and pricing](https://slotsmith.roohsites.com/)
+- [Founding members offer, until 31 Dec 2026: every Pro feature, $39/year for 1 site or $59/year for 3](https://slotsmith.roohsites.com/founding-members)
 - [Comparison: Slotsmith vs Bookly, Amelia and LatePoint](https://slotsmith.roohsites.com/compare)
 - [Bookly alternative](https://slotsmith.roohsites.com/bookly-alternative)
 - [Amelia alternative](https://slotsmith.roohsites.com/amelia-alternative)
