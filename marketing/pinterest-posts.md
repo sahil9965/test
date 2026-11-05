@@ -666,3 +666,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Printable circuit breaker directory for the inside of the panel door: large text in the panel's own two-column order, on Letter, half letter or a custom size.
 - **Alt text:** Circuit Breaker Directory Printable: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
 - **Keywords:** circuit breaker directory printable, panel schedule, breaker labels, electrician
+
+## Day 73: FNSKU Labels for 2x1 Thermal Printers
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/fnsku-labels-for-2x1-thermal-printers.png
+- **Link:** https://fnsku.roohsites.com/fnsku-label-2x1-thermal?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make FNSKU labels sized for 2x1 inch thermal rolls on Rollo, Zebra and Munbyn printers. Bars snapped to 203 or 300 dpi, one label per page. Free.
+- **Alt text:** FNSKU Labels for 2x1 Thermal Printers: FNSKU, suffocation and set labels for FBA prep. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** fnsku labels for 2x1 thermal printers, amazon fba, fba prep, fnsku labels
+
+## Day 74: Accommodations Matrix Template for Teachers
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/accommodations-matrix-template-for-teachers.png
+- **Link:** https://iepglance.roohsites.com/accommodations-matrix-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free accommodations matrix template: students down the side, accommodations across the top, check marks, a numbered key and a landscape PDF for one class.
+- **Alt text:** Accommodations Matrix Template for Teachers: One-page IEP and 504 summaries for teachers. The image shows a one-page document preview, from iepglance.roohsites.com.
+- **Keywords:** accommodations matrix template for teachers, iep at a glance, special education, 504 plan
+
+## Day 75: Esthetician & Waxing Price List Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/esthetician-waxing-price-list-template.png
+- **Link:** https://pricelist.roohsites.com/esthetician-price-list-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free esthetician price list template with facials, peels and a waxing menu, plus prep notes and a booking QR code. Print it or post it. No login.
+- **Alt text:** Esthetician & Waxing Price List Template: Salon and spa price lists for print and Instagram. The image shows a salon price list with services, dot leaders and prices, from pricelist.roohsites.com.
+- **Keywords:** esthetician & waxing price list template, salon price list, salon menu, beauty business

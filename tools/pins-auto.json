@@ -804,6 +804,57 @@
       "desc": "Printable circuit breaker directory for the inside of the panel door: large text in the panel's own two-column order, on Letter, half letter or a custom size.",
       "keywords": "circuit breaker directory printable, panel schedule, breaker labels, electrician",
       "added": "2026-11-04"
+    },
+    {
+      "slug": "preplabel",
+      "file": "fnsku-labels-for-2x1-thermal-printers",
+      "path": "/fnsku-label-2x1-thermal",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "FNSKU Labels for 2x1 Thermal Printers",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "fnsku",
+      "desc": "Make FNSKU labels sized for 2x1 inch thermal rolls on Rollo, Zebra and Munbyn printers. Bars snapped to 203 or 300 dpi, one label per page. Free.",
+      "keywords": "fnsku labels for 2x1 thermal printers, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-05"
+    },
+    {
+      "slug": "glancesheet",
+      "file": "accommodations-matrix-template-for-teachers",
+      "path": "/accommodations-matrix-template",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "Accommodations Matrix Template for Teachers",
+      "sub": "One-page IEP and 504 summaries for teachers",
+      "points": [
+        "Initials only by default",
+        "Stays on your device",
+        "Letter or A4"
+      ],
+      "visual": "document",
+      "desc": "Free accommodations matrix template: students down the side, accommodations across the top, check marks, a numbered key and a landscape PDF for one class.",
+      "keywords": "accommodations matrix template for teachers, iep at a glance, special education, 504 plan",
+      "added": "2026-11-05"
+    },
+    {
+      "slug": "priceboard",
+      "file": "esthetician-waxing-price-list-template",
+      "path": "/esthetician-price-list-template",
+      "board": "Small Business Printables",
+      "headline": "Esthetician & Waxing Price List Template",
+      "sub": "Salon and spa price lists for print and Instagram",
+      "points": [
+        "Fits on one page",
+        "Print & Instagram sizes",
+        "No signup"
+      ],
+      "visual": "menu",
+      "desc": "Free esthetician price list template with facials, peels and a waxing menu, plus prep notes and a booking QR code. Print it or post it. No login.",
+      "keywords": "esthetician & waxing price list template, salon price list, salon menu, beauty business",
+      "added": "2026-11-05"
     }
   ]
 }
