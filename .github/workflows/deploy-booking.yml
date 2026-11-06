@@ -1,27 +1,29 @@
-# Publishes the Slotsmith sales site (external/slotsmith-site, a copy of site/ from the private slotsmith repo)
-# to the Cloudflare Pages project that serves slotsmith.roohsites.com, or to rooh-slotsmith (created if needed)
-# until the domain is added to a project in this account. Not in sites.json on purpose:
-# it isn't one of the free tools, so it stays out of the footers, hub, pins and IndexNow.
+# Publishes the Roohsites Appointment Booking sales site (external/booking-site, a copy of site/ from the private
+# slotsmith repo) to the Cloudflare Pages project that serves booking.roohsites.com, or to rooh-booking (created if
+# needed, and the domain attached to it through the API when the token allows). Once booking.roohsites.com serves
+# this deploy, the old address slotsmith.roohsites.com gets external/slotsmith-redirect (a 301 to the new site).
+# Not in sites.json on purpose: it isn't one of the free tools, so it stays out of the footers, hub, pins and IndexNow.
 # Same secrets as deploy-cf.yml. See docs/cloudflare.md.
-name: Deploy Slotsmith site
+name: Deploy booking site
 
 on:
   push:
     branches: [claude/ecstatic-pascal-yzcrhr]
-    paths: ["external/slotsmith-site/**", "tools/cf-pages-project.mjs", ".github/workflows/deploy-slotsmith.yml"]
+    paths: ["external/booking-site/**", "external/slotsmith-redirect/**", "tools/cf-pages-project.mjs", ".github/workflows/deploy-booking.yml"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-slotsmith
+  group: deploy-booking
   cancel-in-progress: false
 
 env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-  DOMAIN: slotsmith.roohsites.com
+  DOMAIN: booking.roohsites.com
+  OLD_DOMAIN: slotsmith.roohsites.com
 
 jobs:
   deploy:
@@ -36,7 +38,7 @@ jobs:
 
       - name: Find the Pages project for the domain
         id: project
-        run: node tools/cf-pages-project.mjs "$DOMAIN" rooh-slotsmith
+        run: node tools/cf-pages-project.mjs "$DOMAIN" rooh-booking
 
       - name: Deploy
         env:
@@ -44,9 +46,9 @@ jobs:
           BRANCH: ${{ steps.project.outputs.branch }}
         run: |
           set -euo pipefail
-          out="$RUNNER_TEMP/slotsmith-site"
+          out="$RUNNER_TEMP/booking-site"
           mkdir -p "$out"
-          cp -r external/slotsmith-site/. "$out/"
+          cp -r external/booking-site/. "$out/"
           # Keep the *.pages.dev copies out of search engines; the custom domain is the real site.
           printf 'https://:project.pages.dev/*\n  X-Robots-Tag: noindex\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex\n' > "$out/_headers"
           # Lets the check below tell this deploy apart from whatever was live before.
@@ -57,6 +59,25 @@ jobs:
           fi
           npx --yes wrangler@4 pages deploy "$out" --project-name="$PROJECT" --branch="$BRANCH" --commit-dirty=true
 
+      - name: Attach the domain (first deploy only)
+        if: steps.project.outputs.attached != 'true'
+        env:
+          PROJECT: ${{ steps.project.outputs.name }}
+        run: |
+          set -uo pipefail
+          res=$(curl -s -m 30 -X POST -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' \
+            -d "{\"name\":\"$DOMAIN\"}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT/domains")
+          echo "$res" | head -c 600; echo
+          if echo "$res" | grep -q '"success":true'; then
+            echo "Added $DOMAIN to $PROJECT. Cloudflare sets up the DNS record and certificate; that can take a few minutes."
+            { echo; echo "Added **$DOMAIN** to **$PROJECT** (DNS and certificate can take a few minutes)."; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning title=Add the domain by hand::Could not add $DOMAIN to $PROJECT through the API. In Cloudflare: Workers & Pages > $PROJECT > Custom domains > Set up a domain > $DOMAIN."
+            { echo; echo "Add **$DOMAIN** by hand: Workers & Pages > **$PROJECT** > Custom domains."; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # Give DNS a moment before the live check below.
+          sleep 60
+
       - name: Check the live site
         env:
           PROJECT: ${{ steps.project.outputs.name }}
@@ -65,14 +86,14 @@ jobs:
           live() { curl -fsS -m 20 "https://$1/version.txt?v=$GITHUB_SHA" 2>/dev/null | tr -d '[:space:]'; }
           for try in 1 2 3 4 5 6; do [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] && break; sleep 10; done
           table=$'| page | '"$PROJECT"$'.pages.dev | '"$DOMAIN"$' |\n|---|---|---|'
-          for f in external/slotsmith-site/*.html; do
+          for f in external/booking-site/*.html; do
             p=$(basename "$f" .html); [ "$p" = 404 ] && continue; [ "$p" = index ] && p=""
             a=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$PROJECT.pages.dev/$p")
             b=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
             table+=$'\n'"| /$p | $a | $b |"
           done
           echo "$table"
-          { echo "### Slotsmith site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
+          { echo "### Booking site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
           # Icons Google can use, and a real 404 for unknown addresses (no 404.html makes Pages answer 200 with the home page).
           for f in /favicon.ico /favicon.svg /apple-touch-icon.png; do
             line=$(curl -sIL -m 20 "https://$DOMAIN$f" | tr -d '\r' | grep -iE '^(HTTP|content-type)' | tr '\n' ' ')
@@ -98,18 +119,36 @@ jobs:
             { echo; echo "http → https: **not redirecting** ($code)"; } >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Redirect the old address (slotsmith.roohsites.com)
+        run: |
+          set -uo pipefail
+          # Only once the new domain serves this deploy, so the old address never points at a dead site.
+          if [ "$(curl -fsS -m 20 "https://$DOMAIN/version.txt?v=$GITHUB_SHA" 2>/dev/null | tr -d '[:space:]')" != "$GITHUB_SHA" ]; then
+            echo "::warning title=Old address not redirected yet::$DOMAIN isn't live yet, so $OLD_DOMAIN keeps the old site for now. Run this workflow again once $DOMAIN works."
+            { echo; echo "Old address: **not redirected yet** ($DOMAIN isn't live)."; } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          old=$(node tools/cf-pages-project.mjs "$OLD_DOMAIN" 2>/dev/null | sed -n 's/^.* is served by \([^ ]*\) (production branch \([^)]*\))$/\1 \2/p')
+          if [ -z "$old" ]; then echo "No Pages project serves $OLD_DOMAIN; nothing to redirect."; exit 0; fi
+          read -r oproj obranch <<<"$old"
+          npx --yes wrangler@4 pages deploy external/slotsmith-redirect --project-name="$oproj" --branch="$obranch" --commit-dirty=true
+          sleep 15
+          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "https://$OLD_DOMAIN/compare")
+          echo "https://$OLD_DOMAIN/compare answers $code -> $to"
+          { echo; echo "Old address: https://$OLD_DOMAIN/compare → $code $to"; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Tell search engines (IndexNow)
         run: |
           set -uo pipefail
-          keyfile=$(ls external/slotsmith-site/ | grep -E '^[0-9a-f]{32}\.txt$' | head -1 || true)
+          keyfile=$(ls external/booking-site/ | grep -E '^[0-9a-f]{32}\.txt$' | head -1 || true)
           [ -n "$keyfile" ] || { echo "No IndexNow key file; skipping."; exit 0; }
           key=${keyfile%.txt}
           # IndexNow fetches the key from the live domain, so only ping once it serves this deploy.
           if [ "$(curl -fsS -m 20 "https://$DOMAIN/$keyfile" 2>/dev/null | tr -d '[:space:]')" != "$key" ]; then
             echo "::warning::The IndexNow key isn't live on $DOMAIN yet; skipped."; exit 0
           fi
-          urls=$(grep -o '<loc>[^<]*</loc>' external/slotsmith-site/sitemap.xml | sed 's/<[^>]*>//g' | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>process.stdout.write(JSON.stringify(d.trim().split("\n"))))')
+          urls=$(grep -o '<loc>[^<]*</loc>' external/booking-site/sitemap.xml | sed 's/<[^>]*>//g' | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>process.stdout.write(JSON.stringify(d.trim().split("\n"))))')
           body=$(printf '{"host":"%s","key":"%s","keyLocation":"https://%s/%s","urlList":%s}' "$DOMAIN" "$key" "$DOMAIN" "$keyfile" "$urls")
           code=$(curl -s -o /dev/null -w '%{http_code}' -m 30 -H 'Content-Type: application/json; charset=utf-8' -d "$body" https://api.indexnow.org/indexnow)
-          echo "IndexNow answered HTTP $code for $(grep -c '<loc>' external/slotsmith-site/sitemap.xml) URLs (200 or 202 means accepted)."
+          echo "IndexNow answered HTTP $code for $(grep -c '<loc>' external/booking-site/sitemap.xml) URLs (200 or 202 means accepted)."
           { echo; echo "IndexNow: HTTP $code"; } >> "$GITHUB_STEP_SUMMARY"

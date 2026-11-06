@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Slotsmith Documentation: Setup Guides for Every Feature</title>
-<meta name="description" content="Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
-<link rel="canonical" href="https://slotsmith.roohsites.com/support">
+<title>Roohsites Appointment Booking Docs: Setup Guides</title>
+<meta name="description" content="Step-by-step docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
+<link rel="canonical" href="https://booking.roohsites.com/support">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Slotsmith">
-<meta property="og:title" content="Slotsmith Documentation: Setup Guides for Every Feature">
-<meta property="og:description" content="Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
-<meta property="og:url" content="https://slotsmith.roohsites.com/support">
-<meta property="og:image" content="https://slotsmith.roohsites.com/assets/og.png">
+<meta property="og:site_name" content="Roohsites Appointment Booking">
+<meta property="og:title" content="Roohsites Appointment Booking Docs: Setup Guides">
+<meta property="og:description" content="Step-by-step docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.">
+<meta property="og:url" content="https://booking.roohsites.com/support">
+<meta property="og:image" content="https://booking.roohsites.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json" id="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Slotsmith Documentation: Setup Guides for Every Feature","description":"Step-by-step Slotsmith docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.","url":"https://slotsmith.roohsites.com/support","dateModified":"2026-10-31"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Slotsmith","item":"https://slotsmith.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://slotsmith.roohsites.com/support"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"The booking form doesn't show on my page","acceptedAnswer":{"@type":"Answer","text":"The form needs at least one published service and one staff member who offers it. When you're logged in as an administrator, the page shows a note saying what's missing; visitors see nothing."}},{"@type":"Question","name":"Booking emails don't arrive","acceptedAnswer":{"@type":"Answer","text":"Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Slotsmith uses the standard WordPress mail function, so it works with all of them. Also check the spam folder."}},{"@type":"Question","name":"Times are an hour or more out","acceptedAnswer":{"@type":"Answer","text":"Slotsmith uses the time zone in Settings → General, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See Time zone and currency. Set it before real bookings come in."}},{"@type":"Question","name":"A day or time I expected isn't offered","acceptedAnswer":{"@type":"Answer","text":"Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in Slotsmith → Settings, and (with Pro) busy times in their Google Calendar."}},{"@type":"Question","name":"Reminders are late, or paid bookings stay “awaiting payment”","acceptedAnswer":{"@type":"Answer","text":"Reminders and payment checks run every 5 minutes through WP-Cron, which only runs when someone visits your site. On quiet sites, ask your host to set up a real cron job that calls wp-cron.php every 5 minutes, and add payment webhooks so payments are confirmed instantly."}},{"@type":"Question","name":"The payment page shows a currency error","acceptedAnswer":{"@type":"Answer","text":"Check the currency in Slotsmith → Settings → Currency. Each provider supports its own list of currencies, and Slotsmith hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on Pro settings → Payments says which payment method is hidden and why."}},{"@type":"Question","name":"Google Calendar says “Connected”, but bookings don't appear in it","acceptedAnswer":{"@type":"Answer","text":"The Google Calendar API isn't switched on in your Google Cloud project. Open APIs & Services → Library in the same project as your OAuth client, search for “Google Calendar API” and click Enable. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Slotsmith Pro show Google's message in red on the staff page when this happens."}},{"@type":"Question","name":"Google says “Access blocked: … has not completed the Google verification process”","acceptedAnswer":{"@type":"Answer","text":"Your Google app is still in Testing. Open Audience on the consent screen and click Publish app. See Part 1, step 4."}},{"@type":"Question","name":"Google says “redirect_uri_mismatch”","acceptedAnswer":{"@type":"Answer","text":"The redirect address in your Google client must match the one shown under Pro settings → Google Calendar exactly, including https, www and every character at the end. Edit the client in Google Cloud, fix it and try again after a minute or two."}},{"@type":"Question","name":"Google Calendar worked, then stopped about a week later","acceptedAnswer":{"@type":"Answer","text":"Your Google app was left in Testing, which ends connections after 7 days. Click Publish app under Audience, then disconnect and connect each staff member again."}},{"@type":"Question","name":"A payment method is missing from the booking form","acceptedAnswer":{"@type":"Answer","text":"Check that Take payments online is ticked, that the method is ticked with its keys saved, and that it takes your currency. Slotsmith hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in Slotsmith → Settings → Currency."}},{"@type":"Question","name":"No SMS or WhatsApp reminder arrived","acceptedAnswer":{"@type":"Answer","text":"Check, in order: the booking is Confirmed; the customer gave a phone number; it was made earlier than the reminder window (a booking made one hour before the appointment gets no 2-hour reminder); the reminder time has passed; and WordPress's scheduler has run (see the next answer). Then use Send a test message on the Reminders tab, which shows the provider's exact error."}},{"@type":"Question","name":"WhatsApp says “(#132001) Template name does not exist in the translation”","acceptedAnswer":{"@type":"Answer","text":"Meta can't find an Active template with that name and language for your number. Check in WhatsApp Manager that the template's status is Active, that the name is exactly what you typed (lower case with underscores), that the Template language code matches (English is en, English (US) is en_US), and that the template belongs to the same WhatsApp business account as your phone number ID."}},{"@type":"Question","name":"WhatsApp says “Recipient phone number not in allowed list”","acceptedAnswer":{"@type":"Answer","text":"You're using Meta's test number, which can only message numbers you've added under API setup → Recipient → Manage phone number list. Add the number there, or go live with your own business number."}},{"@type":"Question","name":"WhatsApp or SMS worked, then stopped","acceptedAnswer":{"@type":"Answer","text":"The most likely cause is an expired token. Meta's temporary access token lasts 24 hours: create a permanent one (Part 4). On a Twilio trial account, messages only go to numbers you've verified, and the trial's credit can run out."}},{"@type":"Question","name":"Where do I find my licence key, invoices or downloads?","acceptedAnswer":{"@type":"Answer","text":"In your purchase email, and in your account at users.freemius.com. Our reseller, Freemius, runs the checkout and the customer account."}},{"@type":"Question","name":"How do I move my licence to another website?","acceptedAnswer":{"@type":"Answer","text":"On the old site, go to Slotsmith → Account and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up."}},{"@type":"Question","name":"How do I cancel automatic renewal?","acceptedAnswer":{"@type":"Answer","text":"Cancel it in your account at users.freemius.com, or email us. Your licence stays active until the end of the period you paid for, and Slotsmith Pro keeps working after that. You just stop getting updates and support."}},{"@type":"Question","name":"Can I get a refund?","acceptedAnswer":{"@type":"Answer","text":"Yes, within 14 days of purchase. See our refund policy."}}]}]}</script>
+<script type="application/ld+json" id="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Roohsites Appointment Booking Docs: Setup Guides","description":"Step-by-step docs: time zone, services, staff, booking form, Razorpay, PayPal and Stripe payments, WhatsApp and SMS reminders, Google Calendar, coupons.","url":"https://booking.roohsites.com/support","dateModified":"2026-10-31"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Roohsites Appointment Booking","item":"https://booking.roohsites.com/"},{"@type":"ListItem","position":2,"name":"Support","item":"https://booking.roohsites.com/support"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"The booking form doesn't show on my page","acceptedAnswer":{"@type":"Answer","text":"The form needs at least one published service and one staff member who offers it. When you're logged in as an administrator, the page shows a note saying what's missing; visitors see nothing."}},{"@type":"Question","name":"Booking emails don't arrive","acceptedAnswer":{"@type":"Answer","text":"Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Roohsites Appointment Booking uses the standard WordPress mail function, so it works with all of them. Also check the spam folder."}},{"@type":"Question","name":"Times are an hour or more out","acceptedAnswer":{"@type":"Answer","text":"Roohsites Appointment Booking uses the time zone in Settings → General, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See Time zone and currency. Set it before real bookings come in."}},{"@type":"Question","name":"A day or time I expected isn't offered","acceptedAnswer":{"@type":"Answer","text":"Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in Roohsites Appointment Booking → Settings, and (with Pro) busy times in their Google Calendar."}},{"@type":"Question","name":"Reminders are late, or paid bookings stay “awaiting payment”","acceptedAnswer":{"@type":"Answer","text":"Reminders and payment checks run every 5 minutes through WP-Cron, which only runs when someone visits your site. On quiet sites, ask your host to set up a real cron job that calls wp-cron.php every 5 minutes, and add payment webhooks so payments are confirmed instantly."}},{"@type":"Question","name":"The payment page shows a currency error","acceptedAnswer":{"@type":"Answer","text":"Check the currency in Roohsites Appointment Booking → Settings → Currency. Each provider supports its own list of currencies, and Roohsites Appointment Booking hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on Pro settings → Payments says which payment method is hidden and why."}},{"@type":"Question","name":"Google Calendar says “Connected”, but bookings don't appear in it","acceptedAnswer":{"@type":"Answer","text":"The Google Calendar API isn't switched on in your Google Cloud project. Open APIs & Services → Library in the same project as your OAuth client, search for “Google Calendar API” and click Enable. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Roohsites Appointment Booking Pro show Google's message in red on the staff page when this happens."}},{"@type":"Question","name":"Google says “Access blocked: … has not completed the Google verification process”","acceptedAnswer":{"@type":"Answer","text":"Your Google app is still in Testing. Open Audience on the consent screen and click Publish app. See Part 1, step 4."}},{"@type":"Question","name":"Google says “redirect_uri_mismatch”","acceptedAnswer":{"@type":"Answer","text":"The redirect address in your Google client must match the one shown under Pro settings → Google Calendar exactly, including https, www and every character at the end. Edit the client in Google Cloud, fix it and try again after a minute or two."}},{"@type":"Question","name":"Google Calendar worked, then stopped about a week later","acceptedAnswer":{"@type":"Answer","text":"Your Google app was left in Testing, which ends connections after 7 days. Click Publish app under Audience, then disconnect and connect each staff member again."}},{"@type":"Question","name":"A payment method is missing from the booking form","acceptedAnswer":{"@type":"Answer","text":"Check that Take payments online is ticked, that the method is ticked with its keys saved, and that it takes your currency. Roohsites Appointment Booking hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in Roohsites Appointment Booking → Settings → Currency."}},{"@type":"Question","name":"No SMS or WhatsApp reminder arrived","acceptedAnswer":{"@type":"Answer","text":"Check, in order: the booking is Confirmed; the customer gave a phone number; it was made earlier than the reminder window (a booking made one hour before the appointment gets no 2-hour reminder); the reminder time has passed; and WordPress's scheduler has run (see the next answer). Then use Send a test message on the Reminders tab, which shows the provider's exact error."}},{"@type":"Question","name":"WhatsApp says “(#132001) Template name does not exist in the translation”","acceptedAnswer":{"@type":"Answer","text":"Meta can't find an Active template with that name and language for your number. Check in WhatsApp Manager that the template's status is Active, that the name is exactly what you typed (lower case with underscores), that the Template language code matches (English is en, English (US) is en_US), and that the template belongs to the same WhatsApp business account as your phone number ID."}},{"@type":"Question","name":"WhatsApp says “Recipient phone number not in allowed list”","acceptedAnswer":{"@type":"Answer","text":"You're using Meta's test number, which can only message numbers you've added under API setup → Recipient → Manage phone number list. Add the number there, or go live with your own business number."}},{"@type":"Question","name":"WhatsApp or SMS worked, then stopped","acceptedAnswer":{"@type":"Answer","text":"The most likely cause is an expired token. Meta's temporary access token lasts 24 hours: create a permanent one (Part 4). On a Twilio trial account, messages only go to numbers you've verified, and the trial's credit can run out."}},{"@type":"Question","name":"Where do I find my licence key, invoices or downloads?","acceptedAnswer":{"@type":"Answer","text":"In your purchase email, and in your account at users.freemius.com. Our reseller, Freemius, runs the checkout and the customer account."}},{"@type":"Question","name":"How do I move my licence to another website?","acceptedAnswer":{"@type":"Answer","text":"On the old site, go to Roohsites Appointment Booking → Account and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up."}},{"@type":"Question","name":"How do I cancel automatic renewal?","acceptedAnswer":{"@type":"Answer","text":"Cancel it in your account at users.freemius.com, or email us. Your licence stays active until the end of the period you paid for, and Roohsites Appointment Booking Pro keeps working after that. You just stop getting updates and support."}},{"@type":"Question","name":"Can I get a refund?","acceptedAnswer":{"@type":"Answer","text":"Yes, within 14 days of purchase. See our refund policy."}}]}]}</script>
 <!--FAVICON:START--><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><!--FAVICON:END-->
 <link rel="stylesheet" href="/assets/pages.css">
 </head>
 <body>
 <header class="top">
 	<div class="wrap">
-		<a class="logo" href="/"><img src="/assets/icon.svg" alt="">Slotsmith</a>
+		<a class="logo" href="/"><img src="/assets/icon.svg" alt=""><span class="logo-txt">Rooh Sites<small>Appointment Booking</small></span></a>
 		<nav aria-label="Main">
 			<a href="/#features">Features</a>
 			<a href="/#pricing">Pricing</a>
@@ -32,18 +32,18 @@
 </header>
 
 <main class="wrap">
-	<p class="crumbs"><a href="/">Slotsmith</a> › Support</p>
+	<p class="crumbs"><a href="/">Roohsites Appointment Booking</a> › Support</p>
 	<h1>Help &amp; documentation</h1>
-	<p class="lead">Step-by-step guides for every Slotsmith and Slotsmith Pro feature, answers to common problems, and how to reach us.</p>
+	<p class="lead">Step-by-step guides for every Roohsites Appointment Booking and Roohsites Appointment Booking Pro feature, answers to common problems, and how to reach us.</p>
 
 	<div class="cards">
 		<div class="box accent">
-			<h3>Slotsmith Pro customers</h3>
-			<p>Email <a href="mailto:hello@roohsites.com?subject=Slotsmith%20Pro%20support">hello@roohsites.com</a>. We reply within two business days (Monday to Friday, India time). Business and Agency plans are answered first.</p>
+			<h3>Roohsites Appointment Booking Pro customers</h3>
+			<p>Email <a href="mailto:hello@roohsites.com?subject=Roohsites Appointment Booking%20Pro%20support">hello@roohsites.com</a>. We reply within two business days (Monday to Friday, India time). Business and Agency plans are answered first.</p>
 		</div>
 		<div class="box">
 			<h3>Free plugin</h3>
-			<p>Ask in the <a href="https://wordpress.org/support/plugin/slotsmith/" rel="noopener">Slotsmith forum on WordPress.org</a>, so others with the same question find the answer too.</p>
+			<p>Ask in the <a href="https://wordpress.org/support/plugin/rsab/" rel="noopener">Roohsites Appointment Booking forum on WordPress.org</a>, so others with the same question find the answer too.</p>
 		</div>
 	</div>
 
@@ -69,9 +69,9 @@
 		<li><a href="#settings">Settings explained</a></li>
 		<li><a href="#bookings">Managing bookings and emails</a></li>
 	</ul>
-	<p><strong>Slotsmith Pro</strong></p>
+	<p><strong>Roohsites Appointment Booking Pro</strong></p>
 	<ul class="toc">
-		<li><a href="#pro">Installing Slotsmith Pro</a></li>
+		<li><a href="#pro">Installing Roohsites Appointment Booking Pro</a></li>
 		<li><a href="#payments">Online payments (Razorpay, PayPal, Stripe)</a></li>
 		<li><a href="#webhooks">Payment webhooks</a></li>
 		<li><a href="#refunds">Refunds to customers</a></li>
@@ -97,17 +97,17 @@
 	<h2 id="start">Getting started (free plugin)</h2>
 	<p>You can have a working booking page in about 10 minutes. Do these in order:</p>
 	<ol>
-		<li><strong>Install.</strong> In your dashboard go to <span class="path">Plugins → Add New</span>, search for “Slotsmith”, then install and activate it.</li>
+		<li><strong>Install.</strong> In your dashboard go to <span class="path">Plugins → Add New</span>, search for “Roohsites Appointment Booking”, then install and activate it.</li>
 		<li><strong>Set your <a href="#timezone">time zone and currency</a>.</strong> Do this before you take real bookings.</li>
-		<li><strong>Add a <a href="#services">service</a>.</strong> <span class="path">Slotsmith → Services → Add New</span>.</li>
-		<li><strong>Add a <a href="#staff">staff member</a></strong> who offers it, with working hours. <span class="path">Slotsmith → Staff → Add New</span>.</li>
-		<li><strong>Put the <a href="#form">booking form on a page</a>.</strong> Use the Booking form block or the shortcode <code>[slotsmith]</code>.</li>
-		<li><strong>Make a test booking</strong> and check that the emails arrive. If they don't, see <a href="#troubleshooting">Troubleshooting</a>. Then delete the test booking in <span class="path">Slotsmith → Bookings</span>.</li>
+		<li><strong>Add a <a href="#services">service</a>.</strong> <span class="path">Roohsites Appointment Booking → Services → Add New</span>.</li>
+		<li><strong>Add a <a href="#staff">staff member</a></strong> who offers it, with working hours. <span class="path">Roohsites Appointment Booking → Staff → Add New</span>.</li>
+		<li><strong>Put the <a href="#form">booking form on a page</a>.</strong> Use the Booking form block or the shortcode <code>[rsab_booking]</code>.</li>
+		<li><strong>Make a test booking</strong> and check that the emails arrive. If they don't, see <a href="#troubleshooting">Troubleshooting</a>. Then delete the test booking in <span class="path">Roohsites Appointment Booking → Bookings</span>.</li>
 	</ol>
 
 	<h2 id="timezone">Time zone and currency (do this first)</h2>
 	<h3>Time zone</h3>
-	<p>Slotsmith shows and books times in your website's time zone, and new WordPress sites start on <strong>UTC</strong>. If you leave it, customers see UTC times, which are probably wrong for your city. Slotsmith shows a warning on its own screens until you change it.</p>
+	<p>Roohsites Appointment Booking shows and books times in your website's time zone, and new WordPress sites start on <strong>UTC</strong>. If you leave it, customers see UTC times, which are probably wrong for your city. Roohsites Appointment Booking shows a warning on its own screens until you change it.</p>
 	<ol>
 		<li>Go to <span class="path">Settings → General</span> and find <strong>Timezone</strong>.</li>
 		<li>Open the list and choose your <strong>city</strong>, for example <em>Asia → Kolkata</em>. A city also handles daylight saving time for you.</li>
@@ -117,16 +117,16 @@
 	<p>Set this <em>before</em> real bookings come in. A booking is stored as an exact moment in time, so changing the zone afterwards shows existing bookings at the new zone's clock time. Delete test bookings made before you changed it.</p>
 	<h3>Currency</h3>
 	<ol>
-		<li>Go to <span class="path">Slotsmith → Settings</span> and open the <strong>Currency</strong> list.</li>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Settings</span> and open the <strong>Currency</strong> list.</li>
 		<li>Choose yours, for example <em>₹ Indian rupee (INR)</em> or <em>$ US dollar (USD)</em>. The symbol shown next to prices follows your choice straight away. Choose <strong>Other</strong> to type your own symbol.</li>
 		<li>Click <span class="path">Save Changes</span>.</li>
 	</ol>
-	<p>With Slotsmith Pro, this is also the currency customers are charged in, and the payment methods that don't take it are hidden. See <a href="#payments">Online payments</a>.</p>
+	<p>With Roohsites Appointment Booking Pro, this is also the currency customers are charged in, and the payment methods that don't take it are hidden. See <a href="#payments">Online payments</a>.</p>
 
 	<h2 id="services">Services</h2>
 	<p>A service is something customers book, like “Haircut” or “Maths lesson”.</p>
 	<ol>
-		<li>Go to <span class="path">Slotsmith → Services → Add New</span> and type the service name as the title. Customers see it.</li>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Services → Add New</span> and type the service name as the title. Customers see it.</li>
 		<li>In the <strong>Service details</strong> box fill in:
 			<ul>
 				<li><strong>Short description</strong>: one line shown under the name, such as “Wash, cut and blow-dry”.</li>
@@ -143,7 +143,7 @@
 	<h2 id="staff">Staff</h2>
 	<p>Staff are the people customers book with: hairdressers, tutors, coaches. A one-person business adds one.</p>
 	<ol>
-		<li>Go to <span class="path">Slotsmith → Staff → Add New</span> and type the person's name as the title.</li>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Staff → Add New</span> and type the person's name as the title.</li>
 		<li>Click <strong>Set photo</strong> (optional) to show a picture on the form.</li>
 		<li><strong>Email</strong> (optional): this person is emailed about their new bookings.</li>
 		<li><strong>Services offered:</strong> tick every service they do.</li>
@@ -162,18 +162,18 @@
 		<li>Click <strong>Update</strong>, then link the page from your menu.</li>
 	</ol>
 	<h3>Shortcode (classic editor and page builders)</h3>
-	<p>Paste <code>[slotsmith]</code> into the page. In Elementor use the <em>Shortcode</em> widget, and in Divi a <em>Text</em> or <em>Code</em> module. You can preselect with the IDs shown in the Services and Staff lists:</p>
+	<p>Paste <code>[rsab_booking]</code> into the page. In Elementor use the <em>Shortcode</em> widget, and in Divi a <em>Text</em> or <em>Code</em> module. You can preselect with the IDs shown in the Services and Staff lists:</p>
 	<ul>
-		<li><code>[slotsmith service="12"]</code> starts with service 12 chosen;</li>
-		<li><code>[slotsmith staff="7"]</code> starts with staff member 7 chosen;</li>
-		<li><code>[slotsmith service="12" staff="7"]</code> preselects both.</li>
+		<li><code>[rsab_booking service="12"]</code> starts with service 12 chosen;</li>
+		<li><code>[rsab_booking staff="7"]</code> starts with staff member 7 chosen;</li>
+		<li><code>[rsab_booking service="12" staff="7"]</code> preselects both.</li>
 	</ul>
 	<h3>What customers see</h3>
 	<p>Three steps: <strong>Service</strong>, <strong>Date &amp; time</strong>, then <strong>Your details</strong> (name, email, phone, notes). The calendar only lets them pick days with free times, and times are grouped into morning, afternoon and evening. The confirmation screen has an <strong>Add to calendar</strong> button. The form uses your brand colour and your theme's fonts, and works on phones.</p>
 	<p>Pages with the form tell caching plugins (LiteSpeed, WP Rocket and others) not to cache them, so times are always live. If a cache plugin still shows old times, add the page to its “never cache” list.</p>
 
 	<h2 id="settings">Settings explained</h2>
-	<p>Go to <span class="path">Slotsmith → Settings</span>:</p>
+	<p>Go to <span class="path">Roohsites Appointment Booking → Settings</span>:</p>
 	<ul>
 		<li><strong>Time slot interval:</strong> how often a new start time is offered (every 5 to 60 minutes). With 30 minutes you get 9:00, 9:30, 10:00.</li>
 		<li><strong>Minimum notice (hours):</strong> customers can't book a slot starting sooner than this.</li>
@@ -186,7 +186,7 @@
 	</ul>
 
 	<h2 id="bookings">Managing bookings and emails</h2>
-	<p><span class="path">Slotsmith → Bookings</span> lists every booking. The links at the top filter it: <strong>Upcoming</strong>, <strong>Pending</strong>, <strong>Confirmed</strong>, <strong>Cancelled</strong> and <strong>Past</strong> (and <strong>Awaiting payment</strong> with Pro). Under each booking:</p>
+	<p><span class="path">Roohsites Appointment Booking → Bookings</span> lists every booking. The links at the top filter it: <strong>Upcoming</strong>, <strong>Pending</strong>, <strong>Confirmed</strong>, <strong>Cancelled</strong> and <strong>Past</strong> (and <strong>Awaiting payment</strong> with Pro). Under each booking:</p>
 	<ul>
 		<li><strong>Confirm</strong> (for pending bookings): the customer is emailed that it's confirmed.</li>
 		<li><strong>Cancel:</strong> cancels it and emails the customer.</li>
@@ -198,14 +198,14 @@
 		<li><strong>You</strong> (the notification email) <strong>and the staff member</strong> (if they have an email): a new booking, and a cancellation or move by the customer.</li>
 	</ul>
 	<p>The cancel link opens a page asking the customer to confirm. The booking is only cancelled when they press the button, so email scanners that open links can't cancel by accident. Customers can't cancel closer to the appointment than your minimum notice.</p>
-	<p>Slotsmith blocks spam with a hidden field and a short limit on repeat bookings from one visitor. It stores a one-way hash of the visitor's IP address for 10 minutes, never the address itself.</p>
+	<p>Roohsites Appointment Booking blocks spam with a hidden field and a short limit on repeat bookings from one visitor. It stores a one-way hash of the visitor's IP address for 10 minutes, never the address itself.</p>
 	<p>If emails don't reach customers, your host may not deliver WordPress mail. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP.</p>
 
-	<h2 id="pro">Installing Slotsmith Pro</h2>
+	<h2 id="pro">Installing Roohsites Appointment Booking Pro</h2>
 	<ol>
-		<li>Make sure the free Slotsmith plugin (version 1.0.0 or newer) is installed and active. Pro adds to it.</li>
-		<li>Download Slotsmith Pro (a .zip file) from your purchase email, then go to <span class="path">Plugins → Add New → Upload Plugin</span>, upload it and activate it.</li>
-		<li>Go to <span class="path">Slotsmith → Pro settings</span> and enter your licence key. Updates then arrive under <span class="path">Plugins</span> like any other plugin.</li>
+		<li>Make sure the free Roohsites Appointment Booking plugin (version 1.0.0 or newer) is installed and active. Pro adds to it.</li>
+		<li>Download Roohsites Appointment Booking Pro (a .zip file) from your purchase email, then go to <span class="path">Plugins → Add New → Upload Plugin</span>, upload it and activate it.</li>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Pro settings</span> and enter your licence key. Updates then arrive under <span class="path">Plugins</span> like any other plugin.</li>
 		<li>A <strong>My bookings</strong> page is created for you. Pro settings has a tab for each feature: Payments, Reminders, Google Calendar, Booking form, Customer portal and Emails.</li>
 	</ol>
 	<p>You can try every Pro feature free for 14 days with no card. Start the trial from the <a href="/#pricing">pricing section</a>.</p>
@@ -213,7 +213,7 @@
 	<h2 id="payments">Online payments (Razorpay, PayPal, Stripe)</h2>
 	<p>Customers pay on Razorpay's, PayPal's or Stripe's own secure page, so card details never touch your site. Set it up in three steps.</p>
 	<h3>Step 1: Choose your currency</h3>
-	<p>In <span class="path">Slotsmith → Settings → Currency</span>. The symbol on prices and the amount charged always use it. Each payment method takes some currencies, and Slotsmith hides the ones that don't take yours:</p>
+	<p>In <span class="path">Roohsites Appointment Booking → Settings → Currency</span>. The symbol on prices and the amount charged always use it. Each payment method takes some currencies, and Roohsites Appointment Booking hides the ones that don't take yours:</p>
 	<ul>
 		<li><strong>Razorpay:</strong> Indian rupees (INR). It's hidden for other currencies, unless Razorpay has switched on international payments for your account and you tick <strong>Razorpay international payments</strong>.</li>
 		<li><strong>PayPal:</strong> USD, EUR, GBP, AUD, CAD and most other major currencies, but <strong>not</strong> Indian rupees.</li>
@@ -221,7 +221,7 @@
 	</ul>
 	<p>So a shop in India that charges in rupees uses Razorpay (UPI, cards, netbanking). A site charging in dollars uses PayPal or Stripe. Switching the currency switches which methods customers see.</p>
 	<h3>Step 2: Payment options</h3>
-	<p>Under <span class="path">Slotsmith → Pro settings → Payments</span>:</p>
+	<p>Under <span class="path">Roohsites Appointment Booking → Pro settings → Payments</span>:</p>
 	<ul>
 		<li><strong>Take payments online:</strong> tick it to turn payments on.</li>
 		<li><strong>Amount to collect:</strong> the full price, or a deposit (set the <strong>Deposit (%)</strong>), with the rest paid at the appointment. The bookings list then shows “Paid online” and “To pay at appointment”.</li>
@@ -244,7 +244,7 @@
 		<li>Click <span class="path">Create App</span>, name it after your business, keep the type <em>Merchant</em> and create it.</li>
 		<li>Copy the <strong>Client ID</strong>. Under <span class="path">Secret key 1</span> click <span class="path">Show</span> and copy the <strong>secret</strong>.</li>
 		<li>In <span class="path">Pro settings → Payments</span>, tick PayPal and paste both. Tick <strong>PayPal sandbox</strong> if you used Sandbox keys, and untick it for Live keys. If PayPal rejects the keys, this tick box not matching the keys is the usual reason.</li>
-		<li>Choose a currency PayPal accepts, such as USD, EUR or GBP, in <span class="path">Slotsmith → Settings → Currency</span>.</li>
+		<li>Choose a currency PayPal accepts, such as USD, EUR or GBP, in <span class="path">Roohsites Appointment Booking → Settings → Currency</span>.</li>
 		<li>Add the <a href="#webhooks">webhook</a>.</li>
 	</ol>
 	<p><strong>To test first:</strong> with Sandbox keys, open <span class="path">Testing tools → Sandbox accounts</span> in the PayPal developer dashboard and create a <strong>Personal</strong> account. That is a fake buyer. When you pay on your booking form, log in to PayPal with that account's email and password (open it with the <span class="path">…</span> menu, then <span class="path">View/edit account</span>). Don't use the Business sandbox account to pay, because a shop can't pay itself. Real PayPal logins don't work in the sandbox, and no real money moves. When you're happy, paste your Live keys and untick <strong>PayPal sandbox</strong>.</p>
@@ -299,7 +299,7 @@
 	<p>The <strong>Send a test message</strong> box at the bottom of the Reminders tab sends one SMS or WhatsApp message to a number you type, so you can check your keys before real customers rely on them. If it fails, the box shows the provider's exact error. Save your settings first.</p>
 
 	<h2 id="sms">SMS reminders (Twilio)</h2>
-	<p>Slotsmith sends SMS through <a href="https://www.twilio.com/" rel="noopener">Twilio</a>. You need a Twilio account and a Twilio phone number that can send to your customers' country.</p>
+	<p>Roohsites Appointment Booking sends SMS through <a href="https://www.twilio.com/" rel="noopener">Twilio</a>. You need a Twilio account and a Twilio phone number that can send to your customers' country.</p>
 	<ol>
 		<li>Create an account at twilio.com. A free trial gives some credit.</li>
 		<li>In the Twilio Console, copy your <strong>Account SID</strong> and <strong>Auth Token</strong> (<span class="path">Account → API keys &amp; tokens → Auth tokens</span>).</li>
@@ -313,11 +313,11 @@
 	<p><strong>Sending to India:</strong> Indian networks require senders to register their message templates and sender names (called DLT), and messages from an unregistered international number are often blocked. For Indian customers use <a href="#whatsapp">WhatsApp</a> instead, or a registered Indian SMS provider.</p>
 
 	<h2 id="whatsapp">WhatsApp reminders</h2>
-	<p>Slotsmith sends WhatsApp messages through Meta's official <strong>WhatsApp Cloud API</strong>. WhatsApp only lets a business start a conversation with an approved <strong>message template</strong>, so you create one template and Slotsmith fills it in for each booking. It's free to try with Meta's test number. Meta renames screens now and then, so if a menu looks different, look for the same words.</p>
+	<p>Roohsites Appointment Booking sends WhatsApp messages through Meta's official <strong>WhatsApp Cloud API</strong>. WhatsApp only lets a business start a conversation with an approved <strong>message template</strong>, so you create one template and Roohsites Appointment Booking fills it in for each booking. It's free to try with Meta's test number. Meta renames screens now and then, so if a menu looks different, look for the same words.</p>
 	<h3>Part 1: Create the app and the test number</h3>
 	<ol>
 		<li>Go to <a href="https://developers.facebook.com/" rel="noopener">developers.facebook.com</a>, log in with Facebook and finish the developer sign-up.</li>
-		<li>Click <span class="path">Create App</span>, name it (for example “Slotsmith”), and choose the use case <strong>Connect with customers through WhatsApp</strong>. Choose or create a free <strong>business portfolio</strong> when asked.</li>
+		<li>Click <span class="path">Create App</span>, name it (for example “Roohsites Appointment Booking”), and choose the use case <strong>Connect with customers through WhatsApp</strong>. Choose or create a free <strong>business portfolio</strong> when asked.</li>
 		<li>In the app, open <span class="path">Use cases → Customize</span> on the WhatsApp use case, then <span class="path">API setup</span>. You'll see a free <strong>test phone number</strong>, its <strong>Phone number ID</strong> and a temporary <strong>access token</strong> (valid for 24 hours).</li>
 		<li>Under <strong>Recipient</strong>, choose <span class="path">Manage phone number list</span>, add your own WhatsApp number and enter the code WhatsApp sends you. The test number can only message numbers on this list.</li>
 		<li>Click <strong>Send message</strong> under Meta's sample template. A message from the test number should arrive on your phone. That proves the number and recipient work.</li>
@@ -329,7 +329,7 @@
 		<li>Body, with exactly these three variables in this order:<br><code>Hi {{1}}, this is a reminder of your {{2}} appointment on {{3}}. Reply to this chat if you need to change it.</code><br>{{1}} is the customer's name, {{2}} the service and {{3}} the date and time.</li>
 		<li>Add sample values when asked (for example <em>Asha</em>, <em>Haircut</em>, <em>Monday 2 November at 11:30 am</em>) and submit. Review takes minutes to a few hours. Wait for the status <strong>Active</strong>.</li>
 	</ol>
-	<h3>Part 3: Connect it to Slotsmith</h3>
+	<h3>Part 3: Connect it to Roohsites Appointment Booking</h3>
 	<ol>
 		<li>In <span class="path">Pro settings → Reminders</span> tick <strong>WhatsApp reminders</strong>.</li>
 		<li><strong>Phone number ID:</strong> from API setup. <strong>Access token:</strong> click <em>Generate new token</em> there and paste it. <strong>Message template name:</strong> <code>appointment_reminder</code>.</li>
@@ -340,29 +340,29 @@
 	<h3>Part 4: Go live for your customers</h3>
 	<p>The test number and the 24-hour token are for trying things out. For real customers:</p>
 	<ol>
-		<li><strong>Add your own business number.</strong> In WhatsApp Manager open <span class="path">Phone numbers → Add phone number</span> and verify it. The number must not be in use in a normal WhatsApp or WhatsApp Business app (delete that account from the app first) and must be able to receive a call or SMS for the code. Use the new number's <strong>Phone number ID</strong> in Slotsmith.</li>
-		<li><strong>Create a permanent token.</strong> In Meta Business settings open <span class="path">Users → System users → Add</span>, name it “Slotsmith” and give it the <em>Admin</em> role. Choose <span class="path">Add assets</span> and give it full control of your app and your WhatsApp account. Then <span class="path">Generate token</span>: choose your app, set expiry to <strong>Never</strong>, tick <code>whatsapp_business_messaging</code> and <code>whatsapp_business_management</code>, and copy the token into Slotsmith's <strong>Access token</strong>.</li>
+		<li><strong>Add your own business number.</strong> In WhatsApp Manager open <span class="path">Phone numbers → Add phone number</span> and verify it. The number must not be in use in a normal WhatsApp or WhatsApp Business app (delete that account from the app first) and must be able to receive a call or SMS for the code. Use the new number's <strong>Phone number ID</strong> in Roohsites Appointment Booking.</li>
+		<li><strong>Create a permanent token.</strong> In Meta Business settings open <span class="path">Users → System users → Add</span>, name it “Roohsites Appointment Booking” and give it the <em>Admin</em> role. Choose <span class="path">Add assets</span> and give it full control of your app and your WhatsApp account. Then <span class="path">Generate token</span>: choose your app, set expiry to <strong>Never</strong>, tick <code>whatsapp_business_messaging</code> and <code>whatsapp_business_management</code>, and copy the token into Roohsites Appointment Booking's <strong>Access token</strong>.</li>
 		<li><strong>Publish the app.</strong> In the app's menu open <span class="path">Publish</span> and switch it to Live. Meta may ask for your website's privacy policy address.</li>
 		<li>Re-send a test message to check the live setup.</li>
 	</ol>
 	<p>Meta charges for template messages once any free allowance is used up, so check its current pricing for your country. WhatsApp messages only go to customers who gave a phone number on the form.</p>
 
 	<h2 id="google">Google Calendar</h2>
-	<p>Slotsmith Pro can add each booking to a staff member's Google Calendar, and stop customers booking times when that person is already busy. You set it up once per website in Google Cloud (free, about 10 minutes). Then each staff member connects their own calendar.</p>
+	<p>Roohsites Appointment Booking Pro can add each booking to a staff member's Google Calendar, and stop customers booking times when that person is already busy. You set it up once per website in Google Cloud (free, about 10 minutes). Then each staff member connects their own calendar.</p>
 
 	<h3>Part 1: Set up Google Cloud (once)</h3>
 	<ol>
-		<li><strong>Create a project.</strong> Go to <a href="https://console.cloud.google.com/" rel="noopener">console.cloud.google.com</a> and sign in with your business Google account. Open the project menu at the top, choose <span class="path">New project</span>, name it “Slotsmith bookings” and click <span class="path">Create</span>. Check that it's the selected project.</li>
+		<li><strong>Create a project.</strong> Go to <a href="https://console.cloud.google.com/" rel="noopener">console.cloud.google.com</a> and sign in with your business Google account. Open the project menu at the top, choose <span class="path">New project</span>, name it “Roohsites Appointment Booking bookings” and click <span class="path">Create</span>. Check that it's the selected project.</li>
 		<li><strong>Turn on the Google Calendar API.</strong> Open <span class="path">APIs &amp; Services → Library</span>, search for “Google Calendar API”, open it and click <span class="path">Enable</span>. Don't skip this step: without it, connecting looks successful but no bookings reach the calendar.</li>
 		<li><strong>Set up the consent screen.</strong> Open <span class="path">APIs &amp; Services → OAuth consent screen</span> (Google also calls it <em>Google Auth Platform</em>) and click <span class="path">Get started</span>. Enter your <em>business name</em> as the app name, because your staff see it when they connect. Choose your email as the support email, choose <span class="path">External</span> as the audience, enter your email as the contact, agree to the policy and click <span class="path">Create</span>.</li>
 		<li><strong>Publish the app.</strong> Open <span class="path">Audience</span>, click <span class="path">Publish app</span> and confirm. Don't leave it in <em>Testing</em>: in that mode Google blocks everyone you haven't added as a test user (“Access blocked”) and ends every connection after 7 days. Publishing is fine for your own use. Google only asks for verification from apps that serve the public.</li>
-		<li><strong>Create the client.</strong> Open <span class="path">Clients → Create client</span> (on older screens: <span class="path">Credentials → Create credentials → OAuth client ID</span>). Choose <span class="path">Web application</span> and give it any name. Under <span class="path">Authorised redirect URIs</span> click <span class="path">Add URI</span> and paste the address shown in Slotsmith under <span class="path">Pro settings → Google Calendar</span>. It must match exactly. Click <span class="path">Create</span>, then copy the <strong>client ID</strong> and <strong>client secret</strong>.</li>
+		<li><strong>Create the client.</strong> Open <span class="path">Clients → Create client</span> (on older screens: <span class="path">Credentials → Create credentials → OAuth client ID</span>). Choose <span class="path">Web application</span> and give it any name. Under <span class="path">Authorised redirect URIs</span> click <span class="path">Add URI</span> and paste the address shown in Roohsites Appointment Booking under <span class="path">Pro settings → Google Calendar</span>. It must match exactly. Click <span class="path">Create</span>, then copy the <strong>client ID</strong> and <strong>client secret</strong>.</li>
 		<li><strong>Paste them into WordPress.</strong> In <span class="path">Pro settings → Google Calendar</span>, paste the client ID and secret and save. Keep <strong>Add bookings to staff calendars</strong> and <strong>Block times that are busy in Google Calendar</strong> ticked.</li>
 	</ol>
 
 	<h3>Part 2: Connect each staff member</h3>
 	<ol>
-		<li>Open <span class="path">Slotsmith → Staff</span>, open the person and click <strong>Connect Google Calendar</strong> in the Google Calendar box. Each person connects their own Google account, so do this together, or while they're signed in to Google in your browser.</li>
+		<li>Open <span class="path">Roohsites Appointment Booking → Staff</span>, open the person and click <strong>Connect Google Calendar</strong> in the Google Calendar box. Each person connects their own Google account, so do this together, or while they're signed in to Google in your browser.</li>
 		<li>Choose their Google account. Google shows <strong>“Google hasn't verified this app”</strong>. This is normal for your own app. Click <span class="path">Advanced</span>, then <span class="path">Go to (your app name) (unsafe)</span>, then allow access.</li>
 		<li>You come back to the staff page, which should say <strong>Connected</strong> with their Gmail address underneath. If the address is missing, Google refused the Calendar API: see the first fix in <a href="#troubleshooting">Troubleshooting</a>.</li>
 	</ol>
@@ -370,24 +370,24 @@
 	<h3>Part 3: Test it (2 minutes)</h3>
 	<ul>
 		<li>Make a test booking with that staff member and confirm it. An event named “Service – Customer name” appears in their main Google Calendar within a minute. Cancelling the booking removes it.</li>
-		<li>Add an event to their Google Calendar for tomorrow afternoon, then reload your booking form. Those times are no longer offered. Slotsmith checks Google every 5 minutes, so a new event can take that long to show.</li>
+		<li>Add an event to their Google Calendar for tomorrow afternoon, then reload your booking form. Those times are no longer offered. Roohsites Appointment Booking checks Google every 5 minutes, so a new event can take that long to show.</li>
 	</ul>
 
 	<h3>How the sync works</h3>
 	<ul>
-		<li>Slotsmith uses each person's <strong>main calendar</strong>. Pending bookings show as tentative and confirmed ones as confirmed.</li>
+		<li>Roohsites Appointment Booking uses each person's <strong>main calendar</strong>. Pending bookings show as tentative and confirmed ones as confirmed.</li>
 		<li>When you move a booking to another time or person, the event moves with it.</li>
 		<li>Events marked <em>Free</em>, declined or cancelled don't block times. All-day events block the whole day.</li>
-		<li>Change or cancel bookings in Slotsmith, not in Google Calendar. Editing the event in Google doesn't change the booking.</li>
-		<li>Click <strong>Disconnect</strong> on the staff page at any time. It also removes Slotsmith's access in Google.</li>
+		<li>Change or cancel bookings in Roohsites Appointment Booking, not in Google Calendar. Editing the event in Google doesn't change the booking.</li>
+		<li>Click <strong>Disconnect</strong> on the staff page at any time. It also removes Roohsites Appointment Booking's access in Google.</li>
 	</ul>
 
 	<h2 id="calendar">Admin calendar</h2>
-	<p><span class="path">Slotsmith → Calendar</span> shows your bookings on a calendar, for you and your team.</p>
+	<p><span class="path">Roohsites Appointment Booking → Calendar</span> shows your bookings on a calendar, for you and your team.</p>
 	<ul>
 		<li>Switch between <strong>Day</strong> and <strong>Week</strong>, jump back with <strong>Today</strong>, and use the staff list (<strong>All staff</strong> by default) to look at one person.</li>
 		<li><strong>Add a booking</strong> for a walk-in or phone call: click an empty time. Choose the service, staff member, date, time, the customer's name, optionally their email (a confirmation is sent if you add one), phone and notes, and whether it's <em>Confirmed</em> or <em>Pending</em>, then click <strong>Add booking</strong>.</li>
-		<li><strong>Move a booking:</strong> drag it to a new time. The customer is emailed the new time. Slotsmith asks you first if the new time overlaps another booking or has already passed.</li>
+		<li><strong>Move a booking:</strong> drag it to a new time. The customer is emailed the new time. Roohsites Appointment Booking asks you first if the new time overlaps another booking or has already passed.</li>
 		<li><strong>Confirm or cancel:</strong> click a booking, then <strong>Confirm</strong> or <strong>Cancel booking</strong>. Cancelling emails the customer.</li>
 	</ul>
 	<p>You need at least one staff member before the calendar shows anything.</p>
@@ -398,14 +398,14 @@
 		<li>Go to <span class="path">Pro settings → Customer portal</span>.</li>
 		<li><strong>Let customers reschedule:</strong> tick it to allow it.</li>
 		<li><strong>Latest change (hours before):</strong> customers can't cancel or move closer to the appointment than this.</li>
-		<li><strong>My bookings page:</strong> choose the page that emails link to. Slotsmith creates one for you. It holds the <strong>My bookings</strong> block, or the shortcode <code>[slotsmith_my_bookings]</code> if you use a page builder.</li>
+		<li><strong>My bookings page:</strong> choose the page that emails link to. Roohsites Appointment Booking creates one for you. It holds the <strong>My bookings</strong> block, or the shortcode <code>[rsab_my_bookings]</code> if you use a page builder.</li>
 		<li>Add that page to your menu so returning customers can find it.</li>
 	</ol>
 
 	<h2 id="extras">Service extras</h2>
 	<p>Optional add-ons customers can pick with a service, like “Head massage”. They add to the price and to the appointment length.</p>
 	<ol>
-		<li>Open the service in <span class="path">Slotsmith → Services</span>.</li>
+		<li>Open the service in <span class="path">Roohsites Appointment Booking → Services</span>.</li>
 		<li>In the <strong>Extras</strong> box click <strong>Add extra</strong>.</li>
 		<li>Type the <strong>Name</strong> (for example “Head massage”), the <strong>Price</strong> and the <strong>Extra minutes</strong>.</li>
 		<li>Click <strong>Update</strong>. Customers see <strong>Add extras</strong> under the service, and the booking summary shows the new total and length.</li>
@@ -413,7 +413,7 @@
 
 	<h2 id="coupons">Coupons</h2>
 	<ol>
-		<li>Go to <span class="path">Slotsmith → Coupons → Add New</span>.</li>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Coupons → Add New</span>.</li>
 		<li>Type the code as the title, for example <code>WELCOME10</code>.</li>
 		<li>Under <strong>Discount</strong> choose <strong>% off</strong> or a fixed amount off, and enter the number.</li>
 		<li><strong>Expires</strong> (optional): the coupon is valid until the end of that day.</li>
@@ -433,7 +433,7 @@
 	</ol>
 
 	<h2 id="schedules">Breaks and special dates</h2>
-	<p>Open a staff member in <span class="path">Slotsmith → Staff</span> and use the <strong>Breaks and special dates</strong> box.</p>
+	<p>Open a staff member in <span class="path">Roohsites Appointment Booking → Staff</span> and use the <strong>Breaks and special dates</strong> box.</p>
 	<ul>
 		<li><strong>Breaks</strong> (like lunch): click <strong>Add break</strong>, choose <em>Every day</em>, <em>Weekdays (Mon–Fri)</em> or one day, and set <strong>From</strong> and <strong>To</strong>. Nobody can book that time.</li>
 		<li><strong>Special dates</strong> (holidays, or a day with different hours): click <strong>Add date</strong>, pick the <strong>Date</strong> and choose <strong>Closed</strong>, or <strong>Open</strong> with its own hours. A special date replaces the weekly hours for that day only.</li>
@@ -466,15 +466,15 @@
 	</details>
 	<details>
 		<summary>Booking emails don't arrive</summary>
-		<p>Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Slotsmith uses the standard WordPress mail function, so it works with all of them. Also check the spam folder.</p>
+		<p>Many web hosts don't deliver WordPress email reliably. Install an SMTP plugin such as WP Mail SMTP or FluentSMTP and connect it to your email provider. Roohsites Appointment Booking uses the standard WordPress mail function, so it works with all of them. Also check the spam folder.</p>
 	</details>
 	<details>
 		<summary>Times are an hour or more out</summary>
-		<p>Slotsmith uses the time zone in <span class="path">Settings → General</span>, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See <a href="#timezone">Time zone and currency</a>. Set it before real bookings come in.</p>
+		<p>Roohsites Appointment Booking uses the time zone in <span class="path">Settings → General</span>, and new sites start on UTC. Choose your city, or if the list only shows UTC offsets, your offset (India is UTC+5:30). See <a href="#timezone">Time zone and currency</a>. Set it before real bookings come in.</p>
 	</details>
 	<details>
 		<summary>A day or time I expected isn't offered</summary>
-		<p>Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in <span class="path">Slotsmith → Settings</span>, and (with Pro) busy times in their Google Calendar.</p>
+		<p>Check the staff member's weekly hours, days off, breaks and special dates, your minimum notice and booking window in <span class="path">Roohsites Appointment Booking → Settings</span>, and (with Pro) busy times in their Google Calendar.</p>
 	</details>
 	<details>
 		<summary>Reminders are late, or paid bookings stay “awaiting payment”</summary>
@@ -482,12 +482,12 @@
 	</details>
 	<details>
 		<summary>The payment page shows a currency error</summary>
-		<p>Check the currency in <span class="path">Slotsmith → Settings → Currency</span>. Each provider supports its own list of currencies, and Slotsmith hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on <span class="path">Pro settings → Payments</span> says which payment method is hidden and why.</p>
+		<p>Check the currency in <span class="path">Roohsites Appointment Booking → Settings → Currency</span>. Each provider supports its own list of currencies, and Roohsites Appointment Booking hides the ones that don't take yours: PayPal doesn't accept Indian rupees, and Razorpay needs INR unless international payments are switched on for your account. A warning on <span class="path">Pro settings → Payments</span> says which payment method is hidden and why.</p>
 	</details>
 
 	<details>
 		<summary>Google Calendar says “Connected”, but bookings don't appear in it</summary>
-		<p>The Google Calendar API isn't switched on in your Google Cloud project. Open <span class="path">APIs &amp; Services → Library</span> in the same project as your OAuth client, search for “Google Calendar API” and click <span class="path">Enable</span>. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Slotsmith Pro show Google's message in red on the staff page when this happens.</p>
+		<p>The Google Calendar API isn't switched on in your Google Cloud project. Open <span class="path">APIs &amp; Services → Library</span> in the same project as your OAuth client, search for “Google Calendar API” and click <span class="path">Enable</span>. Wait a minute, then disconnect and connect the staff member again and make a new booking. Bookings made before the fix aren't sent automatically. Newer versions of Roohsites Appointment Booking Pro show Google's message in red on the staff page when this happens.</p>
 	</details>
 	<details>
 		<summary>Google says “Access blocked: … has not completed the Google verification process”</summary>
@@ -503,7 +503,7 @@
 	</details>
 	<details>
 		<summary>A payment method is missing from the booking form</summary>
-		<p>Check that <strong>Take payments online</strong> is ticked, that the method is ticked with its keys saved, and that it takes your currency. Slotsmith hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in <span class="path">Slotsmith → Settings → Currency</span>.</p>
+		<p>Check that <strong>Take payments online</strong> is ticked, that the method is ticked with its keys saved, and that it takes your currency. Roohsites Appointment Booking hides methods that don't: PayPal doesn't take rupees, and Razorpay needs INR. The Payments tab shows a warning saying which one is hidden and why. Change the currency in <span class="path">Roohsites Appointment Booking → Settings → Currency</span>.</p>
 	</details>
 	<details>
 		<summary>No SMS or WhatsApp reminder arrived</summary>
@@ -529,11 +529,11 @@
 	</details>
 	<details>
 		<summary>How do I move my licence to another website?</summary>
-		<p>On the old site, go to <span class="path">Slotsmith → Account</span> and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up.</p>
+		<p>On the old site, go to <span class="path">Roohsites Appointment Booking → Account</span> and deactivate the licence, then enter the key on the new site. If you can no longer get into the old site, email us and we'll free it up.</p>
 	</details>
 	<details>
 		<summary>How do I cancel automatic renewal?</summary>
-		<p>Cancel it in your account at <a href="https://users.freemius.com/" rel="noopener">users.freemius.com</a>, or email us. Your licence stays active until the end of the period you paid for, and Slotsmith Pro keeps working after that. You just stop getting updates and support.</p>
+		<p>Cancel it in your account at <a href="https://users.freemius.com/" rel="noopener">users.freemius.com</a>, or email us. Your licence stays active until the end of the period you paid for, and Roohsites Appointment Booking Pro keeps working after that. You just stop getting updates and support.</p>
 	</details>
 	<details>
 		<summary>Can I get a refund?</summary>
@@ -555,7 +555,7 @@
 			<a href="/terms">Terms</a>
 			<a href="/privacy">Privacy</a>
 		</nav>
-		<span>© 2026 Slotsmith by Rooh Sites. Not affiliated with WordPress.</span>
+		<span>© 2026 Rooh Sites. Not affiliated with WordPress.</span>
 	</div>
 </footer>
 </body>

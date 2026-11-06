@@ -1,0 +1,12 @@
+# Roohsites Appointment Booking
+
+> Appointment booking plugin for WordPress, for salons, tutors, coaches and other service businesses. The free plugin (on WordPress.org) has unlimited staff and services. Roohsites Appointment Booking Pro ($79/year for 1 site, $149 for 5, $299 for unlimited; same price at renewal; 14-day free trial without a card) adds Razorpay (UPI), Stripe and PayPal payments or deposits with automatic refunds, email/SMS/WhatsApp reminders, two-way Google Calendar sync, a drag-and-drop admin calendar and a customer page to reschedule or cancel.
+
+- [Home and pricing](https://booking.roohsites.com/)
+- [Founding members offer, first 100 customers only: every Pro feature, $39/year for 1 site or $59/year for 3](https://booking.roohsites.com/founding-members)
+- [Comparison: Roohsites Appointment Booking vs Bookly, Amelia and LatePoint](https://booking.roohsites.com/compare)
+- [Bookly alternative](https://booking.roohsites.com/bookly-alternative)
+- [Amelia alternative](https://booking.roohsites.com/amelia-alternative)
+- [LatePoint alternative](https://booking.roohsites.com/latepoint-alternative)
+- [Setup guides and support](https://booking.roohsites.com/support)
+- [Refund policy](https://booking.roohsites.com/refund-policy), [Terms](https://booking.roohsites.com/terms), [Privacy](https://booking.roohsites.com/privacy)

@@ -22,7 +22,7 @@ while True:
     if len(ev) >= r.get("count", 0) or not r.get("data"): break
     page += 1; time.sleep(0.5)
 sites = json.load(open("sites.json")); h2 = {urlparse(s["url"]).hostname: s["name"] for s in sites}
-h2.update({"roohsites.com": "Rooh Sites (agency)", "tools.roohsites.com": "Hub", "slotsmith.roohsites.com": "Slotsmith site"})
+h2.update({"roohsites.com": "Rooh Sites (agency)", "tools.roohsites.com": "Hub", "slotsmith.roohsites.com": "Slotsmith site (old)", "booking.roohsites.com": "Booking plugin site"})
 sess = {}
 for e in ev:
     s = sess.setdefault(e["sessionId"], {"os": e["os"], "tools": set(), "eng": False, "out": 0, "pv": 0, "src": ""})

@@ -14,7 +14,7 @@ jobs:
       - name: Check every host
         run: |
           set -uo pipefail
-          hosts=$(node -p 'JSON.parse(require("fs").readFileSync("sites.json","utf8")).filter(s=>s.live!==false).map(s=>new URL(s.url).host).concat(["roohsites.com","slotsmith.roohsites.com"]).join(" ")')
+          hosts=$(node -p 'JSON.parse(require("fs").readFileSync("sites.json","utf8")).filter(s=>s.live!==false).map(s=>new URL(s.url).host).concat(["roohsites.com","booking.roohsites.com"]).join(" ")')
           for h in $hosts; do
             echo "=== $h"
             html=$(curl -sL -m 25 -A "Mozilla/5.0 (compatible; Googlebot/2.1)" "https://$h/" || true)

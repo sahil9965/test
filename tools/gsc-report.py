@@ -12,6 +12,7 @@ host2 = {urlparse(s["url"]).hostname: (s["name"], s["url"].replace("https://", "
 host2["tools.roohsites.com"] = ("Hub", "tools.roohsites.com")
 host2["roohsites.com"] = ("Rooh Sites (agency site)", "roohsites.com")
 host2["slotsmith.roohsites.com"] = ("Slotsmith (plugin site)", "slotsmith.roohsites.com")
+host2["booking.roohsites.com"] = ("Booking plugin site", "booking.roohsites.com")
 rd = lambda p: list(csv.DictReader(open(p, encoding="utf-8")))
 n = lambda s: float(str(s).replace("%", "").replace(",", "") or 0)
 

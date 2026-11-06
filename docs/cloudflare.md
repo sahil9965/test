@@ -52,14 +52,16 @@ node tools/cf-build.mjs labelfit
 cd dist/labelfit && npx wrangler@4 pages dev public --port 8799
 ```
 
-## Slotsmith sales site
+## Booking plugin site (Roohsites Appointment Booking)
 
-`external/slotsmith-site/` (a copy of `site/` from the private slotsmith repo) is published by `.github/workflows/deploy-slotsmith.yml`
-on a push that touches it, or by hand (Actions > Deploy Slotsmith site > Run workflow). It is not in `sites.json`, so it stays out of
-the footers, hub, pins and IndexNow.
+`external/booking-site/` (a copy of `site/` from the private slotsmith repo) is published by `.github/workflows/deploy-booking.yml`
+on a push that touches it, or by hand (Actions > Deploy booking site > Run workflow). It is not in `sites.json`, so it stays out of
+the footers, hub, pins and IndexNow runs of the free tools.
 
-`node tools/cf-pages-project.mjs slotsmith.roohsites.com rooh-slotsmith` asks the Cloudflare API which Pages project serves the domain.
-The site was first uploaded by hand as a Worker, so the workflow created `rooh-slotsmith` and the domain was moved onto it
-(31 Oct; the Worker is deleted). The lookup now finds the project by its domain; `rooh-slotsmith` stays the fallback. Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`; the run
-summary shows every page on both hosts and warns while the domain still serves something else.
-Then it sends the sitemap's URLs to IndexNow (the key file is the 32-hex `.txt` in the site root), once the live domain serves the deploy.
+`node tools/cf-pages-project.mjs booking.roohsites.com rooh-booking` asks the Cloudflare API which Pages project serves the domain;
+until one does, the workflow deploys to `rooh-booking` and tries to add the domain through the API (a warning says when it has to be
+added by hand). Each deploy writes `version.txt` (the commit) and adds `X-Robots-Tag: noindex` for `*.pages.dev`.
+
+The plugin used to be called Slotsmith (renamed 6 Nov 2026 at WordPress.org's request). Once booking.roohsites.com serves the deploy,
+the same workflow publishes `external/slotsmith-redirect/` (`/* → https://booking.roohsites.com/:splat 301`) to the project that serves
+slotsmith.roohsites.com (`rooh-slotsmith`), so old links and search results keep working.
