@@ -78,6 +78,33 @@ jobs:
           # Give DNS a moment before the live check below.
           sleep 60
 
+      - name: Domain status and DNS record
+        env:
+          PROJECT: ${{ steps.project.outputs.name }}
+        run: |
+          set -uo pipefail
+          api="https://api.cloudflare.com/client/v4"
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json')
+          d=$(curl -s -m 30 "${auth[@]}" "$api/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT/domains/$DOMAIN")
+          echo "$d" | node -e 'let s="";process.stdin.on("data",c=>s+=c).on("end",()=>{try{const r=JSON.parse(s).result||{};console.log("domain status:",r.status,"| validation:",JSON.stringify(r.validation_data),"| verification:",JSON.stringify(r.verification_data))}catch(e){console.log(s.slice(0,400))}})'
+          zone=$(echo "$d" | node -e 'let s="";process.stdin.on("data",c=>s+=c).on("end",()=>{try{process.stdout.write((JSON.parse(s).result||{}).zone_tag||"")}catch(e){}})')
+          [ -n "$zone" ] || { echo "No zone for $DOMAIN in this account."; exit 0; }
+          host=${DOMAIN%%.*}
+          have=$(curl -s -m 30 "${auth[@]}" "$api/zones/$zone/dns_records?name=$DOMAIN")
+          if echo "$have" | grep -qE '"count": *[1-9]'; then
+            echo "DNS record for $DOMAIN exists:"; echo "$have" | grep -oE '"(type|content|proxied)": *[^,]*' | head -6
+          else
+            r=$(curl -s -m 30 -X POST "${auth[@]}" -d "{\"type\":\"CNAME\",\"name\":\"$host\",\"content\":\"$PROJECT.pages.dev\",\"proxied\":true}" "$api/zones/$zone/dns_records")
+            if echo "$r" | grep -qE '"success": *true'; then
+              echo "Created CNAME $DOMAIN -> $PROJECT.pages.dev (proxied)."; { echo; echo "Created DNS record **$DOMAIN → $PROJECT.pages.dev**."; } >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "$r" | head -c 500; echo
+              echo "::warning title=Add the DNS record by hand::In Cloudflare DNS for roohsites.com add CNAME $host -> $PROJECT.pages.dev (proxied)."
+              { echo; echo "Add DNS by hand: CNAME **$host → $PROJECT.pages.dev** (proxied)."; } >> "$GITHUB_STEP_SUMMARY"
+            fi
+            sleep 45
+          fi
+
       - name: Check the live site
         env:
           PROJECT: ${{ steps.project.outputs.name }}
@@ -96,7 +123,7 @@ jobs:
           { echo "### Booking site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
           # Icons Google can use, and a real 404 for unknown addresses (no 404.html makes Pages answer 200 with the home page).
           for f in /favicon.ico /favicon.svg /apple-touch-icon.png; do
-            line=$( { curl -sIL -m 20 "https://$DOMAIN$f" || true; } | tr -d '\r' | grep -iE '^(HTTP|content-type)' | tr '\n' ' ')
+            line=$( { curl -sIL -m 20 "https://$DOMAIN$f" || true; } | tr -d '\r' | { grep -iE '^(HTTP|content-type)' || true; } | tr '\n' ' ')
             echo "$f: $line"; echo "- $f: $line" >> "$GITHUB_STEP_SUMMARY"
           done
           nf=$(curl -s -o /dev/null -m 20 -w '%{http_code}' "https://$DOMAIN/this-page-does-not-exist-$GITHUB_RUN_ID" || true)
