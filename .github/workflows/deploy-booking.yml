@@ -68,7 +68,7 @@ jobs:
           res=$(curl -s -m 30 -X POST -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' \
             -d "{\"name\":\"$DOMAIN\"}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT/domains")
           echo "$res" | head -c 600; echo
-          if echo "$res" | grep -q '"success":true'; then
+          if echo "$res" | grep -qE '"success": *true'; then
             echo "Added $DOMAIN to $PROJECT. Cloudflare sets up the DNS record and certificate; that can take a few minutes."
             { echo; echo "Added **$DOMAIN** to **$PROJECT** (DNS and certificate can take a few minutes)."; } >> "$GITHUB_STEP_SUMMARY"
           else
@@ -88,18 +88,18 @@ jobs:
           table=$'| page | '"$PROJECT"$'.pages.dev | '"$DOMAIN"$' |\n|---|---|---|'
           for f in external/booking-site/*.html; do
             p=$(basename "$f" .html); [ "$p" = 404 ] && continue; [ "$p" = index ] && p=""
-            a=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$PROJECT.pages.dev/$p")
-            b=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p")
+            a=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$PROJECT.pages.dev/$p" || true)
+            b=$(curl -s -o /dev/null -w '%{http_code}' -L -m 20 "https://$DOMAIN/$p" || true)
             table+=$'\n'"| /$p | $a | $b |"
           done
           echo "$table"
           { echo "### Booking site"; echo; echo "$table"; } >> "$GITHUB_STEP_SUMMARY"
           # Icons Google can use, and a real 404 for unknown addresses (no 404.html makes Pages answer 200 with the home page).
           for f in /favicon.ico /favicon.svg /apple-touch-icon.png; do
-            line=$(curl -sIL -m 20 "https://$DOMAIN$f" | tr -d '\r' | grep -iE '^(HTTP|content-type)' | tr '\n' ' ')
+            line=$( { curl -sIL -m 20 "https://$DOMAIN$f" || true; } | tr -d '\r' | grep -iE '^(HTTP|content-type)' | tr '\n' ' ')
             echo "$f: $line"; echo "- $f: $line" >> "$GITHUB_STEP_SUMMARY"
           done
-          nf=$(curl -s -o /dev/null -m 20 -w '%{http_code}' "https://$DOMAIN/this-page-does-not-exist-$GITHUB_RUN_ID")
+          nf=$(curl -s -o /dev/null -m 20 -w '%{http_code}' "https://$DOMAIN/this-page-does-not-exist-$GITHUB_RUN_ID" || true)
           echo "unknown address answers HTTP $nf"; echo "- unknown address: HTTP $nf" >> "$GITHUB_STEP_SUMMARY"
           [ "$nf" = 404 ] || echo "::warning title=Soft 404::$DOMAIN answers $nf for an unknown address; it should be 404."
           [ "$(live "$PROJECT.pages.dev")" = "$GITHUB_SHA" ] || { echo "::error::$PROJECT.pages.dev isn't serving this deploy."; exit 1; }
@@ -110,7 +110,7 @@ jobs:
             echo "**$DOMAIN** still serves an older copy: move the domain to **$PROJECT** (Custom domains)." >> "$GITHUB_STEP_SUMMARY"
           fi
           # http:// should redirect to https:// (Cloudflare: SSL/TLS > Edge Certificates > Always Use HTTPS).
-          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "http://$DOMAIN/compare")
+          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "http://$DOMAIN/compare" || true) || true
           if [[ "$code" =~ ^30[178]$ && "$to" == "https://$DOMAIN/compare" ]]; then
             echo "http://$DOMAIN redirects to https ($code)."
             { echo; echo "http → https: $code"; } >> "$GITHUB_STEP_SUMMARY"
@@ -133,7 +133,7 @@ jobs:
           read -r oproj obranch <<<"$old"
           npx --yes wrangler@4 pages deploy external/slotsmith-redirect --project-name="$oproj" --branch="$obranch" --commit-dirty=true
           sleep 15
-          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "https://$OLD_DOMAIN/compare")
+          read -r code to < <(curl -s -o /dev/null -m 20 -w '%{http_code} %{redirect_url}\n' "https://$OLD_DOMAIN/compare" || true) || true
           echo "https://$OLD_DOMAIN/compare answers $code -> $to"
           { echo; echo "Old address: https://$OLD_DOMAIN/compare → $code $to"; } >> "$GITHUB_STEP_SUMMARY"
 
