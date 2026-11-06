@@ -855,6 +855,57 @@
       "desc": "Free esthetician price list template with facials, peels and a waxing menu, plus prep notes and a booking QR code. Print it or post it. No login.",
       "keywords": "esthetician & waxing price list template, salon price list, salon menu, beauty business",
       "added": "2026-11-05"
+    },
+    {
+      "slug": "giftstub",
+      "file": "how-to-track-gift-certificates",
+      "path": "/how-to-track-gift-certificates",
+      "board": "Small Business Printables",
+      "headline": "How to Track Gift Certificates",
+      "sub": "Printable gift certificates with numbered stubs",
+      "points": [
+        "Matching numbered stubs",
+        "Up to 500 per PDF",
+        "Letter & A4"
+      ],
+      "visual": "certificate",
+      "desc": "How to track gift certificates in a small business: number them, log each sale, mark redemptions and reconcile monthly. Free issue and redeem log with CSV.",
+      "keywords": "how to track gift certificates, gift certificate template, printable gift certificate, small business",
+      "added": "2026-11-06"
+    },
+    {
+      "slug": "collabrate",
+      "file": "how-much-to-charge-for-ugc-videos",
+      "path": "/how-much-to-charge-for-ugc",
+      "board": "Creator Rate Cards",
+      "headline": "How Much to Charge for UGC Videos",
+      "sub": "Price UGC with usage rights and whitelisting",
+      "points": [
+        "Usage rights & whitelisting",
+        "Quote PDF + rate card",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "How much to charge for UGC videos: starting rates by experience, a transparent formula for usage rights and add-ons, worked examples and a free calculator.",
+      "keywords": "how much to charge for ugc videos, ugc rates, ugc creator, influencer rate card",
+      "added": "2026-11-06"
+    },
+    {
+      "slug": "labelfit",
+      "file": "royal-mail-label-6x4-converter",
+      "path": "/royal-mail-label-6x4",
+      "board": "Online Seller Shipping",
+      "headline": "Royal Mail Label 6x4 Converter",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Convert A4 Royal Mail labels (1, 2 or 4 per sheet) into 6x4 thermal labels. Keeps CN22 forms as their own page. Free, runs in your browser, no upload.",
+      "keywords": "royal mail label 6x4 converter, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-06"
     }
   ]
 }

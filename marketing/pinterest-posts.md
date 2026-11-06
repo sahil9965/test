@@ -693,3 +693,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free esthetician price list template with facials, peels and a waxing menu, plus prep notes and a booking QR code. Print it or post it. No login.
 - **Alt text:** Esthetician & Waxing Price List Template: Salon and spa price lists for print and Instagram. The image shows a salon price list with services, dot leaders and prices, from pricelist.roohsites.com.
 - **Keywords:** esthetician & waxing price list template, salon price list, salon menu, beauty business
+
+## Day 76: How to Track Gift Certificates
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/how-to-track-gift-certificates.png
+- **Link:** https://giftcert.roohsites.com/how-to-track-gift-certificates?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** How to track gift certificates in a small business: number them, log each sale, mark redemptions and reconcile monthly. Free issue and redeem log with CSV.
+- **Alt text:** How to Track Gift Certificates: Printable gift certificates with numbered stubs. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** how to track gift certificates, gift certificate template, printable gift certificate, small business
+
+## Day 77: How Much to Charge for UGC Videos
+
+- **Board:** Creator Rate Cards
+- **Image:** https://tools.roohsites.com/pins/how-much-to-charge-for-ugc-videos.png
+- **Link:** https://ugcrates.roohsites.com/how-much-to-charge-for-ugc?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** How much to charge for UGC videos: starting rates by experience, a transparent formula for usage rights and add-ons, worked examples and a free calculator.
+- **Alt text:** How Much to Charge for UGC Videos: Price UGC with usage rights and whitelisting. The image shows a one-page document preview, from ugcrates.roohsites.com.
+- **Keywords:** how much to charge for ugc videos, ugc rates, ugc creator, influencer rate card
+
+## Day 78: Royal Mail Label 6x4 Converter
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/royal-mail-label-6x4-converter.png
+- **Link:** https://labels.roohsites.com/royal-mail-label-6x4?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Convert A4 Royal Mail labels (1, 2 or 4 per sheet) into 6x4 thermal labels. Keeps CN22 forms as their own page. Free, runs in your browser, no upload.
+- **Alt text:** Royal Mail Label 6x4 Converter: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** royal mail label 6x4 converter, shipping label, 4x6 label, thermal printer
