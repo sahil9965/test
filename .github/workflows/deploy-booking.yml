@@ -88,6 +88,7 @@ jobs:
           d=$(curl -s -m 30 "${auth[@]}" "$api/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT/domains/$DOMAIN")
           echo "$d" | node -e 'let s="";process.stdin.on("data",c=>s+=c).on("end",()=>{try{const r=JSON.parse(s).result||{};console.log("domain status:",r.status,"| validation:",JSON.stringify(r.validation_data),"| verification:",JSON.stringify(r.verification_data))}catch(e){console.log(s.slice(0,400))}})'
           zone=$(echo "$d" | node -e 'let s="";process.stdin.on("data",c=>s+=c).on("end",()=>{try{process.stdout.write((JSON.parse(s).result||{}).zone_tag||"")}catch(e){}})')
+          echo "$d" | grep -qE '"status": *"active"' && { echo "$DOMAIN is active on $PROJECT."; exit 0; }
           [ -n "$zone" ] || { echo "No zone for $DOMAIN in this account."; exit 0; }
           host=${DOMAIN%%.*}
           have=$(curl -s -m 30 "${auth[@]}" "$api/zones/$zone/dns_records?name=$DOMAIN")
