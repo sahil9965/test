@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -796,6 +796,36 @@
       "link": "https://labels.roohsites.com/royal-mail-label-6x4?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Royal Mail Label 6x4 Converter: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
       "keywords": "royal mail label 6x4 converter, shipping label, 4x6 label, thermal printer"
+    },
+    {
+      "day": 79,
+      "title": "Fair Playing Time Baseball Lineup Generator",
+      "description": "Free fair playing time baseball lineup generator. Even bench innings, no back-to-back sits, infield time for all, and a clear note when a rule can't be met.",
+      "board": "Youth Baseball & Softball",
+      "image": "https://tools.roohsites.com/pins/fair-playing-time-baseball-lineup-generator.png",
+      "link": "https://lineup.roohsites.com/fair-playing-time-lineup-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Fair Playing Time Baseball Lineup Generator: Fair fielding rotations for youth baseball. The image shows a fielding rotation chart with positions for each inning and bench turns, from lineup.roohsites.com.",
+      "keywords": "fair playing time baseball lineup generator, baseball lineup, fielding rotation, youth baseball coach"
+    },
+    {
+      "day": 80,
+      "title": "Photography Invoice Template",
+      "description": "Free photography invoice template for wedding, portrait and event photographers. Session fees, image packages, travel and deposits included. Download a PDF.",
+      "board": "Small Business Invoices",
+      "image": "https://tools.roohsites.com/pins/photography-invoice-template.png",
+      "link": "https://invoice.roohsites.com/photography-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Photography Invoice Template: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.",
+      "keywords": "photography invoice template, invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 81,
+      "title": "How to Run a Punch Card Loyalty Program",
+      "description": "How to run a punch card loyalty program: size the reward, set stamp rules, choose expiry, track cards with serial numbers and handle lost cards.",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/how-to-run-a-punch-card-loyalty-program.png",
+      "link": "https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "How to Run a Punch Card Loyalty Program: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business"
     }
   ]
 }

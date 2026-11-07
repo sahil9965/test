@@ -906,6 +906,57 @@
       "desc": "Convert A4 Royal Mail labels (1, 2 or 4 per sheet) into 6x4 thermal labels. Keeps CN22 forms as their own page. Free, runs in your browser, no upload.",
       "keywords": "royal mail label 6x4 converter, shipping label, 4x6 label, thermal printer",
       "added": "2026-11-06"
+    },
+    {
+      "slug": "lineupfair",
+      "file": "fair-playing-time-baseball-lineup-generator",
+      "path": "/fair-playing-time-lineup-generator",
+      "board": "Youth Baseball & Softball",
+      "headline": "Fair Playing Time Baseball Lineup Generator",
+      "sub": "Fair fielding rotations for youth baseball",
+      "points": [
+        "Fair bench time",
+        "Baseball, softball, T-ball",
+        "Prints for the dugout"
+      ],
+      "visual": "lineup",
+      "desc": "Free fair playing time baseball lineup generator. Even bench innings, no back-to-back sits, infield time for all, and a clear note when a rule can't be met.",
+      "keywords": "fair playing time baseball lineup generator, baseball lineup, fielding rotation, youth baseball coach",
+      "added": "2026-11-07"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "photography-invoice-template",
+      "path": "/photography-invoice-template",
+      "board": "Small Business Invoices",
+      "headline": "Photography Invoice Template",
+      "sub": "Create and download PDF invoices free",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Free photography invoice template for wedding, portrait and event photographers. Session fees, image packages, travel and deposits included. Download a PDF.",
+      "keywords": "photography invoice template, invoice template, free invoice generator, small business",
+      "added": "2026-11-07"
+    },
+    {
+      "slug": "punchperk",
+      "file": "how-to-run-a-punch-card-loyalty-program",
+      "path": "/how-to-run-a-punch-card-loyalty-program",
+      "board": "Small Business Printables",
+      "headline": "How to Run a Punch Card Loyalty Program",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "How to run a punch card loyalty program: size the reward, set stamp rules, choose expiry, track cards with serial numbers and handle lost cards.",
+      "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business",
+      "added": "2026-11-07"
     }
   ]
 }

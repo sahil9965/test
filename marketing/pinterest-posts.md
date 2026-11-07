@@ -720,3 +720,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Convert A4 Royal Mail labels (1, 2 or 4 per sheet) into 6x4 thermal labels. Keeps CN22 forms as their own page. Free, runs in your browser, no upload.
 - **Alt text:** Royal Mail Label 6x4 Converter: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** royal mail label 6x4 converter, shipping label, 4x6 label, thermal printer
+
+## Day 79: Fair Playing Time Baseball Lineup Generator
+
+- **Board:** Youth Baseball & Softball
+- **Image:** https://tools.roohsites.com/pins/fair-playing-time-baseball-lineup-generator.png
+- **Link:** https://lineup.roohsites.com/fair-playing-time-lineup-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free fair playing time baseball lineup generator. Even bench innings, no back-to-back sits, infield time for all, and a clear note when a rule can't be met.
+- **Alt text:** Fair Playing Time Baseball Lineup Generator: Fair fielding rotations for youth baseball. The image shows a fielding rotation chart with positions for each inning and bench turns, from lineup.roohsites.com.
+- **Keywords:** fair playing time baseball lineup generator, baseball lineup, fielding rotation, youth baseball coach
+
+## Day 80: Photography Invoice Template
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/photography-invoice-template.png
+- **Link:** https://invoice.roohsites.com/photography-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free photography invoice template for wedding, portrait and event photographers. Session fees, image packages, travel and deposits included. Download a PDF.
+- **Alt text:** Photography Invoice Template: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** photography invoice template, invoice template, free invoice generator, small business
+
+## Day 81: How to Run a Punch Card Loyalty Program
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/how-to-run-a-punch-card-loyalty-program.png
+- **Link:** https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** How to run a punch card loyalty program: size the reward, set stamp rules, choose expiry, track cards with serial numbers and handle lost cards.
+- **Alt text:** How to Run a Punch Card Loyalty Program: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** how to run a punch card loyalty program, punch card template, loyalty card, small business
