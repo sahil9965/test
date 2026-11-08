@@ -957,6 +957,57 @@
       "desc": "How to run a punch card loyalty program: size the reward, set stamp rules, choose expiry, track cards with serial numbers and handle lost cards.",
       "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business",
       "added": "2026-11-07"
+    },
+    {
+      "slug": "streamweek",
+      "file": "stream-schedule-with-time-zones",
+      "path": "/stream-schedule-time-zones",
+      "board": "Streamer Schedules",
+      "headline": "Stream Schedule with Time Zones",
+      "sub": "Type your times once",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "visual": "week",
+      "desc": "Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.",
+      "keywords": "stream schedule with time zones, stream schedule, twitch schedule, streamer",
+      "added": "2026-11-08"
+    },
+    {
+      "slug": "gradledger",
+      "file": "homeschool-course-description-generator",
+      "path": "/homeschool-course-description-generator",
+      "board": "Homeschool Records",
+      "headline": "Homeschool Course Description Generator",
+      "sub": "Homeschool transcripts and GPA, free",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "visual": "document",
+      "desc": "Write homeschool course descriptions for college applications in minutes. Free generator with typical topics for 44 courses. Copy or download a PDF.",
+      "keywords": "homeschool course description generator, homeschool transcript, homeschool high school, gpa",
+      "added": "2026-11-08"
+    },
+    {
+      "slug": "scorenight",
+      "file": "farkle-scoring-chart",
+      "path": "/farkle-scoring-chart",
+      "board": "Family Game Night",
+      "headline": "Farkle Scoring Chart",
+      "sub": "Score sheets for Yahtzee, Farkle and game night",
+      "points": [
+        "Names printed on",
+        "Yahtzee, Farkle, Mexican Train",
+        "Phone score keeper"
+      ],
+      "visual": "scores",
+      "desc": "Farkle scoring chart: points for 1s, 5s, three of a kind, straights, three pairs and six of a kind, common house rules and a printable sheet with the chart.",
+      "keywords": "farkle scoring chart, yahtzee score sheet, farkle, game night printables",
+      "added": "2026-11-08"
     }
   ]
 }

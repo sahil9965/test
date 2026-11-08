@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -826,6 +826,36 @@
       "link": "https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "How to Run a Punch Card Loyalty Program: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 82,
+      "title": "Stream Schedule with Time Zones",
+      "description": "Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.",
+      "board": "Streamer Schedules",
+      "image": "https://tools.roohsites.com/pins/stream-schedule-with-time-zones.png",
+      "link": "https://streamschedule.roohsites.com/stream-schedule-time-zones?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Stream Schedule with Time Zones: Type your times once. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.",
+      "keywords": "stream schedule with time zones, stream schedule, twitch schedule, streamer"
+    },
+    {
+      "day": 83,
+      "title": "Homeschool Course Description Generator",
+      "description": "Write homeschool course descriptions for college applications in minutes. Free generator with typical topics for 44 courses. Copy or download a PDF.",
+      "board": "Homeschool Records",
+      "image": "https://tools.roohsites.com/pins/homeschool-course-description-generator.png",
+      "link": "https://transcript.roohsites.com/homeschool-course-description-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Homeschool Course Description Generator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.",
+      "keywords": "homeschool course description generator, homeschool transcript, homeschool high school, gpa"
+    },
+    {
+      "day": 84,
+      "title": "Farkle Scoring Chart",
+      "description": "Farkle scoring chart: points for 1s, 5s, three of a kind, straights, three pairs and six of a kind, common house rules and a printable sheet with the chart.",
+      "board": "Family Game Night",
+      "image": "https://tools.roohsites.com/pins/farkle-scoring-chart.png",
+      "link": "https://scoresheet.roohsites.com/farkle-scoring-chart?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Farkle Scoring Chart: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.",
+      "keywords": "farkle scoring chart, yahtzee score sheet, farkle, game night printables"
     }
   ]
 }

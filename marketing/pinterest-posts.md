@@ -747,3 +747,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** How to run a punch card loyalty program: size the reward, set stamp rules, choose expiry, track cards with serial numbers and handle lost cards.
 - **Alt text:** How to Run a Punch Card Loyalty Program: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** how to run a punch card loyalty program, punch card template, loyalty card, small business
+
+## Day 82: Stream Schedule with Time Zones
+
+- **Board:** Streamer Schedules
+- **Image:** https://tools.roohsites.com/pins/stream-schedule-with-time-zones.png
+- **Link:** https://streamschedule.roohsites.com/stream-schedule-time-zones?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make a stream schedule with time zones that converts automatically, including weeks when Europe and the US change clocks on different dates. Free, in-browser.
+- **Alt text:** Stream Schedule with Time Zones: Type your times once. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
+- **Keywords:** stream schedule with time zones, stream schedule, twitch schedule, streamer
+
+## Day 83: Homeschool Course Description Generator
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/homeschool-course-description-generator.png
+- **Link:** https://transcript.roohsites.com/homeschool-course-description-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Write homeschool course descriptions for college applications in minutes. Free generator with typical topics for 44 courses. Copy or download a PDF.
+- **Alt text:** Homeschool Course Description Generator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** homeschool course description generator, homeschool transcript, homeschool high school, gpa
+
+## Day 84: Farkle Scoring Chart
+
+- **Board:** Family Game Night
+- **Image:** https://tools.roohsites.com/pins/farkle-scoring-chart.png
+- **Link:** https://scoresheet.roohsites.com/farkle-scoring-chart?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Farkle scoring chart: points for 1s, 5s, three of a kind, straights, three pairs and six of a kind, common house rules and a printable sheet with the chart.
+- **Alt text:** Farkle Scoring Chart: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.
+- **Keywords:** farkle scoring chart, yahtzee score sheet, farkle, game night printables
