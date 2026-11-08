@@ -607,6 +607,8 @@ const RSAB = {
 
 /* Analytics events (Umami, through the window.va bridge in the head; queued until Umami loads). */
 function track(name, data) { try { window.va && window.va('event', { name: name, data: data }); } catch (e) {} }
+let scrolled = false;
+addEventListener('scroll', () => { if (scrollY > 200) scrolled = true; }, { passive: true });
 const sectionOf = el => (el.closest('section[id], header[id]') || {}).id || 'top';
 
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -614,7 +616,12 @@ document.querySelectorAll('[data-free-link]').forEach(a => {
 	a.href = RSAB.freeUrl;
 	if (/\.zip$/.test(RSAB.freeUrl)) { a.setAttribute('download', 'roohsites-appointment-booking.zip'); a.title = 'Free plugin zip. In WordPress: Plugins → Add New → Upload Plugin'; }
 	else { a.target = '_blank'; a.rel = 'noopener'; }
-	a.addEventListener('click', () => track('download_free', { from: sectionOf(a) }));
+	// A click within 8 seconds of the page opening, with no scrolling, is counted apart (download_quick):
+	// the bursts seen so far were instant clicks, so download_free stays a count of people who looked first.
+	a.addEventListener('click', () => {
+		const secs = Math.round(performance.now() / 1000);
+		track(secs < 8 && !scrolled ? 'download_quick' : 'download_free', { from: sectionOf(a), secs: secs });
+	});
 });
 document.querySelectorAll('[data-contact]').forEach(a => { a.href = 'mailto:' + RSAB.contactEmail; });
 document.querySelectorAll('[data-setup]').forEach(a => a.addEventListener('click', () => track('setup_click', { via: a.dataset.setup })));
