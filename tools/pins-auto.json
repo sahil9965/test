@@ -1008,6 +1008,57 @@
       "desc": "Farkle scoring chart: points for 1s, 5s, three of a kind, straights, three pairs and six of a kind, common house rules and a printable sheet with the chart.",
       "keywords": "farkle scoring chart, yahtzee score sheet, farkle, game night printables",
       "added": "2026-11-08"
+    },
+    {
+      "slug": "paneldex",
+      "file": "panel-load-balancing-calculator",
+      "path": "/panel-load-balancing-calculator",
+      "board": "Electrician Printables",
+      "headline": "Panel Load Balancing Calculator",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Add up the loads on each leg or phase of a panel: VA, approximate amps and an imbalance percentage. Plain totals, not a code load calculation. Free.",
+      "keywords": "panel load balancing calculator, panel schedule, breaker labels, electrician",
+      "added": "2026-11-09"
+    },
+    {
+      "slug": "preplabel",
+      "file": "fnsku-labeling-requirements-2026",
+      "path": "/fnsku-labeling-requirements-2026",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "FNSKU Labeling Requirements (2026)",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "fnsku",
+      "desc": "What changed for FNSKU labels in 2026: the end of the Amazon US prep and label service and of commingling, plus label size, printing and placement rules.",
+      "keywords": "fnsku labeling requirements (2026), amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-09"
+    },
+    {
+      "slug": "roomproof",
+      "file": "before-and-after-photo-report-template",
+      "path": "/before-and-after-photo-report",
+      "board": "Landlord & Tenant Checklists",
+      "headline": "Before and After Photo Report Template",
+      "sub": "Captioned, timestamped photo reports as PDF",
+      "points": [
+        "Photos stay on your device",
+        "A4 & US Letter",
+        "No signup"
+      ],
+      "visual": "photos",
+      "desc": "Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.",
+      "keywords": "before and after photo report template, move in checklist, rental inspection, landlord",
+      "added": "2026-11-09"
     }
   ]
 }

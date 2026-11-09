@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -856,6 +856,36 @@
       "link": "https://scoresheet.roohsites.com/farkle-scoring-chart?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Farkle Scoring Chart: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.",
       "keywords": "farkle scoring chart, yahtzee score sheet, farkle, game night printables"
+    },
+    {
+      "day": 85,
+      "title": "Panel Load Balancing Calculator",
+      "description": "Add up the loads on each leg or phase of a panel: VA, approximate amps and an imbalance percentage. Plain totals, not a code load calculation. Free.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/panel-load-balancing-calculator.png",
+      "link": "https://panelschedule.roohsites.com/panel-load-balancing-calculator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Panel Load Balancing Calculator: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "panel load balancing calculator, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 86,
+      "title": "FNSKU Labeling Requirements (2026)",
+      "description": "What changed for FNSKU labels in 2026: the end of the Amazon US prep and label service and of commingling, plus label size, printing and placement rules.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/fnsku-labeling-requirements-2026.png",
+      "link": "https://fnsku.roohsites.com/fnsku-labeling-requirements-2026?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "FNSKU Labeling Requirements (2026): FNSKU, suffocation and set labels for FBA prep. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.",
+      "keywords": "fnsku labeling requirements (2026), amazon fba, fba prep, fnsku labels"
+    },
+    {
+      "day": 87,
+      "title": "Before and After Photo Report Template",
+      "description": "Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.",
+      "board": "Landlord & Tenant Checklists",
+      "image": "https://tools.roohsites.com/pins/before-and-after-photo-report-template.png",
+      "link": "https://photoreport.roohsites.com/before-and-after-photo-report?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Before and After Photo Report Template: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.",
+      "keywords": "before and after photo report template, move in checklist, rental inspection, landlord"
     }
   ]
 }

@@ -774,3 +774,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Farkle scoring chart: points for 1s, 5s, three of a kind, straights, three pairs and six of a kind, common house rules and a printable sheet with the chart.
 - **Alt text:** Farkle Scoring Chart: Score sheets for Yahtzee, Farkle and game night. The image shows a dice score card with three players' scores and the 35-point bonus, from scoresheet.roohsites.com.
 - **Keywords:** farkle scoring chart, yahtzee score sheet, farkle, game night printables
+
+## Day 85: Panel Load Balancing Calculator
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/panel-load-balancing-calculator.png
+- **Link:** https://panelschedule.roohsites.com/panel-load-balancing-calculator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Add up the loads on each leg or phase of a panel: VA, approximate amps and an imbalance percentage. Plain totals, not a code load calculation. Free.
+- **Alt text:** Panel Load Balancing Calculator: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** panel load balancing calculator, panel schedule, breaker labels, electrician
+
+## Day 86: FNSKU Labeling Requirements (2026)
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/fnsku-labeling-requirements-2026.png
+- **Link:** https://fnsku.roohsites.com/fnsku-labeling-requirements-2026?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** What changed for FNSKU labels in 2026: the end of the Amazon US prep and label service and of commingling, plus label size, printing and placement rules.
+- **Alt text:** FNSKU Labeling Requirements (2026): FNSKU, suffocation and set labels for FBA prep. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** fnsku labeling requirements (2026), amazon fba, fba prep, fnsku labels
+
+## Day 87: Before and After Photo Report Template
+
+- **Board:** Landlord & Tenant Checklists
+- **Image:** https://tools.roohsites.com/pins/before-and-after-photo-report-template.png
+- **Link:** https://photoreport.roohsites.com/before-and-after-photo-report?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.
+- **Alt text:** Before and After Photo Report Template: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.
+- **Keywords:** before and after photo report template, move in checklist, rental inspection, landlord
