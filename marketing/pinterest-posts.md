@@ -801,3 +801,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.
 - **Alt text:** Before and After Photo Report Template: Captioned, timestamped photo reports as PDF. The image shows four dated room photos with condition ratings, from photoreport.roohsites.com.
 - **Keywords:** before and after photo report template, move in checklist, rental inspection, landlord
+
+## Day 88: Dated Lesson Plan Book
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/dated-lesson-plan-book.png
+- **Link:** https://abday.roohsites.com/dated-lesson-plan-book?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free dated lesson plan book printable: weekly pages with real dates, holidays and 1–10 periods (7-period layout included). Made for your school year as a PDF.
+- **Alt text:** Dated Lesson Plan Book: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** dated lesson plan book, a/b day calendar, teacher planner, block schedule
+
+## Day 89: Hair Salon Price List Template
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/hair-salon-price-list-template.png
+- **Link:** https://pricelist.roohsites.com/hair-salon-price-list-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free hair salon price list template: cuts, color and treatments with starting prices, notes and a booking QR code. Print it or post it. No login.
+- **Alt text:** Hair Salon Price List Template: Salon and spa price lists for print and Instagram. The image shows a salon price list with services, dot leaders and prices, from pricelist.roohsites.com.
+- **Keywords:** hair salon price list template, salon price list, salon menu, beauty business
+
+## Day 90: How many gift certificates can I make at once?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/how-many-gift-certificates-can-i-make-at-once.png
+- **Link:** https://giftcert.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Up to 500 in one PDF, which is 167 sheets at 3 per page. For more, make a second batch that starts where the first one ended, for example at 501. Free tool: giftcert.roohsites.com
+- **Alt text:** How many gift certificates can I make at once?: Up to 500 in one PDF, which is 167 sheets at 3 per page. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
+- **Keywords:** printable gift certificates with numbers, gift certificate template, printable gift certificate, small business

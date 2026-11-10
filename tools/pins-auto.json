@@ -1059,6 +1059,57 @@
       "desc": "Free before and after photo report template. Put matching before and after photos side by side with dates, captions and notes, then download a client PDF.",
       "keywords": "before and after photo report template, move in checklist, rental inspection, landlord",
       "added": "2026-11-09"
+    },
+    {
+      "slug": "bellbook",
+      "file": "dated-lesson-plan-book",
+      "path": "/dated-lesson-plan-book",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "headline": "Dated Lesson Plan Book",
+      "sub": "A/B and rotating-day school calendars",
+      "points": [
+        "Snow-day re-flow",
+        "PDF, .ics & share link",
+        "No signup"
+      ],
+      "visual": "calendar",
+      "desc": "Free dated lesson plan book printable: weekly pages with real dates, holidays and 1–10 periods (7-period layout included). Made for your school year as a PDF.",
+      "keywords": "dated lesson plan book, a/b day calendar, teacher planner, block schedule",
+      "added": "2026-11-10"
+    },
+    {
+      "slug": "priceboard",
+      "file": "hair-salon-price-list-template",
+      "path": "/hair-salon-price-list-template",
+      "board": "Small Business Printables",
+      "headline": "Hair Salon Price List Template",
+      "sub": "Salon and spa price lists for print and Instagram",
+      "points": [
+        "Fits on one page",
+        "Print & Instagram sizes",
+        "No signup"
+      ],
+      "visual": "menu",
+      "desc": "Free hair salon price list template: cuts, color and treatments with starting prices, notes and a booking QR code. Print it or post it. No login.",
+      "keywords": "hair salon price list template, salon price list, salon menu, beauty business",
+      "added": "2026-11-10"
+    },
+    {
+      "slug": "giftstub",
+      "file": "how-many-gift-certificates-can-i-make-at-once",
+      "path": "/",
+      "board": "Small Business Printables",
+      "headline": "How many gift certificates can I make at once?",
+      "sub": "Up to 500 in one PDF, which is 167 sheets at 3 per page",
+      "points": [
+        "Matching numbered stubs",
+        "Up to 500 per PDF",
+        "Letter & A4"
+      ],
+      "visual": "certificate",
+      "desc": "Up to 500 in one PDF, which is 167 sheets at 3 per page. For more, make a second batch that starts where the first one ended, for example at 501. Free tool: giftcert.roohsites.com",
+      "keywords": "printable gift certificates with numbers, gift certificate template, printable gift certificate, small business",
+      "added": "2026-11-10"
     }
   ]
 }
