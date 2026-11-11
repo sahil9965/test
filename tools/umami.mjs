@@ -42,9 +42,10 @@ const shim = slug => `(function(){var inner,replay=false,q=[],engaged=false;` +
   `function eng(){if(engaged)return;engaged=true;fwd("engaged")}` +
   `["pointerdown","keydown"].forEach(function(t){addEventListener(t,eng,{capture:true,passive:true})});` +
   // Prefix the path with the tool's slug and drop the hash. Umami sends a full URL, so edit its pathname.
+  // "/"+"slug", never the literal "/slug": Googlebot reads path-like strings in inline scripts and crawled /bellbook etc. as 404s.
   `window.roohUmamiSend=function(t,p){if(off()||bot())return null;` +
   `if(p&&typeof p.url==="string"){try{var u=new URL(p.url,location.href),path=u.pathname==="/"?"":u.pathname;` +
-  `u.pathname="/${slug}"+path;u.hash="";p.url=/^https?:/.test(p.url)?u.toString():u.pathname+u.search}catch(e){}}return p};` +
+  `u.pathname="/"+"${slug}"+path;u.hash="";p.url=/^https?:/.test(p.url)?u.toString():u.pathname+u.search}catch(e){}}return p};` +
   `window.roohUmamiLoaded=function(){while(q.length){var e=q.shift();try{umami.track(e[0],e[1])}catch(x){}}}})();`;
 const block = s => `<!--UMAMI:START--><script>${shim(s.slug)}</script>` +
   `<script defer src="${cfg.script}" data-website-id="${id}" data-domains="${s.host}" data-tag="${s.slug}" ` +
