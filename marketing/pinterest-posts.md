@@ -828,3 +828,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Up to 500 in one PDF, which is 167 sheets at 3 per page. For more, make a second batch that starts where the first one ended, for example at 501. Free tool: giftcert.roohsites.com
 - **Alt text:** How many gift certificates can I make at once?: Up to 500 in one PDF, which is 167 sheets at 3 per page. The image shows a gift certificate with a numbered tear-off stub, from giftcert.roohsites.com.
 - **Keywords:** printable gift certificates with numbers, gift certificate template, printable gift certificate, small business
+
+## Day 91: ABC Data Sheet Checklist
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/abc-data-sheet-checklist.png
+- **Link:** https://abagraph.roohsites.com/abc-data-sheet-checklist?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable ABC data sheet checklist: tick the antecedent and consequence, write the behavior, tick a possible function. Letter and A4 PDF, no signup.
+- **Alt text:** ABC Data Sheet Checklist: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
+- **Keywords:** abc data sheet checklist, aba graph, data sheet, special education
+
+## Day 92: Will the barcode still scan after converting?
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/will-the-barcode-still-scan-after-converting.png
+- **Link:** https://labels.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** LabelFit copies the label into the new PDF as vector graphics, so bars and text stay as sharp as in the original. It shows the print scale for every label and warns you if a label would be shrunk below 80%. Print one test label and check the barcode is crisp and nothing is cut off. Free tool: labels.roohsites.com
+- **Alt text:** Will the barcode still scan after converting?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer
+
+## Day 93: UK VAT Invoice Template
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/uk-vat-invoice-template.png
+- **Link:** https://invoice.roohsites.com/vat-invoice-template-uk?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free UK VAT invoice template. Add your VAT number, 20% VAT and pound totals, then download a PDF. Works for sole traders and limited companies, no signup.
+- **Alt text:** UK VAT Invoice Template: A VAT invoice in pounds with 20% VAT already set. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** uk vat invoice template, invoice template, free invoice generator, small business
