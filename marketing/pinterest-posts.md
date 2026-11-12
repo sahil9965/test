@@ -855,3 +855,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free UK VAT invoice template. Add your VAT number, 20% VAT and pound totals, then download a PDF. Works for sole traders and limited companies, no signup.
 - **Alt text:** UK VAT Invoice Template: A VAT invoice in pounds with 20% VAT already set. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** uk vat invoice template, invoice template, free invoice generator, small business
+
+## Day 94: Printable Meal Tickets
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/printable-meal-tickets.png
+- **Link:** https://raffle.roohsites.com/meal-tickets?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable numbered meal tickets for pancake breakfasts, spaghetti dinners, conferences and galas. Print names, tables and meal choices from a CSV. Free PDF.
+- **Alt text:** Printable Meal Tickets: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** printable meal tickets, raffle tickets, fundraiser, printable tickets
+
+## Day 95: Reward Punch Card for Kids
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/reward-punch-card-for-kids.png
+- **Link:** https://punchcard.roohsites.com/reward-punch-card-for-kids?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free reward punch card for kids: reading nights, chores and good habits, with book icons, a prize spot and 10 cards per page for parents and teachers.
+- **Alt text:** Reward Punch Card for Kids: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** reward punch card for kids, punch card template, loyalty card, small business
+
+## Day 96: Panel Schedule Template PDF
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/panel-schedule-template-pdf.png
+- **Link:** https://panelschedule.roohsites.com/panel-schedule-template-pdf?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free panel schedule template PDF that comes out filled in: header block, circuits in panel order with breaker, wire, AFCI/GFCI and VA, then load totals.
+- **Alt text:** Panel Schedule Template PDF: Skip the blank grid. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** panel schedule template pdf, panel schedule, breaker labels, electrician

@@ -1161,6 +1161,57 @@
       "desc": "Free UK VAT invoice template. Add your VAT number, 20% VAT and pound totals, then download a PDF. Works for sole traders and limited companies, no signup.",
       "keywords": "uk vat invoice template, invoice template, free invoice generator, small business",
       "added": "2026-11-11"
+    },
+    {
+      "slug": "ticketrun",
+      "file": "printable-meal-tickets",
+      "path": "/meal-tickets",
+      "board": "Raffle & Event Tickets",
+      "headline": "Printable Meal Tickets",
+      "sub": "Printable numbered raffle tickets with stubs",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "visual": "tickets",
+      "desc": "Printable numbered meal tickets for pancake breakfasts, spaghetti dinners, conferences and galas. Print names, tables and meal choices from a CSV. Free PDF.",
+      "keywords": "printable meal tickets, raffle tickets, fundraiser, printable tickets",
+      "added": "2026-11-12"
+    },
+    {
+      "slug": "punchperk",
+      "file": "reward-punch-card-for-kids",
+      "path": "/reward-punch-card-for-kids",
+      "board": "Small Business Printables",
+      "headline": "Reward Punch Card for Kids",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Free reward punch card for kids: reading nights, chores and good habits, with book icons, a prize spot and 10 cards per page for parents and teachers.",
+      "keywords": "reward punch card for kids, punch card template, loyalty card, small business",
+      "added": "2026-11-12"
+    },
+    {
+      "slug": "paneldex",
+      "file": "panel-schedule-template-pdf",
+      "path": "/panel-schedule-template-pdf",
+      "board": "Electrician Printables",
+      "headline": "Panel Schedule Template PDF",
+      "sub": "Skip the blank grid",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Free panel schedule template PDF that comes out filled in: header block, circuits in panel order with breaker, wire, AFCI/GFCI and VA, then load totals.",
+      "keywords": "panel schedule template pdf, panel schedule, breaker labels, electrician",
+      "added": "2026-11-12"
     }
   ]
 }
