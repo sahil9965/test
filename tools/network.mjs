@@ -1,4 +1,4 @@
-// Inject the cross-site "More free tools" list (plus hub and agency links) into every page of every site, between
+// Inject the cross-site "More free tools" list (2 related tools, plus hub and agency links) into every page of every site, between
 // <!--NETWORK:START--> and <!--NETWORK:END-->, using sites.json. Usage: node tools/network.mjs
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -6,6 +6,9 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const sites = JSON.parse(readFileSync(join(root, "sites.json"), "utf8")).filter(s => s.live !== false);
+// Each page links 2 related tools (tools/index-plan.json "related"), never a hidden one: a block linking every
+// tool from every page looked like a link network to Google (Search Console clean-up, 12 Nov 2026).
+const plan = JSON.parse(readFileSync(join(root, "tools", "index-plan.json"), "utf8"));
 // The hub lists every tool; the agency link credits Rooh Sites on every page.
 const HUB = "https://tools.roohsites.com";
 const AGENCY = "https://roohsites.com";
@@ -17,7 +20,8 @@ const walk = d => readdirSync(d).flatMap(f => {
 });
 let n = 0;
 for (const s of sites) {
-  const others = sites.filter(o => o.slug !== s.slug);
+  const others = (plan.related[s.slug] || []).map(slug => sites.find(o => o.slug === slug)).filter(o => o && o.slug !== s.slug && !plan.hidden.includes(o.slug));
+  if (!others.length) throw new Error(`index-plan.json: no related tools for ${s.slug}`);
   const block = `<!--NETWORK:START--><ul>${others.map(o => `<li><a href="${esc(o.url)}/" title="${esc(o.tagline)}">${esc(o.label)}</a></li>`).join("")}` +
     `<li><a href="${HUB}/">All free tools →</a></li></ul>` +
     `<p class="small">Made by <a href="${AGENCY}/?utm_source=${s.slug}&amp;utm_medium=footer&amp;utm_campaign=tools">Rooh Sites</a></p><!--NETWORK:END-->`;

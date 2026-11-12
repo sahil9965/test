@@ -1,0 +1,128 @@
+{
+ "_note": "Search Console clean-up decided 12 Nov 2026 (Sahil: 'go ahead as per table'). Google dropped many pages after a site-wide quality review. Hidden tools stay live for visitors but are noindex and out of the sitemaps; in the middle tools, pages with 0 impressions (8 Oct-10 Nov) are noindex; the footer links 2 related tools instead of all 19. Apply: node tools/index-plan.mjs. Undo: empty a list and run it again.",
+ "keep": [
+  "goaltally",
+  "bellbook",
+  "ticketrun",
+  "paneldex",
+  "preplabel"
+ ],
+ "hidden": [
+  "quotewell",
+  "priceboard",
+  "scorenight",
+  "lineupfair",
+  "glancesheet",
+  "giftstub",
+  "collabrate",
+  "roomproof"
+ ],
+ "noindex_pages": {
+  "invoicekit": [
+   "about.html",
+   "bill-of-supply-format.html",
+   "export-invoice-without-igst-under-lut.html",
+   "invoice-format-without-gst.html",
+   "invoice-templates.html"
+  ],
+  "streamweek": [
+   "about.html",
+   "stream-schedule-for-discord.html",
+   "stream-schedule-time-zones.html",
+   "twitch-schedule-template.html",
+   "vtuber-schedule-template.html",
+   "youtube-live-schedule-template.html"
+  ],
+  "gradledger": [
+   "about.html",
+   "homeschool-course-description-generator.html",
+   "homeschool-credit-hours-calculator.html",
+   "homeschool-hours-tracker.html"
+  ],
+  "labelfit": [
+   "ebay-half-sheet-label-to-4x6.html",
+   "evri-label-6x4.html",
+   "flipkart-label-crop-4x6.html",
+   "print-shipping-label-from-phone.html",
+   "royal-mail-label-6x4.html",
+   "split-shipping-label-and-packing-slip.html"
+  ],
+  "punchperk": [
+   "salon-loyalty-card-template.html"
+  ]
+ },
+ "related": {
+  "goaltally": [
+   "bellbook",
+   "gradledger"
+  ],
+  "bellbook": [
+   "goaltally",
+   "gradledger"
+  ],
+  "ticketrun": [
+   "punchperk",
+   "labelfit"
+  ],
+  "paneldex": [
+   "labelfit",
+   "invoicekit"
+  ],
+  "preplabel": [
+   "labelfit",
+   "invoicekit"
+  ],
+  "invoicekit": [
+   "preplabel",
+   "punchperk"
+  ],
+  "streamweek": [
+   "ticketrun",
+   "labelfit"
+  ],
+  "gradledger": [
+   "bellbook",
+   "goaltally"
+  ],
+  "labelfit": [
+   "preplabel",
+   "invoicekit"
+  ],
+  "punchperk": [
+   "ticketrun",
+   "invoicekit"
+  ],
+  "quotewell": [
+   "invoicekit",
+   "paneldex"
+  ],
+  "priceboard": [
+   "punchperk",
+   "invoicekit"
+  ],
+  "scorenight": [
+   "ticketrun",
+   "punchperk"
+  ],
+  "lineupfair": [
+   "ticketrun",
+   "bellbook"
+  ],
+  "glancesheet": [
+   "goaltally",
+   "gradledger"
+  ],
+  "giftstub": [
+   "punchperk",
+   "ticketrun"
+  ],
+  "collabrate": [
+   "invoicekit",
+   "streamweek"
+  ],
+  "roomproof": [
+   "invoicekit",
+   "paneldex"
+  ]
+ }
+}
