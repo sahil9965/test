@@ -10,3 +10,5 @@
 - [LatePoint alternative](https://booking.roohsites.com/latepoint-alternative)
 - [Setup guides and support](https://booking.roohsites.com/support)
 - [Refund policy](https://booking.roohsites.com/refund-policy), [Terms](https://booking.roohsites.com/terms), [Privacy](https://booking.roohsites.com/privacy)
+
+- Free version on WordPress.org: https://wordpress.org/plugins/roohsites-appointment-booking/
