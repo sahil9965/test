@@ -882,3 +882,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free panel schedule template PDF that comes out filled in: header block, circuits in panel order with breaker, wire, AFCI/GFCI and VA, then load totals.
 - **Alt text:** Panel Schedule Template PDF: Skip the blank grid. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
 - **Keywords:** panel schedule template pdf, panel schedule, breaker labels, electrician
+
+## Day 97: Bulk FNSKU Labels from a CSV or Excel File
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/bulk-fnsku-labels-from-a-csv-or-excel-file.png
+- **Link:** https://fnsku.roohsites.com/fnsku-labels-from-csv?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print FNSKU labels in bulk from a CSV or Excel file with a quantity per SKU. Works with Seller Central inventory reports. Thermal or sheet PDF, free.
+- **Alt text:** Bulk FNSKU Labels from a CSV or Excel File: FNSKU, suffocation and set labels for FBA prep. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** bulk fnsku labels from a csv or excel file, amazon fba, fba prep, fnsku labels
+
+## Day 98: Stream Schedule Template & Maker with Time Zones
+
+- **Board:** Streamer Schedules
+- **Image:** https://tools.roohsites.com/pins/stream-schedule-template-maker-with-time-zones.png
+- **Link:** https://streamschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.
+- **Alt text:** Stream Schedule Template & Maker with Time Zones: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
+- **Keywords:** stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer
+
+## Day 99: Homeschool GPA Calculator
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/homeschool-gpa-calculator.png
+- **Link:** https://transcript.roohsites.com/homeschool-gpa-calculator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free homeschool GPA calculator for high school. Weighted and unweighted GPA with honors, AP and dual-enrollment weights, and every step of the math shown.
+- **Alt text:** Homeschool GPA Calculator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** homeschool gpa calculator, homeschool transcript, homeschool high school, gpa

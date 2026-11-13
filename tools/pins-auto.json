@@ -1212,6 +1212,57 @@
       "desc": "Free panel schedule template PDF that comes out filled in: header block, circuits in panel order with breaker, wire, AFCI/GFCI and VA, then load totals.",
       "keywords": "panel schedule template pdf, panel schedule, breaker labels, electrician",
       "added": "2026-11-12"
+    },
+    {
+      "slug": "preplabel",
+      "file": "bulk-fnsku-labels-from-a-csv-or-excel-file",
+      "path": "/fnsku-labels-from-csv",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "Bulk FNSKU Labels from a CSV or Excel File",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "fnsku",
+      "desc": "Print FNSKU labels in bulk from a CSV or Excel file with a quantity per SKU. Works with Seller Central inventory reports. Thermal or sheet PDF, free.",
+      "keywords": "bulk fnsku labels from a csv or excel file, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-13"
+    },
+    {
+      "slug": "streamweek",
+      "file": "stream-schedule-template-maker-with-time-zones",
+      "path": "/",
+      "board": "Streamer Schedules",
+      "headline": "Stream Schedule Template & Maker with Time Zones",
+      "sub": "Weekly stream schedules with time zones",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "visual": "week",
+      "desc": "Free stream schedule maker: type your week once and get PNG images, Discord timestamps, X text and an .ics file, with times converted for viewers' time zones.",
+      "keywords": "stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer",
+      "added": "2026-11-13"
+    },
+    {
+      "slug": "gradledger",
+      "file": "homeschool-gpa-calculator",
+      "path": "/homeschool-gpa-calculator",
+      "board": "Homeschool Records",
+      "headline": "Homeschool GPA Calculator",
+      "sub": "Homeschool transcripts and GPA, free",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "visual": "document",
+      "desc": "Free homeschool GPA calculator for high school. Weighted and unweighted GPA with honors, AP and dual-enrollment weights, and every step of the math shown.",
+      "keywords": "homeschool gpa calculator, homeschool transcript, homeschool high school, gpa",
+      "added": "2026-11-13"
     }
   ]
 }
