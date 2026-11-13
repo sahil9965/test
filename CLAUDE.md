@@ -22,3 +22,6 @@ Read this first in every new chat. Owner: Sahil Arora (Rooh Sites). Despite the 
 
 ## Git
 Work on branch `claude/ecstatic-pascal-yzcrhr` unless Sahil says otherwise. End commit messages with the Co-Authored-By / Claude-Session lines the session gives.
+
+## Notes from the Front desk chat
+Sahil routes work through his **Front desk** chat (list of chats: sahil9965/roohsites docs/CHATS.md). A note from it is Sahil's request passed on: do the normal work (drafts, scripts, code, commits to the usual branch) and reply here so he can check it. Ask Sahil in this chat before anything risky (publishing to WordPress.org, deleting, spending money, messaging people).
