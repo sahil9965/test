@@ -909,3 +909,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free homeschool GPA calculator for high school. Weighted and unweighted GPA with honors, AP and dual-enrollment weights, and every step of the math shown.
 - **Alt text:** Homeschool GPA Calculator: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
 - **Keywords:** homeschool gpa calculator, homeschool transcript, homeschool high school, gpa
+
+## Day 100: Convert a USPS.com Label to 4x6
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/convert-a-usps-com-label-to-4x6.png
+- **Link:** https://labels.roohsites.com/usps-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Convert a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. Crops, rotates and keeps the barcode sharp. Free and private.
+- **Alt text:** Convert a USPS.com Label to 4x6: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer
+
+## Day 101: Is this invoice generator really free?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/is-this-invoice-generator-really-free.png
+- **Link:** https://invoice.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Yes, completely. Every feature is free: unlimited invoices, your logo, saved clients, invoice history and all three designs. There's no account and no paid tier. Free tool: invoice.roohsites.com
+- **Alt text:** Is this invoice generator really free?: Yes, completely. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** invoice generator, invoice template, free invoice generator, small business
+
+## Day 102: What size are the punch cards and how many fit on a page?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/what-size-are-the-punch-cards-and-how-many-fit-on-a-page.png
+- **Link:** https://punchcard.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** On US Letter each card is 3.5 × 2 in and 10 fit on a page, 2 across and 5 down. On A4 each card is 85 × 55 mm, also 10 per page. The plain-paper layouts put 8 cards on a page with 1/8 in (about 3 mm) gaps and crop marks, so you can cut them by hand. Free tool: punchcard.roohsites.com
+- **Alt text:** What size are the punch cards and how many fit on a page?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** printable punch card template, punch card template, loyalty card, small business

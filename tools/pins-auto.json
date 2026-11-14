@@ -1263,6 +1263,57 @@
       "desc": "Free homeschool GPA calculator for high school. Weighted and unweighted GPA with honors, AP and dual-enrollment weights, and every step of the math shown.",
       "keywords": "homeschool gpa calculator, homeschool transcript, homeschool high school, gpa",
       "added": "2026-11-13"
+    },
+    {
+      "slug": "labelfit",
+      "file": "convert-a-usps-com-label-to-4x6",
+      "path": "/usps-label-to-4x6",
+      "board": "Online Seller Shipping",
+      "headline": "Convert a USPS.com Label to 4x6",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Convert a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. Crops, rotates and keeps the barcode sharp. Free and private.",
+      "keywords": "convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-14"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "is-this-invoice-generator-really-free",
+      "path": "/",
+      "board": "Small Business Invoices",
+      "headline": "Is this invoice generator really free?",
+      "sub": "Yes, completely",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Yes, completely. Every feature is free: unlimited invoices, your logo, saved clients, invoice history and all three designs. There's no account and no paid tier. Free tool: invoice.roohsites.com",
+      "keywords": "invoice generator, invoice template, free invoice generator, small business",
+      "added": "2026-11-14"
+    },
+    {
+      "slug": "punchperk",
+      "file": "what-size-are-the-punch-cards-and-how-many-fit-on-a-page",
+      "path": "/",
+      "board": "Small Business Printables",
+      "headline": "What size are the punch cards and how many fit on a page?",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "On US Letter each card is 3.5 × 2 in and 10 fit on a page, 2 across and 5 down. On A4 each card is 85 × 55 mm, also 10 per page. The plain-paper layouts put 8 cards on a page with 1/8 in (about 3 mm) gaps and crop marks, so you can cut them by hand. Free tool: punchcard.roohsites.com",
+      "keywords": "printable punch card template, punch card template, loyalty card, small business",
+      "added": "2026-11-14"
     }
   ]
 }
