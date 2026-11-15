@@ -1314,6 +1314,57 @@
       "desc": "On US Letter each card is 3.5 × 2 in and 10 fit on a page, 2 across and 5 down. On A4 each card is 85 × 55 mm, also 10 per page. The plain-paper layouts put 8 cards on a page with 1/8 in (about 3 mm) gaps and crop marks, so you can cut them by hand. Free tool: punchcard.roohsites.com",
       "keywords": "printable punch card template, punch card template, loyalty card, small business",
       "added": "2026-11-14"
+    },
+    {
+      "slug": "paneldex",
+      "file": "electrical-panel-schedule-template-excel-pdf",
+      "path": "/",
+      "board": "Electrician Printables",
+      "headline": "Electrical Panel Schedule Template (Excel & PDF)",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Free electrical panel schedule template laid out like a real panel. Enter breakers, see load per leg, then download Excel, a PDF, a door directory and labels.",
+      "keywords": "electrical panel schedule template (excel & pdf), panel schedule, breaker labels, electrician",
+      "added": "2026-11-15"
+    },
+    {
+      "slug": "bellbook",
+      "file": "rotating-schedule-calendar-maker",
+      "path": "/rotating-schedule-calendar-maker",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "headline": "Rotating Schedule Calendar Maker",
+      "sub": "A/B and rotating-day school calendars",
+      "points": [
+        "Snow-day re-flow",
+        "PDF, .ics & share link",
+        "No signup"
+      ],
+      "visual": "calendar",
+      "desc": "Free rotating schedule calendar maker for schools. Day 1–N cycles, A/B/C days and custom labels that skip holidays and re-flow after snow days. Print as PDF.",
+      "keywords": "rotating schedule calendar maker, a/b day calendar, teacher planner, block schedule",
+      "added": "2026-11-15"
+    },
+    {
+      "slug": "preplabel",
+      "file": "convert-an-fnsku-label-pdf-to-thermal-labels",
+      "path": "/fnsku-pdf-to-thermal",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "Convert an FNSKU Label PDF to Thermal Labels",
+      "sub": "Drop in the label PDF you downloaded from Seller Central",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "fnsku",
+      "desc": "Turn a Seller Central FNSKU label sheet PDF into 2x1 in or DYMO 30334 thermal labels, one per page. Barcodes stay vector. Free, and the PDF is never uploaded.",
+      "keywords": "convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-15"
     }
   ]
 }

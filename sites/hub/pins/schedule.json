@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1036,6 +1036,36 @@
       "link": "https://punchcard.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "What size are the punch cards and how many fit on a page?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "printable punch card template, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 103,
+      "title": "Electrical Panel Schedule Template (Excel & PDF)",
+      "description": "Free electrical panel schedule template laid out like a real panel. Enter breakers, see load per leg, then download Excel, a PDF, a door directory and labels.",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/electrical-panel-schedule-template-excel-pdf.png",
+      "link": "https://panelschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Electrical Panel Schedule Template (Excel & PDF): Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "electrical panel schedule template (excel & pdf), panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 104,
+      "title": "Rotating Schedule Calendar Maker",
+      "description": "Free rotating schedule calendar maker for schools. Day 1–N cycles, A/B/C days and custom labels that skip holidays and re-flow after snow days. Print as PDF.",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "image": "https://tools.roohsites.com/pins/rotating-schedule-calendar-maker.png",
+      "link": "https://abday.roohsites.com/rotating-schedule-calendar-maker?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Rotating Schedule Calendar Maker: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.",
+      "keywords": "rotating schedule calendar maker, a/b day calendar, teacher planner, block schedule"
+    },
+    {
+      "day": 105,
+      "title": "Convert an FNSKU Label PDF to Thermal Labels",
+      "description": "Turn a Seller Central FNSKU label sheet PDF into 2x1 in or DYMO 30334 thermal labels, one per page. Barcodes stay vector. Free, and the PDF is never uploaded.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/convert-an-fnsku-label-pdf-to-thermal-labels.png",
+      "link": "https://fnsku.roohsites.com/fnsku-pdf-to-thermal?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Convert an FNSKU Label PDF to Thermal Labels: Drop in the label PDF you downloaded from Seller Central. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.",
+      "keywords": "convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels"
     }
   ]
 }

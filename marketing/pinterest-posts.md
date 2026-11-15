@@ -936,3 +936,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** On US Letter each card is 3.5 × 2 in and 10 fit on a page, 2 across and 5 down. On A4 each card is 85 × 55 mm, also 10 per page. The plain-paper layouts put 8 cards on a page with 1/8 in (about 3 mm) gaps and crop marks, so you can cut them by hand. Free tool: punchcard.roohsites.com
 - **Alt text:** What size are the punch cards and how many fit on a page?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** printable punch card template, punch card template, loyalty card, small business
+
+## Day 103: Electrical Panel Schedule Template (Excel & PDF)
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/electrical-panel-schedule-template-excel-pdf.png
+- **Link:** https://panelschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free electrical panel schedule template laid out like a real panel. Enter breakers, see load per leg, then download Excel, a PDF, a door directory and labels.
+- **Alt text:** Electrical Panel Schedule Template (Excel & PDF): Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** electrical panel schedule template (excel & pdf), panel schedule, breaker labels, electrician
+
+## Day 104: Rotating Schedule Calendar Maker
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/rotating-schedule-calendar-maker.png
+- **Link:** https://abday.roohsites.com/rotating-schedule-calendar-maker?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free rotating schedule calendar maker for schools. Day 1–N cycles, A/B/C days and custom labels that skip holidays and re-flow after snow days. Print as PDF.
+- **Alt text:** Rotating Schedule Calendar Maker: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** rotating schedule calendar maker, a/b day calendar, teacher planner, block schedule
+
+## Day 105: Convert an FNSKU Label PDF to Thermal Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/convert-an-fnsku-label-pdf-to-thermal-labels.png
+- **Link:** https://fnsku.roohsites.com/fnsku-pdf-to-thermal?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Turn a Seller Central FNSKU label sheet PDF into 2x1 in or DYMO 30334 thermal labels, one per page. Barcodes stay vector. Free, and the PDF is never uploaded.
+- **Alt text:** Convert an FNSKU Label PDF to Thermal Labels: Drop in the label PDF you downloaded from Seller Central. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
+- **Keywords:** convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels
