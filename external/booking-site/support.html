@@ -83,6 +83,7 @@
 		<li><a href="#calendar">Admin calendar</a></li>
 		<li><a href="#portal">My bookings page (customer portal)</a></li>
 		<li><a href="#extras">Service extras</a></li>
+		<li><a href="#combos">Combo deals and “Often added”</a></li>
 		<li><a href="#coupons">Coupons</a></li>
 		<li><a href="#questions">Extra questions on the form</a></li>
 		<li><a href="#schedules">Breaks and special dates</a></li>
@@ -140,6 +141,10 @@
 		<li>Open the staff members who offer it and tick it under <strong>Services offered</strong>. A service nobody offers can't be booked.</li>
 	</ol>
 	<p>The Services list shows each service's <strong>ID</strong>, which you can use in the <a href="#form">shortcode</a>. With Pro, services can also have <a href="#extras">extras</a>.</p>
+
+	<h3 id="several-services">Several services in one visit</h3>
+	<p>Customers can tick more than one service, for example a haircut and a beard trim. They are booked back to back with one staff member who offers all of them, so the form only shows those staff members and finds one free time for the whole visit. The length and price add up (the buffer after the visit is the longest of the services' buffers). Up to 5 services fit in one booking.</p>
+	<p>It is on by default. To book one service at a time only, untick <strong>Several services</strong> in <span class="path">Roohsites Appointment Booking → Settings</span>.</p>
 
 	<h2 id="staff">Staff</h2>
 	<p>Staff are the people customers book with: hairdressers, tutors, coaches. A one-person business adds one.</p>
@@ -411,6 +416,18 @@
 		<li>Type the <strong>Name</strong> (for example “Head massage”), the <strong>Price</strong> and the <strong>Extra minutes</strong>.</li>
 		<li>Click <strong>Update</strong>. Customers see <strong>Add extras</strong> under the service, and the booking summary shows the new total and length.</li>
 	</ol>
+
+	<h2 id="combos">Combo deals and “Often added”</h2>
+	<p>Sell more in the same visit. Both need <a href="#several-services">Several services</a> turned on (it is by default).</p>
+	<p><strong>Combo deal:</strong> two or more services for one price, for example haircut + beard trim for ₹650 instead of ₹750.</p>
+	<ol>
+		<li>Go to <span class="path">Roohsites Appointment Booking → Combo deals → Add New</span>.</li>
+		<li>Type the name customers see, for example “Grooming combo”.</li>
+		<li>Tick the services (2 to 5) and type the <strong>Deal price</strong>. It must be lower than the services cost on their own.</li>
+		<li>Click <strong>Publish</strong>. The deal shows above the services with the saving; one tap picks its services. It also applies on its own when a customer picks every service of the deal.</li>
+	</ol>
+	<p>When deals overlap, the one that saves the customer the most wins. Extras, coupons and deposits work on top of the deal price; a coupon limited to some services only takes off their share.</p>
+	<p><strong>Often added:</strong> open a service and tick services in the <strong>Often added</strong> box (on the right). When a customer picks that service, these show under it with one-tap add. A service that would complete a combo deal is suggested with its saving.</p>
 
 	<h2 id="coupons">Coupons</h2>
 	<ol>
