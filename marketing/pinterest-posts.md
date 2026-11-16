@@ -963,3 +963,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Turn a Seller Central FNSKU label sheet PDF into 2x1 in or DYMO 30334 thermal labels, one per page. Barcodes stay vector. Free, and the PDF is never uploaded.
 - **Alt text:** Convert an FNSKU Label PDF to Thermal Labels: Drop in the label PDF you downloaded from Seller Central. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.
 - **Keywords:** convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels
+
+## Day 106: Duration Recording Data Sheet
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/duration-recording-data-sheet.png
+- **Link:** https://abagraph.roohsites.com/duration-recording-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free duration recording data sheet: log each episode's start and stop, total duration and % of time observed. Includes a latency sheet. Print or get a PDF.
+- **Alt text:** Duration Recording Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
+- **Keywords:** duration recording data sheet, aba graph, data sheet, special education
+
+## Day 107: Print a Vinted Label on a Thermal Printer
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/print-a-vinted-label-on-a-thermal-printer.png
+- **Link:** https://labels.roohsites.com/vinted-label-thermal-printer?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print Vinted labels on a 6x4 thermal printer. Crop the A4 Evri, InPost, Royal Mail or DPD label to 100x150 mm in your browser. Free, nothing uploaded.
+- **Alt text:** Print a Vinted Label on a Thermal Printer: Vinted's printable labels usually come as an A4 PDF. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** print a vinted label on a thermal printer, shipping label, 4x6 label, thermal printer
+
+## Day 108: Do contractors charge sales tax on labor?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/do-contractors-charge-sales-tax-on-labor.png
+- **Link:** https://invoice.roohsites.com/contractor-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** It depends on the state or country. Many US states tax materials but not labor on repairs. Others tax both. Check your local rules or ask an accountant. Free tool: invoice.roohsites.com
+- **Alt text:** Do contractors charge sales tax on labor?: It depends on the state or country. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** contractor invoice template, invoice template, free invoice generator, small business

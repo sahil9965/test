@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1066,6 +1066,36 @@
       "link": "https://fnsku.roohsites.com/fnsku-pdf-to-thermal?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Convert an FNSKU Label PDF to Thermal Labels: Drop in the label PDF you downloaded from Seller Central. The image shows a sheet of FNSKU barcode labels with product names, from fnsku.roohsites.com.",
       "keywords": "convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels"
+    },
+    {
+      "day": 106,
+      "title": "Duration Recording Data Sheet",
+      "description": "Free duration recording data sheet: log each episode's start and stop, total duration and % of time observed. Includes a latency sheet. Print or get a PDF.",
+      "board": "ABA Data Sheets & Graphs",
+      "image": "https://tools.roohsites.com/pins/duration-recording-data-sheet.png",
+      "link": "https://abagraph.roohsites.com/duration-recording-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Duration Recording Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.",
+      "keywords": "duration recording data sheet, aba graph, data sheet, special education"
+    },
+    {
+      "day": 107,
+      "title": "Print a Vinted Label on a Thermal Printer",
+      "description": "Print Vinted labels on a 6x4 thermal printer. Crop the A4 Evri, InPost, Royal Mail or DPD label to 100x150 mm in your browser. Free, nothing uploaded.",
+      "board": "Online Seller Shipping",
+      "image": "https://tools.roohsites.com/pins/print-a-vinted-label-on-a-thermal-printer.png",
+      "link": "https://labels.roohsites.com/vinted-label-thermal-printer?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Print a Vinted Label on a Thermal Printer: Vinted's printable labels usually come as an A4 PDF. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
+      "keywords": "print a vinted label on a thermal printer, shipping label, 4x6 label, thermal printer"
+    },
+    {
+      "day": 108,
+      "title": "Do contractors charge sales tax on labor?",
+      "description": "It depends on the state or country. Many US states tax materials but not labor on repairs. Others tax both. Check your local rules or ask an accountant. Free tool: invoice.roohsites.com",
+      "board": "Small Business Invoices",
+      "image": "https://tools.roohsites.com/pins/do-contractors-charge-sales-tax-on-labor.png",
+      "link": "https://invoice.roohsites.com/contractor-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Do contractors charge sales tax on labor?: It depends on the state or country. The image shows a one-page document preview, from invoice.roohsites.com.",
+      "keywords": "contractor invoice template, invoice template, free invoice generator, small business"
     }
   ]
 }

@@ -1365,6 +1365,57 @@
       "desc": "Turn a Seller Central FNSKU label sheet PDF into 2x1 in or DYMO 30334 thermal labels, one per page. Barcodes stay vector. Free, and the PDF is never uploaded.",
       "keywords": "convert an fnsku label pdf to thermal labels, amazon fba, fba prep, fnsku labels",
       "added": "2026-11-15"
+    },
+    {
+      "slug": "goaltally",
+      "file": "duration-recording-data-sheet",
+      "path": "/duration-recording-data-sheet",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "Duration Recording Data Sheet",
+      "sub": "ABA graphs and data sheets for IEP goals",
+      "points": [
+        "Nothing uploaded",
+        "Works offline",
+        "No signup"
+      ],
+      "visual": "grid",
+      "desc": "Free duration recording data sheet: log each episode's start and stop, total duration and % of time observed. Includes a latency sheet. Print or get a PDF.",
+      "keywords": "duration recording data sheet, aba graph, data sheet, special education",
+      "added": "2026-11-16"
+    },
+    {
+      "slug": "labelfit",
+      "file": "print-a-vinted-label-on-a-thermal-printer",
+      "path": "/vinted-label-thermal-printer",
+      "board": "Online Seller Shipping",
+      "headline": "Print a Vinted Label on a Thermal Printer",
+      "sub": "Vinted's printable labels usually come as an A4 PDF",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Print Vinted labels on a 6x4 thermal printer. Crop the A4 Evri, InPost, Royal Mail or DPD label to 100x150 mm in your browser. Free, nothing uploaded.",
+      "keywords": "print a vinted label on a thermal printer, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-16"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "do-contractors-charge-sales-tax-on-labor",
+      "path": "/contractor-invoice-template",
+      "board": "Small Business Invoices",
+      "headline": "Do contractors charge sales tax on labor?",
+      "sub": "It depends on the state or country",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "It depends on the state or country. Many US states tax materials but not labor on repairs. Others tax both. Check your local rules or ask an accountant. Free tool: invoice.roohsites.com",
+      "keywords": "contractor invoice template, invoice template, free invoice generator, small business",
+      "added": "2026-11-16"
     }
   ]
 }
