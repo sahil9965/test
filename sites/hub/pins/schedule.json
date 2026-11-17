@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1096,6 +1096,36 @@
       "link": "https://invoice.roohsites.com/contractor-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Do contractors charge sales tax on labor?: It depends on the state or country. The image shows a one-page document preview, from invoice.roohsites.com.",
       "keywords": "contractor invoice template, invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 109,
+      "title": "How many punches should a classroom behavior card have?",
+      "description": "Ten works for a month-long goal; five or six suits younger children or a weekly goal. A card that can be completed within a week gives students a reachable target, and teachers who want a longer goal can run a second card. Free tool: punchcard.roohsites.com",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/how-many-punches-should-a-classroom-behavior-card-have.png",
+      "link": "https://punchcard.roohsites.com/behavior-punch-card-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "How many punches should a classroom behavior card have?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "behavior punch card printable, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 110,
+      "title": "How are phases assigned in a 3 phase panel schedule?",
+      "description": "By row. Circuits 1 and 2 are on phase A, 3 and 4 on B, 5 and 6 on C, then 7 and 8 back on A, and so on down the panel. Both circuits in a row share the same phase. Free tool: panelschedule.roohsites.com",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/how-are-phases-assigned-in-a-3-phase-panel-schedule.png",
+      "link": "https://panelschedule.roohsites.com/3-phase-panel-schedule-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "How are phases assigned in a 3 phase panel schedule?: By row. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "3 phase panel schedule template, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 111,
+      "title": "Online Raffle Ticket Generator",
+      "description": "Free online raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.",
+      "board": "Raffle & Event Tickets",
+      "image": "https://tools.roohsites.com/pins/online-raffle-ticket-generator.png",
+      "link": "https://raffle.roohsites.com/numbered-raffle-ticket-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Online Raffle Ticket Generator: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.",
+      "keywords": "online raffle ticket generator, raffle tickets, fundraiser, printable tickets"
     }
   ]
 }

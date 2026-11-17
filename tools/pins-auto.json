@@ -1416,6 +1416,57 @@
       "desc": "It depends on the state or country. Many US states tax materials but not labor on repairs. Others tax both. Check your local rules or ask an accountant. Free tool: invoice.roohsites.com",
       "keywords": "contractor invoice template, invoice template, free invoice generator, small business",
       "added": "2026-11-16"
+    },
+    {
+      "slug": "punchperk",
+      "file": "how-many-punches-should-a-classroom-behavior-card-have",
+      "path": "/behavior-punch-card-printable",
+      "board": "Small Business Printables",
+      "headline": "How many punches should a classroom behavior card have?",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Ten works for a month-long goal; five or six suits younger children or a weekly goal. A card that can be completed within a week gives students a reachable target, and teachers who want a longer goal can run a second card. Free tool: punchcard.roohsites.com",
+      "keywords": "behavior punch card printable, punch card template, loyalty card, small business",
+      "added": "2026-11-17"
+    },
+    {
+      "slug": "paneldex",
+      "file": "how-are-phases-assigned-in-a-3-phase-panel-schedule",
+      "path": "/3-phase-panel-schedule-template",
+      "board": "Electrician Printables",
+      "headline": "How are phases assigned in a 3 phase panel schedule?",
+      "sub": "By row",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "By row. Circuits 1 and 2 are on phase A, 3 and 4 on B, 5 and 6 on C, then 7 and 8 back on A, and so on down the panel. Both circuits in a row share the same phase. Free tool: panelschedule.roohsites.com",
+      "keywords": "3 phase panel schedule template, panel schedule, breaker labels, electrician",
+      "added": "2026-11-17"
+    },
+    {
+      "slug": "ticketrun",
+      "file": "online-raffle-ticket-generator",
+      "path": "/numbered-raffle-ticket-generator",
+      "board": "Raffle & Event Tickets",
+      "headline": "Online Raffle Ticket Generator",
+      "sub": "Printable numbered raffle tickets with stubs",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "visual": "tickets",
+      "desc": "Free online raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.",
+      "keywords": "online raffle ticket generator, raffle tickets, fundraiser, printable tickets",
+      "added": "2026-11-17"
     }
   ]
 }

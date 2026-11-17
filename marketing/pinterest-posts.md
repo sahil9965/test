@@ -990,3 +990,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** It depends on the state or country. Many US states tax materials but not labor on repairs. Others tax both. Check your local rules or ask an accountant. Free tool: invoice.roohsites.com
 - **Alt text:** Do contractors charge sales tax on labor?: It depends on the state or country. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** contractor invoice template, invoice template, free invoice generator, small business
+
+## Day 109: How many punches should a classroom behavior card have?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/how-many-punches-should-a-classroom-behavior-card-have.png
+- **Link:** https://punchcard.roohsites.com/behavior-punch-card-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Ten works for a month-long goal; five or six suits younger children or a weekly goal. A card that can be completed within a week gives students a reachable target, and teachers who want a longer goal can run a second card. Free tool: punchcard.roohsites.com
+- **Alt text:** How many punches should a classroom behavior card have?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** behavior punch card printable, punch card template, loyalty card, small business
+
+## Day 110: How are phases assigned in a 3 phase panel schedule?
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/how-are-phases-assigned-in-a-3-phase-panel-schedule.png
+- **Link:** https://panelschedule.roohsites.com/3-phase-panel-schedule-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** By row. Circuits 1 and 2 are on phase A, 3 and 4 on B, 5 and 6 on C, then 7 and 8 back on A, and so on down the panel. Both circuits in a row share the same phase. Free tool: panelschedule.roohsites.com
+- **Alt text:** How are phases assigned in a 3 phase panel schedule?: By row. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** 3 phase panel schedule template, panel schedule, breaker labels, electrician
+
+## Day 111: Online Raffle Ticket Generator
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/online-raffle-ticket-generator.png
+- **Link:** https://raffle.roohsites.com/numbered-raffle-ticket-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free online raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.
+- **Alt text:** Online Raffle Ticket Generator: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** online raffle ticket generator, raffle tickets, fundraiser, printable tickets
