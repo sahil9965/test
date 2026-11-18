@@ -1467,6 +1467,57 @@
       "desc": "Free online raffle ticket generator: the same sequential number on each ticket and stub, prefixes, zero padding and cut-and-stack order. Download a PDF.",
       "keywords": "online raffle ticket generator, raffle tickets, fundraiser, printable tickets",
       "added": "2026-11-17"
+    },
+    {
+      "slug": "preplabel",
+      "file": "fnsku-label-zpl-for-zebra-printers",
+      "path": "/fnsku-zpl-zebra",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "FNSKU Label ZPL for Zebra Printers",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "fnsku",
+      "desc": "Export FNSKU labels as ZPL for Zebra thermal printers: Code 128 barcode, title and condition, ^PQ quantities, 203 or 300 dpi. Free, nothing to install.",
+      "keywords": "fnsku label zpl for zebra printers, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-18"
+    },
+    {
+      "slug": "labelfit",
+      "file": "should-i-choose-4-6-in-or-100-150-mm",
+      "path": "/",
+      "board": "Online Seller Shipping",
+      "headline": "Should I choose 4 × 6 in or 100 × 150 mm?",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Pick the size printed on your label roll and set your printer to the same size. UK and EU “6x4” rolls are usually 100 × 150 mm; US rolls are 4 × 6 in (101.6 × 152.4 mm). The two differ by less than 2.5 mm, so either works as long as the PDF and the printer setting match. Free tool: labels.roohsites.com",
+      "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-18"
+    },
+    {
+      "slug": "streamweek",
+      "file": "what-does-1-or-1-next-to-a-time-mean",
+      "path": "/",
+      "board": "Streamer Schedules",
+      "headline": "What does +1 or −1 next to a time mean?",
+      "sub": "Weekly stream schedules with time zones",
+      "points": [
+        "Auto time zones",
+        "Discord timestamps",
+        "5 image sizes"
+      ],
+      "visual": "week",
+      "desc": "It means that time falls on the next day (+1) or the previous day (−1) for viewers in that zone, compared with the day in your schedule. A Monday 8:00 PM stream in London is 5:00 AM JST +1, which is Tuesday morning in Japan. Free tool: streamschedule.roohsites.com",
+      "keywords": "stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer",
+      "added": "2026-11-18"
     }
   ]
 }
