@@ -1044,3 +1044,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** It means that time falls on the next day (+1) or the previous day (−1) for viewers in that zone, compared with the day in your schedule. A Monday 8:00 PM stream in London is 5:00 AM JST +1, which is Tuesday morning in Japan. Free tool: streamschedule.roohsites.com
 - **Alt text:** What does +1 or −1 next to a time mean?: Weekly stream schedules with time zones. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
 - **Keywords:** stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer
+
+## Day 115: Homeschool Report Card Template
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/homeschool-report-card-template.png
+- **Link:** https://transcript.roohsites.com/homeschool-report-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Homeschool report card template: grades, credits, GPA, attendance and comments for each school year, made from your records. Free PDF download, no signup.
+- **Alt text:** Homeschool Report Card Template: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** homeschool report card template, homeschool transcript, homeschool high school, gpa
+
+## Day 116: Do freelancers need to charge tax on invoices?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/do-freelancers-need-to-charge-tax-on-invoices.png
+- **Link:** https://invoice.roohsites.com/freelance-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** It depends on your country and income. In the UK you charge VAT only if you're VAT-registered. In the EU and India rules depend on thresholds. In the US most services aren't subject to sales tax. Check with a local accountant. Free tool: invoice.roohsites.com
+- **Alt text:** Do freelancers need to charge tax on invoices?: It depends on your country and income. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** freelance invoice template, invoice template, free invoice generator, small business
+
+## Day 117: How many punches should a coffee card have?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/how-many-punches-should-a-coffee-card-have.png
+- **Link:** https://punchcard.roohsites.com/coffee-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Ten is the usual choice: nine paid drinks and the tenth free, which is what the Coffee preset prints. If your drinks are cheap and customers come in daily, 8 punches reaches the reward in under two weeks. If most customers visit once or twice a week, 10 or more may feel too far away to bother with. Free tool: punchcard.roohsites.com
+- **Alt text:** How many punches should a coffee card have?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** coffee punch card template, punch card template, loyalty card, small business

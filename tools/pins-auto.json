@@ -1518,6 +1518,57 @@
       "desc": "It means that time falls on the next day (+1) or the previous day (−1) for viewers in that zone, compared with the day in your schedule. A Monday 8:00 PM stream in London is 5:00 AM JST +1, which is Tuesday morning in Japan. Free tool: streamschedule.roohsites.com",
       "keywords": "stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer",
       "added": "2026-11-18"
+    },
+    {
+      "slug": "gradledger",
+      "file": "homeschool-report-card-template",
+      "path": "/homeschool-report-card-template",
+      "board": "Homeschool Records",
+      "headline": "Homeschool Report Card Template",
+      "sub": "Homeschool transcripts and GPA, free",
+      "points": [
+        "Weighted GPA",
+        "Course descriptions",
+        "Hours log"
+      ],
+      "visual": "document",
+      "desc": "Homeschool report card template: grades, credits, GPA, attendance and comments for each school year, made from your records. Free PDF download, no signup.",
+      "keywords": "homeschool report card template, homeschool transcript, homeschool high school, gpa",
+      "added": "2026-11-19"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "do-freelancers-need-to-charge-tax-on-invoices",
+      "path": "/freelance-invoice-template",
+      "board": "Small Business Invoices",
+      "headline": "Do freelancers need to charge tax on invoices?",
+      "sub": "It depends on your country and income",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "It depends on your country and income. In the UK you charge VAT only if you're VAT-registered. In the EU and India rules depend on thresholds. In the US most services aren't subject to sales tax. Check with a local accountant. Free tool: invoice.roohsites.com",
+      "keywords": "freelance invoice template, invoice template, free invoice generator, small business",
+      "added": "2026-11-19"
+    },
+    {
+      "slug": "punchperk",
+      "file": "how-many-punches-should-a-coffee-card-have",
+      "path": "/coffee-punch-card-template",
+      "board": "Small Business Printables",
+      "headline": "How many punches should a coffee card have?",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "Ten is the usual choice: nine paid drinks and the tenth free, which is what the Coffee preset prints. If your drinks are cheap and customers come in daily, 8 punches reaches the reward in under two weeks. If most customers visit once or twice a week, 10 or more may feel too far away to bother with. Free tool: punchcard.roohsites.com",
+      "keywords": "coffee punch card template, punch card template, loyalty card, small business",
+      "added": "2026-11-19"
     }
   ]
 }
