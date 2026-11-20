@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19",
+  "updated": "2026-11-20",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1186,6 +1186,36 @@
       "link": "https://punchcard.roohsites.com/coffee-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "How many punches should a coffee card have?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "coffee punch card template, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 118,
+      "title": "How many rows does a 42 circuit panel schedule have?",
+      "description": "21 rows of two spaces each: 1 and 2 on the top row down to 41 and 42 on the bottom. Odd numbers run down the left, even numbers down the right. Free tool: panelschedule.roohsites.com",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/how-many-rows-does-a-42-circuit-panel-schedule-have.png",
+      "link": "https://panelschedule.roohsites.com/42-circuit-panel-schedule?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "How many rows does a 42 circuit panel schedule have?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "42 circuit panel schedule template, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 119,
+      "title": "Sold as Set / Do Not Separate Labels",
+      "description": "Print “Sold as set / Do not separate” and “This is a set” labels for FBA bundles on thermal rolls or Avery-size sheets. Big bold text, free PDF, no signup.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/sold-as-set-do-not-separate-labels.png",
+      "link": "https://fnsku.roohsites.com/sold-as-set-label?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Sold as Set / Do Not Separate Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.",
+      "keywords": "sold as set / do not separate labels, amazon fba, fba prep, fnsku labels"
+    },
+    {
+      "day": 120,
+      "title": "Second Semester Lesson Planner",
+      "description": "Free printable second semester lesson planner for January to June 2027. Dated weekly pages with your periods, A/B days, holidays and breaks. Letter or A4 PDF.",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "image": "https://tools.roohsites.com/pins/second-semester-lesson-planner.png",
+      "link": "https://abday.roohsites.com/second-semester-lesson-planner?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Second Semester Lesson Planner: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.",
+      "keywords": "second semester lesson planner, a/b day calendar, teacher planner, block schedule"
     }
   ]
 }

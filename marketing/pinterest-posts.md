@@ -1071,3 +1071,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Ten is the usual choice: nine paid drinks and the tenth free, which is what the Coffee preset prints. If your drinks are cheap and customers come in daily, 8 punches reaches the reward in under two weeks. If most customers visit once or twice a week, 10 or more may feel too far away to bother with. Free tool: punchcard.roohsites.com
 - **Alt text:** How many punches should a coffee card have?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** coffee punch card template, punch card template, loyalty card, small business
+
+## Day 118: How many rows does a 42 circuit panel schedule have?
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/how-many-rows-does-a-42-circuit-panel-schedule-have.png
+- **Link:** https://panelschedule.roohsites.com/42-circuit-panel-schedule?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** 21 rows of two spaces each: 1 and 2 on the top row down to 41 and 42 on the bottom. Odd numbers run down the left, even numbers down the right. Free tool: panelschedule.roohsites.com
+- **Alt text:** How many rows does a 42 circuit panel schedule have?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** 42 circuit panel schedule template, panel schedule, breaker labels, electrician
+
+## Day 119: Sold as Set / Do Not Separate Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/sold-as-set-do-not-separate-labels.png
+- **Link:** https://fnsku.roohsites.com/sold-as-set-label?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print “Sold as set / Do not separate” and “This is a set” labels for FBA bundles on thermal rolls or Avery-size sheets. Big bold text, free PDF, no signup.
+- **Alt text:** Sold as Set / Do Not Separate Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** sold as set / do not separate labels, amazon fba, fba prep, fnsku labels
+
+## Day 120: Second Semester Lesson Planner
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/second-semester-lesson-planner.png
+- **Link:** https://abday.roohsites.com/second-semester-lesson-planner?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable second semester lesson planner for January to June 2027. Dated weekly pages with your periods, A/B days, holidays and breaks. Letter or A4 PDF.
+- **Alt text:** Second Semester Lesson Planner: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** second semester lesson planner, a/b day calendar, teacher planner, block schedule
