@@ -7,6 +7,7 @@ Read this first in every new chat. Owner: Sahil Arora (Rooh Sites). Despite the 
 - **Ask before building a new tool.** Traffic data says new tools bring little: ~30 tools gave ~370 visitors in 30 days (Umami, 15 Oct–13 Nov). Improve the kept tools instead.
 - Never use components that capture the mouse wheel or touch scroll.
 - Short answers; recommend one option.
+- **Research first, never boring:** before anything you make or propose, research real references, say how many sources you checked, the references that inspired you and what you took, how it helps, and an honest self-rating /10. No generic output; raise the bar every time. If research isn't possible, say so.
 
 ## What's here
 - `sites/<tool>/`: each tool's static site (bellbook, collabrate, giftstub, glancesheet, goaltally, gradledger, hub, invoicekit, labelfit, lineupfair, paneldex, preplabel, priceboard, punchperk, quotewell, roomproof, scorenight, streamweek, ticketrun).
