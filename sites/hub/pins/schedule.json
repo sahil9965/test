@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1216,6 +1216,36 @@
       "link": "https://abday.roohsites.com/second-semester-lesson-planner?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Second Semester Lesson Planner: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.",
       "keywords": "second semester lesson planner, a/b day calendar, teacher planner, block schedule"
+    },
+    {
+      "day": 121,
+      "title": "USPS.com Label to 4x6",
+      "description": "Convert a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. Crops, rotates and keeps the barcode sharp. Free and private.",
+      "board": "Online Seller Shipping",
+      "image": "https://tools.roohsites.com/pins/usps-com-label-to-4x6.png",
+      "link": "https://labels.roohsites.com/usps-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "USPS.com Label to 4x6: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
+      "keywords": "convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer"
+    },
+    {
+      "day": 122,
+      "title": "Frequency Data Sheet",
+      "description": "Free frequency data sheet: tally each occurrence, total it and convert it to a rate per hour or minute. Up to 3 behaviors. Print, PDF or count on a tablet.",
+      "board": "ABA Data Sheets & Graphs",
+      "image": "https://tools.roohsites.com/pins/frequency-data-sheet.png",
+      "link": "https://abagraph.roohsites.com/frequency-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Frequency Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.",
+      "keywords": "frequency data sheet, aba graph, data sheet, special education"
+    },
+    {
+      "day": 123,
+      "title": "GST Invoice Generator",
+      "description": "Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.",
+      "board": "Small Business Invoices",
+      "image": "https://tools.roohsites.com/pins/gst-invoice-generator.png",
+      "link": "https://invoice.roohsites.com/gst-invoice-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "GST Invoice Generator: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.",
+      "keywords": "gst invoice generator (india), invoice template, free invoice generator, small business"
     }
   ]
 }

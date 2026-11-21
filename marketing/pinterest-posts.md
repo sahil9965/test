@@ -1098,3 +1098,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free printable second semester lesson planner for January to June 2027. Dated weekly pages with your periods, A/B days, holidays and breaks. Letter or A4 PDF.
 - **Alt text:** Second Semester Lesson Planner: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
 - **Keywords:** second semester lesson planner, a/b day calendar, teacher planner, block schedule
+
+## Day 121: USPS.com Label to 4x6
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/usps-com-label-to-4x6.png
+- **Link:** https://labels.roohsites.com/usps-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Convert a USPS.com Click-N-Ship 8.5x11 label into a 4x6 PDF for your thermal printer. Crops, rotates and keeps the barcode sharp. Free and private.
+- **Alt text:** USPS.com Label to 4x6: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer
+
+## Day 122: Frequency Data Sheet
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/frequency-data-sheet.png
+- **Link:** https://abagraph.roohsites.com/frequency-data-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free frequency data sheet: tally each occurrence, total it and convert it to a rate per hour or minute. Up to 3 behaviors. Print, PDF or count on a tablet.
+- **Alt text:** Frequency Data Sheet: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
+- **Keywords:** frequency data sheet, aba graph, data sheet, special education
+
+## Day 123: GST Invoice Generator
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/gst-invoice-generator.png
+- **Link:** https://invoice.roohsites.com/gst-invoice-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.
+- **Alt text:** GST Invoice Generator: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** gst invoice generator (india), invoice template, free invoice generator, small business
