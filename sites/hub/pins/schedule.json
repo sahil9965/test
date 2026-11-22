@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1246,6 +1246,36 @@
       "link": "https://invoice.roohsites.com/gst-invoice-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "GST Invoice Generator: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.",
       "keywords": "gst invoice generator (india), invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 124,
+      "title": "Do I need Canva, Word or any software?",
+      "description": "No. The template is edited in your browser on this page. You don't need an account, an app or a download. The PDF it produces opens in any PDF viewer and prints from any printer. Free tool: punchcard.roohsites.com",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/do-i-need-canva-word-or-any-software.png",
+      "link": "https://punchcard.roohsites.com/editable-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Do I need Canva, Word or any software?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "editable punch card template (no canva, no login), punch card template, loyalty card, small business"
+    },
+    {
+      "day": 125,
+      "title": "What size are the breaker labels?",
+      "description": "On US Letter each label is 1.875 × 0.563 in, 64 to a page. On A4 they're 46 × 14 mm, 72 to a page. They're 4 across with dashed cut lines. Free tool: panelschedule.roohsites.com",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/what-size-are-the-breaker-labels.png",
+      "link": "https://panelschedule.roohsites.com/breaker-box-label-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "What size are the breaker labels?: On US Letter each label is 1.875 × 0.563 in, 64 to a page. The image shows numbered breaker labels with short circuit names and cut lines, from panelschedule.roohsites.com.",
+      "keywords": "breaker box label template, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 126,
+      "title": "Printable Suffocation Warning Labels",
+      "description": "Printable suffocation warning labels with the font size picked from your poly bag size. English, French, German, Spanish, Italian and Dutch. Free PDF.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/printable-suffocation-warning-labels.png",
+      "link": "https://fnsku.roohsites.com/suffocation-warning-label?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Printable Suffocation Warning Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.",
+      "keywords": "printable suffocation warning labels, amazon fba, fba prep, fnsku labels"
     }
   ]
 }

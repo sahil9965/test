@@ -1125,3 +1125,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.
 - **Alt text:** GST Invoice Generator: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** gst invoice generator (india), invoice template, free invoice generator, small business
+
+## Day 124: Do I need Canva, Word or any software?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/do-i-need-canva-word-or-any-software.png
+- **Link:** https://punchcard.roohsites.com/editable-punch-card-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** No. The template is edited in your browser on this page. You don't need an account, an app or a download. The PDF it produces opens in any PDF viewer and prints from any printer. Free tool: punchcard.roohsites.com
+- **Alt text:** Do I need Canva, Word or any software?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** editable punch card template (no canva, no login), punch card template, loyalty card, small business
+
+## Day 125: What size are the breaker labels?
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/what-size-are-the-breaker-labels.png
+- **Link:** https://panelschedule.roohsites.com/breaker-box-label-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** On US Letter each label is 1.875 × 0.563 in, 64 to a page. On A4 they're 46 × 14 mm, 72 to a page. They're 4 across with dashed cut lines. Free tool: panelschedule.roohsites.com
+- **Alt text:** What size are the breaker labels?: On US Letter each label is 1.875 × 0.563 in, 64 to a page. The image shows numbered breaker labels with short circuit names and cut lines, from panelschedule.roohsites.com.
+- **Keywords:** breaker box label template, panel schedule, breaker labels, electrician
+
+## Day 126: Printable Suffocation Warning Labels
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/printable-suffocation-warning-labels.png
+- **Link:** https://fnsku.roohsites.com/suffocation-warning-label?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable suffocation warning labels with the font size picked from your poly bag size. English, French, German, Spanish, Italian and Dutch. Free PDF.
+- **Alt text:** Printable Suffocation Warning Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** printable suffocation warning labels, amazon fba, fba prep, fnsku labels

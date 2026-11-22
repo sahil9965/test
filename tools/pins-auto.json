@@ -1671,6 +1671,57 @@
       "desc": "Free GST invoice generator for India. Add GSTIN, HSN/SAC codes and CGST + SGST or IGST, in rupees. Download a tax invoice PDF, no login needed.",
       "keywords": "gst invoice generator (india), invoice template, free invoice generator, small business",
       "added": "2026-11-21"
+    },
+    {
+      "slug": "punchperk",
+      "file": "do-i-need-canva-word-or-any-software",
+      "path": "/editable-punch-card-template",
+      "board": "Small Business Printables",
+      "headline": "Do I need Canva, Word or any software?",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "No. The template is edited in your browser on this page. You don't need an account, an app or a download. The PDF it produces opens in any PDF viewer and prints from any printer. Free tool: punchcard.roohsites.com",
+      "keywords": "editable punch card template (no canva, no login), punch card template, loyalty card, small business",
+      "added": "2026-11-22"
+    },
+    {
+      "slug": "paneldex",
+      "file": "what-size-are-the-breaker-labels",
+      "path": "/breaker-box-label-template",
+      "board": "Electrician Printables",
+      "headline": "What size are the breaker labels?",
+      "sub": "On US Letter each label is 1.875 × 0.563 in, 64 to a page",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "strips",
+      "desc": "On US Letter each label is 1.875 × 0.563 in, 64 to a page. On A4 they're 46 × 14 mm, 72 to a page. They're 4 across with dashed cut lines. Free tool: panelschedule.roohsites.com",
+      "keywords": "breaker box label template, panel schedule, breaker labels, electrician",
+      "added": "2026-11-22"
+    },
+    {
+      "slug": "preplabel",
+      "file": "printable-suffocation-warning-labels",
+      "path": "/suffocation-warning-label",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "Printable Suffocation Warning Labels",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Printable suffocation warning labels with the font size picked from your poly bag size. English, French, German, Spanish, Italian and Dutch. Free PDF.",
+      "keywords": "printable suffocation warning labels, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-22"
     }
   ]
 }
