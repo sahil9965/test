@@ -1152,3 +1152,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Printable suffocation warning labels with the font size picked from your poly bag size. English, French, German, Spanish, Italian and Dutch. Free PDF.
 - **Alt text:** Printable Suffocation Warning Labels: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
 - **Keywords:** printable suffocation warning labels, amazon fba, fba prep, fnsku labels
+
+## Day 127: Raffle Ticket Template, 8 per Page
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/raffle-ticket-template-8-per-page.png
+- **Link:** https://raffle.roohsites.com/raffle-ticket-template-8-per-page?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** A raffle ticket template with 8 tickets per Letter or A4 page, stubs and crop marks, already numbered. Edit the text and download a free PDF, no Word needed.
+- **Alt text:** Raffle Ticket Template, 8 per Page: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** raffle ticket template, 8 per page, raffle tickets, fundraiser, printable tickets
+
+## Day 128: Vinted Label on a Thermal Printer
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/vinted-label-on-a-thermal-printer.png
+- **Link:** https://labels.roohsites.com/vinted-label-thermal-printer?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Print Vinted labels on a 6x4 thermal printer. Crop the A4 Evri, InPost, Royal Mail or DPD label to 100x150 mm in your browser. Free, nothing uploaded.
+- **Alt text:** Vinted Label on a Thermal Printer: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** print a vinted label on a thermal printer, shipping label, 4x6 label, thermal printer
+
+## Day 129: When should a photographer send the invoice?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/when-should-a-photographer-send-the-invoice.png
+- **Link:** https://invoice.roohsites.com/photography-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Send a deposit or retainer invoice at booking, and the balance invoice before delivering the final gallery. For events, many photographers require full payment before the event date. Free tool: invoice.roohsites.com
+- **Alt text:** When should a photographer send the invoice?: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** photography invoice template, invoice template, free invoice generator, small business
