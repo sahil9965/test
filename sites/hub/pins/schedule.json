@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1306,6 +1306,36 @@
       "link": "https://invoice.roohsites.com/photography-invoice-template?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "When should a photographer send the invoice?: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.",
       "keywords": "photography invoice template, invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 130,
+      "title": "What happens if I type a time that doesn't exist?",
+      "description": "On the night the clocks go forward, one hour is skipped. If a start time falls in that gap, StreamWeek moves it forward by the size of the gap, the way your phone's clock would, and shows a warning under the preview so you can check it. Free tool: streamschedule.roohsites.com",
+      "board": "Streamer Schedules",
+      "image": "https://tools.roohsites.com/pins/what-happens-if-i-type-a-time-that-doesn-t-exist.png",
+      "link": "https://streamschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "What happens if I type a time that doesn't exist?: On the night the clocks go forward, one hour is skipped. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.",
+      "keywords": "stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer"
+    },
+    {
+      "day": 131,
+      "title": "Is this homeschool transcript generator really free?",
+      "description": "Yes. Every feature is free, with no account and no paid tier: unlimited students, weighted GPA, course descriptions, report cards, the hours log and all three designs. Each PDF has one small \"Prepared with GradLedger\" line at the bottom. Free tool: transcript.roohsites.com",
+      "board": "Homeschool Records",
+      "image": "https://tools.roohsites.com/pins/is-this-homeschool-transcript-generator-really-free.png",
+      "link": "https://transcript.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Is this homeschool transcript generator really free?: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.",
+      "keywords": "homeschool transcript generator, homeschool transcript, homeschool high school, gpa"
+    },
+    {
+      "day": 132,
+      "title": "What is a good reward for a punch card?",
+      "description": "Pick something that costs you less than it feels like it is worth to the customer. A free item you make cheaply, a small discount or an add-on often works better than a large discount. Keep the reward easy to say in one line on the card. Free tool: punchcard.roohsites.com",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/what-is-a-good-reward-for-a-punch-card.png",
+      "link": "https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "What is a good reward for a punch card?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business"
     }
   ]
 }

@@ -1179,3 +1179,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Send a deposit or retainer invoice at booking, and the balance invoice before delivering the final gallery. For events, many photographers require full payment before the event date. Free tool: invoice.roohsites.com
 - **Alt text:** When should a photographer send the invoice?: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
 - **Keywords:** photography invoice template, invoice template, free invoice generator, small business
+
+## Day 130: What happens if I type a time that doesn't exist?
+
+- **Board:** Streamer Schedules
+- **Image:** https://tools.roohsites.com/pins/what-happens-if-i-type-a-time-that-doesn-t-exist.png
+- **Link:** https://streamschedule.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** On the night the clocks go forward, one hour is skipped. If a start time falls in that gap, StreamWeek moves it forward by the size of the gap, the way your phone's clock would, and shows a warning under the preview so you can check it. Free tool: streamschedule.roohsites.com
+- **Alt text:** What happens if I type a time that doesn't exist?: On the night the clocks go forward, one hour is skipped. The image shows a weekly stream schedule with days, times and stream titles, from streamschedule.roohsites.com.
+- **Keywords:** stream schedule template and maker with time zones, stream schedule, twitch schedule, streamer
+
+## Day 131: Is this homeschool transcript generator really free?
+
+- **Board:** Homeschool Records
+- **Image:** https://tools.roohsites.com/pins/is-this-homeschool-transcript-generator-really-free.png
+- **Link:** https://transcript.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Yes. Every feature is free, with no account and no paid tier: unlimited students, weighted GPA, course descriptions, report cards, the hours log and all three designs. Each PDF has one small "Prepared with GradLedger" line at the bottom. Free tool: transcript.roohsites.com
+- **Alt text:** Is this homeschool transcript generator really free?: Homeschool transcripts and GPA, free. The image shows a one-page document preview, from transcript.roohsites.com.
+- **Keywords:** homeschool transcript generator, homeschool transcript, homeschool high school, gpa
+
+## Day 132: What is a good reward for a punch card?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/what-is-a-good-reward-for-a-punch-card.png
+- **Link:** https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Pick something that costs you less than it feels like it is worth to the customer. A free item you make cheaply, a small discount or an add-on often works better than a large discount. Keep the reward easy to say in one line on the card. Free tool: punchcard.roohsites.com
+- **Alt text:** What is a good reward for a punch card?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** how to run a punch card loyalty program, punch card template, loyalty card, small business
