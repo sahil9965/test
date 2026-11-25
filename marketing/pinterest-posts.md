@@ -1206,3 +1206,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Pick something that costs you less than it feels like it is worth to the customer. A free item you make cheaply, a small discount or an add-on often works better than a large discount. Keep the reward easy to say in one line on the card. Free tool: punchcard.roohsites.com
 - **Alt text:** What is a good reward for a punch card?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
 - **Keywords:** how to run a punch card loyalty program, punch card template, loyalty card, small business
+
+## Day 133: What size should a breaker panel directory be?
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/what-size-should-a-breaker-panel-directory-be.png
+- **Link:** https://panelschedule.roohsites.com/circuit-breaker-directory-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Measure the inside of the panel door, or the card holder if it has one, and enter that as a custom size. If there's room for it, half letter (5.5 × 8.5 in) fits many residential panel doors, and Letter suits larger doors. Free tool: panelschedule.roohsites.com
+- **Alt text:** What size should a breaker panel directory be?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** circuit breaker directory printable, panel schedule, breaker labels, electrician
+
+## Day 134: FNSKU Label Generator
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/fnsku-label-generator-2.png
+- **Link:** https://fnsku.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free FNSKU label generator for 2x1 thermal rolls, DYMO 30334 and Avery 5160 sheets. Import CSV, convert Seller Central PDFs, print prep labels. No signup.
+- **Alt text:** FNSKU Label Generator: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** fnsku label generator, amazon fba, fba prep, fnsku labels
+
+## Day 135: Why does my label print tiny or in a corner?
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/why-does-my-label-print-tiny-or-in-a-corner.png
+- **Link:** https://labels.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Usually the printer is still set to A4 or Letter paper, or the print dialog is set to Fit to page, which shrinks the whole sheet. Convert the label to 6x4 here, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size or 100%. Free tool: labels.roohsites.com
+- **Alt text:** Why does my label print tiny or in a corner?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer

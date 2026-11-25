@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1336,6 +1336,36 @@
       "link": "https://punchcard.roohsites.com/how-to-run-a-punch-card-loyalty-program?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "What is a good reward for a punch card?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
       "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business"
+    },
+    {
+      "day": 133,
+      "title": "What size should a breaker panel directory be?",
+      "description": "Measure the inside of the panel door, or the card holder if it has one, and enter that as a custom size. If there's room for it, half letter (5.5 × 8.5 in) fits many residential panel doors, and Letter suits larger doors. Free tool: panelschedule.roohsites.com",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/what-size-should-a-breaker-panel-directory-be.png",
+      "link": "https://panelschedule.roohsites.com/circuit-breaker-directory-printable?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "What size should a breaker panel directory be?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "circuit breaker directory printable, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 134,
+      "title": "FNSKU Label Generator",
+      "description": "Free FNSKU label generator for 2x1 thermal rolls, DYMO 30334 and Avery 5160 sheets. Import CSV, convert Seller Central PDFs, print prep labels. No signup.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/fnsku-label-generator-2.png",
+      "link": "https://fnsku.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "FNSKU Label Generator: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.",
+      "keywords": "fnsku label generator, amazon fba, fba prep, fnsku labels"
+    },
+    {
+      "day": 135,
+      "title": "Why does my label print tiny or in a corner?",
+      "description": "Usually the printer is still set to A4 or Letter paper, or the print dialog is set to Fit to page, which shrinks the whole sheet. Convert the label to 6x4 here, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size or 100%. Free tool: labels.roohsites.com",
+      "board": "Online Seller Shipping",
+      "image": "https://tools.roohsites.com/pins/why-does-my-label-print-tiny-or-in-a-corner.png",
+      "link": "https://labels.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Why does my label print tiny or in a corner?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
+      "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer"
     }
   ]
 }

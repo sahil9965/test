@@ -1824,6 +1824,57 @@
       "desc": "Pick something that costs you less than it feels like it is worth to the customer. A free item you make cheaply, a small discount or an add-on often works better than a large discount. Keep the reward easy to say in one line on the card. Free tool: punchcard.roohsites.com",
       "keywords": "how to run a punch card loyalty program, punch card template, loyalty card, small business",
       "added": "2026-11-24"
+    },
+    {
+      "slug": "paneldex",
+      "file": "what-size-should-a-breaker-panel-directory-be",
+      "path": "/circuit-breaker-directory-printable",
+      "board": "Electrician Printables",
+      "headline": "What size should a breaker panel directory be?",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "Measure the inside of the panel door, or the card holder if it has one, and enter that as a custom size. If there's room for it, half letter (5.5 × 8.5 in) fits many residential panel doors, and Letter suits larger doors. Free tool: panelschedule.roohsites.com",
+      "keywords": "circuit breaker directory printable, panel schedule, breaker labels, electrician",
+      "added": "2026-11-25"
+    },
+    {
+      "slug": "preplabel",
+      "file": "fnsku-label-generator-2",
+      "path": "/",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "FNSKU Label Generator",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Free FNSKU label generator for 2x1 thermal rolls, DYMO 30334 and Avery 5160 sheets. Import CSV, convert Seller Central PDFs, print prep labels. No signup.",
+      "keywords": "fnsku label generator, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-25"
+    },
+    {
+      "slug": "labelfit",
+      "file": "why-does-my-label-print-tiny-or-in-a-corner",
+      "path": "/",
+      "board": "Online Seller Shipping",
+      "headline": "Why does my label print tiny or in a corner?",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "Usually the printer is still set to A4 or Letter paper, or the print dialog is set to Fit to page, which shrinks the whole sheet. Convert the label to 6x4 here, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size or 100%. Free tool: labels.roohsites.com",
+      "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-25"
     }
   ]
 }
