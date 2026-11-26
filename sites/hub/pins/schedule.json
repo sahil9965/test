@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1366,6 +1366,36 @@
       "link": "https://labels.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "Why does my label print tiny or in a corner?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.",
       "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer"
+    },
+    {
+      "day": 136,
+      "title": "Teacher Planner 2027–2028",
+      "description": "Free printable teacher planner for 2027–2028: dated weekly lesson pages, monthly calendars, federal holidays and your A/B or rotation days. Letter or A4.",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "image": "https://tools.roohsites.com/pins/teacher-planner-2027-2028.png",
+      "link": "https://abday.roohsites.com/teacher-planner-2027-2028?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Teacher Planner 2027–2028: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.",
+      "keywords": "teacher planner 2027–2028, a/b day calendar, teacher planner, block schedule"
+    },
+    {
+      "day": 137,
+      "title": "Do I need to show my VAT number?",
+      "description": "Yes, if you're VAT-registered. Put it in the From box under your address. Free tool: invoice.roohsites.com",
+      "board": "Small Business Invoices",
+      "image": "https://tools.roohsites.com/pins/do-i-need-to-show-my-vat-number.png",
+      "link": "https://invoice.roohsites.com/vat-invoice-template-uk?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Do I need to show my VAT number?: Yes, if you're VAT-registered. The image shows a one-page document preview, from invoice.roohsites.com.",
+      "keywords": "uk vat invoice template, invoice template, free invoice generator, small business"
+    },
+    {
+      "day": 138,
+      "title": "IEP Data Sheet Generator",
+      "description": "Printable data sheets for any IEP goal: trial-by-trial, prompt level, cold probe, task analysis, frequency, duration, interval or ABC. Free PDF, no signup.",
+      "board": "ABA Data Sheets & Graphs",
+      "image": "https://tools.roohsites.com/pins/iep-data-sheet-generator.png",
+      "link": "https://abagraph.roohsites.com/iep-data-sheet-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "IEP Data Sheet Generator: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.",
+      "keywords": "iep data sheet generator, aba graph, data sheet, special education"
     }
   ]
 }

@@ -1233,3 +1233,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Usually the printer is still set to A4 or Letter paper, or the print dialog is set to Fit to page, which shrinks the whole sheet. Convert the label to 6x4 here, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size or 100%. Free tool: labels.roohsites.com
 - **Alt text:** Why does my label print tiny or in a corner?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
 - **Keywords:** a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer
+
+## Day 136: Teacher Planner 2027–2028
+
+- **Board:** Teacher Planning & A/B Day Calendars
+- **Image:** https://tools.roohsites.com/pins/teacher-planner-2027-2028.png
+- **Link:** https://abday.roohsites.com/teacher-planner-2027-2028?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Free printable teacher planner for 2027–2028: dated weekly lesson pages, monthly calendars, federal holidays and your A/B or rotation days. Letter or A4.
+- **Alt text:** Teacher Planner 2027–2028: A/B and rotating-day school calendars. The image shows a month calendar with school days labelled A and B, from abday.roohsites.com.
+- **Keywords:** teacher planner 2027–2028, a/b day calendar, teacher planner, block schedule
+
+## Day 137: Do I need to show my VAT number?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/do-i-need-to-show-my-vat-number.png
+- **Link:** https://invoice.roohsites.com/vat-invoice-template-uk?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Yes, if you're VAT-registered. Put it in the From box under your address. Free tool: invoice.roohsites.com
+- **Alt text:** Do I need to show my VAT number?: Yes, if you're VAT-registered. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** uk vat invoice template, invoice template, free invoice generator, small business
+
+## Day 138: IEP Data Sheet Generator
+
+- **Board:** ABA Data Sheets & Graphs
+- **Image:** https://tools.roohsites.com/pins/iep-data-sheet-generator.png
+- **Link:** https://abagraph.roohsites.com/iep-data-sheet-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable data sheets for any IEP goal: trial-by-trial, prompt level, cold probe, task analysis, frequency, duration, interval or ABC. Free PDF, no signup.
+- **Alt text:** IEP Data Sheet Generator: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
+- **Keywords:** iep data sheet generator, aba graph, data sheet, special education

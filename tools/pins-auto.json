@@ -1875,6 +1875,57 @@
       "desc": "Usually the printer is still set to A4 or Letter paper, or the print dialog is set to Fit to page, which shrinks the whole sheet. Convert the label to 6x4 here, set the paper size to 4 × 6 in or 100 × 150 mm, and print at Actual size or 100%. Free tool: labels.roohsites.com",
       "keywords": "a4 to 6x4 label converter, shipping label, 4x6 label, thermal printer",
       "added": "2026-11-25"
+    },
+    {
+      "slug": "bellbook",
+      "file": "teacher-planner-2027-2028",
+      "path": "/teacher-planner-2027-2028",
+      "board": "Teacher Planning & A/B Day Calendars",
+      "headline": "Teacher Planner 2027–2028",
+      "sub": "A/B and rotating-day school calendars",
+      "points": [
+        "Snow-day re-flow",
+        "PDF, .ics & share link",
+        "No signup"
+      ],
+      "visual": "calendar",
+      "desc": "Free printable teacher planner for 2027–2028: dated weekly lesson pages, monthly calendars, federal holidays and your A/B or rotation days. Letter or A4.",
+      "keywords": "teacher planner 2027–2028, a/b day calendar, teacher planner, block schedule",
+      "added": "2026-11-26"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "do-i-need-to-show-my-vat-number",
+      "path": "/vat-invoice-template-uk",
+      "board": "Small Business Invoices",
+      "headline": "Do I need to show my VAT number?",
+      "sub": "Yes, if you're VAT-registered",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "Yes, if you're VAT-registered. Put it in the From box under your address. Free tool: invoice.roohsites.com",
+      "keywords": "uk vat invoice template, invoice template, free invoice generator, small business",
+      "added": "2026-11-26"
+    },
+    {
+      "slug": "goaltally",
+      "file": "iep-data-sheet-generator",
+      "path": "/iep-data-sheet-generator",
+      "board": "ABA Data Sheets & Graphs",
+      "headline": "IEP Data Sheet Generator",
+      "sub": "ABA graphs and data sheets for IEP goals",
+      "points": [
+        "Nothing uploaded",
+        "Works offline",
+        "No signup"
+      ],
+      "visual": "grid",
+      "desc": "Printable data sheets for any IEP goal: trial-by-trial, prompt level, cold probe, task analysis, frequency, duration, interval or ABC. Free PDF, no signup.",
+      "keywords": "iep data sheet generator, aba graph, data sheet, special education",
+      "added": "2026-11-26"
     }
   ]
 }
