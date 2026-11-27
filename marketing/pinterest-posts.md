@@ -1260,3 +1260,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Printable data sheets for any IEP goal: trial-by-trial, prompt level, cold probe, task analysis, frequency, duration, interval or ABC. Free PDF, no signup.
 - **Alt text:** IEP Data Sheet Generator: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.
 - **Keywords:** iep data sheet generator, aba graph, data sheet, special education
+
+## Day 139: Is this compatible with Avery 8371 and 5371 sheets?
+
+- **Board:** Small Business Printables
+- **Image:** https://tools.roohsites.com/pins/is-this-compatible-with-avery-8371-and-5371-sheets.png
+- **Link:** https://punchcard.roohsites.com/punch-card-template-10-per-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** The Letter layout matches the standard 10-up business card sheet geometry used by Avery 8371 and 5371 style sheets: 3.5 × 2 in cards, 2 across and 5 down, 0.5 in top and bottom margins and 0.75 in side margins with no gutter. Always compare with the size printed on your own box. PunchPerk is not affiliated with Avery. Free tool: punchcard.roohsites.com
+- **Alt text:** Is this compatible with Avery 8371 and 5371 sheets?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.
+- **Keywords:** punch card template, 10 per page (business card sheets), punch card template, loyalty card, small business
+
+## Day 140: Is this a load calculation for sizing my service?
+
+- **Board:** Electrician Printables
+- **Image:** https://tools.roohsites.com/pins/is-this-a-load-calculation-for-sizing-my-service.png
+- **Link:** https://panelschedule.roohsites.com/panel-load-balancing-calculator?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** No. It adds up the numbers you type. Sizing a service, feeder or panel uses an NEC Article 220 load calculation, which has its own rules and demand factors; a licensed electrician does that. Labelling tool only. Turn power off and follow local code; have a licensed electrician do electrical work. Free tool: panelschedule.roohsites.com
+- **Alt text:** Is this a load calculation for sizing my service?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.
+- **Keywords:** panel load balancing calculator, panel schedule, breaker labels, electrician
+
+## Day 141: Printable Bin Location Labels with QR Codes
+
+- **Board:** Amazon FBA Prep Labels
+- **Image:** https://tools.roohsites.com/pins/printable-bin-location-labels-with-qr-codes.png
+- **Link:** https://fnsku.roohsites.com/bin-location-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.
+- **Alt text:** Printable Bin Location Labels with QR Codes: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
+- **Keywords:** printable bin location labels, amazon fba, fba prep, fnsku labels

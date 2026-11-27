@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "boards": {
     "Raffle & Event Tickets": "Free printable raffle, 50/50, drink and meal tickets with numbered stubs for fundraisers, PTOs, schools and events.",
     "Teacher Planning & A/B Day Calendars": "Free A/B day and rotating-schedule calendars, dated lesson planners and printables for teachers.",
@@ -1396,6 +1396,36 @@
       "link": "https://abagraph.roohsites.com/iep-data-sheet-generator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
       "alt": "IEP Data Sheet Generator: ABA graphs and data sheets for IEP goals. The image shows a printable data sheet grid with plus and minus scores, from abagraph.roohsites.com.",
       "keywords": "iep data sheet generator, aba graph, data sheet, special education"
+    },
+    {
+      "day": 139,
+      "title": "Is this compatible with Avery 8371 and 5371 sheets?",
+      "description": "The Letter layout matches the standard 10-up business card sheet geometry used by Avery 8371 and 5371 style sheets: 3.5 × 2 in cards, 2 across and 5 down, 0.5 in top and bottom margins and 0.75 in side margins with no gutter. Always compare with the size printed on your own box. PunchPerk is not affiliated with Avery. Free tool: punchcard.roohsites.com",
+      "board": "Small Business Printables",
+      "image": "https://tools.roohsites.com/pins/is-this-compatible-with-avery-8371-and-5371-sheets.png",
+      "link": "https://punchcard.roohsites.com/punch-card-template-10-per-sheet?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Is this compatible with Avery 8371 and 5371 sheets?: Loyalty punch cards, 10 per page. The image shows two loyalty punch cards with ten punch circles and a free reward, from punchcard.roohsites.com.",
+      "keywords": "punch card template, 10 per page (business card sheets), punch card template, loyalty card, small business"
+    },
+    {
+      "day": 140,
+      "title": "Is this a load calculation for sizing my service?",
+      "description": "No. It adds up the numbers you type. Sizing a service, feeder or panel uses an NEC Article 220 load calculation, which has its own rules and demand factors; a licensed electrician does that. Labelling tool only. Turn power off and follow local code; have a licensed electrician do electrical work. Free tool: panelschedule.roohsites.com",
+      "board": "Electrician Printables",
+      "image": "https://tools.roohsites.com/pins/is-this-a-load-calculation-for-sizing-my-service.png",
+      "link": "https://panelschedule.roohsites.com/panel-load-balancing-calculator?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Is this a load calculation for sizing my service?: Panel schedules, door directories and breaker labels. The image shows a two-column breaker panel schedule with numbered circuits, from panelschedule.roohsites.com.",
+      "keywords": "panel load balancing calculator, panel schedule, breaker labels, electrician"
+    },
+    {
+      "day": 141,
+      "title": "Printable Bin Location Labels with QR Codes",
+      "description": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
+      "board": "Amazon FBA Prep Labels",
+      "image": "https://tools.roohsites.com/pins/printable-bin-location-labels-with-qr-codes.png",
+      "link": "https://fnsku.roohsites.com/bin-location-labels?utm_source=pinterest&utm_medium=social&utm_campaign=pins",
+      "alt": "Printable Bin Location Labels with QR Codes: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.",
+      "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels"
     }
   ]
 }

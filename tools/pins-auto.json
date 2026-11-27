@@ -1926,6 +1926,57 @@
       "desc": "Printable data sheets for any IEP goal: trial-by-trial, prompt level, cold probe, task analysis, frequency, duration, interval or ABC. Free PDF, no signup.",
       "keywords": "iep data sheet generator, aba graph, data sheet, special education",
       "added": "2026-11-26"
+    },
+    {
+      "slug": "punchperk",
+      "file": "is-this-compatible-with-avery-8371-and-5371-sheets",
+      "path": "/punch-card-template-10-per-sheet",
+      "board": "Small Business Printables",
+      "headline": "Is this compatible with Avery 8371 and 5371 sheets?",
+      "sub": "Loyalty punch cards, 10 per page",
+      "points": [
+        "10 cards per page",
+        "Letter & A4",
+        "Serials & backs"
+      ],
+      "visual": "punch",
+      "desc": "The Letter layout matches the standard 10-up business card sheet geometry used by Avery 8371 and 5371 style sheets: 3.5 × 2 in cards, 2 across and 5 down, 0.5 in top and bottom margins and 0.75 in side margins with no gutter. Always compare with the size printed on your own box. PunchPerk is not affiliated with Avery. Free tool: punchcard.roohsites.com",
+      "keywords": "punch card template, 10 per page (business card sheets), punch card template, loyalty card, small business",
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "paneldex",
+      "file": "is-this-a-load-calculation-for-sizing-my-service",
+      "path": "/panel-load-balancing-calculator",
+      "board": "Electrician Printables",
+      "headline": "Is this a load calculation for sizing my service?",
+      "sub": "Panel schedules, door directories and breaker labels",
+      "points": [
+        "Excel with live formulas",
+        "PDF, door directory & labels",
+        "Split-phase & 3-phase"
+      ],
+      "visual": "panel",
+      "desc": "No. It adds up the numbers you type. Sizing a service, feeder or panel uses an NEC Article 220 load calculation, which has its own rules and demand factors; a licensed electrician does that. Labelling tool only. Turn power off and follow local code; have a licensed electrician do electrical work. Free tool: panelschedule.roohsites.com",
+      "keywords": "panel load balancing calculator, panel schedule, breaker labels, electrician",
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "preplabel",
+      "file": "printable-bin-location-labels-with-qr-codes",
+      "path": "/bin-location-labels",
+      "board": "Amazon FBA Prep Labels",
+      "headline": "Printable Bin Location Labels with QR Codes",
+      "sub": "FNSKU, suffocation and set labels for FBA prep",
+      "points": [
+        "Rollo, Zebra & DYMO",
+        "Vector PDF + ZPL",
+        "No signup"
+      ],
+      "visual": "document",
+      "desc": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
+      "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels",
+      "added": "2026-11-27"
     }
   ]
 }
