@@ -1287,3 +1287,30 @@ One pin a day, in this order. Cowork reads the same list from https://tools.rooh
 - **Description:** Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.
 - **Alt text:** Printable Bin Location Labels with QR Codes: FNSKU, suffocation and set labels for FBA prep. The image shows a one-page document preview, from fnsku.roohsites.com.
 - **Keywords:** printable bin location labels, amazon fba, fba prep, fnsku labels
+
+## Day 142: Can USPS.com print 4x6 labels directly?
+
+- **Board:** Online Seller Shipping
+- **Image:** https://tools.roohsites.com/pins/can-usps-com-print-4x6-labels-directly.png
+- **Link:** https://labels.roohsites.com/usps-label-to-4x6?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** It depends on the print options USPS.com shows you, and they have changed over time. Printer makers such as Arkscan describe Click-N-Ship labels as 8.5 × 11 in pages, which is why many sellers crop them for 4 × 6 thermal printers. If you see a 4 × 6 label option when printing, use it; otherwise convert the letter-size PDF here. Free tool: labels.roohsites.com
+- **Alt text:** Can USPS.com print 4x6 labels directly?: Turn A4 shipping labels into 6x4 thermal labels. The image shows an A4 label page converted into a 6 by 4 inch thermal label, from labels.roohsites.com.
+- **Keywords:** convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer
+
+## Day 143: Raffle Tickets 1-1000, Printable with Stubs
+
+- **Board:** Raffle & Event Tickets
+- **Image:** https://tools.roohsites.com/pins/raffle-tickets-1-1000-printable-with-stubs.png
+- **Link:** https://raffle.roohsites.com/raffle-tickets-1-1000?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** Printable raffle tickets 1-1000 with matching numbered stubs: 100 sheets, four-digit numbers 0001-1000, cut-and-stack piles of 100, seller log. Free.
+- **Alt text:** Raffle Tickets 1-1000, Printable with Stubs: Printable numbered raffle tickets with stubs. The image shows a sheet of numbered raffle tickets with matching stubs, from raffle.roohsites.com.
+- **Keywords:** raffle tickets 1-1000, printable with stubs, raffle tickets, fundraiser, printable tickets
+
+## Day 144: Do I need to sign up?
+
+- **Board:** Small Business Invoices
+- **Image:** https://tools.roohsites.com/pins/do-i-need-to-sign-up.png
+- **Link:** https://invoice.roohsites.com/?utm_source=pinterest&utm_medium=social&utm_campaign=pins
+- **Description:** No. InvoiceKit works without an account. Your drafts are saved in your own browser on this device. Free tool: invoice.roohsites.com
+- **Alt text:** Do I need to sign up?: Create and download PDF invoices free. The image shows a one-page document preview, from invoice.roohsites.com.
+- **Keywords:** invoice generator, invoice template, free invoice generator, small business

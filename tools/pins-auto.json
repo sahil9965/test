@@ -1977,6 +1977,57 @@
       "desc": "Make printable bin and shelf location labels with QR codes or Code 128 barcodes. Number ranges like A-01-01 to A-01-24, any label size. Free, no signup.",
       "keywords": "printable bin location labels, amazon fba, fba prep, fnsku labels",
       "added": "2026-11-27"
+    },
+    {
+      "slug": "labelfit",
+      "file": "can-usps-com-print-4x6-labels-directly",
+      "path": "/usps-label-to-4x6",
+      "board": "Online Seller Shipping",
+      "headline": "Can USPS.com print 4x6 labels directly?",
+      "sub": "Turn A4 shipping labels into 6x4 thermal labels",
+      "points": [
+        "Sharp vector PDF",
+        "Phone image option",
+        "Nothing uploaded"
+      ],
+      "visual": "label",
+      "desc": "It depends on the print options USPS.com shows you, and they have changed over time. Printer makers such as Arkscan describe Click-N-Ship labels as 8.5 × 11 in pages, which is why many sellers crop them for 4 × 6 thermal printers. If you see a 4 × 6 label option when printing, use it; otherwise convert the letter-size PDF here. Free tool: labels.roohsites.com",
+      "keywords": "convert a usps.com label to 4x6, shipping label, 4x6 label, thermal printer",
+      "added": "2026-11-28"
+    },
+    {
+      "slug": "ticketrun",
+      "file": "raffle-tickets-1-1000-printable-with-stubs",
+      "path": "/raffle-tickets-1-1000",
+      "board": "Raffle & Event Tickets",
+      "headline": "Raffle Tickets 1-1000, Printable with Stubs",
+      "sub": "Printable numbered raffle tickets with stubs",
+      "points": [
+        "Up to 20,000 tickets",
+        "Matching stubs",
+        "Letter & A4"
+      ],
+      "visual": "tickets",
+      "desc": "Printable raffle tickets 1-1000 with matching numbered stubs: 100 sheets, four-digit numbers 0001-1000, cut-and-stack piles of 100, seller log. Free.",
+      "keywords": "raffle tickets 1-1000, printable with stubs, raffle tickets, fundraiser, printable tickets",
+      "added": "2026-11-28"
+    },
+    {
+      "slug": "invoicekit",
+      "file": "do-i-need-to-sign-up",
+      "path": "/",
+      "board": "Small Business Invoices",
+      "headline": "Do I need to sign up?",
+      "sub": "Create and download PDF invoices free",
+      "points": [
+        "Any currency",
+        "Tax, VAT & GST",
+        "Download a clean PDF"
+      ],
+      "visual": "document",
+      "desc": "No. InvoiceKit works without an account. Your drafts are saved in your own browser on this device. Free tool: invoice.roohsites.com",
+      "keywords": "invoice generator, invoice template, free invoice generator, small business",
+      "added": "2026-11-28"
     }
   ]
 }
